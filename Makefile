@@ -9,4 +9,4 @@ dist/%.html: src/%.pug
 clean:
 	rm -rf dist/
 	mkdir dist
-	touch .gitkeep
+	touch dist/.gitkeep
