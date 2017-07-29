@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/Petitsurume/iMast#readme",
   "dependencies": {
-    "marked": "^0.3.6",
     "pug-cli": "^1.0.0-alpha6"
   }
 }
