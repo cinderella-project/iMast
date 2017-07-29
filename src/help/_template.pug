@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="robots", content="noindex, nofollow")
+        meta(name="viewport", content="width=device-width")
+        title= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
+        block head
+    body
+        h1= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
+        block content
+        footer
+            p 公式アカウント 
+                a(href="https://imastodon.net/@imast_ios") @imast_ios@imastodon.net
