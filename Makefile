@@ -10,5 +10,5 @@ clean:
 	rm -rf dist/
 	mkdir dist
 	touch dist/.gitkeep
-upload:
+upload: clean all
 	$(NODEPATH)/gh-pages -d dist
