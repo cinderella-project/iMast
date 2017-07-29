@@ -3,6 +3,8 @@ block head
     title= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
 block body
     h1= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
+    if title
+        a(href="./") 戻る
     block content
     footer
         p 公式アカウント 
