@@ -1,0 +1,77 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport",content="width=device-width")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css")
+        style.
+            body {
+            }
+            #main {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            #main img{
+                width: 80%;
+                max-width: 220px;
+            }
+            #main p {
+                padding: 1.5em 0;
+                word-break: keep-all;
+            }
+            #main span {
+                white-space: nowrap;
+            }
+            .app-icon {
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 20%;
+                display: none;
+            }
+            .col-md-8 > p {
+                max-width: 25em;
+            }
+            @media screen and (min-width: 768px) {
+                .app-icon {
+                    display: inline-block;
+                }
+                img {
+                    margin: 2em;
+                }
+            }
+            h2 {
+                word-break: keep-all;
+            }
+            #infocontent img{
+                max-width: 80%;
+                max-height: 25em;
+            }
+            #footer {
+                width: 100%;
+                background: #f5f5f5;
+            }
+            #footer .container div {
+                padding: calc(30px - 0.5em) 0;
+            }
+    body
+        #main: .container.text-center.text-md-left
+            .row.align-items-center
+                .col-md-8
+                    h1.mb-3 iMast
+                    p.lead
+                        | iMastは、iPhone, iPod touch, iPadで動作する、 Mastodonの 非公式クライアントです。
+                .col-md-4.text-center
+                    img.app-icon(src="./assets/imast_icon.png")
+                    a(href="https://itunes.apple.com/jp/app/imast/id1229461703?mt=8")
+                        img(src="./assets/download_appstore.svg",alt="App Storeでダウンロード")
+        #infocontent.black: .container
+            h2 圧倒的な情報量を、 あなたの手のひらへ
+            p.lead iMastは、あまり使われない「ブースト」や「お気に入り」ボタンをタイムライン上から除去することで、タイムラインに表示できるトゥート数を増やすことに成功しました。
+            .row.text-center
+                .col
+                    img(src="./assets/timeline_official.png")
+                    p.lead 公式 Webクライアント
+                .col
+                    img(src="./assets/timeline_imast.png")
+                    p.lead iMast 
+        #footer: .container
+            .text-muted Apple、Apple ロゴ、iPhone、iPod touch、およびiPad は米国その他の国で登録された Apple Inc. の商標です。App Store Apple Inc. のサービスマークです。
