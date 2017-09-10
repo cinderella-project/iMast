@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <title>設定 - iMast ヘルプ</title>
+    <style>
+      h1,h2,h3,h4,h5 {
+          margin: .67em 0;
+      }
+      summary{
+          font-size: 1.5em;
+          margin-bottom: 0.5em;
+      }
+      details {
+          margin: 0.5em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container"><a class="navbar-brand" href="./">iMast ヘルプ</a></div>
+    </nav>
+    <div class="container">
+      <h1>設定</h1>
+      <p>説明を見たい項目をタップすると開きます</p>
+      <details>
+        <summary>ストリーミング自動接続</summary>
+        <p>ホーム/ローカルタイムラインを開いた際、または何らかの原因によりストリーミングの接続が切れてしまった場合に、ストリーミングを(再)接続する条件を設定できます。</p>
+        <p>「しない」にすると、手動で接続をしない限りストリーミングには接続しません。</p>
+        <p>「WiFiのみ」にすると、端末がWiFiに接続されている場合のみストリーミングを接続します。</p>
+        <p>「常に接続」にすると、端末がセルラーネットワークに接続されていても、WiFiに接続されていても、ストリーミングに接続します。</p>
+      </details>
+      <details>
+        <summary>新規連携時のvia</summary>
+        <p>「その他」→「アカウントを変更」→「追加」からアカウントを追加する際に、認証するアプリケーション名を変更できます。</p>
+        <p>変更したアプリケーション名は、Mastodonの「設定」→「認証済みアプリ」や一部のクライアントで投稿とともに表示されます。</p>
+      </details>
+      <details>
+        <summary>フォロー関係を以前の表記に</summary>
+        <p>ユーザーのプロフィール画面で表示される、「関係: 」の表記がiMast 2.2から変更になりました。</p>
+        <p>この設定を有効にすると、iMast 2.1までの表記に戻せます。</p>
+      </details>
+      <details>
+        <summary>投稿時にメディアURLを追加</summary>
+        <p>投稿時に、500文字以内に収まりそうであれば、<code>https://インスタンスホスト名/media/英数字</code>のURLを追加します。</p>
+        <p>この設定を有効にしないと、一部のクライアント(iMast)では、添付した画像を見る手段がなくなるので、特別な理由がない限りONにするのをおすすめします。</p>
+      </details>
+      <details>
+        <summary>nowplayingのフォーマット</summary>
+        <p>投稿作成画面の「♪」マークから呼び出せる、NowPlayingで挿入する文字列のフォーマットを変更できます。</p>
+        <p>以下の文字列を含めると、挿入時に置換されます。</p>
+        <table class="table">
+          <tr>
+            <th>置換元</th>
+            <th>置換される文字列</th>
+          </tr>
+          <tr>
+            <td>{title}</td>
+            <td>曲名</td>
+          </tr>
+          <tr>
+            <td>{artist}</td>
+            <td>曲のアーティスト名</td>
+          </tr>
+          <tr>
+            <td>{albumTitle}</td>
+            <td>アルバム名</td>
+          </tr>
+          <tr>
+            <td>{albumArtist}</td>
+            <td>アルバムのアーティスト名</td>
+          </tr>
+        </table>
+      </details>
+      <hr>
+      <details>
+        <summary>ユーザー名の文字/本文の文字/アイコンの大きさ</summary>
+        <p>タイトル通り、各種の大きさを変更できます。</p>
+        <p>変更後は、アプリを再起動するか、Streamingメニュー（タイムライン左上の稲妻のマーク）から「再描画」を選択するまで反映されません。</p>
+      </details>
+      <hr>
+      <details>
+        <summary>投稿フォーマット</summary>
+        <p>クイック投稿ウィジェットから投稿する際のフォーマットを指定できます。</p>
+        <p><code>{clipboard}</code>がクリップボードの内容に置換されます。</p>
+      </details>
+      <details>
+        <summary>フィルタ</summary>
+        <p>正規表現でフィルタを書くと、指定された正規表現にクリップボードの内容がマッチしない場合は、クイック投稿ウィジェットからの投稿ができなくなります。</p>
+        <p>誤爆予防におすすめです。</p>
+      </details>
+      <hr>
+      <footer>
+        <p>公式アカウント <a href="https://imastodon.net/@imast_ios">@imast_ios@imastodon.net</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
