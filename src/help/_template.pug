@@ -1,11 +1,27 @@
 extends ../_template
 block head
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     title= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
+    style.
+        h1,h2,h3,h4,h5 {
+            margin: .67em 0;
+        }
+        summary{
+            font-size: 1.25em;
+            margin-bottom: 0.5em;
+        }
+        details {
+            margin: 0.5em 0;
+        }
 block body
-    h1= title ? title + " - iMast ヘルプ" : "iMast ヘルプ"
-    if title
-        a(href="./") 戻る
-    block content
-    footer
-        p 公式アカウント 
-            a(href="https://imastodon.net/@imast_ios") @imast_ios@imastodon.net
+    nav.navbar.navbar-light.bg-light: .container
+        a.navbar-brand(href="./") iMast ヘルプ
+    .container
+        if title
+            h1= title
+        block content
+        hr
+        footer
+            p 公式アカウント 
+                a(href="https://imastodon.net/@imast_ios") @imast_ios@imastodon.net

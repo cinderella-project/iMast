@@ -6,7 +6,7 @@ first:
 	mkdir -p dist/help/
 html: $(HTML_FILES)
 assets: $(ASSET_FILES)
-dist/%.html: src/%.pug
+dist/%.html: src/%.pug src/_template.pug src/help/_template.pug
 	$(NODEPATH)/pug -O "{pretty:true}" -p $< < $< > $@
 dist/assets/%: src/assets/%
 	mkdir -p $(shell dirname $@)
