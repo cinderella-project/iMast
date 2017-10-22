@@ -29,6 +29,7 @@ target 'iMast' do
 
   target 'iMastShare' do
     inherit! :search_paths
+    pod 'Alamofire', '~> 4.4'
     pod 'SwiftyJSON'
     pod 'HydraAsync'
     pod 'GRDB.swift'
@@ -37,6 +38,7 @@ target 'iMast' do
   end
   target 'iMastTodayWidget' do
     inherit! :search_paths
+    pod 'Alamofire', '~> 4.4'
     pod 'SwiftyJSON'
     pod 'HydraAsync'
     pod 'GRDB.swift'
