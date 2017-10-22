@@ -177,6 +177,7 @@
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
+		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationTab.storyboard; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
+				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				2AF352191EAB9C5500777C2E /* iMast */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
 				2AF352391EAB9C5600777C2E /* iMastUITests */,
