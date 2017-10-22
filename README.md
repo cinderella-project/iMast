@@ -7,5 +7,4 @@ Website: <https://cinderella-project.github.io/iMast/> (source: [website-src bra
 
 ## Build
 
-Appleの制約等によりかなり面倒なので頑張ってください
-
+Appleの制約等によりかなり面倒なので頑張ってください(このアプリではApp Groupを利用しているので、かなり面倒です)
