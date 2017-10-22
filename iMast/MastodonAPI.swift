@@ -35,6 +35,9 @@ func initDatabase() {
         print("--end db migrate")
     }
 }
+
+var mastodonInstanceInfoCache: [String:JSON] = [:]
+
 public class MastodonInstance {
     var hostName: String
     var name: String?
@@ -47,6 +50,10 @@ public class MastodonInstance {
     
     func getInfo() -> Promise<JSON>{
         return Promise<JSON> { resolve, reject in
+            if mastodonInstanceInfoCache[self.hostName] != nil {
+                resolve(mastodonInstanceInfoCache[self.hostName]!)
+                return
+            }
             Alamofire.request("https://"+self.hostName+"/api/v1/instance").responseJSON { res in
                 // print(res)
                 if res.error != nil {
@@ -61,6 +68,7 @@ public class MastodonInstance {
                 self.name = json["name"].string
                 self.description = json["description"].string
                 self.email = json["email"].string
+                mastodonInstanceInfoCache[self.hostName] = json
                 resolve(json)
             }
         }
