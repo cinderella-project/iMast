@@ -49,6 +49,13 @@ class OtherMenuTopTableViewController: UITableViewController {
 
         switch(selected) {
         case 1:
+            MastodonUserToken.getLatestUsed()!.getUserInfo().then({ (user) in
+                let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
+                let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
+                newVC.load(user: user)
+                self.navigationController?.pushViewController(newVC, animated: true)
+            })
+        case 2:
             /*
             let url = URL(string: UIApplicationOpenSettingsURLString)!
             UIApplication.shared.openURL(url)
