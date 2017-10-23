@@ -192,6 +192,12 @@ class UserProfileTopViewController: UITableViewController {
                         
                     }))
                 }
+            } else {
+                actionSheet.addAction(UIAlertAction(title: "名刺", style: .default, handler: { action in
+                    let storyboard = UIStoryboard(name: "ProfileCard", bundle: nil)
+                    let newVC = storyboard.instantiateInitialViewController()!
+                    self.present(newVC, animated: true)
+                }))
             }
             actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
             self.present(actionSheet, animated: true, completion: nil)

@@ -55,6 +55,7 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
 		CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */; };
+		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
 		CEA252BA1EE8A2DD002C60F3 /* MastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonAPI.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEBB33DE1F2D8D6F00E4D3AB /* NotificationTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */; };
@@ -178,6 +179,7 @@
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileCard.storyboard; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationTab.storyboard; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
 				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 			files = (
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
+				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
 				2A533F6F1ECCFE940062630F /* NewPost.storyboard in Resources */,
 				CEBB33DE1F2D8D6F00E4D3AB /* NotificationTab.storyboard in Resources */,
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
