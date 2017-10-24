@@ -56,6 +56,7 @@
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
 		CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
+		CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */; };
 		CEA252BA1EE8A2DD002C60F3 /* MastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonAPI.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEBB33DE1F2D8D6F00E4D3AB /* NotificationTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */; };
@@ -180,6 +181,7 @@
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileCard.storyboard; sourceTree = "<group>"; };
+		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationTab.storyboard; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
+				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostView.swift in Sources */,
+				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
