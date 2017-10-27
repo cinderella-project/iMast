@@ -64,6 +64,7 @@
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
 		CEE213131EF13EE600393C67 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = CEE213121EF13EE600393C67 /* emoji.json */; };
+		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +189,7 @@
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
 		CEE213121EF13EE600393C67 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
+		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
 				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
+				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
+				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostView.swift in Sources */,
