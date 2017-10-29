@@ -42,7 +42,7 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>NowPlayingのための、現在再生されている楽曲の情報取得に利用します</string>
 	<key>NSCameraUsageDescription</key>
-	<string>投稿に添付する画像の撮影や、アイコンに使用する画像の撮影、バーコードリーダーに利用します。</string>
+	<string>投稿に添付する画像の撮影や、アイコンに使用する画像の撮影に利用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>投稿に添付する画像の選択や、アイコンに使用する画像の選択に利用します。</string>
 	<key>UILaunchStoryboardName</key>
