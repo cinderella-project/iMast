@@ -31,7 +31,7 @@ platform :ios do
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "iMast") # Build your app - more options available
-    pilot
+    pilot(skip_waiting_for_build_processing: true)
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
