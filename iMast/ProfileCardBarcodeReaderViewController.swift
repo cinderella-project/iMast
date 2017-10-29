@@ -19,7 +19,6 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         do {
             let captureSession = AVCaptureSession()
             let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-            print(captureDevice)
             let captureInput = try AVCaptureDeviceInput.init(device: captureDevice)
             captureSession.addInput(captureInput)
             
