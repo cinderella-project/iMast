@@ -12,6 +12,15 @@ import SafariServices
 
 class ProfileCardBarcodeReaderViewController: UIViewController {
 
+    let ui2videoOrientation = [
+        UIInterfaceOrientation.portrait: AVCaptureVideoOrientation.portrait,
+        UIInterfaceOrientation.portraitUpsideDown: AVCaptureVideoOrientation.portraitUpsideDown,
+        UIInterfaceOrientation.landscapeLeft: AVCaptureVideoOrientation.landscapeLeft,
+        UIInterfaceOrientation.landscapeRight: AVCaptureVideoOrientation.landscapeRight
+    ]
+    
+    var previewLayer: AVCaptureVideoPreviewLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,9 +39,12 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
             ]
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             
-            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)!
+            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)!
             previewLayer.frame = self.view.bounds
             previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            if let orientation = ui2videoOrientation[UIApplication.shared.statusBarOrientation] {
+                previewLayer.connection.videoOrientation = orientation
+            }
             
             self.view.layer.addSublayer(previewLayer)
             captureSession.startRunning()
@@ -47,6 +59,16 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
+            if let orientation = self.ui2videoOrientation[UIApplication.shared.statusBarOrientation] {
+                self.previewLayer.connection.videoOrientation = orientation
+                self.previewLayer.frame = self.view.bounds
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
