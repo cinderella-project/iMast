@@ -50,9 +50,7 @@ class OtherMenuTopTableViewController: UITableViewController {
         switch(selected) {
         case 1:
             MastodonUserToken.getLatestUsed()!.getUserInfo().then({ (user) in
-                let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-                let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-                newVC.load(user: user)
+                let newVC = openUserProfile(user: user)
                 self.navigationController?.pushViewController(newVC, animated: true)
             })
         case 2:

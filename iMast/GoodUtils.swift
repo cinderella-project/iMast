@@ -83,6 +83,22 @@ extension UIViewController {
         apiErrorWithPromise(errorMsg, httpNumber).then {}
     }
 }
+
+extension UIView {
+    var viewController: UIViewController? {
+        get {
+            var responder:UIResponder? = self as UIResponder
+            while responder != nil {
+                if responder!.isKind(of: UIViewController.self) {
+                    return responder as! UIViewController
+                }
+                responder = responder?.next
+            }
+            return nil
+        }
+    }
+}
+
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!

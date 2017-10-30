@@ -113,9 +113,7 @@ class NotificationTableViewController: UITableViewController {
             self.navigationController?.pushViewController(newVC, animated: true)
 
         } else if !notification["account"].isEmpty { // ユーザーつき
-            let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-            let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-            newVC.load(user: notification["account"])
+            let newVC = openUserProfile(user: notification["account"])
             self.navigationController?.pushViewController(newVC, animated: true)
         }
     }

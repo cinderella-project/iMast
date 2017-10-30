@@ -273,3 +273,10 @@ class UserProfileTopViewController: UITableViewController {
     */
 
 }
+
+func openUserProfile(user: JSON) -> UserProfileTopViewController {
+    let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
+    let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
+    newVC.load(user: user)
+    return newVC
+}

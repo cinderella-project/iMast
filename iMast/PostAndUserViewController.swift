@@ -78,10 +78,7 @@ class PostAndUserViewController: TimeLineTableViewController {
             self.navigationController?.pushViewController(newVC, animated: true)
         } else if indexPath[0] == 1 { // user
             let user = self.users[indexPath[1]]
-            let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-            // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
-            let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-            newVC.load(user: user)
+            let newVC = openUserProfile(user: user)
             self.navigationController?.pushViewController(newVC, animated: true)
             
         }

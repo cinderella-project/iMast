@@ -120,24 +120,8 @@ class MastodonPostView: UIView, UITextViewDelegate {
         if self.json == nil {
             return
         }
-        let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-        // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
-        let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-        if !json!["reblog"].isEmpty {
-            newVC.load(user: self.json!["reblog"]["account"])
-        } else {
-            newVC.load(user: self.json!["account"])
-        }
-        var responder:UIResponder? = self as UIResponder
-        var vc:UIViewController!
-        while responder != nil {
-            if responder!.isKind(of: UIViewController.self) {
-                vc = responder as! UIViewController
-                break
-            }
-            responder = responder?.next
-        }
-        vc.navigationController?.pushViewController(newVC, animated: true)
+        let newVC = openUserProfile(user: json!["reblog"].isEmpty ? json!["account"] : json!["reblog"]["account"])
+        self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
     func tapPost(sender: UITapGestureRecognizer) {
@@ -152,16 +136,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
         } else {
             newVC.load(post: self.json!)
         }
-        var responder:UIResponder? = self as UIResponder
-        var vc:UIViewController!
-        while responder != nil {
-            if responder!.isKind(of: UIViewController.self) {
-                vc = responder as! UIViewController
-                break
-            }
-            responder = responder?.next
-        }
-        vc.navigationController?.pushViewController(newVC, animated: true)
+        self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
@@ -169,19 +144,8 @@ class MastodonPostView: UIView, UITextViewDelegate {
         for mention in self.json!["mentions"].arrayValue {
             if urlString == mention["url"].stringValue {
                 MastodonUserToken.getLatestUsed()!.get("accounts/\(mention["id"].stringValue)").then({ user in
-                    let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-                    let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-                    newVC.load(user: user)
-                    var responder:UIResponder? = self as UIResponder
-                    var vc:UIViewController!
-                    while responder != nil {
-                        if responder!.isKind(of: UIViewController.self) {
-                            vc = responder as! UIViewController
-                            break
-                        }
-                        responder = responder?.next
-                    }
-                    vc.navigationController?.pushViewController(newVC, animated: true)
+                    let newVC = openUserProfile(user: user)
+                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
                 })
                 print(mention)
                 return false
@@ -193,16 +157,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
             }
         }
         let safari = SFSafariViewController(url: URL(string: urlString)!)
-        var responder:UIResponder? = self as UIResponder
-        var vc:UIViewController!
-        while responder != nil {
-            if responder!.isKind(of: UIViewController.self) {
-                vc = responder as! UIViewController
-                break
-            }
-            responder = responder?.next
-        }
-        vc.present(safari, animated: true, completion: nil)
+        self.viewController?.present(safari, animated: true, completion: nil)
         return false
     }
     

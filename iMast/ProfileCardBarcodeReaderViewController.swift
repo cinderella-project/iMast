@@ -110,9 +110,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                         }
                     }
                     if res["accounts"].arrayValue.count == 1 {
-                        let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-                        let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-                        newVC.load(user: res["accounts"].arrayValue[0])
+                        let newVC = openUserProfile(user: res["accounts"].arrayValue[0])
                         loadingAlert.dismiss(animated: false) {
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
@@ -122,9 +120,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                             let alert = UIAlertController(title: "選択", message: "複数のユーザーが見つかりました。どのユーザーを表示しますか?", preferredStyle: .alert)
                             res["accounts"].arrayValue.forEach { account in
                                 alert.addAction(UIAlertAction(title: "@"+account["acct"].stringValue, style: .default, handler: { action in
-                                    let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-                                    let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-                                    newVC.load(user: account)
+                                    let newVC = openUserProfile(user: account)
                                     self.navigationController?.pushViewController(newVC, animated: true)
                                 }))
                             }

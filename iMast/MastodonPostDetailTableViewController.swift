@@ -198,14 +198,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         if loadJSON == nil {
             return
         }
-        let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-        // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
-        let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
-        if !loadJSON!["reblog"].isEmpty {
-            newVC.load(user: loadJSON!["reblog"]["account"])
-        } else {
-            newVC.load(user: loadJSON!["account"])
-        }
+        let newVC = openUserProfile(user: loadJSON!["reblog"].isEmpty ? loadJSON!["account"] : loadJSON!["reblog"]["account"])
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
