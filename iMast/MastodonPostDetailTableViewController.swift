@@ -97,7 +97,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             textView.attributedText = attrStr
         }
         var iconUrl = post["account"]["avatar_static"].stringValue
-        if iconUrl.characters.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
+        if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
             iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
         }
         userNameView.text = (((post["account"]["display_name"].string ?? "") != "" ? post["account"]["display_name"].string : post["account"]["username"].string ?? "") ?? "").emojify()

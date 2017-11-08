@@ -74,7 +74,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
         userView.font = userView.font.withSize(CGFloat(UserDefaults.standard.float(forKey: "timeline_username_fontsize")))
         if (json["account"]["avatar_static"].string != nil) {
             var iconUrl = json["account"]["avatar_static"].stringValue
-            if iconUrl.characters.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
+            if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
                 iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
             }
             getImage(url: iconUrl,size: Int(self.iconView.frame.width)).then { image in

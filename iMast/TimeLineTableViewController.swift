@@ -153,7 +153,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             cnt += 1
             if (post["account"]["avatar_static"].string != nil) {
                 var iconUrl = post["account"]["avatar_static"].stringValue
-                if iconUrl.characters.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
+                if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
                     iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
                 }
                 _ = getCell(post: post)

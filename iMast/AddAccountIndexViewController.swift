@@ -32,9 +32,9 @@ class AddAccountIndexViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goProgress" {
             let nextView = segue.destination as! AddAccountProgressViewController
-            if (hostNameField.text != nil) && (hostNameField.text!.characters.count > 0) {
+            if (hostNameField.text != nil) && (hostNameField.text!.count > 0) {
                 nextView.setHost(hostNameField.text!)
-            } else if (hostNameField.placeholder != nil) && (hostNameField.placeholder!.characters.count > 0) {
+            } else if (hostNameField.placeholder != nil) && (hostNameField.placeholder!.count > 0) {
                 nextView.setHost(hostNameField.placeholder!)
             } else {
                 alert(title: "エラー", message: "ホスト名を入力してください。")

@@ -119,7 +119,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        self.charactersRemaining = 500 - self.contentText.characters.count - self.postUrl.characters.count as NSNumber
+        self.charactersRemaining = 500 - self.contentText.count - self.postUrl.count as NSNumber
         return Int(self.charactersRemaining) >= 0 && self.isMastodonLogged
     }
 
