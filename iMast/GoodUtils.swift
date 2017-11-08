@@ -213,17 +213,14 @@ extension String {
                 retstr = retstr.replace(emoji, emojidict[emoji].string!)
             }
         }
-        custom_emoji.forEach { (emoji) in
+        (custom_emoji + profile_emoji).forEach { (emoji) in
+            print(emoji)
             if emoji["shortcode"].stringValue.count == 0 {
                 return
             }
-            retstr = retstr.replace(":"+emoji["shortcode"].stringValue+":", "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">")
-        }
-        profile_emoji.forEach { (emoji) in
-            if emoji["shortcode"].stringValue.count == 0 {
-                return
-            }
-            retstr = retstr.replace(":@"+emoji["shortcode"].stringValue+":", "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">")
+            let html = "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">"
+            retstr = retstr.replace(":"+emoji["shortcode"].stringValue+":", html)
+                .replace(":@"+emoji["shortcode"].stringValue+":", html)
         }
         return retstr
     }
