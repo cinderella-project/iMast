@@ -31,8 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             isLogged = true
             myAccount?.getUserInfo().then { json in
                 if json["error"].string != nil {
-                    print(json["error"].string)
-                    print(json["_response_code"].number)
                     if json["_response_code"].number == 401 {
                         myAccount!.delete()
                         self.window = UIWindow()

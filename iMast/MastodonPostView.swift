@@ -54,7 +54,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
                 + (json["content"].stringValue.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
         if json["spoiler_text"].string != "" && json["spoiler_text"].string != nil {
             textView.text = json["spoiler_text"].stringValue.emojify() + "\n(CWの内容は詳細画面で)"
-            textView.textColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.6)
+            textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
             attrStr = nil
         } else if attrStr == nil {
             textView.text = (json["content"].string ?? "")

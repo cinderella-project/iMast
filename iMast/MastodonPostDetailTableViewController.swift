@@ -29,7 +29,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         didSet {
             favouriteButton.setTitleColor(isFavorited ?
                 UIColor(
-                    colorLiteralRed: 1,
+                    red: 1,
                     green: 0.8,
                     blue: 0.01,
                     alpha: 1
@@ -42,7 +42,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         didSet {
             boostButton.setTitleColor(isBoosted ?
                 UIColor(
-                    colorLiteralRed: 0.1,
+                    red: 0.1,
                     green: 0.6,
                     blue: 1,
                     alpha: 1
