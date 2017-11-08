@@ -53,6 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Navigator.scheme="imast"
         Navigator.routes=["callback"]
+        /*
+        // DARK THEME
+        UINavigationBar.appearance().barTintColor = .black
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName:UIColor.white
+        ]
+        UITabBar.appearance().barTintColor = .black
+        UITableView.appearance().backgroundColor = .darkGray
+        UIView.appearance(whenContainedInInstancesOf: [UITableViewController.self]).backgroundColor = .black
+        UITableViewCell.appearance().backgroundColor = .black
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = .white
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = .black
+        UITextView.appearance().backgroundColor = .black
+        UITextView.appearance().textColor = .white
+        */
         return true
     }
     
