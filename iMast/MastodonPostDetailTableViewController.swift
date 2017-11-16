@@ -228,7 +228,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                     if res == false {
                         return
                     }
-                    MastodonUserToken.getLatestUsed()!.delete("statuses/%d".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                    MastodonUserToken.getLatestUsed()!.delete("statuses/"+self.loadJSON!["id"].stringValue).then({ (res) in
                         self.navigationController?.popViewController(animated: true)
                         self.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
                     })
