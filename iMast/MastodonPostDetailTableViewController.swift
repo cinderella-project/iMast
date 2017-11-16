@@ -138,11 +138,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     @IBAction func boostTapped(_ sender: Any) {
         if !isBoosted {
-            MastodonUserToken.getLatestUsed()!.post("statuses/%d/reblog".format(loadJSON!["id"].intValue)).then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/reblog").then({ (res) in
                 self.isBoosted = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/%d/unreblog".format(loadJSON!["id"].intValue)).then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/unreblog").then({ (res) in
                 self.isBoosted = false
             })
         }
@@ -150,11 +150,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     @IBAction func favouriteTapped(_ sender: Any) {
         if !isFavorited {
-            MastodonUserToken.getLatestUsed()!.post("statuses/%d/favourite".format(loadJSON!["id"].intValue)).then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/favourite").then({ (res) in
                 self.isFavorited = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/%d/unfavourite".format(loadJSON!["id"].intValue)).then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/unfavourite").then({ (res) in
                 self.isFavorited = false
             })
         }
