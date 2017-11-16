@@ -161,6 +161,7 @@
 		A170AED211C0289085506BAB /* Pods-iMast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMast/Pods-iMast.debug.xcconfig"; sourceTree = "<group>"; };
 		A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCF751817BD58EDB56B0C1A /* Pods-iMastTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
+				CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */,
 				2AF352191EAB9C5500777C2E /* iMast */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
 				2AF352391EAB9C5600777C2E /* iMastUITests */,
