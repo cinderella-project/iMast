@@ -14,6 +14,7 @@
                 <outlet property="iconHeightConstraint" destination="jjY-4l-N6P" id="8Oz-xq-tic"/>
                 <outlet property="iconView" destination="sQD-aX-zO8" id="8o3-Yb-f9R"/>
                 <outlet property="iconWidthConstraint" destination="E3g-PX-YCf" id="YdF-2b-CxM"/>
+                <outlet property="imageThumbnailStackView" destination="wXc-zh-T2a" id="tYZ-0h-sPC"/>
                 <outlet property="textView" destination="GZJ-sR-UHI" id="gt1-fH-ubV"/>
                 <outlet property="timeView" destination="Gh3-yR-Njo" id="x1s-yn-PfL"/>
                 <outlet property="userView" destination="4nS-XE-p4g" id="Q4O-u2-HU5"/>
@@ -35,18 +36,18 @@
                     <rect key="frame" x="64" y="8" width="443" height="303"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6ba-c3-hBS">
-                            <rect key="frame" x="0.0" y="0.0" width="443" height="153"/>
+                            <rect key="frame" x="0.0" y="0.0" width="443" height="20.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-XE-p4g">
-                                    <rect key="frame" x="0.0" y="66.5" width="443" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="443" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GZJ-sR-UHI" userLabel="Post Text View">
-                            <rect key="frame" x="0.0" y="153" width="443" height="150"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GZJ-sR-UHI" userLabel="Post Text View">
+                            <rect key="frame" x="0.0" y="20.5" width="443" height="132.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="Oxl-yF-MWS"/>
@@ -55,10 +56,13 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                         </textView>
+                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wXc-zh-T2a">
+                            <rect key="frame" x="0.0" y="153" width="443" height="150"/>
+                        </stackView>
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-yR-Njo">
-                    <rect key="frame" x="435" y="74" width="71.5" height="20.5"/>
+                    <rect key="frame" x="435" y="7.5" width="71.5" height="20.5"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8967869718" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>

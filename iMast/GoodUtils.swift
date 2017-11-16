@@ -316,6 +316,7 @@ var defaultValues: [String: Any] = [
     "widget_filter": "",
     "nowplaying_format": "#nowplaying {title} - {artist} ({albumTitle})",
     "visibility_emoji": true,
+    "thumbnail_height": Int(50),
 ]
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {

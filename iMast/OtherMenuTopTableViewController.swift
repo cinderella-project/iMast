@@ -116,6 +116,14 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.title = "公開範囲を絵文字で表示"
                     row.userDefaultsConnect(name: "visibility_emoji")
                 }
+                <<< SliderRow() { row in
+                    row.title = "サムネイルの高さ"
+                    row.maximumValue = 100
+                    row.minimumValue = 0
+                    row.steps = 100/5
+                    row.userDefaultsConnect(name: "thumbnail_height")
+            }
+
             vc.form +++ Section("ウィジェット")
                 <<< LabelRow() { row in
                     row.title = "投稿フォーマット"

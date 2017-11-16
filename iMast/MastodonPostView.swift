@@ -18,6 +18,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageThumbnailStackView: UIStackView!
     var json: JSON?
     
     override init(frame: CGRect) {
@@ -113,6 +114,23 @@ class MastodonPostView: UIView, UITextViewDelegate {
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapPost)))
         // /-- タッチ周り --
+        let thumbnail_height = UserDefaults.standard.integer(forKey: "thumbnail_height")
+        if thumbnail_height != 0 {
+            json["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
+                let imageView = UIImageView()
+                getImage(url: media["preview_url"].stringValue).then({ (image) in
+                    imageView.image = image
+                })
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+                imageView.layoutIfNeeded()
+                imageView.heightAnchor.constraint(equalToConstant: CGFloat(thumbnail_height)).isActive=true
+                imageView.isUserInteractionEnabled = true
+                imageView.tag = 100+index
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapImage)))
+                self.imageThumbnailStackView.addArrangedSubview(imageView)
+            })
+        }
         self.layoutIfNeeded()
     }
     
@@ -137,6 +155,16 @@ class MastodonPostView: UIView, UITextViewDelegate {
             newVC.load(post: self.json!)
         }
         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+    }
+    
+    func tapImage(sender: UITapGestureRecognizer) {
+        if self.json == nil {
+            return
+        }
+        let json = self.json!["reblog"].isEmpty ? self.json! : self.json!["reblog"]
+        let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
+        self.viewController?.present(safari, animated: true, completion: nil)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
