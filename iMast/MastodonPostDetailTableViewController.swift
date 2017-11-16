@@ -212,7 +212,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertActionStyle.default, handler: { action in
-            MastodonUserToken.getLatestUsed()?.get("statuses/%d/context".format(self.loadJSON!["id"].intValue)).then { res in
+            MastodonUserToken.getLatestUsed()?.get("statuses/\(self.loadJSON!["id"].stringValue)/context").then { res in
                 print(res)
                 let posts = res["ancestors"].arrayValue + [self.loadJSON!] + res["descendants"].arrayValue
                 let bunmyakuVC = TimeLineTableViewController()
