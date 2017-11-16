@@ -57,9 +57,9 @@ class MastodonPostAbuseViewController: UIViewController {
     }
     @IBAction func submitButtonTapped(_ sender: Any) {
         MastodonUserToken.getLatestUsed()!.post("reports", params: [
-            "account_id": targetPost["account"]["id"].intValue,
+            "account_id": targetPost["account"]["id"],
             "comment": self.textView.text,
-            "status_ids": [targetPost["id"].intValue]
+            "status_ids": [targetPost["id"]]
         ]).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
