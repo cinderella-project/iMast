@@ -43,7 +43,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     }
     
     override func websocketEndpoint() -> String? {
-        return "list?list=\(listId)"
+        return "list&list=\(listId)"
     }
 }
 
