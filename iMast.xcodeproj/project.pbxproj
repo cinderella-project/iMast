@@ -415,9 +415,9 @@
 				2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */,
 				CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */,
 				CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */,
+				CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */,
 				2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */,
 				CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */,
-				CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */,
 			);
 			name = Timelines;
 			sourceTree = "<group>";
