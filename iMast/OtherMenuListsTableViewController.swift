@@ -22,11 +22,31 @@ class OtherMenuListsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addList))
+        ]
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addList() {
+        let alert = UIAlertController(title: "リストの作成", message: "リスト名を決めてください", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "リスト名"
+        }
+        alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
+            MastodonUserToken.getLatestUsed()!.post("lists", params: ["title": alert.textFields![0].text ?? ""]).then { list in
+                let vc = ListTimeLineTableViewController()
+                vc.listId = list["id"].stringValue
+                vc.title = list["title"].stringValue
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
