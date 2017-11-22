@@ -25,6 +25,9 @@ class OtherMenuListsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addList))
         ]
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshList), for: .valueChanged)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,14 +42,26 @@ class OtherMenuListsTableViewController: UITableViewController {
         }
         alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
             MastodonUserToken.getLatestUsed()!.post("lists", params: ["title": alert.textFields![0].text ?? ""]).then { list in
+                if !list["error"].isEmpty {
+                    self.apiError(list["error"].string, list["_response_code"].intValue)
+                }
                 let vc = ListTimeLineTableViewController()
                 vc.listId = list["id"].stringValue
                 vc.title = list["title"].stringValue
                 self.navigationController?.pushViewController(vc, animated: true)
+                self.refreshList()
             }
         }))
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func refreshList() {
+        MastodonUserToken.getLatestUsed()!.get("lists").then { list in
+            self.lists = list.arrayValue
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+        }
     }
 
     // MARK: - Table view data source
