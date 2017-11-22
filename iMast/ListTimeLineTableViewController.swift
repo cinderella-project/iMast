@@ -16,7 +16,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     
     override func loadTimeline() -> Promise<Void>{
         return Promise<Void>() { resolve, reject in
-            MastodonUserToken.getLatestUsed()?.get("timelines/lists/\(self.listId)").then { (res: JSON) in
+            MastodonUserToken.getLatestUsed()?.get("timelines/list/\(self.listId)").then { (res: JSON) in
                 if (res.array != nil) {
                     self._addNewPosts(posts: res.arrayValue)
                 }
@@ -26,14 +26,14 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     }
     
     override func refreshTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/lists/\(listId)?limit=40&since_id="+(self.posts.count >= 1 ? self.posts[0]["id"].stringValue : "")).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("timelines/list/\(listId)?limit=40&since_id="+(self.posts.count >= 1 ? self.posts[0]["id"].stringValue : "")).then { (res: JSON) in
             self.addNewPosts(posts: res.arrayValue)
             self.refreshControl?.endRefreshing()
         }
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/lists/\(listId)?limit=40&max_id="+self.posts[self.posts.count-1]["id"].stringValue).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("timelines/list/\(listId)?limit=40&max_id="+self.posts[self.posts.count-1]["id"].stringValue).then { (res: JSON) in
             if (res.array != nil) {
                 print(res.array)
                 self.appendNewPosts(posts: res.arrayValue)

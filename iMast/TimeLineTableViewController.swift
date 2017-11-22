@@ -57,7 +57,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         if self.websocketEndpoint() != nil {
             self.streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(self.streamingStatusTapped))
             self.streamingNavigationItem?.tintColor = UIColor.gray
-            self.navigationItem.leftBarButtonItems = [streamingNavigationItem!]
+            self.navigationItem.leftBarButtonItems?.append(self.streamingNavigationItem!)
         }
         DispatchQueue(label: "jp.pronama.imast.timelinequeue").async {
             while true {

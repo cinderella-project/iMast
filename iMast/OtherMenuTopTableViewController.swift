@@ -47,13 +47,19 @@ class OtherMenuTopTableViewController: UITableViewController {
             }
         }
 
-        switch(selected) {
-        case 1:
+        switch(tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "") {
+        case "myProfile":
             MastodonUserToken.getLatestUsed()!.getUserInfo().then({ (user) in
                 let newVC = openUserProfile(user: user)
                 self.navigationController?.pushViewController(newVC, animated: true)
             })
-        case 2:
+        case "list":
+            MastodonUserToken.getLatestUsed()!.get("lists").then({ lists in
+                let vc = OtherMenuListsTableViewController()
+                vc.lists = lists.arrayValue
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+        case "settings":
             /*
             let url = URL(string: UIApplicationOpenSettingsURLString)!
             UIApplication.shared.openURL(url)
