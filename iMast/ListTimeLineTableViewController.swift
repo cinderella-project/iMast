@@ -32,6 +32,27 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
             }
         vc.form +++ Section()
             <<< titleRow
+            +++ Section()
+            <<< ButtonRow() { row in
+                    row.title = "リストを削除"
+                }.cellUpdate { cell, row in
+                    cell.textLabel?.textColor = .red
+                }.onCellSelection { cell, row in
+                    let alert = UIAlertController(title: "確認", message: "リスト「\(self.title ?? "")」を削除してもよろしいですか?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive) { _ in
+                        MastodonUserToken.getLatestUsed()!.delete("lists/\(self.listId)").then { res in
+                            if res["error"].exists() {
+                                vc.apiError(res)
+                                return
+                            }
+                            vc.dismiss(animated: true, completion: nil)
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                    alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+                    vc.present(alert, animated: true, completion: nil)
+                }
+        
         vc.title = "編集"
         navC.pushViewController(vc, animated: false)
         vc.navigationItem.leftBarButtonItems = [
