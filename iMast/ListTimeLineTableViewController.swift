@@ -50,7 +50,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
                 MastodonUserToken.getLatestUsed()!.put("lists/\(self.listId)", params: ["title": titleRow.value ?? ""]).then { res in
                     if res["error"].exists() {
                         vc.navigationItem.rightBarButtonItems = [item]
-                        vc.apiError(res["error"])
+                        vc.apiError(res)
                     } else {
                         self.title = res["title"].stringValue
                         navC.dismiss(animated: true, completion: nil)
