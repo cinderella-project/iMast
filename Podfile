@@ -16,6 +16,7 @@ target 'iMast' do
   pod 'ReachabilitySwift', '~> 3'
   pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
   pod 'XCGLogger', '~> 5.0.1'
+  pod 'ActionClosurable'
 
   target 'iMastTests' do
     inherit! :search_paths
