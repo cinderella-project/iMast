@@ -9,10 +9,57 @@
 import UIKit
 import SwiftyJSON
 import Hydra
+import Eureka
+import ActionClosurable
 
 class ListTimeLineTableViewController: TimeLineTableViewController {
     
     var listId = "1"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(self.editList))
+        ]
+    }
+    
+    func editList() {
+        let navC = UINavigationController()
+        let vc = FormViewController()
+        let titleRow = TextRow { row in
+                row.title = "名前"
+                row.value = self.title
+            }
+        vc.form +++ Section()
+            <<< titleRow
+        vc.title = "編集"
+        navC.pushViewController(vc, animated: false)
+        vc.navigationItem.leftBarButtonItems = [
+            UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
+                navC.dismiss(animated: true, completion: nil)
+            }
+        ]
+        let loadingItem = UIBarButtonItem()
+        let actIndV = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        actIndV.startAnimating()
+        actIndV.hidesWhenStopped = true
+        loadingItem.customView = actIndV
+        vc.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "保存", style: .plain) { item in
+                vc.navigationItem.rightBarButtonItems = [loadingItem]
+                MastodonUserToken.getLatestUsed()!.put("lists/\(self.listId)", params: ["title": titleRow.value ?? ""]).then { res in
+                    if res["error"].exists() {
+                        vc.navigationItem.rightBarButtonItems = [item]
+                        vc.apiError(res["error"])
+                    } else {
+                        self.title = res["title"].stringValue
+                        navC.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        ]
+        self.present(navC, animated: true, completion: nil)
+    }
     
     override func loadTimeline() -> Promise<Void>{
         return Promise<Void>() { resolve, reject in
@@ -46,4 +93,3 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         return "list&list=\(listId)"
     }
 }
-

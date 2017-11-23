@@ -82,6 +82,9 @@ extension UIViewController {
     func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) {
         apiErrorWithPromise(errorMsg, httpNumber).then {}
     }
+    func apiError(_ json: JSON) {
+        apiError(json["error"].string, json["_response_code"].int)
+    }
 }
 
 extension UIView {
