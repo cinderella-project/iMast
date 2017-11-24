@@ -76,11 +76,15 @@ public class MastodonInstance {
     
     func createApp(name: String = "iMast", redirect_uri:String = "imast://callback/") -> Promise<MastodonApp> {
         return Promise<MastodonApp> { resolve, reject in
-            Alamofire.request("https://"+self.hostName+"/api/v1/apps", method: .post, parameters: [
+            var params = [
                 "client_name": name,
                 "scopes": "read write follow",
                 "redirect_uris": redirect_uri,
-            ]).responseJSON { res in
+            ]
+            if name == "iMast" {
+                params["website"] = "https://cinderella-project.github.io/iMast/"
+            }
+            Alamofire.request("https://"+self.hostName+"/api/v1/apps", method: .post, parameters: params).responseJSON { res in
                 if res.error != nil {
                     reject(res.error!)
                     return
