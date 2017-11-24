@@ -94,7 +94,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OtherMenuAccountChangeCell", for: indexPath)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
 
         let userToken = userTokens[indexPath[1]]
                 
