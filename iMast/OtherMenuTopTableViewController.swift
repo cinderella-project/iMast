@@ -12,6 +12,8 @@ import SafariServices
 
 class OtherMenuTopTableViewController: UITableViewController {
 
+    let nowAccount = MastodonUserToken.getLatestUsed()!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,7 @@ class OtherMenuTopTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -170,15 +173,18 @@ class OtherMenuTopTableViewController: UITableViewController {
     }
     */
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if let textLabel = cell.detailTextLabel {
+            textLabel.text = "現在のアカウント: @\(nowAccount.screenName ?? "")@\(nowAccount.app.instance.hostName)"
+        }
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
