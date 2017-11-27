@@ -136,6 +136,17 @@ class UserProfileTopViewController: UITableViewController {
                             })
                         }))
                     } else {// フォローリクエスト中
+                        actionSheet.addAction(UIAlertAction(title: "フォローリクエストの撤回", style: UIAlertActionStyle.destructive, handler: {
+                            (action: UIAlertAction!) in
+                            self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
+                                if !result {
+                                    return
+                                }
+                                MastodonUserToken.getLatestUsed()?.post("accounts/%d/unfollow".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                                    self.reload(sender: self.refreshControl!)
+                                })
+                            })
+                        }))
                     }
                 } else { // フォロー済み
                     actionSheet.addAction(UIAlertAction(title: "フォロー解除", style: UIAlertActionStyle.default, handler: {
