@@ -21,6 +21,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var boostButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var postStackView: UIStackView!
+    @IBOutlet weak var imageStackView: UIStackView!
     var loadAfter = false
     var isLoaded = false
     var loadJSON: JSON?
@@ -123,7 +125,36 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         userScreenNameView.isUserInteractionEnabled = true
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
+        let thumbnail_height = UserDefaults.standard.integer(forKey: "thumbnail_height")
+        if thumbnail_height != 0 {
+            post["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
+                let imageView = UIImageView()
+                getImage(url: media["preview_url"].stringValue).then({ (image) in
+                    imageView.image = image
+                })
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+                imageView.layoutIfNeeded()
+                imageView.heightAnchor.constraint(equalToConstant: CGFloat(thumbnail_height)).isActive=true
+                imageView.isUserInteractionEnabled = true
+                imageView.tag = 100+index
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapImage)))
+                self.imageStackView.addArrangedSubview(imageView)
+            })
+        }
+        postStackView.layoutIfNeeded()
     }
+    
+    func tapImage(sender: UITapGestureRecognizer) {
+        if self.loadJSON == nil {
+            return
+        }
+        let json = self.loadJSON!["reblog"].isEmpty ? self.loadJSON! : self.loadJSON!["reblog"]
+        let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
+        self.present(safari, animated: true, completion: nil)
+    }
+    
     @IBAction func replyTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "NewPost", bundle: nil)
         // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
@@ -185,7 +216,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath[0] == 0 && indexPath[1] == 0 {
             textView.sizeToFit()
-            return textView.frame.minY + textView.frame.height + 10
+            return textView.frame.minY + textView.frame.height + 16 + imageStackView.frame.height
         }
         if indexPath[0] == 0 && indexPath[1] == 1 {
             if (actionCountCell.textLabel?.text ?? "") == ""{

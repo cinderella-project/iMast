@@ -20,15 +20,15 @@
                         <sections>
                             <tableViewSection id="7I2-Oy-njq">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="2Ic-X9-UdP">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="115"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="2Ic-X9-UdP">
+                                        <rect key="frame" x="0.0" y="35" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ic-X9-UdP" id="Kgg-s6-PHp">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xpj-sz-9xC">
-                                                    <rect key="frame" x="8" y="8" width="304" height="98.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xpj-sz-9xC">
+                                                    <rect key="frame" x="8" y="8" width="304" height="331.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BmD-9u-yPA">
                                                             <rect key="frame" x="0.0" y="0.0" width="304" height="48"/>
@@ -60,26 +60,28 @@
                                                             </subviews>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="4" bottom="0.0" right="0.0"/>
                                                         </stackView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4Wf-6v-Zds">
-                                                            <rect key="frame" x="0.0" y="48" width="304" height="50.5"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4Wf-6v-Zds">
+                                                            <rect key="frame" x="0.0" y="48" width="304" height="233.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ePo-az-xWd">
+                                                            <rect key="frame" x="0.0" y="281.5" width="304" height="50"/>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Xpj-sz-9xC" firstAttribute="width" secondItem="Kgg-s6-PHp" secondAttribute="width" constant="-16" id="56G-Ep-Ksh"/>
                                                 <constraint firstItem="Xpj-sz-9xC" firstAttribute="leading" secondItem="Kgg-s6-PHp" secondAttribute="leading" constant="8" id="EKl-8o-cx7"/>
-                                                <constraint firstAttribute="bottom" secondItem="Xpj-sz-9xC" secondAttribute="bottom" constant="8" id="Wtl-Kb-Jh1"/>
                                                 <constraint firstItem="Xpj-sz-9xC" firstAttribute="top" secondItem="Kgg-s6-PHp" secondAttribute="top" constant="8" id="gnK-yJ-wGj"/>
-                                                <constraint firstAttribute="trailing" secondItem="Xpj-sz-9xC" secondAttribute="trailing" constant="8" id="ky2-OL-s7q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Xh4-pI-vlt" style="IBUITableViewCellStyleDefault" id="d1V-Ea-hPZ">
-                                        <rect key="frame" x="0.0" y="150" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="135" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d1V-Ea-hPZ" id="RcL-j4-lLu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -96,7 +98,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="o62-Oi-1ih">
-                                        <rect key="frame" x="0.0" y="194" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="179" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o62-Oi-1ih" id="T3H-wy-EeL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -167,7 +169,9 @@
                         <outlet property="favouriteButton" destination="lz4-3x-rRH" id="c9n-Pb-8nQ"/>
                         <outlet property="firstCell" destination="2Ic-X9-UdP" id="mve-M6-avv"/>
                         <outlet property="iconView" destination="get-6c-42Z" id="c9i-XR-pS8"/>
+                        <outlet property="imageStackView" destination="ePo-az-xWd" id="CLL-tS-hlO"/>
                         <outlet property="moreButton" destination="K3G-Ii-oVs" id="Kzd-YA-PDc"/>
+                        <outlet property="postStackView" destination="Xpj-sz-9xC" id="HEb-P8-6MZ"/>
                         <outlet property="textView" destination="4Wf-6v-Zds" id="haW-Kl-9f9"/>
                         <outlet property="userNameView" destination="rb0-OC-SUO" id="dzi-In-5gN"/>
                         <outlet property="userScreenNameView" destination="fiz-SS-Vxg" id="n8u-Ns-wBO"/>
