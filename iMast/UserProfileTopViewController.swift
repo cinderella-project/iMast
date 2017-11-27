@@ -149,10 +149,15 @@ class UserProfileTopViewController: UITableViewController {
                         }))
                     }
                 } else { // フォロー済み
-                    actionSheet.addAction(UIAlertAction(title: "フォロー解除", style: UIAlertActionStyle.default, handler: {
+                    actionSheet.addAction(UIAlertAction(title: "フォロー解除", style: UIAlertActionStyle.destructive, handler: {
                         (action: UIAlertAction!) in
-                        MastodonUserToken.getLatestUsed()?.post("accounts/%d/unfollow".format(self.loadJSON!["id"].intValue)).then({ (res) in
-                            self.reload(sender: self.refreshControl!)
+                        self.confirm(title: "確認", message: screenName+"のフォローを解除しますか?", okButtonMessage: "解除", style: .destructive).then({ (result) in
+                            if !result {
+                                return
+                            }
+                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/unfollow".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                                self.reload(sender: self.refreshControl!)
+                            })
                         })
                     }))
                 }
