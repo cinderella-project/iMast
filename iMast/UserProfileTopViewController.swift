@@ -76,8 +76,9 @@ class UserProfileTopViewController: UITableViewController {
         self.tootDaysCell.detailTextLabel?.text = numToCommaString(-((user["statuses_count"].int ?? 0)/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
         MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=%d".format(loadJSON!["id"].intValue)).then({ (relationships) in
-            let relationship = relationships[0]
+            var relationship = relationships[0]
             let relationshipOld = UserDefaults.standard.bool(forKey: "follow_relationships_old")
+            relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
             if relationship["following"].boolValue && relationship["followed_by"].boolValue {
                 self.relationShipLabel.text = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
             }
@@ -111,7 +112,8 @@ class UserProfileTopViewController: UITableViewController {
     @IBAction func moreButtonTapped(_ sender: Any) {
         let myScreenName = "@"+(MastodonUserToken.getLatestUsed()!.screenName!)
         MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=%d".format(loadJSON!["id"].intValue)).then({ (relationships) in
-            let relationship = relationships[0]
+            var relationship = relationships[0]
+            relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
             let screenName = "@"+(self.loadJSON!["acct"].string ?? self.loadJSON!["username"].stringValue)
             let actionSheet = UIAlertController(title: "アクション", message: screenName, preferredStyle: UIAlertControllerStyle.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
