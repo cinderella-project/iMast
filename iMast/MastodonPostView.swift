@@ -19,6 +19,8 @@ class MastodonPostView: UIView, UITextViewDelegate {
     @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageThumbnailStackView: UIStackView!
+    @IBOutlet weak var boostedUserIcon: UIImageView!
+    @IBOutlet weak var tootInfoView: UIView!
     var json: JSON?
     
     override init(frame: CGRect) {
@@ -46,6 +48,10 @@ class MastodonPostView: UIView, UITextViewDelegate {
     func load(json json_: JSON) {
         var json = json_
         if !json["reblog"].isEmpty {
+            getImage(url: json["account"]["avatar_static"].stringValue).then { image in
+                self.boostedUserIcon.image = image
+            }
+            self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
             json = json["reblog"]
         }
         self.json = json_
