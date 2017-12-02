@@ -104,52 +104,55 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNA-F5-UKB">
-                                                    <rect key="frame" x="9" y="7" width="62" height="30"/>
-                                                    <state key="normal" title="リプライ">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="replyTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="BeC-DN-JxT"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPf-jx-77K">
-                                                    <rect key="frame" x="89" y="7" width="62" height="30"/>
-                                                    <state key="normal" title="ブースト">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="boostTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="uYK-5b-vT5"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz4-3x-rRH">
-                                                    <rect key="frame" x="177" y="7" width="46" height="30"/>
-                                                    <state key="normal" title="ふぁぼ">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="favouriteTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="G3U-j9-aUh"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3G-Ii-oVs">
-                                                    <rect key="frame" x="265" y="5" width="30" height="34"/>
-                                                    <state key="normal" title="･･･">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="moreButtonTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="7Ff-cW-GQw"/>
-                                                    </connections>
-                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qqv-qy-d9e">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNA-F5-UKB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="43.5"/>
+                                                            <state key="normal" title="リプライ">
+                                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="replyTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="BeC-DN-JxT"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPf-jx-77K">
+                                                            <rect key="frame" x="80" y="0.0" width="80" height="43.5"/>
+                                                            <state key="normal" title="ブースト">
+                                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="boostTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="uYK-5b-vT5"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz4-3x-rRH">
+                                                            <rect key="frame" x="160" y="0.0" width="80" height="43.5"/>
+                                                            <state key="normal" title="ふぁぼ">
+                                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="favouriteTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="G3U-j9-aUh"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3G-Ii-oVs">
+                                                            <rect key="frame" x="240" y="0.0" width="80" height="43.5"/>
+                                                            <state key="normal" title="･･･">
+                                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="moreButtonTapped:" destination="z5K-NJ-RMP" eventType="touchUpInside" id="7Ff-cW-GQw"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="xBY-wa-5Az"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rPf-jx-77K" firstAttribute="centerX" secondItem="T3H-wy-EeL" secondAttribute="centerX" constant="-40" id="Af4-pr-snl"/>
-                                                <constraint firstItem="QNA-F5-UKB" firstAttribute="centerY" secondItem="T3H-wy-EeL" secondAttribute="centerY" id="SVL-z7-yli"/>
-                                                <constraint firstItem="QNA-F5-UKB" firstAttribute="centerX" secondItem="T3H-wy-EeL" secondAttribute="centerX" constant="-120" id="VwX-25-6vR"/>
-                                                <constraint firstItem="rPf-jx-77K" firstAttribute="centerY" secondItem="T3H-wy-EeL" secondAttribute="centerY" id="Xpc-Th-EAf"/>
-                                                <constraint firstItem="lz4-3x-rRH" firstAttribute="centerY" secondItem="T3H-wy-EeL" secondAttribute="centerY" id="cJY-qx-4i3"/>
-                                                <constraint firstItem="K3G-Ii-oVs" firstAttribute="centerY" secondItem="T3H-wy-EeL" secondAttribute="centerY" id="jDD-1E-18o"/>
-                                                <constraint firstItem="K3G-Ii-oVs" firstAttribute="centerX" secondItem="T3H-wy-EeL" secondAttribute="centerX" constant="120" id="kHQ-yR-8nD"/>
-                                                <constraint firstItem="lz4-3x-rRH" firstAttribute="centerX" secondItem="T3H-wy-EeL" secondAttribute="centerX" constant="40" id="kT5-nu-PSO"/>
+                                                <constraint firstItem="qqv-qy-d9e" firstAttribute="height" secondItem="T3H-wy-EeL" secondAttribute="height" id="CXT-Rj-gh3"/>
+                                                <constraint firstItem="qqv-qy-d9e" firstAttribute="top" secondItem="T3H-wy-EeL" secondAttribute="top" id="fTb-u0-ogf"/>
+                                                <constraint firstItem="qqv-qy-d9e" firstAttribute="centerX" secondItem="T3H-wy-EeL" secondAttribute="centerX" id="tDY-bW-fl5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
