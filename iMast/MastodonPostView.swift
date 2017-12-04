@@ -133,6 +133,7 @@ class MastodonPostView: UITableViewCell, UITextViewDelegate {
                 self.imageThumbnailStackView.addArrangedSubview(imageView)
             })
         }
+        self.textView.delegate = self
         self.layoutIfNeeded()
     }
     
