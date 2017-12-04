@@ -19,10 +19,10 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     var streamingNavigationItem: UIBarButtonItem?
     var isUserReasonDisconnected = false
     var postsQueue:[JSON] = []
-    var timelineZIndex:Int = 0
-    var timelineMinZIndex:Int = 0
-    var cellCache:[Int:UITableViewCell] = [:]
-    var isAlreadyAdded:[Int:Bool] = [:]
+    var timelineZIndex:Int64 = 0
+    var timelineMinZIndex:Int64 = 0
+    var cellCache:[String:MastodonPostView] = [:]
+    var isAlreadyAdded:[Int64:Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
     var isReadmoreLoading = false {
@@ -65,10 +65,10 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                     usleep(500)
                 }
                 let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
-                    return a["id"].intValue > b["id"].intValue
+                    return a["id"].int64Value > b["id"].int64Value
                 })
-                print(posts.map({ (post) -> Int in
-                    return post["id"].intValue
+                print(posts.map({ (post) -> Int64  in
+                    return post["id"].int64Value
                 }))
                 self.postsQueue = []
                 DispatchQueue.main.async {
@@ -81,6 +81,8 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
         readmoreCell.layer.zPosition = CGFloat.infinity
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
+        let nib = UINib(nibName: "MastodonPost", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "postView")
     }
     
     func loadTimeline() -> Promise<Void> {
@@ -113,24 +115,20 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         }
         let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
         let posts: [JSON] = posts_.sorted(by: { (a, b) -> Bool in
-            return a["id"].intValue > b["id"].intValue
+            return a["id"].int64Value > b["id"].int64Value
         }).filter({ (post) -> Bool in
             if (post["sensitive"].boolValue && myAccount != post["account"]["acct"].stringValue) || post["reblog"]["sensitive"].boolValue { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }
-            if isAlreadyAdded[post["id"].intValue] != true {
-                isAlreadyAdded[post["id"].intValue] = true
+            if isAlreadyAdded[post["id"].int64Value] != true {
+                isAlreadyAdded[post["id"].int64Value] = true
                 return true
             }
             return false
-        }).reversed().map({ (post) -> JSON in
-            var rpost = post
-            rpost["zindex"].int = timelineZIndex
-            print(rpost["id"].int, timelineZIndex)
-            timelineZIndex += 1
-            getCell(post:rpost)
-            return rpost
-        }).reversed()
+        })
+        posts.forEach { post in
+            getCell(post:post)
+        }
         print("hoge")
         
         /*
@@ -243,7 +241,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         } else if object["event"].string == "delete" {
             var tootFound = false
             self.posts = self.posts.filter({ (post) -> Bool in
-                if post["id"].intValue != object["payload"].intValue {
+                if post["id"].int64Value != object["payload"].int64Value {
                     return true
                 }
                 tootFound = true
@@ -287,21 +285,16 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             DispatchQueue(label: "jp.pronama.imast.redrawqueue").async {
                 sleep(1)
                 self.cellCache = [:]
-                var backId = 0
+                var backId:Int64 = 0
                 let sorted_posts: [JSON] = posts.sorted(by: { (a, b) -> Bool in
-                    return a["id"].intValue > b["id"].intValue
+                    return a["id"].int64Value > b["id"].int64Value
                 }).filter({ (post) -> Bool in
-                    if backId == post["id"].intValue {
+                    if backId == post["id"].int64Value {
                         return false
                     }
-                    backId = post["id"].intValue
+                    backId = post["id"].int64Value
                     return true
-                }).reversed().map({ (post) -> JSON in
-                    var rpost = post
-                    rpost["zindex"].int = self.timelineZIndex
-                    self.timelineZIndex += 1
-                    return rpost
-                }).reversed()
+                })
                 DispatchQueue.main.async {
                     self.refreshControl?.endRefreshing()
                     sorted_posts.forEach({ (post) in
@@ -361,15 +354,13 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     }
     
     func getCell(post: JSON) -> UITableViewCell {
-        if cellCache[post["id"].intValue] != nil {
-            return cellCache[post["id"].intValue]!
+        if cellCache[post["id"].stringValue] != nil {
+            return cellCache[post["id"].stringValue]!
         }
-        let cell = UITableViewCell()
+        let postView = MastodonPostView.getInstance(owner: self)
         // Configure the cell...
-        let postView = MastodonPostView()
-        postView.layoutIfNeeded()
-        postView.layoutSubviews()
         postView.load(json: post)
+        /*
         // ↓iOS9切ったら消す
         if  #available(iOS 10.0, *) {
             if(!pleaseNotSettingPostViewHeight) {
@@ -378,34 +369,9 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         } else {
             postView.frame = CGRect(x:0, y:0, width: tableView.frame.width, height: 200)
         }
-        
-        cell.contentView.subviews.forEach { (subView) in
-            subView.removeFromSuperview()
-        }
-        cell.contentView.addSubview(postView)
-        cell.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[postView(==view)]",
-            options: .alignAllTop,
-            metrics: nil,
-            views: ["view": cell.contentView,"postView": postView]))
-        cell.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[view(>=postView)]",
-            options: .alignAllTop,
-            metrics: nil,
-            views: ["view": cell.contentView,"postView": postView]).map({ (constraint) -> NSLayoutConstraint in
-                constraint.priority = 1000
-                return constraint
-            })
-        )
-        /*
-         * 後に描画されたCellのY座標が先に描画されたCellのY座標より上の場合、謎のpaddingが下に発生して他のCellの部分を上書きしてしまう現象の対処。
-         * Webエンジニア的な考え方で解決。
-         * たぶん後で壊れる
-         */
-        cell.layer.zPosition = CGFloat(-Double(post["zindex"].int ?? 5000000))
-        cell.contentView.updateConstraints()
-        cellCache[post["id"].intValue] = cell
-        return cell
+ */
+        cellCache[post["id"].stringValue] = postView
+        return postView
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -482,11 +448,8 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     func appendNewPosts(posts: [JSON]) {
         var rows:[IndexPath] = []
         posts.forEach { (post) in
-            var rpost = post
-            timelineMinZIndex -= 1
-            rpost["zindex"].int = timelineMinZIndex
-            _ = self.getCell(post: rpost)
-            self.posts.append(rpost)
+            _ = self.getCell(post: post)
+            self.posts.append(post)
             rows.append(IndexPath(row: self.posts.count-1, section: 0))
         }
         self.tableView.insertRows(at: rows, with: .automatic)

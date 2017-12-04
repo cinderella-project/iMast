@@ -17,16 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="157" id="rlD-Qg-LJV" customClass="MastodonPostView" customModule="iMast" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="157"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rlD-Qg-LJV" id="kP0-xO-Rzq">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="156.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="F2x-L9-1Yf" id="7Fm-eA-IRi"/>
                             <outlet property="delegate" destination="F2x-L9-1Yf" id="1Sv-Ic-UyX"/>
@@ -117,16 +107,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="157" id="OBr-FV-mcM" customClass="MastodonPostView" customModule="iMast" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="157"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OBr-FV-mcM" id="8G7-Yb-IIU">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="156.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="lDT-g7-f6Q" id="4uZ-dU-5gr"/>
                             <outlet property="delegate" destination="lDT-g7-f6Q" id="pgg-bB-Pbx"/>
