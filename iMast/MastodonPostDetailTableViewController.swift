@@ -196,26 +196,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        /*
-        let textViewRequiredHeight = textView.frame.minY + textView.frame.height + 8
-        if firstCell.frame.height < textViewRequiredHeight {
-            firstCell.frame = CGRect(x: firstCell.frame.minX, y: firstCell.frame.minY, width: firstCell.frame.width, height: textViewRequiredHeight)
-            
-        }
-         */
-        textView.sizeToFit()
-        print(textView.frame)
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath[0] == 0 && indexPath[1] == 0 {
-            textView.sizeToFit()
             return textView.frame.minY + textView.frame.height + 16 + imageStackView.frame.height
         }
         if indexPath[0] == 0 && indexPath[1] == 1 {
