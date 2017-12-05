@@ -382,11 +382,10 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         // ブースト
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト"){
             (action,index) -> Void in
-            let post = self.posts[indexPath[1]]
             MastodonUserToken.getLatestUsed()!.post("statuses/"+post["id"].stringValue+"/reblog", params: [:]).then {_ in
                 self.posts = self.posts.map({ (map_post) -> JSON in
                     var ret_post = map_post
-                    if map_post["id"].int == post["id"].int {
+                    if map_post["id"].int64Value == post["id"].int64Value {
                         ret_post["reblogged"].bool = true
                     }
                     return ret_post
@@ -399,11 +398,10 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         // like
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ"){
             (action,index) -> Void in
-            let post = self.posts[indexPath[1]]
             MastodonUserToken.getLatestUsed()!.post("statuses/"+post["id"].stringValue+"/favourite", params: [:]).then {_ in
                 self.posts = self.posts.map({ (map_post) -> JSON in
                     var ret_post = map_post
-                    if map_post["id"].int == post["id"].int {
+                    if map_post["id"].int64Value == post["id"].int64Value {
                         ret_post["favourited"].bool = true
                     }
                     return ret_post
@@ -414,12 +412,12 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             print("like")
         }
         replyAction.backgroundColor = UIColor.init(red: 0.95, green: 0.4, blue: 0.4, alpha: 1)
-        if post["reblogged"].bool == true {
+        if post["reblogged"].boolValue == true {
             boostAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
             boostAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         }
-        if post["favourited"].bool == true {
+        if post["favourited"].boolValue == true {
             likeAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
             likeAction.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
