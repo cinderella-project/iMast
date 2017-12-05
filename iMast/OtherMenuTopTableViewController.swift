@@ -144,7 +144,7 @@ class OtherMenuTopTableViewController: UITableViewController {
                     }
             } else {
                 vc.form +++ Section("ウィジェット")
-                    <<< TextRow() { row in
+                    <<< LabelRow() { row in
                         row.title = "ウィジェットはiOS10以上でないと利用できません。"
                     }
             }
