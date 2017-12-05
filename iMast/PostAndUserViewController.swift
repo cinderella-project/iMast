@@ -14,7 +14,6 @@ class PostAndUserViewController: TimeLineTableViewController {
     var users: [JSON] = []
     
     override func viewDidLoad() {
-        pleaseNotSettingPostViewHeight = true
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }

@@ -19,9 +19,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     var streamingNavigationItem: UIBarButtonItem?
     var isUserReasonDisconnected = false
     var postsQueue:[JSON] = []
-    var timelineZIndex:Int64 = 0
-    var timelineMinZIndex:Int64 = 0
-    var cellCache:[String:MastodonPostView] = [:]
+    var cellCache:[Int64:MastodonPostView] = [:]
     var isAlreadyAdded:[Int64:Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
@@ -32,7 +30,6 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         }
     }
     var isReadmoreEnabled = true
-    var pleaseNotSettingPostViewHeight = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,8 +78,6 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
         readmoreCell.layer.zPosition = CGFloat.infinity
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
-        let nib = UINib(nibName: "MastodonPost", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: "postView")
     }
     
     func loadTimeline() -> Promise<Void> {
@@ -127,7 +122,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             return false
         })
         posts.forEach { post in
-            getCell(post:post)
+            _ = getCell(post:post)
         }
         print("hoge")
         
@@ -248,6 +243,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                 return false
             })
             if tootFound {
+                self.cellCache[object["payload"].int64Value] = nil
                 self.tableView.reloadData()
             }
         }
@@ -354,23 +350,13 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     }
     
     func getCell(post: JSON) -> UITableViewCell {
-        if cellCache[post["id"].stringValue] != nil {
-            return cellCache[post["id"].stringValue]!
+        if cellCache[post["id"].int64Value] != nil {
+            return cellCache[post["id"].int64Value]!
         }
         let postView = MastodonPostView.getInstance(owner: self)
         // Configure the cell...
         postView.load(json: post)
-        /*
-        // ↓iOS9切ったら消す
-        if  #available(iOS 10.0, *) {
-            if(!pleaseNotSettingPostViewHeight) {
-                postView.frame = CGRect(x:0, y:0, width: tableView.frame.width, height: 16544)
-            }
-        } else {
-            postView.frame = CGRect(x:0, y:0, width: tableView.frame.width, height: 200)
-        }
- */
-        cellCache[post["id"].stringValue] = postView
+        cellCache[post["id"].int64Value] = postView
         return postView
     }
     
