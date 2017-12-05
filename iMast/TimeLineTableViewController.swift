@@ -212,7 +212,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket Disconnected", error)
-        streamingNavigationItem?.tintColor = UIColor(colorLiteralRed: 1, green: 0.3, blue: 0.15, alpha: 1)
+        streamingNavigationItem?.tintColor = UIColor(red: 1, green: 0.3, blue: 0.15, alpha: 1)
         if isUserReasonDisconnected {
             isUserReasonDisconnected = false
             return
@@ -391,7 +391,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                     }
                     return ret_post
                 })
-                action.backgroundColor = UIColor(colorLiteralRed: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
             print("repost")
@@ -408,21 +408,21 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                     }
                     return ret_post
                 })
-                action.backgroundColor = UIColor(colorLiteralRed: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
             print("like")
         }
-        replyAction.backgroundColor = UIColor.init(colorLiteralRed: 0.95, green: 0.4, blue: 0.4, alpha: 1)
+        replyAction.backgroundColor = UIColor.init(red: 0.95, green: 0.4, blue: 0.4, alpha: 1)
         if post["reblogged"].bool == true {
-            boostAction.backgroundColor = UIColor.init(colorLiteralRed: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            boostAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
-            boostAction.backgroundColor = UIColor.init(colorLiteralRed: 0.3, green: 0.95, blue: 0.3, alpha: 1)
+            boostAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         }
         if post["favourited"].bool == true {
-            likeAction.backgroundColor = UIColor.init(colorLiteralRed: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            likeAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
-            likeAction.backgroundColor = UIColor.init(colorLiteralRed: 0.9, green: 0.9, blue: 0.3, alpha: 1)
+            likeAction.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
         }
         return [
             // replyAction,

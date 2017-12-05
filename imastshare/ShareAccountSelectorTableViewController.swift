@@ -23,7 +23,7 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.title = "アカウント選択"
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +48,7 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: nil)
         
         let userToken = userTokens[indexPath[1]]
-        cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         cell.textLabel!.text = userToken.name
         cell.detailTextLabel!.text = "@"+(userToken.screenName ?? "--unknown--")+"@"+userToken.app.instance.hostName
         if userToken.id == self.nowUserTokenId {
