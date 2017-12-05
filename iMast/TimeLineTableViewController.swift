@@ -355,7 +355,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         }
         let postView = MastodonPostCell.getInstance(owner: self)
         // Configure the cell...
-        postView.load(json: post)
+        postView.load(post: post)
         cellCache[post["id"].int64Value] = postView
         return postView
     }

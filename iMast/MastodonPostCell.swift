@@ -35,7 +35,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     }
     */
     
-    func load(json json_: JSON) {
+    func load(post json_: JSON) {
         var json = json_
         if !json["reblog"].isEmpty {
             getImage(url: json["account"]["avatar_static"].stringValue).then { image in
