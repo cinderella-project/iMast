@@ -19,7 +19,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     var streamingNavigationItem: UIBarButtonItem?
     var isUserReasonDisconnected = false
     var postsQueue:[JSON] = []
-    var cellCache:[Int64:MastodonPostView] = [:]
+    var cellCache:[Int64:MastodonPostCell] = [:]
     var isAlreadyAdded:[Int64:Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
@@ -353,7 +353,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         if cellCache[post["id"].int64Value] != nil {
             return cellCache[post["id"].int64Value]!
         }
-        let postView = MastodonPostView.getInstance(owner: self)
+        let postView = MastodonPostCell.getInstance(owner: self)
         // Configure the cell...
         postView.load(json: post)
         cellCache[post["id"].int64Value] = postView

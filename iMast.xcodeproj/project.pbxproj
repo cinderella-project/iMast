@@ -25,8 +25,8 @@
 		2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		2A66E7FC1EAEE89E00735081 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A66E7FB1EAEE89E00735081 /* Main.storyboard */; };
 		2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */; };
-		2ADE64161ED1201800ED1CB1 /* MastodonPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE64151ED1201800ED1CB1 /* MastodonPost.xib */; };
-		2ADE64191ED142C600ED1CB1 /* MastodonPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE64181ED142C600ED1CB1 /* MastodonPostView.swift */; };
+		2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */; };
+		2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */; };
 		2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */; };
 		2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF3521E1EAB9C5600777C2E /* Login.storyboard */; };
 		2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF352211EAB9C5600777C2E /* Assets.xcassets */; };
@@ -140,8 +140,8 @@
 		2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		2A66E80A1EB0254400735081 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMast.entitlements; sourceTree = "<group>"; };
-		2ADE64151ED1201800ED1CB1 /* MastodonPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MastodonPost.xib; sourceTree = "<group>"; };
-		2ADE64181ED142C600ED1CB1 /* MastodonPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostView.swift; sourceTree = "<group>"; };
+		2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MastodonPostCell.xib; sourceTree = "<group>"; };
+		2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostCell.swift; sourceTree = "<group>"; };
 		2AF352171EAB9C5500777C2E /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AF3521F1EAB9C5600777C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 		2ADE64171ED1309F00ED1CB1 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				2ADE64151ED1201800ED1CB1 /* MastodonPost.xib */,
-				2ADE64181ED142C600ED1CB1 /* MastodonPostView.swift */,
+				2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */,
+				2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */,
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
 				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
@@ -642,7 +642,7 @@
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
-				2ADE64161ED1201800ED1CB1 /* MastodonPost.xib in Resources */,
+				2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */,
 				2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */,
 				2A533F711ECCFF710062630F /* OtherMenu.storyboard in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
@@ -928,7 +928,7 @@
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
-				2ADE64191ED142C600ED1CB1 /* MastodonPostView.swift in Sources */,
+				2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */,

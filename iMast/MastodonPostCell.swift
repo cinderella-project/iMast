@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SafariServices
 
-class MastodonPostView: UITableViewCell, UITextViewDelegate {
+class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var userView: UILabel!
@@ -200,8 +200,8 @@ class MastodonPostView: UITableViewCell, UITextViewDelegate {
     }
     
     
-    static func getInstance(owner: Any? = nil) -> MastodonPostView {
-        return UINib(nibName: "MastodonPost", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostView
+    static func getInstance(owner: Any? = nil) -> MastodonPostCell {
+        return UINib(nibName: "MastodonPostCell", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostCell
     }
 
 }
