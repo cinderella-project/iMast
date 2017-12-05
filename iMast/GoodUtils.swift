@@ -61,7 +61,7 @@ extension UIViewController {
     func errorWithPromise(errorMsg: String = "不明なエラー") -> Promise<Void>{
         let promise = alertWithPromise(
             title: "内部エラー",
-            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: "+errorMsg+"\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。"
+            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。"
         ).then {}
         return promise
     }
@@ -219,8 +219,8 @@ extension String {
                 return
             }
             let html = "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">"
-            retstr = retstr.replace(":"+emoji["shortcode"].stringValue+":", html)
-                .replace(":@"+emoji["shortcode"].stringValue+":", html)
+            retstr = retstr.replace(":\(emoji["shortcode"].stringValue):", html)
+                .replace(":@\(emoji["shortcode"].stringValue):", html)
         }
         return retstr
     }

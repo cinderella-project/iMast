@@ -54,7 +54,7 @@ public class MastodonInstance {
                 resolve(mastodonInstanceInfoCache[self.hostName]!)
                 return
             }
-            Alamofire.request("https://"+self.hostName+"/api/v1/instance").responseJSON { res in
+            Alamofire.request("https://\(self.hostName)/api/v1/instance").responseJSON { res in
                 // print(res)
                 if res.error != nil {
                     reject(res.error!)
@@ -84,7 +84,7 @@ public class MastodonInstance {
             if name == "iMast" {
                 params["website"] = "https://cinderella-project.github.io/iMast/"
             }
-            Alamofire.request("https://"+self.hostName+"/api/v1/apps", method: .post, parameters: params).responseJSON { res in
+            Alamofire.request("https://\(self.hostName)/api/v1/apps", method: .post, parameters: params).responseJSON { res in
                 if res.error != nil {
                     reject(res.error!)
                     return
@@ -168,12 +168,12 @@ public class MastodonApp {
     }
     
     func getAuthorizeUrl() -> String {
-        return "https://"+instance.hostName+"/oauth/authorize?client_id="+clientId+"&redirect_uri="+self.redirectUri+"&scope=read+write+follow&response_type=code&state="+self.id
+        return "https://\(instance.hostName)/oauth/authorize?client_id=\(clientId)&redirect_uri=\(self.redirectUri)&scope=read+write+follow&response_type=code&state="+self.id
     }
     
     func authorizeWithCode(code: String) -> Promise<MastodonUserToken> {
         return Promise<MastodonUserToken> { resolve, reject in
-            Alamofire.request("https://"+self.instance.hostName+"/oauth/token", method: .post, parameters: [
+            Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "authorization_code",
                 "redirect_uri": self.redirectUri,
                 "client_id": self.clientId,
@@ -198,7 +198,7 @@ public class MastodonApp {
     
     func authorizeWithPassword(email: String, password: String) -> Promise<MastodonUserToken>{
         return Promise() { resolve, reject in
-            Alamofire.request("https://"+self.instance.hostName+"/oauth/token", method: .post, parameters: [
+            Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "password",
                 "username": email,
                 "password": password,
@@ -252,11 +252,11 @@ public class MastodonUserToken {
     }
     
     func getHeader() -> [String: String] {
-        print("iMast/"+(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+" (iOS/"+(UIDevice.current.systemVersion)+")")
+        print("iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))")
         return [
             "Authorization": "Bearer "+token,
             "Accept-Language": "en-US,en",
-            "User-Agent": "iMast/"+(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+" (iOS/"+(UIDevice.current.systemVersion)+")",
+            "User-Agent": "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))",
         ]
     }
     
@@ -404,7 +404,7 @@ public class MastodonUserToken {
     
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject in
-            Alamofire.request("https://"+self.app.instance.hostName+"/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
+            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
                     return
@@ -418,7 +418,7 @@ public class MastodonUserToken {
 
     func post(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject in
-            Alamofire.request("https://"+self.app.instance.hostName+"/api/v1/"+endpoint, method: .post, parameters: params, headers: self.getHeader()).responseJSON { response in
+            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .post, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
                     return
@@ -432,7 +432,7 @@ public class MastodonUserToken {
     
     func put(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject in
-            Alamofire.request("https://"+self.app.instance.hostName+"/api/v1/"+endpoint, method: .put, parameters: params, headers: self.getHeader()).responseJSON { response in
+            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .put, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
                     return
@@ -446,7 +446,7 @@ public class MastodonUserToken {
     
     func delete(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject in
-            Alamofire.request("https://"+self.app.instance.hostName+"/api/v1/"+endpoint, method: .delete, parameters: params, headers: self.getHeader()).responseJSON { response in
+            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .delete, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
                     return
@@ -464,7 +464,7 @@ public class MastodonUserToken {
                 multipartFormData: { (multipartFormData) in
                     multipartFormData.append(file, withName: "file", fileName: filename, mimeType: mimetype)
                 },
-                to: "https://"+self.app.instance.hostName+"/api/v1/media",
+                to: "https://\(self.app.instance.hostName)/api/v1/media",
                 method: .post,
                 headers: self.getHeader(),
                 encodingCompletion: { encodingResult in
@@ -505,7 +505,7 @@ var imageResizeCache: [String:[Int:UIImage]] = [:]
 
 public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
     return Promise(in: .background) { resolve, reject in
-        let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_"+String(size)+"_scale_"+UIScreen.main.scale.description
+        let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_\(String(size))_scale_"+UIScreen.main.scale.description
         if size>0 {
             if imageResizeCache[url]?[size] != nil{
                 resolve(imageResizeCache[url]![size]!)

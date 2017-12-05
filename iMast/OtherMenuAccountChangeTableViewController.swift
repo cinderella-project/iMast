@@ -46,7 +46,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         let allCount = userTokens.count
         func redrawRefreshControl () {
             print(successCount, failedCount, allCount)
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新("+String(successCount)+"/"+String(allCount)+")")
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新(\(String(successCount))/\(String(allCount)))")
         }
         var promise = Promise.init(resolved: Void()).then { _ in
             return

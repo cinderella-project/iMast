@@ -81,7 +81,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         var html = "<style>*{font-size:14px;font-family: sans-serif;padding:0;margin:0;}</style>"
         if post["spoiler_text"].string != "" && post["spoiler_text"].string != nil {
             html += post["spoiler_text"].stringValue.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
-            html += "<br><a href=\""+post["url"].stringValue+"\">(CWの内容を読む)</a><br>"
+            html += "<br><a href=\"\(post["url"].stringValue)\">(CWの内容を読む)</a><br>"
         } else {
             html += post["content"].stringValue.emojify(custom_emoji: post["emojis"].arrayValue, profile_emoji: post["profile_emojis"].arrayValue).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         }
@@ -115,7 +115,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             actionText += "%d件のふぁぼ ".format(post["favourites_count"].intValue)
         }
         if post["application"]["name"].string != nil {
-            actionText += "via "+post["application"]["name"].stringValue+" "
+            actionText += "via \(post["application"]["name"].stringValue) "
         }
         actionCountCell.textLabel?.text = actionText
         
@@ -260,7 +260,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             let VC = segue.destination as! MastodonPostAbuseViewController
             let post = sender as! JSON
             VC.targetPost = post
-            VC.placeholder = "『"+post["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")+"』を通報します。\n詳細をお書きください（必須ではありません）"
+            VC.placeholder = "『\(post["content"].stringValue.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
         }
     }
 

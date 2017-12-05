@@ -382,7 +382,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         // ブースト
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト"){
             (action,index) -> Void in
-            MastodonUserToken.getLatestUsed()!.post("statuses/"+post["id"].stringValue+"/reblog", params: [:]).then {_ in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post["id"].stringValue)/reblog", params: [:]).then {_ in
                 self.posts = self.posts.map({ (map_post) -> JSON in
                     var ret_post = map_post
                     if map_post["id"].int64Value == post["id"].int64Value {
@@ -398,7 +398,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         // like
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ"){
             (action,index) -> Void in
-            MastodonUserToken.getLatestUsed()!.post("statuses/"+post["id"].stringValue+"/favourite", params: [:]).then {_ in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post["id"].stringValue)/favourite", params: [:]).then {_ in
                 self.posts = self.posts.map({ (map_post) -> JSON in
                     var ret_post = map_post
                     if map_post["id"].int64Value == post["id"].int64Value {

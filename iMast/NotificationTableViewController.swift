@@ -68,22 +68,22 @@ class NotificationTableViewController: UITableViewController {
         switch notification["type"].stringValue {
         case "favourite":
             let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@"+notification["account"]["acct"].stringValue+"さんにふぁぼられました"
+            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにふぁぼられました"
             (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
             return cell
         case "reblog":
             let cell = tableView.dequeueReusableCell(withIdentifier: "reblog", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@"+notification["account"]["acct"].stringValue+"さんにブーストされました"
+            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにブーストされました"
             (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
             return cell
         case "follow":
             let cell = tableView.dequeueReusableCell(withIdentifier: "follow", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@"+notification["account"]["acct"].stringValue+"さんにフォローされました"
+            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにフォローされました"
             (cell.viewWithTag(2) as! UILabel).text = (notification["account"]["display_name"].stringValue == "" ? notification["account"]["username"].stringValue : notification["account"]["display_name"].stringValue).emojify()
             return cell
         case "mention":
             let cell = tableView.dequeueReusableCell(withIdentifier: "mention", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@"+notification["account"]["acct"].stringValue+"さんからのリプライ"
+            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんからのリプライ"
             (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
             return cell
         default:
