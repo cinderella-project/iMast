@@ -125,7 +125,11 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.minimumValue = 0
                     row.steps = 100/5
                     row.userDefaultsConnect(name: "thumbnail_height")
-            }
+                }
+                <<< SwitchRow() { row in
+                    row.title = "WebMをVLCで開く"
+                    row.userDefaultsConnect(name: "webm_vlc_open")
+                }
 
             if #available(iOS 10.0, *) {
                 vc.form +++ Section("ウィジェット")

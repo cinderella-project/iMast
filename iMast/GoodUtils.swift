@@ -317,6 +317,7 @@ var defaultValues: [String: Any] = [
     "nowplaying_format": "#nowplaying {title} - {artist} ({albumTitle})",
     "visibility_emoji": true,
     "thumbnail_height": Int(50),
+    "webm_vlc_open": true,
 ]
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {

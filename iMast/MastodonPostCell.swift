@@ -167,6 +167,9 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         let json = self.json!["reblog"].isEmpty ? self.json! : self.json!["reblog"]
         print(sender.view)
         let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+            return
+        }
         let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
         self.viewController?.present(safari, animated: true, completion: nil)
     }

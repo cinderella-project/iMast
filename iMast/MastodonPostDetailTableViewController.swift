@@ -151,6 +151,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         let json = self.loadJSON!["reblog"].isEmpty ? self.loadJSON! : self.loadJSON!["reblog"]
         let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+            return
+        }
         let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
         self.present(safari, animated: true, completion: nil)
     }

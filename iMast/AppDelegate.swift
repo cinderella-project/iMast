@@ -125,3 +125,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+func openVLC(_ url: String) -> Bool{
+    if !UserDefaults.standard.bool(forKey: "webm_vlc_open") {
+        return false
+    }
+    let vlcOpenUrl = URL(string: "vlc-x-callback://x-callback-url/stream?url=\(url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
+    if UIApplication.shared.canOpenURL(vlcOpenUrl) {
+        UIApplication.shared.openURL(vlcOpenUrl)
+        return true
+    }
+    return false
+}
