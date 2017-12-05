@@ -127,20 +127,27 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.userDefaultsConnect(name: "thumbnail_height")
             }
 
-            vc.form +++ Section("ウィジェット")
-                <<< LabelRow() { row in
-                    row.title = "投稿フォーマット"
-                }
-                <<< TextAreaRow() { row in
-                    row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                    row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                    row.userDefaultsConnect(name: "widget_format", userDefaults: UserDefaultsAppGroup)
-                }
-                <<< TextRow() { row in
-                    row.title = "フィルタ"
-                    row.placeholder = "[0-9]{7}"
-                    row.userDefaultsConnect(name: "widget_filter", userDefaults: UserDefaultsAppGroup)
-                }
+            if #available(iOS 10.0, *) {
+                vc.form +++ Section("ウィジェット")
+                    <<< LabelRow() { row in
+                        row.title = "投稿フォーマット"
+                    }
+                    <<< TextAreaRow() { row in
+                        row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+                        row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
+                        row.userDefaultsConnect(name: "widget_format", userDefaults: UserDefaultsAppGroup)
+                    }
+                    <<< TextRow() { row in
+                        row.title = "フィルタ"
+                        row.placeholder = "[0-9]{7}"
+                        row.userDefaultsConnect(name: "widget_filter", userDefaults: UserDefaultsAppGroup)
+                    }
+            } else {
+                vc.form +++ Section("ウィジェット")
+                    <<< TextRow() { row in
+                        row.title = "ウィジェットはiOS10以上でないと利用できません。"
+                    }
+            }
             vc.title = "設定"
             let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain, target: self, action: #selector(self.openSettingsHelp(target:)))
             vc.navigationItem.rightBarButtonItems = [
