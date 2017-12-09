@@ -50,13 +50,26 @@ class OtherMenuTopTableViewController: UITableViewController {
             }
         }
 
-        switch(selected) {
-        case 1:
+        switch(tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "") {
+        case "myProfile":
             MastodonUserToken.getLatestUsed()!.getUserInfo().then({ (user) in
                 let newVC = openUserProfile(user: user)
                 self.navigationController?.pushViewController(newVC, animated: true)
             })
-        case 2:
+        case "list":
+            // TODO: ここの下限バージョンの処理をあとで共通化する
+            MastodonUserToken.getLatestUsed()!.getIntVersion().then { version in
+                if version < MastodonVersionStringToInt("2.1.0rc1") {
+                    self.alert(title: "エラー", message: "この機能はMastodonインスタンスのバージョンが2.1.0rc1以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。")
+                    return
+                }
+                MastodonUserToken.getLatestUsed()!.get("lists").then({ lists in
+                    let vc = OtherMenuListsTableViewController()
+                    vc.lists = lists.arrayValue
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+            }
+        case "settings":
             /*
             let url = URL(string: UIApplicationOpenSettingsURLString)!
             UIApplication.shared.openURL(url)
