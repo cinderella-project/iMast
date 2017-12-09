@@ -14,7 +14,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
             return map[name]!
         }
         if defaultValues[name] == nil {
-            WARN("WARNING!!! "+name+"はdefaultValuesに記載されていません")
+            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
         let userDefaultsValue = userDefaults.string(forKey: name) ?? ""
         self.value = map[userDefaultsValue] ?? userDefaultsValue
@@ -31,7 +31,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
 extension TextRow {
     func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
         if defaultValues[name] == nil {
-            WARN("WARNING!!! "+name+"はdefaultValuesに記載されていません")
+            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
         self.value = userDefaults.string(forKey: name)
         var oldValue = self.value
@@ -48,7 +48,7 @@ extension TextRow {
 extension SwitchRow {
     func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
         if defaultValues[name] == nil {
-            WARN("WARNING!!! "+name+"はdefaultValuesに記載されていません")
+            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
         self.value = userDefaults.bool(forKey: name)
         var oldValue = self.value
@@ -65,7 +65,7 @@ extension SwitchRow {
 extension SliderRow {
     func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
         if defaultValues[name] == nil {
-            WARN("WARNING!!! "+name+"はdefaultValuesに記載されていません")
+            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
         self.value = userDefaults.float(forKey: name)
         var oldValue = self.value
@@ -81,7 +81,7 @@ extension SliderRow {
 extension TextAreaRow {
     func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
         if defaultValues[name] == nil {
-            WARN("WARNING!!! "+name+"はdefaultValuesに記載されていません")
+            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
         self.value = userDefaults.string(forKey: name)
         var oldValue = self.value

@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SafariServices
 
-class MastodonPostView: UIView, UITextViewDelegate {
+class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var userView: UILabel!
@@ -19,17 +19,9 @@ class MastodonPostView: UIView, UITextViewDelegate {
     @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageThumbnailStackView: UIStackView!
+    @IBOutlet weak var boostedUserIcon: UIImageView!
+    @IBOutlet weak var tootInfoView: UIView!
     var json: JSON?
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        loadNib()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadNib()
-    }
     
     func viewDidLayoutSubviews() {
         
@@ -43,10 +35,17 @@ class MastodonPostView: UIView, UITextViewDelegate {
     }
     */
     
-    func load(json json_: JSON) {
+    func load(post json_: JSON) {
         var json = json_
         if !json["reblog"].isEmpty {
+            getImage(url: json["account"]["avatar_static"].stringValue).then { image in
+                self.boostedUserIcon.image = image
+            }
+            self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
             json = json["reblog"]
+        } else {
+            self.tootInfoView.backgroundColor = nil
+            self.boostedUserIcon.image = nil
         }
         self.json = json_
         // textView.dataDetectorTypes = .link
@@ -115,6 +114,9 @@ class MastodonPostView: UIView, UITextViewDelegate {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapPost)))
         // /-- タッチ周り --
         let thumbnail_height = UserDefaults.standard.integer(forKey: "thumbnail_height")
+        self.imageThumbnailStackView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
         if thumbnail_height != 0 {
             json["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
@@ -131,6 +133,7 @@ class MastodonPostView: UIView, UITextViewDelegate {
                 self.imageThumbnailStackView.addArrangedSubview(imageView)
             })
         }
+        self.textView.delegate = self
         self.layoutIfNeeded()
     }
     
@@ -162,7 +165,11 @@ class MastodonPostView: UIView, UITextViewDelegate {
             return
         }
         let json = self.json!["reblog"].isEmpty ? self.json! : self.json!["reblog"]
+        print(sender.view)
         let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+            return
+        }
         let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
         self.viewController?.present(safari, animated: true, completion: nil)
     }
@@ -196,11 +203,8 @@ class MastodonPostView: UIView, UITextViewDelegate {
     }
     
     
-    func loadNib() {
-        let view = Bundle.main.loadNibNamed("MastodonPost", owner: self, options: nil)?.first as! UIView
-        view.frame = self.bounds
-        self.addSubview(view)
-        self.textView.delegate = self
+    static func getInstance(owner: Any? = nil) -> MastodonPostCell {
+        return UINib(nibName: "MastodonPostCell", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostCell
     }
 
 }

@@ -12,6 +12,8 @@ import SafariServices
 
 class OtherMenuTopTableViewController: UITableViewController {
 
+    var nowAccount: MastodonUserToken?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,7 @@ class OtherMenuTopTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        nowAccount = MastodonUserToken.getLatestUsed()
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,22 +131,33 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.minimumValue = 0
                     row.steps = 100/5
                     row.userDefaultsConnect(name: "thumbnail_height")
-            }
+                }
+                <<< SwitchRow() { row in
+                    row.title = "WebMをVLCで開く"
+                    row.userDefaultsConnect(name: "webm_vlc_open")
+                }
 
-            vc.form +++ Section("ウィジェット")
-                <<< LabelRow() { row in
-                    row.title = "投稿フォーマット"
-                }
-                <<< TextAreaRow() { row in
-                    row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                    row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                    row.userDefaultsConnect(name: "widget_format", userDefaults: UserDefaultsAppGroup)
-                }
-                <<< TextRow() { row in
-                    row.title = "フィルタ"
-                    row.placeholder = "[0-9]{7}"
-                    row.userDefaultsConnect(name: "widget_filter", userDefaults: UserDefaultsAppGroup)
-                }
+            if #available(iOS 10.0, *) {
+                vc.form +++ Section("ウィジェット")
+                    <<< LabelRow() { row in
+                        row.title = "投稿フォーマット"
+                    }
+                    <<< TextAreaRow() { row in
+                        row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+                        row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
+                        row.userDefaultsConnect(name: "widget_format", userDefaults: UserDefaultsAppGroup)
+                    }
+                    <<< TextRow() { row in
+                        row.title = "フィルタ"
+                        row.placeholder = "[0-9]{7}"
+                        row.userDefaultsConnect(name: "widget_filter", userDefaults: UserDefaultsAppGroup)
+                    }
+            } else {
+                vc.form +++ Section("ウィジェット")
+                    <<< LabelRow() { row in
+                        row.title = "ウィジェットはiOS10以上でないと利用できません。"
+                    }
+            }
             vc.title = "設定"
             let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain, target: self, action: #selector(self.openSettingsHelp(target:)))
             vc.navigationItem.rightBarButtonItems = [
@@ -176,15 +190,18 @@ class OtherMenuTopTableViewController: UITableViewController {
     }
     */
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if let textLabel = cell.detailTextLabel {
+            textLabel.text = "現在のアカウント: @\(nowAccount?.screenName ?? "")@\(nowAccount?.app.instance.hostName ?? ""  )"
+        }
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

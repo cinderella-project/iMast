@@ -82,7 +82,7 @@ class ShareViewController: SLComposeServiceViewController {
                                     }
                                 }
                                 if query["via"] != nil {
-                                    twitterPostText += " https://twitter.com/"+query["via"]!+"さんから"
+                                    twitterPostText += " https://twitter.com/\(query["via"]!)さんから"
                                 }
                                 DispatchQueue.main.sync() {
                                     self.textView.text = twitterPostText

@@ -21,7 +21,7 @@ class ShareVisibilityTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.title = "公開範囲"
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +48,7 @@ class ShareVisibilityTableViewController: UITableViewController {
         
         cell.textLabel?.text = VisibilityLocalizedString[indexPath[1]]
         cell.detailTextLabel?.text = VisibilityDescriptionString[indexPath[1]]
-        cell.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         if VisibilityString[indexPath[1]] == parentVC.visibility {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }

@@ -81,7 +81,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             replyAccounts = replyAccounts.filter({ (acct) -> Bool in
                 return acct != MastodonUserToken.getLatestUsed()?.screenName
             }).map({ (acct) -> String in
-                return "@"+acct+" "
+                return "@\(acct) "
             })
             self.textInput.text = replyAccounts.joined()
             self.scope = replyToPost!["visibility"].stringValue

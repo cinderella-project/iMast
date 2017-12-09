@@ -50,7 +50,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
             captureSession.startRunning()
         } catch {
             self.navigationController?.popViewController(animated: true)
-            self.alert(title: "カメラエラー", message: "メッセージ: "+error.localizedDescription+"\n\n他のアプリでカメラが利用できるか確認してください。\niOSの設定→iMastから、カメラの利用を許可しているか確認してください。")
+            self.alert(title: "カメラエラー", message: "メッセージ: \(error.localizedDescription)\n\n他のアプリでカメラが利用できるか確認してください。\niOSの設定→iMastから、カメラの利用を許可しているか確認してください。")
         }
     }
 

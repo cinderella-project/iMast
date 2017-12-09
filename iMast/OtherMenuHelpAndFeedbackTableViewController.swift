@@ -35,7 +35,7 @@ class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
             let safariVC = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/")!)
             present(safariVC, animated: true, completion: nil)
         case 1:
-            let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+"("+(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)+")"
+            let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+"(\((Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)))"
             let vc = FormViewController()
             let tar = TextAreaRow() { row in
                 row.placeholder = "Feedbackの内容をお書きください"

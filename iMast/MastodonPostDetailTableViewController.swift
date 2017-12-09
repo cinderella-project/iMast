@@ -21,6 +21,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var boostButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var postStackView: UIStackView!
+    @IBOutlet weak var imageStackView: UIStackView!
     var loadAfter = false
     var isLoaded = false
     var loadJSON: JSON?
@@ -79,7 +81,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         var html = "<style>*{font-size:14px;font-family: sans-serif;padding:0;margin:0;}</style>"
         if post["spoiler_text"].string != "" && post["spoiler_text"].string != nil {
             html += post["spoiler_text"].stringValue.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
-            html += "<br><a href=\""+post["url"].stringValue+"\">(CWの内容を読む)</a><br>"
+            html += "<br><a href=\"\(post["url"].stringValue)\">(CWの内容を読む)</a><br>"
         } else {
             html += post["content"].stringValue.emojify(custom_emoji: post["emojis"].arrayValue, profile_emoji: post["profile_emojis"].arrayValue).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         }
@@ -113,7 +115,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             actionText += "%d件のふぁぼ ".format(post["favourites_count"].intValue)
         }
         if post["application"]["name"].string != nil {
-            actionText += "via "+post["application"]["name"].stringValue+" "
+            actionText += "via \(post["application"]["name"].stringValue) "
         }
         actionCountCell.textLabel?.text = actionText
         
@@ -123,7 +125,39 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         userScreenNameView.isUserInteractionEnabled = true
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
+        let thumbnail_height = UserDefaults.standard.integer(forKey: "thumbnail_height")
+        if thumbnail_height != 0 {
+            post["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
+                let imageView = UIImageView()
+                getImage(url: media["preview_url"].stringValue).then({ (image) in
+                    imageView.image = image
+                })
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+                imageView.layoutIfNeeded()
+                imageView.heightAnchor.constraint(equalToConstant: CGFloat(thumbnail_height)).isActive=true
+                imageView.isUserInteractionEnabled = true
+                imageView.tag = 100+index
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapImage)))
+                self.imageStackView.addArrangedSubview(imageView)
+            })
+        }
+        postStackView.layoutIfNeeded()
     }
+    
+    func tapImage(sender: UITapGestureRecognizer) {
+        if self.loadJSON == nil {
+            return
+        }
+        let json = self.loadJSON!["reblog"].isEmpty ? self.loadJSON! : self.loadJSON!["reblog"]
+        let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
+        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+            return
+        }
+        let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
+        self.present(safari, animated: true, completion: nil)
+    }
+    
     @IBAction func replyTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "NewPost", bundle: nil)
         // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
@@ -165,27 +199,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        /*
-        let textViewRequiredHeight = textView.frame.minY + textView.frame.height + 8
-        if firstCell.frame.height < textViewRequiredHeight {
-            firstCell.frame = CGRect(x: firstCell.frame.minX, y: firstCell.frame.minY, width: firstCell.frame.width, height: textViewRequiredHeight)
-            
-        }
-         */
-        textView.sizeToFit()
-        print(textView.frame)
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath[0] == 0 && indexPath[1] == 0 {
-            textView.sizeToFit()
-            return textView.frame.minY + textView.frame.height + 10
+            return textView.frame.minY + textView.frame.height + 16 + imageStackView.frame.height
         }
         if indexPath[0] == 0 && indexPath[1] == 1 {
             if (actionCountCell.textLabel?.text ?? "") == ""{
@@ -247,7 +263,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             let VC = segue.destination as! MastodonPostAbuseViewController
             let post = sender as! JSON
             VC.targetPost = post
-            VC.placeholder = "『"+post["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")+"』を通報します。\n詳細をお書きください（必須ではありません）"
+            VC.placeholder = "『\(post["content"].stringValue.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
         }
     }
 
