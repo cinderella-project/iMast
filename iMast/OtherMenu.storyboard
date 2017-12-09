@@ -47,7 +47,7 @@
                                             <segue destination="Wds-CA-Dti" kind="show" id="GCL-XS-dyY"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fOo-We-ufb" style="IBUITableViewCellStyleDefault" id="Z6y-sm-aXt">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="myProfile" textLabel="fOo-We-ufb" style="IBUITableViewCellStyleDefault" id="Z6y-sm-aXt">
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z6y-sm-aXt" id="4fG-pn-fsf">
@@ -81,7 +81,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="YHs-8Q-6OS" style="IBUITableViewCellStyleDefault" id="2I1-gi-Cai">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" textLabel="YHs-8Q-6OS" style="IBUITableViewCellStyleDefault" id="2I1-gi-Cai">
                                         <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2I1-gi-Cai" id="dYZ-dS-Koj">
