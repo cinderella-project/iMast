@@ -7,12 +7,14 @@
 //
 
 import Eureka
+import SwiftyUserDefaults
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
-    func userDefaultsConnect(name: String, map: [String: String], userDefaults: UserDefaults = UserDefaults.standard) {
+    func userDefaultsConnect(_ key:DefaultsKey<String>, map: [String: String], userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.options = map.keys.map { (name) -> String in
             return map[name]!
         }
+        let name = key._key
         if defaultValues[name] == nil {
             WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
@@ -29,7 +31,8 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     }
 }
 extension TextRow {
-    func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
+    func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        let name = key._key
         if defaultValues[name] == nil {
             WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
@@ -46,7 +49,8 @@ extension TextRow {
 }
 
 extension SwitchRow {
-    func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
+    func userDefaultsConnect(_ key:DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        let name = key._key
         if defaultValues[name] == nil {
             WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
@@ -63,7 +67,8 @@ extension SwitchRow {
 }
 
 extension SliderRow {
-    func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
+    func userDefaultsConnect(_ key:DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        let name = key._key
         if defaultValues[name] == nil {
             WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }
@@ -79,7 +84,8 @@ extension SliderRow {
     }
 }
 extension TextAreaRow {
-    func userDefaultsConnect(name: String, userDefaults: UserDefaults = UserDefaults.standard) {
+    func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        let name = key._key
         if defaultValues[name] == nil {
             WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
         }

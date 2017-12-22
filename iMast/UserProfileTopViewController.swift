@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Accounts
+import SwiftyUserDefaults
 
 class UserProfileTopViewController: UITableViewController {
 
@@ -77,7 +78,7 @@ class UserProfileTopViewController: UITableViewController {
         self.createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
         MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=%d".format(loadJSON!["id"].intValue)).then({ (relationships) in
             var relationship = relationships[0]
-            let relationshipOld = UserDefaults.standard.bool(forKey: "follow_relationships_old")
+            let relationshipOld: Bool = Defaults[.followRelationshipsOld]
             relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
             if relationship["following"].boolValue && relationship["followed_by"].boolValue {
                 self.relationShipLabel.text = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")

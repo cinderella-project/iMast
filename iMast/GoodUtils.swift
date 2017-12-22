@@ -13,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 import Starscream
 import XCGLogger
+import SwiftyUserDefaults
 
 let log = XCGLogger.default
 
@@ -101,6 +102,7 @@ extension UIView {
         }
     }
 }
+
 
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
@@ -312,9 +314,9 @@ var defaultValues: [String: Any] = [
     "append_mediaurl": true,
     "new_account_via": "iMast",
     "follow_relationships_old": false,
-    "timeline_username_fontsize": Float(17),
-    "timeline_text_fontsize": Float(14),
-    "timeline_icon_size": Float(48),
+    "timeline_username_fontsize": Double(17),
+    "timeline_text_fontsize": Double(14),
+    "timeline_icon_size": Double(48),
     "widget_format": "{clipboard}",
     "widget_filter": "",
     "nowplaying_format": "#nowplaying {title} - {artist} ({albumTitle})",
@@ -322,6 +324,22 @@ var defaultValues: [String: Any] = [
     "thumbnail_height": Int(50),
     "webm_vlc_open": true,
 ]
+
+extension DefaultsKeys {
+    static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect")
+    static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl")
+    static let newAccountVia = DefaultsKey<String>("new_account_via")
+    static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old")
+    static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize")
+    static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize")
+    static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size")
+    static let widgetFormat = DefaultsKey<String>("widget_format")
+    static let widgetFilter = DefaultsKey<String>("widget_filter")
+    static let nowplayingFormat = DefaultsKey<String>("nowplaying_format")
+    static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji")
+    static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height")
+    static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open")
+}
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     var versionStr = versionStr_
@@ -358,3 +376,4 @@ let VisibilityString = ["public", "unlisted", "private", "direct"]
 let VisibilityLocalizedString = ["公開", "未収蔵", "非公開", "ダイレクト"]
 let VisibilityDescriptionString = ["LTLやフォロワーのHTL等に流れます", "LTLやハッシュタグ検索には出ません", "あなたのフォロワーのみ見れます", "リプライを飛ばした対象の人にのみ見れます"]
 let UserDefaultsAppGroup = UserDefaults.init(suiteName: "group.jp.pronama.imast")!
+var Defaults = UserDefaultsAppGroup

@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         self.registerDefaultsFromSettingsBundle()
+        self.migrateUserDefaultsToAppGroup()
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         var isLogged = false
@@ -66,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextView.appearance().backgroundColor = .black
         UITextView.appearance().textColor = .white
         */
+        
         return true
     }
     
@@ -120,7 +122,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func registerDefaultsFromSettingsBundle(){
-        UserDefaults.standard.register(defaults: defaultValues)
+        UserDefaultsAppGroup.register(defaults: defaultValues)
+    }
+    
+    func migrateUserDefaultsToAppGroup() {
+        let migrateKeyName = "migrated_to_appgroup"
+        if UserDefaultsAppGroup.bool(forKey: migrateKeyName) { // already migrated
+            print("UserDefaults is already migrated!")
+            return
+        }
+        let oldUserDefaultsDictionary = UserDefaults.standard.dictionaryRepresentation()
+        print("MIGRATE: UserDefaults -> AppGroup User Defaults")
+        for key in oldUserDefaultsDictionary.keys {
+            UserDefaultsAppGroup.set(oldUserDefaultsDictionary[key], forKey: key)
+            print("migrating:",key)
+        }
+        UserDefaultsAppGroup.set(true, forKey: migrateKeyName)
+        UserDefaultsAppGroup.synchronize()
+        print("UserDefaults migrated!")
     }
 
 }

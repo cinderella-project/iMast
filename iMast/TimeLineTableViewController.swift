@@ -11,6 +11,7 @@ import SwiftyJSON
 import Starscream
 import Hydra
 import ReachabilitySwift
+import SwiftyUserDefaults
 
 class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     
@@ -181,7 +182,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     
     func websocketConnect(auto: Bool) {
         if auto {
-            let conditions = UserDefaults.standard.string(forKey: "streaming_autoconnect")
+            let conditions = Defaults[.streamingAutoConnect]
             if conditions == "no" {
                 return
             } else if conditions == "wifi" {

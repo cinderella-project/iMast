@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SafariServices
 import SwiftyJSON
+import SwiftyUserDefaults
 
 class AddAccountProgressViewController: UIViewController {
     
@@ -83,7 +84,7 @@ class AddAccountProgressViewController: UIViewController {
     }
     func stage2() {
         nowStateSet(2, "アプリ情報を登録しています")
-        let appName = UserDefaults.standard.string(forKey: "new_account_via") ?? "iMast"
+        let appName = Defaults[.newAccountVia]
         print(appName)
         let instance = MastodonInstance(hostName: hostName)
         instance.createApp(name: appName).then { app in

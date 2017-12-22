@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationCenter
+import SwiftyUserDefaults
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
@@ -42,15 +43,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's an update, use NCUpdateResult.NewData
         
         let clipboardText = UIPasteboard.general.string ?? ""
-        var regex = UserDefaultsAppGroup.string(forKey: "widget_filter") ?? ".*"
+        var regex = Defaults[.widgetFilter]
         if regex == "" {
             regex = ".*"
         }
         print(clipboardText.pregMatch(pattern: "^\(regex)$") as [String])
         if clipboardText.pregMatch(pattern: "^\(regex)$") {
-            postText = (UserDefaultsAppGroup.string(forKey: "widget_format") ?? "{clipboard}").replace("{clipboard}", clipboardText)
+            postText = Defaults[.widgetFormat].replace("{clipboard}", clipboardText)
         } else {
-            postTextView.text = "正規表現フィルタにマッチしていません。\nフィルタ: "+(UserDefaultsAppGroup.string(forKey: "widget_filter") ?? ".*")
+            postTextView.text = "正規表現フィルタにマッチしていません。\nフィルタ: "+regex
             postButton.alpha = 0
             postButton.isEnabled = false
         }

@@ -38,13 +38,13 @@ class OtherMenuTopTableViewController: UITableViewController {
             row.options = map.keys.map { (name) -> String in
                 return map[name]!
             }
-            let userDefaultsValue = UserDefaults.standard.string(forKey: name) ?? ""
+            let userDefaultsValue = UserDefaultsAppGroup.string(forKey: name) ?? ""
             row.value = map[userDefaultsValue] ?? userDefaultsValue
             row.cellUpdate { (cell, row) in
                 map.forEach({ (key, value) in
                     if(value == row.value) {
                         print(key)
-                        UserDefaults.standard.set(key, forKey: name)
+                        UserDefaultsAppGroup.set(key, forKey: name)
                     }
                 })
             }
@@ -78,7 +78,7 @@ class OtherMenuTopTableViewController: UITableViewController {
             vc.form +++ Section()
                 <<< PushStringRow() { row in
                     row.title = "ストリーミング自動接続"
-                    row.userDefaultsConnect(name: "streaming_autoconnect", map: [
+                    row.userDefaultsConnect(.streamingAutoConnect, map: [
                         "no": "しない",
                         "wifi": "WiFi接続時のみ",
                         "always": "常に接続",
@@ -87,16 +87,16 @@ class OtherMenuTopTableViewController: UITableViewController {
                 <<< TextRow() { row in
                     row.title = "新規連携時のvia"
                     row.placeholder = "iMast"
-                    row.userDefaultsConnect(name: "new_account_via")
+                    row.userDefaultsConnect(.newAccountVia)
                 }
                 <<< SwitchRow() { row in
                     row.title = "フォロー関係を以前の表記にする"
-                    row.userDefaultsConnect(name: "follow_relationships_old")
+                    row.userDefaultsConnect(.followRelationshipsOld)
                 }
             vc.form +++ Section("投稿設定")
                 <<< SwitchRow() { row in
                     row.title = "投稿時にメディアURL追加"
-                    row.userDefaultsConnect(name: "append_mediaurl")
+                    row.userDefaultsConnect(.appendMediaUrl)
                 }
                 <<< LabelRow() { row in
                     row.title = "nowplayingのフォーマット"
@@ -104,7 +104,7 @@ class OtherMenuTopTableViewController: UITableViewController {
                 <<< TextAreaRow() { row in
                     row.placeholder = "#nowplaying {title} - {artist} ({albumTitle})"
                     row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                    row.userDefaultsConnect(name: "nowplaying_format")
+                    row.userDefaultsConnect(.nowplayingFormat)
                 }
             vc.form +++ Section("タイムライン")
                 <<< SliderRow() { row in
@@ -112,36 +112,36 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.maximumValue = 20
                     row.minimumValue = 10
                     row.steps = 20
-                    row.userDefaultsConnect(name: "timeline_username_fontsize")
+                    row.userDefaultsConnect(.timelineUsernameFontsize)
                 }
                 <<< SliderRow() { row in
                     row.title = "本文の文字の大きさ"
                     row.maximumValue = 20
                     row.minimumValue = 10
                     row.steps = 20
-                    row.userDefaultsConnect(name: "timeline_text_fontsize")
+                    row.userDefaultsConnect(.timelineTextFontsize)
                 }
                 <<< SliderRow() { row in
                     row.title = "アイコンの大きさ"
                     row.maximumValue = 72
                     row.minimumValue = 24
                     row.steps = (72-24)*2
-                    row.userDefaultsConnect(name: "timeline_icon_size")
+                    row.userDefaultsConnect(.timelineIconSize)
                 }
                 <<< SwitchRow() { row in
                     row.title = "公開範囲を絵文字で表示"
-                    row.userDefaultsConnect(name: "visibility_emoji")
+                    row.userDefaultsConnect(.visibilityEmoji)
                 }
                 <<< SliderRow() { row in
                     row.title = "サムネイルの高さ"
                     row.maximumValue = 100
                     row.minimumValue = 0
                     row.steps = 100/5
-                    row.userDefaultsConnect(name: "thumbnail_height")
+                    row.userDefaultsConnect(.thumbnailHeight)
                 }
                 <<< SwitchRow() { row in
                     row.title = "WebMをVLCで開く"
-                    row.userDefaultsConnect(name: "webm_vlc_open")
+                    row.userDefaultsConnect(.webmVlcOpen)
                 }
 
             if #available(iOS 10.0, *) {
@@ -152,12 +152,12 @@ class OtherMenuTopTableViewController: UITableViewController {
                     <<< TextAreaRow() { row in
                         row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                         row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                        row.userDefaultsConnect(name: "widget_format", userDefaults: UserDefaultsAppGroup)
+                        row.userDefaultsConnect(.widgetFormat, userDefaults: UserDefaultsAppGroup)
                     }
                     <<< TextRow() { row in
                         row.title = "フィルタ"
                         row.placeholder = "[0-9]{7}"
-                        row.userDefaultsConnect(name: "widget_filter", userDefaults: UserDefaultsAppGroup)
+                        row.userDefaultsConnect(.widgetFilter, userDefaults: UserDefaultsAppGroup)
                     }
             } else {
                 vc.form +++ Section("ウィジェット")

@@ -56,6 +56,7 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */; };
+		CE8DF1851FED41C4005278FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE8DF1841FED41C4005278FE /* Podfile */; };
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
 		CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
@@ -186,6 +187,7 @@
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
+		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
+				CE8DF1841FED41C4005278FE /* Podfile */,
 				CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */,
 				2AF352191EAB9C5500777C2E /* iMast */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
@@ -640,6 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8DF1851FED41C4005278FE /* Podfile in Resources */,
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
@@ -872,6 +876,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -886,6 +891,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
