@@ -102,6 +102,7 @@ extension UIView {
     }
 }
 
+
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!
@@ -274,10 +275,6 @@ enum APIError: Error {
     case decodeFailed () // 画像のデコードに失敗したときのエラー
 }
 
-enum UserDefaultsName: String {
-    case autoResizeSize = "autoResizeSize"
-}
-
 class DateUtils {
     class func dateFromString(_ string: String, format: String) -> Date {
         let formatter: DateFormatter = DateFormatter()
@@ -307,14 +304,15 @@ func allDisconnectWebSocket() {
     websockets = []
 }
 
+/*
 var defaultValues: [String: Any] = [
     "streaming_autoconnect": "always",
     "append_mediaurl": true,
     "new_account_via": "iMast",
     "follow_relationships_old": false,
-    "timeline_username_fontsize": Float(17),
-    "timeline_text_fontsize": Float(14),
-    "timeline_icon_size": Float(48),
+    "timeline_username_fontsize": Double(17),
+    "timeline_text_fontsize": Double(14),
+    "timeline_icon_size": Double(48),
     "widget_format": "{clipboard}",
     "widget_filter": "",
     "nowplaying_format": "#nowplaying {title} - {artist} ({albumTitle})",
@@ -322,6 +320,24 @@ var defaultValues: [String: Any] = [
     "thumbnail_height": Int(50),
     "webm_vlc_open": true,
 ]
+*/
+
+extension DefaultsKeys {
+    static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect", default: "always")
+    static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
+    static let newAccountVia = DefaultsKey<String>("new_account_via", default: "iMast")
+    static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old", default: false)
+    static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize", default: 17)
+    static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize", default: 14)
+    static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size", default: 48)
+    static let widgetFormat = DefaultsKey<String>("widget_format", default: "{clipboard}")
+    static let widgetFilter = DefaultsKey<String>("widget_filter")
+    static let nowplayingFormat = DefaultsKey<String>("nowplaying_format", default: "#nowplaying {title} - {artist} ({albumTitle})")
+    static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji", default: true)
+    static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
+    static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
+    static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
+}
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     var versionStr = versionStr_
@@ -358,3 +374,4 @@ let VisibilityString = ["public", "unlisted", "private", "direct"]
 let VisibilityLocalizedString = ["公開", "未収蔵", "非公開", "ダイレクト"]
 let VisibilityDescriptionString = ["LTLやフォロワーのHTL等に流れます", "LTLやハッシュタグ検索には出ません", "あなたのフォロワーのみ見れます", "リプライを飛ばした対象の人にのみ見れます"]
 let UserDefaultsAppGroup = UserDefaults.init(suiteName: "group.jp.pronama.imast")!
+var Defaults = UserDefaultsAppGroup

@@ -38,6 +38,9 @@
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */; };
+		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE51ABFB1F40C06B00E43607 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */; };
 		CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */; };
 		CE51AC011F40C06B00E43607 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE51ABFF1F40C06B00E43607 /* MainInterface.storyboard */; };
@@ -56,6 +59,7 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */; };
+		CE8DF1851FED41C4005278FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE8DF1841FED41C4005278FE /* Podfile */; };
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
 		CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
@@ -167,6 +171,7 @@
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
+		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +191,7 @@
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
+		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
+				CE8DF1841FED41C4005278FE /* Podfile */,
 				CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */,
 				2AF352191EAB9C5500777C2E /* iMast */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
@@ -366,6 +373,7 @@
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				2A66E80A1EB0254400735081 /* Bridge.h */,
+				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
 				CEE213121EF13EE600393C67 /* emoji.json */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
 			);
@@ -640,6 +648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8DF1851FED41C4005278FE /* Podfile in Resources */,
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
@@ -938,6 +947,7 @@
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
+				CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
@@ -982,6 +992,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
 				CE51AC0B1F41862800E43607 /* GoodUtils.swift in Sources */,
 				CE51AC0A1F41862300E43607 /* MastodonAPI.swift in Sources */,
 				CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */,
@@ -994,6 +1005,7 @@
 			files = (
 				CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */,
 				CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */,
+				CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* MastodonAPI.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,

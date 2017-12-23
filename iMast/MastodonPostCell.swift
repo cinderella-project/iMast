@@ -50,7 +50,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.json = json_
         // textView.dataDetectorTypes = .link
         var attrStr = (
-            "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(UserDefaults.standard.float(forKey: "timeline_text_fontsize"))
+            "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(Defaults[DefaultsKeys.timelineTextFontsize])
                 + (json["content"].stringValue.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
         if json["spoiler_text"].string != "" && json["spoiler_text"].string != nil {
             textView.text = json["spoiler_text"].stringValue.emojify() + "\n(CWの内容は詳細画面で)"
@@ -69,9 +69,9 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         } else {
             textView.attributedText = attrStr
         }
-        textView.font = textView.font?.withSize(CGFloat(UserDefaults.standard.float(forKey: "timeline_text_fontsize")))
+        textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
         userView.text = (((json["account"]["display_name"].string ?? "") != "" ? json["account"]["display_name"].string : json["account"]["username"].string ?? "") ?? "").emojify()
-        userView.font = userView.font.withSize(CGFloat(UserDefaults.standard.float(forKey: "timeline_username_fontsize")))
+        userView.font = userView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
         if (json["account"]["avatar_static"].string != nil) {
             var iconUrl = json["account"]["avatar_static"].stringValue
             if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
@@ -85,7 +85,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if date != nil {
             timeView.text = DateUtils.stringFromDate(date!, format: "HH:mm:ss")
         }
-        if UserDefaults.standard.bool(forKey: "visibility_emoji") {
+        if Defaults[.visibilityEmoji] {
             switch json["visibility"].stringValue {
             case "unlisted":
                 timeView.text = "🔓" + (timeView.text ?? "")
@@ -100,9 +100,9 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if json["pinned"].boolValue {
             timeView.text = "📌"+(timeView.text ?? "")
         }
-        timeView.font = timeView.font.withSize(CGFloat(UserDefaults.standard.float(forKey: "timeline_username_fontsize")))
-        iconWidthConstraint.constant = CGFloat(UserDefaults.standard.float(forKey: "timeline_icon_size"))
-        iconHeightConstraint.constant = CGFloat(UserDefaults.standard.float(forKey: "timeline_icon_size"))
+        timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
+        iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
+        iconHeightConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         // -- タッチ周り --
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         textView.textContainer.lineFragmentPadding = 0
@@ -113,7 +113,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapPost)))
         // /-- タッチ周り --
-        let thumbnail_height = UserDefaults.standard.integer(forKey: "thumbnail_height")
+        let thumbnail_height = Defaults[.thumbnailHeight]
         self.imageThumbnailStackView.subviews.forEach { view in
             view.removeFromSuperview()
         }
