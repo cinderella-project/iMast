@@ -34,21 +34,6 @@ class OtherMenuTopTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selected = indexPath[1]
         print(selected)
-        func userDefaultsConnect(_ row: PushRow<String>, name: String, map: [String: String]) {
-            row.options = map.keys.map { (name) -> String in
-                return map[name]!
-            }
-            let userDefaultsValue = UserDefaultsAppGroup.string(forKey: name) ?? ""
-            row.value = map[userDefaultsValue] ?? userDefaultsValue
-            row.cellUpdate { (cell, row) in
-                map.forEach({ (key, value) in
-                    if(value == row.value) {
-                        print(key)
-                        UserDefaultsAppGroup.set(key, forKey: name)
-                    }
-                })
-            }
-        }
 
         switch(tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "") {
         case "myProfile":
@@ -152,12 +137,12 @@ class OtherMenuTopTableViewController: UITableViewController {
                     <<< TextAreaRow() { row in
                         row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                         row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                        row.userDefaultsConnect(.widgetFormat, userDefaults: UserDefaultsAppGroup)
+                        row.userDefaultsConnect(.widgetFormat)
                     }
                     <<< TextRow() { row in
                         row.title = "フィルタ"
                         row.placeholder = "[0-9]{7}"
-                        row.userDefaultsConnect(.widgetFilter, userDefaults: UserDefaultsAppGroup)
+                        row.userDefaultsConnect(.widgetFilter)
                     }
             } else {
                 vc.form +++ Section("ウィジェット")
