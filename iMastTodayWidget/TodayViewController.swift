@@ -8,7 +8,6 @@
 
 import UIKit
 import NotificationCenter
-import SwiftyUserDefaults
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
@@ -25,7 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var postSendLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaultsAppGroup.register(defaults: defaultValues)
+        // UserDefaultsAppGroup.register(defaults: defaultValues)
         postActivityIndicator.alpha = 0
         // Do any additional setup after loading the view from its nib.
     }

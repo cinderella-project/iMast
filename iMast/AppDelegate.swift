@@ -122,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func registerDefaultsFromSettingsBundle(){
-        UserDefaultsAppGroup.register(defaults: defaultValues)
+        // UserDefaultsAppGroup.register(defaults: defaultValues)
     }
     
     func migrateUserDefaultsToAppGroup() {

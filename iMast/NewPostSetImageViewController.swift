@@ -49,7 +49,7 @@ class NewPostSetImageViewController: UITableViewController, UIDocumentMenuDelega
     }
     
     func updateAutoResizeConfigShow() {
-        let nowAutoResizeConfig = UserDefaultsAppGroup.exists(UserDefaultsName.autoResizeSize.rawValue) ? UserDefaultsAppGroup.integer(forKey: UserDefaultsName.autoResizeSize.rawValue) : 0
+        let nowAutoResizeConfig = Defaults[.autoResizeSize]
         self.autoResizeConfigShow.text = (nowAutoResizeConfig == 0 ? "無指定" : String(nowAutoResizeConfig) + "px")
     }
     
@@ -83,7 +83,7 @@ class NewPostSetImageViewController: UITableViewController, UIDocumentMenuDelega
             pickerSelector.delegate = self
             present(pickerSelector, animated: true, completion: nil)
         } else if selectedRow == 3 { // 自動リサイズ
-            let nowsentaku = UserDefaultsAppGroup.exists(UserDefaultsName.autoResizeSize.rawValue) ? UserDefaultsAppGroup.integer(forKey: UserDefaultsName.autoResizeSize.rawValue) : 0
+            let nowsentaku = Defaults[.autoResizeSize]
             let sentakusi = [ // 自動リサイズの選択肢
                 0,
                 1280,
@@ -100,7 +100,7 @@ class NewPostSetImageViewController: UITableViewController, UIDocumentMenuDelega
             for num in sentakusi {
                 let title = num == 0 ? "無指定" : String(num) + "px四方に収まるサイズ"
                 select.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
-                    UserDefaultsAppGroup.set(num, forKey: UserDefaultsName.autoResizeSize.rawValue)
+                    Defaults[.autoResizeSize] = num
                     self.updateAutoResizeConfigShow()
                 }))
             }

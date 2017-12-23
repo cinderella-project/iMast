@@ -17,7 +17,6 @@ target 'iMast' do
   pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
   pod 'XCGLogger', '~> 5.0.1'
   pod 'ActionClosurable'
-  pod 'SwiftyUserDefaults'
 
   target 'iMastTests' do
     inherit! :search_paths
@@ -37,7 +36,6 @@ target 'iMast' do
     pod 'GRDB.swift'
     pod 'XCGLogger', '~> 5.0.1'
     pod 'Starscream'
-    pod 'SwiftyUserDefaults'
   end
   target 'iMastTodayWidget' do
     inherit! :search_paths
@@ -46,7 +44,6 @@ target 'iMast' do
     pod 'HydraAsync'
     pod 'GRDB.swift'
     pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
-    pod 'SwiftyUserDefaults'
   end
 
 end

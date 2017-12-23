@@ -11,7 +11,6 @@ PODS:
   - ReachabilitySwift (3)
   - Starscream (2.0.4)
   - SwiftyJSON (3.1.4)
-  - SwiftyUserDefaults (3.0.0)
   - XCGLogger (5.0.1):
     - XCGLogger/Core (= 5.0.1)
   - XCGLogger/Core (5.0.1):
@@ -27,7 +26,6 @@ DEPENDENCIES:
   - ReachabilitySwift (~> 3)
   - Starscream
   - SwiftyJSON
-  - SwiftyUserDefaults
   - XCGLogger (~> 5.0.1)
 
 EXTERNAL SOURCES:
@@ -51,9 +49,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Starscream: df5974ee928b157c8eda8af8de7c620276b7dfcc
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   XCGLogger: 0b43697155d41e4a1b15fc776f319c2141646b09
 
-PODFILE CHECKSUM: eb1be1f8214cbc49982b8314688fdb65cdcbe406
+PODFILE CHECKSUM: 28b0bd4d282442484cb6e9a9d834e6070c1dcd86
 
 COCOAPODS: 1.3.1

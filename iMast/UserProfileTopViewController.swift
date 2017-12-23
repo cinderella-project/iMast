@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import Accounts
-import SwiftyUserDefaults
 
 class UserProfileTopViewController: UITableViewController {
 

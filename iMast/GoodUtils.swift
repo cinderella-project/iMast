@@ -13,7 +13,6 @@ import Alamofire
 import SwiftyJSON
 import Starscream
 import XCGLogger
-import SwiftyUserDefaults
 
 let log = XCGLogger.default
 
@@ -276,10 +275,6 @@ enum APIError: Error {
     case decodeFailed () // 画像のデコードに失敗したときのエラー
 }
 
-enum UserDefaultsName: String {
-    case autoResizeSize = "autoResizeSize"
-}
-
 class DateUtils {
     class func dateFromString(_ string: String, format: String) -> Date {
         let formatter: DateFormatter = DateFormatter()
@@ -309,6 +304,7 @@ func allDisconnectWebSocket() {
     websockets = []
 }
 
+/*
 var defaultValues: [String: Any] = [
     "streaming_autoconnect": "always",
     "append_mediaurl": true,
@@ -324,21 +320,23 @@ var defaultValues: [String: Any] = [
     "thumbnail_height": Int(50),
     "webm_vlc_open": true,
 ]
+*/
 
 extension DefaultsKeys {
-    static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect")
-    static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl")
-    static let newAccountVia = DefaultsKey<String>("new_account_via")
-    static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old")
-    static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize")
-    static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize")
-    static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size")
-    static let widgetFormat = DefaultsKey<String>("widget_format")
+    static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect", default: "always")
+    static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
+    static let newAccountVia = DefaultsKey<String>("new_account_via", default: "iMast")
+    static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old", default: false)
+    static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize", default: 17)
+    static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize", default: 14)
+    static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size", default: 48)
+    static let widgetFormat = DefaultsKey<String>("widget_format", default: "{clipboard}")
     static let widgetFilter = DefaultsKey<String>("widget_filter")
-    static let nowplayingFormat = DefaultsKey<String>("nowplaying_format")
-    static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji")
-    static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height")
-    static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open")
+    static let nowplayingFormat = DefaultsKey<String>("nowplaying_format", default: "#nowplaying {title} - {artist} ({albumTitle})")
+    static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji", default: true)
+    static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
+    static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
+    static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
 }
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {

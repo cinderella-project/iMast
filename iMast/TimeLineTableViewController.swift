@@ -11,7 +11,6 @@ import SwiftyJSON
 import Starscream
 import Hydra
 import ReachabilitySwift
-import SwiftyUserDefaults
 
 class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     

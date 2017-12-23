@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 import SafariServices
 import SwiftyJSON
-import SwiftyUserDefaults
 
 class AddAccountProgressViewController: UIViewController {
     

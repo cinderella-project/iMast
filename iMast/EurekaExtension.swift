@@ -7,7 +7,6 @@
 //
 
 import Eureka
-import SwiftyUserDefaults
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     func userDefaultsConnect(_ key:DefaultsKey<String>, map: [String: String], userDefaults: UserDefaults = UserDefaultsAppGroup) {
@@ -15,9 +14,6 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
             return map[name]!
         }
         let name = key._key
-        if defaultValues[name] == nil {
-            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
-        }
         let userDefaultsValue = userDefaults.string(forKey: name) ?? ""
         self.value = map[userDefaultsValue] ?? userDefaultsValue
         self.cellUpdate { (cell, row) in
@@ -33,9 +29,6 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
 extension TextRow {
     func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         let name = key._key
-        if defaultValues[name] == nil {
-            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
-        }
         self.value = userDefaults.string(forKey: name)
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -51,9 +44,6 @@ extension TextRow {
 extension SwitchRow {
     func userDefaultsConnect(_ key:DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         let name = key._key
-        if defaultValues[name] == nil {
-            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
-        }
         self.value = userDefaults.bool(forKey: name)
         var oldValue = self.value
         self.onChange { row in
@@ -69,9 +59,6 @@ extension SwitchRow {
 extension SliderRow {
     func userDefaultsConnect(_ key:DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         let name = key._key
-        if defaultValues[name] == nil {
-            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
-        }
         self.value = userDefaults.float(forKey: name)
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -86,9 +73,6 @@ extension SliderRow {
 extension TextAreaRow {
     func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         let name = key._key
-        if defaultValues[name] == nil {
-            WARN("WARNING!!! \(name)はdefaultValuesに記載されていません")
-        }
         self.value = userDefaults.string(forKey: name)
         var oldValue = self.value
         self.cellUpdate { cell, row in

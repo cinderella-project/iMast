@@ -10,7 +10,6 @@ import UIKit
 import Hydra
 import SwiftyJSON
 import MediaPlayer
-import SwiftyUserDefaults
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
 
@@ -240,7 +239,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     func getImage() -> Data? { // 自動リサイズ設定を考慮したUIImageをPNGorJPEG化したDataを返す
         var image = self.image!
-        let resultSize = UserDefaultsAppGroup.exists(UserDefaultsName.autoResizeSize.rawValue) ? UserDefaultsAppGroup.integer(forKey: UserDefaultsName.autoResizeSize.rawValue) : 0
+        let resultSize:Int = Defaults[.autoResizeSize]
         if resultSize != 0 {
             var width = image.size.width
             var height = image.size.height

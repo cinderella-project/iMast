@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyJSON
 import SafariServices
-import SwiftyUserDefaults
 
 class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
