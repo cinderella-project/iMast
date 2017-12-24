@@ -13,14 +13,12 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
         self.options = map.keys.map { (name) -> String in
             return map[name]!
         }
-        let name = key._key
-        let userDefaultsValue = userDefaults.string(forKey: name) ?? ""
+        let userDefaultsValue = Defaults[key]
         self.value = map[userDefaultsValue] ?? userDefaultsValue
         self.cellUpdate { (cell, row) in
-            map.forEach({ (key, value) in
+            map.forEach({ (key_, value) in
                 if(value == row.value) {
-                    print(key)
-                    userDefaults.set(key, forKey: name)
+                    Defaults[key] = key_
                 }
             })
         }
@@ -28,59 +26,55 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
 }
 extension TextRow {
     func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        let name = key._key
-        self.value = userDefaults.string(forKey: name)
+        self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in
             if oldValue == row.value {
                 return
             }
             oldValue = row.value
-            userDefaults.set(row.value, forKey: name)
+            Defaults[key] = row.value ?? ""
         }
     }
 }
 
 extension SwitchRow {
     func userDefaultsConnect(_ key:DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        let name = key._key
-        self.value = userDefaults.bool(forKey: name)
+        self.value = Defaults[key]
         var oldValue = self.value
         self.onChange { row in
             if oldValue == row.value {
                 return
             }
             oldValue = row.value
-            userDefaults.set(row.value, forKey: name)
+            Defaults[key] = row.value ?? false
         }
     }
 }
 
 extension SliderRow {
     func userDefaultsConnect(_ key:DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        let name = key._key
-        self.value = userDefaults.float(forKey: name)
+        self.value = Float(Defaults[key])
         var oldValue = self.value
         self.cellUpdate { cell, row in
             if oldValue == row.value {
                 return
             }
             oldValue = row.value
-            userDefaults.set(row.value, forKey: name)
+            Defaults[key] = Double(row.value ?? 0.0)
         }
     }
 }
 extension TextAreaRow {
     func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        let name = key._key
-        self.value = userDefaults.string(forKey: name)
+        self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in
             if oldValue == row.value {
                 return
             }
             oldValue = row.value
-            userDefaults.set(row.value, forKey: name)
+            Defaults[key] = row.value ?? ""
         }
     }
 }
