@@ -1,5 +1,5 @@
 //
-//  MastodonAPI.swift
+//  MastodonModel.swift
 //  iMast
 //
 //  Created by rinsuki on 2017/04/24.
