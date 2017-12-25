@@ -384,11 +384,13 @@ public class MastodonUserToken {
         }
     }
     
-
+    static var verifyCredentialsCache: [String: JSON] = [:]
     
-    func getUserInfo() -> Promise<JSON> {
+    func getUserInfo(cache:Bool = false) -> Promise<JSON> {
+        if cache && MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] != nil {
+            return Promise.init(resolved: MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"]!)
+        }
         return self.get("accounts/verify_credentials").then { (response) -> Promise<JSON> in
-            print(response)
             self.name = response["display_name"].string
             if self.name == nil || self.name?.count == 0 {
                 self.name = response["name"].string
@@ -397,6 +399,9 @@ public class MastodonUserToken {
             self.avatarUrl = response["avatar"].string
             if (self.avatarUrl != nil) && (self.avatarUrl?.count)! >= 1 && self.avatarUrl?[(self.avatarUrl?.startIndex)!] == "/" { // ホスト名がない！！！
                 self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
+            }
+            if response["error"].isEmpty {
+                MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] = response
             }
             return Promise.init(resolved: response)
         }

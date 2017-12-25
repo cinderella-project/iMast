@@ -61,16 +61,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.configureObserver()
         self.nowAccountLabel.text = (MastodonUserToken.getLatestUsed()?.screenName)! + "@" + (MastodonUserToken.getLatestUsed()?.app.instance.hostName)!
         if replyToPost != nil {
             self.nowAccountLabel.text! += "\n返信先: @\(replyToPost!["account"]["username"].stringValue): \(replyToPost!["content"].stringValue.pregReplace(pattern: "<.+?>", with: ""))"
@@ -86,6 +76,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.textInput.text = replyAccounts.joined()
             self.scope = replyToPost!["visibility"].stringValue
         }
+        if Defaults[.usingDefaultVisibility] && replyToPost == nil {
+            MastodonUserToken.getLatestUsed()!.getUserInfo(cache: true).then { res in
+                let myScope = res["source"]["privacy"].string ?? "public"
+                self.scope = myScope
+            }
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureObserver()
         self.nowAccountLabel.sizeToFit()
     }
     override func viewWillDisappear(_ animated: Bool) {

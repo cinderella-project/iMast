@@ -91,6 +91,10 @@ class OtherMenuTopTableViewController: UITableViewController {
                     row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                     row.userDefaultsConnect(.nowplayingFormat)
                 }
+                <<< SwitchRow() { row in
+                    row.title = "デフォルト公開範囲を利用"
+                    row.userDefaultsConnect(.usingDefaultVisibility)
+                }
             vc.form +++ Section("タイムライン")
                 <<< SliderRow() { row in
                     row.title = "ユーザー名の文字の大きさ"

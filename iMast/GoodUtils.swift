@@ -337,6 +337,7 @@ extension DefaultsKeys {
     static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
     static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
     static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
+    static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
 }
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
