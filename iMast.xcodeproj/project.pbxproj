@@ -191,7 +191,7 @@
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
-		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
