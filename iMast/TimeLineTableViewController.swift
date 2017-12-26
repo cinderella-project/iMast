@@ -30,6 +30,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         }
     }
     var isReadmoreEnabled = true
+    var streamingRetryWaitCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -208,8 +209,9 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocket){
-        print("WebSocket connected")
+        print("WebSocket connected", socket.currentURL.absoluteString)
         streamingNavigationItem?.tintColor = nil
+        streamingRetryWaitCount = 0
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
@@ -218,6 +220,11 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         if isUserReasonDisconnected {
             isUserReasonDisconnected = false
             return
+        }
+        print(error?.localizedDescription)
+        sleep(UInt32(streamingRetryWaitCount))
+        if streamingRetryWaitCount < 10 {
+            streamingRetryWaitCount += 1
         }
         websocketConnect(auto: true)
     }
