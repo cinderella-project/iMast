@@ -165,7 +165,6 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             return
         }
         let json = self.json!["reblog"].isEmpty ? self.json! : self.json!["reblog"]
-        print(sender.view)
         let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
         if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
             return
@@ -182,7 +181,6 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                     let newVC = openUserProfile(user: user)
                     self.viewController?.navigationController?.pushViewController(newVC, animated: true)
                 })
-                print(mention)
                 return false
             }
         }

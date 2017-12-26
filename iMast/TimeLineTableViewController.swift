@@ -127,7 +127,6 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         posts.forEach { post in
             _ = getCell(post:post)
         }
-        print("hoge")
         
         /*
         if self.posts.count == 0 {
@@ -167,7 +166,6 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             self.posts = Array(self.posts.prefix(maxPostCount + cnt))
         }
         if usingAnimationFlag {
-            print(indexPaths, deleteIndexPaths)
             self.tableView.insertRows(at: indexPaths, with: .none)
             self.tableView.deleteRows(at: deleteIndexPaths, with: .none)
             self.tableView.endUpdates()
@@ -230,7 +228,6 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         var object = JSON(parseJSON: text)
-        print(object)
         if object["event"].string == "update" {
             object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
             /*
@@ -254,6 +251,8 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                 self.cellCache[object["payload"].int64Value] = nil
                 self.tableView.reloadData()
             }
+        } else {
+            print(object)
         }
     }
     
