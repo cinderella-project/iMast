@@ -217,8 +217,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         print("WebSocket Disconnected", error)
         streamingNavigationItem?.tintColor = UIColor(red: 1, green: 0.3, blue: 0.15, alpha: 1)
-        if isUserReasonDisconnected {
-            isUserReasonDisconnected = false
+        if (error?.localizedDescription ?? "") == "" {
             return
         }
         print(error?.localizedDescription)
