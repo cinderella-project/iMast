@@ -272,58 +272,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2A533F721ECD07020062630F /* NewPost */ = {
-			isa = PBXGroup;
-			children = (
-				2A533F6E1ECCFE940062630F /* NewPost.storyboard */,
-				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
-				2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */,
-			);
-			name = NewPost;
-			sourceTree = "<group>";
-		};
-		2A533F741ECD07780062630F /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				2AF3521E1EAB9C5600777C2E /* Login.storyboard */,
-				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
-				2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */,
-				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
-				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
-				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
-			);
-			name = Login;
-			sourceTree = "<group>";
-		};
-		2A533F761ECD078C0062630F /* OtherMenu */ = {
-			isa = PBXGroup;
-			children = (
-				2A533F701ECCFF710062630F /* OtherMenu.storyboard */,
-				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */,
-				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
-				CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */,
-				2A533F7B1ECD30BF0062630F /* OtherMenuAccountChangeTableViewController.swift */,
-			);
-			name = OtherMenu;
-			sourceTree = "<group>";
-		};
-		2ADE64171ED1309F00ED1CB1 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */,
-				2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */,
-				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
-				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
-				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
-				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
-				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
-				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
-				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
-				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
-			);
-			name = CustomViews;
-			sourceTree = "<group>";
-		};
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
@@ -360,20 +308,18 @@
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
 				2A66E7FB1EAEE89E00735081 /* Main.storyboard */,
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
-				2ADE64171ED1309F00ED1CB1 /* CustomViews */,
-				2A533F741ECD07780062630F /* Login */,
-				2A533F721ECD07020062630F /* NewPost */,
-				2A533F761ECD078C0062630F /* OtherMenu */,
-				CE66CE151EEA8F83006D5B18 /* Timelines */,
-				CEBB33DC1F2D8CEA00E4D3AB /* NotificationTab */,
+				CEE3571E1FF51A3900675DFC /* CustomViews */,
+				CEE357171FF516A800675DFC /* Login */,
+				CEE357181FF519C600675DFC /* NewPost */,
+				CEE357191FF519E000675DFC /* OtherMenu */,
+				CEE3571C1FF51A0700675DFC /* Timelines */,
+				CEE3571D1FF51A2800675DFC /* NotificationTab */,
 				2AF352211EAB9C5600777C2E /* Assets.xcassets */,
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
-				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
-				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				2A66E80A1EB0254400735081 /* Bridge.h */,
-				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
+				CEE357161FF5165700675DFC /* SharedSources */,
 				CEE213121EF13EE600393C67 /* emoji.json */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
 			);
@@ -422,20 +368,6 @@
 			path = iMastTodayWidget;
 			sourceTree = "<group>";
 		};
-		CE66CE151EEA8F83006D5B18 /* Timelines */ = {
-			isa = PBXGroup;
-			children = (
-				2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */,
-				2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */,
-				CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */,
-				CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */,
-				CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */,
-				2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */,
-				CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */,
-			);
-			name = Timelines;
-			sourceTree = "<group>";
-		};
 		CE78CFA51EE812AD008313EA /* iMastShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,13 +381,89 @@
 			path = iMastShare;
 			sourceTree = "<group>";
 		};
-		CEBB33DC1F2D8CEA00E4D3AB /* NotificationTab */ = {
+		CEE357161FF5165700675DFC /* SharedSources */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
+				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
+				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
+			);
+			path = SharedSources;
+			sourceTree = "<group>";
+		};
+		CEE357171FF516A800675DFC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2AF3521E1EAB9C5600777C2E /* Login.storyboard */,
+				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
+				2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */,
+				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
+				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
+				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CEE357181FF519C600675DFC /* NewPost */ = {
+			isa = PBXGroup;
+			children = (
+				2A533F6E1ECCFE940062630F /* NewPost.storyboard */,
+				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
+				2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */,
+			);
+			path = NewPost;
+			sourceTree = "<group>";
+		};
+		CEE357191FF519E000675DFC /* OtherMenu */ = {
+			isa = PBXGroup;
+			children = (
+				2A533F701ECCFF710062630F /* OtherMenu.storyboard */,
+				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */,
+				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
+				CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */,
+				2A533F7B1ECD30BF0062630F /* OtherMenuAccountChangeTableViewController.swift */,
+			);
+			path = OtherMenu;
+			sourceTree = "<group>";
+		};
+		CEE3571C1FF51A0700675DFC /* Timelines */ = {
+			isa = PBXGroup;
+			children = (
+				2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */,
+				2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */,
+				CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */,
+				CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */,
+				CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */,
+				2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */,
+				CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */,
+			);
+			path = Timelines;
+			sourceTree = "<group>";
+		};
+		CEE3571D1FF51A2800675DFC /* NotificationTab */ = {
 			isa = PBXGroup;
 			children = (
 				CEBB33DD1F2D8D6F00E4D3AB /* NotificationTab.storyboard */,
 				CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */,
 			);
-			name = NotificationTab;
+			path = NotificationTab;
+			sourceTree = "<group>";
+		};
+		CEE3571E1FF51A3900675DFC /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */,
+				2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */,
+				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
+				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
+				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
+				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
+				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
+				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
+				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
