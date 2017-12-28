@@ -64,7 +64,7 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
         }
     }
     
-    var loginSafari: LoginSafari?
+    private var loginSafari: LoginSafari?
     
     @IBAction func safariLoginButton(_ sender: Any) {
         let url = URL(string: self.app!.getAuthorizeUrl())!
@@ -77,11 +77,12 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
     }
 }
 
-protocol LoginSafari {
+
+fileprivate protocol LoginSafari {
     func open(url: URL, viewController: UIViewController)
 }
 
-class LoginSafariNormal: LoginSafari {
+fileprivate class LoginSafariNormal: LoginSafari {
     func open(url: URL, viewController: UIViewController) {
         let safariVC = SFSafariViewController(url: url)
         viewController.present(safariVC, animated: true, completion: nil)
@@ -89,7 +90,7 @@ class LoginSafariNormal: LoginSafari {
 }
 
 @available(iOS 11.0, *)
-class LoginSafari11: LoginSafari {
+fileprivate class LoginSafari11: LoginSafari {
     var authSession: SFAuthenticationSession?
     func open(url: URL, viewController _: UIViewController) {
         self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: {callbackUrl, error in
@@ -102,3 +103,4 @@ class LoginSafari11: LoginSafari {
         self.authSession?.start()
     }
 }
+
