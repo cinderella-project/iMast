@@ -52,8 +52,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         var attrStr = (
             "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(Defaults[DefaultsKeys.timelineTextFontsize])
                 + (json["content"].stringValue.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
-        if json["spoiler_text"].string != "" && json["spoiler_text"].string != nil {
-            textView.text = json["spoiler_text"].stringValue.emojify() + "\n(CWの内容は詳細画面で)"
+        if json["spoiler_text"].stringValue != "" {
+            textView.text = json["spoiler_text"].stringValue.emojify() + "\n(CWの内容は詳細画面で\(json["media_attachments"].arrayValue.count != 0 ? ", \(json["media_attachments"].arrayValue.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
             attrStr = nil
         } else if attrStr == nil {
@@ -119,7 +119,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.imageThumbnailStackView.subviews.forEach { view in
             view.removeFromSuperview()
         }
-        if thumbnail_height != 0 {
+        if thumbnail_height != 0 && json["spoiler_text"].stringValue == "" {
             json["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 getImage(url: media["preview_url"].stringValue).then({ (image) in

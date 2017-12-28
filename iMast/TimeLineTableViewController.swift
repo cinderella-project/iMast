@@ -115,7 +115,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         let posts: [JSON] = posts_.sorted(by: { (a, b) -> Bool in
             return a["id"].int64Value > b["id"].int64Value
         }).filter({ (post) -> Bool in
-            if (post["sensitive"].boolValue && myAccount != post["account"]["acct"].stringValue) || post["reblog"]["sensitive"].boolValue { // Appleに怒られたのでNSFWだったら隠す
+            if ((post["sensitive"].boolValue && myAccount != post["account"]["acct"].stringValue) || post["reblog"]["sensitive"].boolValue) && post["spoiler_text"].stringValue == "" { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }
             if isAlreadyAdded[post["id"].int64Value] != true {
