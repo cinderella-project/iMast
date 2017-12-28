@@ -56,15 +56,49 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
             message: "通常は「Safariでログインする」を選択してください。\nSafariではうまくログインできない場合は「IDとパスワードでログインする」を選択してください。\n「IDとパスワードでログインする」はごく一部のインスタンスでは使えないことがあります。"
         )
     }
-    @IBAction func safariLoginButton(_ sender: Any) {
-        let safariVC = SFSafariViewController(url: URL(string: self.app!.getAuthorizeUrl())!)
-        self.present(safariVC, animated: true, completion: nil)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goMailAddressAndPasswordLogin" {
             let nextVC = segue.destination as! AddAccountLoginViewController
             nextVC.app = self.app
         }
+    }
+    
+    var loginSafari: LoginSafari?
+    
+    @IBAction func safariLoginButton(_ sender: Any) {
+        let url = URL(string: self.app!.getAuthorizeUrl())!
+        if #available(iOS 11.0, *) {
+            self.loginSafari = LoginSafari11()
+        } else {
+            self.loginSafari = LoginSafariNormal()
+        }
+        self.loginSafari?.open(url: url, viewController: self)
+    }
+}
+
+protocol LoginSafari {
+    func open(url: URL, viewController: UIViewController)
+}
+
+class LoginSafariNormal: LoginSafari {
+    func open(url: URL, viewController: UIViewController) {
+        let safariVC = SFSafariViewController(url: url)
+        viewController.present(safariVC, animated: true, completion: nil)
+    }
+}
+
+@available(iOS 11.0, *)
+class LoginSafari11: LoginSafari {
+    var authSession: SFAuthenticationSession?
+    func open(url: URL, viewController _: UIViewController) {
+        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: {callbackUrl, error in
+            guard let callbackUrl = callbackUrl else {
+                return
+            }
+            print(callbackUrl)
+            UIApplication.shared.openURL(callbackUrl)
+        })
+        self.authSession?.start()
     }
 }

@@ -288,9 +288,9 @@
 				2AF3521E1EAB9C5600777C2E /* Login.storyboard */,
 				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
 				2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */,
+				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
-				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
