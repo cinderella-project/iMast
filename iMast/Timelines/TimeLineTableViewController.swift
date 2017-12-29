@@ -8,16 +8,13 @@
 
 import UIKit
 import SwiftyJSON
-import Starscream
 import Hydra
 import ReachabilitySwift
 
-class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
+class TimeLineTableViewController: UITableViewController {
     
     var posts:[JSON] = []
-    var socket: WebSocket?
     var streamingNavigationItem: UIBarButtonItem?
-    var isUserReasonDisconnected = false
     var postsQueue:[JSON] = []
     var cellCache:[Int64:MastodonPostCell] = [:]
     var isAlreadyAdded:[Int64:Bool] = [:]
@@ -30,7 +27,7 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
         }
     }
     var isReadmoreEnabled = true
-    var streamingRetryWaitCount = 0
+    var socket: WebSocketWrapper?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -189,86 +186,57 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
                 }
             }
         }
-        if self.websocketEndpoint() != nil {
-            MastodonUserToken.getLatestUsed()!.app.instance.getInfo().then { infoJSON in
-                
-                let urlString = String(format: "%@/api/v1/streaming/?access_token=%@&stream=%@",
-                                       infoJSON["urls"]["streaming_api"].string ?? "wss://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName,
-                                       MastodonUserToken.getLatestUsed()!.token,
-                                       self.websocketEndpoint()!
-                )
-                print(urlString)
-                self.socket = WebSocket(url: URL(string: urlString)!)
-                self.socket!.delegate = self
-                self.socket!.connect()
-                websockets.append(self.socket!)
-            }
-        }
-    }
-    
-    func websocketDidConnect(socket: WebSocket){
-        print("WebSocket connected", socket.currentURL.absoluteString)
-        streamingNavigationItem?.tintColor = nil
-        streamingRetryWaitCount = 0
-    }
-    
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
-        print("WebSocket Disconnected", error)
-        streamingNavigationItem?.tintColor = UIColor(red: 1, green: 0.3, blue: 0.15, alpha: 1)
-        if (error?.localizedDescription ?? "") == "" {
+        guard let webSocketEndpoint = self.websocketEndpoint() else {
             return
         }
-        print(error?.localizedDescription)
-        sleep(UInt32(streamingRetryWaitCount))
-        if streamingRetryWaitCount < 10 {
-            streamingRetryWaitCount += 1
-        }
-        websocketConnect(auto: true)
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
-        var object = JSON(parseJSON: text)
-        if object["event"].string == "update" {
-            object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
-            /*
-            self.tableView.beginUpdates()
-            self.posts.insert(object["payload"], at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-            self.tableView.endUpdates()
-             */
-            addNewPosts(posts: [object["payload"]])
-        } else if object["event"].string == "delete" {
-            var tootFound = false
-            self.posts = self.posts.filter({ (post) -> Bool in
-                if post["id"].int64Value != object["payload"].int64Value {
-                    return true
-                }
-                tootFound = true
-                return false
-            })
-            if tootFound {
-                self.cellCache[object["payload"].int64Value] = nil
-                self.tableView.reloadData()
+        getWebSocket(endpoint: webSocketEndpoint).then { socket in
+            socket.event.connect.on {
+                self.streamingNavigationItem?.tintColor = nil
             }
-        } else {
-            print(object)
+            socket.event.disconnect.on { _ in
+                self.streamingNavigationItem?.tintColor = UIColor(red: 1, green: 0.3, blue: 0.15, alpha: 1)
+            }
+            socket.event.message.on { text in
+                var object = JSON(parseJSON: text)
+                if object["event"].string == "update" {
+                    object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
+                    /*
+                     self.tableView.beginUpdates()
+                     self.posts.insert(object["payload"], at: 0)
+                     let indexPath = IndexPath(row: 0, section: 0)
+                     self.tableView.insertRows(at: [indexPath], with: .automatic)
+                     self.tableView.endUpdates()
+                     */
+                    self.addNewPosts(posts: [object["payload"]])
+                } else if object["event"].string == "delete" {
+                    var tootFound = false
+                    self.posts = self.posts.filter({ (post) -> Bool in
+                        if post["id"].int64Value != object["payload"].int64Value {
+                            return true
+                        }
+                        tootFound = true
+                        return false
+                    })
+                    if tootFound {
+                        self.cellCache[object["payload"].int64Value] = nil
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    print(object)
+                }
+            }
+            self.socket = socket
         }
-    }
-    
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("WebSocket data recivied")
     }
     
     func streamingStatusTapped() {
         print("called")
-        let nowStreamConnected = (socket?.isConnected ?? false)
+        let nowStreamConnected = (socket?.webSocket.isConnected ?? false)
         let alertVC = UIAlertController(title: "ストリーミング", message: "現在: " + ( nowStreamConnected ? "接続中" : "接続していません"), preferredStyle: .actionSheet)
-        alertVC.popoverPresentationController?.sourceView = self.streamingNavigationItem?.value(forKey: "view") as! UIView
+        alertVC.popoverPresentationController?.sourceView = (self.streamingNavigationItem?.value(forKey: "view") as! UIView)
         alertVC.popoverPresentationController?.sourceRect = (self.streamingNavigationItem?.value(forKey: "view") as! UIView).frame
         if nowStreamConnected {
             alertVC.addAction(UIAlertAction(title: "切断", style: .default, handler: { (action) in
-                self.isUserReasonDisconnected = true
                 self.socket?.disconnect()
             }))
         } else {
@@ -280,10 +248,9 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             let posts = self.posts
             self.posts = []
             self.tableView.reloadData()
-            let isStreamingConnectingNow = self.socket?.isConnected ?? false
+            let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
-                self.isUserReasonDisconnected = true
             }
             DispatchQueue(label: "jp.pronama.imast.redrawqueue").async {
                 sleep(1)
@@ -316,10 +283,9 @@ class TimeLineTableViewController: UITableViewController, WebSocketDelegate {
             }
         }))
         alertVC.addAction(UIAlertAction(title: "再取得",  style: .default, handler: { (action) in
-            let isStreamingConnectingNow = self.socket?.isConnected ?? false
+            let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
-                self.isUserReasonDisconnected = true
             }
             self.posts = []
             self.tableView.reloadData()
