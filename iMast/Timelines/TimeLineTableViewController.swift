@@ -244,44 +244,6 @@ class TimeLineTableViewController: UITableViewController {
                 self.websocketConnect(auto: false)
             }))
         }
-        alertVC.addAction(UIAlertAction(title: "強制再描画", style: .default, handler: { (action) in
-            let posts = self.posts
-            self.posts = []
-            self.tableView.reloadData()
-            let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
-            if isStreamingConnectingNow {
-                self.socket?.disconnect()
-            }
-            DispatchQueue(label: "jp.pronama.imast.redrawqueue").async {
-                sleep(1)
-                self.cellCache = [:]
-                var backId:Int64 = 0
-                let sorted_posts: [JSON] = posts.sorted(by: { (a, b) -> Bool in
-                    return a["id"].int64Value > b["id"].int64Value
-                }).filter({ (post) -> Bool in
-                    if backId == post["id"].int64Value {
-                        return false
-                    }
-                    backId = post["id"].int64Value
-                    return true
-                })
-                DispatchQueue.main.async {
-                    self.refreshControl?.endRefreshing()
-                    sorted_posts.forEach({ (post) in
-                        _ = self.getCell(post: post)
-                    })
-                    self.tableView.subviews[0].subviews.forEach({ (view) in
-                        view.removeFromSuperview()
-                    })
-                    print(self.tableView.visibleCells)
-                    self.posts = sorted_posts
-                    self.tableView.reloadData()
-                    if isStreamingConnectingNow {
-                        self.socket?.connect()
-                    }
-                }
-            }
-        }))
         alertVC.addAction(UIAlertAction(title: "再取得",  style: .default, handler: { (action) in
             let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
@@ -289,6 +251,7 @@ class TimeLineTableViewController: UITableViewController {
             }
             self.posts = []
             self.tableView.reloadData()
+            self.cellCache = [:]
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
                 print(self.posts)
