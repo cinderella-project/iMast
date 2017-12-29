@@ -29,8 +29,9 @@ class Event<T> {
     
     @discardableResult
     func onBackground(_ listenerFunc: @escaping (_: T) -> Void) -> EventListener<T> {
+        let uniqueId = genRandomString()
         return self.on { content in
-            DispatchQueue(label: "jp.pronama.imast.eventlistener.background").async {
+            DispatchQueue(label: "jp.pronama.imast.eventlistener.background."+uniqueId).async {
                 listenerFunc(content)
             }
         }
