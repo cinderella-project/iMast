@@ -62,6 +62,9 @@ class OtherMenuTopTableViewController: UITableViewController {
             let vc = OtherMenuSettingsTableViewController()
             navigationController?.pushViewController(vc, animated: true)
             break
+        case "icloud":
+            let vc = OtherMenuICloudTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default: // 何?
             break // いや知らんがなｗ
         }
