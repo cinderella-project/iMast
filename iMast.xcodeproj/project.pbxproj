@@ -75,6 +75,7 @@
 		CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357231FF6067F00675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357241FF6068000675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
+		CEE357261FF6410600675DFC /* OtherMenuSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
@@ -209,6 +210,7 @@
 		CEE213121EF13EE600393C67 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
+		CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				2A533F701ECCFF710062630F /* OtherMenu.storyboard */,
 				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */,
 				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
+				CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */,
 				CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */,
 				2A533F7B1ECD30BF0062630F /* OtherMenuAccountChangeTableViewController.swift */,
 			);
@@ -960,6 +963,7 @@
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */,
+				CEE357261FF6410600675DFC /* OtherMenuSettingsTableViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */,
