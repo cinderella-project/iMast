@@ -78,6 +78,7 @@
 		CEE357261FF6410600675DFC /* OtherMenuSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
+		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
 /* End PBXBuildFile section */
 
@@ -213,6 +214,7 @@
 		CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
 				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */,
 				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
 				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
 				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
@@ -990,6 +993,7 @@
 				CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */,
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
+				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

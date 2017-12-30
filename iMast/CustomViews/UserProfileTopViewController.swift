@@ -217,6 +217,16 @@ class UserProfileTopViewController: UITableViewController {
                     newVC.user = self.loadJSON!
                     self.navigationController?.pushViewController(newVC, animated: true)
                 }))
+                if self.loadJSON!["locked"].boolValue {
+                    actionSheet.addAction(UIAlertAction(title: "フォローリクエスト一覧", style: .default) { _ in
+                        MastodonUserToken.getLatestUsed()?.get("follow_requests").then { json in
+                            let newVC = FollowRequestsListTableViewController()
+                            newVC.followRequests = json.arrayValue
+                            self.navigationController?.pushViewController(newVC, animated: true)
+                        }
+                        let newVC = FollowRequestsListTableViewController()
+                    })
+                }
             }
             actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
             self.present(actionSheet, animated: true, completion: nil)
