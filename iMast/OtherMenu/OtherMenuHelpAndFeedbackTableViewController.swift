@@ -11,7 +11,7 @@ import SafariServices
 import Eureka
 import Alamofire
 
-class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
+class OtherMenuHelpAndFeedbackTableViewController: ThemeableTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

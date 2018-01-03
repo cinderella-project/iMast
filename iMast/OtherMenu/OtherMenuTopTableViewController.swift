@@ -10,7 +10,7 @@ import UIKit
 import Eureka
 import SafariServices
 
-class OtherMenuTopTableViewController: UITableViewController {
+class OtherMenuTopTableViewController: ThemeableTableViewController {
 
     var nowAccount: MastodonUserToken?
     

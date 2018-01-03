@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class NotificationTableViewController: UITableViewController {
+class NotificationTableViewController: ThemeableTableViewController {
 
     var notifications:[JSON] = []
     

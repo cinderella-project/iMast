@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SafariServices
 
-class MastodonPostDetailTableViewController: UITableViewController, UITextViewDelegate {
+class MastodonPostDetailTableViewController: ThemeableTableViewController, UITextViewDelegate {
 
     @IBOutlet weak var firstCell: UITableViewCell!
     @IBOutlet weak var textView: UITextView!

@@ -11,7 +11,7 @@ import SwiftyJSON
 import Hydra
 import ReachabilitySwift
 
-class TimeLineTableViewController: UITableViewController {
+class TimeLineTableViewController: ThemeableTableViewController {
     
     var posts:[JSON] = []
     var streamingNavigationItem: UIBarButtonItem?

@@ -22,6 +22,12 @@ func WARN(_ message: String) {
 
 var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf:URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
+class ThemeableTableViewController: UITableViewController {
+    override func viewDidLoad(){
+        self.tableView.backgroundColor = UIColor(hue: 224/360.0, saturation: 0.273, brightness: 0.1, alpha: 1)
+    }
+}
+
 extension UIViewController {
     func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
         print("alert", title, message)

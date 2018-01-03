@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class FollowRequestsListTableViewController: UITableViewController {
+class FollowRequestsListTableViewController: ThemeableTableViewController {
 
     var followRequests: [JSON] = []
     

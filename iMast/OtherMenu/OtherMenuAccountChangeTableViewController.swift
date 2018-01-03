@@ -10,7 +10,7 @@ import UIKit
 import Hydra
 import SwiftyJSON
 
-class OtherMenuAccountChangeTableViewController: UITableViewController {
+class OtherMenuAccountChangeTableViewController: ThemeableTableViewController {
 
     @IBOutlet var accountsTableView: UITableView!
     var userTokens: [MastodonUserToken] = []

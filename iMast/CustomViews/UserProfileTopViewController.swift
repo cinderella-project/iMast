@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Accounts
 
-class UserProfileTopViewController: UITableViewController {
+class UserProfileTopViewController: ThemeableTableViewController {
 
     @IBOutlet weak var tootCell: UITableViewCell!
     @IBOutlet weak var userIconView: UIImageView!

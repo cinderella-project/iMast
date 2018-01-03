@@ -52,22 +52,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Navigator.scheme="imast"
         Navigator.routes=["callback"]
-        /*
-        // DARK THEME
-        UINavigationBar.appearance().barTintColor = .black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName:UIColor.white
-        ]
-        UITabBar.appearance().barTintColor = .black
-        UITableView.appearance().backgroundColor = .darkGray
-        UIView.appearance(whenContainedInInstancesOf: [UITableViewController.self]).backgroundColor = .black
-        UITableViewCell.appearance().backgroundColor = .black
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = .white
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = .black
-        UITextView.appearance().backgroundColor = .black
-        UITextView.appearance().textColor = .white
-        */
-        
+        let transparent = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        let headerGray = UIColor(hue: 227/360, saturation: 0.269, brightness: 0.12, alpha: 1)
+        if true {
+            // DARK THEME
+            UINavigationBar.appearance().barTintColor = headerGray
+            UINavigationBar.appearance().titleTextAttributes = [
+                NSForegroundColorAttributeName:UIColor.white
+            ]
+            UITabBar.appearance().barTintColor = .black
+            UITableView.appearance().backgroundColor = .black
+            UITableViewCell.appearance().backgroundColor = transparent
+            UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = .white
+            // UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = .black
+            UITextView.appearance().textColor = .white
+        }
+        UITextView.appearance().backgroundColor = transparent
+
         return true
     }
     

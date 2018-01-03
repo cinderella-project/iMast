@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewPostSetImageViewController: UITableViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewPostSetImageViewController: ThemeableTableViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nsfwSwitch: UISwitch!
