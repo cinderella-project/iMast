@@ -28,6 +28,8 @@ class TimeLineTableViewController: UITableViewController {
     }
     var isReadmoreEnabled = true
     var socket: WebSocketWrapper?
+    let isNurunuru = Defaults[.timelineNurunuruMode]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,22 +58,24 @@ class TimeLineTableViewController: UITableViewController {
                 self.streamingNavigationItem!
             ]
         }
-        DispatchQueue(label: "jp.pronama.imast.timelinequeue").async {
-            while true {
-                while self.postsQueue.count == 0 {
-                    usleep(500)
+        if !isNurunuru {
+            DispatchQueue(label: "jp.pronama.imast.timelinequeue").async {
+                while true {
+                    while self.postsQueue.count == 0 {
+                        usleep(500)
+                    }
+                    let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
+                        return a["id"].int64Value > b["id"].int64Value
+                    })
+                    print(posts.map({ (post) -> Int64  in
+                        return post["id"].int64Value
+                    }))
+                    self.postsQueue = []
+                    DispatchQueue.main.async {
+                        self._addNewPosts(posts: posts)
+                    }
+                    sleep(1)
                 }
-                let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
-                    return a["id"].int64Value > b["id"].int64Value
-                })
-                print(posts.map({ (post) -> Int64  in
-                    return post["id"].int64Value
-                }))
-                self.postsQueue = []
-                DispatchQueue.main.async {
-                    self._addNewPosts(posts: posts)
-                }
-                sleep(1)
             }
         }
         
@@ -99,8 +103,12 @@ class TimeLineTableViewController: UITableViewController {
     }
     
     func addNewPosts(posts: [JSON]) {
-        posts.forEach { (post) in
-            postsQueue.append(post)
+        if isNurunuru {
+            self._addNewPosts(posts: posts)
+        } else {
+            posts.forEach { (post) in
+                postsQueue.append(post)
+            }
         }
     }
     

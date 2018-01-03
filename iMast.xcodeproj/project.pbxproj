@@ -325,12 +325,12 @@
 				CEE3571C1FF51A0700675DFC /* Timelines */,
 				CEE3571D1FF51A2800675DFC /* NotificationTab */,
 				2AF352211EAB9C5600777C2E /* Assets.xcassets */,
+				CEE357161FF5165700675DFC /* SharedSources */,
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				2A66E80A1EB0254400735081 /* Bridge.h */,
-				CEE357161FF5165700675DFC /* SharedSources */,
 				CEE213121EF13EE600393C67 /* emoji.json */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
 			);

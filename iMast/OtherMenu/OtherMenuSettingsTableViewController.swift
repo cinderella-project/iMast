@@ -86,8 +86,11 @@ class OtherMenuSettingsTableViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "WebMをVLCで開く"
                 row.userDefaultsConnect(.webmVlcOpen)
+            }
+            <<< SwitchRow() { row in
+                row.title = "ぬるぬるモード(再起動後反映)"
+                row.userDefaultsConnect(.timelineNurunuruMode)
         }
-        
         if #available(iOS 10.0, *) {
             self.form +++ Section("ウィジェット")
                 <<< LabelRow() { row in
