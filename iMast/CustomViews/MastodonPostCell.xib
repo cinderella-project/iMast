@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,8 +32,15 @@
                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6ba-c3-hBS">
                             <rect key="frame" x="0.0" y="0.0" width="443" height="20.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-XE-p4g">
-                                    <rect key="frame" x="0.0" y="0.0" width="443" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" text="ふーん、あんたが私のプロデューサー?まあ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-XE-p4g">
+                                    <rect key="frame" x="0.0" y="0.0" width="371.5" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-yR-Njo">
+                                    <rect key="frame" x="371.5" y="0.0" width="71.5" height="20.5"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8967869718" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -55,13 +62,6 @@
                         </stackView>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh3-yR-Njo">
-                    <rect key="frame" x="435" y="7.5" width="71.5" height="20.5"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.8967869718" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRK-hn-Wuq" userLabel="Boosted User Icon View">
                     <rect key="frame" x="32" y="32" width="24" height="24"/>
                 </imageView>
@@ -69,7 +69,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8rL-5m-UMl" secondAttribute="trailing" constant="8" id="2N0-ce-4u0"/>
-                <constraint firstItem="4nS-XE-p4g" firstAttribute="centerY" secondItem="Gh3-yR-Njo" secondAttribute="centerY" id="3i8-hT-wiB"/>
                 <constraint firstItem="lm5-3d-b6x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Jg-Zi-fBL"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="leading" secondItem="sQD-aX-zO8" secondAttribute="trailing" constant="8" id="Bz7-HT-Ghz"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EFm-a8-BjD"/>
@@ -78,7 +77,6 @@
                 <constraint firstAttribute="bottom" secondItem="lm5-3d-b6x" secondAttribute="bottom" id="TzA-eE-0in"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sQD-aX-zO8" secondAttribute="bottom" constant="8" id="VER-Ff-Ses"/>
                 <constraint firstAttribute="bottom" secondItem="8rL-5m-UMl" secondAttribute="bottom" constant="8" id="cD9-3W-zPg"/>
-                <constraint firstItem="Gh3-yR-Njo" firstAttribute="trailing" secondItem="6ba-c3-hBS" secondAttribute="trailing" id="dN3-6F-6mj"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dQt-4D-boL"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="lm5-3d-b6x" secondAttribute="trailing" constant="5" id="hnU-oh-ep3"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="trailing" secondItem="sQD-aX-zO8" secondAttribute="trailing" id="kgS-7u-ZUF"/>
