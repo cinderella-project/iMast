@@ -339,6 +339,7 @@ extension DefaultsKeys {
     static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
     static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)
+    static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
 }
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {

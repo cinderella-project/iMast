@@ -112,6 +112,11 @@ class OtherMenuSettingsTableViewController: FormViewController {
                     row.title = "ウィジェットはiOS10以上でないと利用できません。"
             }
         }
+        self.form +++ Section("共有")
+            <<< SwitchRow() { row in
+                row.title = "Twitterにトラッキングさせない"
+                row.userDefaultsConnect(.shareNoTwitterTracking)
+        }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)

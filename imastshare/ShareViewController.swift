@@ -59,39 +59,50 @@ class ShareViewController: SLComposeServiceViewController {
             //
             print(itemProvider)
             if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-                itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (urlItem, error) in
+                itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
                     if error != nil {
                         self.extensionContext!.cancelRequest(withError: error)
                         return
                     }
-                    if let url = urlItem as? NSURL {
-                        if url.scheme != "file" {
-                            self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
-                            if url.host == "twitter.com" && url.path == "/intent/tweet" { // Twitter共有の引き継ぎ
-                                let query = urlComponentsToDict(url: URL(string: url.absoluteString!)!)
-                                var twitterPostText: String = ""
-                                if query["text"] != nil {
-                                    twitterPostText += query["text"]!
-                                }
-                                if query["url"] != nil {
-                                    twitterPostText += " " + query["url"]!
-                                }
-                                if query["hashtags"] != nil {
-                                    query["hashtags"]!.components(separatedBy: ",").forEach { hashtag in
-                                        twitterPostText += " #" + hashtag
-                                    }
-                                }
-                                if query["via"] != nil {
-                                    twitterPostText += " https://twitter.com/\(query["via"]!)さんから"
-                                }
-                                DispatchQueue.main.sync() {
-                                    self.textView.text = twitterPostText
-                                    self.postUrl = ""
-                                }
+                    guard var url = urlItem as? NSURL else {
+                        return
+                    }
+                    if url.scheme == "file" {
+                        return
+                    }
+                    if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
+                        var urlComponents = URLComponents(string: url.absoluteString!)!
+                        urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
+                        if (urlComponents.queryItems ?? []).count == 0 {
+                            urlComponents.query = nil
+                        }
+                        let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+                        url = NSURL(string: urlString)!
+                    }
+                    self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
+                    if url.host == "twitter.com" && url.path == "/intent/tweet" { // Twitter共有の引き継ぎ
+                        let query = urlComponentsToDict(url: URL(string: url.absoluteString!)!)
+                        var twitterPostText: String = ""
+                        if query["text"] != nil {
+                            twitterPostText += query["text"]!
+                        }
+                        if query["url"] != nil {
+                            twitterPostText += " " + query["url"]!
+                        }
+                        if query["hashtags"] != nil {
+                            query["hashtags"]!.components(separatedBy: ",").forEach { hashtag in
+                                twitterPostText += " #" + hashtag
                             }
                         }
+                        if query["via"] != nil {
+                            twitterPostText += " https://twitter.com/\(query["via"]!)さんから"
+                        }
+                        DispatchQueue.main.sync() {
+                            self.textView.text = twitterPostText
+                            self.postUrl = ""
+                        }
                     }
-                })
+                }
             }
             if itemProvider.hasItemConformingToTypeIdentifier("public.image") {
                 itemProvider.loadItem(forTypeIdentifier: "public.image", options: nil, completionHandler: { (imageItem, error) in
