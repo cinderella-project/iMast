@@ -43,7 +43,7 @@ class UserProfileTopViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
     }
     
-    func reload(sender: UIRefreshControl) {
+    @objc func reload(sender: UIRefreshControl) {
         print("accounts/"+String(loadJSON!["id"].intValue))
         MastodonUserToken.getLatestUsed()!.get("accounts/"+String(loadJSON!["id"].intValue)).then { res in
             print(res)

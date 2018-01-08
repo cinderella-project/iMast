@@ -164,7 +164,7 @@ extension String {
         let results = regex.matches(in: self, options: [], range: targetStringRange)
         for i in 0 ..< results.count {
             for j in 0 ..< results[i].numberOfRanges {
-                let range = results[i].rangeAt(j)
+                let range = results[i].range(at: j)
                 matches.append((self as NSString).substring(with: range))
             }
         }
@@ -194,8 +194,8 @@ extension String {
         
         // 表示データのオプションを設定する
         let attributedOptions : [String: AnyObject] = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType as AnyObject,
-            NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue as AnyObject
+            NSAttributedString.DocumentAttributeKey.documentType.rawValue: NSAttributedString.DocumentType.html as AnyObject,
+            NSAttributedString.DocumentAttributeKey.characterEncoding.rawValue: String.Encoding.utf8.rawValue as AnyObject
         ]
         
         // 文字列の変換処理

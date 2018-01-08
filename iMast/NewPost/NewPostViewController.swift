@@ -185,14 +185,14 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         notification.removeObserver(self)
     }
     
-    func keyboardWillShow(notification: Notification?) {
+    @objc func keyboardWillShow(notification: Notification?) {
         let rect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         bottomLayout.constant = (rect?.size.height ?? 0) - self.bottomLayoutGuide.length
         self.view.layoutIfNeeded()
         self.keyboardUpOrDown.image = UIImage(named: "ArrowDown")
         nowKeyboardUpOrDown = true
     }
-    func keyboardWillHide(notification: Notification?) {
+    @objc func keyboardWillHide(notification: Notification?) {
         bottomLayout.constant = 0.0
         self.keyboardUpOrDown.image = UIImage(named: "ArrowUp")
         nowKeyboardUpOrDown = false
@@ -217,7 +217,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func nowPlayingTapped(_ sender: Any) {
-        let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer().nowPlayingItem
+        let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
         if nowPlayingMusic == nil {
             return
         }

@@ -139,7 +139,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.layoutIfNeeded()
     }
     
-    func tapUser(sender: UITapGestureRecognizer) {
+    @objc func tapUser(sender: UITapGestureRecognizer) {
         if self.json == nil {
             return
         }
@@ -147,7 +147,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
-    func tapPost(sender: UITapGestureRecognizer) {
+    @objc func tapPost(sender: UITapGestureRecognizer) {
         if self.json == nil {
             return
         }
@@ -162,7 +162,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
-    func tapImage(sender: UITapGestureRecognizer) {
+    @objc func tapImage(sender: UITapGestureRecognizer) {
         if self.json == nil {
             return
         }

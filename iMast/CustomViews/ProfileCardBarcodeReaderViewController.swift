@@ -28,22 +28,22 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         
         do {
             let captureSession = AVCaptureSession()
-            let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-            let captureInput = try AVCaptureDeviceInput.init(device: captureDevice)
+            let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+            let captureInput = try AVCaptureDeviceInput.init(device: captureDevice!)
             captureSession.addInput(captureInput)
             
             let metadataOutput = AVCaptureMetadataOutput()
             captureSession.addOutput(metadataOutput)
             metadataOutput.metadataObjectTypes = [
-                AVMetadataObjectTypeQRCode
+                AVMetadataObject.ObjectType.qr
             ]
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             
-            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)!
+            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             previewLayer.frame = self.view.bounds
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             if let orientation = ui2videoOrientation[UIApplication.shared.statusBarOrientation] {
-                previewLayer.connection.videoOrientation = orientation
+                previewLayer.connection?.videoOrientation = orientation
             }
             
             self.view.layer.addSublayer(previewLayer)
@@ -63,7 +63,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animateAlongsideTransition(in: nil, animation: nil) { _ in
             if let orientation = self.ui2videoOrientation[UIApplication.shared.statusBarOrientation] {
-                self.previewLayer.connection.videoOrientation = orientation
+                self.previewLayer.connection?.videoOrientation = orientation
                 self.previewLayer.frame = self.view.bounds
             }
         }
@@ -83,13 +83,13 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
 
 extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate{
     
-    func captureOutput(_ output: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if self.presentedViewController != nil || self.navigationController?.topViewController != self {
             return
         }
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
             print(metadata.type)
-            if metadata.type != AVMetadataObjectTypeQRCode {
+            if metadata.type != AVMetadataObject.ObjectType.qr {
                 continue
             }
             if metadata.stringValue == nil {
@@ -98,7 +98,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
             print(metadata.stringValue)
             let alert = UIAlertController(title: "検知", message: metadata.stringValue, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "プロフィールを表示", style: .default, handler: { action in
-                let urlencoded = metadata.stringValue.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+                let urlencoded = metadata.stringValue?.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
                 print(urlencoded)
                 let loadingAlert = UIAlertController(title: "取得中", message: "取得中です...", preferredStyle: .alert)
                 self.present(loadingAlert, animated: true, completion: nil)
@@ -131,9 +131,9 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                     }
                 }
             }))
-            if metadata.stringValue.hasPrefix("http://") || metadata.stringValue.hasPrefix("https://") {
+            if (metadata.stringValue?.hasPrefix("http://"))! || (metadata.stringValue?.hasPrefix("https://"))! {
                 alert.addAction(UIAlertAction(title: "Safariで表示", style: .default, handler: { action in
-                    let url = URL(string: metadata.stringValue)
+                    let url = URL(string: metadata.stringValue!)
                     if url == nil {
                         return
                     }

@@ -50,7 +50,7 @@ class NotificationTableViewController: UITableViewController {
         return notifications.count
     }
     
-    func refreshNotification() {
+    @objc func refreshNotification() {
         MastodonUserToken.getLatestUsed()?.get("notifications?since_id=%d".format(notifications[0]["id"].intValue)).then({ new_notifications in
             new_notifications.arrayValue.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)

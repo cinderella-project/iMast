@@ -43,14 +43,14 @@ class MastodonPostAbuseViewController: UIViewController {
         notification.removeObserver(self)
     }
     
-    func keyboardWillShow(notification: Notification?) {
+    @objc func keyboardWillShow(notification: Notification?) {
         let rect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         bottomLayout.constant = (rect?.size.height ?? 0) - 100
         self.view.layoutIfNeeded()
         nowKeyboardUpOrDown = true
         placeholderLabel.alpha = 0
     }
-    func keyboardWillHide(notification: Notification?) {
+    @objc func keyboardWillHide(notification: Notification?) {
         bottomLayout.constant = -50
         placeholderLabel.alpha = textView.text.count == 0 ? 1 : 0
         nowKeyboardUpOrDown = false

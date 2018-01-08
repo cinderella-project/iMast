@@ -40,7 +40,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func refresh() {
+    @objc func refresh() {
         var successCount = 0
         var failedCount = 0
         let allCount = userTokens.count

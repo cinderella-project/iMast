@@ -23,7 +23,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         ]
     }
     
-    func editList() {
+    @objc func editList() {
         let navC = UINavigationController()
         let vc = FormViewController()
         let titleRow = TextRow { row in

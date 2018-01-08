@@ -88,7 +88,7 @@ class TimeLineTableViewController: UITableViewController {
         print("loadTimelineを実装してください!!!!!!")
         return Promise.init(resolved: Void())
     }
-    func refreshTimeline(){
+    @objc func refreshTimeline(){
         print("refreshTimelineを実装してください!!!!!!")
         self.refreshControl?.endRefreshing()
     }
@@ -97,7 +97,7 @@ class TimeLineTableViewController: UITableViewController {
         isReadmoreLoading = false
     }
     
-    func readMoreTimelineTapped(sender: UITapGestureRecognizer) {
+    @objc func readMoreTimelineTapped(sender: UITapGestureRecognizer) {
         isReadmoreLoading = true
         readMoreTimeline()
     }
@@ -237,7 +237,7 @@ class TimeLineTableViewController: UITableViewController {
         }
     }
     
-    func streamingStatusTapped() {
+    @objc func streamingStatusTapped() {
         print("called")
         let nowStreamConnected = (socket?.webSocket.isConnected ?? false)
         let alertVC = UIAlertController(title: "ストリーミング", message: "現在: " + ( nowStreamConnected ? "接続中" : "接続していません"), preferredStyle: .actionSheet)

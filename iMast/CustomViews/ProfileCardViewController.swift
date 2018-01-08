@@ -43,7 +43,7 @@ class ProfileCardViewController: UIViewController {
         ])
         userNameLabel.text = (((user["display_name"].string ?? "") != "" ? user["display_name"].string : user["username"].string ?? "") ?? "")
         userScreenNameLabel.text = "@" + user["username"].stringValue + "@" + MastodonUserToken.getLatestUsed()!.app.instance.hostName
-        barcodeImageView.image = UIImage(ciImage: alphaQr!.outputImage!.applying(CGAffineTransform(scaleX: 10, y: 10)))
+        barcodeImageView.image = UIImage(ciImage: alphaQr!.outputImage!.transformed(by: CGAffineTransform(scaleX: 10, y: 10)))
     }
 
     override func didReceiveMemoryWarning() {
