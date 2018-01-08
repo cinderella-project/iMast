@@ -15,7 +15,7 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
     var userId: String = "1"
     
     override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject in
+        return Promise<Void>() { resolve, reject, _ in
             MastodonUserToken.getLatestUsed()?.getIntVersion().then { version -> Promise<JSON> in
                 if version >= MastodonVersionStringToInt("1.6.0rc1") { // pinned対応インスタンス
                     return MastodonUserToken.getLatestUsed()!.get("accounts/\(self.userId)/statuses?pinned=1")
@@ -35,7 +35,7 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                         return post
                     }))
                 }
-                resolve()
+                resolve(Void())
             })
         }
     }

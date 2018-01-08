@@ -49,7 +49,7 @@ public class MastodonInstance {
     }
     
     func getInfo() -> Promise<JSON>{
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             if mastodonInstanceInfoCache[self.hostName] != nil {
                 resolve(mastodonInstanceInfoCache[self.hostName]!)
                 return
@@ -75,7 +75,7 @@ public class MastodonInstance {
     }
     
     func createApp(name: String = "iMast", redirect_uri:String = "imast://callback/") -> Promise<MastodonApp> {
-        return Promise<MastodonApp> { resolve, reject in
+        return Promise<MastodonApp> { resolve, reject, _ in
             var params = [
                 "client_name": name,
                 "scopes": "read write follow",
@@ -137,13 +137,13 @@ public class MastodonApp {
     }
     static func initFromRow(row: Row) -> MastodonApp {
         let app = MastodonApp(
-            instance: MastodonInstance(hostName: row.value(named: "instance_hostname")),
-            clientId: row.value(named: "client_id"),
-            clientSecret: row.value(named: "client_secret"),
-            name: row.value(named: "name"),
-            redirectUri: row.value(named: "redirect_uri")
+            instance: MastodonInstance(hostName: row["instance_hostname"]),
+            clientId: row["client_id"],
+            clientSecret: row["client_secret"],
+            name: row["name"],
+            redirectUri: row["redirect_uri"]
         )
-        app.id = row.value(named: "id")
+        app.id = row["id"]
         return app
     }
     
@@ -172,7 +172,7 @@ public class MastodonApp {
     }
     
     func authorizeWithCode(code: String) -> Promise<MastodonUserToken> {
-        return Promise<MastodonUserToken> { resolve, reject in
+        return Promise<MastodonUserToken> { resolve, reject, _ in
             Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "authorization_code",
                 "redirect_uri": self.redirectUri,
@@ -197,7 +197,7 @@ public class MastodonApp {
     }
     
     func authorizeWithPassword(email: String, password: String) -> Promise<MastodonUserToken>{
-        return Promise() { resolve, reject in
+        return Promise() { resolve, reject, _ in
             Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "password",
                 "username": email,
@@ -270,7 +270,7 @@ public class MastodonUserToken {
         var usertoken:MastodonUserToken?
         try! dbQueue.inDatabase { db in
             let row = try (try Row.fetchCursor(db, "SELECT * from user where id=? LIMIT 1", arguments: [id])).next()!
-            let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row.value(named: "app_id")])).next()!
+            let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])).next()!
             let app = MastodonApp.initFromRow(row: approw)
             usertoken = initFromRow(row: row, app: app)
         }
@@ -281,12 +281,12 @@ public class MastodonUserToken {
     static func initFromRow(row: Row, app: MastodonApp) -> MastodonUserToken {
         let usertoken = MastodonUserToken(
             app: app,
-            token: row.value(named: "access_token")
+            token: row["access_token"]
         )
-        usertoken.id = row.value(named: "id")
-        usertoken.name = row.value(named: "name")
-        usertoken.screenName = row.value(named: "screen_name")
-        usertoken.avatarUrl = row.value(named: "avatar_url")
+        usertoken.id = row["id"]
+        usertoken.name = row["name"]
+        usertoken.screenName = row["screen_name"]
+        usertoken.avatarUrl = row["avatar_url"]
         return usertoken
     }
 
@@ -296,7 +296,7 @@ public class MastodonUserToken {
             try dbQueue.inDatabase { db in
                 let row = try (try Row.fetchCursor(db, "SELECT * from user ORDER BY last_used DESC LIMIT 1")).next()
                 if row != nil {
-                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row!.value(named: "app_id")])).next()!
+                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row!["app_id"]])).next()!
                     let app = MastodonApp.initFromRow(row: approw)
                     usertoken = initFromRow(row: row!, app: app)
                 }
@@ -313,7 +313,7 @@ public class MastodonUserToken {
             try dbQueue.inDatabase { db in
                 let rows = try Row.fetchCursor(db, "SELECT * from user ORDER BY last_used DESC")
                 while let row = try rows.next() {
-                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row.value(named: "app_id")])).next()!
+                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])).next()!
                     let app = MastodonApp.initFromRow(row: approw)
                     usertokens.append(initFromRow(row: row, app: app))
                 }
@@ -408,7 +408,7 @@ public class MastodonUserToken {
     }
     
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
@@ -423,7 +423,7 @@ public class MastodonUserToken {
     }
 
     func post(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .post, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
@@ -437,7 +437,7 @@ public class MastodonUserToken {
     }
     
     func put(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .put, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
@@ -451,7 +451,7 @@ public class MastodonUserToken {
     }
     
     func delete(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .delete, parameters: params, headers: self.getHeader()).responseJSON { response in
                 if response.result.value == nil {
                     reject(APIError.nil("response.result.value"))
@@ -465,7 +465,7 @@ public class MastodonUserToken {
     }
     
     func upload(file: Data, mimetype: String, filename:String = "imast_upload_file") -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject in
+        return Promise<JSON> { resolve, reject, _ in
             Alamofire.upload(
                 multipartFormData: { (multipartFormData) in
                     multipartFormData.append(file, withName: "file", fileName: filename, mimeType: mimetype)
@@ -510,7 +510,7 @@ var imageResizeCache: [String:[Int:UIImage]] = [:]
 
 
 public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
-    return Promise(in: .background) { resolve, reject in
+    return Promise(in: .background) { resolve, reject, _ in
         let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_\(String(size))_scale_"+UIScreen.main.scale.description
         if size>0 {
             if imageResizeCache[url]?[size] != nil{

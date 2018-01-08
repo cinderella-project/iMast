@@ -2,7 +2,7 @@ PODS:
   - ActionClosurable (1.0.0)
   - Alamofire (4.5.1)
   - Compass (6.0.0)
-  - Eureka (3.0.0)
+  - Eureka (4.0.1)
   - GRDB.swift (2.3.1)
   - HydraAsync (1.2.1)
   - ObjcExceptionBridging (1.0.1):
@@ -11,46 +11,36 @@ PODS:
   - ReachabilitySwift (3)
   - Starscream (3.0.2)
   - SwiftyJSON (4.0.0)
-  - XCGLogger (5.0.5):
-    - XCGLogger/Core (= 5.0.5)
-  - XCGLogger/Core (5.0.5):
+  - XCGLogger (6.0.2):
+    - XCGLogger/Core (= 6.0.2)
+  - XCGLogger/Core (6.0.2):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
   - ActionClosurable
   - Alamofire (~> 4.5)
   - Compass
-  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `feature/Xcode9-Swift3_2`)
+  - Eureka
   - GRDB.swift
   - HydraAsync
   - ReachabilitySwift (~> 3)
   - Starscream
   - SwiftyJSON
-  - XCGLogger (~> 5.0.1)
-
-EXTERNAL SOURCES:
-  Eureka:
-    :branch: feature/Xcode9-Swift3_2
-    :git: https://github.com/xmartlabs/Eureka
-
-CHECKOUT OPTIONS:
-  Eureka:
-    :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
-    :git: https://github.com/xmartlabs/Eureka
+  - XCGLogger (~> 6.0.2)
 
 SPEC CHECKSUMS:
   ActionClosurable: 2c268a12cd55682231a4c871b4f5debb62f2a9c5
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
-  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
+  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   GRDB.swift: fa0742c1b3d8aa6e3610a05ebf7c6b9e77589726
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Starscream: b512c62f6706421221b5ceb2ba01a9f58aca5bea
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  XCGLogger: 49bceee6dc0c738eae5d6454fdbf800d62256b74
+  XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 97912d5c5af74b9a0cf08ad87c4390a9f9a70cbe
+PODFILE CHECKSUM: 3b9fc93133b05185a2eb6629138a650ea377d59e
 
 COCOAPODS: 1.3.1

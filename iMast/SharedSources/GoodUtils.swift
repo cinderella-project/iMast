@@ -25,7 +25,7 @@ var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf:URL(fileURLWit
 extension UIViewController {
     func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
         print("alert", title, message)
-        return Promise<Void>(in: .main) { resolve, reject in
+        return Promise<Void>(in: .main) { resolve, reject, _ in
             print("alert", title, message)
             let alert = UIAlertController(
                 title: title,
@@ -33,13 +33,13 @@ extension UIViewController {
                 preferredStyle: UIAlertControllerStyle.alert
             )
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                resolve()
+                resolve(Void())
             }))
             self.present(alert, animated: true, completion: nil)
         }
     }
     func confirm(title: String = "", message: String = "", okButtonMessage:String = "OK", style:UIAlertActionStyle = .default, cancelButtonMessage:String = "キャンセル") -> Promise<Bool> {
-        return Promise<Bool>(in: .main) { resolve, reject in
+        return Promise<Bool>(in: .main) { resolve, reject, _ in
             let alert = UIAlertController(
                 title: title,
                 message: message,
@@ -193,9 +193,9 @@ extension String {
         let encodeData = self.data(using: String.Encoding.utf8, allowLossyConversion: true)
         
         // 表示データのオプションを設定する
-        let attributedOptions : [String: AnyObject] = [
-            NSAttributedString.DocumentAttributeKey.documentType.rawValue: NSAttributedString.DocumentType.html as AnyObject,
-            NSAttributedString.DocumentAttributeKey.characterEncoding.rawValue: String.Encoding.utf8.rawValue as AnyObject
+        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey : Any] = [
+            NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
+            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue
         ]
         
         // 文字列の変換処理

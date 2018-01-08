@@ -20,7 +20,7 @@ class WebSocketWrapper {
     let event = WebSocketWrapperEvents()
     class WebSocketWrapperEvents {
         let connect = Event<Void>()
-        let disconnect = Event<NSError?>()
+        let disconnect = Event<Error?>()
         let message = Event<String>()
     }
     
@@ -40,7 +40,7 @@ class WebSocketWrapper {
             self.webSocket.connect()
         }
         self.webSocket.onConnect = {
-            self.event.connect.emit()
+            self.event.connect.emit(Void())
         }
         self.webSocket.onDisconnect = { error in
             self.event.disconnect.emit(error)

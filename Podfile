@@ -18,9 +18,9 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
-  pod 'XCGLogger', '~> 5.0.1'
+  pod 'Eureka'
   pod 'ActionClosurable'
+  pod 'XCGLogger', '~> 6.0.2'
 
   target 'iMastTests' do
     inherit! :search_paths
@@ -35,8 +35,6 @@ target 'iMast' do
   target 'iMastShare' do
     inherit! :search_paths
     based_pods
-    pod 'XCGLogger', '~> 5.0.1'
-    pod 'Starscream'
   end
   target 'iMastTodayWidget' do
     inherit! :search_paths
