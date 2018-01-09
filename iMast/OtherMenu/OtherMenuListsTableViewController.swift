@@ -35,7 +35,7 @@ class OtherMenuListsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func addList() {
+    @objc func addList() {
         let alert = UIAlertController(title: "リストの作成", message: "リスト名を決めてください", preferredStyle: .alert)
         alert.addTextField { textField in
             textField.placeholder = "リスト名"
@@ -56,7 +56,7 @@ class OtherMenuListsTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func refreshList() {
+    @objc func refreshList() {
         MastodonUserToken.getLatestUsed()!.get("lists").then { list in
             self.lists = list.arrayValue
             self.tableView.reloadData()

@@ -1,22 +1,26 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '9.0'
 
+def based_pods
+  pod 'Alamofire', '~> 4.5'
+  pod 'GRDB.swift'
+  pod 'SwiftyJSON'
+  pod 'HydraAsync'
+end
+
 target 'iMast' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for iMast
 
-  pod 'Alamofire', '~> 4.4'
-  pod 'GRDB.swift'
-  pod 'SwiftyJSON'
+  based_pods
   pod 'Compass'
-  pod 'HydraAsync'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
-  pod 'XCGLogger', '~> 5.0.1'
+  pod 'Eureka'
   pod 'ActionClosurable'
+  pod 'XCGLogger', '~> 6.0.2'
 
   target 'iMastTests' do
     inherit! :search_paths
@@ -30,20 +34,11 @@ target 'iMast' do
 
   target 'iMastShare' do
     inherit! :search_paths
-    pod 'Alamofire', '~> 4.4'
-    pod 'SwiftyJSON'
-    pod 'HydraAsync'
-    pod 'GRDB.swift'
-    pod 'XCGLogger', '~> 5.0.1'
-    pod 'Starscream'
+    based_pods
   end
   target 'iMastTodayWidget' do
     inherit! :search_paths
-    pod 'Alamofire', '~> 4.4'
-    pod 'SwiftyJSON'
-    pod 'HydraAsync'
-    pod 'GRDB.swift'
-    pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
+    based_pods
   end
 
 end

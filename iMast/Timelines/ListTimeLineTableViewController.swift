@@ -23,7 +23,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         ]
     }
     
-    func editList() {
+    @objc func editList() {
         let navC = UINavigationController()
         let vc = FormViewController()
         let titleRow = TextRow { row in
@@ -83,12 +83,12 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     }
     
     override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject in
+        return Promise<Void>() { resolve, reject, _ in
             MastodonUserToken.getLatestUsed()?.get("timelines/list/\(self.listId)").then { (res: JSON) in
                 if (res.array != nil) {
                     self._addNewPosts(posts: res.arrayValue)
                 }
-                resolve()
+                resolve(Void())
             }
         }
     }

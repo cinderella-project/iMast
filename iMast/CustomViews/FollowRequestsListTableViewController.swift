@@ -31,7 +31,7 @@ class FollowRequestsListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func refresh() {
+    @objc func refresh() {
         MastodonUserToken.getLatestUsed()?.get("follow_requests").then { res in
             self.followRequests = res.arrayValue
             self.tableView.reloadData()

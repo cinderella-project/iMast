@@ -13,12 +13,12 @@ import Hydra
 class LocalTimeLineTableViewController: TimeLineTableViewController {
     
     override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject in
+        return Promise<Void>() { resolve, reject, _ in
             MastodonUserToken.getLatestUsed()?.get("timelines/public?local=true").then { (res: JSON) in
                 if (res.array != nil) {
                     self._addNewPosts(posts: res.arrayValue)
                 }
-                resolve()
+                resolve(Void())
             }
         }
     }

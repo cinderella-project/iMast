@@ -145,7 +145,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         postStackView.layoutIfNeeded()
     }
     
-    func tapImage(sender: UITapGestureRecognizer) {
+    @objc func tapImage(sender: UITapGestureRecognizer) {
         if self.loadJSON == nil {
             return
         }
@@ -210,7 +210,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
-    func tapUser(sender: UITapGestureRecognizer) {
+    @objc func tapUser(sender: UITapGestureRecognizer) {
         if loadJSON == nil {
             return
         }
