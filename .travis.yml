@@ -9,3 +9,4 @@ cache:
   edge: true
   directories:
     - Pods
+    - ~/.cocoapods/repos
