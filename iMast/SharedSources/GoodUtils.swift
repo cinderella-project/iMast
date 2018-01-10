@@ -11,7 +11,6 @@ import UIKit
 import Hydra
 import Alamofire
 import SwiftyJSON
-import Starscream
 import XCGLogger
 
 let log = XCGLogger.default
@@ -293,15 +292,6 @@ func numToCommaString(_ num: Int) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = NumberFormatter.Style.decimal
     return formatter.string(from: num as NSNumber)!
-}
-
-var websockets:[WebSocket] = []
-func allDisconnectWebSocket() {
-    websockets.forEach { (socket) in
-        print("disconnect "+socket.currentURL.absoluteString)
-        socket.disconnect()
-    }
-    websockets = []
 }
 
 /*
