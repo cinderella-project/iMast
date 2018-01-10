@@ -55,4 +55,9 @@ extension MastodonUserToken {
             return try MastodonAccount.decode(json: res)
         }
     }
+    func followRequests() -> Promise<[MastodonAccount]> {
+        return self.get("follow_requests").then { res -> [MastodonAccount] in
+            return try res.arrayValue.map({try MastodonAccount.decode(json: $0)})
+        }
+    }
 }

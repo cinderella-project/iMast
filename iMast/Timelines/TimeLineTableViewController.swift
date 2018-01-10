@@ -119,7 +119,7 @@ class TimeLineTableViewController: UITableViewController {
         let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
             return a["id"].int64Value > b["id"].int64Value
-        }).map({try! MastodonPost.decode(json: $0)}).filter({ (post) -> Bool in
+        }).map({print($0);return try! MastodonPost.decode(json: $0)}).filter({ (post) -> Bool in
             if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }

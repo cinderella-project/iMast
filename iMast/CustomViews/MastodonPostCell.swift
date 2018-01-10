@@ -50,7 +50,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         // textView.dataDetectorTypes = .link
         var attrStr = (
             "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(Defaults[DefaultsKeys.timelineTextFontsize])
-                + (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
+                + (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis))).parseText2HTML()
         if post.spoilerText != "" {
             textView.text = post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
@@ -93,7 +93,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 break
             }
         }
-        if post.pinned {
+        if post.pinned ?? false {
             timeView.text = "📌"+(timeView.text ?? "")
         }
         timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
@@ -118,7 +118,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if thumbnail_height != 0 && post.spoilerText == "" {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
-                getImage(url: media["preview_url"].stringValue).then({ (image) in
+                getImage(url: media.previewUrl).then({ (image) in
                     imageView.image = image
                 })
                 imageView.contentMode = .scaleAspectFill
@@ -162,16 +162,16 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if media.url.hasSuffix("webm") && openVLC(media.url) {
             return
         }
-        let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
+        let safari = SFSafariViewController(url: URL(string: media.url)!)
         self.viewController?.present(safari, animated: true, completion: nil)
     }
     
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
         var urlString = shareUrl.absoluteString
         if let post = self.post {
-            for mention in post["mentions"].arrayValue {
-                if urlString == mention["url"].stringValue {
-                    MastodonUserToken.getLatestUsed()!.get("accounts/\(mention["id"].stringValue)").then({ user in
+            for mention in post.mentions {
+                if urlString == mention.url {
+                    MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
                         let newVC = openUserProfile(user: user)
                         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
                     })

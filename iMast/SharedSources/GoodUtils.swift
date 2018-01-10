@@ -209,7 +209,7 @@ extension String {
         return attributedString
     }
     
-    func emojify(custom_emoji: [JSON] = [], profile_emoji: [JSON] = []) -> String {
+    func emojify(custom_emoji: [MastodonCustomEmoji] = [], profile_emoji: [MastodonCustomEmoji] = []) -> String {
         var retstr = self
         retstr.pregMatch(pattern: ":.+?:").forEach { (emoji) in
             if emojidict[emoji].string != nil {
@@ -218,12 +218,11 @@ extension String {
         }
         (custom_emoji + profile_emoji).forEach { (emoji) in
             print(emoji)
-            if emoji["shortcode"].stringValue.count == 0 {
+            if emoji.shortcode.count == 0 {
                 return
             }
-            let html = "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">"
-            retstr = retstr.replace(":\(emoji["shortcode"].stringValue):", html)
-                .replace(":@\(emoji["shortcode"].stringValue):", html)
+            let html = "<img src=\"\(emoji.url)\" style=\"height:1em;width:1em;\">"
+            retstr = retstr.replace(":\(emoji.shortcode):", html)
         }
         return retstr
     }
@@ -343,10 +342,36 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
 }
 
 extension Decodable {
-    static func decode(json: JSON) throws -> Self {
+    static func decode(json json_: JSON) throws -> Self {
+        var json = json_
+        func a(_ json_: JSON) -> JSON {
+            var json = json_
+            for (key, _):(String, JSON) in json {
+                if key.hasSuffix("id") {
+                    json[key].stringValue = String(json[key].int64Value)
+                } else if json[key].type == .dictionary {
+                    json[key] = a(json[key])
+                } else if json[key].type == .array {
+                    json[key] = JSON(json[key].arrayValue.map { json -> JSON in
+                        if json.type == .dictionary {
+                            return a(json)
+                        } else {
+                            return json
+                        }
+                    })
+                }
+            }
+            return json
+        }
+        json = a(json)
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = jsISODateDecoder
-        return try decoder.decode(self, from: json.rawData())
+        do {
+            return try decoder.decode(self, from: json.rawData())
+        } catch {
+            print(error)
+            throw error
+        }
     }
 }
 

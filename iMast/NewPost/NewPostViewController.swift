@@ -51,7 +51,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             scopeSelectButton.image = UIImage(named: "visibility-"+scope)
         }
     }
-    var replyToPost: JSON?
+    var replyToPost: MastodonPost?
     
     var isPNG = true
     @IBOutlet weak var CWButton: UIBarButtonItem!
@@ -62,11 +62,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
 
         // Do any additional setup after loading the view.
         self.nowAccountLabel.text = (MastodonUserToken.getLatestUsed()?.screenName)! + "@" + (MastodonUserToken.getLatestUsed()?.app.instance.hostName)!
-        if replyToPost != nil {
-            self.nowAccountLabel.text! += "\n返信先: @\(replyToPost!["account"]["username"].stringValue): \(replyToPost!["content"].stringValue.pregReplace(pattern: "<.+?>", with: ""))"
-            var replyAccounts = [replyToPost!["account"]["acct"].stringValue]
-            replyToPost!["mentions"].arrayValue.forEach { mention in
-                replyAccounts.append(mention["acct"].stringValue)
+        if let replyToPost = replyToPost {
+            self.nowAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.pregReplace(pattern: "<.+?>", with: ""))"
+            var replyAccounts = [replyToPost.account.acct]
+            replyToPost.mentions.forEach { mention in
+                replyAccounts.append(mention.acct)
             }
             replyAccounts = replyAccounts.filter({ (acct) -> Bool in
                 return acct != MastodonUserToken.getLatestUsed()?.screenName
@@ -74,7 +74,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 return "@\(acct) "
             })
             self.textInput.text = replyAccounts.joined()
-            self.scope = replyToPost!["visibility"].stringValue
+            self.scope = replyToPost.visibility
         }
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
             MastodonUserToken.getLatestUsed()!.getUserInfo(cache: true).then { res in
@@ -152,8 +152,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 "status": text,
                 "visibility": self.scope
             ]
-            if self.replyToPost != nil {
-                params["in_reply_to_id"] = self.replyToPost!["id"]
+            if let replyToPost = self.replyToPost {
+                params["in_reply_to_id"] = replyToPost.id
             }
             return MastodonUserToken.getLatestUsed()!.post("statuses",params: params)
         }.then { res in

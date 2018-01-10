@@ -24,7 +24,7 @@ class HomeTimeLineTableViewController: TimeLineTableViewController {
         }
     }
     override func refreshTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/home?limit=40&since_id="+(self.posts.count >= 1 ? self.posts[0]["id"].stringValue : "")).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("timelines/home?limit=40&since_id="+(self.posts.count >= 1 ? self.posts[0].id : "")).then { (res: JSON) in
             if (res.array != nil) {
                 self.addNewPosts(posts: res.arrayValue)
                 self.refreshControl?.endRefreshing()
@@ -33,10 +33,10 @@ class HomeTimeLineTableViewController: TimeLineTableViewController {
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/home?limit=40&max_id="+self.posts[self.posts.count-1]["id"].stringValue).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("timelines/home?limit=40&max_id="+self.posts[self.posts.count-1].id).then { (res: JSON) in
             if (res.array != nil) {
                 print(res.array)
-                self.appendNewPosts(posts: res.arrayValue)
+                self.appendNewPosts(posts: res.arrayValue.map {print($0);return try! MastodonPost.decode(json: $0)})
                 self.isReadmoreLoading = false
             }
         }

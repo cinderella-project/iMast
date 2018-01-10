@@ -42,19 +42,19 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
     
     override func refreshTimeline() {
         let latestPost = self.posts.sorted(by: { (a, b) -> Bool in
-            return a["id"].stringValue.parseInt() > b["id"].stringValue.parseInt()
+            return a.createdAt > b.createdAt
         })
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&since_id="+(latestPost.count >= 1 ? latestPost[0]["id"].stringValue : "")).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&since_id="+(latestPost.count >= 1 ? latestPost[0].id : "")).then { (res: JSON) in
             self.addNewPosts(posts: res.arrayValue)
             self.refreshControl?.endRefreshing()
         }
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&max_id="+self.posts[self.posts.count-1]["id"].stringValue).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&max_id="+self.posts[self.posts.count-1].id).then { (res: JSON) in
             if (res.array != nil) {
                 print(res.array)
-                self.appendNewPosts(posts: res.arrayValue)
+                self.appendNewPosts(posts: res.arrayValue.map {try! MastodonPost.decode(json: $0)})
                 self.isReadmoreLoading = false
             }
         }

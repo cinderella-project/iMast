@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class FollowRequestsListTableViewController: UITableViewController {
 
-    var followRequests: [JSON] = []
+    var followRequests: [MastodonAccount] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class FollowRequestsListTableViewController: UITableViewController {
     }
     
     @objc func refresh() {
-        MastodonUserToken.getLatestUsed()?.get("follow_requests").then { res in
-            self.followRequests = res.arrayValue
+        MastodonUserToken.getLatestUsed()?.followRequests().then { res in
+            self.followRequests = res
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -56,12 +56,12 @@ class FollowRequestsListTableViewController: UITableViewController {
         
         let request = self.followRequests[indexPath.row]
         
-        cell.textLabel?.text = request["display_name"].stringValue
+        cell.textLabel?.text = request.name
         if (cell.textLabel?.text ?? "") == "" {
-            cell.textLabel?.text = request["acct"].stringValue
+            cell.textLabel?.text = request.acct
         }
-        cell.detailTextLabel?.text = "@\(request["acct"].stringValue)"
-        getImage(url: request["avatar_static"].stringValue).then { image in
+        cell.detailTextLabel?.text = "@\(request.acct)"
+        getImage(url: request.avatarUrl).then { image in
             cell.imageView?.image = image
             cell.setNeedsLayout()
         }
@@ -72,13 +72,13 @@ class FollowRequestsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = self.followRequests[indexPath.row]
         let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
-            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user["id"].stringValue)/authorize").then { res in
+            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user.id)/authorize").then { res in
                 self.refresh()
             }
         }
         authorizeAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         let rejectAction = UITableViewRowAction(style: .destructive, title: "拒否") { _, _ in
-            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user["id"].stringValue)/reject").then { res in
+            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user.id)/reject").then { res in
                 self.refresh()
             }
         }

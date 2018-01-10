@@ -13,14 +13,14 @@ class MastodonAttachment: Codable {
     let type: String
     let url: String
     let previewUrl: String
-    let originalUrl: String
-    let textUrl: String
+    let remoteUrl: String?
+    let textUrl: String?
     enum CodingKeys: String, CodingKey {
         case id
         case type
         case url
         case previewUrl = "preview_url"
-        case originalUrl = "original_url"
+        case remoteUrl = "remote_url"
         case textUrl = "text_url"
     }
 }

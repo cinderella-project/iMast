@@ -104,7 +104,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         MastodonUserToken.getLatestUsed()?.get("timelines/list/\(listId)?limit=40&max_id="+self.posts[self.posts.count-1].id).then { (res: JSON) in
             if (res.array != nil) {
                 print(res.array)
-                self.appendNewPosts(posts: res.arrayValue)
+                self.appendNewPosts(posts: res.arrayValue.map({try! MastodonPost.decode(json: $0)}))
                 self.isReadmoreLoading = false
             }
         }

@@ -11,23 +11,27 @@ import Hydra
 
 class MastodonPost: Codable {
     let id: String
-    let url: String
+    let url: String?
     let account: MastodonAccount
-    let inReplyToId: String
-    let inReplyToAccountId: String
+    let inReplyToId: String?
+    let inReplyToAccountId: String?
     let repost: MastodonPost?
     let status: String
     let createdAt: Date
     let repostCount: Int
     let favouritesCount: Int
-    let reposted: Bool
-    let favourited: Bool
-    let muted: Bool
+    let reposted: Bool = false
+    let favourited: Bool = false
+    let muted: Bool = false
     let sensitive: Bool
     let spoilerText: String
     let attachments: [MastodonAttachment]
     let application: MastodonApplication?
     let pinned: Bool?
+    let emojis: [MastodonCustomEmoji] = []
+    let profileEmojis: [MastodonCustomEmoji] = []
+    let visibility: String
+    let mentions: [MastodonPostMention] = []
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -48,7 +52,32 @@ class MastodonPost: Codable {
         case pinned
         case application
         case attachments = "media_attachments"
+        case emojis
+        case profileEmojis = "profile_emojis"
+        case visibility
+        case mentions
     }
+}
+
+class MastodonCustomEmoji: Codable {
+    let shortcode: String
+    let url: String
+    enum CodingKeys: String, CodingKey {
+        case shortcode
+        case url
+    }
+}
+
+class MastodonPostContext: Codable {
+    let ancestors: [MastodonPost]
+    let descendants: [MastodonPost]
+}
+
+class MastodonPostMention: Codable {
+    let url: String
+    let username: String
+    let acct: String
+    let id: String
 }
 
 extension MastodonUserToken {
@@ -65,6 +94,11 @@ extension MastodonUserToken {
     func favourite(post: MastodonPost) -> Promise<MastodonPost> {
         return self.post("statuses/\(post.id)/favourite", params: [:]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
+        }
+    }
+    func context(post: MastodonPost) -> Promise<MastodonPostContext> {
+        return self.get("statuses/\(post.id)/context").then { res -> MastodonPostContext in
+            return try MastodonPostContext.decode(json: res)
         }
     }
 }

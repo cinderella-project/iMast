@@ -219,9 +219,9 @@ class UserProfileTopViewController: UITableViewController {
                 }))
                 if user.isLocked {
                     actionSheet.addAction(UIAlertAction(title: "フォローリクエスト一覧", style: .default) { _ in
-                        MastodonUserToken.getLatestUsed()?.get("follow_requests").then { json in
+                        MastodonUserToken.getLatestUsed()?.followRequests().then { res in
                             let newVC = FollowRequestsListTableViewController()
-                            newVC.followRequests = json.arrayValue
+                            newVC.followRequests = res
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
                     })

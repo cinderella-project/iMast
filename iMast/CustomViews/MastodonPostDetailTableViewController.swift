@@ -83,7 +83,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
             html += "<br><a href=\"\(post.url)\">(CWの内容を読む)</a><br>"
         } else {
-            html += post.status.emojify(custom_emoji: post["emojis"].arrayValue, profile_emoji: post["profile_emojis"].arrayValue).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+            html += post.status.emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         }
         let attrStr = html.parseText2HTML()
         if attrStr == nil {
@@ -235,11 +235,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertActionStyle.default, handler: { action in
-            MastodonUserToken.getLatestUsed()?.get("statuses/\(post.id)/context").then { res in
+            MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
                 print(res)
-                let posts = res["ancestors"].arrayValue + [self.post!] + res["descendants"].arrayValue
+                let posts = res.ancestors + [post] + res.descendants
                 let bunmyakuVC = TimeLineTableViewController()
-                bunmyakuVC.addNewPosts(posts: posts)
+                bunmyakuVC.posts = posts
                 bunmyakuVC.isReadmoreEnabled = false
                 bunmyakuVC.title = "文脈"
                 self.navigationController?.pushViewController(bunmyakuVC, animated: true)
