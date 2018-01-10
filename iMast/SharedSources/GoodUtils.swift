@@ -101,6 +101,17 @@ extension UIView {
     }
 }
 
+extension UIApplication {
+    var viewController: UIViewController? {
+        get {
+            var vc = self.keyWindow?.rootViewController
+            while vc?.presentedViewController != nil {
+                vc = vc?.presentedViewController
+            }
+            return vc
+        }
+    }
+}
 
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
@@ -347,7 +358,7 @@ extension Decodable {
         func a(_ json_: JSON) -> JSON {
             var json = json_
             for (key, _):(String, JSON) in json {
-                if key.hasSuffix("id") {
+                if key == "id" {
                     json[key].stringValue = String(json[key].int64Value)
                 } else if json[key].type == .dictionary {
                     json[key] = a(json[key])
@@ -369,7 +380,9 @@ extension Decodable {
         do {
             return try decoder.decode(self, from: json.rawData())
         } catch {
-            print(error)
+            if let error = error as? DecodingError {
+                reportError(error: error)
+            }
             throw error
         }
     }
