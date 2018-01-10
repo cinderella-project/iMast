@@ -44,8 +44,7 @@ class UserProfileTopViewController: UITableViewController {
     }
     
     @objc func reload(sender: UIRefreshControl) {
-        print("accounts/"+String(user!["id"].intValue))
-        MastodonUserToken.getLatestUsed()!.get("accounts/"+String(user!["id"].intValue)).then { res in
+        MastodonUserToken.getLatestUsed()!.getAccount(id: user!.id).then { res in
             print(res)
             self.load(user: res)
             self.refreshControl?.endRefreshing()

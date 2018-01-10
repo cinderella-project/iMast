@@ -98,28 +98,30 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
             print(metadata.stringValue)
             let alert = UIAlertController(title: "検知", message: metadata.stringValue, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "プロフィールを表示", style: .default, handler: { action in
-                let urlencoded = metadata.stringValue?.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+                guard let urlencoded = metadata.stringValue?.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else {
+                    return
+                }
                 print(urlencoded)
                 let loadingAlert = UIAlertController(title: "取得中", message: "取得中です...", preferredStyle: .alert)
                 self.present(loadingAlert, animated: true, completion: nil)
-                MastodonUserToken.getLatestUsed()!.get("search?q=\(urlencoded)&resolve=true").then { res in
+                MastodonUserToken.getLatestUsed()!.search(q: urlencoded, resolve: true).then { res in
                     print(res)
-                    if res["accounts"].arrayValue.count == 0 {
+                    if res.accounts.count == 0 {
                         loadingAlert.dismiss(animated: false) {
                             self.alert(title: "エラー", message: "指定されたアカウントが見つかりませんでした。\nユーザーが存在しない、ユーザーのアカウントがあるインスタンスがあなたのインスタンスと鎖国状態にある、ユーザーのアカウントがあるインスタンスがダウンしているなどが考えられます。")
                         }
                     }
-                    if res["accounts"].arrayValue.count == 1 {
-                        let newVC = openUserProfile(user: res["accounts"].arrayValue[0])
+                    if res.accounts.count == 1 {
+                        let newVC = openUserProfile(user: res.accounts[0])
                         loadingAlert.dismiss(animated: false) {
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
                     }
-                    if res["accounts"].arrayValue.count >= 2 {
+                    if res.accounts.count >= 2 {
                         loadingAlert.dismiss(animated: false) {
                             let alert = UIAlertController(title: "選択", message: "複数のユーザーが見つかりました。どのユーザーを表示しますか?", preferredStyle: .alert)
-                            res["accounts"].arrayValue.forEach { account in
-                                alert.addAction(UIAlertAction(title: "@"+account["acct"].stringValue, style: .default, handler: { action in
+                            for account in res.accounts {
+                                alert.addAction(UIAlertAction(title: "@"+account.acct, style: .default, handler: { action in
                                     let newVC = openUserProfile(user: account)
                                     self.navigationController?.pushViewController(newVC, animated: true)
                                 }))

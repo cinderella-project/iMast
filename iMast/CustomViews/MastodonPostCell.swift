@@ -80,10 +80,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 self.iconView.image = image
             }
         }
-        let date = post.createdAt
-        if date != nil {
-            timeView.text = DateUtils.stringFromDate(date!, format: "HH:mm:ss")
-        }
+        timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
         if Defaults[.visibilityEmoji] {
             switch post.visibility {
             case "unlisted":

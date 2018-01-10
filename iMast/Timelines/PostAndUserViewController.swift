@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class PostAndUserViewController: TimeLineTableViewController {
     
-    var users: [JSON] = []
+    var users: [MastodonAccount] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +53,11 @@ class PostAndUserViewController: TimeLineTableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             return cell
         }
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "user_"+users[indexPath[1]]["acct"].stringValue)
-        cell.textLabel?.text = users[indexPath[1]]["display_name"].string
-        cell.detailTextLabel?.text = "@" + users[indexPath[1]]["acct"].stringValue
-        getImage(url: users[indexPath[1]]["avatar_static"].stringValue).then(in: .main) { (image) in
+        let user = users[indexPath[1]]
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "user_"+user.acct)
+        cell.textLabel?.text = user.name
+        cell.detailTextLabel?.text = "@" + user.acct
+        getImage(url: user.avatarUrl).then(in: .main) { (image) in
             cell.imageView?.image = image
             cell.setNeedsLayout()
         }
@@ -69,11 +70,7 @@ class PostAndUserViewController: TimeLineTableViewController {
             let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
             // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
             let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
-            if !post["reblog"].isEmpty {
-                newVC.load(post: post["reblog"])
-            } else {
-                newVC.load(post: post)
-            }
+            newVC.load(post: post.repost ?? post)
             self.navigationController?.pushViewController(newVC, animated: true)
         } else if indexPath[0] == 1 { // user
             let user = self.users[indexPath[1]]

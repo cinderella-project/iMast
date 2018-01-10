@@ -19,20 +19,12 @@ class MastodonNotification: Codable {
 extension MastodonUserToken {
     func getNoficitaions() -> Promise<[MastodonNotification]> {
         return self.get("notifications").then { res in
-            return try res.arrayValue.map { json in
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = jsISODate
-                return try decoder.decode(MastodonNotification.self, from: json.rawData())
-            }
+            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }
     func getNoficitaions(sinceId: String) -> Promise<[MastodonNotification]> {
         return self.get("notifications", params: ["since_id": sinceId]).then { res in
-            return try res.arrayValue.map { json in
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = jsISODate
-                return try decoder.decode(MastodonNotification.self, from: json.rawData())
-            }
+            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }
 }

@@ -38,29 +38,21 @@ class MastodonAccount: Codable {
         case url
         case avatarUrl = "avatar"
         case headerUrl = "header"
-        case moved
+
         case acct
+        case moved
     }
-}
-
-
-let jsISODate = JSONDecoder.DateDecodingStrategy.custom {
-    let container = try $0.singleValueContainer()
-    let str = try container.decode(String.self)
-    let f = DateFormatter()
-    f.calendar = Calendar(identifier: .gregorian)
-    f.locale = .current
-    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.AAA'Z'"
-    return f.date(from: str)!
 }
 
 extension MastodonUserToken {
     func verifyCredentials() -> Promise<MastodonAccount> {
         return self.get("accounts/verify_credentials").then { res -> MastodonAccount in
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = jsISODate
-            return try decoder.decode(MastodonAccount.self, from: res.rawData())
+            return try MastodonAccount.decode(json: res)
+        }
+    }
+    func getAccount(id: String) -> Promise<MastodonAccount> {
+        return self.get("accounts/"+id).then { res -> MastodonAccount in
+            return try MastodonAccount.decode(json: res)
         }
     }
 }
-

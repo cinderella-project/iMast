@@ -332,6 +332,24 @@ extension DefaultsKeys {
     static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
 }
 
+let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
+    let container = try $0.singleValueContainer()
+    let str = try container.decode(String.self)
+    let f = DateFormatter()
+    f.calendar = Calendar(identifier: .gregorian)
+    f.locale = .current
+    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.AAA'Z'"
+    return f.date(from: str)!
+}
+
+extension Decodable {
+    static func decode(json: JSON) throws -> Self {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = jsISODateDecoder
+        return try decoder.decode(self, from: json.rawData())
+    }
+}
+
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     var versionStr = versionStr_
     var versionInt = 500

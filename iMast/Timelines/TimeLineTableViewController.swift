@@ -13,11 +13,11 @@ import ReachabilitySwift
 
 class TimeLineTableViewController: UITableViewController {
     
-    var posts:[JSON] = []
+    var posts:[MastodonPost] = []
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue:[JSON] = []
-    var cellCache:[Int64:MastodonPostCell] = [:]
-    var isAlreadyAdded:[Int64:Bool] = [:]
+    var cellCache:[String:MastodonPostCell] = [:]
+    var isAlreadyAdded:[String:Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
     var isReadmoreLoading = false {
@@ -117,14 +117,14 @@ class TimeLineTableViewController: UITableViewController {
             return
         }
         let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
-        let posts: [JSON] = posts_.sorted(by: { (a, b) -> Bool in
+        let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
             return a["id"].int64Value > b["id"].int64Value
-        }).filter({ (post) -> Bool in
-            if ((post["sensitive"].boolValue && myAccount != post["account"]["acct"].stringValue) || post["reblog"]["sensitive"].boolValue) && post["spoiler_text"].stringValue == "" { // Appleに怒られたのでNSFWだったら隠す
+        }).map({try! MastodonPost.decode(json: $0)}).filter({ (post) -> Bool in
+            if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }
-            if isAlreadyAdded[post["id"].int64Value] != true {
-                isAlreadyAdded[post["id"].int64Value] = true
+            if isAlreadyAdded[post.id] != true {
+                isAlreadyAdded[post.id] = true
                 return true
             }
             return false
@@ -151,18 +151,7 @@ class TimeLineTableViewController: UITableViewController {
             self.posts.insert(post, at: cnt)
             indexPaths.append(IndexPath(row: cnt, section: 0))
             cnt += 1
-            if (post["account"]["avatar_static"].string != nil) {
-                var iconUrl = post["account"]["avatar_static"].stringValue
-                if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
-                    iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
-                }
-                _ = getCell(post: post)
-                /*
-                getImage(url: iconUrl).then { image in
-                    // 特に何をするわけでもない
-                }
-                 */
-            }
+
         }
         if self.posts.count - cnt > maxPostCount { // メモリ節約
             for i in (maxPostCount+cnt)..<self.posts.count {
@@ -219,14 +208,14 @@ class TimeLineTableViewController: UITableViewController {
                 } else if object["event"].string == "delete" {
                     var tootFound = false
                     self.posts = self.posts.filter({ (post) -> Bool in
-                        if post["id"].int64Value != object["payload"].int64Value {
+                        if post.id != object["payload"].stringValue {
                             return true
                         }
                         tootFound = true
                         return false
                     })
                     if tootFound {
-                        self.cellCache[object["payload"].int64Value] = nil
+                        self.cellCache[object["payload"].stringValue] = nil
                         self.tableView.reloadData()
                     }
                 } else {
@@ -293,14 +282,14 @@ class TimeLineTableViewController: UITableViewController {
         return posts.count == 0 ? 0 : posts.count + (isReadmoreEnabled ? 1 : 0)
     }
     
-    func getCell(post: JSON) -> UITableViewCell {
-        if cellCache[post["id"].int64Value] != nil {
-            return cellCache[post["id"].int64Value]!
+    func getCell(post: MastodonPost) -> UITableViewCell {
+        if let cell = cellCache[post.id] {
+            return cell
         }
         let postView = MastodonPostCell.getInstance(owner: self)
         // Configure the cell...
         postView.load(post: post)
-        cellCache[post["id"].int64Value] = postView
+        cellCache[post.id] = postView
         return postView
     }
     
@@ -326,13 +315,13 @@ class TimeLineTableViewController: UITableViewController {
         // ブースト
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト"){
             (action,index) -> Void in
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post["id"].stringValue)/reblog", params: [:]).then {_ in
-                self.posts = self.posts.map({ (map_post) -> JSON in
-                    var ret_post = map_post
-                    if map_post["id"].int64Value == post["id"].int64Value {
-                        ret_post["reblogged"].bool = true
+            MastodonUserToken.getLatestUsed()!.repost(post: post).then { post in
+                self.posts = self.posts.map({ (map_post) -> MastodonPost in
+                    if map_post.id == post.id {
+                        return post
+                    } else {
+                        return map_post
                     }
-                    return ret_post
                 })
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
@@ -342,13 +331,13 @@ class TimeLineTableViewController: UITableViewController {
         // like
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ"){
             (action,index) -> Void in
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post["id"].stringValue)/favourite", params: [:]).then {_ in
-                self.posts = self.posts.map({ (map_post) -> JSON in
-                    var ret_post = map_post
-                    if map_post["id"].int64Value == post["id"].int64Value {
-                        ret_post["favourited"].bool = true
+            MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
+                self.posts = self.posts.map({ (map_post) -> MastodonPost in
+                    if map_post.id == post.id {
+                        return post
+                    } else {
+                        return map_post
                     }
-                    return ret_post
                 })
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
@@ -356,12 +345,12 @@ class TimeLineTableViewController: UITableViewController {
             print("like")
         }
         replyAction.backgroundColor = UIColor.init(red: 0.95, green: 0.4, blue: 0.4, alpha: 1)
-        if post["reblogged"].boolValue == true {
+        if post.reposted {
             boostAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
             boostAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         }
-        if post["favourited"].boolValue == true {
+        if post.favourited {
             likeAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
         } else {
             likeAction.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
@@ -373,7 +362,7 @@ class TimeLineTableViewController: UITableViewController {
         ].reversed()
     }
     
-    func appendNewPosts(posts: [JSON]) {
+    func appendNewPosts(posts: [MastodonPost]) {
         var rows:[IndexPath] = []
         posts.forEach { (post) in
             _ = self.getCell(post: post)

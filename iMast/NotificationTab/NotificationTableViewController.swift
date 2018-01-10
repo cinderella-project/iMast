@@ -94,10 +94,11 @@ class NotificationTableViewController: UITableViewController {
             (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "unknown", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = notification.type
-            return cell
+            break
         }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "unknown", for: indexPath)
+        (cell.viewWithTag(1) as! UILabel).text = notification.type
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -54,9 +54,17 @@ class MastodonPost: Codable {
 extension MastodonUserToken {
     func newPost(status: String) -> Promise<MastodonPost> {
         return self.post("statuses", params: ["status": status]).then { res -> MastodonPost in
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = jsISODate
-            return try decoder.decode(MastodonPost.self, from: res.rawData())
+            return try MastodonPost.decode(json: res)
+        }
+    }
+    func repost(post: MastodonPost) -> Promise<MastodonPost> {
+        return self.post("statuses/\(post.id)/reblog", params: [:]).then { res -> MastodonPost in
+            return try MastodonPost.decode(json: res)
+        }
+    }
+    func favourite(post: MastodonPost) -> Promise<MastodonPost> {
+        return self.post("statuses/\(post.id)/favourite", params: [:]).then { res -> MastodonPost in
+            return try MastodonPost.decode(json: res)
         }
     }
 }
