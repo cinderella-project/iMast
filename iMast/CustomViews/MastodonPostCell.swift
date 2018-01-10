@@ -21,7 +21,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var imageThumbnailStackView: UIStackView!
     @IBOutlet weak var boostedUserIcon: UIImageView!
     @IBOutlet weak var tootInfoView: UIView!
-    var json: JSON?
+    var post: MastodonPost?
     
     func viewDidLayoutSubviews() {
         
@@ -35,29 +35,28 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     }
     */
     
-    func load(post json_: JSON) {
-        var json = json_
-        if !json["reblog"].isEmpty {
-            getImage(url: json["account"]["avatar_static"].stringValue).then { image in
+    func load(post post_: MastodonPost) {
+        let post = post_.repost ?? post_
+        if let repost = post_.repost {
+            getImage(url: post_.account.avatarUrl).then { image in
                 self.boostedUserIcon.image = image
             }
             self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
-            json = json["reblog"]
         } else {
             self.tootInfoView.backgroundColor = nil
             self.boostedUserIcon.image = nil
         }
-        self.json = json_
+        self.post = post_
         // textView.dataDetectorTypes = .link
         var attrStr = (
             "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(Defaults[DefaultsKeys.timelineTextFontsize])
-                + (json["content"].stringValue.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
-        if json["spoiler_text"].stringValue != "" {
-            textView.text = json["spoiler_text"].stringValue.emojify() + "\n(CWの内容は詳細画面で\(json["media_attachments"].arrayValue.count != 0 ? ", \(json["media_attachments"].arrayValue.count)個の添付メディア" : ""))"
+                + (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: json["emojis"].arrayValue, profile_emoji: json["profile_emojis"].arrayValue))).parseText2HTML()
+        if post.spoilerText != "" {
+            textView.text = post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
             attrStr = nil
         } else if attrStr == nil {
-            textView.text = (json["content"].string ?? "")
+            textView.text = post.status
                 .replace("<br />","\n")
                 .replace("</p><p>","\n\n")
                 .pregReplace(pattern: "\\<.+?\\>", with: "")
@@ -70,10 +69,10 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             textView.attributedText = attrStr
         }
         textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
-        userView.text = (((json["account"]["display_name"].string ?? "") != "" ? json["account"]["display_name"].string : json["account"]["username"].string ?? "") ?? "").emojify()
+        userView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
         userView.font = userView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
-        if (json["account"]["avatar_static"].string != nil) {
-            var iconUrl = json["account"]["avatar_static"].stringValue
+        if (post.account.avatarUrl != nil) {
+            var iconUrl = post.account.avatarUrl
             if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
                 iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
             }
@@ -81,12 +80,12 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 self.iconView.image = image
             }
         }
-        let date = json["created_at"].string?.toDate()
+        let date = post.createdAt
         if date != nil {
             timeView.text = DateUtils.stringFromDate(date!, format: "HH:mm:ss")
         }
         if Defaults[.visibilityEmoji] {
-            switch json["visibility"].stringValue {
+            switch post.visibility {
             case "unlisted":
                 timeView.text = "🔓" + (timeView.text ?? "")
             case "private":
@@ -97,7 +96,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 break
             }
         }
-        if json["pinned"].boolValue {
+        if post.pinned {
             timeView.text = "📌"+(timeView.text ?? "")
         }
         timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
@@ -119,8 +118,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.imageThumbnailStackView.subviews.forEach { view in
             view.removeFromSuperview()
         }
-        if thumbnail_height != 0 && json["spoiler_text"].stringValue == "" {
-            json["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
+        if thumbnail_height != 0 && post.spoilerText == "" {
+            post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 getImage(url: media["preview_url"].stringValue).then({ (image) in
                     imageView.image = image
@@ -140,35 +139,30 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     }
     
     @objc func tapUser(sender: UITapGestureRecognizer) {
-        if self.json == nil {
+        guard let post = self.post else {
             return
         }
-        let newVC = openUserProfile(user: json!["reblog"].isEmpty ? json!["account"] : json!["reblog"]["account"])
+        let newVC = openUserProfile(user: post.account)
         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
     @objc func tapPost(sender: UITapGestureRecognizer) {
-        if self.json == nil {
+        guard let post = self.post else {
             return
         }
         let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
         // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
         let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
-        if !json!["reblog"].isEmpty {
-            newVC.load(post: self.json!["reblog"])
-        } else {
-            newVC.load(post: self.json!)
-        }
+        newVC.load(post: post)
         self.viewController?.navigationController?.pushViewController(newVC, animated: true)
     }
     
     @objc func tapImage(sender: UITapGestureRecognizer) {
-        if self.json == nil {
+        guard let post = self.post else {
             return
         }
-        let json = self.json!["reblog"].isEmpty ? self.json! : self.json!["reblog"]
-        let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
-        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+        let media = post.attachments[sender.view!.tag-100]
+        if media.url.hasSuffix("webm") && openVLC(media.url) {
             return
         }
         let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
@@ -177,18 +171,20 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
         var urlString = shareUrl.absoluteString
-        for mention in self.json!["mentions"].arrayValue {
-            if urlString == mention["url"].stringValue {
-                MastodonUserToken.getLatestUsed()!.get("accounts/\(mention["id"].stringValue)").then({ user in
-                    let newVC = openUserProfile(user: user)
-                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
-                })
-                return false
+        if let post = self.post {
+            for mention in post["mentions"].arrayValue {
+                if urlString == mention["url"].stringValue {
+                    MastodonUserToken.getLatestUsed()!.get("accounts/\(mention["id"].stringValue)").then({ user in
+                        let newVC = openUserProfile(user: user)
+                        self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                    })
+                    return false
+                }
             }
-        }
-        for media in self.json!["media_attachments"].arrayValue {
-            if urlString == media["text_url"].stringValue {
-                urlString = media["url"].stringValue
+            for media in post.attachments {
+                if urlString == media.textUrl {
+                    urlString = media.url
+                }
             }
         }
         let safari = SFSafariViewController(url: URL(string: urlString)!)

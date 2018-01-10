@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class NotificationTableViewController: UITableViewController {
 
-    var notifications:[JSON] = []
+    var notifications:[MastodonNotification] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,12 @@ class NotificationTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        MastodonUserToken.getLatestUsed()?.get("notifications").then({ (notifications) in
-            self.notifications = notifications.arrayValue
+        MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
+            self.notifications = notifications
             self.tableView.reloadData()
             self.refreshControl = UIRefreshControl()
             self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControlEvents.valueChanged)
-        })
+        }
         
         tableView.rowHeight = 56
     }
@@ -51,8 +51,8 @@ class NotificationTableViewController: UITableViewController {
     }
     
     @objc func refreshNotification() {
-        MastodonUserToken.getLatestUsed()?.get("notifications?since_id=%d".format(notifications[0]["id"].intValue)).then({ new_notifications in
-            new_notifications.arrayValue.reversed().forEach({ (notify) in
+        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: notifications[0].id).then({ new_notifications in
+            new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
             self.tableView.reloadData()
@@ -65,55 +65,65 @@ class NotificationTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        switch notification["type"].stringValue {
+        switch notification.type {
         case "favourite":
             let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにふぁぼられました"
-            (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
+            guard let account = notification.account else { break }
+            guard let status = notification.status else { break }
+            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにふぁぼられました"
+            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
             return cell
         case "reblog":
+            guard let account = notification.account else { break }
+            guard let status = notification.status else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "reblog", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにブーストされました"
-            (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
+            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにブーストされました"
+            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
             return cell
         case "follow":
+            guard let account = notification.account else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "follow", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんにフォローされました"
-            (cell.viewWithTag(2) as! UILabel).text = (notification["account"]["display_name"].stringValue == "" ? notification["account"]["username"].stringValue : notification["account"]["display_name"].stringValue).emojify()
+            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにフォローされました"
+            (cell.viewWithTag(2) as! UILabel).text = (account.name == "" ? account.name : account.screenName).emojify()
             return cell
         case "mention":
+            guard let account = notification.account else { break }
+            guard let status = notification.status else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "mention", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(notification["account"]["acct"].stringValue)さんからのリプライ"
-            (cell.viewWithTag(2) as! UILabel).text = notification["status"]["content"].stringValue.pregReplace(pattern: "<.+?>", with: "")
+            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんからのリプライ"
+            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "unknown", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = notification["type"].string
+            (cell.viewWithTag(1) as! UILabel).text = notification.type
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let notification = self.notifications[indexPath[1]]
-        if !notification["status"].isEmpty { // 投稿つき
-            if notification["type"].stringValue == "mention" {
+        guard let account = notification.account else {
+            return
+        }
+        if let status = notification.status { // 投稿つき
+            if notification.type == "mention" {
                 let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
                 let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
-                newVC.load(post: notification["status"])
+                newVC.load(post: status)
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return
             }
             let newVC = PostAndUserViewController(style: .grouped)
-            newVC.posts = [notification["status"]]
-            newVC.users = [notification["account"]]
+            newVC.posts = [status]
+            newVC.users = [account]
             newVC.title = [
                 "favourite": "ふぁぼられ",
                 "reblog": "ブースト"
-            ][notification["type"].stringValue]
+            ][notification.type]
             self.navigationController?.pushViewController(newVC, animated: true)
 
-        } else if !notification["account"].isEmpty { // ユーザーつき
-            let newVC = openUserProfile(user: notification["account"])
+        } else { // ユーザーつき
+            let newVC = openUserProfile(user: account)
             self.navigationController?.pushViewController(newVC, animated: true)
         }
     }

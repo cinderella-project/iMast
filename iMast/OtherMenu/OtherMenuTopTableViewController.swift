@@ -37,10 +37,11 @@ class OtherMenuTopTableViewController: UITableViewController {
 
         switch(tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "") {
         case "myProfile":
-            MastodonUserToken.getLatestUsed()!.getUserInfo().then({ (user) in
-                let newVC = openUserProfile(user: user)
-                self.navigationController?.pushViewController(newVC, animated: true)
-            })
+            MastodonUserToken.getLatestUsed()!.verifyCredentials().then { account in
+                print(account)
+            }.catch { error in
+                    print(error)
+            }
         case "list":
             // TODO: ここの下限バージョンの処理をあとで共通化する
             MastodonUserToken.getLatestUsed()!.getIntVersion().then { version in

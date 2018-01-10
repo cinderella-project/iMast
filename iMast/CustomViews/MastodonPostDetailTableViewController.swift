@@ -25,7 +25,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     @IBOutlet weak var imageStackView: UIStackView!
     var loadAfter = false
     var isLoaded = false
-    var loadJSON: JSON?
+    var post: MastodonPost?
     var cwOpen = false
     var isFavorited = false {
         didSet {
@@ -64,30 +64,30 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         isLoaded = true
         if loadAfter {
             loadAfter = false
-            load(post: loadJSON!)
+            load(post: post!)
         }
         tableView.rowHeight = UITableViewAutomaticDimension
         textView.sizeToFit()
         textView.delegate = self
     }
     
-    func load(post: JSON) {
-        loadJSON = post
+    func load(post: MastodonPost) {
+        self.post = post
         if isLoaded == false {
             loadAfter = true
             return
         }
         print(post)
         var html = "<style>*{font-size:14px;font-family: sans-serif;padding:0;margin:0;}</style>"
-        if post["spoiler_text"].string != "" && post["spoiler_text"].string != nil {
-            html += post["spoiler_text"].stringValue.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
-            html += "<br><a href=\"\(post["url"].stringValue)\">(CWの内容を読む)</a><br>"
+        if post.spoilerText != "" {
+            html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
+            html += "<br><a href=\"\(post.url)\">(CWの内容を読む)</a><br>"
         } else {
-            html += post["content"].stringValue.emojify(custom_emoji: post["emojis"].arrayValue, profile_emoji: post["profile_emojis"].arrayValue).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+            html += post.status.emojify(custom_emoji: post["emojis"].arrayValue, profile_emoji: post["profile_emojis"].arrayValue).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         }
         let attrStr = html.parseText2HTML()
         if attrStr == nil {
-            textView.text = (post["content"].string ?? "")
+            textView.text = post.status
                 .pregReplace(pattern: "\\<br /\\>", with: "\n")
                 .pregReplace(pattern: "\\<.+?\\>", with: "")
                 .replace("&lt;", "<") // HTMLのエスケープを解く
@@ -98,24 +98,24 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         } else {
             textView.attributedText = attrStr
         }
-        var iconUrl = post["account"]["avatar_static"].stringValue
+        var iconUrl = post.account.avatarUrl
         if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
             iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
         }
-        userNameView.text = (((post["account"]["display_name"].string ?? "") != "" ? post["account"]["display_name"].string : post["account"]["username"].string ?? "") ?? "").emojify()
-        userScreenNameView.text = "@"+(post["account"]["acct"].string ?? post["account"]["username"].stringValue)
+        userNameView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
+        userScreenNameView.text = "@"+post.account.acct
         getImage(url: iconUrl).then { (image) in
             self.iconView.image = image
         }
         var actionText = ""
-        if post["reblogs_count"].intValue > 0 {
-            actionText += "%d件のブースト ".format(post["reblogs_count"].intValue)
+        if post.repostCount > 0 {
+            actionText += "%d件のブースト ".format(post.repostCount)
         }
-        if post["favourites_count"].intValue > 0 {
-            actionText += "%d件のふぁぼ ".format(post["favourites_count"].intValue)
+        if post.favouritesCount > 0 {
+            actionText += "%d件のふぁぼ ".format(post.favouritesCount)
         }
-        if post["application"]["name"].string != nil {
-            actionText += "via \(post["application"]["name"].stringValue) "
+        if let app = post.application {
+            actionText += "via \(app.name) "
         }
         actionCountCell.textLabel?.text = actionText
         
@@ -127,9 +127,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         let thumbnail_height = Defaults[.thumbnailHeight]
         if thumbnail_height != 0 {
-            post["media_attachments"].arrayValue.enumerated().forEach({ (index, media) in
+            post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
-                getImage(url: media["preview_url"].stringValue).then({ (image) in
+                getImage(url: media.previewUrl).then({ (image) in
                     imageView.image = image
                 })
                 imageView.contentMode = .scaleAspectFill
@@ -146,49 +146,53 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     
     @objc func tapImage(sender: UITapGestureRecognizer) {
-        if self.loadJSON == nil {
+        guard let post = self.post?.repost ?? self.post else {
             return
         }
-        let json = self.loadJSON!["reblog"].isEmpty ? self.loadJSON! : self.loadJSON!["reblog"]
-        let media = json["media_attachments"].arrayValue[sender.view!.tag-100]
-        if media["url"].stringValue.hasSuffix("webm") && openVLC(media["url"].stringValue) {
+        let media = post.attachments[sender.view!.tag-100]
+        if media.url.hasSuffix("webm") && openVLC(media.url) {
             return
         }
-        let safari = SFSafariViewController(url: URL(string: media["url"].stringValue)!)
+        let safari = SFSafariViewController(url: URL(string: media.url)!)
         self.present(safari, animated: true, completion: nil)
     }
     
     @IBAction func replyTapped(_ sender: Any) {
+        guard let post = self.post?.repost ?? self.post else {
+            return
+        }
         let storyboard = UIStoryboard(name: "NewPost", bundle: nil)
         // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
         let newVC = storyboard.instantiateInitialViewController() as! NewPostViewController
-        if !loadJSON!["reblog"].isEmpty {
-            newVC.replyToPost = loadJSON!["reblog"]
-        } else {
-            newVC.replyToPost = loadJSON!
-        }
+        newVC.replyToPost = post
         newVC.title = "返信"
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     @IBAction func boostTapped(_ sender: Any) {
+        guard let post = self.post?.repost ?? self.post else {
+            return
+        }
         if !isBoosted {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/reblog").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/reblog").then({ (res) in
                 self.isBoosted = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/unreblog").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/unreblog").then({ (res) in
                 self.isBoosted = false
             })
         }
         print(isBoosted)
     }
     @IBAction func favouriteTapped(_ sender: Any) {
+        guard let post = self.post?.repost ?? self.post else {
+            return
+        }
         if !isFavorited {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/favourite").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/favourite").then({ (res) in
                 self.isFavorited = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(loadJSON!["id"])/unfavourite").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/unfavourite").then({ (res) in
                 self.isFavorited = false
             })
         }
@@ -211,10 +215,10 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
     @objc func tapUser(sender: UITapGestureRecognizer) {
-        if loadJSON == nil {
+        guard let post = self.post?.repost ?? self.post else {
             return
         }
-        let newVC = openUserProfile(user: loadJSON!["reblog"].isEmpty ? loadJSON!["account"] : loadJSON!["reblog"]["account"])
+        let newVC = openUserProfile(user: post.account)
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
@@ -223,14 +227,17 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         return false
     }
     @IBAction func moreButtonTapped(_ sender: Any) {
+        guard let post = self.post?.repost ?? self.post else {
+            return
+        }
         let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         actionSheet.popoverPresentationController?.sourceView = self.moreButton as UIView
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertActionStyle.default, handler: { action in
-            MastodonUserToken.getLatestUsed()?.get("statuses/\(self.loadJSON!["id"].stringValue)/context").then { res in
+            MastodonUserToken.getLatestUsed()?.get("statuses/\(post.id)/context").then { res in
                 print(res)
-                let posts = res["ancestors"].arrayValue + [self.loadJSON!] + res["descendants"].arrayValue
+                let posts = res["ancestors"].arrayValue + [self.post!] + res["descendants"].arrayValue
                 let bunmyakuVC = TimeLineTableViewController()
                 bunmyakuVC.addNewPosts(posts: posts)
                 bunmyakuVC.isReadmoreEnabled = false
@@ -238,13 +245,13 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 self.navigationController?.pushViewController(bunmyakuVC, animated: true)
             }
         }))
-        if MastodonUserToken.getLatestUsed()!.screenName == loadJSON?["account"]["acct"].stringValue {
+        if MastodonUserToken.getLatestUsed()!.screenName == post.account.acct {
             actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive, handler: { (action) in
                 self.confirm(title: "投稿の削除", message: "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
                     if res == false {
                         return
                     }
-                    MastodonUserToken.getLatestUsed()!.delete("statuses/"+self.loadJSON!["id"].stringValue).then({ (res) in
+                    MastodonUserToken.getLatestUsed()!.delete("statuses/"+post.id).then({ (res) in
                         self.navigationController?.popViewController(animated: true)
                         self.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
                     })
@@ -252,7 +259,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             }))
         }
         actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertActionStyle.destructive, handler: { (action) in
-            self.performSegue(withIdentifier: "goAbuse", sender: self.loadJSON)
+            self.performSegue(withIdentifier: "goAbuse", sender: self.post)
         }))
         actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
         self.present(actionSheet, animated: true, completion: nil)

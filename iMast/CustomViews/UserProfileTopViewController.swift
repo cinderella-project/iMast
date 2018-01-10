@@ -25,7 +25,7 @@ class UserProfileTopViewController: UITableViewController {
     @IBOutlet weak var relationShipLabel: UILabel!
     var loadAfter = false
     var isLoaded = false
-    var loadJSON: JSON?
+    var user: MastodonAccount?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,45 +37,43 @@ class UserProfileTopViewController: UITableViewController {
         isLoaded = true
         if loadAfter {
             loadAfter = false
-            load(user: loadJSON!)
+            load(user: user!)
         }
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
     }
     
     @objc func reload(sender: UIRefreshControl) {
-        print("accounts/"+String(loadJSON!["id"].intValue))
-        MastodonUserToken.getLatestUsed()!.get("accounts/"+String(loadJSON!["id"].intValue)).then { res in
+        print("accounts/"+String(user!["id"].intValue))
+        MastodonUserToken.getLatestUsed()!.get("accounts/"+String(user!["id"].intValue)).then { res in
             print(res)
-            self.load(user:res)
+            self.load(user: res)
             self.refreshControl?.endRefreshing()
         }
     }
     
-    func load(user: JSON) {
-        loadJSON = user
+    func load(user: MastodonAccount) {
+        self.user = user
         if isLoaded == false {
             loadAfter = true
             return
         }
-        if user["avatar"].string != nil {
-            getImage(url: user["avatar"].stringValue).then { image in
-                self.userIconView.image = image
-            }
+        getImage(url: user.avatarUrl).then { image in
+            self.userIconView.image = image
         }
-        self.userNameView.text = (((user["display_name"].string ?? "") != "" ? user["display_name"].string : user["username"].string ?? "") ?? "").emojify()
-        self.userScreenNameView.text = "@"+(user["acct"].string ?? user["username"].stringValue)
-        self.tootCell.detailTextLabel?.text = numToCommaString(user["statuses_count"].int ?? 0)
-        self.followingCell.detailTextLabel?.text = numToCommaString(user["following_count"].int ?? 0)
-        self.followersCell.detailTextLabel?.text = numToCommaString(user["followers_count"].int ?? 0)
-        let createdAt = (user["created_at"].string?.toDate())!
+        self.userNameView.text = (user.name != "" ? user.name : user.screenName).emojify()
+        self.userScreenNameView.text = "@"+user.acct
+        self.tootCell.detailTextLabel?.text = numToCommaString(user.postsCount)
+        self.followingCell.detailTextLabel?.text = numToCommaString(user.followingCount)
+        self.followersCell.detailTextLabel?.text = numToCommaString(user.followersCount)
+        let createdAt = user.createdAt
         self.createdAtCell.detailTextLabel?.text = DateUtils.stringFromDate(
             createdAt,
             format: "yyyy/MM/dd HH:mm:ss"
         )
-        self.tootDaysCell.detailTextLabel?.text = numToCommaString(-((user["statuses_count"].int ?? 0)/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
+        self.tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
-        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=%d".format(loadJSON!["id"].intValue)).then({ (relationships) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=\(user.id)").then({ (relationships) in
             var relationship = relationships[0]
             let relationshipOld: Bool = Defaults[.followRelationshipsOld]
             relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
@@ -91,7 +89,7 @@ class UserProfileTopViewController: UITableViewController {
             if !relationship["following"].boolValue && !relationship["followed_by"].boolValue {
                 self.relationShipLabel.text = "関係: 無関係"
             }
-            if user["acct"].string == MastodonUserToken.getLatestUsed()?.screenName {
+            if user.acct == MastodonUserToken.getLatestUsed()?.screenName {
                 self.relationShipLabel.text = "関係: それはあなたです！"
             }
             if relationship["requested"].boolValue {
@@ -110,18 +108,21 @@ class UserProfileTopViewController: UITableViewController {
     }
 
     @IBAction func moreButtonTapped(_ sender: Any) {
+        guard let user = self.user else {
+            return
+        }
         let myScreenName = "@"+(MastodonUserToken.getLatestUsed()!.screenName!)
-        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=%d".format(loadJSON!["id"].intValue)).then({ (relationships) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=\(user.id)").then({ (relationships) in
             var relationship = relationships[0]
             relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
-            let screenName = "@"+(self.loadJSON!["acct"].string ?? self.loadJSON!["username"].stringValue)
+            let screenName = "@"+user.acct
             let actionSheet = UIAlertController(title: "アクション", message: screenName, preferredStyle: UIAlertControllerStyle.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
             actionSheet.addAction(UIAlertAction(title: "共有", style: UIAlertActionStyle.default, handler: {
                 (action: UIAlertAction!) in
                 let activityItems:[Any] = [
-                    (((self.loadJSON!["display_name"].string ?? "") != "" ? self.loadJSON!["display_name"].string : self.loadJSON!["username"].string ?? "") ?? "").emojify()+"さんのプロフィール - Mastodon",
-                    NSURL(string: self.loadJSON!["url"].stringValue)!
+                    (user.name != "" ? user.name : user.screenName).emojify()+"さんのプロフィール - Mastodon",
+                    NSURL(string: user.url)!
                 ]
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
                 activityVC.popoverPresentationController?.sourceView = self.moreButton.value(forKey: "view") as? UIView
@@ -133,7 +134,7 @@ class UserProfileTopViewController: UITableViewController {
                     if !relationship["requested"].boolValue { // 未フォロー
                         actionSheet.addAction(UIAlertAction(title: "フォローする", style: UIAlertActionStyle.default, handler: {
                             (action: UIAlertAction!) in
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/follow".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/follow").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
@@ -144,7 +145,7 @@ class UserProfileTopViewController: UITableViewController {
                                 if !result {
                                     return
                                 }
-                                MastodonUserToken.getLatestUsed()?.post("accounts/%d/unfollow".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                                MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unfollow").then({ (res) in
                                     self.reload(sender: self.refreshControl!)
                                 })
                             })
@@ -157,7 +158,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/unfollow".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unfollow").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -169,7 +170,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/mute".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/mute").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -180,7 +181,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/unmute".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unmute").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -192,7 +193,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/block".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/block").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -203,7 +204,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/%d/unblock".format(self.loadJSON!["id"].intValue)).then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unblock").then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -214,17 +215,16 @@ class UserProfileTopViewController: UITableViewController {
                 actionSheet.addAction(UIAlertAction(title: "名刺", style: .default, handler: { action in
                     let storyboard = UIStoryboard(name: "ProfileCard", bundle: nil)
                     let newVC = storyboard.instantiateInitialViewController()! as! ProfileCardViewController
-                    newVC.user = self.loadJSON!
+                    newVC.user = user
                     self.navigationController?.pushViewController(newVC, animated: true)
                 }))
-                if self.loadJSON!["locked"].boolValue {
+                if user.isLocked {
                     actionSheet.addAction(UIAlertAction(title: "フォローリクエスト一覧", style: .default) { _ in
                         MastodonUserToken.getLatestUsed()?.get("follow_requests").then { json in
                             let newVC = FollowRequestsListTableViewController()
                             newVC.followRequests = json.arrayValue
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
-                        let newVC = FollowRequestsListTableViewController()
                     })
                 }
             }
@@ -241,7 +241,7 @@ class UserProfileTopViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tootList" {
             let nextVC = segue.destination as! UserTimeLineTableViewController
-            nextVC.userId = self.loadJSON?["id"].stringValue ?? "1"
+            nextVC.userId = self.user?.id ?? ""
         }
     }
     
@@ -302,7 +302,7 @@ class UserProfileTopViewController: UITableViewController {
 
 }
 
-func openUserProfile(user: JSON) -> UserProfileTopViewController {
+func openUserProfile(user: MastodonAccount) -> UserProfileTopViewController {
     let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
     let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
     newVC.load(user: user)

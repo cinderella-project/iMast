@@ -15,7 +15,7 @@ class MastodonPost: Codable {
     let account: MastodonAccount
     let inReplyToId: String
     let inReplyToAccountId: String
-    let repost: MastodonPost
+    let repost: MastodonPost?
     let status: String
     let createdAt: Date
     let repostCount: Int
@@ -25,10 +25,10 @@ class MastodonPost: Codable {
     let muted: Bool
     let sensitive: Bool
     let spoilerText: String
-    let pinned: Bool?
     let attachments: [MastodonAttachment]
-    let application: MastodonApplication
-    
+    let application: MastodonApplication?
+    let pinned: Bool?
+
     enum CodingKeys: String, CodingKey {
         case id
         case url
