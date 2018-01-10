@@ -6,6 +6,7 @@ def based_pods
   pod 'GRDB.swift'
   pod 'SwiftyJSON'
   pod 'HydraAsync'
+  pod 'XCGLogger', '~> 6.0.2'
 end
 
 target 'iMast' do
@@ -20,7 +21,6 @@ target 'iMast' do
   pod 'ReachabilitySwift', '~> 3'
   pod 'Eureka'
   pod 'ActionClosurable'
-  pod 'XCGLogger', '~> 6.0.2'
 
   target 'iMastTests' do
     inherit! :search_paths
