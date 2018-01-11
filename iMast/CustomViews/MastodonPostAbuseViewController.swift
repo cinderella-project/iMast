@@ -16,7 +16,7 @@ class MastodonPostAbuseViewController: UIViewController {
     @IBOutlet weak var bottomLayout: NSLayoutConstraint!
     var nowKeyboardUpOrDown = false
     var placeholder = ""
-    var targetPost:JSON!
+    var targetPost:MastodonPost!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.placeholderLabel.text = self.placeholder
@@ -56,11 +56,7 @@ class MastodonPostAbuseViewController: UIViewController {
         nowKeyboardUpOrDown = false
     }
     @IBAction func submitButtonTapped(_ sender: Any) {
-        MastodonUserToken.getLatestUsed()!.post("reports", params: [
-            "account_id": targetPost["account"]["id"],
-            "comment": self.textView.text,
-            "status_ids": [targetPost["id"]]
-        ]).then { (res) in
+        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: self.textView.text, posts: [targetPost]).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }

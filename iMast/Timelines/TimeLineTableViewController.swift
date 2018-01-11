@@ -15,7 +15,7 @@ class TimeLineTableViewController: UITableViewController {
     
     var posts:[MastodonPost] = []
     var streamingNavigationItem: UIBarButtonItem?
-    var postsQueue:[JSON] = []
+    var postsQueue:[MastodonPost] = []
     var cellCache:[String:MastodonPostCell] = [:]
     var isAlreadyAdded:[String:Bool] = [:]
     var readmoreCell: UITableViewCell!
@@ -65,10 +65,10 @@ class TimeLineTableViewController: UITableViewController {
                         usleep(500)
                     }
                     let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
-                        return a["id"].int64Value > b["id"].int64Value
+                        return a.id.int > b.id.int
                     })
                     print(posts.map({ (post) -> Int64  in
-                        return post["id"].int64Value
+                        return post.id.int
                     }))
                     self.postsQueue = []
                     DispatchQueue.main.async {
@@ -102,7 +102,7 @@ class TimeLineTableViewController: UITableViewController {
         readMoreTimeline()
     }
     
-    func addNewPosts(posts: [JSON]) {
+    func addNewPosts(posts: [MastodonPost]) {
         if isNurunuru {
             self._addNewPosts(posts: posts)
         } else {
@@ -112,14 +112,14 @@ class TimeLineTableViewController: UITableViewController {
         }
     }
     
-    func _addNewPosts(posts posts_: [JSON]) {
+    func _addNewPosts(posts posts_: [MastodonPost]) {
         if posts_.count == 0 {
             return
         }
         let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
-            return a["id"].int64Value > b["id"].int64Value
-        }).map({print($0);return try! MastodonPost.decode(json: $0)}).filter({ (post) -> Bool in
+            return a.id.int > b.id.int
+        }).filter({ (post) -> Bool in
             if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }
@@ -204,7 +204,7 @@ class TimeLineTableViewController: UITableViewController {
                      self.tableView.insertRows(at: [indexPath], with: .automatic)
                      self.tableView.endUpdates()
                      */
-                    self.addNewPosts(posts: [object["payload"]])
+                    self.addNewPosts(posts: [try! MastodonPost.decode(json: object["payload"])])
                 } else if object["event"].string == "delete" {
                     var tootFound = false
                     self.posts = self.posts.filter({ (post) -> Bool in

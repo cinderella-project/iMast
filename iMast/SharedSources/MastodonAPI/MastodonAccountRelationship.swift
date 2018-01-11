@@ -53,4 +53,37 @@ extension MastodonUserToken {
             }
         }
     }
+    
+    func follow(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/follow").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
+    func unfollow(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/unfollow").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
+    
+    func mute(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/mute").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
+    func unmute(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/unmute").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
+    
+    func block(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/block").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
+    func unblock(account: MastodonAccount) -> Promise<MastodonAccountRelationship> {
+        return self.post("accounts/\(account.id.string)/unblock").then { res -> MastodonAccountRelationship in
+            return try MastodonAccountRelationship.decode(json: res)
+        }
+    }
 }

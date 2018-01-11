@@ -51,9 +51,9 @@ class OtherMenuTopTableViewController: UITableViewController {
                     self.alert(title: "エラー", message: "この機能はMastodonインスタンスのバージョンが2.1.0rc1以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。")
                     return
                 }
-                MastodonUserToken.getLatestUsed()!.get("lists").then({ lists in
+                MastodonUserToken.getLatestUsed()!.lists().then({ lists in
                     let vc = OtherMenuListsTableViewController()
-                    vc.lists = lists.arrayValue
+                    vc.lists = lists
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
             }

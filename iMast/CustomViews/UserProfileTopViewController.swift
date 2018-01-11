@@ -110,9 +110,8 @@ class UserProfileTopViewController: UITableViewController {
             return
         }
         let myScreenName = "@"+(MastodonUserToken.getLatestUsed()!.screenName!)
-        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=\(user.id)").then({ (relationships) in
-            var relationship = relationships[0]
-            relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
+        MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
+            let relationship = relationships[0]
             let screenName = "@"+user.acct
             let actionSheet = UIAlertController(title: "アクション", message: screenName, preferredStyle: UIAlertControllerStyle.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
@@ -128,11 +127,11 @@ class UserProfileTopViewController: UITableViewController {
                 self.present(activityVC, animated: true, completion: nil)
             }))
             if myScreenName != screenName {
-                if !relationship["following"].boolValue { // 未フォロー
-                    if !relationship["requested"].boolValue { // 未フォロー
+                if !relationship.following { // 未フォロー
+                    if !relationship.requested { // 未フォロー
                         actionSheet.addAction(UIAlertAction(title: "フォローする", style: UIAlertActionStyle.default, handler: {
                             (action: UIAlertAction!) in
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/follow").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.follow(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
@@ -143,7 +142,7 @@ class UserProfileTopViewController: UITableViewController {
                                 if !result {
                                     return
                                 }
-                                MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unfollow").then({ (res) in
+                                MastodonUserToken.getLatestUsed()?.unfollow(account: user).then({ (res) in
                                     self.reload(sender: self.refreshControl!)
                                 })
                             })
@@ -156,19 +155,19 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unfollow").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.unfollow(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
                     }))
                 }
-                if !relationship["muting"].boolValue { // 未ミュート
+                if !relationship.muting { // 未ミュート
                     actionSheet.addAction(UIAlertAction(title: "ミュート", style: UIAlertActionStyle.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をミュートしますか?", okButtonMessage: "ミュート", style: .destructive).then({ (result) in
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/mute").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.mute(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -179,19 +178,19 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unmute").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.unmute(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
                     }))
                 }
-                if !relationship["blocking"].boolValue { // 未ブロック
+                if !relationship.blocking { // 未ブロック
                     actionSheet.addAction(UIAlertAction(title: "ブロック", style: UIAlertActionStyle.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をブロックしますか?", okButtonMessage: "ブロック", style: .destructive).then({ (result) in
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/block").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.block(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -202,7 +201,7 @@ class UserProfileTopViewController: UITableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.post("accounts/\(user.id)/unblock").then({ (res) in
+                            MastodonUserToken.getLatestUsed()?.unblock(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -239,7 +238,7 @@ class UserProfileTopViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tootList" {
             let nextVC = segue.destination as! UserTimeLineTableViewController
-            nextVC.userId = self.user?.id.string ?? ""
+            nextVC.user = self.user
         }
     }
     

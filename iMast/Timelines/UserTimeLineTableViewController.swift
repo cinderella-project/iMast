@@ -12,29 +12,26 @@ import SwiftyJSON
 
 class UserTimeLineTableViewController: TimeLineTableViewController {
     
-    var userId: String = "1"
+    var user: MastodonAccount!
     
     override func loadTimeline() -> Promise<Void>{
         return Promise<Void>() { resolve, reject, _ in
-            MastodonUserToken.getLatestUsed()?.getIntVersion().then { version -> Promise<JSON> in
+            MastodonUserToken.getLatestUsed()?.getIntVersion().then { version -> Promise<[MastodonPost]> in
                 if version >= MastodonVersionStringToInt("1.6.0rc1") { // pinned対応インスタンス
-                    return MastodonUserToken.getLatestUsed()!.get("accounts/\(self.userId)/statuses?pinned=1")
+                    return MastodonUserToken.getLatestUsed()!.timeline(.user(self.user, pinned: true))
                 } else {
-                    return Promise.init(resolved: JSON.parse("[]"))
+                    return Promise.init(resolved: [])
                 }
-            }.then { pinned_posts -> Promise<JSON> in
-                return MastodonUserToken.getLatestUsed()!.get("accounts/\(self.userId)/statuses").then{ (posts) -> JSON in
-                    self._addNewPosts(posts: posts.arrayValue)
+            }.then { pinned_posts -> Promise<[MastodonPost]> in
+                return MastodonUserToken.getLatestUsed()!.timeline(.user(self.user)).then { posts -> [MastodonPost] in
+                    self._addNewPosts(posts: posts)
                     return pinned_posts
                 }
-            }.then({ (res: JSON) in
-                if (res.array != nil) {
-                    self._addNewPosts(posts: res.arrayValue.map({ (post_) -> JSON in
-                        var post = post_
-                        post["pinned"].bool = true
-                        return post
-                    }))
-                }
+            }.then({ res in
+                self._addNewPosts(posts: res.map({ (post) -> MastodonPost in
+                    post.pinned = true
+                    return post
+                }))
                 resolve(Void())
             })
         }
@@ -44,19 +41,16 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
         let latestPost = self.posts.sorted(by: { (a, b) -> Bool in
             return a.createdAt > b.createdAt
         })
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&since_id="+(latestPost.count >= 1 ? latestPost[0].id.string : "")).then { (res: JSON) in
-            self.addNewPosts(posts: res.arrayValue)
+        MastodonUserToken.getLatestUsed()?.timeline(.user(user), limit: 40, since: latestPost.count >= 1 ? latestPost[0] : nil).then { res in
+            self.addNewPosts(posts: res)
             self.refreshControl?.endRefreshing()
         }
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&max_id="+self.posts[self.posts.count-1].id.string).then { (res: JSON) in
-            if (res.array != nil) {
-                print(res.array)
-                self.appendNewPosts(posts: res.arrayValue.map {try! MastodonPost.decode(json: $0)})
-                self.isReadmoreLoading = false
-            }
+        MastodonUserToken.getLatestUsed()?.timeline(.user(user), limit: 40, max: self.posts[self.posts.count-1]).then { res in
+            self.appendNewPosts(posts: res)
+            self.isReadmoreLoading = false
         }
     }
 }

@@ -72,13 +72,13 @@ class FollowRequestsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = self.followRequests[indexPath.row]
         let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
-            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user.id)/authorize").then { res in
+            MastodonUserToken.getLatestUsed()?.followRequestAuthorize(target: user).then { res in
                 self.refresh()
             }
         }
         authorizeAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         let rejectAction = UITableViewRowAction(style: .destructive, title: "拒否") { _, _ in
-            MastodonUserToken.getLatestUsed()?.post("follow_requests/\(user.id)/reject").then { res in
+            MastodonUserToken.getLatestUsed()?.followRequestReject(target: user).then { res in
                 self.refresh()
             }
         }

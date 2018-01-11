@@ -13,30 +13,22 @@ import Hydra
 class LocalTimeLineTableViewController: TimeLineTableViewController {
     
     override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject, _ in
-            MastodonUserToken.getLatestUsed()?.get("timelines/public?local=true").then { (res: JSON) in
-                if (res.array != nil) {
-                    self._addNewPosts(posts: res.arrayValue)
-                }
-                resolve(Void())
-            }
+        return MastodonUserToken.getLatestUsed()!.timeline(.local).then { res in
+            self._addNewPosts(posts: res)
         }
     }
     
     override func refreshTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/public?local=true&limit=40&since_id="+(self.posts.count >= 1 ? self.posts[0].id.string : "")).then { (res: JSON) in
-            self.addNewPosts(posts: res.arrayValue)
+        MastodonUserToken.getLatestUsed()!.timeline(.local, limit: 40, since: self.posts.count >= 1 ? self.posts[0] : nil).then { res in
+            self.addNewPosts(posts: res)
             self.refreshControl?.endRefreshing()
         }
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("timelines/public?local=true&limit=40&max_id="+self.posts[self.posts.count-1].id.string).then { (res: JSON) in
-            if (res.array != nil) {
-                print(res.array)
-                self.appendNewPosts(posts: res.arrayValue.map({try! MastodonPost.decode(json: $0)}))
-                self.isReadmoreLoading = false
-            }
+        MastodonUserToken.getLatestUsed()!.timeline(.local, limit: 40, max: self.posts[self.posts.count-1]).then { res in
+            self.appendNewPosts(posts: res)
+            self.isReadmoreLoading = false
         }
     }
     

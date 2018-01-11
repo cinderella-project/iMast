@@ -60,4 +60,15 @@ extension MastodonUserToken {
             return try res.arrayValue.map({try MastodonAccount.decode(json: $0)})
         }
     }
+    
+    func followRequestAuthorize(target: MastodonAccount) -> Promise<Void> {
+        return self.post("follow_requests/\(target.id.string)/authorize").then { res -> Void in
+            return Void()
+        }
+    }
+    func followRequestReject(target: MastodonAccount) -> Promise<Void> {
+        return self.post("follow_requests/\(target.id.string)/reject").then { res -> Void in
+            return Void()
+        }
+    }
 }

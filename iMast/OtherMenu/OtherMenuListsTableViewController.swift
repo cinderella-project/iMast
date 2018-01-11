@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class OtherMenuListsTableViewController: UITableViewController {
 
-    var lists: [JSON] = []
+    var lists: [MastodonList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,10 @@ class OtherMenuListsTableViewController: UITableViewController {
             textField.placeholder = "リスト名"
         }
         alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
-            MastodonUserToken.getLatestUsed()!.post("lists", params: ["title": alert.textFields![0].text ?? ""]).then { list in
-                if !list["error"].isEmpty {
-                    self.apiError(list["error"].string, list["_response_code"].intValue)
-                }
+            MastodonUserToken.getLatestUsed()!.list(title: alert.textFields![0].text ?? "").then { list in
                 let vc = ListTimeLineTableViewController()
-                vc.listId = list["id"].stringValue
-                vc.title = list["title"].stringValue
+                vc.list = list
+                vc.title = list.title
                 self.navigationController?.pushViewController(vc, animated: true)
                 self.refreshList()
             }
@@ -57,8 +54,8 @@ class OtherMenuListsTableViewController: UITableViewController {
     }
     
     @objc func refreshList() {
-        MastodonUserToken.getLatestUsed()!.get("lists").then { list in
-            self.lists = list.arrayValue
+        MastodonUserToken.getLatestUsed()!.lists().then { lists in
+            self.lists = lists
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -81,7 +78,7 @@ class OtherMenuListsTableViewController: UITableViewController {
 
         // Configure the cell...
         let list = self.lists[indexPath[1]]
-        cell.textLabel?.text = list["title"].stringValue
+        cell.textLabel?.text = list.title
         cell.accessoryType = .disclosureIndicator
 
         return cell
@@ -90,8 +87,8 @@ class OtherMenuListsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let list = self.lists[indexPath[1]]
         let vc = ListTimeLineTableViewController()
-        vc.listId = list["id"].stringValue
-        vc.title = list["title"].stringValue
+        vc.list = list
+        vc.title = list.title
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

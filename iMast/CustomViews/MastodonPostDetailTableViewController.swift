@@ -173,11 +173,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
         if !isBoosted {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/reblog").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.repost(post: post).then({ (res) in
                 self.isBoosted = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/unreblog").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.unrepost(post: post).then({ (res) in
                 self.isBoosted = false
             })
         }
@@ -188,11 +188,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
         if !isFavorited {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/favourite").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.favourite(post: post).then({ (res) in
                 self.isFavorited = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.post("statuses/\(post.id)/unfavourite").then({ (res) in
+            MastodonUserToken.getLatestUsed()!.unfavourite(post: post).then({ (res) in
                 self.isFavorited = false
             })
         }
@@ -251,7 +251,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                     if res == false {
                         return
                     }
-                    MastodonUserToken.getLatestUsed()!.delete("statuses/"+post.id.string).then({ (res) in
+                    MastodonUserToken.getLatestUsed()!.delete(post: post).then({ (res) in
                         self.navigationController?.popViewController(animated: true)
                         self.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
                     })
@@ -268,9 +268,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goAbuse" {
             let VC = segue.destination as! MastodonPostAbuseViewController
-            let post = sender as! JSON
+            guard let post = self.post else {
+                return
+            }
             VC.targetPost = post
-            VC.placeholder = "『\(post["content"].stringValue.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
+            VC.placeholder = "『\(post.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
         }
     }
 
