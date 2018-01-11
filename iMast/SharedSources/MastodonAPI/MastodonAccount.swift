@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 class MastodonAccount: Codable {
-    let id: String
+    let id: MastodonID
     let name: String
     let screenName: String
     let isLocked: Bool
@@ -50,8 +50,8 @@ extension MastodonUserToken {
             return try MastodonAccount.decode(json: res)
         }
     }
-    func getAccount(id: String) -> Promise<MastodonAccount> {
-        return self.get("accounts/"+id).then { res -> MastodonAccount in
+    func getAccount(id: MastodonID) -> Promise<MastodonAccount> {
+        return self.get("accounts/"+id.string).then { res -> MastodonAccount in
             return try MastodonAccount.decode(json: res)
         }
     }

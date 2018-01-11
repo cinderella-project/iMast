@@ -72,35 +72,34 @@ class UserProfileTopViewController: UITableViewController {
         )
         self.tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
-        MastodonUserToken.getLatestUsed()?.get("accounts/relationships?id[]=\(user.id)").then({ (relationships) in
-            var relationship = relationships[0]
+        MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
+            let relationship = relationships[0]
             let relationshipOld: Bool = Defaults[.followRelationshipsOld]
-            relationship["following"].boolValue = relationship["following"].boolValue || !relationship["following"].isEmpty
-            if relationship["following"].boolValue && relationship["followed_by"].boolValue {
+            if relationship.following && relationship.followed_by {
                 self.relationShipLabel.text = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
             }
-            if relationship["following"].boolValue && !relationship["followed_by"].boolValue {
+            if relationship.following && !relationship.followed_by {
                 self.relationShipLabel.text = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
             }
-            if !relationship["following"].boolValue && relationship["followed_by"].boolValue {
+            if !relationship.following && relationship.followed_by {
                 self.relationShipLabel.text = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
             }
-            if !relationship["following"].boolValue && !relationship["followed_by"].boolValue {
+            if !relationship.following && !relationship.followed_by {
                 self.relationShipLabel.text = "関係: 無関係"
             }
             if user.acct == MastodonUserToken.getLatestUsed()?.screenName {
                 self.relationShipLabel.text = "関係: それはあなたです！"
             }
-            if relationship["requested"].boolValue {
+            if relationship.requested {
                 self.relationShipLabel.text! += " (フォローリクエスト中)"
             }
-            if relationship["blocking"].boolValue {
+            if relationship.blocking {
                 self.relationShipLabel.text! += " (ブロック中)"
             }
-            if relationship["muting"].boolValue {
+            if relationship.muting {
                 self.relationShipLabel.text! += " (ミュート中)"
             }
-            if relationship["domain_blocking"].boolValue {
+            if relationship.domain_blocking {
                 self.relationShipLabel.text! += " (インスタンスミュート中)"
             }
         })
@@ -240,7 +239,7 @@ class UserProfileTopViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tootList" {
             let nextVC = segue.destination as! UserTimeLineTableViewController
-            nextVC.userId = self.user?.id ?? ""
+            nextVC.userId = self.user?.id.string ?? ""
         }
     }
     

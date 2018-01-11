@@ -8,13 +8,14 @@
 
 import Foundation
 import Hydra
+import SwiftyJSON
 
 class MastodonPost: Codable {
-    let id: String
+    let id: MastodonID
     let url: String?
     let account: MastodonAccount
-    let inReplyToId: String?
-    let inReplyToAccountId: String?
+    let inReplyToId: MastodonID?
+    let inReplyToAccountId: MastodonID?
     let repost: MastodonPost?
     let status: String
     let createdAt: Date
@@ -77,7 +78,7 @@ class MastodonPostMention: Codable {
     let url: String
     let username: String
     let acct: String
-    let id: String
+    let id: MastodonID
 }
 
 extension MastodonUserToken {
@@ -87,17 +88,17 @@ extension MastodonUserToken {
         }
     }
     func repost(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id)/reblog", params: [:]).then { res -> MastodonPost in
+        return self.post("statuses/\(post.id.string)/reblog", params: [:]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
         }
     }
     func favourite(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id)/favourite", params: [:]).then { res -> MastodonPost in
+        return self.post("statuses/\(post.id.string)/favourite", params: [:]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
         }
     }
     func context(post: MastodonPost) -> Promise<MastodonPostContext> {
-        return self.get("statuses/\(post.id)/context").then { res -> MastodonPostContext in
+        return self.get("statuses/\(post.id.string)/context").then { res -> MastodonPostContext in
             return try MastodonPostContext.decode(json: res)
         }
     }

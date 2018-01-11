@@ -44,14 +44,14 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
         let latestPost = self.posts.sorted(by: { (a, b) -> Bool in
             return a.createdAt > b.createdAt
         })
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&since_id="+(latestPost.count >= 1 ? latestPost[0].id : "")).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&since_id="+(latestPost.count >= 1 ? latestPost[0].id.string : "")).then { (res: JSON) in
             self.addNewPosts(posts: res.arrayValue)
             self.refreshControl?.endRefreshing()
         }
     }
     
     override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&max_id="+self.posts[self.posts.count-1].id).then { (res: JSON) in
+        MastodonUserToken.getLatestUsed()?.get("accounts/\(self.userId)/statuses?limit=40&max_id="+self.posts[self.posts.count-1].id.string).then { (res: JSON) in
             if (res.array != nil) {
                 print(res.array)
                 self.appendNewPosts(posts: res.arrayValue.map {try! MastodonPost.decode(json: $0)})

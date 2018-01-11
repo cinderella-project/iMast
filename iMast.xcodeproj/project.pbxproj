@@ -85,6 +85,10 @@
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
+		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
 		CEE213131EF13EE600393C67 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = CEE213121EF13EE600393C67 /* emoji.json */; };
 		CEE254232004A8B2005FEB6F /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
 		CEE254242004B57A005FEB6F /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
@@ -234,6 +238,8 @@
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
+		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
+		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
 		CEE213121EF13EE600393C67 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
 		CEE254222004A8B2005FEB6F /* MastodonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
 		CEE254272004B5AA005FEB6F /* MastodonPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPost.swift; sourceTree = "<group>"; };
@@ -427,11 +433,13 @@
 			isa = PBXGroup;
 			children = (
 				CEE254222004A8B2005FEB6F /* MastodonAccount.swift */,
+				CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */,
 				CEE254272004B5AA005FEB6F /* MastodonPost.swift */,
 				CEE254292004B802005FEB6F /* MastodonApplication.swift */,
 				CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */,
 				CE1002C320065CC20041B636 /* MastodonAttachment.swift */,
 				CE1002C720065DA30041B636 /* MastodonSearchResult.swift */,
+				CEDEDC992007C36400CD2784 /* MastodonID.swift */,
 			);
 			path = MastodonAPI;
 			sourceTree = "<group>";
@@ -1034,6 +1042,7 @@
 				CEE2542A2004B802005FEB6F /* MastodonApplication.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
+				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,
 				CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */,
 				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
 				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */,
@@ -1055,6 +1064,7 @@
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
+				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1090,6 +1100,7 @@
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */,
 				CE1002C620065CC20041B636 /* MastodonAttachment.swift in Sources */,
+				CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */,
 				CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1105,6 +1116,7 @@
 				CE1002C520065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEE254242004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CEE357231FF6067F00675DFC /* EventListener.swift in Sources */,
+				CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */,
 				CE1002D1200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,

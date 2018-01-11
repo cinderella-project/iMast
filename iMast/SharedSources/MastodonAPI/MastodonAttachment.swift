@@ -9,7 +9,7 @@
 import Foundation
 
 class MastodonAttachment: Codable {
-    let id: String
+    let id: MastodonID
     let type: String
     let url: String
     let previewUrl: String

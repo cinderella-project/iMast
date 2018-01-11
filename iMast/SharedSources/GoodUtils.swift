@@ -348,33 +348,12 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     let f = DateFormatter()
     f.calendar = Calendar(identifier: .gregorian)
     f.locale = .current
-    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.AAA'Z'"
+    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
     return f.date(from: str)!
 }
 
 extension Decodable {
-    static func decode(json json_: JSON) throws -> Self {
-        var json = json_
-        func a(_ json_: JSON) -> JSON {
-            var json = json_
-            for (key, _):(String, JSON) in json {
-                if key == "id" {
-                    json[key].stringValue = String(json[key].int64Value)
-                } else if json[key].type == .dictionary {
-                    json[key] = a(json[key])
-                } else if json[key].type == .array {
-                    json[key] = JSON(json[key].arrayValue.map { json -> JSON in
-                        if json.type == .dictionary {
-                            return a(json)
-                        } else {
-                            return json
-                        }
-                    })
-                }
-            }
-            return json
-        }
-        json = a(json)
+    static func decode(json: JSON) throws -> Self {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = jsISODateDecoder
         do {

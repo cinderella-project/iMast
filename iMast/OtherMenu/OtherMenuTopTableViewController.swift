@@ -39,6 +39,8 @@ class OtherMenuTopTableViewController: UITableViewController {
         case "myProfile":
             MastodonUserToken.getLatestUsed()!.verifyCredentials().then { account in
                 print(account)
+                let newVC = openUserProfile(user: account)
+                self.navigationController?.pushViewController(newVC, animated: true)
             }.catch { error in
                     print(error)
             }

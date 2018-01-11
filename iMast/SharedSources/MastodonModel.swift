@@ -407,7 +407,7 @@ public class MastodonUserToken {
         }
     }
     
-    func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
+    func get(_ endpoint: String, params: [String: Any?]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in

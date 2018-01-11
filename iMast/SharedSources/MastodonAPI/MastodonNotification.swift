@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 class MastodonNotification: Codable {
-    let id: String
+    let id: MastodonID
     let type: String
     let status: MastodonPost?
     let account: MastodonAccount?
@@ -22,8 +22,8 @@ extension MastodonUserToken {
             return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }
-    func getNoficitaions(sinceId: String) -> Promise<[MastodonNotification]> {
-        return self.get("notifications", params: ["since_id": sinceId]).then { res in
+    func getNoficitaions(sinceId: MastodonID) -> Promise<[MastodonNotification]> {
+        return self.get("notifications", params: ["since_id": sinceId.raw]).then { res in
             return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }

@@ -123,8 +123,8 @@ class TimeLineTableViewController: UITableViewController {
             if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
                 return false
             }
-            if isAlreadyAdded[post.id] != true {
-                isAlreadyAdded[post.id] = true
+            if isAlreadyAdded[post.id.string] != true {
+                isAlreadyAdded[post.id.string] = true
                 return true
             }
             return false
@@ -208,7 +208,7 @@ class TimeLineTableViewController: UITableViewController {
                 } else if object["event"].string == "delete" {
                     var tootFound = false
                     self.posts = self.posts.filter({ (post) -> Bool in
-                        if post.id != object["payload"].stringValue {
+                        if post.id.string != object["payload"].stringValue {
                             return true
                         }
                         tootFound = true
@@ -283,13 +283,13 @@ class TimeLineTableViewController: UITableViewController {
     }
     
     func getCell(post: MastodonPost) -> UITableViewCell {
-        if let cell = cellCache[post.id] {
+        if let cell = cellCache[post.id.string] {
             return cell
         }
         let postView = MastodonPostCell.getInstance(owner: self)
         // Configure the cell...
         postView.load(post: post)
-        cellCache[post.id] = postView
+        cellCache[post.id.string] = postView
         return postView
     }
     
