@@ -17,19 +17,19 @@ class ProfileCardViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userScreenNameLabel: UILabel!
     @IBOutlet weak var barcodeImageView: UIImageView!
-    var user: JSON!
+    var user: MastodonAccount!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getImage(url: user["header_static"].stringValue).then { (image) in
+        getImage(url: user.avatarUrl).then { (image) in
             self.backgroundImageView.image = image
         }
-        getImage(url: user["avatar_static"].stringValue).then { (image) in
+        getImage(url: user.avatarUrl).then { (image) in
             self.iconView.image = image
         }
         let qr = CIFilter(name: "CIQRCodeGenerator", withInputParameters: [
-            "inputMessage": user["url"].stringValue.data(using: .utf8),
+            "inputMessage": user.url.data(using: .utf8),
             "inputCorrectionLevel": "H"
         ])
         let invertQr = CIFilter(name: "CIColorInvert", withInputParameters: [
@@ -41,8 +41,8 @@ class ProfileCardViewController: UIViewController {
         let alphaQr = CIFilter(name: "CIColorInvert", withInputParameters: [
             "inputImage": alphaInvertQr!.outputImage!
         ])
-        userNameLabel.text = (((user["display_name"].string ?? "") != "" ? user["display_name"].string : user["username"].string ?? "") ?? "")
-        userScreenNameLabel.text = "@" + user["username"].stringValue + "@" + MastodonUserToken.getLatestUsed()!.app.instance.hostName
+        userNameLabel.text = user.name != "" ? user.name : user.screenName
+        userScreenNameLabel.text = "@" + user.screenName + "@" + MastodonUserToken.getLatestUsed()!.app.instance.hostName
         barcodeImageView.image = UIImage(ciImage: alphaQr!.outputImage!.transformed(by: CGAffineTransform(scaleX: 10, y: 10)))
     }
 

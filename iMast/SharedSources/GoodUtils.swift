@@ -101,6 +101,17 @@ extension UIView {
     }
 }
 
+extension UIApplication {
+    var viewController: UIViewController? {
+        get {
+            var vc = self.keyWindow?.rootViewController
+            while vc?.presentedViewController != nil {
+                vc = vc?.presentedViewController
+            }
+            return vc
+        }
+    }
+}
 
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
@@ -209,7 +220,7 @@ extension String {
         return attributedString
     }
     
-    func emojify(custom_emoji: [JSON] = [], profile_emoji: [JSON] = []) -> String {
+    func emojify(custom_emoji: [MastodonCustomEmoji] = [], profile_emoji: [MastodonCustomEmoji] = []) -> String {
         var retstr = self
         retstr.pregMatch(pattern: ":.+?:").forEach { (emoji) in
             if emojidict[emoji].string != nil {
@@ -218,12 +229,11 @@ extension String {
         }
         (custom_emoji + profile_emoji).forEach { (emoji) in
             print(emoji)
-            if emoji["shortcode"].stringValue.count == 0 {
+            if emoji.shortcode.count == 0 {
                 return
             }
-            let html = "<img src=\"\(emoji["url"].stringValue)\" style=\"height:1em;width:1em;\">"
-            retstr = retstr.replace(":\(emoji["shortcode"].stringValue):", html)
-                .replace(":@\(emoji["shortcode"].stringValue):", html)
+            let html = "<img src=\"\(emoji.url)\" style=\"height:1em;width:1em;\">"
+            retstr = retstr.replace(":\(emoji.shortcode):", html)
         }
         return retstr
     }
@@ -330,6 +340,31 @@ extension DefaultsKeys {
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
     static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)
     static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
+}
+
+let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
+    let container = try $0.singleValueContainer()
+    let str = try container.decode(String.self)
+    let f = DateFormatter()
+    f.calendar = Calendar(identifier: .gregorian)
+    f.locale = .current
+    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
+    return f.date(from: str)!
+}
+
+extension Decodable {
+    static func decode(json: JSON) throws -> Self {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = jsISODateDecoder
+        do {
+            return try decoder.decode(self, from: json.rawData())
+        } catch {
+            if let error = error as? DecodingError {
+                reportError(error: error)
+            }
+            throw error
+        }
+    }
 }
 
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
