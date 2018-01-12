@@ -1,12 +1,10 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode9.2
 before_install:
   - gem install xcpretty
-  - pod update
 script:
   - set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme iMast CODE_SIGNING_REQUIRED=NO | xcpretty -c
 cache:
   edge: true
   directories:
     - Pods
-    - ~/.cocoapods/repos
