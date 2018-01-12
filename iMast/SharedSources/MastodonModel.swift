@@ -261,7 +261,7 @@ public class MastodonUserToken {
     }
     
     func getIntVersion() -> Promise<Int> {
-        return self.get("instance").then { (res) -> Int in
+        return self.app.instance.getInfo().then { (res) -> Int in
             return MastodonVersionStringToInt(res["version"].stringValue)
         }
     }
