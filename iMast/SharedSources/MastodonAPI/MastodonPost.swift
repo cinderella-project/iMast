@@ -157,7 +157,11 @@ class MastodonTimelineType {
     static let home = MastodonTimelineType(endpoint: "timelines/home")
     static let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"])
     static func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
-        return MastodonTimelineType(endpoint: "accounts/\(account.id.string)/statuses", params: ["pinned": pinned])
+        var params: [String: Any] = [:]
+        if pinned {
+            params["pinned"] = 1
+        }
+        return MastodonTimelineType(endpoint: "accounts/\(account.id.string)/statuses", params: params)
     }
     static func list(_ list: MastodonList) -> MastodonTimelineType {
         return MastodonTimelineType(endpoint: "timelines/list/\(list.id.string)")
