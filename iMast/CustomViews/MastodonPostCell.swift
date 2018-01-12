@@ -46,7 +46,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             self.tootInfoView.backgroundColor = nil
             self.boostedUserIcon.image = nil
         }
-        self.post = post_
+        self.post = post
         // textView.dataDetectorTypes = .link
         var attrStr = (
             "<style>*{font-size:%.2fpx;font-family: sans-serif;padding:0;margin:0;}</style>".format(Defaults[DefaultsKeys.timelineTextFontsize])
