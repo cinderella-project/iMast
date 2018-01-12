@@ -71,7 +71,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         textView.delegate = self
     }
     
-    func load(post: MastodonPost) {
+    func load(post: MastodonPost, spoiler: Bool = false) {
         self.post = post
         if isLoaded == false {
             loadAfter = true
@@ -79,11 +79,17 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         print(post)
         var html = "<style>*{font-size:14px;font-family: sans-serif;padding:0;margin:0;}</style>"
+        let postHtml = post.status.emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         if post.spoilerText != "" {
-            html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;").replace("\n", "<br>")
-            html += "<br><a href=\"\(post.url)\">(CWの内容を読む)</a><br>"
+            html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
+            if !spoiler {
+                html += "<br><a href=\"imast://cw/show\">(CWの内容を読む)</a><br>"
+            } else {
+                html += "<br><a href=\"imast://cw/hide\">(CWの内容を畳む)</a><br>"
+                html += postHtml
+            }
         } else {
-            html += post.status.emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+            html += postHtml
         }
         let attrStr = html.parseText2HTML()
         if attrStr == nil {
@@ -222,6 +228,16 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        if let post = self.post, URL.scheme == "imast" {
+            if URL.absoluteString == "imast://cw/show" {
+                self.load(post: post, spoiler: true)
+            }
+            if URL.absoluteString == "imast://cw/hide" {
+                self.load(post: post, spoiler: false)
+            }
+            self.tableView.reloadData()
+            return false
+        }
         let safari = SFSafariViewController(url: URL)
         self.present(safari, animated: true, completion: nil)
         return false
