@@ -15,25 +15,21 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
     var user: MastodonAccount!
     
     override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject, _ in
-            MastodonUserToken.getLatestUsed()?.getIntVersion().then { version -> Promise<[MastodonPost]> in
-                if version >= MastodonVersionStringToInt("1.6.0rc1") { // pinned対応インスタンス
-                    return MastodonUserToken.getLatestUsed()!.timeline(.user(self.user, pinned: true))
-                } else {
-                    return Promise.init(resolved: [])
-                }
-            }.then { pinned_posts -> Promise<[MastodonPost]> in
-                return MastodonUserToken.getLatestUsed()!.timeline(.user(self.user)).then { posts -> [MastodonPost] in
-                    self._addNewPosts(posts: posts)
-                    return pinned_posts
-                }
-            }.then({ res in
-                self._addNewPosts(posts: res.map({ (post) -> MastodonPost in
-                    post.pinned = true
-                    return post
-                }))
-                resolve(Void())
-            })
+        return MastodonUserToken.getLatestUsed()!.getIntVersion().then { version in
+            return all([
+                version >= MastodonVersionStringToInt("1.6.0rc1")
+                    ? MastodonUserToken.getLatestUsed()!.timeline(.user(self.user, pinned: true))
+                    : Promise.init(resolved: [] as [MastodonPost])
+                , MastodonUserToken.getLatestUsed()!.timeline(.user(self.user))
+                ]
+            )
+        }.then { res -> Void in
+            self._addNewPosts(posts: res[1])
+            self._addNewPosts(posts: res[0].map({ post in
+                post.pinned = true
+                return post
+            }))
+            return Void()
         }
     }
     
