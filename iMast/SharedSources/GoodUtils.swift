@@ -354,6 +354,9 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
 
 extension Decodable {
     static func decode(json: JSON) throws -> Self {
+        if json["error"].string != nil {
+            throw APIError.errorReturned(errorMessage: json["error"].stringValue, errorHttpCode: json["_response_code"].intValue)
+        }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = jsISODateDecoder
         do {

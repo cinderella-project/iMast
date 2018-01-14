@@ -71,14 +71,12 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
         userView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
         userView.font = userView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
-        if (post.account.avatarUrl != nil) {
-            var iconUrl = post.account.avatarUrl
-            if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
-                iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
-            }
-            getImage(url: iconUrl,size: Int(self.iconView.frame.width)).then { image in
-                self.iconView.image = image
-            }
+        var iconUrl = post.account.avatarUrl
+        if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
+            iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
+        }
+        getImage(url: iconUrl,size: Int(self.iconView.frame.width)).then { image in
+            self.iconView.image = image
         }
         timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
         if Defaults[.visibilityEmoji] {
