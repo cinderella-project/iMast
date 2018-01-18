@@ -40,6 +40,14 @@ target 'iMast' do
     inherit! :search_paths
     based_pods
   end
+  target 'iMastSiriExt' do
+    inherit! :search_paths
+    based_pods
+  end
+  target 'iMastSiriExtUI' do
+    inherit! :search_paths
+    based_pods
+  end
 
 end
 

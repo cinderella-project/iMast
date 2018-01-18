@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FB917C9C633573D4A18C537 /* Pods_iMastTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */; };
 		12016E1E6EA21B23C8624547 /* Pods_iMast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */; };
+		17AD4359B44FE0DC63AEA2D6 /* Pods_iMastSiriExtUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D0E4A59E82516A9FC544A0 /* Pods_iMastSiriExtUI.framework */; };
 		2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */; };
 		2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */; };
 		2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */; };
@@ -36,6 +37,7 @@
 		2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */; };
 		4DA5F6B8581A005E7D478957 /* Pods_iMastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233F93890AFA8A380B3A3DC0 /* Pods_iMastUITests.framework */; };
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
+		9F5142459B5DDEA8A96E8892 /* Pods_iMastSiriExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB056CE4D3FB9EF49BAD3FD /* Pods_iMastSiriExt.framework */; };
 		CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
 		CE1002C520065CC20041B636 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
 		CE1002C620065CC20041B636 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
@@ -85,6 +87,42 @@
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
+		CED1EE1720108A9C000B917F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1EE1620108A9C000B917F /* IntentHandler.swift */; };
+		CED1EE1F20108A9C000B917F /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED1EE1E20108A9C000B917F /* IntentsUI.framework */; };
+		CED1EE2220108A9C000B917F /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1EE2120108A9C000B917F /* IntentViewController.swift */; };
+		CED1EE2520108A9C000B917F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED1EE2320108A9C000B917F /* MainInterface.storyboard */; };
+		CED1EE2920108A9C000B917F /* iMastSiriExtUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED1EE1D20108A9C000B917F /* iMastSiriExtUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CED1EE2C20108A9C000B917F /* iMastSiriExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED1EE1420108A9C000B917F /* iMastSiriExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CED1EE3320108CF1000B917F /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CED1EE3420108CF6000B917F /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CED1EE3520108CF9000B917F /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
+		CED1EE3620108CFA000B917F /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
+		CED1EE3720108D00000B917F /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CED1EE3820108D01000B917F /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CED1EE3920108D01000B917F /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CED1EE3A20108D01000B917F /* MastodonPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254272004B5AA005FEB6F /* MastodonPost.swift */; };
+		CED1EE3B20108D01000B917F /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
+		CED1EE3C20108D01000B917F /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
+		CED1EE3D20108D01000B917F /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
+		CED1EE3E20108D01000B917F /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
+		CED1EE3F20108D01000B917F /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
+		CED1EE4020108D01000B917F /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CED1EE4120108D02000B917F /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CED1EE4220108D02000B917F /* MastodonPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254272004B5AA005FEB6F /* MastodonPost.swift */; };
+		CED1EE4320108D02000B917F /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
+		CED1EE4420108D02000B917F /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
+		CED1EE4520108D02000B917F /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
+		CED1EE4620108D02000B917F /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
+		CED1EE4720108D02000B917F /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
+		CED1EE4820108D02000B917F /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CED1EE4920108D08000B917F /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
+		CED1EE4A20108D08000B917F /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
+		CED1EE4B20108D0D000B917F /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CED1EE4C20108D0D000B917F /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CED1EE4D20108D12000B917F /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CED1EE4E20108D12000B917F /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CED1EE4F20108D14000B917F /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
+		CED1EE5020108D15000B917F /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
@@ -140,6 +178,20 @@
 			remoteGlobalIDString = CE78CFA31EE812AD008313EA;
 			remoteInfo = iMastShare;
 		};
+		CED1EE2720108A9C000B917F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED1EE1C20108A9C000B917F;
+			remoteInfo = iMastSiriExtUI;
+		};
+		CED1EE2A20108A9C000B917F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED1EE1320108A9C000B917F;
+			remoteInfo = iMastSiriExt;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -149,8 +201,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				CED1EE2C20108A9C000B917F /* iMastSiriExt.appex in Embed App Extensions */,
 				CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */,
 				CE51AC051F40C06B00E43607 /* iMastTodayWidget.appex in Embed App Extensions */,
+				CED1EE2920108A9C000B917F /* iMastSiriExtUI.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,10 +252,15 @@
 		2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSetImageViewController.swift; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64CE1A82270A6322963BDF90 /* Pods-iMastSiriExtUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastSiriExtUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastSiriExtUI/Pods-iMastSiriExtUI.release.xcconfig"; sourceTree = "<group>"; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
+		770BFABE3BB8A52158EEB3DC /* Pods-iMastSiriExt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastSiriExt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastSiriExt/Pods-iMastSiriExt.debug.xcconfig"; sourceTree = "<group>"; };
+		7F242BC5537483887552572D /* Pods-iMastSiriExtUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastSiriExtUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastSiriExtUI/Pods-iMastSiriExtUI.debug.xcconfig"; sourceTree = "<group>"; };
+		8BB056CE4D3FB9EF49BAD3FD /* Pods_iMastSiriExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastSiriExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E97A0E2A958C920BEE3AD79 /* Pods-iMastShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A170AED211C0289085506BAB /* Pods-iMast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMast/Pods-iMast.debug.xcconfig"; sourceTree = "<group>"; };
 		A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC74571DE607F2F673199D55 /* Pods-iMastSiriExt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastSiriExt.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastSiriExt/Pods-iMastSiriExt.release.xcconfig"; sourceTree = "<group>"; };
 		BCCF751817BD58EDB56B0C1A /* Pods-iMastTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1002C320065CC20041B636 /* MastodonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAttachment.swift; sourceTree = "<group>"; };
 		CE1002C720065DA30041B636 /* MastodonSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonSearchResult.swift; sourceTree = "<group>"; };
@@ -241,6 +300,16 @@
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
+		CED1EE1420108A9C000B917F /* iMastSiriExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastSiriExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED1EE1620108A9C000B917F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		CED1EE1820108A9C000B917F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED1EE1D20108A9C000B917F /* iMastSiriExtUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastSiriExtUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED1EE1E20108A9C000B917F /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		CED1EE2120108A9C000B917F /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		CED1EE2420108A9C000B917F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		CED1EE2620108A9C000B917F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED1EE5120109069000B917F /* iMastSiriExt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastSiriExt.entitlements; sourceTree = "<group>"; };
+		CED1EE5220109072000B917F /* iMastSiriExtUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastSiriExtUI.entitlements; sourceTree = "<group>"; };
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
 		CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonList.swift; sourceTree = "<group>"; };
@@ -256,6 +325,7 @@
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
+		D5D0E4A59E82516A9FC544A0 /* Pods_iMastSiriExtUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastSiriExtUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,6 +373,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CED1EE1120108A9C000B917F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F5142459B5DDEA8A96E8892 /* Pods_iMastSiriExt.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED1EE1A20108A9C000B917F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED1EE1F20108A9C000B917F /* IntentsUI.framework in Frameworks */,
+				17AD4359B44FE0DC63AEA2D6 /* Pods_iMastSiriExtUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -319,6 +406,10 @@
 				694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */,
 				BCCF751817BD58EDB56B0C1A /* Pods-iMastTodayWidget.debug.xcconfig */,
 				F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */,
+				770BFABE3BB8A52158EEB3DC /* Pods-iMastSiriExt.debug.xcconfig */,
+				BC74571DE607F2F673199D55 /* Pods-iMastSiriExt.release.xcconfig */,
+				7F242BC5537483887552572D /* Pods-iMastSiriExtUI.debug.xcconfig */,
+				64CE1A82270A6322963BDF90 /* Pods-iMastSiriExtUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -334,6 +425,8 @@
 				2AF352391EAB9C5600777C2E /* iMastUITests */,
 				CE78CFA51EE812AD008313EA /* iMastShare */,
 				CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */,
+				CED1EE1520108A9C000B917F /* iMastSiriExt */,
+				CED1EE2020108A9C000B917F /* iMastSiriExtUI */,
 				2AF352181EAB9C5500777C2E /* Products */,
 				125AADA9AE2BD3C447287A06 /* Pods */,
 				8076AB24184E0217BCEE6A2B /* Frameworks */,
@@ -348,6 +441,8 @@
 				2AF352361EAB9C5600777C2E /* iMastUITests.xctest */,
 				CE78CFA41EE812AD008313EA /* iMastShare.appex */,
 				CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */,
+				CED1EE1420108A9C000B917F /* iMastSiriExt.appex */,
+				CED1EE1D20108A9C000B917F /* iMastSiriExtUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -405,6 +500,9 @@
 				A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */,
 				CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */,
 				F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */,
+				CED1EE1E20108A9C000B917F /* IntentsUI.framework */,
+				8BB056CE4D3FB9EF49BAD3FD /* Pods_iMastSiriExt.framework */,
+				D5D0E4A59E82516A9FC544A0 /* Pods_iMastSiriExtUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -431,6 +529,27 @@
 				CE78CFAB1EE812AD008313EA /* Info.plist */,
 			);
 			path = iMastShare;
+			sourceTree = "<group>";
+		};
+		CED1EE1520108A9C000B917F /* iMastSiriExt */ = {
+			isa = PBXGroup;
+			children = (
+				CED1EE5120109069000B917F /* iMastSiriExt.entitlements */,
+				CED1EE1620108A9C000B917F /* IntentHandler.swift */,
+				CED1EE1820108A9C000B917F /* Info.plist */,
+			);
+			path = iMastSiriExt;
+			sourceTree = "<group>";
+		};
+		CED1EE2020108A9C000B917F /* iMastSiriExtUI */ = {
+			isa = PBXGroup;
+			children = (
+				CED1EE5220109072000B917F /* iMastSiriExtUI.entitlements */,
+				CED1EE2120108A9C000B917F /* IntentViewController.swift */,
+				CED1EE2320108A9C000B917F /* MainInterface.storyboard */,
+				CED1EE2620108A9C000B917F /* Info.plist */,
+			);
+			path = iMastSiriExtUI;
 			sourceTree = "<group>";
 		};
 		CEE254262004B593005FEB6F /* MastodonAPI */ = {
@@ -561,6 +680,8 @@
 			dependencies = (
 				CE78CFAD1EE812AD008313EA /* PBXTargetDependency */,
 				CE51AC041F40C06B00E43607 /* PBXTargetDependency */,
+				CED1EE2820108A9C000B917F /* PBXTargetDependency */,
+				CED1EE2B20108A9C000B917F /* PBXTargetDependency */,
 			);
 			name = iMast;
 			productName = iMast;
@@ -647,13 +768,51 @@
 			productReference = CE78CFA41EE812AD008313EA /* iMastShare.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		CED1EE1320108A9C000B917F /* iMastSiriExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED1EE3220108A9C000B917F /* Build configuration list for PBXNativeTarget "iMastSiriExt" */;
+			buildPhases = (
+				E3DDEE8AF2BF50C6633E199B /* [CP] Check Pods Manifest.lock */,
+				CED1EE1020108A9C000B917F /* Sources */,
+				CED1EE1120108A9C000B917F /* Frameworks */,
+				CED1EE1220108A9C000B917F /* Resources */,
+				415BF137903D01F867C2167D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMastSiriExt;
+			productName = iMastSiriExt;
+			productReference = CED1EE1420108A9C000B917F /* iMastSiriExt.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		CED1EE1C20108A9C000B917F /* iMastSiriExtUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED1EE3120108A9C000B917F /* Build configuration list for PBXNativeTarget "iMastSiriExtUI" */;
+			buildPhases = (
+				5DB875EB5BA4D517C89C73CA /* [CP] Check Pods Manifest.lock */,
+				CED1EE1920108A9C000B917F /* Sources */,
+				CED1EE1A20108A9C000B917F /* Frameworks */,
+				CED1EE1B20108A9C000B917F /* Resources */,
+				3E921C29C1C08AC15B9A7FF4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMastSiriExtUI;
+			productName = iMastSiriExtUI;
+			productReference = CED1EE1D20108A9C000B917F /* iMastSiriExtUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2AF3520F1EAB9C5500777C2E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = rinsuki;
 				TargetAttributes = {
@@ -668,6 +827,9 @@
 							};
 							com.apple.DataProtection = {
 								enabled = 0;
+							};
+							com.apple.Siri = {
+								enabled = 1;
 							};
 							com.apple.iCloud = {
 								enabled = 1;
@@ -707,6 +869,26 @@
 							};
 						};
 					};
+					CED1EE1320108A9C000B917F = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 4XKKKM86RN;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					CED1EE1C20108A9C000B917F = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 4XKKKM86RN;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 2AF352121EAB9C5500777C2E /* Build configuration list for PBXProject "iMast" */;
@@ -727,6 +909,8 @@
 				2AF352351EAB9C5600777C2E /* iMastUITests */,
 				CE78CFA31EE812AD008313EA /* iMastShare */,
 				CE51ABF81F40C06B00E43607 /* iMastTodayWidget */,
+				CED1EE1320108A9C000B917F /* iMastSiriExt */,
+				CED1EE1C20108A9C000B917F /* iMastSiriExtUI */,
 			);
 		};
 /* End PBXProject section */
@@ -784,6 +968,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CED1EE1220108A9C000B917F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED1EE1B20108A9C000B917F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED1EE2520108A9C000B917F /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -823,6 +1022,36 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3E921C29C1C08AC15B9A7FF4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMastSiriExtUI/Pods-iMastSiriExtUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		415BF137903D01F867C2167D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMastSiriExt/Pods-iMastSiriExt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4950D4500365558030084888 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -850,6 +1079,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-iMast-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DB875EB5BA4D517C89C73CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMastSiriExtUI-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1020,6 +1267,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E3DDEE8AF2BF50C6633E199B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMastSiriExt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1096,6 +1361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1002CA20065FEC0041B636 /* MastodonPost.swift in Sources */,
+				CED1EE3820108D01000B917F /* MastodonAccountRelationship.swift in Sources */,
 				CE1002CC20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CEE357241FF6068000675DFC /* EventListener.swift in Sources */,
 				CE1002CE20065FF20041B636 /* MastodonNotification.swift in Sources */,
@@ -1129,9 +1395,54 @@
 				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
+				CED1EE3720108D00000B917F /* MastodonAccountRelationship.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CEDEDCA12007F8E300CD2784 /* MastodonList.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED1EE1020108A9C000B917F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED1EE4D20108D12000B917F /* UserDefaultsDict.swift in Sources */,
+				CED1EE3C20108D01000B917F /* MastodonNotification.swift in Sources */,
+				CED1EE3D20108D01000B917F /* MastodonAttachment.swift in Sources */,
+				CED1EE3920108D01000B917F /* MastodonAccountRelationship.swift in Sources */,
+				CED1EE3B20108D01000B917F /* MastodonApplication.swift in Sources */,
+				CED1EE4020108D01000B917F /* MastodonID.swift in Sources */,
+				CED1EE3E20108D01000B917F /* MastodonList.swift in Sources */,
+				CED1EE3320108CF1000B917F /* MastodonModel.swift in Sources */,
+				CED1EE3520108CF9000B917F /* MastodonAccount.swift in Sources */,
+				CED1EE4920108D08000B917F /* GoodUtils.swift in Sources */,
+				CED1EE4F20108D14000B917F /* EventListener.swift in Sources */,
+				CED1EE4B20108D0D000B917F /* ReportError_AppExtension.swift in Sources */,
+				CED1EE3F20108D01000B917F /* MastodonSearchResult.swift in Sources */,
+				CED1EE3A20108D01000B917F /* MastodonPost.swift in Sources */,
+				CED1EE1720108A9C000B917F /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED1EE1920108A9C000B917F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CED1EE4E20108D12000B917F /* UserDefaultsDict.swift in Sources */,
+				CED1EE4420108D02000B917F /* MastodonNotification.swift in Sources */,
+				CED1EE4520108D02000B917F /* MastodonAttachment.swift in Sources */,
+				CED1EE4120108D02000B917F /* MastodonAccountRelationship.swift in Sources */,
+				CED1EE4320108D02000B917F /* MastodonApplication.swift in Sources */,
+				CED1EE4820108D02000B917F /* MastodonID.swift in Sources */,
+				CED1EE4620108D02000B917F /* MastodonList.swift in Sources */,
+				CED1EE3420108CF6000B917F /* MastodonModel.swift in Sources */,
+				CED1EE3620108CFA000B917F /* MastodonAccount.swift in Sources */,
+				CED1EE4A20108D08000B917F /* GoodUtils.swift in Sources */,
+				CED1EE5020108D15000B917F /* EventListener.swift in Sources */,
+				CED1EE4C20108D0D000B917F /* ReportError_AppExtension.swift in Sources */,
+				CED1EE4720108D02000B917F /* MastodonSearchResult.swift in Sources */,
+				CED1EE4220108D02000B917F /* MastodonPost.swift in Sources */,
+				CED1EE2220108A9C000B917F /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1468,16 @@
 			isa = PBXTargetDependency;
 			target = CE78CFA31EE812AD008313EA /* iMastShare */;
 			targetProxy = CE78CFAC1EE812AD008313EA /* PBXContainerItemProxy */;
+		};
+		CED1EE2820108A9C000B917F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED1EE1C20108A9C000B917F /* iMastSiriExtUI */;
+			targetProxy = CED1EE2720108A9C000B917F /* PBXContainerItemProxy */;
+		};
+		CED1EE2B20108A9C000B917F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED1EE1320108A9C000B917F /* iMastSiriExt */;
+			targetProxy = CED1EE2A20108A9C000B917F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1189,6 +1510,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE78CFA91EE812AD008313EA /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		CED1EE2320108A9C000B917F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CED1EE2420108A9C000B917F /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1528,6 +1857,98 @@
 			};
 			name = Release;
 		};
+		CED1EE2D20108A9C000B917F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 770BFABE3BB8A52158EEB3DC /* Pods-iMastSiriExt.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastSiriExt/iMastSiriExt.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastSiriExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastSiriExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CED1EE2E20108A9C000B917F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC74571DE607F2F673199D55 /* Pods-iMastSiriExt.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastSiriExt/iMastSiriExt.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastSiriExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastSiriExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CED1EE2F20108A9C000B917F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F242BC5537483887552572D /* Pods-iMastSiriExtUI.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastSiriExtUI/iMastSiriExtUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastSiriExtUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastSiriExtUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CED1EE3020108A9C000B917F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64CE1A82270A6322963BDF90 /* Pods-iMastSiriExtUI.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastSiriExtUI/iMastSiriExtUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastSiriExtUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastSiriExtUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1581,6 +2002,24 @@
 			buildConfigurations = (
 				CE78CFB01EE812AD008313EA /* Debug */,
 				CE78CFB11EE812AD008313EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CED1EE3120108A9C000B917F /* Build configuration list for PBXNativeTarget "iMastSiriExtUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED1EE2F20108A9C000B917F /* Debug */,
+				CED1EE3020108A9C000B917F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CED1EE3220108A9C000B917F /* Build configuration list for PBXNativeTarget "iMastSiriExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED1EE2D20108A9C000B917F /* Debug */,
+				CED1EE2E20108A9C000B917F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
