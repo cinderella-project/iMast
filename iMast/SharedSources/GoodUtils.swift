@@ -370,6 +370,15 @@ extension Decodable {
     }
 }
 
+extension Array {
+    func safe(_ index: Index) -> Element? {
+        if self.count <= index || index < 0 {
+            return nil
+        }
+        return self[index]
+    }
+}
+
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     var versionStr = versionStr_
     var versionInt = 500

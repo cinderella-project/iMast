@@ -17,13 +17,12 @@ class MastodonNotification: Codable {
 }
 
 extension MastodonUserToken {
-    func getNoficitaions() -> Promise<[MastodonNotification]> {
-        return self.get("notifications").then { res in
-            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
+    func getNoficitaions(sinceId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
+        var params: [String: Any] = [:]
+        if let sinceId = sinceId {
+            params["since_id"] = sinceId.raw
         }
-    }
-    func getNoficitaions(sinceId: MastodonID) -> Promise<[MastodonNotification]> {
-        return self.get("notifications", params: ["since_id": sinceId.raw]).then { res in
+        return self.get("notifications", params: params).then { res in
             return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }
