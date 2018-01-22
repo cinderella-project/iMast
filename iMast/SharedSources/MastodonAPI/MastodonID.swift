@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MastodonID: Codable {
+class MastodonID: Codable, CustomStringConvertible {
     var int: Int64
     var string: String
     var raw: Any
@@ -49,7 +49,12 @@ class MastodonID: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(self.string)
+        let raw = self.raw
+        if let raw = raw as? String {
+            try container.encode(raw)
+        } else if let raw = raw as? Int64 {
+            try container.encode(raw)
+        }
     }
 }
 
@@ -57,8 +62,6 @@ extension MastodonID: Equatable {
     static func ==(lhs: MastodonID, rhs: MastodonID) -> Bool {
         return lhs.string == rhs.string
     }
-    
-    
 }
 
 enum MastodonIDError: Error {

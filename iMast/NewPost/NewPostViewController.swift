@@ -146,14 +146,14 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 }
             }
             var params: [String: Any] = [
-                "media_ids":mediaIds,
+                "media_ids": mediaIds,
                 "sensitive": self.isNSFW,
                 "spoiler_text": self.isCW ? self.cwInput.text ?? "" : "",
                 "status": text,
                 "visibility": self.scope
             ]
             if let replyToPost = self.replyToPost {
-                params["in_reply_to_id"] = replyToPost.id
+                params["in_reply_to_id"] = replyToPost.id.raw
             }
             return MastodonUserToken.getLatestUsed()!.post("statuses",params: params)
         }.then { res in
