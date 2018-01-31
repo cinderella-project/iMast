@@ -65,6 +65,10 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 row.steps = 20
                 row.userDefaultsConnect(.timelineTextFontsize)
             }
+            <<< SwitchRow() { row in
+                row.title = "本文を太字で表示"
+                row.userDefaultsConnect(.timelineTextBold)
+            }
             <<< SliderRow() { row in
                 row.title = "アイコンの大きさ"
                 row.maximumValue = 72

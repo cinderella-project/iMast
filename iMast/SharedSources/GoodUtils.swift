@@ -340,6 +340,7 @@ extension DefaultsKeys {
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
     static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)
     static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
+    static let timelineTextBold = DefaultsKey<Bool>("timeline_text_bold", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
