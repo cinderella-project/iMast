@@ -132,7 +132,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userScreenNameView.isUserInteractionEnabled = true
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         let thumbnail_height = Defaults[.thumbnailHeight]
-        if thumbnail_height != 0 {
+        if thumbnail_height != 0 && spoiler {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 getImage(url: media.previewUrl).then({ (image) in
@@ -147,6 +147,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapImage)))
                 self.imageStackView.addArrangedSubview(imageView)
             })
+        } else {
+            for subview in self.imageStackView.arrangedSubviews {
+                self.imageStackView.removeArrangedSubview(subview)
+                subview.removeFromSuperview()
+            }
         }
         postStackView.layoutIfNeeded()
     }
