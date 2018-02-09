@@ -84,6 +84,9 @@ class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
                     })
             vc.title = "Feedback"
             navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let safariVC = SFSafariViewController(url: URL(string: "https://github.com/cinderella-project/iMast/issues")!)
+            present(safariVC, animated: true, completion: nil)
         default:
             print("凛「ここ、どこ...?プロデューサーは...?」")
         }
