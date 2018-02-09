@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SafariServices
+import SDWebImage
 
 class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
@@ -38,9 +39,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     func load(post post_: MastodonPost) {
         let post = post_.repost ?? post_
         if let repost = post_.repost {
-            getImage(url: post_.account.avatarUrl).then { image in
-                self.boostedUserIcon.image = image
-            }
+            self.boostedUserIcon.sd_setImage(with: URL(string: post_.account.avatarUrl))
             self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
         } else {
             self.tootInfoView.backgroundColor = nil
@@ -81,9 +80,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
             iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
         }
-        getImage(url: iconUrl,size: Int(self.iconView.frame.width)).then { image in
-            self.iconView.image = image
-        }
+        self.iconView.sd_setImage(with: URL(string: iconUrl))
         timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
         if Defaults[.visibilityEmoji] {
             switch post.visibility {
@@ -122,9 +119,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if thumbnail_height != 0 && post.spoilerText == "" {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
-                getImage(url: media.previewUrl).then({ (image) in
-                    imageView.image = image
-                })
+                imageView.sd_setImage(with: URL(string: media.previewUrl))
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
                 imageView.layoutIfNeeded()

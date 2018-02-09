@@ -22,12 +22,9 @@ class ProfileCardViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getImage(url: user.avatarUrl).then { (image) in
-            self.backgroundImageView.image = image
-        }
-        getImage(url: user.avatarUrl).then { (image) in
-            self.iconView.image = image
-        }
+        self.backgroundImageView.sd_setImage(with: URL(string: user.headerUrl))
+        self.iconView.sd_setImage(with: URL(string: user.avatarUrl))
+
         let qr = CIFilter(name: "CIQRCodeGenerator", withInputParameters: [
             "inputMessage": user.url.data(using: .utf8),
             "inputCorrectionLevel": "H"

@@ -57,10 +57,9 @@ class PostAndUserViewController: TimeLineTableViewController {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "user_"+user.acct)
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = "@" + user.acct
-        getImage(url: user.avatarUrl).then(in: .main) { (image) in
-            cell.imageView?.image = image
+        cell.imageView?.sd_setImage(with: URL(string: user.avatarUrl), completed: { (image, error, cacheType, url) in
             cell.setNeedsLayout()
-        }
+        })
         return cell
     }
     

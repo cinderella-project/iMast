@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SDWebImage
 
 class AddAccountSuccessViewController: UIViewController {
 
@@ -28,9 +29,7 @@ class AddAccountSuccessViewController: UIViewController {
             return
         }
         welcomeMessageLabel.text = "ようこそ、\n@\(userRes!["username"].stringValue)\nさん。"
-        getImage(url: userRes!["avatar_static"].stringValue).then { image in
-            self.myIconImageView.image = image
-        }
+        self.myIconImageView.sd_setImage(with: URL(string: userRes!["avatar_static"].stringValue))
     }
 
     override func didReceiveMemoryWarning() {

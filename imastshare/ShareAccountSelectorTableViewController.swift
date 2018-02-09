@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ShareAccountSelectorTableViewController: UITableViewController {
 
@@ -55,11 +56,10 @@ class ShareAccountSelectorTableViewController: UITableViewController {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }
         
-        if (userToken.avatarUrl != nil) {
-            getImage(url: userToken.avatarUrl!).then(in: .main) { image in
-                cell.imageView!.image = image
+        if let avatarUrl = userToken.avatarUrl {
+            cell.imageView?.sd_setImage(with: URL(string: avatarUrl), completed: { (image, error, cacheType, url) in
                 cell.setNeedsLayout()
-            }
+            })
         }
         
         // Configure the cell...

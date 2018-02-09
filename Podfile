@@ -7,6 +7,7 @@ def based_pods
   pod 'SwiftyJSON'
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
+  pod 'SDWebImage', '~> 4.0'
 end
 
 target 'iMast' do

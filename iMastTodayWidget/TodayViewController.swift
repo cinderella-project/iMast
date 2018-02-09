@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationCenter
+import SDWebImage
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
@@ -56,10 +57,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         let userToken = MastodonUserToken.getLatestUsed()!
         userScreenNameView.text = "@" + userToken.screenName! + "@" + userToken.app.instance.hostName
-        if userToken.avatarUrl != nil {
-            getImage(url: userToken.avatarUrl!).then({ (image) in
-                self.userIconView.image = image
-            })
+        if let avatarUrl = userToken.avatarUrl {
+            self.userIconView.sd_setImage(with: URL(string: avatarUrl))
         }
         postActivityIndicator.alpha = 0
         completionHandler(NCUpdateResult.newData)

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SDWebImage
 
 class FollowRequestsListTableViewController: UITableViewController {
 
@@ -61,8 +62,7 @@ class FollowRequestsListTableViewController: UITableViewController {
             cell.textLabel?.text = request.acct
         }
         cell.detailTextLabel?.text = "@\(request.acct)"
-        getImage(url: request.avatarUrl).then { image in
-            cell.imageView?.image = image
+        cell.imageView?.sd_setImage(with: URL(string: request.avatarUrl)) { (image, error, cacheType, imageUrl) in
             cell.setNeedsLayout()
         }
 

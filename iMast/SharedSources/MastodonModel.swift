@@ -508,7 +508,7 @@ public class MastodonUserToken {
 var imageCache: [String:UIImage] = [:]
 var imageResizeCache: [String:[Int:UIImage]] = [:]
 
-
+@available(*, unavailable)
 public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
     return Promise(in: .background) { resolve, reject, _ in
         let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_\(String(size))_scale_"+UIScreen.main.scale.description

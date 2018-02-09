@@ -57,9 +57,7 @@ class UserProfileTopViewController: UITableViewController {
             loadAfter = true
             return
         }
-        getImage(url: user.avatarUrl).then { image in
-            self.userIconView.image = image
-        }
+        self.userIconView.sd_setImage(with: URL(string: user.avatarUrl))
         self.userNameView.text = (user.name != "" ? user.name : user.screenName).emojify()
         self.userScreenNameView.text = "@"+user.acct
         self.tootCell.detailTextLabel?.text = numToCommaString(user.postsCount)

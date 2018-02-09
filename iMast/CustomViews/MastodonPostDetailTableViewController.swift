@@ -110,9 +110,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         userNameView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
         userScreenNameView.text = "@"+post.account.acct
-        getImage(url: iconUrl).then { (image) in
-            self.iconView.image = image
-        }
+        iconView.sd_setImage(with: URL(string: iconUrl))
         var actionText = ""
         if post.repostCount > 0 {
             actionText += "%d件のブースト ".format(post.repostCount)
@@ -135,9 +133,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         if thumbnail_height != 0 && spoiler {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
-                getImage(url: media.previewUrl).then({ (image) in
-                    imageView.image = image
-                })
+                imageView.sd_setImage(with: URL(string: media.previewUrl))
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
                 imageView.layoutIfNeeded()
