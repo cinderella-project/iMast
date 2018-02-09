@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import ActionClosurable
 import SafariServices
+import SDWebImage
 
 class OtherMenuSettingsTableViewController: FormViewController {
 
@@ -121,6 +122,28 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 row.title = "Twitterにトラッキングさせない"
                 row.userDefaultsConnect(.shareNoTwitterTracking)
         }
+        self.form +++ Section("画像キャッシュ")
+            <<< TextRow() { row in
+                row.title = "キャッシュの容量"
+                row.disabled = true
+                let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
+                if size < 10_000 {
+                    row.value = size.description + "b"
+                } else if size < 10_000_000 {
+                    row.value = (size / 1000).description + "kb"
+                } else if size < 10_000_000_000 {
+                    row.value = (size / 1000_000).description + "mb"
+                } else {
+                    row.value = (size / 1000_000_000).description + "gb"
+                }
+            }
+            <<< ButtonRow() { row in
+                row.title = "ストレージ上のキャッシュを削除"
+            }.onCellSelection { (cell, row) in
+                SDWebImageManager.shared().imageCache?.clearDisk(onCompletion: {
+                    self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
+                })
+            }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
