@@ -136,13 +136,33 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 } else {
                     row.value = (size / 1000_000_000).description + "GB"
                 }
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.groupingSeparator = ","
+                formatter.groupingSize = 3
+                if size >= 10_000 {
+                    row.value = (row.value ?? "") + " ("+formatter.string(from: size as NSNumber)!+"bytes)"
+                }
+                
             }
             <<< ButtonRow() { row in
                 row.title = "ストレージ上のキャッシュを削除"
             }.onCellSelection { (cell, row) in
-                SDWebImageManager.shared().imageCache?.clearDisk(onCompletion: {
-                    self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
-                })
+                let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.groupingSeparator = ","
+                formatter.groupingSize = 3
+                let sizeStr = formatter.string(from: size as NSNumber) ?? "0"
+                let count = SDWebImageManager.shared().imageCache?.getDiskCount() ?? 0
+                self.confirm(title: "キャッシュ削除の確認", message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?", okButtonMessage: "OK").then { result in
+                    if !result {
+                        return
+                    }
+                    SDWebImageManager.shared().imageCache?.clearDisk(onCompletion: {
+                        self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
+                    })
+                }
             }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
