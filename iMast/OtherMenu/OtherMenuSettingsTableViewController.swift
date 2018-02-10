@@ -128,13 +128,13 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 row.disabled = true
                 let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
                 if size < 10_000 {
-                    row.value = size.description + "b"
+                    row.value = size.description + "B"
                 } else if size < 10_000_000 {
-                    row.value = (size / 1000).description + "kb"
+                    row.value = (size / 1000).description + "KB"
                 } else if size < 10_000_000_000 {
-                    row.value = (size / 1000_000).description + "mb"
+                    row.value = (size / 1000_000).description + "MB"
                 } else {
-                    row.value = (size / 1000_000_000).description + "gb"
+                    row.value = (size / 1000_000_000).description + "GB"
                 }
             }
             <<< ButtonRow() { row in
