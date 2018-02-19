@@ -25,7 +25,6 @@
 		2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		2A66E7FC1EAEE89E00735081 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A66E7FB1EAEE89E00735081 /* Main.storyboard */; };
 		2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */; };
-		2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */; };
 		2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */; };
 		2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */; };
 		2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF3521E1EAB9C5600777C2E /* Login.storyboard */; };
@@ -181,7 +180,6 @@
 		2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		2A66E80A1EB0254400735081 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMast.entitlements; sourceTree = "<group>"; };
-		2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MastodonPostCell.xib; sourceTree = "<group>"; };
 		2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostCell.swift; sourceTree = "<group>"; };
 		2AF352171EAB9C5500777C2E /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -526,7 +524,6 @@
 		CEE3571E1FF51A3900675DFC /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */,
 				2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */,
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
 				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
@@ -745,7 +742,6 @@
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
-				2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */,
 				2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */,
 				2A533F711ECCFF710062630F /* OtherMenu.storyboard in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
@@ -961,6 +957,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-iMast/Pods-iMast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionClosurable/ActionClosurable.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/Compass/Compass.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
@@ -976,6 +973,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionClosurable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Compass.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",

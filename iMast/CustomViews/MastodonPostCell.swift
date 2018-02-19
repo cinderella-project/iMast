@@ -10,19 +10,94 @@ import UIKit
 import SwiftyJSON
 import SafariServices
 import SDWebImage
+import Cartography
 
 class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var userView: UILabel!
-    @IBOutlet weak var timeView: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageThumbnailStackView: UIStackView!
-    @IBOutlet weak var boostedUserIcon: UIImageView!
-    @IBOutlet weak var tootInfoView: UIView!
+    let iconView = UIImageView()
+    let userView = UILabel()
+    let timeView = UILabel()
+    let textView = UITextView()
+    let imageThumbnailStackView = UIStackView()
+    let boostedUserIcon = UIImageView()
+    let tootInfoView = UIView()
     var post: MastodonPost?
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: nil)
+        
+        contentView.addSubviews([
+            iconView,
+            userView,
+            timeView,
+            textView,
+            imageThumbnailStackView,
+            boostedUserIcon,
+            tootInfoView,
+        ])
+        let sakkiValue = self.contentView.translatesAutoresizingMaskIntoConstraints
+        
+        let iconSize = CGFloat(Defaults[.timelineIconSize])
+        constrain(iconView, userView, timeView, boostedUserIcon, tootInfoView, textView, imageThumbnailStackView)
+        { icon, userName, postTime, boostedIcon, tootInfo, text, imageStack in
+            // icon
+            icon.top == icon.superview!.top + 8
+            icon.left == icon.superview!.left + 8
+            icon.superview!.bottom >= icon.bottom + 8
+            icon.width == iconSize
+            icon.height == iconSize
+
+            boostedIcon.bottom == icon.bottom
+            boostedIcon.right == icon.right
+            boostedIcon.size == icon.size / 2
+            
+            // userName
+            userName.top == icon.top
+            userName.left == icon.right + 8
+            
+            // postTime
+            postTime.top == userName.top
+            postTime.left == userName.right + 8
+            postTime.right == postTime.superview!.right - 8 ~ .required
+
+            userView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            userView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            timeView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+            timeView.setContentHuggingPriority(.required, for: .horizontal)
+            timeView.textAlignment = .right
+
+            let nameFontSize = CGFloat(Defaults[.timelineUsernameFontsize])
+            userView.font = userView.font.withSize(nameFontSize)
+            timeView.font = timeView.font.withSize(nameFontSize)
+            
+            // tootInfo
+            tootInfo.left == tootInfo.superview!.left
+            tootInfo.top == tootInfo.superview!.top
+            tootInfo.bottom == tootInfo.superview!.bottom
+            tootInfo.width == 3
+            
+            // text
+            text.left == userName.left
+            text.top == userName.bottom + 2
+            text.right == text.superview!.right - 8
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+
+            // imageThumbnailStackview
+            imageStack.left == text.left
+            imageStack.top == text.bottom
+            imageStack.superview!.bottom == imageStack.bottom + 8
+            imageStack.right == imageStack.superview!.right - 8
+        }
+        
+        
+        self.contentView.translatesAutoresizingMaskIntoConstraints = sakkiValue
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func viewDidLayoutSubviews() {
         
@@ -75,7 +150,6 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
         textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
         userView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
-        userView.font = userView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
         var iconUrl = post.account.avatarUrl
         if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
             iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
@@ -97,9 +171,6 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if post.pinned ?? false {
             timeView.text = "📌"+(timeView.text ?? "")
         }
-        timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
-        iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
-        iconHeightConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         // -- タッチ周り --
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         textView.textContainer.lineFragmentPadding = 0
@@ -196,7 +267,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
     
     static func getInstance(owner: Any? = nil) -> MastodonPostCell {
-        return UINib(nibName: "MastodonPostCell", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostCell
+        return MastodonPostCell(style: .default, reuseIdentifier: nil)
+//        return UINib(nibName: "MastodonPostCell", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostCell
     }
 
 }

@@ -22,6 +22,7 @@ target 'iMast' do
   pod 'ReachabilitySwift', '~> 3'
   pod 'Eureka'
   pod 'ActionClosurable'
+  pod 'Cartography', '~> 3'
 
   target 'iMastTests' do
     inherit! :search_paths
