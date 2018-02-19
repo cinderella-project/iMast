@@ -276,21 +276,13 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             }))
         }
         actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertActionStyle.destructive, handler: { (action) in
-            self.performSegue(withIdentifier: "goAbuse", sender: self.post)
+            let newVC = MastodonPostAbuseViewController()
+            newVC.targetPost = post
+            newVC.placeholder = "『\(post.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
+            self.navigationController?.pushViewController(newVC, animated: true)
         }))
         actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
         self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goAbuse" {
-            let VC = segue.destination as! MastodonPostAbuseViewController
-            guard let post = self.post else {
-                return
-            }
-            VC.targetPost = post
-            VC.placeholder = "『\(post.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
-        }
     }
 
     // MARK: - Table view data source

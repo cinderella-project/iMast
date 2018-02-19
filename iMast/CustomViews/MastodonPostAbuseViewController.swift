@@ -8,21 +8,31 @@
 
 import UIKit
 import SwiftyJSON
+import Eureka
+import ActionClosurable
 
-class MastodonPostAbuseViewController: UIViewController {
+class MastodonPostAbuseViewController: FormViewController {
 
-    @IBOutlet weak var placeholderLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var bottomLayout: NSLayoutConstraint!
-    var nowKeyboardUpOrDown = false
     var placeholder = ""
     var targetPost:MastodonPost!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.placeholderLabel.text = self.placeholder
-
-        configureObserver()
-        // Do any additional setup after loading the view.
+        
+        self.title = "通報"
+        
+        self.form +++ Section()
+            <<< TextAreaRow() {
+                $0.tag = "text"
+                $0.placeholder = self.placeholder
+                $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+        }
+        
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "送信", style: .done) { _ in
+                let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value ?? ""
+                self.submitButtonTapped(text: text)
+            }
+        ]
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,33 +40,8 @@ class MastodonPostAbuseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func configureObserver() {
-        let notification = NotificationCenter.default
-        // notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func removeObserver() {
-        let notification = NotificationCenter.default
-        notification.removeObserver(self)
-    }
-    
-    @objc func keyboardWillShow(notification: Notification?) {
-        let rect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        bottomLayout.constant = (rect?.size.height ?? 0) - 100
-        self.view.layoutIfNeeded()
-        nowKeyboardUpOrDown = true
-        placeholderLabel.alpha = 0
-    }
-    @objc func keyboardWillHide(notification: Notification?) {
-        bottomLayout.constant = -50
-        placeholderLabel.alpha = textView.text.count == 0 ? 1 : 0
-        nowKeyboardUpOrDown = false
-    }
-    @IBAction func submitButtonTapped(_ sender: Any) {
-        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: self.textView.text, posts: [targetPost]).then { (res) in
+    func submitButtonTapped(text: String) {
+        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: text, posts: [targetPost]).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }
