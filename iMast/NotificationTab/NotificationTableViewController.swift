@@ -67,9 +67,9 @@ class NotificationTableViewController: UITableViewController {
         
         switch notification.type {
         case "favourite":
-            let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
             guard let account = notification.account else { break }
             guard let status = notification.status else { break }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
             (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにふぁぼられました"
             (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
             return cell
