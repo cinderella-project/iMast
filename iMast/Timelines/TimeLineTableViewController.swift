@@ -121,6 +121,7 @@ class TimeLineTableViewController: UITableViewController {
             max: self.posts.last
         ).then { posts in
             self.appendNewPosts(posts: posts)
+            self.isReadmoreLoading = false
         }
     }
     
