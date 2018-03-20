@@ -102,7 +102,9 @@ class TimeLineTableViewController: UITableViewController {
             return
         }
         MastodonUserToken.getLatestUsed()!.timeline(
-            timelineType, limit: 40, since: self.posts.safe(0)
+            timelineType,
+            limit: 40,
+            since: self.posts.first
         ).then { posts in
             self.addNewPosts(posts: posts)
             self.refreshControl?.endRefreshing()
