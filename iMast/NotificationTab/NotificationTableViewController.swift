@@ -71,14 +71,14 @@ class NotificationTableViewController: UITableViewController {
             guard let status = notification.status else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
             (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにふぁぼられました"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
+            (cell.viewWithTag(2) as! UILabel).text = status.status.htmlRemoved().replace("\n", " ")
             return cell
         case "reblog":
             guard let account = notification.account else { break }
             guard let status = notification.status else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "reblog", for: indexPath)
             (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにブーストされました"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
+            (cell.viewWithTag(2) as! UILabel).text = status.status.htmlRemoved().replace("\n", " ")
             return cell
         case "follow":
             guard let account = notification.account else { break }
@@ -91,7 +91,7 @@ class NotificationTableViewController: UITableViewController {
             guard let status = notification.status else { break }
             let cell = tableView.dequeueReusableCell(withIdentifier: "mention", for: indexPath)
             (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんからのリプライ"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.pregReplace(pattern: "<.+?>", with: "")
+            (cell.viewWithTag(2) as! UILabel).text = status.status.htmlRemoved().replace("\n", " ")
             return cell
         default:
             break
