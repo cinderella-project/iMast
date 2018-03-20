@@ -29,10 +29,16 @@ class MastodonPost: Codable {
     let attachments: [MastodonAttachment]
     let application: MastodonApplication?
     var pinned: Bool?
-    let emojis: [MastodonCustomEmoji] = []
-    let profileEmojis: [MastodonCustomEmoji] = []
+    private var _emojis: [MastodonCustomEmoji]?
+    private var _profileEmojis: [MastodonCustomEmoji]?
+    var emojis: [MastodonCustomEmoji] {
+        return self._emojis ?? []
+    }
+    var profileEmojis: [MastodonCustomEmoji] {
+        return self._profileEmojis ?? []
+    }
     let visibility: String
-    let mentions: [MastodonPostMention] = []
+    private(set) var mentions: [MastodonPostMention] = []
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -53,8 +59,8 @@ class MastodonPost: Codable {
         case pinned
         case application
         case attachments = "media_attachments"
-        case emojis
-        case profileEmojis = "profile_emojis"
+        case _emojis = "emojis"
+        case _profileEmojis = "profile_emojis"
         case visibility
         case mentions
     }
