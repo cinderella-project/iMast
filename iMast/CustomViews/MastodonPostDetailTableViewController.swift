@@ -130,7 +130,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userScreenNameView.isUserInteractionEnabled = true
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         let thumbnail_height = Defaults[.thumbnailHeight]
-        if thumbnail_height != 0 && spoiler {
+        if thumbnail_height != 0 && post.spoilerText != "" ? spoiler : true {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 imageView.sd_setImage(with: URL(string: media.previewUrl))
