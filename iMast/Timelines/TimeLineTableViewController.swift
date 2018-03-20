@@ -29,6 +29,7 @@ class TimeLineTableViewController: UITableViewController {
     var isReadmoreEnabled = true
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
+    var timelineType: MastodonTimelineType? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,17 +85,43 @@ class TimeLineTableViewController: UITableViewController {
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
     }
     
-    func loadTimeline() -> Promise<Void> {
-        print("loadTimelineを実装してください!!!!!!")
-        return Promise.init(resolved: Void())
+    func loadTimeline() -> Promise<()> {
+        guard let timelineType = self.timelineType else {
+            print("loadTimelineを実装するか、self.timelineTypeを定義してください。")
+            return Promise.init(resolved: Void())
+        }
+        return MastodonUserToken.getLatestUsed()!.timeline(timelineType).then { (posts) -> Void in
+            self._addNewPosts(posts: posts)
+            return Void()
+        }
     }
     @objc func refreshTimeline(){
-        print("refreshTimelineを実装してください!!!!!!")
-        self.refreshControl?.endRefreshing()
+        guard let timelineType = self.timelineType else {
+            print("refreshTimelineを実装するか、self.timelineTypeを定義してください。")
+            self.refreshControl?.endRefreshing()
+            return
+        }
+        MastodonUserToken.getLatestUsed()!.timeline(
+            timelineType, limit: 40, since: self.posts.safe(0)
+        ).then { posts in
+            self.addNewPosts(posts: posts)
+            self.refreshControl?.endRefreshing()
+        }
     }
     func readMoreTimeline(){
-        print("readMoreTimelineを実装してください!!!!!!")
-        isReadmoreLoading = false
+        guard let timelineType = self.timelineType else {
+            print("readMoreTimelineを実装してください!!!!!!")
+            isReadmoreLoading = false
+            return
+        }
+        
+        MastodonUserToken.getLatestUsed()!.timeline(
+            timelineType,
+            limit: 40,
+            max: self.posts.last
+        ).then { posts in
+            self.appendNewPosts(posts: posts)
+        }
     }
     
     @objc func readMoreTimelineTapped(sender: UITapGestureRecognizer) {

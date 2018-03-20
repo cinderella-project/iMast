@@ -11,6 +11,10 @@ import Hydra
 import SwiftyJSON
 
 class UserTimeLineTableViewController: TimeLineTableViewController {
+    override func viewDidLoad() {
+        self.timelineType = .user(self.user)
+        super.viewDidLoad()
+    }
     
     var user: MastodonAccount!
     
@@ -30,23 +34,6 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                 return post
             }))
             return Void()
-        }
-    }
-    
-    override func refreshTimeline() {
-        let latestPost = self.posts.sorted(by: { (a, b) -> Bool in
-            return a.createdAt > b.createdAt
-        })
-        MastodonUserToken.getLatestUsed()?.timeline(.user(user), limit: 40, since: latestPost.count >= 1 ? latestPost[0] : nil).then { res in
-            self.addNewPosts(posts: res)
-            self.refreshControl?.endRefreshing()
-        }
-    }
-    
-    override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.timeline(.user(user), limit: 40, max: self.posts[self.posts.count-1]).then { res in
-            self.appendNewPosts(posts: res)
-            self.isReadmoreLoading = false
         }
     }
 }

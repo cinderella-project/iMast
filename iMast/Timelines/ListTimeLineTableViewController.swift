@@ -17,6 +17,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     var list: MastodonList!
     
     override func viewDidLoad() {
+        self.timelineType = .list(self.list)
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(self.editList))
@@ -76,29 +77,6 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
             }
         ]
         self.present(navC, animated: true, completion: nil)
-    }
-    
-    override func loadTimeline() -> Promise<Void>{
-        return Promise<Void>() { resolve, reject, _ in
-            MastodonUserToken.getLatestUsed()?.timeline(.list(self.list)).then { res in
-                self._addNewPosts(posts: res)
-                resolve(Void())
-            }
-        }
-    }
-    
-    override func refreshTimeline() {
-        MastodonUserToken.getLatestUsed()?.timeline(.list(self.list), limit: 40, since: self.posts.count >= 1 ? self.posts[0] : nil).then { res in
-            self.addNewPosts(posts: res)
-            self.refreshControl?.endRefreshing()
-        }
-    }
-    
-    override func readMoreTimeline() {
-        MastodonUserToken.getLatestUsed()?.timeline(.list(self.list), limit: 40, max: self.posts[self.posts.count-1]).then { res in
-            self.appendNewPosts(posts: res)
-            self.isReadmoreLoading = false
-        }
     }
     
     override func websocketEndpoint() -> String? {
