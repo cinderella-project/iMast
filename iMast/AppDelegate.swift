@@ -8,6 +8,7 @@
 
 import UIKit
 import Compass
+import ActionClosurable
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -96,6 +97,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             default:break
         }
         return true
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if MastodonUserToken.getLatestUsed() != nil {
+            if let vc = application.viewController {
+                let newVC = UIStoryboard(name: "NewPost", bundle: nil).instantiateInitialViewController()!
+                let wrapVC = UINavigationController(rootViewController: newVC)
+                newVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
+                    wrapVC.dismiss(animated: true, completion: nil)
+                }
+                vc.present(wrapVC, animated: true, completion: nil)
+                print("animated")
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

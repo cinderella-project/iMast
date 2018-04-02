@@ -54,6 +54,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var replyToPost: MastodonPost?
     
     var isPNG = true
+    var isModal = false
     @IBOutlet weak var CWButton: UIBarButtonItem!
     @IBOutlet weak var NSFWButton: UIBarButtonItem!
     @IBOutlet weak var scopeSelectButton: UIBarButtonItem!
@@ -116,7 +117,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         
         var uploadPromise: Promise<[JSON]>
         if image != nil {
-            uploadPromise = MastodonUserToken.getLatestUsed()!.upload(file: getImage()!, mimetype: "image/png").then { (response) -> [JSON] in
+        uploadPromise = MastodonUserToken.getLatestUsed()!.upload(file: getImage()!, mimetype: "image/png").then { (response) -> [JSON] in
                 if response["_response_code"].intValue >= 400 {
                     alert.dismiss(animated: false, completion: {
                         self.apiError(response["error"].string, response["_response_code"].int)
@@ -167,6 +168,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             alert.dismiss(animated: false, completion: {
                 self.navigationController?.popViewController(animated: true)
             })
+            if self.isModal {
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }
         }.catch { err in
             alert.dismiss(animated: false, completion: {
                 self.alert(title: "謎のエラー", message: "謎のエラーが発生しました。")
