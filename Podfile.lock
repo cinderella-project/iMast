@@ -1,19 +1,19 @@
 PODS:
-  - ActionClosurable (1.0.0)
-  - Alamofire (4.5.1)
+  - ActionClosurable (1.2.0)
+  - Alamofire (4.7.0)
   - Cartography (3.0.1)
   - Compass (6.0.0)
-  - Eureka (4.0.1)
-  - GRDB.swift (2.3.1)
+  - Eureka (4.1.1)
+  - GRDB.swift (2.10.0)
   - HydraAsync (1.2.1)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - ReachabilitySwift (3)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
-  - Starscream (3.0.2)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - Starscream (3.0.4)
   - SwiftyJSON (4.0.0)
   - XCGLogger (6.0.2):
     - XCGLogger/Core (= 6.0.2)
@@ -25,7 +25,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - Cartography (~> 3)
   - Compass
-  - Eureka
+  - Eureka (~> 4.1)
   - GRDB.swift
   - HydraAsync
   - ReachabilitySwift (~> 3)
@@ -35,20 +35,20 @@ DEPENDENCIES:
   - XCGLogger (~> 6.0.2)
 
 SPEC CHECKSUMS:
-  ActionClosurable: 2c268a12cd55682231a4c871b4f5debb62f2a9c5
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
-  Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
-  GRDB.swift: fa0742c1b3d8aa6e3610a05ebf7c6b9e77589726
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  GRDB.swift: 9859cab1b990eac62ee550d3d2208ec1b44f76af
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
-  Starscream: b512c62f6706421221b5ceb2ba01a9f58aca5bea
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 063570ecdf7ae7b8ecdffbf6ed037944bac27381
+PODFILE CHECKSUM: 31133b20ed473fabe35d387bb4756d4a8b482e7d
 
 COCOAPODS: 1.3.1

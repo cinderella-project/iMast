@@ -20,7 +20,7 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka'
+  pod 'Eureka', '~> 4.1'
   pod 'ActionClosurable'
   pod 'Cartography', '~> 3'
 
