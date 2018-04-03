@@ -5,6 +5,7 @@ before_install:
 install:
   - travis_wait pod install --repo-update
 script:
+  - xcodebuild -workspace iMast.xcworkspace -list
   - set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme iMast CODE_SIGNING_REQUIRED=NO | xcpretty -c
 cache:
   edge: true
