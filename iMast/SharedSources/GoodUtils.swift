@@ -99,12 +99,6 @@ extension UIView {
             return nil
         }
     }
-    
-    func addSubviews(_ subviews: [UIView]) {
-        for subview in subviews {
-            self.addSubview(subview)
-        }
-    }
 }
 
 extension UIApplication {

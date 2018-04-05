@@ -1,7 +1,6 @@
 PODS:
-  - ActionClosurable (1.2.0)
-  - Alamofire (4.7.0)
-  - Cartography (3.0.1)
+  - ActionClosurable (1.0.0)
+  - Alamofire (4.5.1)
   - Compass (6.0.0)
   - Eureka (4.1.1)
   - GRDB.swift (2.10.0)
@@ -23,7 +22,6 @@ PODS:
 DEPENDENCIES:
   - ActionClosurable
   - Alamofire (~> 4.5)
-  - Cartography (~> 3)
   - Compass
   - Eureka (~> 4.1)
   - GRDB.swift
@@ -35,9 +33,8 @@ DEPENDENCIES:
   - XCGLogger (~> 6.0.2)
 
 SPEC CHECKSUMS:
-  ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
-  Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
+  ActionClosurable: 2c268a12cd55682231a4c871b4f5debb62f2a9c5
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   GRDB.swift: 9859cab1b990eac62ee550d3d2208ec1b44f76af
@@ -49,6 +46,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 31133b20ed473fabe35d387bb4756d4a8b482e7d
+PODFILE CHECKSUM: c370917d1502b8eb43d40c5ded4ba2d0abb6c4b2
 
 COCOAPODS: 1.3.1
