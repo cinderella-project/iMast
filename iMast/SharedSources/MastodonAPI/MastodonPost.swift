@@ -128,10 +128,11 @@ extension MastodonUserToken {
         }
     }
     
-    func reports(account: MastodonAccount, comment: String = "", posts: [MastodonPost]) -> Promise<Void> {
+    func reports(account: MastodonAccount, comment: String = "", forward: Bool = false, posts: [MastodonPost]) -> Promise<Void> {
         return self.post("reports", params: [
             "account_id": account.id.raw,
             "comment": comment,
+            "forward": forward,
             "status_ids": posts.map({$0.id.raw})
         ]).then { res in
                 return Void()

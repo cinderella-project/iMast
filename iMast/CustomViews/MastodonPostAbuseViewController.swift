@@ -27,10 +27,17 @@ class MastodonPostAbuseViewController: FormViewController {
                 $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
         }
         
+        if let remoteInstance = targetPost.account.acct.split(separator: "@").safe(1) {
+            self.form +++ Section(footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。")
+                <<< SwitchRow() {
+                    $0.tag = "forward"
+                    $0.title = "リモートインスタンスに転送"
+                }
+        }
+        
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "送信", style: .done) { _ in
-                let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value ?? ""
-                self.submitButtonTapped(text: text)
+                self.submitButtonTapped()
             }
         ]
     }
@@ -40,8 +47,10 @@ class MastodonPostAbuseViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func submitButtonTapped(text: String) {
-        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: text, posts: [targetPost]).then { (res) in
+    func submitButtonTapped() {
+        let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value ?? ""
+        let forward = (self.form.rowBy(tag: "forward") as? SwitchRow)?.value ?? false
+        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: text, forward: forward, posts: [targetPost]).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }
