@@ -90,6 +90,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             imageStack.right == imageStack.superview!.right - 8
         }
         
+        self.imageThumbnailStackView.axis = .vertical
+        self.imageThumbnailStackView.spacing = 4
         
         self.contentView.translatesAutoresizingMaskIntoConstraints = sakkiValue
         self.translatesAutoresizingMaskIntoConstraints = false
