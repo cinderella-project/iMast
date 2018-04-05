@@ -126,7 +126,7 @@ class OtherMenuSettingsTableViewController: FormViewController {
             <<< TextRow() { row in
                 row.title = "キャッシュの容量"
                 row.disabled = true
-                let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
+                let size = UInt64(SDWebImageManager.shared().imageCache?.getSize() ?? 0)
                 if size < 10_000 {
                     row.value = size.description + "B"
                 } else if size < 10_000_000 {
