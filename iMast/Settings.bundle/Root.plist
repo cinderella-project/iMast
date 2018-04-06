@@ -10,9 +10,17 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Acknowledgements</string>
+			<string>Acknowledgements (Libraries)</string>
 			<key>File</key>
 			<string>Acknowledgements</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Acknowledgements (Others)</string>
+			<key>File</key>
+			<string>Acknowledgements-Others</string>
 		</dict>
 	</array>
 </dict>

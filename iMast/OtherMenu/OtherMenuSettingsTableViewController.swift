@@ -51,6 +51,11 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 row.title = "デフォルト公開範囲を利用"
                 row.userDefaultsConnect(.usingDefaultVisibility)
         }
+        self.form +++ Section("投稿詳細")
+            <<< SwitchRow() { row in
+                row.title = "トゥート削除をておくれにする"
+                row.userDefaultsConnect(.deleteTootTeokure)
+        }
         self.form +++ Section("タイムライン")
             <<< SliderRow() { row in
                 row.title = "ユーザー名の文字の大きさ"

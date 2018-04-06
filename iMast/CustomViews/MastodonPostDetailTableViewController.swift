@@ -264,7 +264,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }))
         if MastodonUserToken.getLatestUsed()!.screenName == post.account.acct {
             actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive, handler: { (action) in
-                self.confirm(title: "投稿の削除", message: "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
+                self.confirm(title: "投稿の削除", message: Defaults[.deleteTootTeokure] ? "失った信頼はもう戻ってきませんが、本当にこのトゥートを削除しますか?" : "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
                     if res == false {
                         return
                     }
