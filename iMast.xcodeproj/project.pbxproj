@@ -100,6 +100,8 @@
 		CEE2542A2004B802005FEB6F /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
 		CEE2542E2004FA76005FEB6F /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
 		CEE254302005C0EB005FEB6F /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542F2005C0EB005FEB6F /* WebSocketManager.swift */; };
+		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
+		CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
 		CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357231FF6067F00675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
@@ -250,6 +252,8 @@
 		CEE254292004B802005FEB6F /* MastodonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApplication.swift; sourceTree = "<group>"; };
 		CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonNotification.swift; sourceTree = "<group>"; };
 		CEE2542F2005C0EB005FEB6F /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostMediaListViewController.swift; sourceTree = "<group>"; };
+		CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostMediaListViewController.xib; sourceTree = "<group>"; };
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		CEE357251FF6410600675DFC /* OtherMenuSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuSettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -483,6 +487,8 @@
 				2A533F6E1ECCFE940062630F /* NewPost.storyboard */,
 				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
 				2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */,
+				CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */,
+				CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */,
 			);
 			path = NewPost;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
 				2A533F6F1ECCFE940062630F /* NewPost.storyboard in Resources */,
 				CEBB33DE1F2D8D6F00E4D3AB /* NotificationTab.storyboard in Resources */,
+				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
@@ -1047,6 +1054,7 @@
 				CEE2542E2004FA76005FEB6F /* MastodonNotification.swift in Sources */,
 				CE1002C820065DA30041B636 /* MastodonSearchResult.swift in Sources */,
 				CEE2542A2004B802005FEB6F /* MastodonApplication.swift in Sources */,
+				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
 				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,

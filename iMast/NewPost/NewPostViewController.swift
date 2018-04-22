@@ -26,12 +26,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             cwInput.isHidden = true
         }
     }
-    @IBOutlet weak var backgroundImage: UIImageView!
-    var image: UIImage? = nil {
-        didSet {
-            self.backgroundImage.image = image
-        }
-    }
+    var image: UIImage? = nil // TODO: あとで消す
+    var images: [UIImage] = []
+    
     @IBOutlet weak var nowAccountLabel: UILabel!
     
     var nowKeyboardUpOrDown: Bool = false
@@ -115,20 +112,24 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertControllerStyle.alert)
         present(alert, animated: true, completion: nil)
         
-        var uploadPromise: Promise<[JSON]>
-        if image != nil {
-        uploadPromise = MastodonUserToken.getLatestUsed()!.upload(file: getImage()!, mimetype: "image/png").then { (response) -> [JSON] in
+        var uploadPromises: [Promise<JSON>] = []
+        for image in self.images {
+            uploadPromises.append(
+            MastodonUserToken.getLatestUsed()!.upload(file: getImage(image)!, mimetype: "image/png").then { (response) -> JSON in
                 if response["_response_code"].intValue >= 400 {
                     alert.dismiss(animated: false, completion: {
                         self.apiError(response["error"].string, response["_response_code"].int)
                     })
                     throw APIError.alreadyError()
                 }
-                return response["id"].exists() ? [response] : []
+                if !response["id"].exists() {
+                    throw APIError.nil("id")
+                }
+                return response
             }
-        } else {
-            uploadPromise = Promise.init(resolved: [])
+            )
         }
+        let uploadPromise = Hydra.all(uploadPromises)
         uploadPromise.then { (medias) -> Promise<JSON> in
             print(medias)
             var text = self.textInput.text ?? ""
@@ -247,9 +248,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    func getImage() -> Data? { // 自動リサイズ設定を考慮したUIImageをPNGorJPEG化したDataを返す
-        var image = self.image!
         let resultSize:Int = Defaults[.autoResizeSize]
+    func getImage(_ image: UIImage) -> Data? { // 自動リサイズ設定を考慮したUIImageをPNGorJPEG化したDataを返す
+        var resultImage = image
         if resultSize != 0 {
             var width = image.size.width
             var height = image.size.height
@@ -272,9 +273,28 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            image = newImage!
+            resultImage = newImage!
         }
-        return (self.isPNG ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1.0))
+        return (self.isPNG ? UIImagePNGRepresentation(resultImage) : UIImageJPEGRepresentation(resultImage, 1.0))
+    }
+    
+    @IBOutlet weak var imageSelectButton: UIButton!
+    @IBAction func imageSelectButtonTapped(_ sender: UIButton) {
+        let contentVC = NewPostMediaListViewController(newPostVC: self)
+        contentVC.modalPresentationStyle = .popover
+        contentVC.preferredContentSize = CGSize(width: 500, height: 100)
+        contentVC.popoverPresentationController?.sourceView = imageSelectButton
+        contentVC.popoverPresentationController?.sourceRect = imageSelectButton.frame
+        contentVC.popoverPresentationController?.permittedArrowDirections = .down
+        contentVC.popoverPresentationController?.delegate = self
+        self.present(contentVC, animated: true, completion: nil)
+    }
+    
+}
+
+extension NewPostViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 }
 

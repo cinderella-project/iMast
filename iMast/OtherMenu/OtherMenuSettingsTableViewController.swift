@@ -20,10 +20,10 @@ class OtherMenuSettingsTableViewController: FormViewController {
             <<< PushStringRow() { row in
                 row.title = "ストリーミング自動接続"
                 row.userDefaultsConnect(.streamingAutoConnect, map: [
-                    "no": "しない",
-                    "wifi": "WiFi接続時のみ",
-                    "always": "常に接続",
-                    ])
+                    ("no", "しない"),
+                    ("wifi", "WiFi接続時のみ"),
+                    ("always", "常に接続"),
+                ])
             }
             <<< TextRow() { row in
                 row.title = "新規連携時のvia"
@@ -38,6 +38,22 @@ class OtherMenuSettingsTableViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "投稿時にメディアURL追加"
                 row.userDefaultsConnect(.appendMediaUrl)
+            }
+            <<< PushStringRow() { row in
+                row.title = "画像の自動リサイズ"
+                let sentakusi = [ // 自動リサイズの選択肢
+                    0,
+                    1920,
+                    1280,
+                    1000,
+                    750,
+                    500,
+                ]
+                let smap = sentakusi.map { px -> (Int, String) in
+                    let str = px == 0 ? "自動でリサイズしない" : "\(px)px以下にリサイズ"
+                    return (px, str)
+                }
+                row.userDefaultsConnect(.autoResizeSize, map: smap)
             }
             <<< LabelRow() { row in
                 row.title = "nowplayingのフォーマット"

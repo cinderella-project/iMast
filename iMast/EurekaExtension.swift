@@ -9,12 +9,13 @@
 import Eureka
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
-    func userDefaultsConnect(_ key:DefaultsKey<String>, map: [String: String], userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        self.options = map.keys.map { (name) -> String in
-            return map[name]!
-        }
+    func userDefaultsConnect<T: Equatable>(_ key:DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        self.options = map.map { $0.value }
         let userDefaultsValue = Defaults[key]
-        self.value = map[userDefaultsValue] ?? userDefaultsValue
+        self.value = map.filter { arg -> Bool in
+            let (key, _) = arg
+            return key == userDefaultsValue
+        }.first?.value ?? "\(userDefaultsValue)"
         self.cellUpdate { (cell, row) in
             map.forEach({ (key_, value) in
                 if(value == row.value) {

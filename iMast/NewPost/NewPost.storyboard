@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
     <device id="retina5_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,26 +19,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsf-uM-oWf">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="m1w-xO-o8W">
                                 <rect key="frame" x="44" y="32" width="724" height="246"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-hy-lHq">
-                                <rect key="frame" x="44" y="32" width="724" height="246"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="098-t9-MpK">
-                                <rect key="frame" x="44" y="278" width="724" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CW説明文" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8NC-Ka-Jwd">
+                                        <rect key="frame" x="0.0" y="0.0" width="724" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="YrX-KY-8P2"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-hy-lHq">
+                                        <rect key="frame" x="0.0" y="30" width="724" height="216"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="098-t9-MpK">
+                                <rect key="frame" x="0.0" y="278" width="812" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4ob-a4-G1n"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem systemItem="camera" id="xmb-d1-u6i">
-                                        <connections>
-                                            <segue destination="94k-R7-Uju" kind="show" id="Bdj-v3-Flc">
-                                                <nil key="action"/>
-                                            </segue>
-                                        </connections>
+                                    <barButtonItem style="plain" id="VYb-zD-0Bt">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9zg-4V-9GJ">
+                                            <rect key="frame" x="64" y="6" width="48" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <state key="normal" title=" 0" image="Camera"/>
+                                            <connections>
+                                                <action selector="imageSelectButtonTapped:" destination="6D6-or-cv4" eventType="touchUpInside" id="9Z1-wj-9dm"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                     <barButtonItem title="NSFW" id="PDD-NQ-dha">
                                         <connections>
@@ -68,17 +83,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CW説明文" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8NC-Ka-Jwd">
-                                <rect key="frame" x="44" y="32" width="724" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YrX-KY-8P2"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-ia-k2a">
-                                <rect key="frame" x="52" y="236.66666666666666" width="704" height="33.333333333333343"/>
+                                <rect key="frame" x="52" y="236.33333333333334" width="708" height="33.666666666666657"/>
                                 <string key="text">rin@mastodon.example.com
 返信先: @uzuki: 凛ちゃんとデートです♪</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
@@ -88,23 +94,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fsf-uM-oWf" firstAttribute="top" secondItem="cLF-D1-GNS" secondAttribute="top" id="6ql-hQ-xgj"/>
-                            <constraint firstItem="098-t9-MpK" firstAttribute="top" secondItem="0I0-hy-lHq" secondAttribute="bottom" id="F22-Io-OTS"/>
-                            <constraint firstItem="098-t9-MpK" firstAttribute="top" secondItem="3JX-ia-k2a" secondAttribute="bottom" constant="8" id="I0J-hg-8Hq"/>
-                            <constraint firstItem="8NC-Ka-Jwd" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" id="ICi-UX-tpr"/>
-                            <constraint firstItem="0I0-hy-lHq" firstAttribute="top" secondItem="cLF-D1-GNS" secondAttribute="top" id="MpX-2G-dFo"/>
-                            <constraint firstItem="0I0-hy-lHq" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" id="PcE-lX-f1W"/>
-                            <constraint firstItem="8NC-Ka-Jwd" firstAttribute="top" secondItem="cLF-D1-GNS" secondAttribute="top" id="ZIM-ou-NgY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3JX-ia-k2a" secondAttribute="trailing" constant="-8" id="Zk7-QW-BA2"/>
-                            <constraint firstItem="098-t9-MpK" firstAttribute="top" secondItem="fsf-uM-oWf" secondAttribute="bottom" id="bdS-VQ-1k2"/>
-                            <constraint firstItem="cLF-D1-GNS" firstAttribute="trailing" secondItem="fsf-uM-oWf" secondAttribute="trailing" id="dYe-Db-1f6"/>
-                            <constraint firstItem="cLF-D1-GNS" firstAttribute="trailing" secondItem="0I0-hy-lHq" secondAttribute="trailing" id="h6W-Ro-eCk"/>
+                            <constraint firstItem="3JX-ia-k2a" firstAttribute="leading" secondItem="0I0-hy-lHq" secondAttribute="leading" constant="8" id="AN4-xQ-U9P"/>
+                            <constraint firstItem="m1w-xO-o8W" firstAttribute="top" secondItem="cLF-D1-GNS" secondAttribute="top" id="XM0-CR-SUr"/>
+                            <constraint firstItem="m1w-xO-o8W" firstAttribute="width" secondItem="cLF-D1-GNS" secondAttribute="width" id="XpC-yG-KUl"/>
+                            <constraint firstItem="0I0-hy-lHq" firstAttribute="bottom" secondItem="3JX-ia-k2a" secondAttribute="bottom" constant="8" id="bHs-44-xId"/>
+                            <constraint firstItem="m1w-xO-o8W" firstAttribute="bottom" secondItem="098-t9-MpK" secondAttribute="top" id="bcv-Pt-lac"/>
+                            <constraint firstItem="m1w-xO-o8W" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" id="kic-8K-mHU"/>
                             <constraint firstItem="cLF-D1-GNS" firstAttribute="bottom" secondItem="098-t9-MpK" secondAttribute="bottom" id="lmD-MS-qXf"/>
-                            <constraint firstItem="3JX-ia-k2a" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" constant="8" id="n57-Da-ubJ"/>
                             <constraint firstItem="098-t9-MpK" firstAttribute="leading" secondItem="9dQ-cY-Tqg" secondAttribute="leading" id="s9q-5s-xYC"/>
+                            <constraint firstItem="0I0-hy-lHq" firstAttribute="trailing" secondItem="3JX-ia-k2a" secondAttribute="trailing" constant="8" id="t4P-Sr-Con"/>
                             <constraint firstItem="098-t9-MpK" firstAttribute="trailing" secondItem="9dQ-cY-Tqg" secondAttribute="trailing" id="vvr-US-CBC"/>
-                            <constraint firstItem="fsf-uM-oWf" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" id="wu8-ay-9q5"/>
-                            <constraint firstItem="cLF-D1-GNS" firstAttribute="trailing" secondItem="8NC-Ka-Jwd" secondAttribute="trailing" id="zca-pY-D63"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cLF-D1-GNS"/>
                     </view>
@@ -121,9 +120,9 @@
                     <connections>
                         <outlet property="CWButton" destination="pax-Ye-0d9" id="TFt-KA-NCm"/>
                         <outlet property="NSFWButton" destination="PDD-NQ-dha" id="LRD-PN-I8a"/>
-                        <outlet property="backgroundImage" destination="fsf-uM-oWf" id="UHx-wq-i0z"/>
                         <outlet property="bottomLayout" destination="lmD-MS-qXf" id="ZOU-sg-Dyx"/>
                         <outlet property="cwInput" destination="8NC-Ka-Jwd" id="8ZJ-zU-d29"/>
+                        <outlet property="imageSelectButton" destination="9zg-4V-9GJ" id="6hp-AJ-AWh"/>
                         <outlet property="keyboardUpOrDown" destination="SEL-MN-vEt" id="dsw-Wc-7ui"/>
                         <outlet property="nowAccountLabel" destination="3JX-ia-k2a" id="Wuh-0k-jIG"/>
                         <outlet property="scopeSelectButton" destination="Y3a-nK-Avh" id="cJE-0h-VC1"/>
@@ -275,6 +274,7 @@
     </scenes>
     <resources>
         <image name="ArrowUp" width="25" height="25"/>
+        <image name="Camera" width="32" height="32"/>
         <image name="NowPlaying" width="32" height="32"/>
         <image name="visibility-public" width="32" height="32"/>
     </resources>
