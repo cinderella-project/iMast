@@ -33,7 +33,6 @@
 		2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */; };
 		2AF352301EAB9C5600777C2E /* iMastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3522F1EAB9C5600777C2E /* iMastTests.swift */; };
 		2AF3523B1EAB9C5600777C2E /* iMastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */; };
-		2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */; };
 		4DA5F6B8581A005E7D478957 /* Pods_iMastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233F93890AFA8A380B3A3DC0 /* Pods_iMastUITests.framework */; };
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
 		CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
@@ -197,7 +196,6 @@
 		2AF352361EAB9C5600777C2E /* iMastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMastUITests.swift; sourceTree = "<group>"; };
 		2AF3523C1EAB9C5600777C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostSetImageViewController.swift; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -486,7 +484,6 @@
 			children = (
 				2A533F6E1ECCFE940062630F /* NewPost.storyboard */,
 				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
-				2AFC9FDA1EB5478900888A8B /* NewPostSetImageViewController.swift */,
 				CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */,
 				CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */,
 			);
@@ -1050,7 +1047,6 @@
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
-				2AFC9FDB1EB5478900888A8B /* NewPostSetImageViewController.swift in Sources */,
 				CEE2542E2004FA76005FEB6F /* MastodonNotification.swift in Sources */,
 				CE1002C820065DA30041B636 /* MastodonSearchResult.swift in Sources */,
 				CEE2542A2004B802005FEB6F /* MastodonApplication.swift in Sources */,

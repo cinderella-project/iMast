@@ -26,7 +26,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             cwInput.isHidden = true
         }
     }
-    var image: UIImage? = nil // TODO: あとで消す
     var images: [UIImage] = []
     
     @IBOutlet weak var nowAccountLabel: UILabel!
