@@ -27,6 +27,9 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
         refreshControl?.addTarget(self, action: #selector(OtherMenuAccountChangeTableViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!)
+        
+        tableView.rowHeight = 44
+        
         updateTableView()
     }
 
