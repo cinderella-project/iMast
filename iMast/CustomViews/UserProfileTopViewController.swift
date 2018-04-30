@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Accounts
+import SafariServices
 
 class UserProfileTopViewController: UITableViewController {
 
@@ -26,6 +27,8 @@ class UserProfileTopViewController: UITableViewController {
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
+    var externalServiceLinks: [(name: String, userId: String?, url: URL)] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -101,6 +104,13 @@ class UserProfileTopViewController: UITableViewController {
                 self.relationShipLabel.text! += " (インスタンスミュート中)"
             }
         })
+        
+        self.externalServiceLinks = []
+        
+        if let niconicoUrl = user.niconicoUrl {
+            let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last
+            self.externalServiceLinks.append((name: "niconico", userId: niconicoId != nil ? "user/"+niconicoId! : nil, url: niconicoUrl))
+        }
     }
 
     @IBAction func moreButtonTapped(_ sender: Any) {
@@ -240,15 +250,47 @@ class UserProfileTopViewController: UITableViewController {
         }
     }
     
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        if indexPath.section != 2 {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
 
         // Configure the cell...
 
+        let externalService = self.externalServiceLinks[indexPath.row]
+        
+        cell.textLabel?.text = externalService.name
+        cell.detailTextLabel?.text = externalService.userId
+        cell.accessoryType = .disclosureIndicator
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section != 2 {
+            return super.tableView(tableView, numberOfRowsInSection: section)
+        }
+        return self.externalServiceLinks.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 2 {
+//            super.tableView(tableView, didSelectRowAt: indexPath)
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: self.externalServiceLinks[indexPath.row].url)
+        self.present(safariVC, animated: true, completion: nil)
+    }
 
     /*
     // Override to support conditional editing of the table view.

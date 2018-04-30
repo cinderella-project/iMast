@@ -25,6 +25,8 @@ class MastodonAccount: Codable {
 
     let acct: String
     let moved: MastodonAccount?
+    
+    let niconicoUrl: URL?
     enum CodingKeys: String, CodingKey {
         case id
         case name = "display_name"
@@ -41,6 +43,8 @@ class MastodonAccount: Codable {
 
         case acct
         case moved
+        
+        case niconicoUrl = "nico_url"
     }
 }
 
