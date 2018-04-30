@@ -65,12 +65,19 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hRK-hn-Wuq" userLabel="Boosted User Icon View">
                     <rect key="frame" x="32" y="32" width="24" height="24"/>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GZ-iC-N5D" customClass="NSFWGuardView" customModule="iMast" customModuleProvider="target">
+                    <rect key="frame" x="64" y="161" width="443" height="150"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="1GZ-iC-N5D" firstAttribute="height" secondItem="wXc-zh-T2a" secondAttribute="height" id="2Fx-kv-TwX"/>
                 <constraint firstAttribute="trailing" secondItem="8rL-5m-UMl" secondAttribute="trailing" constant="8" id="2N0-ce-4u0"/>
                 <constraint firstItem="lm5-3d-b6x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Jg-Zi-fBL"/>
+                <constraint firstItem="1GZ-iC-N5D" firstAttribute="centerY" secondItem="wXc-zh-T2a" secondAttribute="centerY" id="8Pp-I7-ucv"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="leading" secondItem="sQD-aX-zO8" secondAttribute="trailing" constant="8" id="Bz7-HT-Ghz"/>
+                <constraint firstItem="1GZ-iC-N5D" firstAttribute="width" secondItem="wXc-zh-T2a" secondAttribute="width" id="Dbx-qL-ufv"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EFm-a8-BjD"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="width" secondItem="sQD-aX-zO8" secondAttribute="width" multiplier="0.5" id="GqQ-0B-q3e"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="bottom" secondItem="sQD-aX-zO8" secondAttribute="bottom" id="Tnk-5p-w4L"/>
@@ -79,6 +86,7 @@
                 <constraint firstAttribute="bottom" secondItem="8rL-5m-UMl" secondAttribute="bottom" constant="8" id="cD9-3W-zPg"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dQt-4D-boL"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="lm5-3d-b6x" secondAttribute="trailing" constant="5" id="hnU-oh-ep3"/>
+                <constraint firstItem="1GZ-iC-N5D" firstAttribute="centerX" secondItem="wXc-zh-T2a" secondAttribute="centerX" id="jkb-0x-x3M"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="trailing" secondItem="sQD-aX-zO8" secondAttribute="trailing" id="kgS-7u-ZUF"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="height" secondItem="sQD-aX-zO8" secondAttribute="height" multiplier="0.5" id="ocQ-RO-bxa"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ooO-rh-LZd"/>
@@ -92,6 +100,7 @@
                 <outlet property="iconView" destination="sQD-aX-zO8" id="pnk-gT-qcw"/>
                 <outlet property="iconWidthConstraint" destination="E3g-PX-YCf" id="KeK-vb-hi8"/>
                 <outlet property="imageThumbnailStackView" destination="wXc-zh-T2a" id="rVL-Jv-MoL"/>
+                <outlet property="nsfwGuardView" destination="1GZ-iC-N5D" id="hus-Rv-xrC"/>
                 <outlet property="textView" destination="GZJ-sR-UHI" id="cP4-z9-LrB"/>
                 <outlet property="timeView" destination="Gh3-yR-Njo" id="2pm-De-eXd"/>
                 <outlet property="tootInfoView" destination="lm5-3d-b6x" id="87q-wx-4kk"/>

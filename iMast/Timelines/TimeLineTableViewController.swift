@@ -150,9 +150,9 @@ class TimeLineTableViewController: UITableViewController {
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
             return a.id.int > b.id.int
         }).filter({ (post) -> Bool in
-            if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
-                return false
-            }
+//            if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
+//                return false
+//            }
             if isAlreadyAdded[post.id.string] != true {
                 isAlreadyAdded[post.id.string] = true
                 return true

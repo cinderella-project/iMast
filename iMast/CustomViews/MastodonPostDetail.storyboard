@@ -72,11 +72,19 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sWN-zC-cth" customClass="NSFWGuardView" customModule="iMast" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="-15" width="304" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="sWN-zC-cth" firstAttribute="height" secondItem="ePo-az-xWd" secondAttribute="height" id="2sH-i2-b6w"/>
                                                 <constraint firstItem="Xpj-sz-9xC" firstAttribute="width" secondItem="Kgg-s6-PHp" secondAttribute="width" constant="-16" id="56G-Ep-Ksh"/>
                                                 <constraint firstItem="Xpj-sz-9xC" firstAttribute="leading" secondItem="Kgg-s6-PHp" secondAttribute="leading" constant="8" id="EKl-8o-cx7"/>
+                                                <constraint firstItem="sWN-zC-cth" firstAttribute="centerY" secondItem="ePo-az-xWd" secondAttribute="centerY" id="dqN-3w-4zp"/>
                                                 <constraint firstItem="Xpj-sz-9xC" firstAttribute="top" secondItem="Kgg-s6-PHp" secondAttribute="top" constant="8" id="gnK-yJ-wGj"/>
+                                                <constraint firstItem="sWN-zC-cth" firstAttribute="centerX" secondItem="ePo-az-xWd" secondAttribute="centerX" id="iaY-Vd-aIZ"/>
+                                                <constraint firstItem="sWN-zC-cth" firstAttribute="width" secondItem="ePo-az-xWd" secondAttribute="width" id="rrc-0s-5iC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -174,6 +182,7 @@
                         <outlet property="iconView" destination="get-6c-42Z" id="c9i-XR-pS8"/>
                         <outlet property="imageStackView" destination="ePo-az-xWd" id="CLL-tS-hlO"/>
                         <outlet property="moreButton" destination="K3G-Ii-oVs" id="Kzd-YA-PDc"/>
+                        <outlet property="nsfwGuardView" destination="sWN-zC-cth" id="W7u-MJ-bmF"/>
                         <outlet property="postStackView" destination="Xpj-sz-9xC" id="HEb-P8-6MZ"/>
                         <outlet property="textView" destination="4Wf-6v-Zds" id="haW-Kl-9f9"/>
                         <outlet property="userNameView" destination="rb0-OC-SUO" id="dzi-In-5gN"/>
@@ -182,7 +191,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4Z-Nt-WxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69.375" y="121.47887323943662"/>
+            <point key="canvasLocation" x="-41" y="130"/>
         </scene>
     </scenes>
 </document>

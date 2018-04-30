@@ -22,6 +22,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var imageThumbnailStackView: UIStackView!
     @IBOutlet weak var boostedUserIcon: UIImageView!
     @IBOutlet weak var tootInfoView: UIView!
+    @IBOutlet weak var nsfwGuardView: NSFWGuardView!
     var post: MastodonPost?
     
     func viewDidLayoutSubviews() {
@@ -116,6 +117,10 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.imageThumbnailStackView.subviews.forEach { view in
             view.removeFromSuperview()
         }
+        
+        self.nsfwGuardView.isHidden = true
+        self.nsfwGuardView.isUserInteractionEnabled = false
+        
         if thumbnail_height != 0 && post.spoilerText == "" {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
@@ -129,6 +134,11 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapImage)))
                 self.imageThumbnailStackView.addArrangedSubview(imageView)
             })
+            
+            if post.sensitive {
+                self.nsfwGuardView.isHidden = false
+                self.nsfwGuardView.isUserInteractionEnabled = true
+            }
         }
         self.textView.delegate = self
         self.layoutIfNeeded()
