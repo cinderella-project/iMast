@@ -28,6 +28,7 @@ class OtherMenuListsTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.refreshList), for: .valueChanged)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
