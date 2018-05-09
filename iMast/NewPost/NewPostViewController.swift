@@ -108,28 +108,36 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func sendPost(_ sender: Any) {
         print(isNSFW)
         print(isCW)
-        let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertControllerStyle.alert)
+        let baseMessage = "しばらくお待ちください\n"
+        let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertControllerStyle.alert)
         present(alert, animated: true, completion: nil)
         
-        var uploadPromises: [Promise<JSON>] = []
-        for image in self.images {
-            uploadPromises.append(
-            MastodonUserToken.getLatestUsed()!.upload(file: getImage(image)!, mimetype: "image/png").then { (response) -> JSON in
-                if response["_response_code"].intValue >= 400 {
-                    alert.dismiss(animated: false, completion: {
-                        self.apiError(response["error"].string, response["_response_code"].int)
-                    })
-                    throw APIError.alreadyError()
+        let uploadPromise = async() { _ -> [JSON] in
+            var imageJSONs: [JSON] = []
+            for (index, image) in self.images.enumerated() {
+                DispatchQueue.main.async {
+                    alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.images.count))"
                 }
-                if !response["id"].exists() {
-                    throw APIError.nil("id")
-                }
-                return response
+                imageJSONs.append(try await(MastodonUserToken.getLatestUsed()!.upload(file: self.getImage(image)!, mimetype: "image/png").then { (response) -> JSON in
+                    if response["_response_code"].intValue >= 400 {
+                        alert.dismiss(animated: false, completion: {
+                            self.apiError(response["error"].string, response["_response_code"].int)
+                        })
+                        throw APIError.alreadyError()
+                    }
+                    if !response["id"].exists() {
+                        throw APIError.nil("id")
+                    }
+                    return response
+                }))
             }
-            )
+            return imageJSONs
         }
-        let uploadPromise = Hydra.all(uploadPromises)
+        
         uploadPromise.then { (medias) -> Promise<JSON> in
+            DispatchQueue.main.async {
+                alert.message = baseMessage + "送信中"
+            }
             print(medias)
             var text = self.textInput.text ?? ""
             let mediaIds = medias.map({ (media) in
@@ -173,7 +181,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
         }.catch { err in
             alert.dismiss(animated: false, completion: {
-                self.alert(title: "謎のエラー", message: "謎のエラーが発生しました。")
+                self.alert(title: "エラー", message: "エラーが発生しました。\(err)")
             })
         }
     }
