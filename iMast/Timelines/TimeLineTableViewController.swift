@@ -345,14 +345,20 @@ class TimeLineTableViewController: UITableViewController {
         // ブースト
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト"){
             (action,index) -> Void in
-            MastodonUserToken.getLatestUsed()!.repost(post: post).then { post in
-                self.posts = self.posts.map({ (map_post) -> MastodonPost in
+            MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
+                let post = post_.repost!
+                var indexs: [IndexPath] = []
+                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
                     if map_post.id == post.id {
+                        indexs.append(IndexPath(row: index, section: 0))
                         return post
                     } else {
                         return map_post
                     }
                 })
+                if let cell = self.cellCache[post.id.string] {
+                    cell.load(post: post)
+                }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
@@ -362,13 +368,18 @@ class TimeLineTableViewController: UITableViewController {
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ"){
             (action,index) -> Void in
             MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
-                self.posts = self.posts.map({ (map_post) -> MastodonPost in
+                var indexs: [IndexPath] = []
+                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
                     if map_post.id == post.id {
+                        indexs.append(IndexPath(row: index, section: 0))
                         return post
                     } else {
                         return map_post
                     }
                 })
+                if let cell = self.cellCache[post.id.string] {
+                    cell.load(post: post)
+                }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }

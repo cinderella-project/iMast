@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -69,6 +69,22 @@
                     <rect key="frame" x="64" y="161" width="443" height="150"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tNk-Gl-VMc">
+                    <rect key="frame" x="512" y="0.0" width="3" height="319"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wa6-sT-MB5">
+                            <rect key="frame" x="0.0" y="0.0" width="3" height="159.5"/>
+                            <color key="backgroundColor" red="0.098039215686274508" green="0.69803921568627447" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHL-Qf-Fu7">
+                            <rect key="frame" x="0.0" y="159.5" width="3" height="159.5"/>
+                            <color key="backgroundColor" red="0.89803921568627454" green="0.80000000000000004" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="d2H-wt-1Mu"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -83,10 +99,13 @@
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="bottom" secondItem="sQD-aX-zO8" secondAttribute="bottom" id="Tnk-5p-w4L"/>
                 <constraint firstAttribute="bottom" secondItem="lm5-3d-b6x" secondAttribute="bottom" id="TzA-eE-0in"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sQD-aX-zO8" secondAttribute="bottom" constant="8" id="VER-Ff-Ses"/>
+                <constraint firstAttribute="trailing" secondItem="tNk-Gl-VMc" secondAttribute="trailing" id="Wfk-5q-yRl"/>
                 <constraint firstAttribute="bottom" secondItem="8rL-5m-UMl" secondAttribute="bottom" constant="8" id="cD9-3W-zPg"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dQt-4D-boL"/>
+                <constraint firstItem="tNk-Gl-VMc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eM1-tx-ol5"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="lm5-3d-b6x" secondAttribute="trailing" constant="5" id="hnU-oh-ep3"/>
                 <constraint firstItem="1GZ-iC-N5D" firstAttribute="centerX" secondItem="wXc-zh-T2a" secondAttribute="centerX" id="jkb-0x-x3M"/>
+                <constraint firstAttribute="bottom" secondItem="tNk-Gl-VMc" secondAttribute="bottom" id="jvy-17-qYi"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="trailing" secondItem="sQD-aX-zO8" secondAttribute="trailing" id="kgS-7u-ZUF"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="height" secondItem="sQD-aX-zO8" secondAttribute="height" multiplier="0.5" id="ocQ-RO-bxa"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ooO-rh-LZd"/>
@@ -100,6 +119,8 @@
                 <outlet property="iconView" destination="sQD-aX-zO8" id="pnk-gT-qcw"/>
                 <outlet property="iconWidthConstraint" destination="E3g-PX-YCf" id="KeK-vb-hi8"/>
                 <outlet property="imageThumbnailStackView" destination="wXc-zh-T2a" id="rVL-Jv-MoL"/>
+                <outlet property="myBoostedView" destination="wa6-sT-MB5" id="YEA-xT-w4L"/>
+                <outlet property="myFavouritedView" destination="yHL-Qf-Fu7" id="5B7-BA-7mB"/>
                 <outlet property="nsfwGuardView" destination="1GZ-iC-N5D" id="hus-Rv-xrC"/>
                 <outlet property="textView" destination="GZJ-sR-UHI" id="cP4-z9-LrB"/>
                 <outlet property="timeView" destination="Gh3-yR-Njo" id="2pm-De-eXd"/>
@@ -108,5 +129,9 @@
             </connections>
             <point key="canvasLocation" x="109.5" y="-225.5"/>
         </view>
+        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="lzb-IV-mkR">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        </stackView>
     </objects>
 </document>

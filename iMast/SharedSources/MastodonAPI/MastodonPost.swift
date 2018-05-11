@@ -21,9 +21,9 @@ class MastodonPost: Codable {
     let createdAt: Date
     let repostCount: Int
     let favouritesCount: Int
-    let reposted: Bool = false
-    let favourited: Bool = false
-    let muted: Bool = false
+    var reposted: Bool = false
+    var favourited: Bool = false
+    var muted: Bool = false
     let sensitive: Bool
     let spoilerText: String
     let attachments: [MastodonAttachment]

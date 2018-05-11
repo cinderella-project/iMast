@@ -24,6 +24,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var tootInfoView: UIView!
     @IBOutlet weak var nsfwGuardView: NSFWGuardView!
     var post: MastodonPost?
+    @IBOutlet weak var myBoostedView: UIView!
+    @IBOutlet weak var myFavouritedView: UIView!
     
     func viewDidLayoutSubviews() {
         
@@ -140,6 +142,11 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 self.nsfwGuardView.isUserInteractionEnabled = true
             }
         }
+        
+        print(post.reposted, post.favourited)
+        self.myBoostedView.isHidden = !post.reposted
+        self.myFavouritedView.isHidden = !post.favourited
+        
         self.textView.delegate = self
         self.layoutIfNeeded()
     }
