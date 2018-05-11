@@ -130,10 +130,16 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
         userScreenNameView.isUserInteractionEnabled = true
         userScreenNameView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))
+
+        isFavorited = post.favourited
+        isBoosted = post.reposted
+        
         let thumbnail_height = Defaults[.thumbnailHeight]
         if nsfwGuardView.isUserInteractionEnabled {
             nsfwGuardView.isHidden = !post.sensitive
         }
+
+        
         if thumbnail_height != 0 {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
