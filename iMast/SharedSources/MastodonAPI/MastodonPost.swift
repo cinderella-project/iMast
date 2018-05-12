@@ -21,9 +21,18 @@ class MastodonPost: Codable {
     let createdAt: Date
     let repostCount: Int
     let favouritesCount: Int
-    var reposted: Bool = false
-    var favourited: Bool = false
-    var muted: Bool = false
+    var reposted: Bool {
+        return self._reposted ?? false
+    }
+    var _reposted: Bool?
+    var favourited: Bool {
+        return self._favourited ?? false
+    }
+    var _favourited: Bool?
+    var muted: Bool {
+        return self._muted ?? false
+    }
+    var _muted: Bool?
     let sensitive: Bool
     let spoilerText: String
     let attachments: [MastodonAttachment]
@@ -51,9 +60,9 @@ class MastodonPost: Codable {
         case createdAt = "created_at"
         case repostCount = "reblogs_count"
         case favouritesCount = "favourites_count"
-        case reposted = "reblogged"
-        case favourited
-        case muted
+        case _reposted = "reblogged"
+        case _favourited = "favourited"
+        case _muted = "muted"
         case sensitive
         case spoilerText = "spoiler_text"
         case pinned
