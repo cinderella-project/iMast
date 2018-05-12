@@ -142,8 +142,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 self.nsfwGuardView.isUserInteractionEnabled = true
             }
         }
-        
-        print(post.reposted, post.favourited)
+
         self.myBoostedView.isHidden = !post.reposted
         self.myFavouritedView.isHidden = !post.favourited
         
