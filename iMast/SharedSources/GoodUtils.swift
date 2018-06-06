@@ -417,7 +417,7 @@ func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
 }
 
 let VisibilityString = ["public", "unlisted", "private", "direct"]
-let VisibilityLocalizedString = ["公開", "未収蔵", "非公開", "ダイレクト"]
-let VisibilityDescriptionString = ["LTLやフォロワーのHTL等に流れます", "LTLやハッシュタグ検索には出ません", "あなたのフォロワーのみ見れます", "リプライを飛ばした対象の人にのみ見れます"]
+let VisibilityLocalizedString = ["公開", "未収載", "フォロワー限定", "ダイレクト"]
+let VisibilityDescriptionString = ["LTLやフォロワーのHTL等に流れます", "LTLやハッシュタグ検索には出ません", "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます", "メンションを飛ばした対象の人にのみ見れます"]
 let UserDefaultsAppGroup = UserDefaults.init(suiteName: "group.jp.pronama.imast")!
 var Defaults = UserDefaultsAppGroup
