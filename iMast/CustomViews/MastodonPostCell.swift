@@ -123,7 +123,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.nsfwGuardView.isHidden = true
         self.nsfwGuardView.isUserInteractionEnabled = false
         
-        if thumbnail_height != 0 && post.spoilerText == "" {
+        if thumbnail_height != 0 && post.spoilerText == "" && post.attachments.count > 0 {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 imageView.sd_setImage(with: URL(string: media.previewUrl))

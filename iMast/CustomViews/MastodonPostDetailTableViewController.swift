@@ -136,7 +136,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         
         let thumbnail_height = Defaults[.thumbnailHeight]
         if nsfwGuardView.isUserInteractionEnabled {
-            nsfwGuardView.isHidden = !post.sensitive
+            nsfwGuardView.isHidden = !post.sensitive && post.attachments.count > 0
         }
 
         for subview in self.imageStackView.arrangedSubviews {
