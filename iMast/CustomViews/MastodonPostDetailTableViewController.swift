@@ -139,7 +139,10 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             nsfwGuardView.isHidden = !post.sensitive
         }
 
-        
+        for subview in self.imageStackView.arrangedSubviews {
+            self.imageStackView.removeArrangedSubview(subview)
+            subview.removeFromSuperview()
+        }
         if thumbnail_height != 0 {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
