@@ -46,6 +46,11 @@ class MastodonAccount: Codable {
         
         case niconicoUrl = "nico_url"
     }
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
 }
 
 extension MastodonUserToken {

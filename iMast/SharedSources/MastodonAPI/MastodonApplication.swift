@@ -15,4 +15,9 @@ class MastodonApplication: Codable {
         case name
         case website
     }
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
 }

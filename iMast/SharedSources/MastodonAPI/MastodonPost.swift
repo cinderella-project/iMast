@@ -73,6 +73,11 @@ class MastodonPost: Codable {
         case visibility
         case mentions
     }
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
 }
 
 class MastodonCustomEmoji: Codable {
@@ -81,6 +86,11 @@ class MastodonCustomEmoji: Codable {
     enum CodingKeys: String, CodingKey {
         case shortcode
         case url
+    }
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
     }
 }
 
@@ -94,6 +104,11 @@ class MastodonPostMention: Codable {
     let username: String
     let acct: String
     let id: MastodonID
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
 }
 
 extension MastodonUserToken {
