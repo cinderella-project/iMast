@@ -26,6 +26,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     var post: MastodonPost?
     @IBOutlet weak var myBoostedView: UIView!
     @IBOutlet weak var myFavouritedView: UIView!
+    var pinned: Bool = false
     
     func viewDidLayoutSubviews() {
         
@@ -97,7 +98,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 break
             }
         }
-        if post.pinned ?? false {
+        if self.pinned {
             timeView.text = "📌"+(timeView.text ?? "")
         }
         timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))

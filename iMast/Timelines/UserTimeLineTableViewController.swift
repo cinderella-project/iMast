@@ -28,11 +28,8 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                 ]
             )
         }.then { res -> Void in
+            self.pinnedPosts = res[0]
             self._addNewPosts(posts: res[1])
-            self._addNewPosts(posts: res[0].map({ post in
-                post.pinned = true
-                return post
-            }))
             return Void()
         }
     }

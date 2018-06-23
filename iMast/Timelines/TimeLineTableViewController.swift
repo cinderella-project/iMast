@@ -30,6 +30,7 @@ class TimeLineTableViewController: UITableViewController {
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType? = nil
+    var pinnedPosts: [MastodonPost] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,13 +180,13 @@ class TimeLineTableViewController: UITableViewController {
         var deleteIndexPaths: [IndexPath] = []
         posts.forEach { (post) in
             self.posts.insert(post, at: cnt)
-            indexPaths.append(IndexPath(row: cnt, section: 0))
+            indexPaths.append(IndexPath(row: cnt, section: 1))
             cnt += 1
 
         }
         if self.posts.count - cnt > maxPostCount { // メモリ節約
             for i in (maxPostCount+cnt)..<self.posts.count {
-                deleteIndexPaths.append(IndexPath(row: i - cnt, section: 0))
+                deleteIndexPaths.append(IndexPath(row: i - cnt, section: 1))
             }
             self.posts = Array(self.posts.prefix(maxPostCount + cnt))
         }
@@ -245,7 +246,9 @@ class TimeLineTableViewController: UITableViewController {
                         return false
                     })
                     if tootFound {
-                        self.cellCache[object["payload"].stringValue] = nil
+                        for section in [0, 1] {
+                            self.cellCache["\(section):\(object["payload"].stringValue)"] = nil
+                        }
                         self.tableView.reloadData()
                     }
                 } else {
@@ -304,38 +307,43 @@ class TimeLineTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return pinnedPosts.count
+        }
         return posts.count == 0 ? 0 : posts.count + (isReadmoreEnabled ? 1 : 0)
     }
     
-    func getCell(post: MastodonPost) -> UITableViewCell {
-        if let cell = cellCache[post.id.string] {
+    func getCell(post: MastodonPost, section: Int = 1) -> UITableViewCell {
+        let cellHash = "\(section):\(post.id.string)"
+        if let cell = cellCache[cellHash] {
             return cell
         }
         let postView = MastodonPostCell.getInstance(owner: self)
+        postView.pinned = section == 0  
         // Configure the cell...
         postView.load(post: post)
-        cellCache[post.id.string] = postView
+        cellCache[cellHash] = postView
         return postView
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath[1] == posts.count && posts.count != 0 {
+        if indexPath.row == posts.count && posts.count != 0 {
             return readmoreCell
         }
-        let post = posts[indexPath[1]]
-        return getCell(post: post)
+        let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
+        return getCell(post: post, section: indexPath.section)
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if indexPath[1] >= self.posts.count {
+        if indexPath.section == 1 && indexPath.row >= self.posts.count {
             return []
         }
-        let post = self.posts[indexPath[1]]
+        let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
         // Reply
         let replyAction = UITableViewRowAction(style: .normal, title: "返信"){
             (action, index) -> Void in
@@ -348,7 +356,7 @@ class TimeLineTableViewController: UITableViewController {
             MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
                 let post = post_.repost!
                 var indexs: [IndexPath] = []
-                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
+                self.pinnedPosts = self.pinnedPosts.enumerated().map({ (index, map_post) -> MastodonPost in
                     if map_post.id == post.id {
                         indexs.append(IndexPath(row: index, section: 0))
                         return post
@@ -356,8 +364,18 @@ class TimeLineTableViewController: UITableViewController {
                         return map_post
                     }
                 })
-                if let cell = self.cellCache[post.id.string] {
-                    cell.load(post: post)
+                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
+                    if map_post.id == post.id {
+                        indexs.append(IndexPath(row: index, section: 1))
+                        return post
+                    } else {
+                        return map_post
+                    }
+                })
+                for section in [0, 1] {
+                    if let cell = self.cellCache["\(section):\(post.id.string)"] {
+                        cell.load(post: post)
+                    }
                 }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
@@ -369,7 +387,7 @@ class TimeLineTableViewController: UITableViewController {
             (action,index) -> Void in
             MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
                 var indexs: [IndexPath] = []
-                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
+                self.pinnedPosts = self.pinnedPosts.enumerated().map({ (index, map_post) -> MastodonPost in
                     if map_post.id == post.id {
                         indexs.append(IndexPath(row: index, section: 0))
                         return post
@@ -377,8 +395,18 @@ class TimeLineTableViewController: UITableViewController {
                         return map_post
                     }
                 })
-                if let cell = self.cellCache[post.id.string] {
-                    cell.load(post: post)
+                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
+                    if map_post.id == post.id {
+                        indexs.append(IndexPath(row: index, section: 1))
+                        return post
+                    } else {
+                        return map_post
+                    }
+                })
+                for section in [0, 1] {
+                    if let cell = self.cellCache["\(section):\(post.id.string)"] {
+                        cell.load(post: post)
+                    }
                 }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
@@ -408,7 +436,7 @@ class TimeLineTableViewController: UITableViewController {
         posts.forEach { (post) in
             _ = self.getCell(post: post)
             self.posts.append(post)
-            rows.append(IndexPath(row: self.posts.count-1, section: 0))
+            rows.append(IndexPath(row: self.posts.count-1, section: 1))
         }
         self.tableView.insertRows(at: rows, with: .automatic)
         self.maxPostCount += posts.count
@@ -417,7 +445,7 @@ class TimeLineTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return indexPath[0] == 0 && indexPath[1] < self.posts.count
+        return indexPath.row < (indexPath.section == 0 ? self.pinnedPosts : self.posts).count
     }
     
     /*
