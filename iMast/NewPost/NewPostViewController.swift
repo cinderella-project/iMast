@@ -156,7 +156,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
             var params: [String: Any] = [
                 "media_ids": mediaIds,
-                "sensitive": self.isNSFW,
+                "sensitive": self.isNSFW || (self.isCW && self.cwInput.text != nil && self.cwInput.text != ""),
                 "spoiler_text": self.isCW ? self.cwInput.text ?? "" : "",
                 "status": text,
                 "visibility": self.scope
