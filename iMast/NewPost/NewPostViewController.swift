@@ -222,11 +222,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func cwButtonTapped(_ sender: Any) {
         isCW = !isCW
         cwInput.isHidden = !isCW
-        if isCW {
-            textInput.textContainerInset.top += 30
-        } else {
-            textInput.textContainerInset.top -= 30
-        }
     }
     @IBAction func nowPlayingTapped(_ sender: Any) {
         let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
