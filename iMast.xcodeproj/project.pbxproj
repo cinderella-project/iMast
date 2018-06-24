@@ -62,9 +62,13 @@
 		CE51AC051F40C06B00E43607 /* iMastTodayWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */; };
+		CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7320E033E20034B63E /* StableTableViewController.swift */; };
+		CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */; };
+		CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */; };
+		CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */; };
+		CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
 		CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
-		CE6977851F0EE5C000C1B234 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */; };
 		CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */; };
 		CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */; };
 		CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */; };
@@ -219,9 +223,13 @@
 		CE51AC021F40C06B00E43607 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE51AC091F41855A00E43607 /* iMastTodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastTodayWidget.entitlements; sourceTree = "<group>"; };
 		CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineReadMoreCell.xib; sourceTree = "<group>"; };
+		CE54BC7320E033E20034B63E /* StableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableTableViewController.swift; sourceTree = "<group>"; };
+		CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
+		CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileInfoTableViewCell.xib; sourceTree = "<group>"; };
+		CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioTableViewCell.swift; sourceTree = "<group>"; };
+		CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileBioTableViewCell.xib; sourceTree = "<group>"; };
 		CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccountSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CE66CE131EEA2AF9006D5B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTopViewController.swift; sourceTree = "<group>"; };
 		CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaExtension.swift; sourceTree = "<group>"; };
@@ -536,9 +544,13 @@
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
 				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
-				CE6977841F0EE5C000C1B234 /* UserProfile.storyboard */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
+				CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */,
+				CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */,
+				CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */,
 				CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */,
+				CE54BC7320E033E20034B63E /* StableTableViewController.swift */,
 				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
 				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
 				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
@@ -742,6 +754,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
+				CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */,
 				CE8DF1851FED41C4005278FE /* Podfile in Resources */,
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
@@ -757,7 +771,6 @@
 				2A533F711ECCFF710062630F /* OtherMenu.storyboard in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 				2A66E7FC1EAEE89E00735081 /* Main.storyboard in Resources */,
-				CE6977851F0EE5C000C1B234 /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1036,6 +1049,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */,
 				CEE254282004B5AA005FEB6F /* MastodonPost.swift in Sources */,
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
@@ -1047,6 +1061,7 @@
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */,
+				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
@@ -1070,6 +1085,7 @@
 				CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */,
 				2A533F7C1ECD30BF0062630F /* OtherMenuAccountChangeTableViewController.swift in Sources */,
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
+				CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */,
 				CE1002D5200683850041B636 /* ReportError.swift in Sources */,
 				2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */,
 				2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */,

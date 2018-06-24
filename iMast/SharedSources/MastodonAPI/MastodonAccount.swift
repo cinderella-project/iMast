@@ -27,6 +27,9 @@ class MastodonAccount: Codable {
     let moved: MastodonAccount?
     
     let niconicoUrl: URL?
+    
+    // for pawoo
+    let oauthAuthentications: [MastodonAccountOAuthAuthenticate]?
     enum CodingKeys: String, CodingKey {
         case id
         case name = "display_name"
@@ -45,7 +48,18 @@ class MastodonAccount: Codable {
         case moved
         
         case niconicoUrl = "nico_url"
+        case oauthAuthentications = "oauth_authentications"
     }
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
+}
+
+class MastodonAccountOAuthAuthenticate: Codable {
+    let provider: String
+    let uid: String
     
     @available(*, deprecated, message: "Do not use.")
     init() {

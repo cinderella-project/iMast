@@ -11,23 +11,26 @@ import SwiftyJSON
 import Accounts
 import SafariServices
 
-class UserProfileTopViewController: UITableViewController {
+class UserProfileTopViewController: StableTableViewController {
 
-    @IBOutlet weak var tootCell: UITableViewCell!
-    @IBOutlet weak var userIconView: UIImageView!
-    @IBOutlet weak var userNameView: UILabel!
-    @IBOutlet weak var userScreenNameView: UILabel!
-    @IBOutlet weak var followingCell: UITableViewCell!
-    @IBOutlet weak var followersCell: UITableViewCell!
-    @IBOutlet weak var createdAtCell: UITableViewCell!
-    @IBOutlet weak var tootDaysCell: UITableViewCell!
-    @IBOutlet weak var createdAtSabunCell: UITableViewCell!
-    @IBOutlet weak var moreButton: UIBarButtonItem!
-    @IBOutlet weak var relationShipLabel: UILabel!
+//    @IBOutlet weak var tootCell: UITableViewCell!
+//    @IBOutlet weak var userIconView: UIImageView!
+//    @IBOutlet weak var userNameView: UILabel!
+//    @IBOutlet weak var userScreenNameView: UILabel!
+//    @IBOutlet weak var followingCell: UITableViewCell!
+//    @IBOutlet weak var followersCell: UITableViewCell!
+//    @IBOutlet weak var createdAtCell: UITableViewCell!
+//    @IBOutlet weak var tootDaysCell: UITableViewCell!
+//    @IBOutlet weak var createdAtSabunCell: UITableViewCell!
+    var moreButton: UIBarButtonItem!
+//    @IBOutlet weak var relationShipLabel: UILabel!
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
     var externalServiceLinks: [(name: String, userId: String?, url: URL)] = []
+    
+    let infoCell = Bundle.main.loadNibNamed("UserProfileInfoTableViewCell", owner: self, options: nil)!.first! as! UserProfileInfoTableViewCell
+    let bioCell = Bundle.main.loadNibNamed("UserProfileBioTableViewCell", owner: self, options: nil)!.first! as! UserProfileBioTableViewCell
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,14 @@ class UserProfileTopViewController: UITableViewController {
         }
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
+        
+        self.tableView.register(UINib(nibName: "UserProfileInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "profileInfo")
+        self.title = "プロフィール"
+        self.moreButton = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, closure: { self.moreButtonTapped($0) })
+        self.navigationItem.rightBarButtonItems = [
+            self.moreButton,
+        ]
+        self.tableView.separatorInset = .zero
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -60,57 +71,73 @@ class UserProfileTopViewController: UITableViewController {
             loadAfter = true
             return
         }
-        self.userIconView.sd_setImage(with: URL(string: user.avatarUrl))
-        self.userNameView.text = (user.name != "" ? user.name : user.screenName).emojify()
-        self.userScreenNameView.text = "@"+user.acct
-        self.tootCell.detailTextLabel?.text = numToCommaString(user.postsCount)
-        self.followingCell.detailTextLabel?.text = numToCommaString(user.followingCount)
-        self.followersCell.detailTextLabel?.text = numToCommaString(user.followersCount)
+        
+        self.infoCell.load(user: user)
+        self.bioCell.load(user: user)
+        
+        let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        tootCell.textLabel?.text = "トゥート"
+        tootCell.accessoryType = .disclosureIndicator
+        tootCell.detailTextLabel?.text = numToCommaString(user.postsCount)
+
+        let followingCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        followingCell.textLabel?.text = "フォロー"
+        followingCell.detailTextLabel?.text = numToCommaString(user.followingCount)
+
+        let followersCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        followersCell.textLabel?.text = "フォロワー"
+        followersCell.detailTextLabel?.text = numToCommaString(user.followersCount)
+
         let createdAt = user.createdAt
-        self.createdAtCell.detailTextLabel?.text = DateUtils.stringFromDate(
+        let createdAtCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        createdAtCell.textLabel?.text = "作成日時"
+        createdAtCell.detailTextLabel?.text = DateUtils.stringFromDate(
             createdAt,
             format: "yyyy/MM/dd HH:mm:ss"
         )
-        self.tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
-        self.createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
-        MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
-            let relationship = relationships[0]
-            let relationshipOld: Bool = Defaults[.followRelationshipsOld]
-            if relationship.following && relationship.followed_by {
-                self.relationShipLabel.text = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
-            }
-            if relationship.following && !relationship.followed_by {
-                self.relationShipLabel.text = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
-            }
-            if !relationship.following && relationship.followed_by {
-                self.relationShipLabel.text = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
-            }
-            if !relationship.following && !relationship.followed_by {
-                self.relationShipLabel.text = "関係: 無関係"
-            }
-            if user.acct == MastodonUserToken.getLatestUsed()?.screenName {
-                self.relationShipLabel.text = "関係: それはあなたです！"
-            }
-            if relationship.requested {
-                self.relationShipLabel.text! += " (フォローリクエスト中)"
-            }
-            if relationship.blocking {
-                self.relationShipLabel.text! += " (ブロック中)"
-            }
-            if relationship.muting {
-                self.relationShipLabel.text! += " (ミュート中)"
-            }
-            if relationship.domain_blocking {
-                self.relationShipLabel.text! += " (インスタンスミュート中)"
-            }
-        })
+
+        let createdAtSabunCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        createdAtSabunCell.textLabel?.text = "登録してから"
+        createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
         
+        let tootDaysCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        tootDaysCell.textLabel?.text = "平均トゥート/日"
+        tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.externalServiceLinks = []
-        
+
         if let niconicoUrl = user.niconicoUrl {
             let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last
             self.externalServiceLinks.append((name: "niconico", userId: niconicoId != nil ? "user/"+niconicoId! : nil, url: niconicoUrl))
         }
+        
+        if let oauthAuths = user.oauthAuthentications {
+            for auth in oauthAuths {
+                if auth.provider != "pixiv" { continue }
+                self.externalServiceLinks.append((name: "pixiv", userId: auth.uid, url: URL(string: "https://www.pixiv.net/member.php?id="+auth.uid)!))
+            }
+        }
+        self.cells = [
+            [
+                self.infoCell,
+                self.bioCell,
+            ],
+            [
+                tootCell,
+                followingCell,
+                followersCell,
+                createdAtCell,
+                createdAtSabunCell,
+                tootDaysCell,
+            ],
+            self.externalServiceLinks.map({ service in
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+                cell.textLabel?.text = service.name
+                cell.detailTextLabel?.text = service.userId
+                cell.accessoryType = .disclosureIndicator
+                return cell
+            }),
+        ]
+        self.tableView.reloadData()
     }
 
     @IBAction func moreButtonTapped(_ sender: Any) {
@@ -241,107 +268,46 @@ class UserProfileTopViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "tootList" {
-            let nextVC = segue.destination as! UserTimeLineTableViewController
-            nextVC.user = self.user
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section != 2 {
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-        
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-
-        // Configure the cell...
-
-        let externalService = self.externalServiceLinks[indexPath.row]
-        
-        cell.textLabel?.text = externalService.name
-        cell.detailTextLabel?.text = externalService.userId
-        cell.accessoryType = .disclosureIndicator
-        
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        return cell
-    }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section != 2 {
-            return super.tableView(tableView, numberOfRowsInSection: section)
-        }
-        return self.externalServiceLinks.count
+        return -1
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 2 {
-//            super.tableView(tableView, didSelectRowAt: indexPath)
-            return
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                let newVC = UserTimeLineTableViewController()
+                newVC.user = self.user!
+                newVC.title = "トゥート一覧"
+                self.navigationController?.pushViewController(newVC, animated: true)
+                return
+            }
         }
         
-        let safariVC = SFSafariViewController(url: self.externalServiceLinks[indexPath.row].url)
-        self.present(safariVC, animated: true, completion: nil)
+        if indexPath.section == 2 {
+            let safariVC = SFSafariViewController(url: self.externalServiceLinks[indexPath.row].url)
+            self.present(safariVC, animated: true, completion: nil)
+            return
+        }
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        }
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 2 && self.cells[2].count > 0 {
+            return "外部サービスのアカウント"
+        }
+        return nil
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 func openUserProfile(user: MastodonAccount) -> UserProfileTopViewController {
-    let storyboard = UIStoryboard(name: "UserProfile", bundle: nil)
-    let newVC = storyboard.instantiateInitialViewController() as! UserProfileTopViewController
+    let newVC = UserProfileTopViewController(style: .grouped)
     newVC.load(user: user)
     return newVC
 }
