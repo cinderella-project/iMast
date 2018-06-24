@@ -35,13 +35,13 @@ class PostAndUserViewController: TimeLineTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
+        if section == 1 {
             return posts.count
-        } else if section == 1 {
+        } else if section == 2 {
             return users.count
         }
         return 0
@@ -49,7 +49,7 @@ class PostAndUserViewController: TimeLineTableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath[0] == 0 {
+        if indexPath[0] != 2 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             return cell
         }
@@ -64,14 +64,14 @@ class PostAndUserViewController: TimeLineTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath[0] == 0 { // post
+        if indexPath[0] == 1 { // post
             let post = self.posts[indexPath[1]]
             let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
             // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
             let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
             newVC.load(post: post.repost ?? post)
             self.navigationController?.pushViewController(newVC, animated: true)
-        } else if indexPath[0] == 1 { // user
+        } else if indexPath[0] == 2 { // user
             let user = self.users[indexPath[1]]
             let newVC = openUserProfile(user: user)
             self.navigationController?.pushViewController(newVC, animated: true)
