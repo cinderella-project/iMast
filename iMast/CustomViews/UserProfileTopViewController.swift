@@ -55,6 +55,9 @@ class UserProfileTopViewController: StableTableViewController {
             self.moreButton,
         ]
         self.tableView.separatorInset = .zero
+        
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -304,6 +307,7 @@ class UserProfileTopViewController: StableTableViewController {
         }
         return nil
     }
+
 }
 
 func openUserProfile(user: MastodonAccount) -> UserProfileTopViewController {
