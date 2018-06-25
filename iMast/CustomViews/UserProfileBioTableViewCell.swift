@@ -44,6 +44,19 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        let string = (textView.attributedText.string as NSString).substring(with: characterRange)
+        if string.hasPrefix("@") {
+            MastodonUserToken.getLatestUsed()?.search(q: URL.absoluteString, resolve: true).then { result in
+                if result.accounts.count >= 1 {
+                    let newVC = openUserProfile(user: result.accounts[0])
+                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                } else {
+                    let safari = SFSafariViewController(url: URL)
+                    self.viewController?.present(safari, animated: true, completion: nil)
+                }
+            }
+            return false
+        }
         let safari = SFSafariViewController(url: URL)
         self.viewController?.present(safari, animated: true, completion: nil)
         return false
