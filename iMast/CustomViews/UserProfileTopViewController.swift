@@ -13,17 +13,8 @@ import SafariServices
 
 class UserProfileTopViewController: StableTableViewController {
 
-//    @IBOutlet weak var tootCell: UITableViewCell!
-//    @IBOutlet weak var userIconView: UIImageView!
-//    @IBOutlet weak var userNameView: UILabel!
-//    @IBOutlet weak var userScreenNameView: UILabel!
-//    @IBOutlet weak var followingCell: UITableViewCell!
-//    @IBOutlet weak var followersCell: UITableViewCell!
-//    @IBOutlet weak var createdAtCell: UITableViewCell!
-//    @IBOutlet weak var tootDaysCell: UITableViewCell!
-//    @IBOutlet weak var createdAtSabunCell: UITableViewCell!
     var moreButton: UIBarButtonItem!
-//    @IBOutlet weak var relationShipLabel: UILabel!
+
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
@@ -48,7 +39,6 @@ class UserProfileTopViewController: StableTableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
         
-        self.tableView.register(UINib(nibName: "UserProfileInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "profileInfo")
         self.title = "プロフィール"
         self.moreButton = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, closure: { self.moreButtonTapped($0) })
         self.navigationItem.rightBarButtonItems = [
