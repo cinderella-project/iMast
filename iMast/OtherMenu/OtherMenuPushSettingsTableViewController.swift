@@ -262,6 +262,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     return Promise.value(())
                 } else {
                     return PushService.register().done { _ in
+                        UIApplication.shared.registerForRemoteNotifications()
                         vc.navigationController?.pushViewController(self.init(), animated: true)
                     }
                 }
