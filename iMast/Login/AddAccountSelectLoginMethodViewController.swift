@@ -78,29 +78,4 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
 }
 
 
-fileprivate protocol LoginSafari {
-    func open(url: URL, viewController: UIViewController)
-}
-
-fileprivate class LoginSafariNormal: LoginSafari {
-    func open(url: URL, viewController: UIViewController) {
-        let safariVC = SFSafariViewController(url: url)
-        viewController.present(safariVC, animated: true, completion: nil)
-    }
-}
-
-@available(iOS 11.0, *)
-fileprivate class LoginSafari11: LoginSafari {
-    var authSession: SFAuthenticationSession?
-    func open(url: URL, viewController _: UIViewController) {
-        self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: {callbackUrl, error in
-            guard let callbackUrl = callbackUrl else {
-                return
-            }
-            print(callbackUrl)
-            UIApplication.shared.openURL(callbackUrl)
-        })
-        self.authSession?.start()
-    }
-}
 

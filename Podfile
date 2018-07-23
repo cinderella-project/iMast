@@ -8,6 +8,8 @@ def based_pods
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
   pod 'SDWebImage', '~> 4.0'
+  pod 'PromiseKit'
+  pod 'PromiseKit/Alamofire'
 end
 
 target 'iMast' do
@@ -20,8 +22,10 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', '~> 4.1'
+  pod 'Eureka', '~> 4.1.0'
   pod 'ActionClosurable'
+  pod 'KeychainAccess'
+  pod 'SVProgressHUD'
 
   target 'iMastTests' do
     inherit! :search_paths

@@ -9,6 +9,8 @@
 import UIKit
 import Compass
 import ActionClosurable
+import UserNotifications
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -67,6 +69,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextView.appearance().textColor = .white
         */
         
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (accepted, error) in
+                if accepted {
+                    print("accepted")
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                    UNUserNotificationCenter.current().delegate = self
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+            // アップデートしろや
+        }
+        
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultMaskType(.black)
+
         return true
     }
     
@@ -111,6 +131,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("animated")
             }
         }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        if let authHeader = try? PushService.getAuthorizationHeader() {
+            PushService.updateDeviceToken(deviceToken: deviceToken)
+        }
+//        print("DeviceToken",deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)})
+//        print("isDebugBuild", isDebugBuild)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -157,6 +185,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+@available(iOS 10.0, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}
 
 func openVLC(_ url: String) -> Bool{
     if !UserDefaults.standard.bool(forKey: "webm_vlc_open") {

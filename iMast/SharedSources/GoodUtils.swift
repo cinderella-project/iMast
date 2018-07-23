@@ -21,6 +21,12 @@ func WARN(_ message: String) {
 
 var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf:URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
+#if IS_DEBUG_BUILD
+    let isDebugBuild = true
+#else
+    let isDebugBuild = false
+#endif
+
 extension UIViewController {
     func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
         print("alert", title, message)
@@ -143,6 +149,7 @@ extension String {
         }
         return nil
     }
+    
     func toDate() -> Date {
         let formatter = DateFormatter()
         formatter.locale=Locale(identifier: "en_US")
@@ -356,6 +363,21 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     f.locale = .current
     f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
     return f.date(from: str)!
+}
+
+func CodableDeepCopy<T: Codable>(_ object: T) -> T {
+    // TODO: ここ `try!` 使ってええんか?
+    let encoder = JSONEncoder()
+    let data = try! encoder.encode(object)
+    let decoder = JSONDecoder()
+    return try! decoder.decode(T.self, from: data)
+}
+
+func CodableCompare<T: Codable>(_ from: T, _ to: T) -> Bool {
+    let encoder = JSONEncoder()
+    let fromData = try! encoder.encode(from)
+    let toData = try! encoder.encode(to)
+    return fromData == toData
 }
 
 extension Decodable {

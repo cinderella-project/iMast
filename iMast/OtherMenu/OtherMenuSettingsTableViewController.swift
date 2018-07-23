@@ -11,28 +11,39 @@ import Eureka
 import ActionClosurable
 import SafariServices
 import SDWebImage
+import Alamofire
+import SwiftyJSON
 
 class OtherMenuSettingsTableViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.form +++ Section()
-            <<< PushStringRow() { row in
-                row.title = "ストリーミング自動接続"
-                row.userDefaultsConnect(.streamingAutoConnect, map: [
-                    ("no", "しない"),
-                    ("wifi", "WiFi接続時のみ"),
-                    ("always", "常に接続"),
-                ])
-            }
-            <<< TextRow() { row in
-                row.title = "新規連携時のvia"
-                row.placeholder = "iMast"
-                row.userDefaultsConnect(.newAccountVia)
-            }
-            <<< SwitchRow() { row in
+        let generalSettings = Section()
+        generalSettings <<< PushStringRow() { row in
+            row.title = "ストリーミング自動接続"
+            row.userDefaultsConnect(.streamingAutoConnect, map: [
+                ("no", "しない"),
+                ("wifi", "WiFi接続時のみ"),
+                ("always", "常に接続"),
+            ])
+        }
+        generalSettings <<< TextRow() { row in
+            row.title = "新規連携時のvia"
+            row.placeholder = "iMast"
+            row.userDefaultsConnect(.newAccountVia)
+        }
+        generalSettings <<< SwitchRow() { row in
                 row.title = "フォロー関係を以前の表記にする"
                 row.userDefaultsConnect(.followRelationshipsOld)
+        }
+        self.form +++ generalSettings
+        if #available(iOS 10.0, *), let section = self.form.allSections.last {
+            section <<< ButtonRow() { row in
+                row.title = "プッシュ通知"
+                row.onCellSelection { cell, row in
+                    OtherMenuPushSettingsTableViewController.openRequest(vc: self)
+                }
+            }
         }
         self.form +++ Section("投稿設定")
             <<< SwitchRow() { row in
