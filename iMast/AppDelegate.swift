@@ -70,15 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         */
         
         if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (accepted, error) in
-                if accepted {
-                    print("accepted")
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                if settings.authorizationStatus == .authorized {
                     DispatchQueue.main.async {
                         UIApplication.shared.registerForRemoteNotifications()
                     }
-                    UNUserNotificationCenter.current().delegate = self
                 }
             }
+            UNUserNotificationCenter.current().delegate = self
         } else {
             // Fallback on earlier versions
             // アップデートしろや
