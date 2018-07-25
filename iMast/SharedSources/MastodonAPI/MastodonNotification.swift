@@ -26,4 +26,10 @@ extension MastodonUserToken {
             return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
         }
     }
+    
+    func getNotification(id: MastodonID) -> Promise<MastodonNotification> {
+        return self.get("notifications/"+id.string).then { res in
+            return try MastodonNotification.decode(json: res)
+        }
+    }
 }
