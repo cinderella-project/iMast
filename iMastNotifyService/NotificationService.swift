@@ -28,7 +28,7 @@ class NotificationService: UNNotificationServiceExtension {
             if !FileManager.default.fileExists(atPath: cacheDirectory.path) {
                 try FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: false, attributes: nil)
             }
-            let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 1.0)
+            let request = URLRequest(url: url)
             let urlHashed = url.absoluteString.sha256
             var pathExt = url.pathExtension
             if pathExt != "" {
@@ -58,17 +58,33 @@ class NotificationService: UNNotificationServiceExtension {
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
         // Modify the notification content here...
-        let promise = async { _ in
-//            self.bestAttemptContent?.title = "\(self.bestAttemptContent!.title) [modified]"
+        var promise: [Promise<Void>] = []
+        promise.append(async { _ in // get attachment images
             if let images = request.content.userInfo["images"] as? [String] {
                 let imageUrls = try await(all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }))
                 for imageUrl in imageUrls {
                     self.bestAttemptContent?.attachments.append(try UNNotificationAttachment(identifier: imageUrl.path, url: imageUrl, options: nil))
                 }
             }
-        }
+        })
+//        promise.append(async { _ in
+//            if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
+//                let upstreamId = request.content.userInfo["upstreamId"] as? String {
+//                guard let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
+//                    return
+//                }
+//                return
+//                let notify = try await(userToken.getNotification(id: MastodonID(string: upstreamId)))
+//                let encoder = JSONEncoder()
+//                let data = try encoder.encode(notify)
+//                let str = String(data: data, encoding: .utf8)
+//                self.bestAttemptContent?.userInfo["upstreamObject"] = str
+//            }
+//        })
         
-        promise.catch { error in
+        let promiseAll = all(promise)
+        
+        promiseAll.catch { error in
             self.bestAttemptContent?.title = "Notification Service Error"
             self.bestAttemptContent?.subtitle = ""
             self.bestAttemptContent?.body = "\(error)"

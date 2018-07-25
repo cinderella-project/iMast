@@ -102,6 +102,18 @@
 		CEC6BC0D21076D84003ECE10 /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */; };
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CEC6BC1621084745003ECE10 /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CEC6BC1721084746003ECE10 /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
+		CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254272004B5AA005FEB6F /* MastodonPost.swift */; };
+		CEC6BC1B2108474B003ECE10 /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
+		CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
+		CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
+		CEC6BC1E2108474B003ECE10 /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
+		CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
+		CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
 		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
@@ -1272,6 +1284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC6BC1621084745003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CE1002CA20065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CE1002CC20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CEE357241FF6068000675DFC /* EventListener.swift in Sources */,
@@ -1304,6 +1317,7 @@
 				CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */,
 				CE1002D1200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
+				CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CEC6BBF62103743A003ECE10 /* UIViewController+alerts.swift in Sources */,
@@ -1318,10 +1332,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */,
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
+				CEC6BC1721084746003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CEC6BC0C21076D09003ECE10 /* GoodUtils.swift in Sources */,
+				CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */,
+				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
+				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */,
+				CEC6BC1E2108474B003ECE10 /* MastodonList.swift in Sources */,
+				CEC6BC1B2108474B003ECE10 /* MastodonApplication.swift in Sources */,
 				CEC6BC0D21076D84003ECE10 /* UserDefaultsDict.swift in Sources */,
+				CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */,
+				CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
