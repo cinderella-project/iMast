@@ -20,6 +20,12 @@ class MastodonID: Codable, CustomStringConvertible {
         }
     }
     
+    init(string: String) {
+        self.string = string
+        self.int = Int64(string)!
+        self.raw = string
+    }
+    
     required init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer()
         do {
