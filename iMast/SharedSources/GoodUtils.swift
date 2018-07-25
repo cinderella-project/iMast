@@ -13,6 +13,8 @@ import Alamofire
 import SwiftyJSON
 import XCGLogger
 
+let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
+
 let log = XCGLogger.default
 
 func WARN(_ message: String) {

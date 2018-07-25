@@ -21,20 +21,30 @@ class NotificationService: UNNotificationServiceExtension {
 
     func fetchFromInternet(url: URL) -> Promise<URL> {
         return Promise<URL>(in: .background) { resolve, reject, _ in
-            let sessionConfig = URLSessionConfiguration.default
-            sessionConfig.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-            let session = URLSession(configuration: sessionConfig)
-            let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("imageCache")
+            let cacheDirectory = appGroupFileUrl.appendingPathComponent("imageCache")
             if !FileManager.default.fileExists(atPath: cacheDirectory.path) {
                 try FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: false, attributes: nil)
             }
-            let request = URLRequest(url: url)
             let urlHashed = url.absoluteString.sha256
             var pathExt = url.pathExtension
             if pathExt != "" {
                 pathExt = "." + pathExt
             }
             let copyDest = cacheDirectory.appendingPathComponent(urlHashed! + pathExt)
+            let tempDest = cacheDirectory.appendingPathComponent(urlHashed! + ".temp" + pathExt)
+            
+            if FileManager.default.fileExists(atPath: copyDest.path) { // もしもうキャッシュがあるんだったら
+                if !FileManager.default.fileExists(atPath: tempDest.path) {
+                    try FileManager.default.copyItem(at: copyDest, to: tempDest)
+                }
+                resolve(tempDest) // それを返す
+                return
+            }
+            
+            let sessionConfig = URLSessionConfiguration.default
+            sessionConfig.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+            let session = URLSession(configuration: sessionConfig)
+            let request = URLRequest(url: url)
             let task = session.dataTask(with: request) { data, response, error in
                 if let error = error {
                     return reject(error)
@@ -44,7 +54,10 @@ class NotificationService: UNNotificationServiceExtension {
                         return reject(NotificationServiceError.imageDataIsNil)
                     }
                     try data.write(to: copyDest)
-                    resolve(copyDest)
+                    if !FileManager.default.fileExists(atPath: tempDest.path) {
+                        try data.write(to: tempDest)
+                    }
+                    resolve(tempDest)
                 } catch {
                     reject(error)
                 }
