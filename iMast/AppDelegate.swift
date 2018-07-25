@@ -191,6 +191,54 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        guard let receiveUser = userInfo["receiveUser"] as? [String] else {
+            completionHandler()
+            return
+        }
+        guard let userToken = try! MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
+            UIApplication.shared.viewController?.alert(title: "エラー", message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。")
+            completionHandler()
+            return
+        }
+        if userToken.id != MastodonUserToken.getLatestUsed()?.id {
+            userToken.use()
+            let window = UIWindow()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialVC = storyboard.instantiateViewController(withIdentifier: "maintop")
+            window.rootViewController = initialVC
+            window.makeKeyAndVisible()
+            (UIApplication.shared.delegate as! AppDelegate).window = window
+        }
+        
+        guard let topVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
+            print("failed topVC", UIApplication.shared.keyWindow?.rootViewController)
+            completionHandler()
+            return
+        }
+        
+        topVC.selectedIndex = 1
+        
+        guard let notificationJson = userInfo["upstreamObject"] as? String else {
+            print("notify object not found")
+            completionHandler()
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        guard let notification = try? decoder.decode(MastodonNotification.self, from: notificationJson.data(using: .utf8)!) else {
+            print("decode failed")
+            completionHandler()
+            return
+        }
+        
+        guard let notifyTabVC = (topVC.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? NotificationTableViewController else {
+            print("this is not NotificationTVC")
+            completionHandler()
+            return
+        }
+        
+        notifyTabVC.openNotify(notification, animated: false)
         completionHandler()
     }
 }

@@ -103,6 +103,10 @@ class NotificationTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let notification = self.notifications[indexPath[1]]
+        self.openNotify(notification)
+    }
+    
+    func openNotify(_ notification: MastodonNotification, animated: Bool = true) {
         guard let account = notification.account else {
             return
         }
@@ -111,7 +115,7 @@ class NotificationTableViewController: UITableViewController {
                 let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
                 let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
                 newVC.load(post: status)
-                self.navigationController?.pushViewController(newVC, animated: true)
+                self.navigationController?.pushViewController(newVC, animated: animated)
                 return
             }
             let newVC = PostAndUserViewController(style: .grouped)
@@ -121,11 +125,10 @@ class NotificationTableViewController: UITableViewController {
                 "favourite": "ふぁぼられ",
                 "reblog": "ブースト"
             ][notification.type]
-            self.navigationController?.pushViewController(newVC, animated: true)
-
+            self.navigationController?.pushViewController(newVC, animated: animated)
         } else { // ユーザーつき
             let newVC = openUserProfile(user: account)
-            self.navigationController?.pushViewController(newVC, animated: true)
+            self.navigationController?.pushViewController(newVC, animated: animated)
         }
     }
 

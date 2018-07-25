@@ -14,6 +14,11 @@ class MastodonNotification: Codable {
     let type: String
     let status: MastodonPost?
     let account: MastodonAccount?
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
 }
 
 extension MastodonUserToken {
