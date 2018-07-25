@@ -101,6 +101,7 @@ class NotificationService: UNNotificationServiceExtension {
             self.bestAttemptContent?.title = "Notification Service Error"
             self.bestAttemptContent?.subtitle = ""
             self.bestAttemptContent?.body = "\(error)"
+            self.bestAttemptContent?.attachments = []
         }.always {
             if let bestAttemptContent = self.bestAttemptContent {
                 contentHandler(bestAttemptContent)
