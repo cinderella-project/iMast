@@ -294,6 +294,7 @@
 		CEC6BC0321074EFB003ECE10 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojify.swift"; sourceTree = "<group>"; };
+		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
@@ -517,6 +518,7 @@
 		CEC6BC0221074EFB003ECE10 /* iMastNotifyService */ = {
 			isa = PBXGroup;
 			children = (
+				CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */,
 				CEC6BC0321074EFB003ECE10 /* NotificationService.swift */,
 				CEC6BC0521074EFB003ECE10 /* Info.plist */,
 			);
@@ -834,6 +836,11 @@
 						CreatedOnToolsVersion = 9.4.1;
 						DevelopmentTeam = 4XKKKM86RN;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1756,6 +1763,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastNotifyService/iMastNotifyService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
@@ -1781,6 +1789,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastNotifyService/iMastNotifyService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;

@@ -67,20 +67,20 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             }
         })
-//        promise.append(async { _ in
-//            if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
-//                let upstreamId = request.content.userInfo["upstreamId"] as? String {
-//                guard let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
-//                    return
-//                }
-//                return
-//                let notify = try await(userToken.getNotification(id: MastodonID(string: upstreamId)))
-//                let encoder = JSONEncoder()
-//                let data = try encoder.encode(notify)
-//                let str = String(data: data, encoding: .utf8)
-//                self.bestAttemptContent?.userInfo["upstreamObject"] = str
-//            }
-//        })
+        promise.append(async { _ in
+            if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
+                let upstreamId = request.content.userInfo["upstreamId"] as? String {
+                guard let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
+                    return
+                }
+
+                let notify = try await(userToken.getNotification(id: MastodonID(string: upstreamId)))
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(notify)
+                let str = String(data: data, encoding: .utf8)
+                self.bestAttemptContent?.userInfo["upstreamObject"] = str
+            }
+        })
         
         let promiseAll = all(promise)
         
