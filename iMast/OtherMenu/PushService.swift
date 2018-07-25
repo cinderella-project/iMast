@@ -131,10 +131,13 @@ class PushService {
         guard let auth = try! self.getAuthorizationHeader() else {
             return
         }
-        let params: Parameters = [
+        var params: Parameters = [
             "isSandbox": isDebugBuild,
-            "deviceToken": deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)}
+            "deviceToken": deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
         ]
+        if let versionString = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            params["buildNumber"] = Float(versionString)
+        }
         Alamofire.request("https://imast-backend.rinsuki.net/push/api/v1/device-token", method: .put, parameters: params, encoding: JSONEncoding.default, headers: ["Authorization": auth])
     }
     
