@@ -307,6 +307,20 @@ public class MastodonUserToken {
         }
         return usertoken
     }
+    
+    static func findUserToken(userName: String, instance: String) throws -> MastodonUserToken? {
+        return try dbQueue.inDatabase { db -> MastodonUserToken? in
+            guard let row = try (try Row.fetchCursor(db, "SELECT * FROM user WHERE screen_name=? AND app_id IN (SELECT id FROM app WHERE instance_hostname = ?) ORDER BY last_used DESC LIMIT 1", arguments: [userName, instance])).next() else {
+                return nil
+            }
+            guard let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])).next() else {
+                return nil
+            }
+            let app = MastodonApp.initFromRow(row: approw)
+            return initFromRow(row: row, app: app)
+        }
+    }
+    
     static func getAllUserTokens() -> [MastodonUserToken] {
         var usertokens: [MastodonUserToken] = []
         do {
