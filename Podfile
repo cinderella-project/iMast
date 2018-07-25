@@ -41,7 +41,13 @@ target 'iMast' do
     inherit! :search_paths
     based_pods
   end
+
   target 'iMastTodayWidget' do
+    inherit! :search_paths
+    based_pods
+  end
+
+  target 'iMastNotifyService' do
     inherit! :search_paths
     based_pods
   end

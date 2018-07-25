@@ -227,24 +227,6 @@ extension String {
         return attributedString
     }
     
-    func emojify(custom_emoji: [MastodonCustomEmoji] = [], profile_emoji: [MastodonCustomEmoji] = []) -> String {
-        var retstr = self
-        retstr.pregMatch(pattern: ":.+?:").forEach { (emoji) in
-            if emojidict[emoji].string != nil {
-                retstr = retstr.replace(emoji, emojidict[emoji].string!)
-            }
-        }
-        (custom_emoji + profile_emoji).forEach { (emoji) in
-            print(emoji)
-            if emoji.shortcode.count == 0 {
-                return
-            }
-            let html = "<img src=\"\(emoji.url)\" style=\"height:1em;width:1em;\">"
-            retstr = retstr.replace(":\(emoji.shortcode):", html)
-        }
-        return retstr
-    }
-    
     func format(_ params: CVarArg...) -> String{
         return String(format: self, arguments: params)
     }
