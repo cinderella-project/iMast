@@ -140,6 +140,12 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         self.reload(true)
         self.form.append(self.accountsSection)
         self.form +++ Section("共通設定")
+            <<< SwitchRow() { row in
+                row.title = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する"
+                row.userDefaultsConnect(.showPushServiceError)
+            }.cellUpdate { cell, row in
+                cell.textLabel?.numberOfLines = 0
+            }
             <<< ButtonRow() { row in
                 row.title = "プッシュ通知の設定を削除"
             }.cellUpdate { cell, row in

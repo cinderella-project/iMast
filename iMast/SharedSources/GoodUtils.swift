@@ -337,6 +337,7 @@ extension DefaultsKeys {
     static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
     static let timelineTextBold = DefaultsKey<Bool>("timeline_text_bold", default: false)
     static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
+    static let showPushServiceError = DefaultsKey<Bool>("show_push_service_error", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {

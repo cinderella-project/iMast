@@ -98,10 +98,12 @@ class NotificationService: UNNotificationServiceExtension {
         let promiseAll = all(promise)
         
         promiseAll.catch { error in
-            self.bestAttemptContent?.title = "Notification Service Error"
-            self.bestAttemptContent?.subtitle = ""
-            self.bestAttemptContent?.body = "\(error)"
-            self.bestAttemptContent?.attachments = []
+            if Defaults[.showPushServiceError] {
+                self.bestAttemptContent?.title = "Notification Service Error"
+                self.bestAttemptContent?.subtitle = ""
+                self.bestAttemptContent?.body = "\(error)"
+                self.bestAttemptContent?.attachments = []
+            }
             self.bestAttemptContent?.userInfo["error"] = true
         }.always {
             if let bestAttemptContent = self.bestAttemptContent {
