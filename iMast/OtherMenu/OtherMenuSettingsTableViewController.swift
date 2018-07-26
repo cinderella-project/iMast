@@ -127,6 +127,14 @@ class OtherMenuSettingsTableViewController: FormViewController {
             <<< SwitchRow() { row in
                 row.title = "ぬるぬるモード(再起動後反映)"
                 row.userDefaultsConnect(.timelineNurunuruMode)
+            }
+            <<< SliderRow() { row in
+                row.title = "ピン留めトゥートの行数制限"
+                row.userDefaultsConnect(.pinnedTootLinesLimit)
+                row.minimumValue = 0
+                row.maximumValue = 10
+                row.steps = 10
+                row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
         }
         if #available(iOS 10.0, *) {
             self.form +++ Section("ウィジェット")

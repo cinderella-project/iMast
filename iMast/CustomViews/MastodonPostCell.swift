@@ -102,6 +102,11 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
         if self.pinned {
             timeView.text = "📌"+(timeView.text ?? "")
+            let limit = Int(Defaults[.pinnedTootLinesLimit])
+            if limit > 0 {
+                textView.textContainer.maximumNumberOfLines = Int(Defaults[.pinnedTootLinesLimit])
+                textView.textContainer.lineBreakMode = .byTruncatingTail
+            }
         }
         timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
         iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
