@@ -44,6 +44,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         let post = post_.repost ?? post_
         if let repost = post_.repost {
             self.boostedUserIcon.sd_setImage(with: URL(string: post_.account.avatarUrl))
+            self.boostedUserIcon.ignoreSmartInvert()
             self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
         } else {
             self.tootInfoView.backgroundColor = nil
@@ -85,6 +86,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
         }
         self.iconView.sd_setImage(with: URL(string: iconUrl))
+        self.iconView.ignoreSmartInvert()
         timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
         if Defaults[.visibilityEmoji] {
             switch post.visibility {
@@ -128,6 +130,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             post.attachments.enumerated().forEach({ (index, media) in
                 let imageView = UIImageView()
                 imageView.sd_setImage(with: URL(string: media.previewUrl))
+                imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
                 imageView.layoutIfNeeded()

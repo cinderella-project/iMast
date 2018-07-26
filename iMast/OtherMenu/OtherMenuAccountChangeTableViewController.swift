@@ -111,6 +111,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
             cell.imageView?.sd_setImage(with: URL(string: avatarUrl)) { (image, error, cacheType, url) in
                 cell.setNeedsLayout()
             }
+            cell.imageView?.ignoreSmartInvert()
         }
         
         // Configure the cell...

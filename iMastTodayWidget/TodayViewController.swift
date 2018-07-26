@@ -59,6 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         userScreenNameView.text = "@" + userToken.screenName! + "@" + userToken.app.instance.hostName
         if let avatarUrl = userToken.avatarUrl {
             self.userIconView.sd_setImage(with: URL(string: avatarUrl))
+            self.userIconView.ignoreSmartInvert()
         }
         postActivityIndicator.alpha = 0
         completionHandler(NCUpdateResult.newData)

@@ -60,6 +60,7 @@ class ShareAccountSelectorTableViewController: UITableViewController {
             cell.imageView?.sd_setImage(with: URL(string: avatarUrl), completed: { (image, error, cacheType, url) in
                 cell.setNeedsLayout()
             })
+            cell.imageView?.ignoreSmartInvert()
         }
         
         // Configure the cell...

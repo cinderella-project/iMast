@@ -60,6 +60,7 @@ class PostAndUserViewController: TimeLineTableViewController {
         cell.imageView?.sd_setImage(with: URL(string: user.avatarUrl), completed: { (image, error, cacheType, url) in
             cell.setNeedsLayout()
         })
+        cell.imageView?.ignoreSmartInvert()
         return cell
     }
     

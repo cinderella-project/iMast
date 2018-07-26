@@ -40,6 +40,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
             return
         }
         self.iconView.sd_setImage(with: URL(string: user.avatarUrl), completed: nil)
+        self.iconView.ignoreSmartInvert()
         self.nameLabel.text = user.name == "" ? user.screenName : user.name
         self.screenNameLabel.text = "@" + user.acct
         MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in

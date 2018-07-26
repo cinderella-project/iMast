@@ -30,6 +30,7 @@ class AddAccountSuccessViewController: UIViewController {
         }
         welcomeMessageLabel.text = "ようこそ、\n@\(userRes!["username"].stringValue)\nさん。"
         self.myIconImageView.sd_setImage(with: URL(string: userRes!["avatar_static"].stringValue))
+        self.myIconImageView.ignoreSmartInvert()
     }
 
     override func didReceiveMemoryWarning() {

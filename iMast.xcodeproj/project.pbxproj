@@ -53,6 +53,10 @@
 		CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
+		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
+		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
+		CE2C9806210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
+		CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
@@ -249,6 +253,7 @@
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
+		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
@@ -511,6 +516,7 @@
 				CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */,
 				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift */,
 				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
+				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1245,6 +1251,7 @@
 				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,
+				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
@@ -1295,6 +1302,7 @@
 				CE1002CA20065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CE1002CC20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CEE357241FF6068000675DFC /* EventListener.swift in Sources */,
+				CE2C9806210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CE1002CE20065FF20041B636 /* MastodonNotification.swift in Sources */,
 				CEE254252004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
@@ -1329,6 +1337,7 @@
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CEC6BBF62103743A003ECE10 /* UIViewController+alerts.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
+				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CEDEDCA12007F8E300CD2784 /* MastodonList.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,
@@ -1347,6 +1356,7 @@
 				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */,
 				CEC6BC1E2108474B003ECE10 /* MastodonList.swift in Sources */,
 				CEC6BC1B2108474B003ECE10 /* MastodonApplication.swift in Sources */,

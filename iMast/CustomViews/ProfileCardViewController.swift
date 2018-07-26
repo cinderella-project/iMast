@@ -21,6 +21,8 @@ class ProfileCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.ignoreSmartInvert()
+        
         // Do any additional setup after loading the view.
         self.backgroundImageView.sd_setImage(with: URL(string: user.headerUrl))
         self.iconView.sd_setImage(with: URL(string: user.avatarUrl))

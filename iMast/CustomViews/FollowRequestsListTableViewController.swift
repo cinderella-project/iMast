@@ -65,6 +65,7 @@ class FollowRequestsListTableViewController: UITableViewController {
         cell.imageView?.sd_setImage(with: URL(string: request.avatarUrl)) { (image, error, cacheType, imageUrl) in
             cell.setNeedsLayout()
         }
+        cell.imageView?.ignoreSmartInvert()
 
         return cell
     }
