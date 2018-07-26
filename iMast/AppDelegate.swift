@@ -219,6 +219,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         topVC.selectedIndex = 1
         
+        guard let notifyTabVC = (topVC.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? NotificationTableViewController else {
+            print("this is not NotificationTVC")
+            completionHandler()
+            return
+        }
+        
+        if let vcs = notifyTabVC.navigationController?.viewControllers {
+            let count = vcs.count - 2
+            if count >= 0 {
+                for _ in 0...count {
+                    notifyTabVC.navigationController?.popViewController(animated: false)
+                }
+            }
+        }
+        
         guard let notificationJson = userInfo["upstreamObject"] as? String else {
             print("notify object not found")
             completionHandler()
@@ -228,12 +243,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let decoder = JSONDecoder()
         guard let notification = try? decoder.decode(MastodonNotification.self, from: notificationJson.data(using: .utf8)!) else {
             print("decode failed")
-            completionHandler()
-            return
-        }
-        
-        guard let notifyTabVC = (topVC.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? NotificationTableViewController else {
-            print("this is not NotificationTVC")
             completionHandler()
             return
         }
