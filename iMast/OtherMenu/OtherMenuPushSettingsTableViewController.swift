@@ -14,105 +14,13 @@ import SVProgressHUD
 import Eureka
 import ActionClosurable
 import UserNotifications
+import Notifwift
 
 @available(iOS 10.0, *)
 class OtherMenuPushSettingsTableViewController: FormViewController {
     var loginSafari: LoginSafari!
+    let notifwift = Notifwift()
     
-    class OtherMenuPushSettingsAccountTableViewController: FormViewController {
-        var settingsVC: OtherMenuPushSettingsTableViewController!
-        let accountOriginal: PushServiceToken!
-        let account: PushServiceToken!
-        init(account: PushServiceToken) {
-            self.accountOriginal = account
-            self.account = CodableDeepCopy(account)
-            super.init(style: .grouped)
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style:.plain) { _ in
-                self.dismiss(animated: true, completion: nil)
-            }
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .done) { _ in
-                SVProgressHUD.show()
-                firstly {
-                    self.account.update()
-                }.then { _ -> Promise<Void> in
-                    SVProgressHUD.dismissPromise()
-                }.done { _ in
-                    self.settingsVC.reload(true)
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            self.title = self.account.acct
-            self.form +++ Section("通知設定")
-                <<< SwitchRow() { row in
-                    row.title = "フォロー"
-                    row.value = self.account.notify.follow
-                    row.onChange { row in
-                        self.account.notify.follow = row.value ?? false
-                        print(row.value, self.account.notify.follow)
-                    }
-                }
-                <<< SwitchRow() { row in
-                    row.title = "メンション"
-                    row.value = self.account.notify.mention
-                    row.onChange { row in
-                        self.account.notify.mention = row.value ?? false
-                    }
-                }
-                <<< SwitchRow() { row in
-                    row.title = "ブースト"
-                    row.value = self.account.notify.boost
-                    row.onChange { row in
-                        self.account.notify.boost = row.value ?? false
-                    }
-                }
-                <<< SwitchRow() { row in
-                    row.title = "ふぁぼ"
-                    row.value = self.account.notify.favourite
-                    row.onChange { row in
-                        self.account.notify.favourite = row.value ?? false
-                    }
-                }
-                // 絶対間に合わないから
-//                <<< SwitchRow() { row in
-//                    row.title = "フォローリクエスト"
-//                    row.value = self.account.notify.followRequest
-//                    row.tag = "followRequest"
-//                }
-            self.form +++ Section()
-                <<< ButtonRow() { row in
-                    row.title = "このアカウントのプッシュ通知設定を削除"
-                }.cellUpdate { cell, row in
-                    cell.textLabel?.textColor = .red
-                }.onCellSelection { cell, row in
-                    firstly {
-                        self.confirm(title: "確認", message: "\(self.account.acct)のプッシュ通知設定を削除してもよろしいですか?\n削除したアカウントは再度追加できます。", okButtonMessage: "削除する", style: .destructive, cancelButtonMessage: "キャンセル")
-                    }.then { res -> Promise<Void> in
-                        if res {
-                            SVProgressHUD.show()
-                            return self.account.delete().ensure {
-                                SVProgressHUD.dismiss()
-                            }.map { _ in
-                                self.settingsVC.reload(true)
-                                self.dismiss(animated: true, completion: nil)
-                                return ()
-                            }
-                        } else {
-                            return Promise.value(())
-                        }
-                    }.catch { error in
-                        self.alert(title: "エラー", message: "削除に失敗しました。\n\n\(error.localizedDescription)")
-                    }
-                }
-        }
-    }
     
     var accounts: [PushServiceToken] = []
     
@@ -137,7 +45,6 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         self.tableView.refreshControl = UIRefreshControl { _ in
             self.reload()
         }
-        self.reload(true)
         self.form.append(self.accountsSection)
         self.form +++ Section("共通設定")
             <<< SwitchRow() { row in
@@ -172,6 +79,10 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 }
             }
         self.title = "プッシュ通知設定"
+        self.notifwift.observe(.pushSettingsAccountReload) { _ in
+            self.reload(true)
+        }
+        Notifwift.post(.pushSettingsAccountReload)
     }
     
     func reload(_ blocking: Bool = false) {
@@ -190,7 +101,6 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 }.onCellSelection { cell, row in
                     let vc = OtherMenuPushSettingsAccountTableViewController(account: account)
-                    vc.settingsVC = self
                     let wrapVC = UINavigationController(rootViewController: vc)
                     self.present(wrapVC, animated: true, completion: nil)
                 }
@@ -200,7 +110,6 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.accountsSection <<< ButtonRow() { row in
                 row.title = "アカウントを追加"
             }.onCellSelection { cell, row in
-                let loginSafari = getLoginSafari()
                 firstly {
                     Promise<String?>() { resolver in
                         let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
@@ -244,10 +153,6 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     
     static func openRequest(vc: UIViewController) {
         if try! PushService.isRegistered() {
-//            Alamofire.request("https://imast-backend.rinsuki.net/push/api/v1/get-url", method: .post, parameters: ["host": "mstdn.rinsuki.net"], encoding: JSONEncoding.default, headers: ["Authorization": try! PushService.getAuthorizationHeader()!]).response { res in
-//                let json = try! JSON(data: res.data!)
-//                UIApplication.shared.openURL(json["url"].url!)
-//            }
             vc.navigationController?.pushViewController(self.init(), animated: true)
         } else {
             firstly {

@@ -26,6 +26,7 @@ target 'iMast' do
   pod 'ActionClosurable'
   pod 'KeychainAccess'
   pod 'SVProgressHUD'
+  pod 'Notifwift'
 
   target 'iMastTests' do
     inherit! :search_paths

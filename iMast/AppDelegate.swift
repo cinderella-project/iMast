@@ -11,6 +11,7 @@ import Compass
 import ActionClosurable
 import UserNotifications
 import SVProgressHUD
+import Notifwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,7 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         Navigator.scheme="imast"
-        Navigator.routes=["callback"]
+        Navigator.routes=[
+            "callback",
+            "from-backend/push/oauth-finished",
+        ]
         /*
         // DARK THEME
         UINavigationBar.appearance().barTintColor = .black
@@ -113,7 +117,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.makeKeyAndVisible()
                 }
                 self.window?.rootViewController = nextVC
-            default:break
+                break
+            case "from-backend/push/oauth-finished":
+                Notifwift.post(.pushSettingsAccountReload)
+                break
+            default:
+                break
         }
         return true
     }
