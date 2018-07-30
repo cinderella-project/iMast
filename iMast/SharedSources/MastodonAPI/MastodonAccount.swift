@@ -67,6 +67,18 @@ class MastodonAccountOAuthAuthenticate: Codable {
     }
 }
 
+enum MastodonFollowFetchType: String {
+    case following = "following"
+    case followers = "followers"
+}
+
+struct MastodonFollowList {
+    var accounts: [MastodonAccount]
+    var prev: MastodonID?
+    var next: MastodonID?
+    
+}
+
 extension MastodonUserToken {
     func verifyCredentials() -> Promise<MastodonAccount> {
         return self.get("accounts/verify_credentials").then { res -> MastodonAccount in
@@ -92,6 +104,16 @@ extension MastodonUserToken {
     func followRequestReject(target: MastodonAccount) -> Promise<Void> {
         return self.post("follow_requests/\(target.id.string)/reject").then { res -> Void in
             return Void()
+        }
+    }
+    
+    func getFollows(target: MastodonID, type: MastodonFollowFetchType, maxId: MastodonID?) -> Promise<MastodonCursorWrapper<Array<MastodonAccount>>> {
+        var params: [String: Any] = [:]
+        if let maxId = maxId {
+            params["max_id"] = maxId.string
+        }
+        return self.getWithCursorWrapper("accounts/\(target.string)/\(type)", params: params).then { res -> MastodonCursorWrapper<Array<MastodonAccount>> in
+            return MastodonCursorWrapper(result: try Array<MastodonAccount>.decode(json: res.result), max: res.max, since: res.since)
         }
     }
 }

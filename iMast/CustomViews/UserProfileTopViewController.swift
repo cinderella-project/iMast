@@ -75,10 +75,12 @@ class UserProfileTopViewController: StableTableViewController {
 
         let followingCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         followingCell.textLabel?.text = "フォロー"
+        followingCell.accessoryType = .disclosureIndicator
         followingCell.detailTextLabel?.text = numToCommaString(user.followingCount)
 
         let followersCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         followersCell.textLabel?.text = "フォロワー"
+        followersCell.accessoryType = .disclosureIndicator
         followersCell.detailTextLabel?.text = numToCommaString(user.followersCount)
 
         let createdAt = user.createdAt
@@ -272,6 +274,10 @@ class UserProfileTopViewController: StableTableViewController {
                 let newVC = UserTimeLineTableViewController()
                 newVC.user = self.user!
                 newVC.title = "トゥート一覧"
+                self.navigationController?.pushViewController(newVC, animated: true)
+                return
+            } else if indexPath.row == 1 || indexPath.row == 2 {
+                let newVC = FollowTableViewController(type: indexPath.row == 1 ? .following : .followers, userId: self.user!.id)
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return
             }
