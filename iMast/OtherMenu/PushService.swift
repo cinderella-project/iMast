@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 import KeychainAccess
-import PromiseKit
+import Hydra
 
 enum PushServiceError: Error {
     case networkError(message: String?)
@@ -43,6 +43,11 @@ class PushServiceToken: Codable {
     var userName: String
     var _id: String
     
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1 work around")
+    }
+    
     func update() -> Promise<PushServiceToken> {
         return Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
@@ -56,7 +61,9 @@ class PushServiceToken: Codable {
             ]],
             encoding: JSONEncoding.default,
             headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
-        ).responseDecodable(PushServiceWrapper<PushServiceToken>.self).map { $0.result }
+            ).responseDecodable(PushServiceWrapper<PushServiceToken>.self).then({ wrapper  in
+                return Promise(resolved: wrapper.result)
+            })
     }
     
     func delete() -> Promise<Void> {
@@ -64,7 +71,9 @@ class PushServiceToken: Codable {
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
             method: .delete,
             headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
-        ).responseDecodable(PushServiceWrapper<String>.self).map { _ in ()}
+        ).responseDecodable(PushServiceWrapper<String>.self).then { _ in
+            return ()
+        }
     }
 }
 
@@ -96,14 +105,12 @@ class PushService {
             var id: String
             var secret: String
         }
-        return firstly {
-            return Alamofire.request(
+        return Alamofire.request(
                 "https://imast-backend.rinsuki.net/push/api/v1/create",
                 method: .post,
                 parameters: params,
                 encoding: JSONEncoding.default
-            ).responseDecodable(Response.self)
-        }.then { res -> Promise<Void> in
+        ).responseDecodable(Response.self).then { res -> Void in
 //            if response.statusCode != 200 {
 //                func getMessage() -> String {
 //                    guard let data = res.data else {
@@ -123,7 +130,7 @@ class PushService {
             try! PushService.keyChain.set(res.secret, key: "secret")
             
 //            resolve(())
-            return Promise.value(())
+            return ()
         }
     }
     
@@ -143,8 +150,8 @@ class PushService {
     
     static func getRegisterAccounts() -> Promise<[PushServiceToken]> {
         typealias TokenList = [PushServiceToken]
-        return firstly {
-            Promise.value(try self.getAuthorizationHeader())
+        return PromiseWrapper {
+            return try self.getAuthorizationHeader()
         }.then { auth -> Promise<PushServiceWrapper<TokenList>> in
             guard let auth = auth else {
                 throw PushServiceError.notRegistered
@@ -154,13 +161,13 @@ class PushService {
                 method: .get,
                 headers: ["Authorization": auth]
             ).responseDecodable(PushServiceWrapper<TokenList>.self)
-        }.map { $0.result }
+        }.then { $0.result }
     }
     
     static func getAuthorizeUrl(host: String) -> Promise<String> {
         class Wrapper: Codable { var url: String }
-        return firstly {
-            Promise.value(try self.getAuthorizationHeader())
+        return PromiseWrapper { () -> String? in
+            return try self.getAuthorizationHeader()
         }.then { auth -> Promise<Wrapper> in
             guard let auth = auth else {
                 throw PushServiceError.notRegistered
@@ -172,12 +179,14 @@ class PushService {
                 encoding: JSONEncoding.default,
                 headers: ["Authorization": auth]
             ).responseDecodable(Wrapper.self)
-        }.map { $0.url }
+        }.then { wrapper -> String in
+            return wrapper.url
+        }
     }
     
     static func unRegister() -> Promise<Void> {
-        return firstly {
-            Promise.value(try self.getAuthorizationHeader())
+        return PromiseWrapper {
+            try self.getAuthorizationHeader()
         }.then { auth -> Promise<PushServiceWrapper<String>> in
             guard let auth = auth else {
                 throw PushServiceError.notRegistered
@@ -187,7 +196,13 @@ class PushService {
                 method: .delete,
                 headers: ["Authorization": auth]
             ).responseDecodable(PushServiceWrapper<String>.self)
-        }.map { result in
+        }.then { result -> Promise<Void> in
+            return self.deleteAuthInfo()
+        }
+    }
+    
+    static func deleteAuthInfo() -> Promise<Void> {
+        return PromiseWrapper {
             try self.keyChain.remove("userId")
             try self.keyChain.remove("secret")
             return ()

@@ -8,7 +8,7 @@
 
 import UIKit
 import Eureka
-import PromiseKit
+import Hydra
 import SVProgressHUD
 import Notifwift
 
@@ -26,13 +26,13 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .done) { _ in
             SVProgressHUD.show()
-            firstly {
-                self.account.update()
-                }.then { _ -> Promise<Void> in
-                    SVProgressHUD.dismissPromise()
-                }.done { _ in
-                    Notifwift.post(.pushSettingsAccountReload)
-                    self.dismiss(animated: true, completion: nil)
+            self.account.update().always {
+                SVProgressHUD.dismiss()
+            }.then { _ in
+                Notifwift.post(.pushSettingsAccountReload)
+                self.dismiss(animated: true, completion: nil)
+            }.catch { error in
+                self.alert(title: "エラー", message: error.localizedDescription)
             }
         }
     }
@@ -85,20 +85,22 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
             }.cellUpdate { cell, row in
                 cell.textLabel?.textColor = .red
             }.onCellSelection { cell, row in
-                firstly {
-                    self.confirm(title: "確認", message: "\(self.account.acct)のプッシュ通知設定を削除してもよろしいですか?\n削除したアカウントは再度追加できます。", okButtonMessage: "削除する", style: .destructive, cancelButtonMessage: "キャンセル")
-                }.then { res -> Promise<Void> in
+                self.confirm(title: "確認",
+                             message: "\(self.account.acct)のプッシュ通知設定を削除してもよろしいですか?\n削除したアカウントは再度追加できます。",
+                             okButtonMessage: "削除する",
+                             style: .destructive,
+                             cancelButtonMessage: "キャンセル"
+                ).then { res -> Promise<Void> in
                     if res {
                         SVProgressHUD.show()
-                        return self.account.delete().ensure {
+                        return self.account.delete().always {
                             SVProgressHUD.dismiss()
-                        }.map { _ in
+                        }.then { _ in
                             Notifwift.post(.pushSettingsAccountReload)
                             self.dismiss(animated: true, completion: nil)
-                            return ()
                         }
                     } else {
-                        return Promise.value(())
+                        return Promise(resolved: ())
                     }
                 }.catch { error in
                     self.alert(title: "エラー", message: "削除に失敗しました。\n\n\(error.localizedDescription)")

@@ -9,12 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import PromiseKit
 import SVProgressHUD
 import Eureka
 import ActionClosurable
 import UserNotifications
 import Notifwift
+import Hydra
 
 @available(iOS 10.0, *)
 class OtherMenuPushSettingsTableViewController: FormViewController {
@@ -58,21 +58,18 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             }.cellUpdate { cell, row in
                 cell.textLabel?.textColor = UIColor.red
             }.onCellSelection { cell, row in
-                firstly {
-                    self.confirm(
-                        title: "確認",
-                        message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
-                        okButtonMessage: "削除する", style: UIAlertActionStyle.destructive,
-                        cancelButtonMessage: "キャンセル"
-                    )
-                }.then { res -> Promise<Void> in
+                self.confirm(
+                    title: "確認",
+                    message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
+                    okButtonMessage: "削除する", style: UIAlertActionStyle.destructive,
+                    cancelButtonMessage: "キャンセル"
+                ).then { res -> Promise<Void> in
                     if res {
-                        return PushService.unRegister().map { _ in
+                        return PushService.unRegister().then { _ in
                             self.navigationController?.popViewController(animated: true)
-                            return ()
                         }
                     } else {
-                        return Promise.value(())
+                        return Promise(resolved: ())
                     }
                 }.catch { error in
                     self.error(errorMsg: error.localizedDescription)
@@ -89,7 +86,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         if blocking {
             SVProgressHUD.show()
         }
-        PushService.getRegisterAccounts().done { accounts in
+        PushService.getRegisterAccounts().then { accounts in
             print(accounts)
             let rows = accounts.map { account -> BaseRow in
                 return ButtonRow() { row in
@@ -110,35 +107,62 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.accountsSection <<< ButtonRow() { row in
                 row.title = "アカウントを追加"
             }.onCellSelection { cell, row in
-                firstly {
-                    Promise<String?>() { resolver in
-                        let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
-                        alert.addTextField { textField in
-                            textField.placeholder = "mstdn.example.com"
-                        }
-                        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                            resolver.resolve(alert.textFields?.first?.text, nil)
-                        })
-                        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
-                            resolver.resolve(nil as String?, nil)
-                        })
-                        self.present(alert, animated: true, completion: nil)
+                Promise<String?>() { resolve, reject, _ in
+                    let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
+                    alert.addTextField { textField in
+                        textField.placeholder = "mstdn.example.com"
                     }
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                        resolve(alert.textFields?.first?.text)
+                    })
+                    alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+                        resolve(nil as String?)
+                    })
+                    self.present(alert, animated: true, completion: nil)
                 }.then { host -> Promise<String> in
                     guard let host = host else {
                         throw APIError.alreadyError()
                     }
                     return PushService.getAuthorizeUrl(host: host)
-                }.done { res in
+                }.then { res in
                     self.loginSafari = getLoginSafari()
                     self.loginSafari.open(url: URL(string: res)!, viewController: self)
+                }.catch { error in
+                    switch error {
+                    case APIError.alreadyError():
+                        break
+                    default:
+                        self.alert(title: "エラー", message: error.localizedDescription)
+                    }
                 }
             }
             self.tableView.reloadData()
         }.catch { error in
-            self.alert(title: "エラー", message: error.localizedDescription)
+            switch error {
+            case Alamofire.DataRequest.DecodableError.httpError(let message, _):
+                if message == "user not found in auth" {
+                    self.confirm(
+                        title: "エラー",
+                        message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をしますか?",
+                        okButtonMessage: "再登録",
+                        style: .destructive,
+                        cancelButtonMessage: "キャンセル"
+                    ).then { res in
+                        if res == false {
+                            return
+                        }
+                        PushService.deleteAuthInfo().then {
+                            UIApplication.shared.viewController?.alert(title: "削除完了", message: "削除が完了しました。")
+                        }
+                    }
+                } else {
+                    self.alert(title: "APIエラー", message: message)
+                }
+            default:
+                self.alert(title: "エラー", message: error.localizedDescription)
+            }
             self.navigationController?.popViewController(animated: true)
-        }.finally {
+        }.always(in: .main) {
             if blocking {
                 SVProgressHUD.dismiss()
             }
@@ -155,45 +179,28 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         if try! PushService.isRegistered() {
             vc.navigationController?.pushViewController(self.init(), animated: true)
         } else {
-            firstly {
-                Promise<Bool>() { resolver in
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) { (accepted, error) in
-                        resolver.resolve(accepted, error)
-                    }
-                }
-            }.then { res -> Promise<Bool> in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]).then { res -> Promise<Bool> in
                 if res == false {
-                    return vc.alertWithPromise(title: "エラー", message: "iOSの設定で通知を許可してください。").map {
+                    return vc.alertWithPromise(title: "エラー", message: "iOSの設定で通知を許可してください。").then {
                         return false
                     }
                 }
                 return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、本アプリ(iMast)の開発者である@rinsuki@mstdn.maud.ioが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
             }.then { result -> Promise<Void> in
                 if result == false {
-                    return Promise.value(())
+                    return Promise(resolved: ())
                 } else {
-                    return PushService.register().done { _ in
+                    return PushService.register().then { _ in
                         UIApplication.shared.registerForRemoteNotifications()
                         vc.navigationController?.pushViewController(self.init(), animated: true)
                     }
                 }
             }.catch { e in
-                do {
-                    throw e
-                } catch PushServiceError.unknownError {
-                    vc.alert(title: "不明なエラー", message: "登録中に不明なエラーが発生しました。")
-                } catch PushServiceError.networkError(let message) {
-                    if let message = message {
-                        vc.alert(title: "通信エラー", message: "登録中に通信エラーが発生しました。\n\n\(message)")
-                    } else {
-                        vc.alert(title: "通信エラー", message: "登録中に通信エラーが発生しました。")
-                    }
-                } catch PushServiceError.responseError(let message, let httpCode) {
-                    vc.alert(title: "エラー", message: "登録中にエラーが発生しました。\n\nメッセージ: \(message ?? "")\nエラーコード: HTTP-\(httpCode)")
-                } catch PushServiceError.serverError(let message, let httpCode) {
-                    vc.alert(title: "エラー", message: "登録中にエラーが発生しました。\n\nメッセージ: \(message)\nエラーコード: HTTP-\(httpCode)")
-                } catch {
-                    vc.alert(title: "エラー", message: "登録中にエラーが発生しました。\n\n\(error.localizedDescription)")
+                switch e {
+                case Alamofire.DataRequest.DecodableError.httpError(let message, _):
+                    vc.alert(title: "APIエラー", message: message)
+                default:
+                    vc.alert(title: "エラー", message: "登録中にエラーが発生しました。\n\n\(e.localizedDescription)")
                 }
             }
         }

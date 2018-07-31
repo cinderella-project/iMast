@@ -8,8 +8,6 @@ def based_pods
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
   pod 'SDWebImage', '~> 4.0'
-  pod 'PromiseKit'
-  pod 'PromiseKit/Alamofire'
 end
 
 target 'iMast' do

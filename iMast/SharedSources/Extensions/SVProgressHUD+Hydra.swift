@@ -1,5 +1,5 @@
 //
-//  SVProgressHUD+PromiseKit.swift
+//  SVProgressHUD+Hydra.swift
 //  iMast
 //
 //  Created by user on 2018/07/23.
@@ -8,13 +8,13 @@
 
 import Foundation
 import SVProgressHUD
-import PromiseKit
+import Hydra
 
 extension SVProgressHUD {
     static func dismissPromise() -> Promise<Void> {
-        return Promise<Void>() { resolver in
+        return Promise<Void> { resolve, _, _ in
             SVProgressHUD.dismiss {
-                resolver.resolve((), nil)
+                resolve(())
             }
         }
     }

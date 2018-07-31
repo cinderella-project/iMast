@@ -366,13 +366,20 @@ func CodableCompare<T: Codable>(_ from: T, _ to: T) -> Bool {
     return fromData == toData
 }
 
+extension JSONDecoder {
+    static func get() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = jsISODateDecoder
+        return decoder
+    }
+}
+
 extension Decodable {
     static func decode(json: JSON) throws -> Self {
         if json["error"].string != nil {
             throw APIError.errorReturned(errorMessage: json["error"].stringValue, errorHttpCode: json["_response_code"].intValue)
         }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = jsISODateDecoder
+        let decoder = JSONDecoder.get()
         do {
             return try decoder.decode(self, from: json.rawData())
         } catch {

@@ -66,6 +66,15 @@
 		CE2D2AF9210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */; };
 		CE2D2AFA210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */; };
 		CE2D2AFB210FCD0F003B92B8 /* MastodonCursorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */; };
+		CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
+		CE2D2AFE211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
+		CE2D2AFF211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
+		CE2D2B00211050AE003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
+		CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
+		CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
+		CE2D2B0421105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
+		CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
+		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
@@ -104,10 +113,7 @@
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
-		CEC6BBF52103725D003ECE10 /* UIViewController+alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */; };
-		CEC6BBF62103743A003ECE10 /* UIViewController+alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */; };
-		CEC6BBF72103743A003ECE10 /* UIViewController+alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */; };
-		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift */; };
+		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */; };
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
 		CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0321074EFB003ECE10 /* NotificationService.swift */; };
 		CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -269,6 +275,9 @@
 		CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		CE2D2AF5210C81ED003B92B8 /* ReadmoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreTableViewCell.swift; sourceTree = "<group>"; };
 		CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonCursorWrapper.swift; sourceTree = "<group>"; };
+		CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire.Request+responseDecodable.swift"; sourceTree = "<group>"; };
+		CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hydra.Promise+wrapper.swift"; sourceTree = "<group>"; };
+		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
@@ -307,8 +316,7 @@
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
-		CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alerts.swift"; sourceTree = "<group>"; };
-		CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+PromiseKit.swift"; sourceTree = "<group>"; };
+		CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Hydra.swift"; sourceTree = "<group>"; };
 		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSafari.swift; sourceTree = "<group>"; };
 		CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastNotifyService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6BC0321074EFB003ECE10 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -528,11 +536,13 @@
 		CEC6BBF82104F9E6003ECE10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CEC6BBF42103725D003ECE10 /* UIViewController+alerts.swift */,
 				CE2D2AED210C5668003B92B8 /* Notification.Name.swift */,
-				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift */,
+				CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */,
+				CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */,
+				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
 				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
+				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1173,7 +1183,6 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Notifwift/Notifwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -1192,7 +1201,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Notifwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -1250,13 +1258,14 @@
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
 				CE2D2AF8210FCAAD003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
-				CEC6BBF52103725D003ECE10 /* UIViewController+alerts.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* OtherMenuSettingsTableViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
-				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+PromiseKit.swift in Sources */,
+				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
+				CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
+				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
 				CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */,
 				2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
@@ -1298,6 +1307,7 @@
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
 				CEE254302005C0EB005FEB6F /* WebSocketManager.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
+				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
@@ -1327,6 +1337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2D2AFF211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEC6BC1621084745003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CE1002CA20065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CE1002CC20065FEF0041B636 /* MastodonApplication.swift in Sources */,
@@ -1336,13 +1347,13 @@
 				CEE254252004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
-				CEC6BBF72103743A003ECE10 /* UIViewController+alerts.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE2D2AF9210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */,
 				CE1002C620065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */,
+				CE2D2B0421105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEDEDCA22007F8E400CD2784 /* MastodonList.swift in Sources */,
 				CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */,
 			);
@@ -1366,7 +1377,8 @@
 				CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
-				CEC6BBF62103743A003ECE10 /* UIViewController+alerts.swift in Sources */,
+				CE2D2AFE211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
+				CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
@@ -1382,6 +1394,8 @@
 				CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */,
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
 				CEC6BC1721084746003ECE10 /* MastodonAccountRelationship.swift in Sources */,
+				CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
+				CE2D2B00211050AE003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEC6BC0C21076D09003ECE10 /* GoodUtils.swift in Sources */,
 				CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */,
 				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
