@@ -72,7 +72,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                         return Promise(resolved: ())
                     }
                 }.catch { error in
-                    self.error(errorMsg: error.localizedDescription)
+                    self.alert(title: "エラー", message: "削除に失敗しました。\n\n" + error.localizedDescription)
                 }
             }
         self.title = "プッシュ通知設定"
