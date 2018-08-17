@@ -346,7 +346,7 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     let str = try container.decode(String.self)
     let f = DateFormatter()
     f.calendar = Calendar(identifier: .gregorian)
-    f.locale = .current
+    f.locale = Locale(identifier: "en_US_POSIX")
     f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
     return f.date(from: str)!
 }
