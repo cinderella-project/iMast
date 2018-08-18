@@ -154,7 +154,7 @@ extension String {
     
     func toDate() -> Date {
         let formatter = DateFormatter()
-        formatter.locale=Locale(identifier: "en_US")
+        formatter.locale=Locale(identifier: "en_US_POSIX")
         formatter.dateFormat="yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
         return formatter.date(from: self)!
     }
@@ -283,12 +283,14 @@ class DateUtils {
     class func dateFromString(_ string: String, format: String) -> Date {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.date(from: string)!
     }
     
     class func stringFromDate(_ date: Date, format: String) -> String {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: date)
     }
 }
