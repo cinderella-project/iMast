@@ -101,6 +101,10 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */; };
+		CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
+		CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
+		CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
+		CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
 		CE8DF1851FED41C4005278FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE8DF1841FED41C4005278FE /* Podfile */; };
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
@@ -304,6 +308,7 @@
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
+		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
@@ -543,6 +548,7 @@
 				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
 				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
+				CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1180,6 +1186,7 @@
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Notifwift/Notifwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
@@ -1198,6 +1205,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Notifwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
@@ -1282,6 +1290,7 @@
 				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
 				CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */,
+				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
 				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
@@ -1349,6 +1358,7 @@
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
+				CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE2D2AF9210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */,
 				CE1002C620065CC20041B636 /* MastodonAttachment.swift in Sources */,
@@ -1367,6 +1377,7 @@
 				CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */,
 				CE1002CB20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
+				CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE1002C520065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEE254242004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CEE357231FF6067F00675DFC /* EventListener.swift in Sources */,
@@ -1408,6 +1419,7 @@
 				CEC6BC1B2108474B003ECE10 /* MastodonApplication.swift in Sources */,
 				CEC6BC0D21076D84003ECE10 /* UserDefaultsDict.swift in Sources */,
 				CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */,
+				CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

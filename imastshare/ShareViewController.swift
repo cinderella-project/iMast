@@ -10,6 +10,8 @@ import UIKit
 import Social
 import Hydra
 import SwiftyJSON
+import Alamofire
+import Kanna
 
 class ShareViewController: SLComposeServiceViewController {
     
@@ -70,6 +72,9 @@ class ShareViewController: SLComposeServiceViewController {
                     if url.scheme == "file" {
                         return
                     }
+                    let queryItems = urlComponentsToDict(url: url as URL)
+                    
+                    // Twitterトラッキングを蹴る
                     if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
                         var urlComponents = URLComponents(string: url.absoluteString!)!
                         urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
@@ -80,7 +85,9 @@ class ShareViewController: SLComposeServiceViewController {
                         url = NSURL(string: urlString)!
                     }
                     self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
-                    if url.host == "twitter.com" && url.path == "/intent/tweet" { // Twitter共有の引き継ぎ
+                    
+                    // Twitter共有の引き継ぎ
+                    if url.host == "twitter.com" && url.path == "/intent/tweet" {
                         let query = urlComponentsToDict(url: URL(string: url.absoluteString!)!)
                         var twitterPostText: String = ""
                         if query["text"] != nil {
@@ -101,6 +108,51 @@ class ShareViewController: SLComposeServiceViewController {
                             self.textView.text = twitterPostText
                             self.postUrl = ""
                         }
+                    }
+                    
+                    // GPMなうぷれ対応
+                    if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
+                        url.scheme == "https", url.host == "play.google.com",
+                        let path = url.path, path.starts(with: "/music/m/"),
+                        let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1)
+                    {
+                        let previewUrl = "https://play.google.com/music/preview/\(objectId)"
+                        Alamofire.request(previewUrl).responseData { res in
+                            print(res)
+                            switch res.result {
+                            case .success(let data):
+                                guard let doc = try? Kanna.HTML(html: data, encoding: .utf8) else {
+                                    print("GPMNowPlayingError: Kannaでパースに失敗")
+                                    return
+                                }
+                                guard let trackElement = doc.at_css("[itemtype='http://schema.org/MusicRecording/PlayMusicTrack']") else {
+                                    print("GPMNowPlayingError: PlayMusicTrackがなかった")
+                                    return
+                                }
+                                if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
+                                    print("GPMNowPlayingError: parentがAlbum")
+                                    return
+                                }
+                                guard let title = trackElement.at_xpath("./*[@itemprop='name']")?.text else {
+                                    print("GPMNowPlayingError: nameがない")
+                                    return
+                                }
+                                let artist = trackElement.at_xpath("./*[@itemprop='byArtist']/*[@itemprop='name']")?.text
+                                let albumTitle = trackElement.at_xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']")?.text
+                                let nowPlayingText = Defaults[.nowplayingFormat]
+                                    .replace("{title}", title)
+                                    .replace("{artist}", artist ?? "")
+                                    .replace("{albumTitle}", albumTitle ?? "")
+                                    .replace("{albumArtist}", "")
+                                print(Thread.isMainThread)
+                                DispatchQueue.mainSafeSync {
+                                    self.textView.text = nowPlayingText
+                                }
+                            case .failure(let error):
+                                print("GPMNowPlayingError: Failed fetch Information", error)
+                            }
+                        }
+                        print("GPMやないかーい", previewUrl)
                     }
                 }
             }

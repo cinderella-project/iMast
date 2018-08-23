@@ -124,13 +124,13 @@ extension UIApplication {
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!
-    var dict:Dictionary<String, String> = Dictionary<String, String>()
+    var dict: Dictionary<String, String> = [:]
     
-    if comp.queryItems == nil {
+    guard let queryItems = comp.queryItems else {
         return dict
     }
     
-    comp.queryItems!.forEach { item in
+    queryItems.forEach { item in
         dict[item.name] = item.value
     }
     
@@ -341,6 +341,7 @@ extension DefaultsKeys {
     static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
     static let showPushServiceError = DefaultsKey<Bool>("show_push_service_error", default: false)
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
+    static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
