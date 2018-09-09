@@ -100,6 +100,11 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 break
             }
         }
+        
+        if Defaults[.inReplyToEmoji] && post.inReplyToId != nil {
+            timeView.text = "💬" + (timeView.text ?? "")
+        }
+        
         if self.pinned {
             timeView.text = "📌"+(timeView.text ?? "")
             let limit = Int(Defaults[.pinnedTootLinesLimit])

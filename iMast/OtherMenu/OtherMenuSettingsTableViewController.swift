@@ -113,6 +113,10 @@ class OtherMenuSettingsTableViewController: FormViewController {
                 row.title = "公開範囲を絵文字で表示"
                 row.userDefaultsConnect(.visibilityEmoji)
             }
+            <<< SwitchRow() { row in
+                row.title = "inReplyToの有無を絵文字で表示"
+                row.userDefaultsConnect(.inReplyToEmoji)
+            }
             <<< SliderRow() { row in
                 row.title = "サムネイルの高さ"
                 row.maximumValue = 100

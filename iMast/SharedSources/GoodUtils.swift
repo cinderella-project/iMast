@@ -342,6 +342,7 @@ extension DefaultsKeys {
     static let showPushServiceError = DefaultsKey<Bool>("show_push_service_error", default: false)
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
     static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
+    static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
