@@ -181,8 +181,16 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         } else {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]).then { res -> Promise<Bool> in
                 if res == false {
-                    return vc.alertWithPromise(title: "エラー", message: "iOSの設定で通知を許可してください。").then {
-                        return false
+                    return Promise<Bool> { resolve, reject, _ in
+                        let alert = UIAlertController(title: "通知が許可されていません", message: "iOSの設定で、iMastからの通知を許可してください。", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "設定へ", style: UIAlertActionStyle.default) { _ in
+                            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                            resolve(false)
+                        })
+                        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+                            resolve(false)
+                        })
+                        vc.present(alert, animated: true, completion: nil)
                     }
                 }
                 return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、本アプリ(iMast)の開発者である@rinsuki@mstdn.maud.ioが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
