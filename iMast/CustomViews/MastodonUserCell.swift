@@ -29,7 +29,7 @@ class MastodonUserCell: UITableViewCell {
         }
     }
 
-    static func getInstance() -> Self {
-        return self.init(style: .subtitle, reuseIdentifier: nil)
+    static func getInstance() -> MastodonUserCell {
+        return MastodonUserCell(style: .subtitle, reuseIdentifier: nil)
     }
 }

@@ -177,7 +177,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     
     static func openRequest(vc: UIViewController) {
         if try! PushService.isRegistered() {
-            vc.navigationController?.pushViewController(self.init(), animated: true)
+            vc.navigationController?.pushViewController(OtherMenuPushSettingsTableViewController(), animated: true)
         } else {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]).then { res -> Promise<Bool> in
                 if res == false {
@@ -192,7 +192,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 } else {
                     return PushService.register().then { _ in
                         UIApplication.shared.registerForRemoteNotifications()
-                        vc.navigationController?.pushViewController(self.init(), animated: true)
+                        vc.navigationController?.pushViewController(OtherMenuPushSettingsTableViewController(), animated: true)
                     }
                 }
             }.catch { e in

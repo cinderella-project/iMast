@@ -62,7 +62,7 @@ class ShareViewController: SLComposeServiceViewController {
             print(itemProvider)
             if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
                 itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
-                    if error != nil {
+                    if let error = error {
                         self.extensionContext!.cancelRequest(withError: error)
                         return
                     }
@@ -158,7 +158,7 @@ class ShareViewController: SLComposeServiceViewController {
             }
             if itemProvider.hasItemConformingToTypeIdentifier("public.image") {
                 itemProvider.loadItem(forTypeIdentifier: "public.image", options: nil, completionHandler: { (imageItem, error) in
-                    if error != nil {
+                    if let error = error {
                         self.extensionContext!.cancelRequest(withError: error)
                         return
                     }
