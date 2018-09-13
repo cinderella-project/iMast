@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -89,17 +89,17 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="1GZ-iC-N5D" firstAttribute="height" secondItem="wXc-zh-T2a" secondAttribute="height" id="2Fx-kv-TwX"/>
-                <constraint firstAttribute="trailing" secondItem="8rL-5m-UMl" secondAttribute="trailing" constant="8" id="2N0-ce-4u0"/>
+                <constraint firstItem="m55-Vb-1AU" firstAttribute="trailing" secondItem="8rL-5m-UMl" secondAttribute="trailing" constant="8" id="2N0-ce-4u0"/>
                 <constraint firstItem="lm5-3d-b6x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Jg-Zi-fBL"/>
                 <constraint firstItem="1GZ-iC-N5D" firstAttribute="centerY" secondItem="wXc-zh-T2a" secondAttribute="centerY" id="8Pp-I7-ucv"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="leading" secondItem="sQD-aX-zO8" secondAttribute="trailing" constant="8" id="Bz7-HT-Ghz"/>
                 <constraint firstItem="1GZ-iC-N5D" firstAttribute="width" secondItem="wXc-zh-T2a" secondAttribute="width" id="Dbx-qL-ufv"/>
-                <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EFm-a8-BjD"/>
+                <constraint firstItem="sQD-aX-zO8" firstAttribute="leading" secondItem="m55-Vb-1AU" secondAttribute="leading" constant="8" id="EFm-a8-BjD"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="width" secondItem="sQD-aX-zO8" secondAttribute="width" multiplier="0.5" id="GqQ-0B-q3e"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="bottom" secondItem="sQD-aX-zO8" secondAttribute="bottom" id="Tnk-5p-w4L"/>
                 <constraint firstAttribute="bottom" secondItem="lm5-3d-b6x" secondAttribute="bottom" id="TzA-eE-0in"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sQD-aX-zO8" secondAttribute="bottom" constant="8" id="VER-Ff-Ses"/>
-                <constraint firstAttribute="trailing" secondItem="tNk-Gl-VMc" secondAttribute="trailing" id="Wfk-5q-yRl"/>
+                <constraint firstItem="m55-Vb-1AU" firstAttribute="trailing" secondItem="tNk-Gl-VMc" secondAttribute="trailing" id="Wfk-5q-yRl"/>
                 <constraint firstAttribute="bottom" secondItem="8rL-5m-UMl" secondAttribute="bottom" constant="8" id="cD9-3W-zPg"/>
                 <constraint firstItem="8rL-5m-UMl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dQt-4D-boL"/>
                 <constraint firstItem="tNk-Gl-VMc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eM1-tx-ol5"/>
@@ -109,10 +109,11 @@
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="trailing" secondItem="sQD-aX-zO8" secondAttribute="trailing" id="kgS-7u-ZUF"/>
                 <constraint firstItem="hRK-hn-Wuq" firstAttribute="height" secondItem="sQD-aX-zO8" secondAttribute="height" multiplier="0.5" id="ocQ-RO-bxa"/>
                 <constraint firstItem="sQD-aX-zO8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ooO-rh-LZd"/>
-                <constraint firstItem="lm5-3d-b6x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="z01-MT-3uq"/>
+                <constraint firstItem="lm5-3d-b6x" firstAttribute="leading" secondItem="m55-Vb-1AU" secondAttribute="leading" id="z01-MT-3uq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="m55-Vb-1AU"/>
             <connections>
                 <outlet property="boostedUserIcon" destination="hRK-hn-Wuq" id="qXJ-AH-OHc"/>
                 <outlet property="iconHeightConstraint" destination="jjY-4l-N6P" id="29c-ip-iMD"/>
@@ -132,6 +133,7 @@
         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="lzb-IV-mkR">
             <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <viewLayoutGuide key="safeArea" id="xiB-bw-WX7"/>
         </stackView>
     </objects>
 </document>
