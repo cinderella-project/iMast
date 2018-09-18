@@ -71,6 +71,39 @@ class NotificationService: UNNotificationServiceExtension {
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
         // Modify the notification content here...
+        
+        self.bestAttemptContent?.threadIdentifier = ""
+        if Defaults[.groupNotifyAccounts], let receiveUser = request.content.userInfo["receiveUser"] as? [String] {
+            self.bestAttemptContent?.threadIdentifier += "account=\(receiveUser.joined(separator: "@")),"
+        }
+        if let notifyType = request.content.userInfo["notifyType"] as? String {
+            switch notifyType {
+            case "reblog":
+                if Defaults[.groupNotifyTypeBoost] {
+                    self.bestAttemptContent?.threadIdentifier += "type=boost,"
+                }
+            case "favourite":
+                if Defaults[.groupNotifyTypeFavourite] {
+                    self.bestAttemptContent?.threadIdentifier += "type=favourite,"
+                }
+            case "mention":
+                if Defaults[.groupNotifyTypeMention] {
+                    self.bestAttemptContent?.threadIdentifier += "type=mention,"
+                }
+            case "follow":
+                if Defaults[.groupNotifyTypeFollow] {
+                    self.bestAttemptContent?.threadIdentifier += "type=follow,"
+                }
+            case "unknown":
+                if Defaults[.groupNotifyTypeUnknown] {
+                    self.bestAttemptContent?.threadIdentifier += "type=unknown,"
+                }
+            default:
+                print("whats this is", notifyType)
+            }
+        }
+        print(self.bestAttemptContent?.threadIdentifier)
+        
         var promise: [Promise<Void>] = []
         promise.append(async { _ in // get attachment images
             if let images = request.content.userInfo["images"] as? [String] {

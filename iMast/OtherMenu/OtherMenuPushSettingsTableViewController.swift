@@ -54,6 +54,18 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 cell.textLabel?.numberOfLines = 0
             }
             <<< ButtonRow() { row in
+                row.title = "グループ化のルール設定 (β)"
+                row.cellStyle = .default
+                row.cellUpdate{ (cell, row) in
+                    cell.textLabel?.textColor = .black
+                    cell.textLabel?.textAlignment = .left
+                    cell.accessoryType = .disclosureIndicator
+                }
+                row.onCellSelection { (cell, row) in
+                    self.navigationController?.pushViewController(OtherMenuPushSettingsGroupNotifyTableViewController(), animated: true)
+                }
+            }
+            <<< ButtonRow() { row in
                 row.title = "プッシュ通知の設定を削除"
             }.cellUpdate { cell, row in
                 cell.textLabel?.textColor = UIColor.red

@@ -343,6 +343,13 @@ extension DefaultsKeys {
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
     static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
     static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
+    
+    static let groupNotifyAccounts = DefaultsKey<Bool>("group_notify_accounts", default: true)
+    static let groupNotifyTypeBoost = DefaultsKey<Bool>("group_notify_type_boost", default: false)
+    static let groupNotifyTypeFavourite = DefaultsKey<Bool>("group_notify_type_favourite", default: false)
+    static let groupNotifyTypeMention = DefaultsKey<Bool>("group_notify_type_mention", default: false)
+    static let groupNotifyTypeFollow = DefaultsKey<Bool>("group_notify_type_follow", default: false)
+    static let groupNotifyTypeUnknown = DefaultsKey<Bool>("group_notify_type_unknown", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
