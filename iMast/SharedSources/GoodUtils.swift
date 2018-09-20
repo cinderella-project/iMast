@@ -200,35 +200,6 @@ extension String {
         return self.replacingOccurrences(of: target, with: to)
     }
     
-    func parseText2HTML() -> NSAttributedString? {
-        if !self.replace("<p>","").replace("</p>","").contains("<") {
-            return nil
-        }
-        if html2ascacheavail[self] ?? false {
-            return html2ascache[self] ?? nil
-        }
-        
-        // 受け取ったデータをUTF-8エンコードする
-        let encodeData = self.data(using: String.Encoding.utf8, allowLossyConversion: true)
-        
-        // 表示データのオプションを設定する
-        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey : Any] = [
-            NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
-            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue
-        ]
-        
-        // 文字列の変換処理
-        var attributedString:NSAttributedString?
-        attributedString = try? NSAttributedString(
-            data: encodeData!,
-            options: attributedOptions,
-            documentAttributes: nil
-        )
-        html2ascache[self] = attributedString
-        
-        return attributedString
-    }
-    
     func format(_ params: CVarArg...) -> String{
         return String(format: self, arguments: params)
     }
@@ -350,6 +321,8 @@ extension DefaultsKeys {
     static let groupNotifyTypeMention = DefaultsKey<Bool>("group_notify_type_mention", default: false)
     static let groupNotifyTypeFollow = DefaultsKey<Bool>("group_notify_type_follow", default: false)
     static let groupNotifyTypeUnknown = DefaultsKey<Bool>("group_notify_type_unknown", default: false)
+    
+    static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {

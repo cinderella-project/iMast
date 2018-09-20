@@ -218,6 +218,11 @@ class OtherMenuSettingsTableViewController: FormViewController {
                     })
                 }
             }
+        self.form +++ Section("実験的な要素")
+            <<< SwitchRow() { row in
+                row.title = "新しいHTMLパーサーを使う"
+                row.userDefaultsConnect(.newHtmlParser)
+            }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
