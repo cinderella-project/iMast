@@ -15,8 +15,8 @@ extension String {
             .pregReplace(pattern: "<.+?>", with: "")
             .replace("&lt;", "<")
             .replace("&gt;", ">")
-            .replace("&apos;", "\"")
-            .replace("&quot;", "'")
+            .replace("&apos;", "'")
+            .replace("&quot;", "\"")
             .replace("&amp;", "&")
     }
 }
