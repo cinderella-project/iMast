@@ -66,15 +66,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             attrStr.addAttributes(attrs, range: NSRange(location: 0, length: attrStr.length))
             textView.attributedText = attrStr
         } else {
-            textView.text = post.status
-                .replace("<br />","\n")
-                .replace("</p><p>","\n\n")
-                .pregReplace(pattern: "\\<.+?\\>", with: "")
-                .replace("&lt;", "<") // HTMLのエスケープを解く
-                .replace("&gt;", ">")
-                .replace("&apos;", "\"")
-                .replace("&quot;", "'")
-                .replace("&amp;", "&")
+            textView.text = post.status.toPlainText()
         }
         textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
         userView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()

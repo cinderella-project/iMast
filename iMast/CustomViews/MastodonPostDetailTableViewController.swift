@@ -79,7 +79,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
         print(post)
-        var html = "<style>*{font-size:14px;font-family: sans-serif;padding:0;margin:0;}</style>"
+        var html = ""
         let postHtml = post.status.emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         if post.spoilerText != "" {
             html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
@@ -92,18 +92,13 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         } else {
             html += postHtml
         }
-        let attrStr = html.parseText2HTML()
-        if attrStr == nil {
-            textView.text = post.status
-                .pregReplace(pattern: "\\<br /\\>", with: "\n")
-                .pregReplace(pattern: "\\<.+?\\>", with: "")
-                .replace("&lt;", "<") // HTMLのエスケープを解く
-                .replace("&gt;", ">")
-                .replace("&apos;", "\"")
-                .replace("&quot;", "'")
-                .replace("&amp;", "&")
-        } else {
+        if let attrStr = html.parseText2HTML()?.toMutable() {
+            attrStr.addAttributes([
+                .font: UIFont.systemFont(ofSize: 14)
+            ], range: NSRange(location: 0, length: attrStr.length))
             textView.attributedText = attrStr
+        } else {
+            textView.text = post.status.toPlainText()
         }
         var iconUrl = post.account.avatarUrl
         if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {

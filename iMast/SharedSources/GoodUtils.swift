@@ -213,10 +213,6 @@ extension String {
     func parseInt() -> Int {
         return Int(self.pregMatch(pattern: "^[0-9]+")[0]) ?? 0
     }
-    
-    func htmlRemoved() -> String {
-        return self.pregReplace(pattern: "<br.+?>", with: "\n").replace("</p><p>", "\n\n").pregReplace(pattern: "<.+?>", with: "")
-    }
 }
 
 extension UserDefaults {

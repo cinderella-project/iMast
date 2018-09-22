@@ -38,7 +38,15 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
             loadAfter = true
             return
         }
-        self.profileTextView.attributedText = ("<style>*{font-size:14px;line-height: 1.1em;font-family: sans-serif;padding:0;margin:0;}body{text-align: center;}</style>" + user.bio.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")).parseText2HTML()
+        if let attrStr = ("<style>*{font-size:14px;line-height: 1.1em;font-family: sans-serif;padding:0;margin:0;}body{text-align: center;}</style>" + user.bio.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")).parseText2HTML()?.toMutable() {
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            attrStr.addAttributes([
+                .paragraphStyle: paragraph,
+                .font: UIFont.systemFont(ofSize: 14),
+            ], range: NSRange(location: 0, length: attrStr.length))
+            self.profileTextView.attributedText = attrStr
+        }
         self.profileTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         self.profileTextView.textContainer.lineFragmentPadding = 0
     }

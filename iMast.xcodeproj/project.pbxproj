@@ -91,6 +91,7 @@
 		CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */; };
 		CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */; };
 		CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */; };
+		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
 		CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
 		CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */; };
@@ -300,6 +301,7 @@
 		CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileInfoTableViewCell.xib; sourceTree = "<group>"; };
 		CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioTableViewCell.swift; sourceTree = "<group>"; };
 		CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileBioTableViewCell.xib; sourceTree = "<group>"; };
+		CE65772B21560BE300670F0A /* String+toPlainText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toPlainText.swift"; sourceTree = "<group>"; };
 		CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccountSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CE66CE131EEA2AF9006D5B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTopViewController.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 				CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */,
 				CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */,
 				CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */,
+				CE65772B21560BE300670F0A /* String+toPlainText.swift */,
 				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
 				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
@@ -1197,6 +1200,7 @@
 				2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */,
 				2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */,
 				CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */,
+				CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */,
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
 				CEE254302005C0EB005FEB6F /* WebSocketManager.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
