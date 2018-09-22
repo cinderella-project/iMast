@@ -8,7 +8,6 @@ def based_pods
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
   pod 'SDWebImage', '~> 4.0'
-  pod 'Kanna', '~> 4.0.0'
   pod 'Fuzi', '~> 2.1.0'
 end
 

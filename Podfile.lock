@@ -6,7 +6,6 @@ PODS:
   - Fuzi (2.1.0)
   - GRDB.swift (3.2.0)
   - HydraAsync (1.2.1)
-  - Kanna (4.0.1)
   - KeychainAccess (3.1.1)
   - Notifwift (1.0.0)
   - ObjcExceptionBridging (1.0.1):
@@ -32,7 +31,6 @@ DEPENDENCIES:
   - Fuzi (~> 2.1.0)
   - GRDB.swift
   - HydraAsync
-  - Kanna (~> 4.0.0)
   - KeychainAccess
   - Notifwift
   - ReachabilitySwift (~> 3)
@@ -51,7 +49,6 @@ SPEC REPOS:
     - Fuzi
     - GRDB.swift
     - HydraAsync
-    - Kanna
     - KeychainAccess
     - Notifwift
     - ObjcExceptionBridging
@@ -70,7 +67,6 @@ SPEC CHECKSUMS:
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
   GRDB.swift: c5bb04b25a9931fec937920e913787e45f96124f
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
-  Kanna: 15569a2331b79782a1753cf280c8e69e2a033654
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
@@ -81,6 +77,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 134d9d8206be51b032e776ff8087146402c97a9f
+PODFILE CHECKSUM: 88d3fbbe2c74ca9b340139317c3350ff60e78a1b
 
 COCOAPODS: 1.5.3
