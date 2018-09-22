@@ -11,7 +11,7 @@ import Social
 import Hydra
 import SwiftyJSON
 import Alamofire
-import Kanna
+import Fuzi
 
 class ShareViewController: SLComposeServiceViewController {
     
@@ -121,11 +121,11 @@ class ShareViewController: SLComposeServiceViewController {
                             print(res)
                             switch res.result {
                             case .success(let data):
-                                guard let doc = try? Kanna.HTML(html: data, encoding: .utf8) else {
-                                    print("GPMNowPlayingError: Kannaでパースに失敗")
+                                guard let doc = try? Fuzi.HTMLDocument(data: data) else {
+                                    print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
                                     return
                                 }
-                                guard let trackElement = doc.at_css("[itemtype='http://schema.org/MusicRecording/PlayMusicTrack']") else {
+                                guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
                                     print("GPMNowPlayingError: PlayMusicTrackがなかった")
                                     return
                                 }
@@ -133,12 +133,12 @@ class ShareViewController: SLComposeServiceViewController {
                                     print("GPMNowPlayingError: parentがAlbum")
                                     return
                                 }
-                                guard let title = trackElement.at_xpath("./*[@itemprop='name']")?.text else {
+                                guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
                                     print("GPMNowPlayingError: nameがない")
                                     return
                                 }
-                                let artist = trackElement.at_xpath("./*[@itemprop='byArtist']/*[@itemprop='name']")?.text
-                                let albumTitle = trackElement.at_xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']")?.text
+                                let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
+                                let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
                                 let nowPlayingText = Defaults[.nowplayingFormat]
                                     .replace("{title}", title)
                                     .replace("{artist}", artist ?? "")
