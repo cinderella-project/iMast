@@ -26,6 +26,7 @@ target 'iMast' do
   pod 'KeychainAccess'
   pod 'SVProgressHUD'
   pod 'Notifwift'
+  pod 'Texture'
 
   target 'iMastTests' do
     inherit! :search_paths

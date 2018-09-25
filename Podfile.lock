@@ -11,6 +11,21 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - PINCache (3.0.1-beta.6):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
+    - PINCache/Core (= 3.0.1-beta.6)
+  - PINCache/Arc-exception-safe (3.0.1-beta.6):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.6):
+    - PINOperation (~> 1.1.0)
+  - PINOperation (1.1.1)
+  - PINRemoteImage/Core (3.0.0-beta.13):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.13):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.13):
+    - PINCache (= 3.0.1-beta.6)
+    - PINRemoteImage/Core
   - ReachabilitySwift (3)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -18,6 +33,13 @@ PODS:
   - Starscream (3.0.5)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
+  - Texture (2.7):
+    - Texture/PINRemoteImage (= 2.7)
+  - Texture/Core (2.7)
+  - Texture/PINRemoteImage (2.7):
+    - PINRemoteImage/iOS (= 3.0.0-beta.13)
+    - PINRemoteImage/PINCache
+    - Texture/Core
   - XCGLogger (6.0.4):
     - XCGLogger/Core (= 6.0.4)
   - XCGLogger/Core (6.0.4):
@@ -38,6 +60,7 @@ DEPENDENCIES:
   - Starscream
   - SVProgressHUD
   - SwiftyJSON
+  - Texture
   - XCGLogger (~> 6.0.2)
 
 SPEC REPOS:
@@ -52,11 +75,15 @@ SPEC REPOS:
     - KeychainAccess
     - Notifwift
     - ObjcExceptionBridging
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - ReachabilitySwift
     - SDWebImage
     - Starscream
     - SVProgressHUD
     - SwiftyJSON
+    - Texture
     - XCGLogger
 
 SPEC CHECKSUMS:
@@ -70,13 +97,17 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
+  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
+  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 88d3fbbe2c74ca9b340139317c3350ff60e78a1b
+PODFILE CHECKSUM: 79ca9d32576eafce1c1156307651d8079820d996
 
 COCOAPODS: 1.5.3
