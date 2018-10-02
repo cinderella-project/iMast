@@ -77,6 +77,7 @@ func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
             print("WebSocket::Disconnect", endpoint, error?.localizedDescription ?? "no desc")
         }
         wrap.connect()
+        webSockets.append(wrap)
         return Promise(resolved: wrap)
     }
 }

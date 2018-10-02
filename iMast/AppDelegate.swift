@@ -16,43 +16,41 @@ import Notifwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow? {
-        didSet {
-            allDisconnectWebSocket()
-        }
-    }
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // とりあえずもろもろ初期化
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         self.registerDefaultsFromSettingsBundle()
         self.migrateUserDefaultsToAppGroup()
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        // とりあえずlaunchScreen出しとく
+        if let launchScreen = R.storyboard.launchScreen.instantiateInitialViewController() {
+            changeRootVC(launchScreen, animated: false)
+        }
+        
         let myAccount = MastodonUserToken.getLatestUsed()
         if let myAccount = myAccount {
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
-                    self.window = UIWindow()
-                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                    let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")
-                    self.window?.rootViewController = initialVC
-                    self.window?.makeKeyAndVisible()
+                    if let vc = R.storyboard.login.instantiateInitialViewController() {
+                        changeRootVC(vc, animated: false)
+                    }
                 } else {
-                    self.window = UIWindow()
-                    self.window?.rootViewController = MainTabBarController()
-                    self.window?.makeKeyAndVisible()
+                    changeRootVC(MainTabBarController(), animated: false)
                 }
             }
         } else {
-            self.window = UIWindow()
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")
-            self.window?.rootViewController = initialVC
-            self.window?.makeKeyAndVisible()
+            if let vc = R.storyboard.login.instantiateInitialViewController() {
+                changeRootVC(vc, animated: false)
+            }
         }
+
         Navigator.scheme="imast"
         Navigator.routes=[
             "callback",
@@ -90,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.setDefaultMaskType(.black)
-
+        
         return true
     }
     
@@ -108,16 +106,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if params["code"] == nil {
                     break
                 }
-                self.window = UIWindow()
-                let nextVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "progress") as! AddAccountProgressViewController
+                let nextVC = R.storyboard.login.progress()!
                 nextVC.isCallback = true
                 nextVC.app = MastodonApp.initFromId(appId: params["state"]!)
                 nextVC.instance = nextVC.app?.instance
                 nextVC.app?.authorizeWithCode(code: params["code"]!).then { usertoken in
                     nextVC.userToken = usertoken
-                    self.window?.makeKeyAndVisible()
+                    changeRootVC(nextVC, animated: false)
                 }
-                self.window?.rootViewController = nextVC
                 break
             case "from-backend/push/oauth-finished":
                 Notifwift.post(.pushSettingsAccountReload)
@@ -213,10 +209,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         if userToken.id != MastodonUserToken.getLatestUsed()?.id {
             userToken.use()
-            let window = UIWindow()
-            window.rootViewController = MainTabBarController()
-            window.makeKeyAndVisible()
-            (UIApplication.shared.delegate as! AppDelegate).window = window
+            changeRootVC(MainTabBarController(), animated: true)
         }
         
         guard let topVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
@@ -270,4 +263,23 @@ func openVLC(_ url: String) -> Bool{
         return true
     }
     return false
+}
+
+func changeRootVC(_ viewController: UIViewController, animated: Bool) {
+    guard let window = UIApplication.shared.keyWindow else {
+        // windowがないなら、作ってkeyWindowにする
+        let window = UIWindow()
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+        (UIApplication.shared.delegate as! AppDelegate).window = window
+        return
+    }
+    if animated {
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            changeRootVC(viewController, animated: false)
+        }, completion: nil)
+    } else {
+        allWebSocketDisconnect()
+        window.rootViewController = viewController
+    }
 }

@@ -155,7 +155,6 @@
 		CEE254282004B5AA005FEB6F /* MastodonPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254272004B5AA005FEB6F /* MastodonPost.swift */; };
 		CEE2542A2004B802005FEB6F /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
 		CEE2542E2004FA76005FEB6F /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
-		CEE254302005C0EB005FEB6F /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542F2005C0EB005FEB6F /* WebSocketManager.swift */; };
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
 		CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
@@ -343,7 +342,6 @@
 		CEE254272004B5AA005FEB6F /* MastodonPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPost.swift; sourceTree = "<group>"; };
 		CEE254292004B802005FEB6F /* MastodonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApplication.swift; sourceTree = "<group>"; };
 		CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonNotification.swift; sourceTree = "<group>"; };
-		CEE2542F2005C0EB005FEB6F /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostMediaListViewController.swift; sourceTree = "<group>"; };
 		CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostMediaListViewController.xib; sourceTree = "<group>"; };
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
@@ -595,7 +593,6 @@
 				CEE254262004B593005FEB6F /* MastodonAPI */,
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
-				CEE2542F2005C0EB005FEB6F /* WebSocketManager.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CE1002D4200683850041B636 /* ReportError.swift */,
@@ -1224,7 +1221,6 @@
 				CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */,
 				CE392A6D216374E70046C84F /* R.generated.swift in Sources */,
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
-				CEE254302005C0EB005FEB6F /* WebSocketManager.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
 				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,

@@ -76,12 +76,9 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
     }
 
     @IBAction func addAccountButtonTapped(_ sender: Any) {
-        let window = UIWindow()
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")
-        window.rootViewController = initialVC
-        window.makeKeyAndVisible()
-        (UIApplication.shared.delegate as! AppDelegate).window = window
+        if let vc = R.storyboard.login.logintop() {
+            changeRootVC(vc, animated: true)
+        }
     }
     
     // MARK: - Table view data source
@@ -121,10 +118,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userTokens[indexPath[1]].use()
-        let window = UIWindow()
-        window.rootViewController = MainTabBarController()
-        window.makeKeyAndVisible()
-        (UIApplication.shared.delegate as! AppDelegate).window = window
+        changeRootVC(MainTabBarController(), animated: true)
     }
     
     /*
@@ -156,18 +150,10 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
                     self.userTokens = MastodonUserToken.getAllUserTokens()
                     self.tableView.reloadData()
                     if indexPath[1] == 0 {
-                        if self.userTokens.count > 1 {
-                            let window = UIWindow()
-                            window.rootViewController = MainTabBarController()
-                            window.makeKeyAndVisible()
-                            (UIApplication.shared.delegate as! AppDelegate).window = window
+                        if self.userTokens.count > 0 {
+                            changeRootVC(MainTabBarController(), animated: true)
                         } else {
-                            let window = UIWindow()
-                            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                            let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")
-                            window.rootViewController = initialVC
-                            window.makeKeyAndVisible()
-                            (UIApplication.shared.delegate as! AppDelegate).window = window
+                            changeRootVC(R.storyboard.login.instantiateInitialViewController()!, animated: true)
                         }
                     }
                 }

@@ -38,10 +38,7 @@ class AddAccountSuccessViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func goTimelineTapped(_ sender: Any) {
-        let window = UIWindow()
-        window.rootViewController = MainTabBarController()
-        window.makeKeyAndVisible()
-        (UIApplication.shared.delegate as! AppDelegate).window = window
+        changeRootVC(MainTabBarController(), animated: true)
     }
     
 
