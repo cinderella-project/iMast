@@ -122,9 +122,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userTokens[indexPath[1]].use()
         let window = UIWindow()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialVC = storyboard.instantiateViewController(withIdentifier: "maintop")
-        window.rootViewController = initialVC
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         (UIApplication.shared.delegate as! AppDelegate).window = window
     }
@@ -160,9 +158,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
                     if indexPath[1] == 0 {
                         if self.userTokens.count > 1 {
                             let window = UIWindow()
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let initialVC = storyboard.instantiateInitialViewController()
-                            window.rootViewController = initialVC
+                            window.rootViewController = MainTabBarController()
                             window.makeKeyAndVisible()
                             (UIApplication.shared.delegate as! AppDelegate).window = window
                         } else {

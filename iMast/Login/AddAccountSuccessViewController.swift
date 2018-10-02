@@ -39,9 +39,7 @@ class AddAccountSuccessViewController: UIViewController {
     }
     @IBAction func goTimelineTapped(_ sender: Any) {
         let window = UIWindow()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialVC = storyboard.instantiateInitialViewController()
-        window.rootViewController = initialVC
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         (UIApplication.shared.delegate as! AppDelegate).window = window
     }
