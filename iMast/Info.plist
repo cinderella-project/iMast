@@ -60,8 +60,6 @@
 	<string>投稿に添付する画像の選択や、アイコンに使用する画像の選択に利用します。</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -30,10 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.migrateUserDefaultsToAppGroup()
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        var isLogged = false
         let myAccount = MastodonUserToken.getLatestUsed()
         if let myAccount = myAccount {
-            isLogged = true
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
@@ -42,10 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")
                     self.window?.rootViewController = initialVC
                     self.window?.makeKeyAndVisible()
+                } else {
+                    self.window = UIWindow()
+                    self.window?.rootViewController = MainTabBarController()
+                    self.window?.makeKeyAndVisible()
                 }
             }
-        }
-        if !isLogged {
+        } else {
             self.window = UIWindow()
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             let initialVC = storyboard.instantiateViewController(withIdentifier: "logintop")

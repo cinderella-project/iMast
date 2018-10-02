@@ -8,10 +8,81 @@
 
 import UIKit
 import SwiftyJSON
+import AsyncDisplayKit
 
-class NotificationTableViewController: UITableViewController {
+class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDataSource, ASTableDelegate {
+    
+    class NotificationCell: ASCellNode {
+        let notifyTypeImage = ASImageNode()
+        let notifyTitleText = ASTextNode()
+        let notifyBodyText = ASTextNode()
+        
+        init(notification: MastodonNotification) {
+            super.init()
+            
+            self.notifyTypeImage.image = [
+                "follow": R.image.follow(),
+                "reblog": R.image.boost(),
+                "favourite": R.image.star(),
+                "mention": R.image.reply(),
+            ][notification.type] ?? nil
+            self.notifyTypeImage.style.width = ASDimension(unit: .points, value: 16)
+            self.notifyTypeImage.style.height = ASDimension(unit: .points, value: 16)
+            self.addSubnode(self.notifyTypeImage)
+            
+            self.notifyTitleText.attributedText = NSAttributedString(string: ([
+                "follow": "@%さんにフォローされました",
+                "favourite": "@%さんにふぁぼられました",
+                "reblog": "@%さんにブーストされました",
+                "mention": "@%さんからのリプライ"
+            ][notification.type] ?? "謎の通知 (type: \(notification.type)").replace("%", notification.account?.acct ?? ""), attributes: [
+                .font: UIFont.systemFont(ofSize: 14)
+            ])
+            self.notifyTitleText.truncationMode = .byTruncatingTail
+            self.notifyTitleText.maximumNumberOfLines = 1
+            self.addSubnode(self.notifyTitleText)
+            
+            self.notifyBodyText.attributedText = NSAttributedString(string: notification.status?.status.toPlainText() ?? notification.account?.name ?? "", attributes: [
+                .font: UIFont.systemFont(ofSize: 17)
+            ])
+            self.notifyBodyText.truncationMode = .byTruncatingTail
+            self.notifyBodyText.maximumNumberOfLines = 1
+            self.addSubnode(self.notifyBodyText)
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            let main = ASStackLayoutSpec(direction: .vertical, spacing: 4, justifyContent: .start, alignItems: .start, children: [
+                self.notifyTitleText,
+                self.notifyBodyText,
+            ])
+            main.style.flexGrow = 1
+            main.style.flexShrink = 1
+            
+            let top = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .start, children: [
+                self.notifyTypeImage,
+                main,
+            ])
+            
+            top.style.flexGrow = 1
+            top.style.flexShrink = 1
+
+            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16), child: top)
+        }
+    }
 
     var notifications:[MastodonNotification] = []
+    let refreshControl = UIRefreshControl()
+    
+    init() {
+        super.init(node: ASTableNode(style: .plain))
+        self.node.dataSource = self
+        self.node.delegate = self
+        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControlEvents.valueChanged)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +93,12 @@ class NotificationTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        self.node.view.addSubview(self.refreshControl)
+        
         MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
             self.notifications = notifications
-            self.tableView.reloadData()
-            self.refreshControl = UIRefreshControl()
-            self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControlEvents.valueChanged)
+            self.node.reloadData()
         }
-        
-        tableView.rowHeight = 56
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,14 +108,11 @@ class NotificationTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    func numberOfSections(in tableNode: ASTableNode) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         return notifications.count
     }
     
@@ -55,54 +121,17 @@ class NotificationTableViewController: UITableViewController {
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
+            self.node.reloadData()
+            self.refreshControl.endRefreshing()
         })
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let notification = self.notifications[indexPath[1]]
-
-        // Configure the cell...
-        
-        switch notification.type {
-        case "favourite":
-            guard let account = notification.account else { break }
-            guard let status = notification.status else { break }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "favourite", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにふぁぼられました"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.toPlainText().replace("\n", " ")
-            return cell
-        case "reblog":
-            guard let account = notification.account else { break }
-            guard let status = notification.status else { break }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "reblog", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにブーストされました"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.toPlainText().replace("\n", " ")
-            return cell
-        case "follow":
-            guard let account = notification.account else { break }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "follow", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんにフォローされました"
-            (cell.viewWithTag(2) as! UILabel).text = (account.name == "" ? account.name : account.screenName).emojify()
-            return cell
-        case "mention":
-            guard let account = notification.account else { break }
-            guard let status = notification.status else { break }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mention", for: indexPath)
-            (cell.viewWithTag(1) as! UILabel).text = "@\(account.acct)さんからのリプライ"
-            (cell.viewWithTag(2) as! UILabel).text = status.status.toPlainText().replace("\n", " ")
-            return cell
-        default:
-            break
-        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "unknown", for: indexPath)
-        (cell.viewWithTag(1) as! UILabel).text = notification.type
-        return cell
+    
+    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+        return NotificationCell(notification: self.notifications[indexPath.row])
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let notification = self.notifications[indexPath[1]]
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        let notification = self.notifications[indexPath.row]
         self.openNotify(notification)
     }
     
@@ -131,50 +160,4 @@ class NotificationTableViewController: UITableViewController {
             self.navigationController?.pushViewController(newVC, animated: animated)
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
