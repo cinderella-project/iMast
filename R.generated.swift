@@ -402,8 +402,212 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 0 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
+    struct localizable {
+      /// en translation: @% boosted your toot
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellReblogTitle = Rswift.StringResource(key: "tabs.notifications.cell.reblog.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @% favourited your toot
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellFavouriteTitle = Rswift.StringResource(key: "tabs.notifications.cell.favourite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @% followed you
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellFollowTitle = Rswift.StringResource(key: "tabs.notifications.cell.follow.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @% mentioned you
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellMentionTitle = Rswift.StringResource(key: "tabs.notifications.cell.mention.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingActionCancel = Rswift.StringResource(key: "timeline.streaming.action.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Connect
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingActionConnect = Rswift.StringResource(key: "timeline.streaming.action.connect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Connected
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingStatusConnected = Rswift.StringResource(key: "timeline.streaming.status.connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Disconnect
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingActionDisconnect = Rswift.StringResource(key: "timeline.streaming.action.disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Home
+      /// 
+      /// Locales: en, ja
+      static let tabsHomeShortTitle = Rswift.StringResource(key: "tabs.home.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Home Timeline
+      /// 
+      /// Locales: en, ja
+      static let tabsHomeTitle = Rswift.StringResource(key: "tabs.home.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: LTL
+      /// 
+      /// Locales: en, ja
+      static let tabsLocalTimelineShortTitle = Rswift.StringResource(key: "tabs.localTimeline.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Local Timeline
+      /// 
+      /// Locales: en, ja
+      static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Not connected
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingStatusNotConnected = Rswift.StringResource(key: "timeline.streaming.status.notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Notifications
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsTitle = Rswift.StringResource(key: "tabs.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Post
+      /// 
+      /// Locales: en, ja
+      static let timelineToPostButtonTitle = Rswift.StringResource(key: "timeline.toPostButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Refresh
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Status: %
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingStatusBase = Rswift.StringResource(key: "timeline.streaming.status.base", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Streaming
+      /// 
+      /// Locales: en, ja
+      static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      
+      /// en translation: @% boosted your toot
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellReblogTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.reblog.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: @% favourited your toot
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellFavouriteTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.favourite.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: @% followed you
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellFollowTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.follow.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: @% mentioned you
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellMentionTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.mention.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingActionCancel(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.action.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Connect
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingActionConnect(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.action.connect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Connected
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingStatusConnected(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.status.connected", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Disconnect
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingActionDisconnect(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.action.disconnect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Home
+      /// 
+      /// Locales: en, ja
+      static func tabsHomeShortTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.home.shortTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Home Timeline
+      /// 
+      /// Locales: en, ja
+      static func tabsHomeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.home.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: LTL
+      /// 
+      /// Locales: en, ja
+      static func tabsLocalTimelineShortTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.localTimeline.shortTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Local Timeline
+      /// 
+      /// Locales: en, ja
+      static func tabsLocalTimelineTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Not connected
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingStatusNotConnected(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.status.notConnected", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Notifications
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Post
+      /// 
+      /// Locales: en, ja
+      static func timelineToPostButtonTitle(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.toPostButton.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Refresh
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingActionRefresh(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Status: %
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingStatusBase(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.status.base", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Streaming
+      /// 
+      /// Locales: en, ja
+      static func timelineStreamingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   

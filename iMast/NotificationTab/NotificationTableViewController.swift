@@ -30,12 +30,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             self.notifyTypeImage.style.height = ASDimension(unit: .points, value: 16)
             self.addSubnode(self.notifyTypeImage)
             
-            self.notifyTitleText.attributedText = NSAttributedString(string: ([
-                "follow": "@%さんにフォローされました",
-                "favourite": "@%さんにふぁぼられました",
-                "reblog": "@%さんにブーストされました",
-                "mention": "@%さんからのリプライ"
-            ][notification.type] ?? "謎の通知 (type: \(notification.type)").replace("%", notification.account?.acct ?? ""), attributes: [
+            self.notifyTitleText.attributedText = NSAttributedString(string: NSLocalizedString("tabs.notifications.cell.\(notification.type).title", comment: "").replace("%", notification.account?.acct ?? ""), attributes: [
                 .font: UIFont.systemFont(ofSize: 14)
             ])
             self.notifyTitleText.truncationMode = .byTruncatingTail
@@ -78,6 +73,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         self.node.dataSource = self
         self.node.delegate = self
         self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControlEvents.valueChanged)
+        self.title = R.string.localizable.tabsNotificationsTitle()
     }
     
     required init?(coder aDecoder: NSCoder) {

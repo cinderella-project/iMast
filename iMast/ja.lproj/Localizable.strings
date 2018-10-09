@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  iMast
+
+  Created by user on 2018/10/06.
+  Copyright © 2018 rinsuki. All rights reserved.
+*/
+
+"tabs.notifications.title" = "通知";
+"tabs.notifications.cell.follow.title" = "@%さんにフォローされました";
+"tabs.notifications.cell.favourite.title" = "@%さんにふぁぼられました";
+"tabs.notifications.cell.mention.title" = "@%さんからのメンション";
+"tabs.notifications.cell.reblog.title" = "@%さんにブーストされました";
+
+"tabs.home.title" = "ホームタイムライン";
+"tabs.home.shortTitle" = "ホーム";
+
+"tabs.localTimeline.title" = "ローカルタイムライン";
+"tabs.localTimeline.shortTitle" = "LTL";
+
+"timeline.toPostButton.title" = "投稿";
+"timeline.streaming.title" = "Streaming";
+"timeline.streaming.status.base" = "状態: %";
+
+"timeline.streaming.status.connected" = "接続中";
+"timeline.streaming.status.notConnected" = "接続していません";
+
+"timeline.streaming.action.connect" = "接続";
+"timeline.streaming.action.disconnect" = "切断";
+"timeline.streaming.action.refresh" = "再取得";
+"timeline.streaming.action.cancel" = "キャンセル";

@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  iMast
+
+  Created by user on 2018/10/06.
+  Copyright © 2018 rinsuki. All rights reserved.
+*/
+
+"tabs.notifications.title" = "Notifications";
+"tabs.notifications.cell.follow.title" = "@% followed you";
+"tabs.notifications.cell.favourite.title" = "@% favourited your toot";
+"tabs.notifications.cell.mention.title" = "@% mentioned you";
+"tabs.notifications.cell.reblog.title" = "@% boosted your toot";
+
+"tabs.home.title" = "Home Timeline";
+"tabs.home.shortTitle" = "Home";
+
+"tabs.localTimeline.title" = "Local Timeline";
+"tabs.localTimeline.shortTitle" = "LTL";
+
+"timeline.toPostButton.title" = "Post";
+
+"timeline.streaming.title" = "Streaming";
+
+"timeline.streaming.status.base" = "Status: %";
+"timeline.streaming.status.connected" = "Connected";
+"timeline.streaming.status.notConnected" = "Not connected";
+
+"timeline.streaming.action.connect" = "Connect";
+"timeline.streaming.action.disconnect" = "Disconnect";
+"timeline.streaming.action.refresh" = "Refresh";
+"timeline.streaming.action.cancel" = "Cancel";

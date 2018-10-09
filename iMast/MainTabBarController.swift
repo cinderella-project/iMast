@@ -16,17 +16,17 @@ class MainTabBarController: UITabBarController {
         let homeVC = UINavigationController(rootViewController:  HomeTimeLineTableViewController())
         homeVC.tabBarItem.image = R.image.homeOutline()
         homeVC.tabBarItem.selectedImage = R.image.home()
-        homeVC.tabBarItem.title = "ホーム"
+        homeVC.tabBarItem.title = R.string.localizable.tabsHomeShortTitle()
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableViewController())
         notifyVC.tabBarItem.image = R.image.notificationOutline()
         notifyVC.tabBarItem.selectedImage = R.image.notification()
-        notifyVC.tabBarItem.title = "通知"
+        notifyVC.tabBarItem.title = R.string.localizable.tabsNotificationsTitle()
 
         let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController())
         ltlVC.tabBarItem.image = R.image.peopleOutline()
         ltlVC.tabBarItem.selectedImage = R.image.people()
-        ltlVC.tabBarItem.title = "LTL"
+        ltlVC.tabBarItem.title = R.string.localizable.tabsLocalTimelineShortTitle()
         
         self.setViewControllers([
             homeVC,
