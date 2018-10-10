@@ -62,7 +62,7 @@ class OtherMenuTopTableViewController: UITableViewController {
             let url = URL(string: UIApplicationOpenSettingsURLString)!
             UIApplication.shared.openURL(url)
              */
-            let vc = OtherMenuSettingsTableViewController()
+            let vc = SettingsViewController()
             navigationController?.pushViewController(vc, animated: true)
             break
         default: // 何?

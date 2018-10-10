@@ -35,55 +35,7 @@ class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
             let safariVC = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/")!)
             present(safariVC, animated: true, completion: nil)
         case 1:
-            let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+"(\((Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)))"
-            let vc = FormViewController()
-            let tar = TextAreaRow() { row in
-                row.placeholder = "Feedbackの内容をお書きください"
-                row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-            }
-            vc.form +++ Section()
-                <<< tar
-            vc.form +++ Section("Feedbackを送信すると、以下の情報も一緒に送信され、iMastの改善に役立てられます。")
-                <<< LabelRow() {
-                    $0.title = "iMastのバージョン"
-                    $0.value = versionString
-                }
-                <<< LabelRow() {
-                    $0.title = "iOSのバージョン"
-                    $0.value = UIDevice.current.systemVersion
-                }
-                <<< LabelRow() {
-                    $0.title = "端末名"
-                    $0.value = UIDevice.current.platform
-                }
-            vc.form +++ Section()
-                <<< ButtonRow() {
-                    $0.title = "送信"
-                    }.onCellSelection({ (cell, row) in
-                        if (tar.value ?? "") == "" {
-                            self.alert(title: "エラー", message: "Feedbackの内容を入力してください")
-                            return
-                        }
-                        let postBody = [
-                            "body": tar.value ?? "",
-                            "app_version": versionString,
-                            "ios_version": UIDevice.current.systemVersion,
-                            "device_name": UIDevice.current.platform
-                        ]
-                        Alamofire.request("https://imast-backend.rinsuki.net/old-api/feedback", method: .post, parameters: postBody).responseJSON { request in
-                            if (request.response?.statusCode ?? 0) >= 400 {
-                                self.alert(title: "通信エラー", message: "通信に失敗しました。(HTTP-\((request.response?.statusCode ?? 599)))\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@imastodon.netへのリプライでも受け付けています。")
-                            }
-                            if request.error != nil {
-                                self.alert(title: "通信エラー", message: "通信に失敗しました。\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@imastodon.netへのリプライでも受け付けています。")
-                                return
-                            }
-                            vc.navigationController?.popViewController(animated: true)
-                            vc.alert(title: "送信しました!",message: "Feedbackありがとうございました。")
-                        }
-                    })
-            vc.title = "Feedback"
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(FeedbackViewController(), animated: true)
         case 2:
             let safariVC = SFSafariViewController(url: URL(string: "https://github.com/cinderella-project/iMast/issues")!)
             present(safariVC, animated: true, completion: nil)

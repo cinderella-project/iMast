@@ -14,7 +14,7 @@ import SDWebImage
 import Alamofire
 import SwiftyJSON
 
-class OtherMenuSettingsTableViewController: FormViewController {
+class SettingsViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
