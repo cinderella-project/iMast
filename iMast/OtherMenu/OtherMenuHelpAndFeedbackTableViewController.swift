@@ -70,7 +70,7 @@ class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
                             "ios_version": UIDevice.current.systemVersion,
                             "device_name": UIDevice.current.platform
                         ]
-                        Alamofire.request("https://api.surume.tk/imast/feedback", method: .post, parameters: postBody).responseJSON { request in
+                        Alamofire.request("https://imast-backend.rinsuki.net/old-api/feedback", method: .post, parameters: postBody).responseJSON { request in
                             if (request.response?.statusCode ?? 0) >= 400 {
                                 self.alert(title: "通信エラー", message: "通信に失敗しました。(HTTP-\((request.response?.statusCode ?? 599)))\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@imastodon.netへのリプライでも受け付けています。")
                             }
