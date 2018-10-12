@@ -8,7 +8,7 @@
 
 "tabs.notifications.title" = "Notifications";
 "tabs.notifications.cell.follow.title" = "@% followed you";
-"tabs.notifications.cell.favourite.title" = "@% favourited your toot";
+"tabs.notifications.cell.favourite.title" = "@% favorited your toot";
 "tabs.notifications.cell.mention.title" = "@% mentioned you";
 "tabs.notifications.cell.reblog.title" = "@% boosted your toot";
 
