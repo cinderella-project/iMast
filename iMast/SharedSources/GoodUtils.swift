@@ -318,7 +318,7 @@ extension DefaultsKeys {
     static let groupNotifyTypeFollow = DefaultsKey<Bool>("group_notify_type_follow", default: false)
     static let groupNotifyTypeUnknown = DefaultsKey<Bool>("group_notify_type_unknown", default: false)
     
-    static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: false)
+    static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: true)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
