@@ -30,3 +30,17 @@
 "timeline.streaming.action.disconnect" = "Disconnect";
 "timeline.streaming.action.refresh" = "Refresh";
 "timeline.streaming.action.cancel" = "Cancel";
+
+"profile.actions.title" = "Actions";
+"profile.actions.share" = "Share";
+"profile.actions.profileCard" = "Profile Card";
+
+"profile.actions.follow" = "Follow";
+"profile.actions.followRequestCancel" = "Cancel follow request";
+"profile.actions.unfollow" = "Unfollow";
+
+"profile.actions.mute" = "Mute";
+"profile.actions.unmute" = "Unmute";
+
+"profile.actions.block" = "Block";
+"profile.actions.unblock" = "Unblock";

@@ -404,13 +404,13 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellReblogTitle = Rswift.StringResource(key: "tabs.notifications.cell.reblog.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: @% favourited your toot
+      /// en translation: @% favorited your toot
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellFavouriteTitle = Rswift.StringResource(key: "tabs.notifications.cell.favourite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
@@ -422,10 +422,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellMentionTitle = Rswift.StringResource(key: "tabs.notifications.cell.mention.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Actions
+      /// 
+      /// Locales: en, ja
+      static let profileActionsTitle = Rswift.StringResource(key: "profile.actions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Block
+      /// 
+      /// Locales: en, ja
+      static let profileActionsBlock = Rswift.StringResource(key: "profile.actions.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionCancel = Rswift.StringResource(key: "timeline.streaming.action.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Cancel follow request
+      /// 
+      /// Locales: en, ja
+      static let profileActionsFollowRequestCancel = Rswift.StringResource(key: "profile.actions.followRequestCancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Connect
       /// 
       /// Locales: en, ja
@@ -438,6 +450,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionDisconnect = Rswift.StringResource(key: "timeline.streaming.action.disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Follow
+      /// 
+      /// Locales: en, ja
+      static let profileActionsFollow = Rswift.StringResource(key: "profile.actions.follow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, ja
@@ -454,6 +470,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Mute
+      /// 
+      /// Locales: en, ja
+      static let profileActionsMute = Rswift.StringResource(key: "profile.actions.mute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
@@ -466,10 +486,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineToPostButtonTitle = Rswift.StringResource(key: "timeline.toPostButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Profile Card
+      /// 
+      /// Locales: en, ja
+      static let profileActionsProfileCard = Rswift.StringResource(key: "profile.actions.profileCard", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Share
+      /// 
+      /// Locales: en, ja
+      static let profileActionsShare = Rswift.StringResource(key: "profile.actions.share", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -478,6 +506,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Unblock
+      /// 
+      /// Locales: en, ja
+      static let profileActionsUnblock = Rswift.StringResource(key: "profile.actions.unblock", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Unfollow
+      /// 
+      /// Locales: en, ja
+      static let profileActionsUnfollow = Rswift.StringResource(key: "profile.actions.unfollow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Unmute
+      /// 
+      /// Locales: en, ja
+      static let profileActionsUnmute = Rswift.StringResource(key: "profile.actions.unmute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       
       /// en translation: @% boosted your toot
       /// 
@@ -486,7 +526,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.notifications.cell.reblog.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: @% favourited your toot
+      /// en translation: @% favorited your toot
       /// 
       /// Locales: en, ja
       static func tabsNotificationsCellFavouriteTitle(_: Void = ()) -> String {
@@ -507,11 +547,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.notifications.cell.mention.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Actions
+      /// 
+      /// Locales: en, ja
+      static func profileActionsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Block
+      /// 
+      /// Locales: en, ja
+      static func profileActionsBlock(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.block", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
       static func timelineStreamingActionCancel(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cancel follow request
+      /// 
+      /// Locales: en, ja
+      static func profileActionsFollowRequestCancel(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.followRequestCancel", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Connect
@@ -533,6 +594,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingActionDisconnect(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.disconnect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Follow
+      /// 
+      /// Locales: en, ja
+      static func profileActionsFollow(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.follow", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home
@@ -563,6 +631,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Mute
+      /// 
+      /// Locales: en, ja
+      static func profileActionsMute(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.mute", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
@@ -584,11 +659,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.toPostButton.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Profile Card
+      /// 
+      /// Locales: en, ja
+      static func profileActionsProfileCard(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.profileCard", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Refresh
       /// 
       /// Locales: en, ja
       static func timelineStreamingActionRefresh(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Share
+      /// 
+      /// Locales: en, ja
+      static func profileActionsShare(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.share", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Status: %
@@ -603,6 +692,27 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Unblock
+      /// 
+      /// Locales: en, ja
+      static func profileActionsUnblock(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.unblock", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Unfollow
+      /// 
+      /// Locales: en, ja
+      static func profileActionsUnfollow(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.unfollow", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Unmute
+      /// 
+      /// Locales: en, ja
+      static func profileActionsUnmute(_: Void = ()) -> String {
+        return NSLocalizedString("profile.actions.unmute", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

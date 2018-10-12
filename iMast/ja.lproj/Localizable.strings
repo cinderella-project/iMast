@@ -29,3 +29,17 @@
 "timeline.streaming.action.disconnect" = "切断";
 "timeline.streaming.action.refresh" = "再取得";
 "timeline.streaming.action.cancel" = "キャンセル";
+
+"profile.actions.title" = "アクション";
+"profile.actions.share" = "共有";
+"profile.actions.profileCard" = "名刺";
+
+"profile.actions.follow" = "フォロー";
+"profile.actions.followRequestCancel" = "フォローリクエストを撤回";
+"profile.actions.unfollow" = "フォロー解除";
+
+"profile.actions.mute" = "ミュート";
+"profile.actions.unmute" = "ミュート解除";
+
+"profile.actions.block" = "ブロック";
+"profile.actions.unblock" = "ブロック解除";
