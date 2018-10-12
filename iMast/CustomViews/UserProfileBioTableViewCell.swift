@@ -53,7 +53,21 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let string = (textView.attributedText.string as NSString).substring(with: characterRange)
         if string.hasPrefix("@") {
+            let alert = UIAlertController(title: "ユーザー検索中", message: "\(URL.absoluteString)\n\nしばらくお待ちください", preferredStyle: .alert)
+            var canceled = false
+            alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { _ in
+                canceled = true
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "強制的にSafariで開く", style: .default, handler: { _ in
+                canceled = true
+                alert.dismiss(animated: true, completion: nil)
+                let safari = SFSafariViewController(url: URL)
+                self.viewController?.present(safari, animated: true, completion: nil)
+            }))
             MastodonUserToken.getLatestUsed()?.search(q: URL.absoluteString, resolve: true).then { result in
+                if canceled { return }
+                alert.dismiss(animated: true, completion: nil)
                 if result.accounts.count >= 1 {
                     let newVC = openUserProfile(user: result.accounts[0])
                     self.viewController?.navigationController?.pushViewController(newVC, animated: true)
@@ -61,7 +75,10 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
                     let safari = SFSafariViewController(url: URL)
                     self.viewController?.present(safari, animated: true, completion: nil)
                 }
+            }.catch { error in
+                alert.dismiss(animated: true, completion: nil)
             }
+            self.viewController?.present(alert, animated: true, completion: nil)
             return false
         }
         let safari = SFSafariViewController(url: URL)
