@@ -16,7 +16,24 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        warnView.attributedText = "ログインすると、<br><a href=\"https://\(app?.instance.hostName ?? "mstdn.jp")/about/more\">利用規約</a>及び<a href=\"https://\(app?.instance.hostName ?? "mstdn.jp")/terms\">プライバシーポリシー</a><br>に同意したことになります。<style>*{text-align:center;}</style>".parseText2HTML()
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        
+        let warnAttrString = NSMutableAttributedString()
+        warnAttrString.append(NSAttributedString(string: "ログインすると、\n"))
+        warnAttrString.append(NSAttributedString(string: "利用規約", attributes: [
+            .link: "https://\(app?.instance.hostName ?? "mstdn.jp")/about/more",
+            .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+        ]))
+        warnAttrString.append(NSAttributedString(string: "及び"))
+        warnAttrString.append(NSAttributedString(string: "プライバシーポリシー", attributes: [
+            .link: "https://\(app?.instance.hostName ?? "mstdn.jp")/terms",
+            .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+        ]))
+        warnAttrString.append(NSAttributedString(string: "\nに同意したことになります。"))
+        warnAttrString.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: warnAttrString.length))
+
+        warnView.attributedText = warnAttrString
         warnView.delegate = self
         
         // Do any additional setup after loading the view.

@@ -92,10 +92,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         } else {
             html += postHtml
         }
-        if let attrStr = html.parseText2HTML()?.toMutable() {
-            attrStr.addAttributes([
-                .font: UIFont.systemFont(ofSize: 14)
-            ], range: NSRange(location: 0, length: attrStr.length))
+        if let attrStr = html.parseText2HTML(attributes: [
+            .font: UIFont.systemFont(ofSize: 14)
+        ]) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()

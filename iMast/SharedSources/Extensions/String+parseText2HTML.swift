@@ -10,7 +10,7 @@ import Foundation
 import Fuzi
 
 extension String {
-    func parseText2HTMLNew() -> NSAttributedString? {
+    func parseText2HTMLNew(attributes: [NSAttributedStringKey: Any]) -> NSAttributedString? {
         do {
             let document = try Fuzi.HTMLDocument(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {
@@ -50,7 +50,10 @@ extension String {
                                         let srcData = try? Data(contentsOf: srcUrl) {
                                         let attachment = NSTextAttachment()
                                         attachment.image = UIImage(data: srcData)
-                                        attachment.bounds = CGRect(x: 0, y: 0, width: 15, height: 15)
+                                        let font = attributes[.font] as? UIFont ?? UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+                                        let size = font.lineHeight + 1
+                                        attachment.bounds = CGRect(x: 0, y: 0, width: size, height: size)
+                                        attachment.bounds.origin = CGPoint(x: 0, y: -4)
                                         childAttrStr = NSMutableAttributedString(attachment: attachment)
                                     }
                                 default:
@@ -76,6 +79,7 @@ extension String {
                 }
             }
             attrStr.deleteCharacters(in: NSRange(location: attrStr.length - count, length: count))
+            attrStr.addAttributes(attributes, range: NSRange(location: 0, length: attrStr.length))
             return attrStr
         } catch let error {
             print("failed to parse in new parser", error)
@@ -83,15 +87,12 @@ extension String {
         }
     }
     
-    func parseText2HTML() -> NSAttributedString? {
-        if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew() {
+    func parseText2HTML(attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString? {
+        if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes) {
             return newParserResult
         }
         if !self.replace("<p>","").replace("</p>","").contains("<") {
             return nil
-        }
-        if html2ascacheavail[self] ?? false {
-            return html2ascache[self] ?? nil
         }
         
         // 受け取ったデータをUTF-8エンコードする
@@ -104,14 +105,12 @@ extension String {
         ]
         
         // 文字列の変換処理
-        var attributedString:NSAttributedString?
-        attributedString = try? NSAttributedString(
+        let attributedString = try? NSMutableAttributedString(
             data: encodeData!,
             options: attributedOptions,
             documentAttributes: nil
         )
-        html2ascache[self] = attributedString
-        
+        attributedString?.addAttributes(attributes, range: NSRange(location: 0, length: attributedString?.length ?? 0))
         return attributedString
     }
 }

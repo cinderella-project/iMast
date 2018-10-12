@@ -53,17 +53,16 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         self.post = post
         // textView.dataDetectorTypes = .link
         let attrStrTmp = (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis))
+        var attrs: [NSAttributedStringKey: Any] = [:]
+        if Defaults[.timelineTextBold] {
+            attrs[.font] = UIFont.boldSystemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+        } else {
+            attrs[.font] = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+        }
         if post.spoilerText != "" {
             textView.text = post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        } else if let attrStr = attrStrTmp.parseText2HTML()?.toMutable() {
-            var attrs: [NSAttributedStringKey: Any] = [:]
-            if Defaults[.timelineTextBold] {
-                attrs[.font] = UIFont.boldSystemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-            } else {
-                attrs[.font] = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-            }
-            attrStr.addAttributes(attrs, range: NSRange(location: 0, length: attrStr.length))
+        } else if let attrStr = attrStrTmp.parseText2HTML(attributes: attrs) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()
