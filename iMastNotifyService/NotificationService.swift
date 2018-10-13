@@ -21,17 +21,14 @@ class NotificationService: UNNotificationServiceExtension {
 
     func fetchFromInternet(url: URL) -> Promise<URL> {
         return Promise<URL>(in: .background) { resolve, reject, _ in
-            let cacheDirectory = appGroupFileUrl.appendingPathComponent("imageCache")
-            if !FileManager.default.fileExists(atPath: cacheDirectory.path) {
-                try FileManager.default.createDirectory(at: cacheDirectory, withIntermediateDirectories: false, attributes: nil)
-            }
-            let urlHashed = url.absoluteString.sha256
+            let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+            let urlHashed = "image-cache." + url.absoluteString.sha256
             var pathExt = url.pathExtension
             if pathExt != "" {
                 pathExt = "." + pathExt
             }
-            let copyDest = cacheDirectory.appendingPathComponent(urlHashed! + pathExt)
-            let tempDest = cacheDirectory.appendingPathComponent(urlHashed! + ".temp" + pathExt)
+            let copyDest = cacheDirectory.appendingPathComponent(urlHashed + pathExt)
+            let tempDest = cacheDirectory.appendingPathComponent(urlHashed + ".temp" + pathExt)
             
             if FileManager.default.fileExists(atPath: copyDest.path) { // もしもうキャッシュがあるんだったら
                 if !FileManager.default.fileExists(atPath: tempDest.path) {

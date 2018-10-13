@@ -89,6 +89,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.setDefaultMaskType(.black)
         
+        // AppGroup/imageCacheを消す
+        do {
+            let imageCacheUrl = appGroupFileUrl.appendingPathComponent("imageCache")
+            if try FileManager.default.fileExists(atPath: imageCacheUrl.path) {
+                print("start imageCache removing...")
+                for path in try FileManager.default.contentsOfDirectory(at: imageCacheUrl, includingPropertiesForKeys: nil, options: []) {
+                    try FileManager.default.removeItem(at: path)
+                    print("removed imageCache", path)
+                }
+                try FileManager.default.removeItem(at: imageCacheUrl)
+                print("finish!")
+            }
+        } catch {
+            print("remove failed...", error)
+        }
         return true
     }
     
