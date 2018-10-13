@@ -402,7 +402,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
@@ -713,6 +713,89 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func profileActionsUnmute(_: Void = ()) -> String {
         return NSLocalizedString("profile.actions.unmute", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This `R.string.newPost` struct is generated, and contains static references to 7 localization keys.
+    struct newPost {
+      /// en translation:  0
+      /// 
+      /// Locales: en, ja
+      static let zg4V9GJNormalTitle = Rswift.StringResource(key: "9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: CW
+      /// 
+      /// Locales: en, ja
+      static let paxYe0d9Title = Rswift.StringResource(key: "pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: CW Warning text
+      /// 
+      /// Locales: en, ja
+      static let ncKaJwdPlaceholder = Rswift.StringResource(key: "8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Compose Post
+      /// 
+      /// Locales: en, ja
+      static let lfAApGmeTitle = Rswift.StringResource(key: "LfA-Ap-gme.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: NSFW
+      /// 
+      /// Locales: en, ja
+      static let pddnqDhaTitle = Rswift.StringResource(key: "PDD-NQ-dha.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Send
+      /// 
+      /// Locales: en, ja
+      static let vdu9C5JKTitle = Rswift.StringResource(key: "vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
+      /// 
+      /// Locales: en, ja
+      static let jxIaK2aText = Rswift.StringResource(key: "3JX-ia-k2a.text", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      
+      /// en translation:  0
+      /// 
+      /// Locales: en, ja
+      static func zg4V9GJNormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: CW
+      /// 
+      /// Locales: en, ja
+      static func paxYe0d9Title(_: Void = ()) -> String {
+        return NSLocalizedString("pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: CW Warning text
+      /// 
+      /// Locales: en, ja
+      static func ncKaJwdPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Compose Post
+      /// 
+      /// Locales: en, ja
+      static func lfAApGmeTitle(_: Void = ()) -> String {
+        return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: NSFW
+      /// 
+      /// Locales: en, ja
+      static func pddnqDhaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("PDD-NQ-dha.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Send
+      /// 
+      /// Locales: en, ja
+      static func vdu9C5JKTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
+      /// 
+      /// Locales: en, ja
+      static func jxIaK2aText(_: Void = ()) -> String {
+        return NSLocalizedString("3JX-ia-k2a.text", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
