@@ -402,7 +402,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
@@ -718,6 +718,188 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    /// This `R.string.otherMenu` struct is generated, and contains static references to 16 localization keys.
+    struct otherMenu {
+      /// en translation: Add
+      /// 
+      /// Locales: en, ja
+      static let rltBv3z1Title = Rswift.StringResource(key: "RLT-bv-3z1.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Current: @%
+      /// 
+      /// Locales: en, ja
+      static let u6oPDFAoText = Rswift.StringResource(key: "u6o-PD-FAo.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Feedback
+      /// 
+      /// Locales: en, ja
+      static let khmBGWukText = Rswift.StringResource(key: "khm-bG-wuk.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: GitHub Issues
+      /// 
+      /// Locales: en, ja
+      static let hz61ILDFText = Rswift.StringResource(key: "hz6-1I-lDF.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Help
+      /// 
+      /// Locales: en, ja
+      static let uRKWEXFbText = Rswift.StringResource(key: "uRK-WE-xFb.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static let btXv8G4Text = Rswift.StringResource(key: "2bt-xv-8G4.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static let uStBSK30Title = Rswift.StringResource(key: "uSt-bS-k30.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static let tloCgUrgText = Rswift.StringResource(key: "tlo-Cg-Urg.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static let fOoWeUfbText = Rswift.StringResource(key: "fOo-We-ufb.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static let nR3CvGJDTitle = Rswift.StringResource(key: "nR3-cv-gJD.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static let ycOQPHO8Title = Rswift.StringResource(key: "ycO-qP-HO8.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static let yHs8Q6OSText = Rswift.StringResource(key: "YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Subtitle
+      /// 
+      /// Locales: en, ja
+      static let zXuCiHLKText = Rswift.StringResource(key: "ZXu-Ci-hLK.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static let dGXRGJsText = Rswift.StringResource(key: "5dG-XR-GJs.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static let uAMHWNgRTitle = Rswift.StringResource(key: "uAM-HW-NgR.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Title
+      /// 
+      /// Locales: en, ja
+      static let eFLVHUdSText = Rswift.StringResource(key: "eFL-VH-udS.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      
+      /// en translation: Add
+      /// 
+      /// Locales: en, ja
+      static func rltBv3z1Title(_: Void = ()) -> String {
+        return NSLocalizedString("RLT-bv-3z1.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Current: @%
+      /// 
+      /// Locales: en, ja
+      static func u6oPDFAoText(_: Void = ()) -> String {
+        return NSLocalizedString("u6o-PD-FAo.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Feedback
+      /// 
+      /// Locales: en, ja
+      static func khmBGWukText(_: Void = ()) -> String {
+        return NSLocalizedString("khm-bG-wuk.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: GitHub Issues
+      /// 
+      /// Locales: en, ja
+      static func hz61ILDFText(_: Void = ()) -> String {
+        return NSLocalizedString("hz6-1I-lDF.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Help
+      /// 
+      /// Locales: en, ja
+      static func uRKWEXFbText(_: Void = ()) -> String {
+        return NSLocalizedString("uRK-WE-xFb.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static func btXv8G4Text(_: Void = ()) -> String {
+        return NSLocalizedString("2bt-xv-8G4.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static func uStBSK30Title(_: Void = ()) -> String {
+        return NSLocalizedString("uSt-bS-k30.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static func tloCgUrgText(_: Void = ()) -> String {
+        return NSLocalizedString("tlo-Cg-Urg.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static func fOoWeUfbText(_: Void = ()) -> String {
+        return NSLocalizedString("fOo-We-ufb.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static func nR3CvGJDTitle(_: Void = ()) -> String {
+        return NSLocalizedString("nR3-cv-gJD.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static func ycOQPHO8Title(_: Void = ()) -> String {
+        return NSLocalizedString("ycO-qP-HO8.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static func yHs8Q6OSText(_: Void = ()) -> String {
+        return NSLocalizedString("YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Subtitle
+      /// 
+      /// Locales: en, ja
+      static func zXuCiHLKText(_: Void = ()) -> String {
+        return NSLocalizedString("ZXu-Ci-hLK.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static func dGXRGJsText(_: Void = ()) -> String {
+        return NSLocalizedString("5dG-XR-GJs.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static func uAMHWNgRTitle(_: Void = ()) -> String {
+        return NSLocalizedString("uAM-HW-NgR.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Title
+      /// 
+      /// Locales: en, ja
+      static func eFLVHUdSText(_: Void = ()) -> String {
+        return NSLocalizedString("eFL-VH-udS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -804,8 +986,8 @@ struct _R: Rswift.Validatable {
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
-      try otherMenu.validate()
       try login.validate()
+      try otherMenu.validate()
       try newPost.validate()
     }
     

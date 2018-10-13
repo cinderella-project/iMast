@@ -89,8 +89,9 @@ class OtherMenuTopTableViewController: UITableViewController {
         // let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        if let textLabel = cell.detailTextLabel {
-            textLabel.text = "現在のアカウント: @\(nowAccount?.screenName ?? "")@\(nowAccount?.app.instance.hostName ?? ""  )"
+        if let textLabel = cell.detailTextLabel, let nowAccount = self.nowAccount {
+            let acct = nowAccount.screenName! + "@" + nowAccount.app.instance.hostName
+            textLabel.text = textLabel.text?.replace("%", acct)
         }
 
         // Configure the cell...
