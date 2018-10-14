@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.8.5)
   - ActionClosurable (1.2.0)
   - Alamofire (4.7.3)
   - Compass (6.0.0)
@@ -49,6 +50,7 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - 1PasswordExtension (~> 1.8.5)
   - ActionClosurable
   - Alamofire (~> 4.5)
   - Compass
@@ -69,6 +71,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - 1PasswordExtension
     - ActionClosurable
     - Alamofire
     - Compass
@@ -93,6 +96,7 @@ SPEC REPOS:
     - XCGLogger
 
 SPEC CHECKSUMS:
+  1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
@@ -116,6 +120,6 @@ SPEC CHECKSUMS:
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 52b30cc691a12c6f3f498f645c605baca32420de
+PODFILE CHECKSUM: 0c8191b955cb24e758b931c8c9a35535d1cf9a8c
 
 COCOAPODS: 1.5.3

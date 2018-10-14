@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +42,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-gH-C8i">
-                                <rect key="frame" x="49.5" y="107" width="221.5" height="48"/>
+                                <rect key="frame" x="48.5" y="107" width="223" height="48"/>
                                 <string key="text">あなたのアカウントがある
 Mastodonインスタンスの
 ホスト名を入力してください。</string>
@@ -103,7 +102,7 @@ Mastodonインスタンスの
                                 <rect key="frame" x="36" y="239" width="248" height="2"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-34-PZr">
-                                <rect key="frame" x="141" y="195" width="38.5" height="24"/>
+                                <rect key="frame" x="141.5" y="195" width="37.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -174,7 +173,7 @@ Mastodonインスタンスの
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNL-LL-nGU">
-                                <rect key="frame" x="51.5" y="200.5" width="217.5" height="79"/>
+                                <rect key="frame" x="54" y="200.5" width="212" height="79"/>
                                 <string key="text">ようこそ、
 @xxxxxxxxxxxxxxxxxx
 さん。</string>
@@ -223,7 +222,7 @@ Mastodonインスタンスの
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Rj-aA-jcv">
-                                <rect key="frame" x="66" y="195" width="188" height="30"/>
+                                <rect key="frame" x="65.5" y="195" width="189" height="30"/>
                                 <state key="normal" title="Safariでログインする(推奨)"/>
                                 <connections>
                                     <action selector="safariLoginButton:" destination="MWC-l4-dqa" eventType="touchUpInside" id="QFR-Zp-Uzh"/>
@@ -294,7 +293,7 @@ Mastodonインスタンスの
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjd-7x-UGv">
-                                <rect key="frame" x="31" y="41.5" width="258.5" height="37.5"/>
+                                <rect key="frame" x="29" y="41.5" width="262" height="37.5"/>
                                 <string key="text">メールアドレスとパスワードで
 ログインする</string>
                                 <fontDescription key="fontDescription" name=".HiraKakuInterface-W3" family=".Hiragino Kaku Gothic Interface" pointSize="20"/>
@@ -321,17 +320,25 @@ Mastodonインスタンスの
                                     <action selector="loginButtonTapped:" destination="wsI-Hf-R3i" eventType="touchUpInside" id="TvL-Gi-Fbu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0c-h2-I1K">
+                                <rect key="frame" x="254" y="203" width="30" height="34"/>
+                                <connections>
+                                    <action selector="callPasswordManager:" destination="wsI-Hf-R3i" eventType="touchUpInside" id="wCP-0l-mV5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IcD-SJ-gQR" firstAttribute="centerX" secondItem="FF0-vE-cNT" secondAttribute="centerX" id="3Vo-6h-630"/>
                             <constraint firstItem="IcD-SJ-gQR" firstAttribute="centerY" secondItem="FF0-vE-cNT" secondAttribute="centerY" constant="-70" id="4Bq-kL-jku"/>
+                            <constraint firstItem="d0c-h2-I1K" firstAttribute="centerY" secondItem="9yP-er-J0g" secondAttribute="centerY" id="HFt-aT-97u"/>
                             <constraint firstItem="hEs-gP-M5f" firstAttribute="centerY" secondItem="FF0-vE-cNT" secondAttribute="centerY" constant="-120" id="Jbq-hJ-EQd"/>
                             <constraint firstItem="hEs-gP-M5f" firstAttribute="leading" secondItem="FF0-vE-cNT" secondAttribute="leadingMargin" constant="20" id="MXa-qd-D6e"/>
                             <constraint firstItem="9yP-er-J0g" firstAttribute="centerY" secondItem="FF0-vE-cNT" secondAttribute="centerY" constant="-20" id="QtT-I7-Zgr"/>
                             <constraint firstItem="IcD-SJ-gQR" firstAttribute="leading" secondItem="FF0-vE-cNT" secondAttribute="leadingMargin" constant="20" id="X9U-Ia-kO1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IcD-SJ-gQR" secondAttribute="trailing" constant="20" id="XS2-AC-JZY"/>
                             <constraint firstItem="9yP-er-J0g" firstAttribute="centerX" secondItem="FF0-vE-cNT" secondAttribute="centerX" id="ise-gJ-Mnn"/>
+                            <constraint firstItem="IcD-SJ-gQR" firstAttribute="trailing" secondItem="d0c-h2-I1K" secondAttribute="trailing" id="jvL-4J-KNZ"/>
                             <constraint firstItem="gjd-7x-UGv" firstAttribute="centerY" secondItem="FF0-vE-cNT" secondAttribute="centerY" constant="-180" id="oMy-4u-dBv"/>
                             <constraint firstItem="gjd-7x-UGv" firstAttribute="centerX" secondItem="FF0-vE-cNT" secondAttribute="centerX" id="pWl-A6-fOw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hEs-gP-M5f" secondAttribute="trailing" constant="20" id="yXp-e2-bAg"/>
@@ -339,6 +346,7 @@ Mastodonインスタンスの
                     </view>
                     <navigationItem key="navigationItem" title="ログイン" id="eRu-fC-cfA"/>
                     <connections>
+                        <outlet property="callPasswordManagerButton" destination="d0c-h2-I1K" id="UBQ-Ia-obD"/>
                         <outlet property="mailAddressInput" destination="hEs-gP-M5f" id="4s6-VY-Pfy"/>
                         <outlet property="passwordInput" destination="IcD-SJ-gQR" id="UVY-iT-5vl"/>
                         <segue destination="klm-pe-z2G" kind="show" identifier="backToProgress" id="Jfc-cB-0Ot"/>
@@ -350,6 +358,6 @@ Mastodonインスタンスの
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9lX-My-o3Q"/>
+        <segue reference="Jfc-cB-0Ot"/>
     </inferredMetricsTieBreakers>
 </document>

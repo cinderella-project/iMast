@@ -28,6 +28,7 @@ target 'iMast' do
   pod 'Notifwift'
   pod 'Texture'
   pod 'R.swift'
+  pod '1PasswordExtension', '~> 1.8.5'
 
   target 'iMastTests' do
     inherit! :search_paths
