@@ -25,7 +25,7 @@ class AddAccountLoginViewController: UIViewController {
         
         let onePassBundle = Bundle(for: OnePasswordExtension.self)
         let onePassResourceBundle = Bundle(path: onePassBundle.bundlePath + "/OnePasswordExtensionResources.bundle")
-        var buttonImage = UIImage(named: "onepassword-button", in: onePassResourceBundle!, compatibleWith: nil)
+        let buttonImage = UIImage(named: "onepassword-button", in: onePassResourceBundle!, compatibleWith: nil)
         self.callPasswordManagerButton.setImage(buttonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
 
