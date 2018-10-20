@@ -128,12 +128,10 @@ public class MastodonApp {
         self.id = genRandomString()
     }
     static func initFromId(appId: String) -> MastodonApp {
-        var app:MastodonApp?
-        try! dbQueue.inDatabase { db in
+        return try! dbQueue.inDatabase { db in
             let row = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [appId])).next()!
-            app = initFromRow(row: row)
+            return initFromRow(row: row)
         }
-        return app!
     }
     static func initFromRow(row: Row) -> MastodonApp {
         let app = MastodonApp(
@@ -267,14 +265,12 @@ public class MastodonUserToken {
     }
     
     static func initFromId(id: String) -> MastodonUserToken {
-        var usertoken:MastodonUserToken?
-        try! dbQueue.inDatabase { db in
+        return try! dbQueue.inDatabase { db in
             let row = try (try Row.fetchCursor(db, "SELECT * from user where id=? LIMIT 1", arguments: [id])).next()!
             let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])).next()!
             let app = MastodonApp.initFromRow(row: approw)
-            usertoken = initFromRow(row: row, app: app)
+            return initFromRow(row: row, app: app)
         }
-        return usertoken!
     }
     
     
@@ -291,21 +287,19 @@ public class MastodonUserToken {
     }
 
     static func getLatestUsed() -> MastodonUserToken? {
-        var usertoken:MastodonUserToken?
         do {
-            try dbQueue.inDatabase { db in
-                let row = try (try Row.fetchCursor(db, "SELECT * from user ORDER BY last_used DESC LIMIT 1")).next()
-                if row != nil {
-                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row!["app_id"]])).next()!
+            return try dbQueue.inDatabase { db in
+                if let row = try (try Row.fetchCursor(db, "SELECT * from user ORDER BY last_used DESC LIMIT 1")).next() {
+                    let approw = try (try Row.fetchCursor(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])).next()!
                     let app = MastodonApp.initFromRow(row: approw)
-                    usertoken = initFromRow(row: row!, app: app)
+                    return initFromRow(row: row, app: app)
                 }
+                return nil
             }
         } catch (let e) {
             print(e)
             return nil
         }
-        return usertoken
     }
     
     static func findUserToken(userName: String, instance: String) throws -> MastodonUserToken? {
