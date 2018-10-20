@@ -26,7 +26,7 @@ target 'iMast' do
   pod 'KeychainAccess'
   pod 'SVProgressHUD'
   pod 'Notifwift'
-  pod 'Texture'
+  pod 'Texture', :inhibit_warnings => true
   pod 'R.swift'
   pod '1PasswordExtension', '~> 1.8.5'
 
