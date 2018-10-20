@@ -45,7 +45,7 @@ public class MastodonInstance {
     var email: String?
         
     init(hostName: String = "mastodon.social") {
-        self.hostName = hostName.pregReplace(pattern: ".+\\@", with: "")
+        self.hostName = hostName.pregReplace(pattern: ".+\\@", with: "").lowercased()
     }
     
     func getInfo() -> Promise<JSON>{
