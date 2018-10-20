@@ -356,8 +356,8 @@ extension JSONDecoder {
 
 extension Decodable {
     static func decode(json: JSON) throws -> Self {
-        if json["error"].string != nil {
-            throw APIError.errorReturned(errorMessage: json["error"].stringValue, errorHttpCode: json["_response_code"].intValue)
+        if let error = json["error"].string {
+            throw APIError.errorReturned(errorMessage: error, errorHttpCode: json["_response_code"].intValue)
         }
         let decoder = JSONDecoder.get()
         do {

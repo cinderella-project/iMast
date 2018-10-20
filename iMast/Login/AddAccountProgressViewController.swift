@@ -115,8 +115,8 @@ class AddAccountProgressViewController: UIViewController {
         userToken!.getUserInfo().then {json in
             self.userToken!.save()
             self.userToken!.use()
-            if json["error"].string != nil {
-                self.alert(title: "APIエラー", message: json["error"].stringValue+"\nアプリを再起動してやり直してみてください。")
+            if let error = json["error"].string {
+                self.alert(title: "APIエラー", message: error+"\nアプリを再起動してやり直してみてください。")
                 return
             }
             self.userRes = json

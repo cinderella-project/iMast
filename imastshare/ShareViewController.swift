@@ -90,19 +90,19 @@ class ShareViewController: SLComposeServiceViewController {
                     if url.host == "twitter.com" && url.path == "/intent/tweet" {
                         let query = urlComponentsToDict(url: URL(string: url.absoluteString!)!)
                         var twitterPostText: String = ""
-                        if query["text"] != nil {
-                            twitterPostText += query["text"]!
+                        if let text = query["text"] {
+                            twitterPostText += text
                         }
-                        if query["url"] != nil {
-                            twitterPostText += " " + query["url"]!
+                        if let url = query["url"] {
+                            twitterPostText += " " + url
                         }
-                        if query["hashtags"] != nil {
-                            query["hashtags"]!.components(separatedBy: ",").forEach { hashtag in
+                        if let hashtags = query["hashtags"] {
+                            hashtags.components(separatedBy: ",").forEach { hashtag in
                                 twitterPostText += " #" + hashtag
                             }
                         }
-                        if query["via"] != nil {
-                            twitterPostText += " https://twitter.com/\(query["via"]!)さんから"
+                        if let via = query["via"] {
+                            twitterPostText += " https://twitter.com/\(via)さんから"
                         }
                         DispatchQueue.main.sync() {
                             self.textView.text = twitterPostText
@@ -193,8 +193,8 @@ class ShareViewController: SLComposeServiceViewController {
         let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertControllerStyle.alert)
         present(alert, animated: true, completion: nil)
         var promise:Promise<[JSON]> = Promise.init(resolved: [])
-        if self.postImage != nil {
-            promise = userToken!.upload(file: UIImagePNGRepresentation(self.postImage!)!, mimetype: "image/png").then { (response) -> [JSON] in
+        if let postImage = self.postImage {
+            promise = userToken!.upload(file: UIImagePNGRepresentation(postImage)!, mimetype: "image/png").then { (response) -> [JSON] in
                 if response["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode: response["_response_code"].intValue)
                 }

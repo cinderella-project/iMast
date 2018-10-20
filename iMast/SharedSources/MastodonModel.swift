@@ -50,14 +50,14 @@ public class MastodonInstance {
     
     func getInfo() -> Promise<JSON>{
         return Promise<JSON> { resolve, reject, _ in
-            if mastodonInstanceInfoCache[self.hostName] != nil {
-                resolve(mastodonInstanceInfoCache[self.hostName]!)
+            if let cache = mastodonInstanceInfoCache[self.hostName]{
+                resolve(cache)
                 return
             }
             Alamofire.request("https://\(self.hostName)/api/v1/instance").responseJSON { res in
                 // print(res)
-                if res.error != nil {
-                    reject(res.error!)
+                if let error = res.error {
+                    reject(error)
                     return
                 }
                 if res.result.value == nil {
@@ -85,8 +85,8 @@ public class MastodonInstance {
                 params["website"] = "https://cinderella-project.github.io/iMast/"
             }
             Alamofire.request("https://\(self.hostName)/api/v1/apps", method: .post, parameters: params).responseJSON { res in
-                if res.error != nil {
-                    reject(res.error!)
+                if let error = res.error {
+                    reject(error)
                     return
                 }
                 if res.result.value == nil {
@@ -216,8 +216,8 @@ public class MastodonApp {
                 json["_response_code"].int = response.response?.statusCode ?? 599
                 print(json)
                 if json["_response_code"].intValue >= 400 {
-                    if json["error"].string != nil {
-                        reject(APIError.errorReturned(errorMessage: json["error"].stringValue, errorHttpCode: json["_response_code"].intValue))
+                    if let error = json["error"].string {
+                        reject(APIError.errorReturned(errorMessage: error, errorHttpCode: json["_response_code"].intValue))
                         return
                     } else {
                         reject(APIError.unknownResponse(errorHttpCode: json["_response_code"].intValue))
@@ -395,8 +395,8 @@ public class MastodonUserToken {
     static var verifyCredentialsCache: [String: JSON] = [:]
     
     func getUserInfo(cache:Bool = false) -> Promise<JSON> {
-        if cache && MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] != nil {
-            return Promise.init(resolved: MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"]!)
+        if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] {
+            return Promise.init(resolved: cacheObj)
         }
         return self.get("accounts/verify_credentials").then { (response) -> Promise<JSON> in
             self.name = response["display_name"].string
@@ -549,20 +549,19 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
     return Promise(in: .background) { resolve, reject, _ in
         let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_\(String(size))_scale_"+UIScreen.main.scale.description
         if size>0 {
-            if imageResizeCache[url]?[size] != nil{
-                resolve(imageResizeCache[url]![size]!)
+            if let resizedImageCache = imageResizeCache[url]?[size] {
+                resolve(resizedImageCache)
                 return
             }
             if FileManager.default.fileExists(atPath:resizedImagePath) {
                 print("Get From Storage(with resized image):"+url)
                 do {
-                    let resizedCacheImage = UIImage(data:try Data(contentsOf: URL(fileURLWithPath: resizedImagePath),options:NSData.ReadingOptions.mappedIfSafe))
-                    if resizedCacheImage != nil {
+                    if let resizedCacheImage = UIImage(data:try Data(contentsOf: URL(fileURLWithPath: resizedImagePath),options:NSData.ReadingOptions.mappedIfSafe)) {
                         if imageResizeCache[url] == nil {
                             imageResizeCache[url] = [:]
                         }
-                        imageResizeCache[url]![size] = resizedCacheImage!
-                        resolve(resizedCacheImage!)
+                        imageResizeCache[url]![size] = resizedCacheImage
+                        resolve(resizedCacheImage)
                         return
                     }
                 } catch {
@@ -571,8 +570,8 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
                 }
             }
         }
-        if((imageCache[url] ?? nil) != nil) {
-            resolve(imageCache[url]!)
+        if let cacheImage = imageCache[url]{
+            resolve(cacheImage)
             return
         }
         var img: UIImage!
@@ -608,8 +607,8 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
         }
         imageCache.updateValue(img!, forKey: url)
         if size > 0 {
-            if imageResizeCache[url]?[size] != nil {
-                img = imageResizeCache[url]![size]!
+            if let resizedImageCache = imageResizeCache[url]?[size] {
+                img = resizedImageCache
             } else {
                 let resizedSize = CGSize(width: size, height:size)
                 UIGraphicsBeginImageContextWithOptions(resizedSize, false, UIScreen.main.scale)

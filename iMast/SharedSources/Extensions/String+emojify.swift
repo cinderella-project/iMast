@@ -12,8 +12,8 @@ extension String {
     func emojify(custom_emoji: [MastodonCustomEmoji] = [], profile_emoji: [MastodonCustomEmoji] = []) -> String {
         var retstr = self
         retstr.pregMatch(pattern: ":.+?:").forEach { (emoji) in
-            if emojidict[emoji].string != nil {
-                retstr = retstr.replace(emoji, emojidict[emoji].string!)
+            if let unicodeEmoji = emojidict[emoji].string {
+                retstr = retstr.replace(emoji, unicodeEmoji)
             }
         }
         (custom_emoji + profile_emoji).forEach { (emoji) in
