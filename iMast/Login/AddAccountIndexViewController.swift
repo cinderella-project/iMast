@@ -25,8 +25,8 @@ class AddAccountIndexViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        goButton.sendActions(for: UIControlEvents.touchUpInside);
-        return true;
+        goButton.sendActions(for: UIControlEvents.touchUpInside)
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,10 +41,6 @@ class AddAccountIndexViewController: UIViewController, UITextFieldDelegate {
             }
             print(nextView.hostName)
         }
-    }
-    @IBAction func doNotHaveAccountButtonTapped(_ sender: Any) {
-        let safariVC = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/no-account.html")!)
-        present(safariVC, animated: true, completion: nil)
     }
 }
 

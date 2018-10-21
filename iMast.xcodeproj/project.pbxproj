@@ -96,6 +96,7 @@
 		CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */; };
 		CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */; };
 		CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */; };
+		CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */; };
 		CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -306,6 +307,9 @@
 		CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTopViewController.swift; sourceTree = "<group>"; };
 		CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaExtension.swift; sourceTree = "<group>"; };
+		CE6EA6DC217BF54800809A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
+		CE6EA6E0217BF81100809A65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Login.strings; sourceTree = "<group>"; };
+		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
 		CE78CFA41EE812AD008313EA /* iMastShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE78CFA61EE812AD008313EA /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -566,6 +570,7 @@
 				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
 				CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */,
 				CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */,
+				CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1243,6 +1248,7 @@
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
+				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
 				CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
@@ -1383,6 +1389,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AF3521F1EAB9C5600777C2E /* Base */,
+				CE6EA6DC217BF54800809A65 /* en */,
+				CE6EA6E0217BF81100809A65 /* ja */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";

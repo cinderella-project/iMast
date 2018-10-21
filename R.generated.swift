@@ -402,7 +402,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 4 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
@@ -713,6 +713,331 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func profileActionsUnmute(_: Void = ()) -> String {
         return NSLocalizedString("profile.actions.unmute", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This `R.string.login` struct is generated, and contains static references to 29 localization keys.
+    struct login {
+      /// en translation: 1 / 4
+      /// 
+      /// Locales: en, ja
+      static let vrU34PZrText = Rswift.StringResource(key: "vrU-34-PZr.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: By logging in, you agree to {tos} and {privacyPolicy} of this instance.
+      /// 
+      /// Locales: en, ja
+      static let loginMethodAcceptTermsTitle = Rswift.StringResource(key: "loginMethod.acceptTerms.title", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Checking server...
+      /// 
+      /// Locales: en, ja
+      static let yQUZVZCdText = Rswift.StringResource(key: "yQU-ZV-ZCd.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Fetching Account Information...
+      /// 
+      /// Locales: en, ja
+      static let authStage4 = Rswift.StringResource(key: "authStage.4", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Fetching Server Information...
+      /// 
+      /// Locales: en, ja
+      static let authStage1 = Rswift.StringResource(key: "authStage.1", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Go to timeline
+      /// 
+      /// Locales: en, ja
+      static let vhHLD1z5NormalTitle = Rswift.StringResource(key: "vhH-lD-1z5.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: How to select
+      /// 
+      /// Locales: en, ja
+      static let qZv1VZeeNormalTitle = Rswift.StringResource(key: "qZv-1V-Zee.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static let hxxWi3lmTitle = Rswift.StringResource(key: "hxx-wi-3lm.title", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static let mwcl4DqaTitle = Rswift.StringResource(key: "MWC-l4-dqa.title", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static let tkdKiKUCNormalTitle = Rswift.StringResource(key: "Tkd-Ki-kUC.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static let yPErJ0gNormalTitle = Rswift.StringResource(key: "9yP-er-J0g.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static let yPErJ0gSelectedTitle = Rswift.StringResource(key: "9yP-er-J0g.selectedTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login with Safari (Recommended)
+      /// 
+      /// Locales: en, ja
+      static let rjAAJcvNormalTitle = Rswift.StringResource(key: "4Rj-aA-jcv.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login with credentials
+      /// 
+      /// Locales: en, ja
+      static let gjd7xUGvText = Rswift.StringResource(key: "gjd-7x-UGv.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Login with credentials
+      /// 
+      /// Locales: en, ja
+      static let uNRDQTp7NormalTitle = Rswift.StringResource(key: "uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Password
+      /// 
+      /// Locales: en, ja
+      static let icDSJGQRPlaceholder = Rswift.StringResource(key: "IcD-SJ-gQR.placeholder", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Please Login
+      /// 
+      /// Locales: en, ja
+      static let authStage3 = Rswift.StringResource(key: "authStage.3", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Registering App Information...
+      /// 
+      /// Locales: en, ja
+      static let authStage2 = Rswift.StringResource(key: "authStage.2", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Select login method
+      /// 
+      /// Locales: en, ja
+      static let veUJAMdKText = Rswift.StringResource(key: "veU-jA-mdK.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Welcome,  @%
+      /// 
+      /// Locales: en, ja
+      static let fNLLLNGUText = Rswift.StringResource(key: "fNL-LL-nGU.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: email address
+      /// 
+      /// Locales: en, ja
+      static let hEsGPM5fPlaceholder = Rswift.StringResource(key: "hEs-gP-M5f.placeholder", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: iMast
+      /// 
+      /// Locales: en, ja
+      static let wqHKGMcdText = Rswift.StringResource(key: "wqH-KG-Mcd.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: mstdn.jp
+      /// 
+      /// Locales: en, ja
+      static let hrIJcFxPPlaceholder = Rswift.StringResource(key: "HrI-Jc-fxP.placeholder", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: privacy policy
+      /// 
+      /// Locales: en, ja
+      static let loginMethodAcceptTermsPrivacyPolicy = Rswift.StringResource(key: "loginMethod.acceptTerms.privacyPolicy", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: terms of service
+      /// 
+      /// Locales: en, ja
+      static let loginMethodAcceptTermsTerms = Rswift.StringResource(key: "loginMethod.acceptTerms.terms", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: あなたのアカウントがある Mastodonインスタンスの ホスト名を入力してください。
+      /// 
+      /// Locales: en, ja
+      static let ryeghc8iText = Rswift.StringResource(key: "RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: ログイン
+      /// 
+      /// Locales: en, ja
+      static let eRuFCCfATitle = Rswift.StringResource(key: "eRu-fC-cfA.title", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: ログインすると、利用規約及びプライバシーポリシーに同意したことになります。
+      /// 
+      /// Locales: en, ja
+      static let fvR0FAIoText = Rswift.StringResource(key: "FvR-0F-AIo.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: ログイン中です...
+      /// 
+      /// Locales: en, ja
+      static let e3hSrGGoText = Rswift.StringResource(key: "e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      
+      /// en translation: 1 / 4
+      /// 
+      /// Locales: en, ja
+      static func vrU34PZrText(_: Void = ()) -> String {
+        return NSLocalizedString("vrU-34-PZr.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: By logging in, you agree to {tos} and {privacyPolicy} of this instance.
+      /// 
+      /// Locales: en, ja
+      static func loginMethodAcceptTermsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("loginMethod.acceptTerms.title", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Checking server...
+      /// 
+      /// Locales: en, ja
+      static func yQUZVZCdText(_: Void = ()) -> String {
+        return NSLocalizedString("yQU-ZV-ZCd.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fetching Account Information...
+      /// 
+      /// Locales: en, ja
+      static func authStage4(_: Void = ()) -> String {
+        return NSLocalizedString("authStage.4", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fetching Server Information...
+      /// 
+      /// Locales: en, ja
+      static func authStage1(_: Void = ()) -> String {
+        return NSLocalizedString("authStage.1", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Go to timeline
+      /// 
+      /// Locales: en, ja
+      static func vhHLD1z5NormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vhH-lD-1z5.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: How to select
+      /// 
+      /// Locales: en, ja
+      static func qZv1VZeeNormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("qZv-1V-Zee.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static func hxxWi3lmTitle(_: Void = ()) -> String {
+        return NSLocalizedString("hxx-wi-3lm.title", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static func mwcl4DqaTitle(_: Void = ()) -> String {
+        return NSLocalizedString("MWC-l4-dqa.title", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static func tkdKiKUCNormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("Tkd-Ki-kUC.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static func yPErJ0gNormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("9yP-er-J0g.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login
+      /// 
+      /// Locales: en, ja
+      static func yPErJ0gSelectedTitle(_: Void = ()) -> String {
+        return NSLocalizedString("9yP-er-J0g.selectedTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login with Safari (Recommended)
+      /// 
+      /// Locales: en, ja
+      static func rjAAJcvNormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("4Rj-aA-jcv.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login with credentials
+      /// 
+      /// Locales: en, ja
+      static func gjd7xUGvText(_: Void = ()) -> String {
+        return NSLocalizedString("gjd-7x-UGv.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Login with credentials
+      /// 
+      /// Locales: en, ja
+      static func uNRDQTp7NormalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Password
+      /// 
+      /// Locales: en, ja
+      static func icDSJGQRPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("IcD-SJ-gQR.placeholder", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please Login
+      /// 
+      /// Locales: en, ja
+      static func authStage3(_: Void = ()) -> String {
+        return NSLocalizedString("authStage.3", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Registering App Information...
+      /// 
+      /// Locales: en, ja
+      static func authStage2(_: Void = ()) -> String {
+        return NSLocalizedString("authStage.2", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Select login method
+      /// 
+      /// Locales: en, ja
+      static func veUJAMdKText(_: Void = ()) -> String {
+        return NSLocalizedString("veU-jA-mdK.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Welcome,  @%
+      /// 
+      /// Locales: en, ja
+      static func fNLLLNGUText(_: Void = ()) -> String {
+        return NSLocalizedString("fNL-LL-nGU.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: email address
+      /// 
+      /// Locales: en, ja
+      static func hEsGPM5fPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("hEs-gP-M5f.placeholder", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: iMast
+      /// 
+      /// Locales: en, ja
+      static func wqHKGMcdText(_: Void = ()) -> String {
+        return NSLocalizedString("wqH-KG-Mcd.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: mstdn.jp
+      /// 
+      /// Locales: en, ja
+      static func hrIJcFxPPlaceholder(_: Void = ()) -> String {
+        return NSLocalizedString("HrI-Jc-fxP.placeholder", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: privacy policy
+      /// 
+      /// Locales: en, ja
+      static func loginMethodAcceptTermsPrivacyPolicy(_: Void = ()) -> String {
+        return NSLocalizedString("loginMethod.acceptTerms.privacyPolicy", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: terms of service
+      /// 
+      /// Locales: en, ja
+      static func loginMethodAcceptTermsTerms(_: Void = ()) -> String {
+        return NSLocalizedString("loginMethod.acceptTerms.terms", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: あなたのアカウントがある Mastodonインスタンスの ホスト名を入力してください。
+      /// 
+      /// Locales: en, ja
+      static func ryeghc8iText(_: Void = ()) -> String {
+        return NSLocalizedString("RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ログイン
+      /// 
+      /// Locales: en, ja
+      static func eRuFCCfATitle(_: Void = ()) -> String {
+        return NSLocalizedString("eRu-fC-cfA.title", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ログインすると、利用規約及びプライバシーポリシーに同意したことになります。
+      /// 
+      /// Locales: en, ja
+      static func fvR0FAIoText(_: Void = ()) -> String {
+        return NSLocalizedString("FvR-0F-AIo.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: ログイン中です...
+      /// 
+      /// Locales: en, ja
+      static func e3hSrGGoText(_: Void = ()) -> String {
+        return NSLocalizedString("e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

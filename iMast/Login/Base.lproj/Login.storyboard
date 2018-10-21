@@ -50,21 +50,12 @@ Mastodonインスタンスの
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duy-xo-dCi">
-                                <rect key="frame" x="68" y="275" width="184" height="30"/>
-                                <state key="normal" title="アカウントを持っていない"/>
-                                <connections>
-                                    <action selector="doNotHaveAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a90-Fs-IcO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HrI-Jc-fxP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="225-NL-h5S"/>
-                            <constraint firstItem="duy-xo-dCi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3mH-Zu-koG"/>
                             <constraint firstItem="Tkd-Ki-kUC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4zC-Kt-rZU"/>
                             <constraint firstItem="wqH-KG-Mcd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MWI-Uq-wpF"/>
-                            <constraint firstItem="duy-xo-dCi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="PgA-CL-Nee"/>
                             <constraint firstItem="wqH-KG-Mcd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="ZsT-jW-fT0"/>
                             <constraint firstItem="HrI-Jc-fxP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cwn-Mv-Dvj"/>
                             <constraint firstItem="HrI-Jc-fxP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="dNE-S3-qDf"/>
@@ -173,9 +164,9 @@ Mastodonインスタンスの
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNL-LL-nGU">
-                                <rect key="frame" x="54" y="200.5" width="212" height="79"/>
+                                <rect key="frame" x="104.5" y="200.5" width="111.5" height="79"/>
                                 <string key="text">ようこそ、
-@xxxxxxxxxxxxxxxxxx
+@%
 さん。</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -236,8 +227,7 @@ Mastodonインスタンスの
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZv-1V-Zee">
-                                <rect key="frame" x="52.5" y="375" width="215" height="30"/>
-                                <state key="normal" title="ログイン方法についてのヘルプ"/>
+                                <rect key="frame" x="145" y="375" width="30" height="30"/>
                                 <connections>
                                     <action selector="clickLoginHelpButton:" destination="MWC-l4-dqa" eventType="touchUpInside" id="Qgz-1b-a9N"/>
                                 </connections>
@@ -358,6 +348,7 @@ Mastodonインスタンスの
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="uNu-W2-tEU"/>
         <segue reference="Jfc-cB-0Ot"/>
     </inferredMetricsTieBreakers>
 </document>

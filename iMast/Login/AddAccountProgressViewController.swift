@@ -67,7 +67,7 @@ class AddAccountProgressViewController: UIViewController {
         }
     }
     func stage1() {
-        nowStateSet(1, "インスタンス情報を取得しています")
+        nowStateSet(1, R.string.login.authStage1())
         instance = MastodonInstance(hostName: hostName)
         instance!.getInfo().then{ _ in
             self.stage2()
@@ -82,7 +82,7 @@ class AddAccountProgressViewController: UIViewController {
         }
     }
     func stage2() {
-        nowStateSet(2, "アプリ情報を登録しています")
+        nowStateSet(2, R.string.login.authStage2())
         let appName = Defaults[.newAccountVia]
         print(appName)
         let instance = MastodonInstance(hostName: hostName)
@@ -101,7 +101,7 @@ class AddAccountProgressViewController: UIViewController {
         }
     }
     func stage3() {
-        nowStateSet(3, "ログインしてください")
+        nowStateSet(3, R.string.login.authStage3())
         performSegue(withIdentifier: "goSelectLoginMethod", sender: self)
     }
     
@@ -111,7 +111,7 @@ class AddAccountProgressViewController: UIViewController {
             performSegue(withIdentifier: "errorBack", sender: self)
             return
         }
-        nowStateSet(4, "ユーザー情報を取得しています")
+        nowStateSet(4, R.string.login.authStage4())
         userToken!.getUserInfo().then {json in
             self.userToken!.save()
             self.userToken!.use()

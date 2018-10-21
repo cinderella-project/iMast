@@ -19,18 +19,20 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         
-        let warnAttrString = NSMutableAttributedString()
-        warnAttrString.append(NSAttributedString(string: "ログインすると、\n"))
-        warnAttrString.append(NSAttributedString(string: "利用規約", attributes: [
-            .link: "https://\(app?.instance.hostName ?? "mstdn.jp")/about/more",
-            .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
-        ]))
-        warnAttrString.append(NSAttributedString(string: "及び"))
-        warnAttrString.append(NSAttributedString(string: "プライバシーポリシー", attributes: [
-            .link: "https://\(app?.instance.hostName ?? "mstdn.jp")/terms",
-            .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
-        ]))
-        warnAttrString.append(NSAttributedString(string: "\nに同意したことになります。"))
+        let warnAttrString = NSMutableAttributedString(string: R.string.login.loginMethodAcceptTermsTitle())
+        let hostName = app?.instance.hostName ?? "mstdn.jp"
+        if let r = warnAttrString.mutableString.range(of: "{tos}").optional {
+            warnAttrString.replaceCharacters(in: r, with: NSAttributedString(string: R.string.login.loginMethodAcceptTermsTerms(), attributes: [
+                .link: "https://\(hostName)/about/more",
+                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+            ]))
+        }
+        if let r = warnAttrString.mutableString.range(of: "{privacyPolicy}").optional {
+            warnAttrString.replaceCharacters(in: r, with: NSAttributedString(string: R.string.login.loginMethodAcceptTermsPrivacyPolicy(), attributes: [
+                .link: "https://\(hostName)/terms",
+                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+            ]))
+        }
         warnAttrString.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: warnAttrString.length))
 
         warnView.attributedText = warnAttrString

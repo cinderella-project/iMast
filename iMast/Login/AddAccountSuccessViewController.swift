@@ -28,7 +28,7 @@ class AddAccountSuccessViewController: UIViewController {
             error(errorMsg: "userRes.usernameがありません(AddAccountSuccessViewController)")
             return
         }
-        welcomeMessageLabel.text = "ようこそ、\n@\(userRes!["username"].stringValue)\nさん。"
+        welcomeMessageLabel.text = welcomeMessageLabel.text?.replace("%", userRes!["username"].stringValue)
         self.myIconImageView.sd_setImage(with: URL(string: userRes!["avatar_static"].stringValue))
         self.myIconImageView.ignoreSmartInvert()
     }
