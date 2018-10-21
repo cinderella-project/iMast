@@ -748,6 +748,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let qZv1VZeeNormalTitle = Rswift.StringResource(key: "qZv-1V-Zee.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Logging in...
+      /// 
+      /// Locales: en, ja
+      static let e3hSrGGoText = Rswift.StringResource(key: "e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Login
       /// 
       /// Locales: en, ja
@@ -832,10 +836,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let fvR0FAIoText = Rswift.StringResource(key: "FvR-0F-AIo.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: ログイン中です...
-      /// 
-      /// Locales: en, ja
-      static let e3hSrGGoText = Rswift.StringResource(key: "e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       
       /// en translation: 1 / 4
       /// 
@@ -884,6 +884,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func qZv1VZeeNormalTitle(_: Void = ()) -> String {
         return NSLocalizedString("qZv-1V-Zee.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Logging in...
+      /// 
+      /// Locales: en, ja
+      static func e3hSrGGoText(_: Void = ()) -> String {
+        return NSLocalizedString("e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Login
@@ -1031,13 +1038,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func fvR0FAIoText(_: Void = ()) -> String {
         return NSLocalizedString("FvR-0F-AIo.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: ログイン中です...
-      /// 
-      /// Locales: en, ja
-      static func e3hSrGGoText(_: Void = ()) -> String {
-        return NSLocalizedString("e3h-sr-GGo.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
