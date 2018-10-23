@@ -732,6 +732,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let yQUZVZCdText = Rswift.StringResource(key: "yQU-ZV-ZCd.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Enter instance hostname
+      /// 
+      /// Locales: en, ja
+      static let ryeghc8iText = Rswift.StringResource(key: "RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Fetching Account Information...
       /// 
       /// Locales: en, ja
@@ -788,7 +792,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let uNRDQTp7NormalTitle = Rswift.StringResource(key: "uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts( ).
+      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts.
       /// 
       /// Locales: en, ja
       static let loginMethodHelpMessage = Rswift.StringResource(key: "loginMethod.help.message", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
@@ -800,10 +804,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let authStage3 = Rswift.StringResource(key: "authStage.3", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Please enter instance hostname
-      /// 
-      /// Locales: en, ja
-      static let ryeghc8iText = Rswift.StringResource(key: "RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Registering App Information...
       /// 
       /// Locales: en, ja
@@ -864,6 +864,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func yQUZVZCdText(_: Void = ()) -> String {
         return NSLocalizedString("yQU-ZV-ZCd.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Enter instance hostname
+      /// 
+      /// Locales: en, ja
+      static func ryeghc8iText(_: Void = ()) -> String {
+        return NSLocalizedString("RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fetching Account Information...
@@ -964,7 +971,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts( ).
+      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts.
       /// 
       /// Locales: en, ja
       static func loginMethodHelpMessage(_: Void = ()) -> String {
@@ -983,13 +990,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func authStage3(_: Void = ()) -> String {
         return NSLocalizedString("authStage.3", tableName: "Login", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Please enter instance hostname
-      /// 
-      /// Locales: en, ja
-      static func ryeghc8iText(_: Void = ()) -> String {
-        return NSLocalizedString("RYE-gH-C8i.text", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Registering App Information...
