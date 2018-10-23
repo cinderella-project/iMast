@@ -75,3 +75,6 @@
 "loginMethod.acceptTerms.title" = "ログインすると、このインスタンスの\n{tos}及び{privacyPolicy}\nに同意したことになります";
 "loginMethod.acceptTerms.terms" = "利用規約";
 "loginMethod.acceptTerms.privacyPolicy" = "プライバシーポリシー";
+
+"loginMethod.help.title" = "ログイン方法について";
+"loginMethod.help.message" = "通常は「Safariでログインする」を選択してください。\nSafariではうまくログインできない場合は「IDとパスワードでログインする」を選択してください。\n「IDとパスワードでログインする」は一部のインスタンスやアカウントでは使えないことがあります。";

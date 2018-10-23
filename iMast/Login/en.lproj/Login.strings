@@ -45,7 +45,7 @@
 "hxx-wi-3lm.title" = "Login";
 
 /* Class = "UIButton"; normalTitle = "ログイン方法についてのヘルプ"; ObjectID = "qZv-1V-Zee"; */
-"qZv-1V-Zee.normalTitle" = "How to select";
+"qZv-1V-Zee.normalTitle" = "How to select method?";
 
 /* Class = "UIButton"; normalTitle = "メールアドレスとパスワードでログインする"; ObjectID = "uNR-dQ-Tp7"; */
 "uNR-dQ-Tp7.normalTitle" = "Login with credentials";
@@ -75,3 +75,6 @@
 "loginMethod.acceptTerms.title" = "By logging in, you agree to {tos} and {privacyPolicy} of this instance.";
 "loginMethod.acceptTerms.terms" = "terms of service";
 "loginMethod.acceptTerms.privacyPolicy" = "privacy policy";
+
+"loginMethod.help.title" = "How to select login method";
+"loginMethod.help.message" = "Normally, please select \"Login with Safari\".\nIf \"Login with Safari\" is not working, please select \"Login with credentials\".\n\"Login with credentials\" may not working on some instances and accounts(only accepts SSO sign-in, ).";

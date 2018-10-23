@@ -71,8 +71,8 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
 
     @IBAction func clickLoginHelpButton(_ sender: Any) {
         alert(
-            title: "ログイン方法について",
-            message: "通常は「Safariでログインする」を選択してください。\nSafariではうまくログインできない場合は「IDとパスワードでログインする」を選択してください。\n「IDとパスワードでログインする」はごく一部のインスタンスでは使えないことがあります。"
+            title: R.string.login.loginMethodHelpTitle(),
+            message: R.string.login.loginMethodHelpMessage()
         )
     }
     

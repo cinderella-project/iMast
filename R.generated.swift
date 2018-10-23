@@ -718,7 +718,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.login` struct is generated, and contains static references to 29 localization keys.
+    /// This `R.string.login` struct is generated, and contains static references to 31 localization keys.
     struct login {
       /// en translation: 1 / 4
       /// 
@@ -744,7 +744,11 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let vhHLD1z5NormalTitle = Rswift.StringResource(key: "vhH-lD-1z5.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: How to select
+      /// en translation: How to select login method
+      /// 
+      /// Locales: en, ja
+      static let loginMethodHelpTitle = Rswift.StringResource(key: "loginMethod.help.title", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: How to select method?
       /// 
       /// Locales: en, ja
       static let qZv1VZeeNormalTitle = Rswift.StringResource(key: "qZv-1V-Zee.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
@@ -784,6 +788,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let uNRDQTp7NormalTitle = Rswift.StringResource(key: "uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts(only accepts SSO sign-in, ).
+      /// 
+      /// Locales: en, ja
+      static let loginMethodHelpMessage = Rswift.StringResource(key: "loginMethod.help.message", tableName: "Login", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Password
       /// 
       /// Locales: en, ja
@@ -879,7 +887,14 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("vhH-lD-1z5.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: How to select
+      /// en translation: How to select login method
+      /// 
+      /// Locales: en, ja
+      static func loginMethodHelpTitle(_: Void = ()) -> String {
+        return NSLocalizedString("loginMethod.help.title", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: How to select method?
       /// 
       /// Locales: en, ja
       static func qZv1VZeeNormalTitle(_: Void = ()) -> String {
@@ -947,6 +962,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func uNRDQTp7NormalTitle(_: Void = ()) -> String {
         return NSLocalizedString("uNR-dQ-Tp7.normalTitle", tableName: "Login", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Normally, please select "Login with Safari". If "Login with Safari" is not working, please select "Login with credentials". "Login with credentials" may not working on some instances and accounts(only accepts SSO sign-in, ).
+      /// 
+      /// Locales: en, ja
+      static func loginMethodHelpMessage(_: Void = ()) -> String {
+        return NSLocalizedString("loginMethod.help.message", tableName: "Login", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Password
