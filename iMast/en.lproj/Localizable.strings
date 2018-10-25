@@ -11,6 +11,8 @@
 "tabs.notifications.cell.favourite.title" = "@% favorited your toot";
 "tabs.notifications.cell.mention.title" = "@% mentioned you";
 "tabs.notifications.cell.reblog.title" = "@% boosted your toot";
+"tabs.notifications.cell.readmore.title" = "Read more";
+"tabs.notifications.cell.readmore.disabledTitle" = "Nothing more";
 
 "tabs.home.title" = "Home Timeline";
 "tabs.home.shortTitle" = "Home";

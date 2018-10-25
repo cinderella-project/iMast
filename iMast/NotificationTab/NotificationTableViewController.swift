@@ -37,7 +37,8 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             self.notifyTitleText.maximumNumberOfLines = 1
             self.addSubnode(self.notifyTitleText)
             
-            self.notifyBodyText.attributedText = NSAttributedString(string: notification.status?.status.toPlainText() ?? notification.account?.name ?? "", attributes: [
+            let notifyBody = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replace("\n", " ")
+            self.notifyBodyText.attributedText = NSAttributedString(string: notifyBody, attributes: [
                 .font: UIFont.systemFont(ofSize: 17)
             ])
             self.notifyBodyText.truncationMode = .byTruncatingTail
@@ -64,9 +65,62 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16), child: top)
         }
     }
+    
+    class NotificationReadmoreCell: ASCellNode {
+        enum State {
+            case enabled
+            case loading
+            case nothingMore
+        }
+        let textNode = ASTextNode()
+        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        var indicatorNode: ASDisplayNode!
+        
+        var state: State = .enabled { didSet {
+            self.textNode.isHidden = state == .loading
+            if oldValue != state {
+                if state != .loading {
+                    self.indicatorView.stopAnimating()
+                } else {
+                    self.indicatorView.startAnimating()
+                }
+                switch state {
+                case .enabled:
+                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreTitle(), attributes: [
+                        .font: UIFont.systemFont(ofSize: 15),
+                        .foregroundColor: self.tintColor,
+                    ])
+                case .nothingMore:
+                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreDisabledTitle(), attributes: [
+                        .font: UIFont.systemFont(ofSize: 15),
+                        .foregroundColor: UIColor.darkGray,
+                    ])
+                default:
+                    break
+                }
+            }
+        }}
+        
+        override init() {
+            super.init()
+            self.indicatorNode = ASDisplayNode { () -> UIView in
+                return self.indicatorView
+            }
+
+            self.addSubnode(self.textNode)
+            self.addSubnode(self.indicatorNode)
+            self.style.height = ASDimensionMake(44)
+            self.selectionStyle = .none
+        }
+        
+        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
+            return ASOverlayLayoutSpec(child: ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: [], child: self.textNode), overlay: self.indicatorNode)
+        }
+    }
 
     var notifications:[MastodonNotification] = []
     let refreshControl = UIRefreshControl()
+    let readmoreCell = NotificationReadmoreCell()
     
     init() {
         super.init(node: ASTableNode(style: .plain))
@@ -91,7 +145,9 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         
         self.node.view.addSubview(self.refreshControl)
         
-        MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
+        self.readmoreCell.state = .loading
+        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: nil).then { notifications in
+            self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
             self.notifications = notifications
             self.node.reloadData()
         }
@@ -105,11 +161,15 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     // MARK: - Table view data source
 
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 1
+        return 2
     }
 
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return notifications.count
+        if section == 0 {
+            return notifications.count
+        } else {
+            return 1
+        }
     }
     
     @objc func refreshNotification() {
@@ -123,12 +183,73 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        return NotificationCell(notification: self.notifications[indexPath.row])
+        if indexPath.section == 0 {
+            return NotificationCell(notification: self.notifications[indexPath.row])
+        } else {
+            return self.readmoreCell
+        }
     }
     
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
-        let notification = self.notifications[indexPath.row]
-        self.openNotify(notification)
+        if indexPath.section == 0 {
+            let notification = self.notifications[indexPath.row]
+            self.openNotify(notification)
+        } else {
+            // read more
+            self.readMore()
+        }
+    }
+    
+    var oldFetchedTime = Date.timeIntervalSinceReferenceDate
+    var oldOffset: CGFloat = 0
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maxOffset = scrollView.contentSize.height - scrollView.frame.height
+        let diff = maxOffset - currentOffset
+        var bottomHeight = scrollView.contentInset.bottom
+        if #available(iOS 11.0, *) {
+            bottomHeight = scrollView.adjustedContentInset.bottom
+        }
+        
+        let diffTrue = Int(diff + bottomHeight)
+        print(diff, diffTrue, bottomHeight)
+        let nowTime = Date.timeIntervalSinceReferenceDate
+        
+        let diffTime = nowTime - self.oldFetchedTime
+        if diffTime > 0.1 {
+            self.oldFetchedTime = nowTime
+            let speed = currentOffset - oldOffset
+            if speed > 10 {
+                let estOffset = diffTrue - Int(speed / CGFloat(diffTime)) // 1秒後も同じ速さでスクロールしていた場合の位置
+                if estOffset < 200 {
+                    self.readMore()
+                }
+            }
+            self.oldFetchedTime = nowTime
+            self.oldOffset = currentOffset
+        }
+        
+        if diffTrue < 200 {
+            self.readMore()
+        }
+    }
+    
+    func readMore() {
+        guard self.readmoreCell.state == .enabled else {
+            return
+        }
+        
+        self.readmoreCell.state = .loading
+        MastodonUserToken.getLatestUsed()?.getNoficitaions(maxId: self.notifications.last?.id).then { notifications in
+            let oldCount = self.notifications.count
+            self.notifications.append(contentsOf: notifications)
+            self.node.performBatchUpdates({
+                for i in oldCount..<oldCount + notifications.count {
+                    self.node.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+                }
+            }, completion: nil)
+            self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
+        }
     }
     
     func openNotify(_ notification: MastodonNotification, animated: Bool = true) {

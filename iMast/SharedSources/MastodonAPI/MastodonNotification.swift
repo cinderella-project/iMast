@@ -32,6 +32,16 @@ extension MastodonUserToken {
         }
     }
     
+    func getNoficitaions(maxId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
+        var params: [String: Any] = [:]
+        if let maxId = maxId {
+            params["max_id"] = maxId.raw
+        }
+        return self.get("notifications", params: params).then { res in
+            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
+        }
+    }
+    
     func getNotification(id: MastodonID) -> Promise<MastodonNotification> {
         return self.get("notifications/"+id.string).then { res in
             return try MastodonNotification.decode(json: res)

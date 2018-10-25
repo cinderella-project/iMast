@@ -11,6 +11,8 @@
 "tabs.notifications.cell.favourite.title" = "@%さんにふぁぼられました";
 "tabs.notifications.cell.mention.title" = "@%さんからのメンション";
 "tabs.notifications.cell.reblog.title" = "@%さんにブーストされました";
+"tabs.notifications.cell.readmore.title" = "もっと";
+"tabs.notifications.cell.readmore.disabledTitle" = "ここまで";
 
 "tabs.home.title" = "ホームタイムライン";
 "tabs.home.shortTitle" = "ホーム";

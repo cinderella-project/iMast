@@ -404,7 +404,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 4 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 30 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -478,6 +478,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingStatusNotConnected = Rswift.StringResource(key: "timeline.streaming.status.notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Nothing more
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellReadmoreDisabledTitle = Rswift.StringResource(key: "tabs.notifications.cell.readmore.disabledTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Notifications
       /// 
       /// Locales: en, ja
@@ -490,6 +494,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let profileActionsProfileCard = Rswift.StringResource(key: "profile.actions.profileCard", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Read more
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellReadmoreTitle = Rswift.StringResource(key: "tabs.notifications.cell.readmore.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, ja
@@ -645,6 +653,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.status.notConnected", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Nothing more
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellReadmoreDisabledTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.readmore.disabledTitle", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Notifications
       /// 
       /// Locales: en, ja
@@ -664,6 +679,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func profileActionsProfileCard(_: Void = ()) -> String {
         return NSLocalizedString("profile.actions.profileCard", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Read more
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellReadmoreTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.readmore.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Refresh
