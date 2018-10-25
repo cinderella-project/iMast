@@ -22,18 +22,14 @@ class MastodonNotification: Codable {
 }
 
 extension MastodonUserToken {
-    func getNoficitaions(sinceId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
+    func getNoficitaions(limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
         var params: [String: Any] = [:]
+        if let limit = limit {
+            params["limit"] = limit
+        }
         if let sinceId = sinceId {
             params["since_id"] = sinceId.raw
         }
-        return self.get("notifications", params: params).then { res in
-            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
-        }
-    }
-    
-    func getNoficitaions(maxId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
-        var params: [String: Any] = [:]
         if let maxId = maxId {
             params["max_id"] = maxId.raw
         }

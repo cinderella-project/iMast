@@ -146,7 +146,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         self.node.view.addSubview(self.refreshControl)
         
         self.readmoreCell.state = .loading
-        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: nil).then { notifications in
+        MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
             self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
             self.notifications = notifications
             self.node.reloadData()
@@ -221,6 +221,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             let speed = currentOffset - oldOffset
             if speed > 10 {
                 let estOffset = diffTrue - Int(speed / CGFloat(diffTime)) // 1秒後も同じ速さでスクロールしていた場合の位置
+                print(estOffset)
                 if estOffset < 200 {
                     self.readMore()
                 }
@@ -240,7 +241,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         }
         
         self.readmoreCell.state = .loading
-        MastodonUserToken.getLatestUsed()?.getNoficitaions(maxId: self.notifications.last?.id).then { notifications in
+        MastodonUserToken.getLatestUsed()?.getNoficitaions(limit: 40, maxId: self.notifications.last?.id).then { notifications in
             let oldCount = self.notifications.count
             self.notifications.append(contentsOf: notifications)
             self.node.performBatchUpdates({
