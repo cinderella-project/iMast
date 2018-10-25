@@ -223,6 +223,10 @@ class SettingsViewController: FormViewController {
                 row.title = "新しいHTMLパーサーを使う"
                 row.userDefaultsConnect(.newHtmlParser)
             }
+            <<< SwitchRow() { row in
+                row.title = "通知タブの無限スクロール"
+                row.userDefaultsConnect(.notifyTabInfiniteScroll)
+            }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)

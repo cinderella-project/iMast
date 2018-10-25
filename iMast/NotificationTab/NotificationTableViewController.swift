@@ -203,6 +203,9 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     var oldFetchedTime = Date.timeIntervalSinceReferenceDate
     var oldOffset: CGFloat = 0
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard Defaults[.notifyTabInfiniteScroll] else {
+            return
+        }
         let currentOffset = scrollView.contentOffset.y
         let maxOffset = scrollView.contentSize.height - scrollView.frame.height
         let diff = maxOffset - currentOffset

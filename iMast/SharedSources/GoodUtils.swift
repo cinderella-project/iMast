@@ -319,6 +319,7 @@ extension DefaultsKeys {
     static let groupNotifyTypeUnknown = DefaultsKey<Bool>("group_notify_type_unknown", default: false)
     
     static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: true)
+    static let notifyTabInfiniteScroll = DefaultsKey<Bool>("notify_tab_infinite_scroll", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
