@@ -404,7 +404,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 4 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 30 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -450,6 +450,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionDisconnect = Rswift.StringResource(key: "timeline.streaming.action.disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Fetch failed
+      /// 
+      /// Locales: en, ja
+      static let tabsNotificationsCellReadmoreFetchError = Rswift.StringResource(key: "tabs.notifications.cell.readmore.fetchError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Follow
       /// 
       /// Locales: en, ja
@@ -602,6 +606,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingActionDisconnect(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.disconnect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Fetch failed
+      /// 
+      /// Locales: en, ja
+      static func tabsNotificationsCellReadmoreFetchError(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.notifications.cell.readmore.fetchError", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Follow

@@ -13,6 +13,7 @@
 "tabs.notifications.cell.reblog.title" = "@% boosted your toot";
 "tabs.notifications.cell.readmore.title" = "Read more";
 "tabs.notifications.cell.readmore.disabledTitle" = "Nothing more";
+"tabs.notifications.cell.readmore.fetchError" = "Fetch failed";
 
 "tabs.home.title" = "Home Timeline";
 "tabs.home.shortTitle" = "Home";

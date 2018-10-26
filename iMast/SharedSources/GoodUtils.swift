@@ -12,6 +12,7 @@ import Hydra
 import Alamofire
 import SwiftyJSON
 import XCGLogger
+import ActionClosurable
 
 let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
 
@@ -91,6 +92,29 @@ extension UIViewController {
     }
     func apiError(_ json: JSON) {
         apiError(json["error"].string, json["_response_code"].int)
+    }
+    
+    func errorReport(error: Error) {
+        let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "詳しい情報を見る", style: .default, handler: { _ in
+            let vc = UIViewController()
+            let textView = UITextView()
+            let navVC = UINavigationController(rootViewController: vc)
+
+            vc.view = textView
+            vc.title = "エラー詳細"
+            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, closure: { _ in
+                navVC.dismiss(animated: true, completion: nil)
+            })
+
+            textView.text = "\(error)"
+            textView.isEditable = false
+
+            self.present(navVC, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -71,10 +71,12 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             case enabled
             case loading
             case nothingMore
+            case withError
         }
         let textNode = ASTextNode()
         let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         var indicatorNode: ASDisplayNode!
+        var lastError: Error?
         
         var state: State = .enabled { didSet {
             self.textNode.isHidden = state == .loading
@@ -94,6 +96,11 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
                     self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreDisabledTitle(), attributes: [
                         .font: UIFont.systemFont(ofSize: 15),
                         .foregroundColor: UIColor.darkGray,
+                    ])
+                case .withError:
+                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreFetchError(), attributes: [
+                        .font: UIFont.systemFont(ofSize: 15),
+                        .foregroundColor: UIColor.red,
                     ])
                 default:
                     break
@@ -150,6 +157,9 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
             self.notifications = notifications
             self.node.reloadData()
+        }.catch { error in
+            self.readmoreCell.lastError = error
+            self.readmoreCell.state = .withError
         }
     }
 
@@ -179,7 +189,10 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             })
             self.node.reloadData()
             self.refreshControl.endRefreshing()
-        })
+        }).catch { error in
+            self.errorReport(error: error)
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
@@ -196,7 +209,13 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             self.openNotify(notification)
         } else {
             // read more
-            self.readMore()
+            if self.readmoreCell.state == .withError {
+                let error = self.readmoreCell.lastError!
+                self.errorReport(error: error)
+                self.readmoreCell.state = .enabled
+            } else {
+                self.readMore()
+            }
         }
     }
     
@@ -253,6 +272,9 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
                 }
             }, completion: nil)
             self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
+        }.catch { error in
+            self.readmoreCell.lastError = error
+            self.readmoreCell.state = .withError
         }
     }
     

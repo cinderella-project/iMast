@@ -13,6 +13,7 @@
 "tabs.notifications.cell.reblog.title" = "@%さんにブーストされました";
 "tabs.notifications.cell.readmore.title" = "もっと";
 "tabs.notifications.cell.readmore.disabledTitle" = "ここまで";
+"tabs.notifications.cell.readmore.fetchError" = "取得失敗";
 
 "tabs.home.title" = "ホームタイムライン";
 "tabs.home.shortTitle" = "ホーム";
