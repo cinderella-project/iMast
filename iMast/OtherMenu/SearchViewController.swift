@@ -24,6 +24,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self
+        self.refreshControl = UIRefreshControl() { _ in
+            self.refreshControl?.endRefreshing()
+        }
     }
 
 
@@ -38,14 +41,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     */
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print(searchBar.text)
         guard let text = searchBar.text else {
             return
         }
+        self.refreshControl?.beginRefreshing()
         MastodonUserToken.getLatestUsed()!.search(q: text).then { result in
             self.result = result
-            print(self.result)
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
     
