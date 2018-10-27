@@ -144,4 +144,7 @@ class OtherMenuTopTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        self.navigationController?.pushViewController(SearchViewController(), animated: true)
+    }
 }

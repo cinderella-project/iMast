@@ -106,6 +106,7 @@
 		CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
+		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
 		CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */; };
 		CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE845D282172504A00AF35B4 /* NewPost.storyboard */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
@@ -317,6 +318,7 @@
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
+		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
 		CE845D232172236300AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OtherMenu.strings; sourceTree = "<group>"; };
 		CE845D24217223A400AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OtherMenu.storyboard; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
+				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
@@ -1248,6 +1251,7 @@
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
+				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
 				CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */,

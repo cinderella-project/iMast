@@ -21,7 +21,7 @@ class MastodonSearchResult: Codable {
 }
 
 extension MastodonUserToken {
-    func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> {
+    func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> { 
         return self.get("search", params: ["q": q, "resolve": resolve]).then { res -> MastodonSearchResult in
             return try MastodonSearchResult.decode(json: res)
         }

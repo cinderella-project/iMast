@@ -126,7 +126,13 @@
                             <outlet property="delegate" destination="Akz-vi-J7G" id="YRH-dy-w5B"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="その他" id="ycO-qP-HO8"/>
+                    <navigationItem key="navigationItem" title="その他" id="ycO-qP-HO8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="qvh-n6-mj9">
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="Akz-vi-J7G" id="WyP-EY-tQa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lq-3y-1pM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
