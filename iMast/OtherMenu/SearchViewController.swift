@@ -111,7 +111,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let vc = openUserProfile(user: self.result!.accounts[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            self.alert(title: "ハッシュタグはまって", message: "まだ実装してないので...")
+            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
             vc.load(post: self.result!.posts[indexPath.row])

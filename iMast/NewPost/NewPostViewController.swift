@@ -54,6 +54,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var CWButton: UIBarButtonItem!
     @IBOutlet weak var NSFWButton: UIBarButtonItem!
     @IBOutlet weak var scopeSelectButton: UIBarButtonItem!
+    
+    var appendBottomString: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +82,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 self.scope = myScope
             }
         }
+        self.textInput.becomeFirstResponder()
+        let nowCount = self.textInput.text.count
+        DispatchQueue.main.async {
+            self.textInput.selectedRange.location = nowCount
+        }
+        self.textInput.text += appendBottomString
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,6 +10,11 @@ import Foundation
 import Hydra
 import SwiftyJSON
 
+struct MastodonPostHashtag: Codable {
+    let name: String
+    let url: String
+}
+
 class MastodonPost: Codable {
     let id: MastodonID
     let url: String?
@@ -48,6 +53,7 @@ class MastodonPost: Codable {
     }
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
+    var tags: [MastodonPostHashtag]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -72,6 +78,7 @@ class MastodonPost: Codable {
         case _profileEmojis = "profile_emojis"
         case visibility
         case mentions
+        case tags
     }
     
     @available(*, deprecated, message: "Do not use.")
@@ -196,6 +203,12 @@ class MastodonTimelineType {
     }
     static func list(_ list: MastodonList) -> MastodonTimelineType {
         return MastodonTimelineType(endpoint: "timelines/list/\(list.id.string)")
+    }
+    
+    static func hashtag(_ tag: String) -> MastodonTimelineType {
+        var charset = CharacterSet.urlPathAllowed
+        charset.insert("/")
+        return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)")
     }
     
     init(endpoint: String, params: [String: Any] = [:]) {

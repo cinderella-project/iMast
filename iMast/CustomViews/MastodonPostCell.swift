@@ -201,6 +201,13 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                     urlString = media.url
                 }
             }
+            for tag in post.tags ?? [] {
+                if urlString == tag.url {
+                    let newVC = HashtagTimeLineTableViewController(hashtag: tag.name)
+                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                    return false
+                }
+            }
         }
         let safari = SFSafariViewController(url: URL(string: urlString)!)
         self.viewController?.present(safari, animated: true, completion: nil)
