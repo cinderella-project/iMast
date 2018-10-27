@@ -186,6 +186,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
         var urlString = shareUrl.absoluteString
+        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let post = self.post {
             for mention in post.mentions {
                 if urlString == mention.url {
@@ -201,12 +202,11 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                     urlString = media.url
                 }
             }
-            for tag in post.tags ?? [] {
-                if urlString == tag.url {
-                    let newVC = HashtagTimeLineTableViewController(hashtag: tag.name)
-                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
-                    return false
-                }
+            if visibleString.starts(with: "#") {
+                let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+                let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+                self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                return false
             }
         }
         let safari = SFSafariViewController(url: URL(string: urlString)!)
