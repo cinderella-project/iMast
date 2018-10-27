@@ -238,15 +238,39 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        if let post = self.post, URL.scheme == "imast" {
-            if URL.absoluteString == "imast://cw/show" {
-                self.load(post: post, spoiler: true)
+        var urlString = URL.absoluteString
+        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
+        if let post = self.post {
+            if URL.scheme == "imast" {
+                if URL.absoluteString == "imast://cw/show" {
+                    self.load(post: post, spoiler: true)
+                }
+                if URL.absoluteString == "imast://cw/hide" {
+                    self.load(post: post, spoiler: false)
+                }
+                self.tableView.reloadData()
+                return false
             }
-            if URL.absoluteString == "imast://cw/hide" {
-                self.load(post: post, spoiler: false)
+            for mention in post.mentions {
+                if urlString == mention.url {
+                    MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
+                        let newVC = openUserProfile(user: user)
+                        self.navigationController?.pushViewController(newVC, animated: true)
+                    })
+                    return false
+                }
             }
-            self.tableView.reloadData()
-            return false
+            for media in post.attachments {
+                if urlString == media.textUrl {
+                    urlString = media.url
+                }
+            }
+            if visibleString.starts(with: "#") {
+                let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+                let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+                self.navigationController?.pushViewController(newVC, animated: true)
+                return false
+            }
         }
         let safari = SFSafariViewController(url: URL)
         self.present(safari, animated: true, completion: nil)
