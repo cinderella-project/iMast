@@ -29,10 +29,22 @@ class HashtagTimeLineTableViewController: TimeLineTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//
+    var originalBack: UIBarButtonItem?
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let vcs = self.navigationController?.viewControllers, let beforeVC = vcs.safe(vcs.count - 2) {
+            originalBack = beforeVC.navigationItem.backBarButtonItem
+            let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            beforeVC.navigationItem.backBarButtonItem = backButton
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let vcs = self.navigationController?.viewControllers, let beforeVC = vcs.last {
+            beforeVC.navigationItem.backBarButtonItem = originalBack
+        }
+    }
 
     override func websocketEndpoint() -> String? {
         var charset = CharacterSet.urlPathAllowed
