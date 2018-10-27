@@ -98,7 +98,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
             print(metadata.stringValue)
             let alert = UIAlertController(title: "検知", message: metadata.stringValue, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "プロフィールを表示", style: .default, handler: { action in
-                guard let urlencoded = metadata.stringValue?.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else {
+                guard let urlencoded = metadata.stringValue/* ?.addingPercentEncoding(withAllowedCharacters: .alphanumerics) */ else {
                     return
                 }
                 print(urlencoded)
