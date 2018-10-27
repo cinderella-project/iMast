@@ -70,7 +70,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ["アカウント", "ハッシュタグ", "投稿"][section]
+        guard let result = self.result else {
+            return nil
+        }
+        switch section {
+        case 0:
+            return result.accounts.count > 0 ? "アカウント" : nil
+        case 1:
+            return result.hashtags.count > 0 ? "ハッシュタグ" : nil
+        case 2:
+            return result.posts.count > 0 ? "投稿" : nil
+        default:
+            return nil
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
