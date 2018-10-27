@@ -82,7 +82,7 @@ class TimeLineTableViewController: UITableViewController {
         }
         
         readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
-        readmoreCell.layer.zPosition = CGFloat.infinity
+        readmoreCell.layer.zPosition = CGFloat(FLT_MAX)
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
     }
     
