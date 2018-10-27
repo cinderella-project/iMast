@@ -97,7 +97,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             return cell
         case 2:
             let post = self.result!.posts[indexPath.row]
-            let cell = MastodonPostCell()
+            let cell = MastodonPostCell.getInstance()
             cell.load(post: post)
             return cell
         default:
