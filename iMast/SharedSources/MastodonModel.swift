@@ -419,17 +419,16 @@ public class MastodonUserToken {
         return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
             Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
-                if let error = response.error {
+                switch response.result {
+                case .success(let value):
+                    var json = JSON(value)
+                    json["_response_code"].int = response.response?.statusCode ?? 599
+                    resolve(json)
+                    return
+                case .failure(let error):
                     reject(error)
                     return
                 }
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                resolve(json)
             }
         }
     }
