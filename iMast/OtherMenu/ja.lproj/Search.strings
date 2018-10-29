@@ -1,0 +1,12 @@
+/* 
+  Search.strings
+  iMast
+
+  Created by user on 2018/10/29.
+  Copyright © 2018 rinsuki. All rights reserved.
+*/
+
+"sections.posts.title" = "投稿";
+"sections.accounts.title" = "アカウント";
+"sections.hashtags.title" = "ハッシュタグ";
+"sections.trendTags.title" = "トレンドタグ (更新: %@)";

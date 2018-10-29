@@ -268,6 +268,7 @@ enum APIError: Error {
     case errorReturned(errorMessage: String, errorHttpCode: Int) // APIがまともにエラーを返してきた場合
     case unknownResponse(errorHttpCode: Int) // APIがJSONではない何かを返してきた場合
     case decodeFailed () // 画像のデコードに失敗したときのエラー
+    case dateParseFailed(dateString: String)
 }
 
 class DateUtils {
@@ -353,7 +354,15 @@ let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     f.calendar = Calendar(identifier: .gregorian)
     f.locale = Locale(identifier: "en_US_POSIX")
     f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
-    return f.date(from: str)!
+    if let d = f.date(from: str) {
+        return d
+    }
+    // https://github.com/imas/mastodon/pull/200 への対処
+    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZZZZ"
+    if let d = f.date(from: str) {
+        return d
+    }
+    throw APIError.dateParseFailed(dateString: str)
 }
 
 func CodableDeepCopy<T: Codable>(_ object: T) -> T {

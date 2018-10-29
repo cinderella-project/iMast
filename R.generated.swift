@@ -402,7 +402,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 4 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 5 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
@@ -1358,6 +1358,56 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func eFLVHUdSText(_: Void = ()) -> String {
         return NSLocalizedString("eFL-VH-udS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This `R.string.search` struct is generated, and contains static references to 4 localization keys.
+    struct search {
+      /// ja translation: アカウント
+      /// 
+      /// Locales: ja, en
+      static let sectionsAccountsTitle = Rswift.StringResource(key: "sections.accounts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: トレンドタグ (更新: %@)
+      /// 
+      /// Locales: ja, en
+      static let sectionsTrendTagsTitle = Rswift.StringResource(key: "sections.trendTags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ハッシュタグ
+      /// 
+      /// Locales: ja, en
+      static let sectionsHashtagsTitle = Rswift.StringResource(key: "sections.hashtags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 投稿
+      /// 
+      /// Locales: ja, en
+      static let sectionsPostsTitle = Rswift.StringResource(key: "sections.posts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      
+      /// ja translation: アカウント
+      /// 
+      /// Locales: ja, en
+      static func sectionsAccountsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("sections.accounts.title", tableName: "Search", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: トレンドタグ (更新: %@)
+      /// 
+      /// Locales: ja, en
+      static func sectionsTrendTagsTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("sections.trendTags.title", tableName: "Search", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// ja translation: ハッシュタグ
+      /// 
+      /// Locales: ja, en
+      static func sectionsHashtagsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("sections.hashtags.title", tableName: "Search", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: 投稿
+      /// 
+      /// Locales: ja, en
+      static func sectionsPostsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

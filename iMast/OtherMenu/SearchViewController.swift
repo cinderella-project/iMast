@@ -13,6 +13,8 @@ import SafariServices
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     var result: MastodonSearchResult?
     let searchBar = UISearchBar()
+    var trendTags: ThirdpartyTrendsTags? = nil
+    var trendTagsArray: Array<(tag: String, score: Float)> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.dataSource = self
         self.searchBar.delegate = self
         self.refreshControl = UIRefreshControl() { _ in
+            self.reloadTrendTags()
             self.refreshControl?.endRefreshing()
         }
+        self.reloadTrendTags()
     }
 
 
@@ -52,44 +56,67 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    func reloadTrendTags() {
+        guard let token = MastodonUserToken.getLatestUsed() else {
+            return
+        }
+        // TODO: トレンドタグのwhitelistを外部指定できるようにする
+        guard ["imastodon.net", "imastodon.blue"].contains(token.app.instance.hostName) else {
+            return
+        }
+        token.getTrendTags().then { res in
+            self.trendTags = res
+            self.trendTagsArray = res.score.map { $0 }.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
+            print(self.trendTagsArray)
+            self.tableView.reloadData()
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(false)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let result = self.result else {
-            return 0
-        }
         switch section {
         case 0:
-            return result.accounts.count
+            return result?.accounts.count ?? 0
         case 1:
-            return result.hashtags.count
+            return result?.hashtags.count ?? 0
         case 2:
-            return result.posts.count
+            return result?.posts.count ?? 0
+        case 3:
+            return result == nil ? trendTagsArray.count : 0
         default:
             return 0
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let result = self.result else {
+        guard self.tableView(tableView, numberOfRowsInSection: section) > 0 else {
             return nil
         }
         switch section {
         case 0:
-            return result.accounts.count > 0 ? "アカウント" : nil
+            return R.string.search.sectionsAccountsTitle()
         case 1:
-            return result.hashtags.count > 0 ? "ハッシュタグ" : nil
+            return R.string.search.sectionsHashtagsTitle()
         case 2:
-            return result.posts.count > 0 ? "投稿" : nil
+            return R.string.search.sectionsPostsTitle()
+        case 3:
+            guard let trendTags = self.trendTags else {
+                return nil
+            }
+            let f = DateFormatter()
+            f.dateStyle = .short
+            f.timeStyle = .short
+            return R.string.search.sectionsTrendTagsTitle(f.string(from: trendTags.updatedAt))
         default:
             return nil
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,6 +142,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let cell = MastodonPostCell.getInstance()
             cell.load(post: post)
             return cell
+        case 3:
+            let tag = self.trendTagsArray[indexPath.row]
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+            cell.textLabel?.text = "#" + tag.tag
+            cell.detailTextLabel?.text = tag.score.description
+            return cell
         default:
             fatalError("what")
         }
@@ -131,6 +164,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         case 2:
             let vc = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
             vc.load(post: self.result!.posts[indexPath.row])
+        case 3:
+            let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag)
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
