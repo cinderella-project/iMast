@@ -6,6 +6,8 @@
   Copyright © 2018 rinsuki. All rights reserved.
 */
 
+"title" = "検索";
+
 "sections.posts.title" = "投稿";
 "sections.accounts.title" = "アカウント";
 "sections.hashtags.title" = "ハッシュタグ";

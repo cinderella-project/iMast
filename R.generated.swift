@@ -1363,7 +1363,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.search` struct is generated, and contains static references to 4 localization keys.
+    /// This `R.string.search` struct is generated, and contains static references to 5 localization keys.
     struct search {
       /// ja translation: アカウント
       /// 
@@ -1381,6 +1381,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ja, en
       static let sectionsPostsTitle = Rswift.StringResource(key: "sections.posts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 検索
+      /// 
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       
       /// ja translation: アカウント
       /// 
@@ -1408,6 +1412,13 @@ struct R: Rswift.Validatable {
       /// Locales: ja, en
       static func sectionsPostsTitle(_: Void = ()) -> String {
         return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: 検索
+      /// 
+      /// Locales: ja, en
+      static func title(_: Void = ()) -> String {
+        return NSLocalizedString("title", tableName: "Search", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

@@ -22,7 +22,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         // Do any additional setup after loading the view.
         self.tableView.tableHeaderView = self.searchBar
         searchBar.sizeToFit()
-        self.title = "検索"
+        self.title = R.string.search.title()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self
