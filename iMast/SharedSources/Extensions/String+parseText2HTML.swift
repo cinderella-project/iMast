@@ -39,7 +39,7 @@ extension String {
                                 case "p":
                                     childAttrStr.append(NSAttributedString(string: "\n\n"))
                                 case "a":
-                                    if let href = element.attributes["href"] {
+                                    if let href = element.attributes["href"]?.addingPercentEncoding(withAllowedCharacters: CharacterSet.init(charactersIn: Unicode.Scalar(0)...Unicode.Scalar(0x7f))) {
                                         childAttrStr.addAttributes([
                                             .link: href,
                                             .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
