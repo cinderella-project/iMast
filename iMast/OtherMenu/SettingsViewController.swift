@@ -86,15 +86,19 @@ class SettingsViewController: FormViewController {
         self.form +++ Section("タイムライン")
             <<< SliderRow() { row in
                 row.title = "ユーザー名の文字の大きさ"
-                row.maximumValue = 20
-                row.minimumValue = 10
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 20
+                    cell.slider.minimumValue = 10
+                }
                 row.steps = 20
                 row.userDefaultsConnect(.timelineUsernameFontsize)
             }
             <<< SliderRow() { row in
                 row.title = "本文の文字の大きさ"
-                row.maximumValue = 20
-                row.minimumValue = 10
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 20
+                    cell.slider.minimumValue = 10
+                }
                 row.steps = 20
                 row.userDefaultsConnect(.timelineTextFontsize)
             }
@@ -104,8 +108,10 @@ class SettingsViewController: FormViewController {
             }
             <<< SliderRow() { row in
                 row.title = "アイコンの大きさ"
-                row.maximumValue = 72
-                row.minimumValue = 24
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 72
+                    cell.slider.minimumValue = 24
+                }
                 row.steps = (72-24)*2
                 row.userDefaultsConnect(.timelineIconSize)
             }
@@ -119,8 +125,10 @@ class SettingsViewController: FormViewController {
             }
             <<< SliderRow() { row in
                 row.title = "サムネイルの高さ"
-                row.maximumValue = 100
-                row.minimumValue = 0
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 100
+                    cell.slider.minimumValue = 0
+                }
                 row.steps = 100/5
                 row.userDefaultsConnect(.thumbnailHeight)
             }
@@ -135,8 +143,10 @@ class SettingsViewController: FormViewController {
             <<< SliderRow() { row in
                 row.title = "ピン留めトゥートの行数制限"
                 row.userDefaultsConnect(.pinnedTootLinesLimit)
-                row.minimumValue = 0
-                row.maximumValue = 10
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 10
+                    cell.slider.minimumValue = 0
+                }
                 row.steps = 10
                 row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
         }

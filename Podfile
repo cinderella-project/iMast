@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 def based_pods
   pod 'Alamofire', '~> 4.5'
-  pod 'GRDB.swift'
+  pod 'GRDB.swift', '~> 3.5.0'
   pod 'SwiftyJSON'
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
@@ -21,13 +21,13 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', '~> 4.1.1'
-  pod 'ActionClosurable'
+  pod 'Eureka', '~> 4.3.0'
+  pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
   pod 'KeychainAccess'
   pod 'SVProgressHUD'
   pod 'Notifwift'
   pod 'Texture', :inhibit_warnings => true
-  pod 'R.swift'
+  pod 'R.swift', '~> 5.0.0alpha2'
   pod '1PasswordExtension', '~> 1.8.5'
 
   target 'iMastTests' do
