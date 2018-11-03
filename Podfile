@@ -21,7 +21,7 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', '~> 4.1.0'
+  pod 'Eureka', '~> 4.1.1'
   pod 'ActionClosurable'
   pod 'KeychainAccess'
   pod 'SVProgressHUD'

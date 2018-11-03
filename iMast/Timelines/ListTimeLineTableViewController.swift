@@ -40,7 +40,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
                     cell.textLabel?.textColor = .red
                 }.onCellSelection { cell, row in
                     let alert = UIAlertController(title: "確認", message: "リスト「\(self.title ?? "")」を削除してもよろしいですか?", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive) { _ in
+                    alert.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive) { _ in
                         MastodonUserToken.getLatestUsed()!.delete(list: self.list).then {
                             vc.dismiss(animated: true, completion: nil)
                             self.navigationController?.popViewController(animated: true)
@@ -58,7 +58,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
             }
         ]
         let loadingItem = UIBarButtonItem()
-        let actIndV = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let actIndV = UIActivityIndicatorView(style: .gray)
         actIndV.startAnimating()
         actIndV.hidesWhenStopped = true
         loadingItem.customView = actIndV

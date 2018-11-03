@@ -25,7 +25,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
-        refreshControl?.addTarget(self, action: #selector(OtherMenuAccountChangeTableViewController.refresh), for: UIControlEvents.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(OtherMenuAccountChangeTableViewController.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl!)
         
         tableView.rowHeight = 44
@@ -101,7 +101,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         cell.textLabel!.text = userToken.name   
         cell.detailTextLabel!.text = String.init(format: "@%@@%@ (%@)", userToken.screenName ?? "--unknown--", userToken.app.instance.hostName, userToken.app.name)
         if indexPath[1] == 0 {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         
         if let avatarUrl = userToken.avatarUrl {

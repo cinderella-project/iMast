@@ -41,7 +41,7 @@ class ReadmoreTableViewCell: UITableViewCell {
         self.textLabel?.textColor = self.tintColor
         self.selectionStyle = .gray
         self.addSubview(self.indicator)
-        self.indicator.activityIndicatorViewStyle = .gray
+        self.indicator.style = .gray
         self.indicator.hidesWhenStopped = true
         self.indicator.translatesAutoresizingMaskIntoConstraints = false
         self.indicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -67,7 +67,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             loadAfter = false
             load(post: post!)
         }
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         textView.sizeToFit()
         textView.delegate = self
     }
@@ -280,11 +280,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         guard let post = self.post?.repost ?? self.post else {
             return
         }
-        let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertController.Style.actionSheet)
         actionSheet.popoverPresentationController?.sourceView = self.moreButton as UIView
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
         // ---
-        actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertActionStyle.default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertAction.Style.default, handler: { action in
             MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
                 print(res)
                 let posts = res.ancestors + [post] + res.descendants
@@ -296,7 +296,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             }
         }))
         if MastodonUserToken.getLatestUsed()!.screenName == post.account.acct {
-            actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertActionStyle.destructive, handler: { (action) in
+            actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive, handler: { (action) in
                 self.confirm(title: "投稿の削除", message: Defaults[.deleteTootTeokure] ? "失った信頼はもう戻ってきませんが、本当にこのトゥートを削除しますか?" : "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
                     if res == false {
                         return
@@ -308,13 +308,13 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 })
             }))
         }
-        actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertActionStyle.destructive, handler: { (action) in
+        actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertAction.Style.destructive, handler: { (action) in
             let newVC = MastodonPostAbuseViewController()
             newVC.targetPost = post
             newVC.placeholder = "『\(post.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
             self.navigationController?.pushViewController(newVC, animated: true)
         }))
-        actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
+        actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel))
         self.present(actionSheet, animated: true, completion: nil)
     }
 

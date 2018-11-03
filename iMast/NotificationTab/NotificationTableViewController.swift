@@ -74,7 +74,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             case withError
         }
         let textNode = ASTextNode()
-        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let indicatorView = UIActivityIndicatorView(style: .gray)
         var indicatorNode: ASDisplayNode!
         var lastError: Error?
         
@@ -133,7 +133,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         super.init(node: ASTableNode(style: .plain))
         self.node.dataSource = self
         self.node.delegate = self
-        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControlEvents.valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         self.title = R.string.localizable.tabsNotificationsTitle()
     }
     

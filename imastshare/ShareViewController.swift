@@ -57,7 +57,7 @@ class ShareViewController: SLComposeServiceViewController {
             self.pushConfigurationViewController(VC)
         }
         (self.extensionContext!.inputItems[0] as! NSExtensionItem).attachments!.forEach({ (ip) in
-            let itemProvider = ip as! NSItemProvider
+            let itemProvider = ip 
             //
             print(itemProvider)
             if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
@@ -190,11 +190,11 @@ class ShareViewController: SLComposeServiceViewController {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
     
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
-        let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
         var promise:Promise<[JSON]> = Promise.init(resolved: [])
         if let postImage = self.postImage {
-            promise = userToken!.upload(file: UIImagePNGRepresentation(postImage)!, mimetype: "image/png").then { (response) -> [JSON] in
+            promise = userToken!.upload(file: postImage.pngData()!, mimetype: "image/png").then { (response) -> [JSON] in
                 if response["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode: response["_response_code"].intValue)
                 }

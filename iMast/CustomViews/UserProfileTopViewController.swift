@@ -47,7 +47,7 @@ class UserProfileTopViewController: StableTableViewController {
         self.tableView.separatorInset = .zero
         
         tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -143,9 +143,9 @@ class UserProfileTopViewController: StableTableViewController {
         MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
             let relationship = relationships[0]
             let screenName = "@"+user.acct
-            let actionSheet = UIAlertController(title: R.string.localizable.profileActionsTitle(), message: screenName, preferredStyle: UIAlertControllerStyle.actionSheet)
+            let actionSheet = UIAlertController(title: R.string.localizable.profileActionsTitle(), message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
-            actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsShare(), style: UIAlertActionStyle.default, handler: {
+            actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsShare(), style: UIAlertAction.Style.default, handler: {
                 (action: UIAlertAction!) in
                 let activityItems:[Any] = [
                     (user.name != "" ? user.name : user.screenName).emojify()+"さんのプロフィール - Mastodon",
@@ -159,14 +159,14 @@ class UserProfileTopViewController: StableTableViewController {
             if myScreenName != screenName {
                 if !relationship.following { // 未フォロー
                     if !relationship.requested { // 未フォロー
-                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollow(), style: UIAlertActionStyle.default, handler: {
+                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollow(), style: UIAlertAction.Style.default, handler: {
                             (action: UIAlertAction!) in
                             MastodonUserToken.getLatestUsed()?.follow(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
                     } else {// フォローリクエスト中
-                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollowRequestCancel(), style: UIAlertActionStyle.destructive, handler: {
+                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollowRequestCancel(), style: UIAlertAction.Style.destructive, handler: {
                             (action: UIAlertAction!) in
                             self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
                                 if !result {
@@ -179,7 +179,7 @@ class UserProfileTopViewController: StableTableViewController {
                         }))
                     }
                 } else { // フォロー済み
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnfollow(), style: UIAlertActionStyle.destructive, handler: {
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnfollow(), style: UIAlertAction.Style.destructive, handler: {
                         (action: UIAlertAction!) in
                         self.confirm(title: "確認", message: screenName+"のフォローを解除しますか?", okButtonMessage: "解除", style: .destructive).then({ (result) in
                             if !result {
@@ -192,7 +192,7 @@ class UserProfileTopViewController: StableTableViewController {
                     }))
                 }
                 if !relationship.muting { // 未ミュート
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsMute(), style: UIAlertActionStyle.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsMute(), style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をミュートしますか?", okButtonMessage: "ミュート", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -203,7 +203,7 @@ class UserProfileTopViewController: StableTableViewController {
                         })
                     }))
                 } else {
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnmute(), style: UIAlertActionStyle.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnmute(), style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"のミュートを解除しますか?", okButtonMessage: "ミュート解除", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -215,7 +215,7 @@ class UserProfileTopViewController: StableTableViewController {
                     }))
                 }
                 if !relationship.blocking { // 未ブロック
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsBlock(), style: UIAlertActionStyle.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsBlock(), style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をブロックしますか?", okButtonMessage: "ブロック", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -226,7 +226,7 @@ class UserProfileTopViewController: StableTableViewController {
                         })
                     }))
                 } else {
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnblock(), style: UIAlertActionStyle.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnblock(), style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"のブロックを解除しますか?", okButtonMessage: "ブロック解除", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -255,7 +255,7 @@ class UserProfileTopViewController: StableTableViewController {
                     })
                 }
             }
-            actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
+            actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel))
             self.present(actionSheet, animated: true, completion: nil)
         })
     }

@@ -32,7 +32,7 @@ class NSFWGuardView: UIView {
 
     func setup() {
         
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
+        if !UIAccessibility.isReduceTransparencyEnabled {
             self.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: .dark)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)

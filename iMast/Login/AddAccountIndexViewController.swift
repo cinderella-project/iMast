@@ -25,7 +25,7 @@ class AddAccountIndexViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        goButton.sendActions(for: UIControlEvents.touchUpInside)
+        goButton.sendActions(for: UIControl.Event.touchUpInside)
         return true
     }
     

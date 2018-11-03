@@ -54,7 +54,7 @@ DEPENDENCIES:
   - ActionClosurable
   - Alamofire (~> 4.5)
   - Compass
-  - Eureka (~> 4.1.0)
+  - Eureka (~> 4.1.1)
   - Fuzi (~> 2.1.0)
   - GRDB.swift
   - HydraAsync
@@ -120,6 +120,6 @@ SPEC CHECKSUMS:
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 0028a7ed0c15deaedc4811454f3ca041829d6211
+PODFILE CHECKSUM: 2f2dfe70c11ca804e6494f2825ee11532c9c8d90
 
 COCOAPODS: 1.5.3

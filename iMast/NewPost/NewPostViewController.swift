@@ -51,7 +51,7 @@ struct UploadMedia {
             guard let result = newImage else {
                 return self.data
             }
-            return ((self.type == .png ? UIImagePNGRepresentation(result) : UIImageJPEGRepresentation(result, 1.0))!)
+            return ((self.type == .png ? result.pngData() : result.jpegData(compressionQuality: 1.0))!)
         }
         return self.data
     }
@@ -88,12 +88,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var nowKeyboardUpOrDown: Bool = false
     var isCW: Bool = false {
         didSet {
-            self.CWButton.style = isCW ? UIBarButtonItemStyle.done : UIBarButtonItemStyle.plain
+            self.CWButton.style = isCW ? UIBarButtonItem.Style.done : UIBarButtonItem.Style.plain
         }
     }
     var isNSFW: Bool = false {
         didSet {
-            self.NSFWButton.style = isNSFW ? UIBarButtonItemStyle.done : UIBarButtonItemStyle.plain
+            self.NSFWButton.style = isNSFW ? UIBarButtonItem.Style.done : UIBarButtonItem.Style.plain
         }
     }
     var scope = "public" {
@@ -173,7 +173,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         print(isNSFW)
         print(isCW)
         let baseMessage = "しばらくお待ちください\n"
-        let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
         
         let uploadPromise = async() { _ -> [JSON] in
@@ -252,8 +252,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     func configureObserver() {
         let notification = NotificationCenter.default
         // notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func removeObserver() {
@@ -262,7 +262,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        let rect = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         bottomLayout.constant = (rect?.size.height ?? 0) - self.bottomLayoutGuide.length
         self.view.layoutIfNeeded()
         self.keyboardUpOrDown.image = UIImage(named: "ArrowDown")

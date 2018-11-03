@@ -24,13 +24,13 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
         if let r = warnAttrString.mutableString.range(of: "{tos}").optional {
             warnAttrString.replaceCharacters(in: r, with: NSAttributedString(string: R.string.login.loginMethodAcceptTermsTerms(), attributes: [
                 .link: "https://\(hostName)/about/more",
-                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
             ]))
         }
         if let r = warnAttrString.mutableString.range(of: "{privacyPolicy}").optional {
             warnAttrString.replaceCharacters(in: r, with: NSAttributedString(string: R.string.login.loginMethodAcceptTermsPrivacyPolicy(), attributes: [
                 .link: "https://\(hostName)/terms",
-                .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
             ]))
         }
         warnAttrString.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: warnAttrString.length))

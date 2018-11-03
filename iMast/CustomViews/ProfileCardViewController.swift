@@ -27,17 +27,17 @@ class ProfileCardViewController: UIViewController {
         self.backgroundImageView.sd_setImage(with: URL(string: user.headerUrl))
         self.iconView.sd_setImage(with: URL(string: user.avatarUrl))
 
-        let qr = CIFilter(name: "CIQRCodeGenerator", withInputParameters: [
+        let qr = CIFilter(name: "CIQRCodeGenerator", parameters: [
             "inputMessage": user.url.data(using: .utf8),
             "inputCorrectionLevel": "H"
         ])
-        let invertQr = CIFilter(name: "CIColorInvert", withInputParameters: [
+        let invertQr = CIFilter(name: "CIColorInvert", parameters: [
             "inputImage": qr!.outputImage!
             ])
-        let alphaInvertQr = CIFilter(name: "CIMaskToAlpha", withInputParameters: [
+        let alphaInvertQr = CIFilter(name: "CIMaskToAlpha", parameters: [
             "inputImage": invertQr!.outputImage!
         ])
-        let alphaQr = CIFilter(name: "CIColorInvert", withInputParameters: [
+        let alphaQr = CIFilter(name: "CIColorInvert", parameters: [
             "inputImage": alphaInvertQr!.outputImage!
         ])
         userNameLabel.text = user.name != "" ? user.name : user.screenName
