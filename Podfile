@@ -27,7 +27,7 @@ target 'iMast' do
   pod 'SVProgressHUD'
   pod 'Notifwift'
   pod 'Texture', :inhibit_warnings => true
-  pod 'R.swift', '~> 5.0.0alpha2'
+  pod 'R.swift', '~> 4.0.0'
   pod '1PasswordExtension', '~> 1.8.5'
 
   target 'iMastTests' do
@@ -58,6 +58,17 @@ target 'iMast' do
 end
 
 post_install do | installer |
+  # Acknowledgements file auto generate
   require 'fileutils'
   FileUtils.cp_r('Pods/Target Support Files/Pods-iMast/Pods-iMast-acknowledgements.plist', 'iMast/Settings.bundle/Acknowledgements.plist')
+
+  # R.swift in Swift 4.2 workaround
+  # 5.0が出るまで我慢
+  installer.pods_project.targets.each do | target |
+    if ["R.swift.Library"].include? target.name
+      target.build_configurations.each do | config |
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
+    end
+  end
 end

@@ -27,9 +27,9 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.13):
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
-  - R.swift (5.0.0.alpha.2):
-    - R.swift.Library (~> 5.0.0.alpha.2)
-  - R.swift.Library (5.0.0.alpha.2)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
   - ReachabilitySwift (3)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
@@ -60,7 +60,7 @@ DEPENDENCIES:
   - HydraAsync
   - KeychainAccess
   - Notifwift
-  - R.swift (~> 5.0.0alpha2)
+  - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 3)
   - SDWebImage (~> 4.0)
   - Starscream
@@ -119,8 +119,8 @@ SPEC CHECKSUMS:
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
-  R.swift: 31fa1bd537fa81307815cc622122f33331f32174
-  R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
@@ -129,6 +129,6 @@ SPEC CHECKSUMS:
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: f7d89c0d8b1c36ad00cbc40876b0550eb76883ee
+PODFILE CHECKSUM: 12b18586d7f74190650fa7bc29c1fa9d4e9998f2
 
 COCOAPODS: 1.5.3

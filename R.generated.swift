@@ -16,6 +16,11 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.color` struct is generated, and contains static references to 0 colors.
+  struct color {
+    fileprivate init() {}
+  }
+  
   /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
     /// Resource file `Podfile`.
@@ -43,6 +48,11 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
+    fileprivate init() {}
+  }
+  
+  /// This `R.font` struct is generated, and contains static references to 0 fonts.
+  struct font {
     fileprivate init() {}
   }
   
@@ -220,53 +230,28 @@ struct R: Rswift.Validatable {
     static let userProfileInfoTableViewCell = _R.nib._UserProfileInfoTableViewCell()
     
     /// `UINib(name: "MastodonPostCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.mastodonPostCell) instead")
     static func mastodonPostCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.mastodonPostCell)
     }
     
     /// `UINib(name: "NewPostMediaListViewController", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.newPostMediaListViewController) instead")
     static func newPostMediaListViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.newPostMediaListViewController)
     }
     
     /// `UINib(name: "TimeLineReadMoreCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.timeLineReadMoreCell) instead")
     static func timeLineReadMoreCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.timeLineReadMoreCell)
     }
     
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.userProfileBioTableViewCell) instead")
     static func userProfileBioTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.userProfileBioTableViewCell)
     }
     
     /// `UINib(name: "UserProfileInfoTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.userProfileInfoTableViewCell) instead")
     static func userProfileInfoTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.userProfileInfoTableViewCell)
-    }
-    
-    static func mastodonPostCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MastodonPostCell? {
-      return R.nib.mastodonPostCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MastodonPostCell
-    }
-    
-    static func newPostMediaListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.newPostMediaListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-    
-    static func timeLineReadMoreCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
-      return R.nib.timeLineReadMoreCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
-    }
-    
-    static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
-      return R.nib.userProfileBioTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
-    }
-    
-    static func userProfileInfoTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileInfoTableViewCell? {
-      return R.nib.userProfileInfoTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileInfoTableViewCell
     }
     
     fileprivate init() {}
@@ -1465,11 +1450,11 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "MastodonPostCell"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MastodonPostCell? {
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> MastodonPostCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MastodonPostCell
       }
       
-      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
       
@@ -1480,7 +1465,7 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "NewPostMediaListViewController"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
       
@@ -1491,7 +1476,7 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "TimeLineReadMoreCell"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UITableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
       }
       
@@ -1502,7 +1487,7 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "UserProfileBioTableViewCell"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UserProfileBioTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
       }
       
@@ -1513,7 +1498,7 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "UserProfileInfoTableViewCell"
       
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileInfoTableViewCell? {
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UserProfileInfoTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileInfoTableViewCell
       }
       
@@ -1526,23 +1511,15 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try login.validate()
-      try profileCard.validate()
-      try mastodonPostDetail.validate()
       try otherMenu.validate()
-      try launchScreen.validate()
       try newPost.validate()
     }
     
-    struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+    struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType {
       typealias InitialController = UIKit.UIViewController
       
       let bundle = R.hostingBundle
       let name = "LaunchScreen"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
       
       fileprivate init() {}
     }
@@ -1564,25 +1541,18 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-        if _R.storyboard.login().logintop() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'logintop' could not be loaded from storyboard 'Login' as 'AddAccountIndexViewController'.") }
         if _R.storyboard.login().progress() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'progress' could not be loaded from storyboard 'Login' as 'AddAccountProgressViewController'.") }
+        if _R.storyboard.login().logintop() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'logintop' could not be loaded from storyboard 'Login' as 'AddAccountIndexViewController'.") }
       }
       
       fileprivate init() {}
     }
     
-    struct mastodonPostDetail: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+    struct mastodonPostDetail: Rswift.StoryboardResourceWithInitialControllerType {
       typealias InitialController = MastodonPostDetailTableViewController
       
       let bundle = R.hostingBundle
       let name = "MastodonPostDetail"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
       
       fileprivate init() {}
     }
@@ -1594,12 +1564,10 @@ struct _R: Rswift.Validatable {
       let name = "NewPost"
       
       static func validate() throws {
-        if UIKit.UIImage(named: "Camera") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Camera' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "visibility-public") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'visibility-public' is used in storyboard 'NewPost', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Camera") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Camera' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ArrowUp") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ArrowUp' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "NowPlaying") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'NowPlaying' is used in storyboard 'NewPost', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
       }
       
       fileprivate init() {}
@@ -1614,23 +1582,16 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "More") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'More' is used in storyboard 'OtherMenu', but couldn't be loaded.") }
         if UIKit.UIImage(named: "MoreOutline") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'MoreOutline' is used in storyboard 'OtherMenu', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
-        }
       }
       
       fileprivate init() {}
     }
     
-    struct profileCard: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+    struct profileCard: Rswift.StoryboardResourceWithInitialControllerType {
       typealias InitialController = ProfileCardViewController
       
       let bundle = R.hostingBundle
       let name = "ProfileCard"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
       
       fileprivate init() {}
     }
