@@ -11,8 +11,63 @@ import Hydra
 import SwiftyJSON
 import MediaPlayer
 
-class NewPostViewController: UIViewController, UITextViewDelegate {
+struct UploadMedia {
+    enum MediaType {
+        case jpeg
+        case png
+    }
+    let type: UploadMedia.MediaType
+    let data: Data
+    let thumbnailImage: UIImage
+    
+    func toUploadableData() -> Data {
+        let newSize = Defaults[.autoResizeSize]
+        if newSize != 0, self.type == .jpeg || self.type == .png {
+            // 画像の縮小と再圧縮
+            guard let image = UIImage(data: self.data) else {
+                return self.data
+            }
+            var width = image.size.width
+            var height = image.size.height
+            if image.size.width > image.size.height { // 横長
+                if image.size.width > CGFloat(newSize) { // リサイズする必要がある
+                    height = height / (width / CGFloat(newSize))
+                    width = CGFloat(newSize)
+                }
+            } else if image.size.width < image.size.height { // 縦長
+                if image.size.width > CGFloat(newSize) { // リサイズする必要がある
+                    width = width / (height / CGFloat(newSize))
+                    height = CGFloat(newSize)
+                }
+            } else { // 正方形
+                width = CGFloat(newSize)
+                height = CGFloat(newSize)
+            }
+            print(width, height)
+            UIGraphicsBeginImageContext(CGSize(width: floor(width), height: floor(height)))
+            image.draw(in: CGRect(x: 0, y: 0, width: floor(width), height: floor(height)))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            guard let result = newImage else {
+                return self.data
+            }
+            return ((self.type == .png ? UIImagePNGRepresentation(result) : UIImageJPEGRepresentation(result, 1.0))!)
+        }
+        return self.data
+    }
+    
+    func getMimeType() -> String {
+        switch self.type {
+        case .jpeg:
+            return "image/jpeg"
+        case .png:
+            return "image/png"
+        }
+    }
+}
 
+class NewPostViewController: UIViewController, UITextViewDelegate {
+    
     @IBOutlet weak var textInput: UITextView! {
         didSet {
             textInput.delegate = self
@@ -26,7 +81,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             cwInput.isHidden = true
         }
     }
-    var images: [UIImage] = []
+    var media: [UploadMedia] = []
     
     @IBOutlet weak var nowAccountLabel: UILabel!
     
@@ -123,22 +178,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         
         let uploadPromise = async() { _ -> [JSON] in
             var imageJSONs: [JSON] = []
-            for (index, image) in self.images.enumerated() {
+            for (index, medium) in self.media.enumerated() {
                 DispatchQueue.main.async {
-                    alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.images.count))"
+                    alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.media.count))"
                 }
-                imageJSONs.append(try await(MastodonUserToken.getLatestUsed()!.upload(file: self.getImage(image)!, mimetype: "image/png").then { (response) -> JSON in
-                    if response["_response_code"].intValue >= 400 {
-                        alert.dismiss(animated: false, completion: {
-                            self.apiError(response["error"].string, response["_response_code"].int)
-                        })
-                        throw APIError.alreadyError()
-                    }
-                    if !response["id"].exists() {
-                        throw APIError.nil("id")
-                    }
-                    return response
-                }))
+                let response = try await(MastodonUserToken.getLatestUsed()!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                if response["_response_code"].intValue >= 400 {
+                    alert.dismiss(animated: false, completion: {
+                        self.apiError(response["error"].string, response["_response_code"].int)
+                    })
+                    throw APIError.alreadyError()
+                }
+                if !response["id"].exists() {
+                    throw APIError.nil("id")
+                }
+
+                imageJSONs.append(response)
             }
             return imageJSONs
         }
@@ -258,35 +313,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-    }
-        let resultSize:Int = Defaults[.autoResizeSize]
-    func getImage(_ image: UIImage) -> Data? { // 自動リサイズ設定を考慮したUIImageをPNGorJPEG化したDataを返す
-        var resultImage = image
-        if resultSize != 0 {
-            var width = image.size.width
-            var height = image.size.height
-            if image.size.width > image.size.height { // 横長
-                if image.size.width > CGFloat(resultSize) { // リサイズする必要がある
-                    height = height / (width / CGFloat(resultSize))
-                    width = CGFloat(resultSize)
-                }
-            } else if image.size.width < image.size.height { // 縦長
-                if image.size.width > CGFloat(resultSize) { // リサイズする必要がある
-                    width = width / (height / CGFloat(resultSize))
-                    height = CGFloat(resultSize)
-                }
-            } else { // 正方形
-                width = CGFloat(resultSize)
-                height = CGFloat(resultSize)
-            }
-            print(width, height)
-            UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-            image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            resultImage = newImage!
-        }
-        return (self.isPNG ? UIImagePNGRepresentation(resultImage) : UIImageJPEGRepresentation(resultImage, 1.0))
     }
     
     @IBOutlet weak var imageSelectButton: UIButton!

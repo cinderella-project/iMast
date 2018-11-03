@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionClosurable
+import Photos
 
 class NewPostMediaListViewController: UIViewController {
 
@@ -38,16 +39,16 @@ class NewPostMediaListViewController: UIViewController {
 
     func refresh() {
         // update image select button title
-        self.newPostVC.imageSelectButton.setTitle(" "+self.newPostVC.images.count.description, for: .normal)
+        self.newPostVC.imageSelectButton.setTitle(" "+self.newPostVC.media.count.description, for: .normal)
         
         // update image list view
         for imageView in self.imagesStackView.arrangedSubviews {
             self.imagesStackView.removeArrangedSubview(imageView)
             imageView.removeFromSuperview()
         }
-        if self.newPostVC.images.count > 0 {
-            for (index, image) in self.newPostVC.images.enumerated() {
-                let imageView = UIImageView(image: image)
+        if self.newPostVC.media.count > 0 {
+            for (index, image) in self.newPostVC.media.enumerated() {
+                let imageView = UIImageView(image: image.thumbnailImage)
                 imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
@@ -57,7 +58,7 @@ class NewPostMediaListViewController: UIViewController {
                         let viewController = UIViewController()
                         let imageView = UIImageView()
                         imageView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-                        imageView.image = image
+                        imageView.image = UIImage(data: image.data)
                         imageView.ignoreSmartInvert()
                         imageView.contentMode = .scaleAspectFit
                         viewController.view = imageView
@@ -69,7 +70,7 @@ class NewPostMediaListViewController: UIViewController {
                         self.present(viewController, animated: true, completion: nil)
                     }))
                     alertVC.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
-                        self.newPostVC.images.remove(at: index)
+                        self.newPostVC.media.remove(at: index)
                         self.refresh()
                     }))
                     alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
@@ -91,9 +92,9 @@ class NewPostMediaListViewController: UIViewController {
         self.imagesStackView.layoutIfNeeded()
     }
     
-    func addImage(url: URL?, image: UIImage) {
+    func addMedia(media: UploadMedia) {
         // TODO
-        self.newPostVC.images.append(image)
+        self.newPostVC.media.append(media)
         self.refresh()
     }
     
@@ -180,7 +181,8 @@ extension NewPostMediaListViewController: UIDocumentPickerDelegate {
 
 extension NewPostMediaListViewController: UIDocumentMenuDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        self.addImage(url: url, image: UIImage(data:try! Data(contentsOf: url,options:NSData.ReadingOptions.mappedIfSafe))!)
+        let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
+        self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
     }
 }
 
@@ -188,12 +190,37 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         picker.dismiss(animated: true, completion: nil)
         print(info)
-        let url = info[UIImagePickerControllerReferenceURL] as? URL
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+        if #available(iOS 11.0, *), let url = info[UIImagePickerControllerImageURL] as? URL {
+            let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
+            self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
+        } else if let assetUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+            let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
+            guard let asset = assets.firstObject else {
+                self.alert(title: "エラー", message: "failed to fetch assets")
+                return
+            }
+            if asset.mediaType == .image {
+                PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) in
+                    guard let data = data else {
+                        self.alert(title: "エラー", message: "failed to fetch data from PHImageManager")
+                        return
+                    }
+                    self.addMedia(media: UploadMedia(type: dataUTI == "public.jpeg" ? .jpeg : .png, data: data, thumbnailImage: UIImage(data: data)!))
+                }
+            } else {
+                self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
+            }
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
+            guard let data = UIImageJPEGRepresentation(image, 1) else {
+                self.alert(title: "エラー", message: "failed to jpeg encode")
+                return
+            }
+            self.addMedia(media: UploadMedia(type: .jpeg, data: data, thumbnailImage: image))
+        } else {
             self.alert(title: "エラー", message: "image is nil(loc: NewPostMediaListViewController.imagePickerController)")
             return
         }
-        self.addImage(url: url, image: image)
     }
 }
 
