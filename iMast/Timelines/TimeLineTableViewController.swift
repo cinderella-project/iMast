@@ -43,10 +43,10 @@ class TimeLineTableViewController: UITableViewController {
         
 
         tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         // 引っ張って更新
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(self.refreshTimeline), for: UIControlEvents.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(self.refreshTimeline), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl!)
         loadTimeline().then {
             self.tableView.reloadData()

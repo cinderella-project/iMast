@@ -113,16 +113,16 @@ class NewPostMediaListViewController: UIViewController {
             print("photo-library")
             let imgPickerC = UIImagePickerController()
             print (imgPickerC.modalPresentationStyle.rawValue)
-            imgPickerC.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imgPickerC.sourceType = UIImagePickerController.SourceType.photoLibrary
             imgPickerC.delegate = self
             self.transparentVC.dismiss(animated: false, completion: nil)
             self.present(imgPickerC, animated: true, completion: nil)
         })
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             pickerSelector.addOption(withTitle: "写真を撮る", image: UIImage(named: "Camera"), order: UIDocumentMenuOrder.first, handler: {
                 print("camera")
                 let imgPickerC = UIImagePickerController()
-                imgPickerC.sourceType = UIImagePickerControllerSourceType.camera
+                imgPickerC.sourceType = UIImagePickerController.SourceType.camera
                 imgPickerC.delegate = self
                 self.transparentVC.dismiss(animated: false, completion: nil)
                 self.present(imgPickerC, animated: true, completion: nil)
@@ -187,13 +187,13 @@ extension NewPostMediaListViewController: UIDocumentMenuDelegate {
 }
 
 extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         print(info)
-        if #available(iOS 11.0, *), let url = info[UIImagePickerControllerImageURL] as? URL {
+        if #available(iOS 11.0, *), let url = info[.imageURL] as? URL {
             let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
             self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
-        } else if let assetUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+        } else if let assetUrl = info[.referenceURL] as? URL {
             let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
             guard let asset = assets.firstObject else {
                 self.alert(title: "エラー", message: "failed to fetch assets")
@@ -210,9 +210,9 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
             } else {
                 self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
             }
-        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        } else if let image = info[.originalImage] as? UIImage {
             // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
-            guard let data = UIImageJPEGRepresentation(image, 1) else {
+            guard let data = image.jpegData(compressionQuality: 1) else {
                 self.alert(title: "エラー", message: "failed to jpeg encode")
                 return
             }

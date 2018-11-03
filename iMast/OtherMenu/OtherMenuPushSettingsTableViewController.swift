@@ -73,7 +73,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 self.confirm(
                     title: "確認",
                     message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
-                    okButtonMessage: "削除する", style: UIAlertActionStyle.destructive,
+                    okButtonMessage: "削除する", style: UIAlertAction.Style.destructive,
                     cancelButtonMessage: "キャンセル"
                 ).then { res -> Promise<Void> in
                     if res {
@@ -107,7 +107,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 }.cellUpdate { cell, row in
                     cell.textLabel?.textColor = .black
                     cell.textLabel?.textAlignment = .left
-                    cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+                    cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 }.onCellSelection { cell, row in
                     let vc = OtherMenuPushSettingsAccountTableViewController(account: account)
                     let wrapVC = UINavigationController(rootViewController: vc)
@@ -195,8 +195,8 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 if res == false {
                     return Promise<Bool> { resolve, reject, _ in
                         let alert = UIAlertController(title: "通知が許可されていません", message: "iOSの設定で、iMastからの通知を許可してください。", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "設定へ", style: UIAlertActionStyle.default) { _ in
-                            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                        alert.addAction(UIAlertAction(title: "設定へ", style: UIAlertAction.Style.default) { _ in
+                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
                             resolve(false)
                         })
                         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in

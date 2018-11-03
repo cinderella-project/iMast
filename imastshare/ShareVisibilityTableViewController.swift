@@ -50,7 +50,7 @@ class ShareVisibilityTableViewController: UITableViewController {
         cell.detailTextLabel?.text = VisibilityDescriptionString[indexPath[1]]
         cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         if VisibilityString[indexPath[1]] == parentVC.visibility {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         return cell
     }

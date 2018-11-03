@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 def based_pods
   pod 'Alamofire', '~> 4.5'
-  pod 'GRDB.swift'
+  pod 'GRDB.swift', '~> 3.5.0'
   pod 'SwiftyJSON'
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.0.2'
@@ -21,13 +21,13 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', '~> 4.1.0'
-  pod 'ActionClosurable'
+  pod 'Eureka', '~> 4.3.0'
+  pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
   pod 'KeychainAccess'
   pod 'SVProgressHUD'
   pod 'Notifwift'
   pod 'Texture', :inhibit_warnings => true
-  pod 'R.swift'
+  pod 'R.swift', '~> 4.0.0'
   pod '1PasswordExtension', '~> 1.8.5'
 
   target 'iMastTests' do
@@ -58,6 +58,17 @@ target 'iMast' do
 end
 
 post_install do | installer |
+  # Acknowledgements file auto generate
   require 'fileutils'
   FileUtils.cp_r('Pods/Target Support Files/Pods-iMast/Pods-iMast-acknowledgements.plist', 'iMast/Settings.bundle/Acknowledgements.plist')
+
+  # R.swift in Swift 4.2 workaround
+  # 5.0が出るまで我慢
+  installer.pods_project.targets.each do | target |
+    if ["R.swift.Library"].include? target.name
+      target.build_configurations.each do | config |
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
+    end
+  end
 end

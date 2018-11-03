@@ -46,14 +46,14 @@ class ShareAccountSelectorTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: nil)
         
         let userToken = userTokens[indexPath[1]]
         cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         cell.textLabel!.text = userToken.name
         cell.detailTextLabel!.text = "@\((userToken.screenName ?? "--unknown--"))@"+userToken.app.instance.hostName
         if userToken.id == self.nowUserTokenId {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         
         if let avatarUrl = userToken.avatarUrl {

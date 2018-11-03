@@ -10,7 +10,7 @@ import Foundation
 import Fuzi
 
 extension String {
-    func parseText2HTMLNew(attributes: [NSAttributedStringKey: Any]) -> NSAttributedString? {
+    func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any]) -> NSAttributedString? {
         do {
             let document = try Fuzi.HTMLDocument(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {
@@ -42,7 +42,7 @@ extension String {
                                     if let href = element.attributes["href"]?.addingPercentEncoding(withAllowedCharacters: CharacterSet.init(charactersIn: Unicode.Scalar(0)...Unicode.Scalar(0x7f))) {
                                         childAttrStr.addAttributes([
                                             .link: href,
-                                            .underlineStyle: NSUnderlineStyle.styleSingle.rawValue,
+                                            .underlineStyle: NSUnderlineStyle.single.rawValue,
                                         ], range: NSRange(location: 0, length: childAttrStr.length))
                                     }
                                 case "img":
@@ -87,7 +87,7 @@ extension String {
         }
     }
     
-    func parseText2HTML(attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString? {
+    func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString? {
         if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes) {
             return newParserResult
         }

@@ -3,9 +3,9 @@ PODS:
   - ActionClosurable (1.2.0)
   - Alamofire (4.7.3)
   - Compass (6.0.0)
-  - Eureka (4.1.1)
+  - Eureka (4.3.0)
   - Fuzi (2.1.0)
-  - GRDB.swift (3.2.0)
+  - GRDB.swift (3.5.0)
   - HydraAsync (1.2.1)
   - KeychainAccess (3.1.1)
   - Notifwift (1.0.0)
@@ -51,16 +51,16 @@ PODS:
 
 DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
-  - ActionClosurable
+  - ActionClosurable (from `https://github.com/rinsuki/ActionClosurable.git`, branch `fix/swift4.2`)
   - Alamofire (~> 4.5)
   - Compass
-  - Eureka (~> 4.1.0)
+  - Eureka (~> 4.3.0)
   - Fuzi (~> 2.1.0)
-  - GRDB.swift
+  - GRDB.swift (~> 3.5.0)
   - HydraAsync
   - KeychainAccess
   - Notifwift
-  - R.swift
+  - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 3)
   - SDWebImage (~> 4.0)
   - Starscream
@@ -72,7 +72,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - 1PasswordExtension
-    - ActionClosurable
     - Alamofire
     - Compass
     - Eureka
@@ -95,14 +94,24 @@ SPEC REPOS:
     - Texture
     - XCGLogger
 
+EXTERNAL SOURCES:
+  ActionClosurable:
+    :branch: fix/swift4.2
+    :git: https://github.com/rinsuki/ActionClosurable.git
+
+CHECKOUT OPTIONS:
+  ActionClosurable:
+    :commit: 7ff27004679e9a47b90c9edacee22b267783e1b2
+    :git: https://github.com/rinsuki/ActionClosurable.git
+
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
-  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
-  GRDB.swift: c5bb04b25a9931fec937920e913787e45f96124f
+  GRDB.swift: 225cf9c1354753e92e20c2a1fa2912b924c9da6e
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
@@ -120,6 +129,6 @@ SPEC CHECKSUMS:
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 0028a7ed0c15deaedc4811454f3ca041829d6211
+PODFILE CHECKSUM: 12b18586d7f74190650fa7bc29c1fa9d4e9998f2
 
 COCOAPODS: 1.5.3

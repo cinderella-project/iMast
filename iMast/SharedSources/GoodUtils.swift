@@ -38,20 +38,20 @@ extension UIViewController {
             let alert = UIAlertController(
                 title: title,
                 message: message,
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
                 resolve(Void())
             }))
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func confirm(title: String = "", message: String = "", okButtonMessage:String = "OK", style:UIAlertActionStyle = .default, cancelButtonMessage:String = "キャンセル") -> Promise<Bool> {
+    func confirm(title: String = "", message: String = "", okButtonMessage:String = "OK", style:UIAlertAction.Style = .default, cancelButtonMessage:String = "キャンセル") -> Promise<Bool> {
         return Promise<Bool>(in: .main) { resolve, reject, _ in
             let alert = UIAlertController(
                 title: title,
                 message: message,
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
             )
             alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
                 resolve(true)
@@ -104,7 +104,7 @@ extension UIViewController {
 
             vc.view = textView
             vc.title = "エラー詳細"
-            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, closure: { _ in
+            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, closure: { _ in
                 navVC.dismiss(animated: true, completion: nil)
             })
 
@@ -254,7 +254,7 @@ extension UIDevice {
         let mirror = Mirror(reflecting: systemInfo.machine)
         
         let characters = mirror.children
-            .flatMap { $0.value as? Int8 }
+            .compactMap { $0.value as? Int8 }
             .filter { $0 != 0 }
             .map { Character(UnicodeScalar(UInt8($0))) }
         
