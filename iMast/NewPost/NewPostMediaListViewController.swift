@@ -188,15 +188,12 @@ extension NewPostMediaListViewController: UIDocumentMenuDelegate {
 
 extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
         picker.dismiss(animated: true, completion: nil)
         print(info)
-        if #available(iOS 11.0, *), let url = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.imageURL)] as? URL {
+        if #available(iOS 11.0, *), let url = info[.imageURL] as? URL {
             let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
             self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
-        } else if let assetUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
+        } else if let assetUrl = info[.referenceURL] as? URL {
             let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
             guard let asset = assets.firstObject else {
                 self.alert(title: "エラー", message: "failed to fetch assets")
@@ -213,7 +210,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             } else {
                 self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
             }
-        } else if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+        } else if let image = info[.originalImage] as? UIImage {
             // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
             guard let data = image.jpegData(compressionQuality: 1) else {
                 self.alert(title: "エラー", message: "failed to jpeg encode")
@@ -228,14 +225,4 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 }
 
 extension NewPostMediaListViewController: UINavigationControllerDelegate {
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }
