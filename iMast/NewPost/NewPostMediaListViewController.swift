@@ -92,7 +92,7 @@ class NewPostMediaListViewController: UIViewController {
         self.imagesStackView.layoutIfNeeded()
     }
     
-    func addMedia(media: UploadMedia) {
+    func addMedia(media: UploadableMedia) {
         // TODO
         self.newPostVC.media.append(media)
         self.refresh()
@@ -182,7 +182,7 @@ extension NewPostMediaListViewController: UIDocumentPickerDelegate {
 extension NewPostMediaListViewController: UIDocumentMenuDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
-        self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
+        self.addMedia(media: UploadableMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
     }
 }
 
@@ -192,7 +192,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
         print(info)
         if #available(iOS 11.0, *), let url = info[.imageURL] as? URL {
             let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
-            self.addMedia(media: UploadMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
+            self.addMedia(media: UploadableMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
         } else if let assetUrl = info[.referenceURL] as? URL {
             let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
             guard let asset = assets.firstObject else {
@@ -205,7 +205,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                         self.alert(title: "エラー", message: "failed to fetch data from PHImageManager")
                         return
                     }
-                    self.addMedia(media: UploadMedia(type: dataUTI == "public.jpeg" ? .jpeg : .png, data: data, thumbnailImage: UIImage(data: data)!))
+                    self.addMedia(media: UploadableMedia(type: dataUTI == "public.jpeg" ? .jpeg : .png, data: data, thumbnailImage: UIImage(data: data)!))
                 }
             } else {
                 self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
@@ -216,7 +216,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 self.alert(title: "エラー", message: "failed to jpeg encode")
                 return
             }
-            self.addMedia(media: UploadMedia(type: .jpeg, data: data, thumbnailImage: image))
+            self.addMedia(media: UploadableMedia(type: .jpeg, data: data, thumbnailImage: image))
         } else {
             self.alert(title: "エラー", message: "image is nil(loc: NewPostMediaListViewController.imagePickerController)")
             return
