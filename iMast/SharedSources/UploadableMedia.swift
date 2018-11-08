@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct UploadableMedia {
     enum MediaType {
