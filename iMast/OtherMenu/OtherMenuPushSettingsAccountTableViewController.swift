@@ -21,7 +21,7 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
         self.accountOriginal = account
         self.account = CodableDeepCopy(account)
         super.init(style: .grouped)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style:.plain) { _ in
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
             self.dismiss(animated: true, completion: nil)
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .done) { _ in
@@ -45,28 +45,28 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
         super.viewDidLoad()
         self.title = self.account.acct
         self.form +++ Section("通知設定")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "フォロー"
                 row.value = self.account.notify.follow
                 row.onChange { row in
                     self.account.notify.follow = row.value ?? false
                 }
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "メンション"
                 row.value = self.account.notify.mention
                 row.onChange { row in
                     self.account.notify.mention = row.value ?? false
                 }
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "ブースト"
                 row.value = self.account.notify.boost
                 row.onChange { row in
                     self.account.notify.boost = row.value ?? false
                 }
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "ふぁぼ"
                 row.value = self.account.notify.favourite
                 row.onChange { row in
@@ -80,7 +80,7 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
         //                    row.tag = "followRequest"
         //                }
         self.form +++ Section()
-            <<< ButtonRow() { row in
+            <<< ButtonRow { row in
                 row.title = "このアカウントのプッシュ通知設定を削除"
             }.cellUpdate { cell, row in
                 cell.textLabel?.textColor = .red

@@ -2,6 +2,7 @@
 platform :ios, '9.0'
 
 def based_pods
+  pod 'SwiftLint'
   pod 'Alamofire', '~> 4.5'
   pod 'GRDB.swift', '~> 3.5.0'
   pod 'SwiftyJSON'

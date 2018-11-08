@@ -58,6 +58,7 @@ class PushServiceToken: Codable {
                 "mention": self.notify.mention,
                 "favourite": self.notify.favourite,
                 "followRequest": self.notify.followRequest,
+                // swiftlint:disable trailing_comma
             ]],
             encoding: JSONEncoding.default,
             headers: ["Authorization": try! PushService.getAuthorizationHeader()!]

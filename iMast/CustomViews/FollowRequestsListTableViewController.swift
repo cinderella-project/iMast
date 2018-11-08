@@ -85,7 +85,7 @@ class FollowRequestsListTableViewController: UITableViewController {
         }
         return [
             rejectAction,
-            authorizeAction
+            authorizeAction,
         ]
     }
     

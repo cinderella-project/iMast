@@ -17,27 +17,27 @@ class FeedbackViewController: FormViewController {
 
         // Do any additional setup after loading the view.
         let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+"(\((Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)))"
-        let tar = TextAreaRow() { row in
+        let tar = TextAreaRow { row in
             row.placeholder = "Feedbackの内容をお書きください"
             row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
         }
         self.form +++ Section()
             <<< tar
         self.form +++ Section("Feedbackを送信すると、以下の情報も一緒に送信され、iMastの改善に役立てられます。")
-            <<< LabelRow() {
+            <<< LabelRow {
                 $0.title = "iMastのバージョン"
                 $0.value = versionString
             }
-            <<< LabelRow() {
+            <<< LabelRow {
                 $0.title = "iOSのバージョン"
                 $0.value = UIDevice.current.systemVersion
             }
-            <<< LabelRow() {
+            <<< LabelRow {
                 $0.title = "端末名"
                 $0.value = UIDevice.current.platform
         }
         self.form +++ Section()
-            <<< ButtonRow() {
+            <<< ButtonRow {
                 $0.title = "送信"
                 }.onCellSelection({ (cell, row) in
                     if (tar.value ?? "") == "" {
@@ -48,7 +48,7 @@ class FeedbackViewController: FormViewController {
                         "body": tar.value ?? "",
                         "app_version": versionString,
                         "ios_version": UIDevice.current.systemVersion,
-                        "device_name": UIDevice.current.platform
+                        "device_name": UIDevice.current.platform,
                     ]
                     Alamofire.request("https://imast-backend.rinsuki.net/old-api/feedback", method: .post, parameters: postBody).responseJSON { request in
                         if (request.response?.statusCode ?? 0) >= 400 {
@@ -59,13 +59,12 @@ class FeedbackViewController: FormViewController {
                             return
                         }
                         self.navigationController?.popViewController(animated: true)
-                        self.alert(title: "送信しました!",message: "Feedbackありがとうございました。")
+                        self.alert(title: "送信しました!", message: "Feedbackありがとうございました。")
                     }
                 })
         self.title = "Feedback"
     }
     
-
     /*
     // MARK: - Navigation
 

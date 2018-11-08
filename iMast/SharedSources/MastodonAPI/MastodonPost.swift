@@ -164,13 +164,13 @@ extension MastodonUserToken {
             "account_id": account.id.raw,
             "comment": comment,
             "forward": forward,
-            "status_ids": posts.map({$0.id.raw})
+            "status_ids": posts.map({$0.id.raw}),
         ]).then { res in
                 return Void()
         }
     }
     
-    func timeline(_ type: MastodonTimelineType, limit:Int? = nil, since: MastodonPost? = nil, max: MastodonPost? = nil) -> Promise<[MastodonPost]>{
+    func timeline(_ type: MastodonTimelineType, limit: Int? = nil, since: MastodonPost? = nil, max: MastodonPost? = nil) -> Promise<[MastodonPost]> {
         var params = type.params
         if let limit = limit {
             params["limit"] = limit

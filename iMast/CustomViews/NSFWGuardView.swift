@@ -67,7 +67,7 @@ class NSFWGuardView: UIView {
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        let touchGesture = UITapGestureRecognizer() { _ in
+        let touchGesture = UITapGestureRecognizer { _ in
             self.isHidden = true
             self.isUserInteractionEnabled = false
         }

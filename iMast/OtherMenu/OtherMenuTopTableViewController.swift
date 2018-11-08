@@ -30,12 +30,11 @@ class OtherMenuTopTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selected = indexPath[1]
         print(selected)
 
-        switch(tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "") {
+        switch tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "" {
         case "myProfile":
             MastodonUserToken.getLatestUsed()!.verifyCredentials().then { account in
                 print(account)
@@ -64,7 +63,6 @@ class OtherMenuTopTableViewController: UITableViewController {
              */
             let vc = SettingsViewController()
             navigationController?.pushViewController(vc, animated: true)
-            break
         default: // 何?
             break // いや知らんがなｗ
         }

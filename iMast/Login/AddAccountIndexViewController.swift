@@ -43,4 +43,3 @@ class AddAccountIndexViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
-

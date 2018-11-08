@@ -9,7 +9,7 @@
 import Eureka
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
-    func userDefaultsConnect<T: Equatable>(_ key:DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect<T: Equatable>(_ key: DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.options = map.map { $0.value }
         let userDefaultsValue = Defaults[key]
         self.value = map.filter { arg -> Bool in
@@ -18,7 +18,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
         }.first?.value ?? "\(userDefaultsValue)"
         self.cellUpdate { (cell, row) in
             map.forEach({ (key_, value) in
-                if(value == row.value) {
+                if value == row.value {
                     Defaults[key] = key_
                 }
             })
@@ -26,7 +26,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     }
 }
 extension TextRow {
-    func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -40,7 +40,7 @@ extension TextRow {
 }
 
 extension SwitchRow {
-    func userDefaultsConnect(_ key:DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Defaults[key]
         var oldValue = self.value
         self.onChange { row in
@@ -54,7 +54,7 @@ extension SwitchRow {
 }
 
 extension SliderRow {
-    func userDefaultsConnect(_ key:DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Float(Defaults[key])
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -67,7 +67,7 @@ extension SliderRow {
     }
 }
 extension TextAreaRow {
-    func userDefaultsConnect(_ key:DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in

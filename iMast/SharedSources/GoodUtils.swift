@@ -22,7 +22,7 @@ func WARN(_ message: String) {
     log.warning(message)
 }
 
-var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf:URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
+var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
 #if IS_DEBUG_BUILD
     let isDebugBuild = true
@@ -46,7 +46,7 @@ extension UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func confirm(title: String = "", message: String = "", okButtonMessage:String = "OK", style:UIAlertAction.Style = .default, cancelButtonMessage:String = "キャンセル") -> Promise<Bool> {
+    func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") -> Promise<Bool> {
         return Promise<Bool>(in: .main) { resolve, reject, _ in
             let alert = UIAlertController(
                 title: title,
@@ -66,7 +66,7 @@ extension UIViewController {
         alertWithPromise(title: title, message: message).then {}
     }
     
-    func errorWithPromise(errorMsg: String = "不明なエラー") -> Promise<Void>{
+    func errorWithPromise(errorMsg: String = "不明なエラー") -> Promise<Void> {
         let promise = alertWithPromise(
             title: "内部エラー",
             message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。"
@@ -77,10 +77,10 @@ extension UIViewController {
         errorWithPromise(errorMsg: errorMsg).then {}
     }
     
-    func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void>{
-        let errorMessage:String = String(format: "エラーメッセージ:\n%@ (%@)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。", arguments:[
+    func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void> {
+        let errorMessage: String = String(format: "エラーメッセージ:\n%@ (%@)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。", arguments: [
             errorMsg ?? "不明なエラー(iMast)",
-            String(httpNumber ?? -1)
+            String(httpNumber ?? -1),
         ])
         return alertWithPromise(
             title: "APIエラー",
@@ -120,35 +120,31 @@ extension UIViewController {
 
 extension UIView {
     var viewController: UIViewController? {
-        get {
-            var responder:UIResponder? = self as UIResponder
-            while responder != nil {
-                if responder!.isKind(of: UIViewController.self) {
-                    return responder as! UIViewController
-                }
-                responder = responder?.next
+        var responder: UIResponder? = self as UIResponder
+        while let r = responder {
+            if let vc = r as? UIViewController {
+                return vc
             }
-            return nil
+            responder = r.next
         }
+        return nil
     }
 }
 
 extension UIApplication {
     var viewController: UIViewController? {
-        get {
-            var vc = self.keyWindow?.rootViewController
-            while vc?.presentedViewController != nil {
-                vc = vc?.presentedViewController
-            }
-            return vc
+        var vc = self.keyWindow?.rootViewController
+        while vc?.presentedViewController != nil {
+            vc = vc?.presentedViewController
         }
+        return vc
     }
 }
 
 // クエリ文字列をDictionaryに変換するやつ
-func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
+func urlComponentsToDict(url: URL) -> [String: String] {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!
-    var dict: Dictionary<String, String> = [:]
+    var dict: [String: String] = [:]
     
     guard let queryItems = comp.queryItems else {
         return dict
@@ -160,8 +156,8 @@ func urlComponentsToDict(url: URL) -> Dictionary<String, String> {
     
     return dict
 }
-var html2ascache:[String:NSAttributedString?] = [:]
-var html2ascacheavail:[String:Bool] = [:]
+var html2ascache: [String: NSAttributedString?] = [:]
+var html2ascacheavail: [String: Bool] = [:]
 extension String {
     var sha256: String! {
         if let cstr = self.cString(using: String.Encoding.utf8) {
@@ -193,7 +189,7 @@ extension String {
         guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
             return false
         }
-        let matches = regex.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
         return matches.count > 0
     }
     
@@ -216,23 +212,24 @@ extension String {
     
     //正規表現の置換をします
     func pregReplace(pattern: String, with: String, options: NSRegularExpression.Options = []) -> String {
+        // swiftlint:disable force_try
         let regex = try! NSRegularExpression(pattern: pattern, options: options)
-        return regex.stringByReplacingMatches(in: self, options: [], range: NSMakeRange(0, self.count), withTemplate: with)
+        return regex.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: self.count), withTemplate: with)
     }
     
-    func replace(_ target: String, _ to: String) -> String{
+    func replace(_ target: String, _ to: String) -> String {
         return self.replacingOccurrences(of: target, with: to)
     }
     
-    func format(_ params: CVarArg...) -> String{
+    func format(_ params: CVarArg...) -> String {
         return String(format: self, arguments: params)
     }
     
     func trim(_ start: Int) -> String {
-        return self.substring(with: self.index(self.startIndex, offsetBy:start)..<self.endIndex)
+        return String(self[self.index(self.startIndex, offsetBy: start)..<self.endIndex])
     }
     func trim(_ start: Int, _ length: Int) -> String {
-        return self.substring(with: self.index(self.startIndex, offsetBy:start)..<self.index(self.startIndex, offsetBy: start + length))
+        return String(self[self.index(self.startIndex, offsetBy: start)..<self.index(self.startIndex, offsetBy: start + length)])
     }
     func parseInt() -> Int {
         return Int(self.pregMatch(pattern: "^[0-9]+")[0]) ?? 0
@@ -244,7 +241,6 @@ extension UserDefaults {
         return self.object(forKey: key) != nil
     }
 }
-
 
 extension UIDevice {
     var platform: String {
@@ -417,7 +413,7 @@ extension Array {
 func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     var versionStr = versionStr_
     var versionInt = 500
-    if(versionStr.trim(0, 1) == "v") {
+    if versionStr.trim(0, 1) == "v" {
         versionStr = versionStr.trim(1)
     }
     var versionStrs = versionStr.components(separatedBy: ".")

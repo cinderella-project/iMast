@@ -33,7 +33,6 @@ class AddAccountLoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -60,7 +59,7 @@ class AddAccountLoginViewController: UIViewController {
         app!.authorizeWithPassword(email: mailAddressInput.text!, password: passwordInput.text!).then { userToken in
             self.userToken = userToken
             self.performSegue(withIdentifier: "backToProgress", sender: self)
-        }.catch { (error) -> (Void) in
+        }.catch { (error) -> Void in
             print(error)
             do {
                 throw error

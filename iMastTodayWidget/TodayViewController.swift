@@ -74,7 +74,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             "sensitive": false,
             "spoiler_text": "",
             "status": postText,
-            "visibility": "public"
+            "visibility": "public",
         ]).then { (toot) in
             self.postActivityIndicator.alpha = 0
             self.postTextView.text = "送信しました"

@@ -16,7 +16,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         UIInterfaceOrientation.portrait: AVCaptureVideoOrientation.portrait,
         UIInterfaceOrientation.portraitUpsideDown: AVCaptureVideoOrientation.portraitUpsideDown,
         UIInterfaceOrientation.landscapeLeft: AVCaptureVideoOrientation.landscapeLeft,
-        UIInterfaceOrientation.landscapeRight: AVCaptureVideoOrientation.landscapeRight
+        UIInterfaceOrientation.landscapeRight: AVCaptureVideoOrientation.landscapeRight,
     ]
     
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -35,7 +35,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
             let metadataOutput = AVCaptureMetadataOutput()
             captureSession.addOutput(metadataOutput)
             metadataOutput.metadataObjectTypes = [
-                AVMetadataObject.ObjectType.qr
+                AVMetadataObject.ObjectType.qr,
             ]
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             
@@ -81,7 +81,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
 
 }
 
-extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate{
+extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if self.presentedViewController != nil || self.navigationController?.topViewController != self {

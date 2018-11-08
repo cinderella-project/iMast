@@ -14,14 +14,14 @@ import Hydra
 
 let fileURL = getFileURL()
 let dbQueue = try! DatabaseQueue(path: fileURL.path)
-func getFileURL() -> URL{
+func getFileURL() -> URL {
     let oldFileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!.appendingPathComponent("imast.sqlite")
     let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!.appendingPathComponent("Library/imast.sqlite")
     if !FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: oldFileURL.path) {
         print("migrate: AppGroup -> AppGroup Library")
         try! FileManager.default.moveItem(atPath: oldFileURL.path, toPath: fileURL.path)
     }
-    if !FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: NSHomeDirectory()+"/Library/imast.sqlite"){
+    if !FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: NSHomeDirectory()+"/Library/imast.sqlite") {
         print("migrate: App Library -> AppGroup")
         try! FileManager.default.moveItem(atPath: NSHomeDirectory()+"/Library/imast.sqlite", toPath: fileURL.path)
     }
@@ -36,7 +36,7 @@ func initDatabase() {
     }
 }
 
-var mastodonInstanceInfoCache: [String:JSON] = [:]
+var mastodonInstanceInfoCache: [String: JSON] = [:]
 
 public class MastodonInstance {
     var hostName: String
@@ -48,9 +48,9 @@ public class MastodonInstance {
         self.hostName = hostName.pregReplace(pattern: ".+\\@", with: "").lowercased()
     }
     
-    func getInfo() -> Promise<JSON>{
+    func getInfo() -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
-            if let cache = mastodonInstanceInfoCache[self.hostName]{
+            if let cache = mastodonInstanceInfoCache[self.hostName] {
                 resolve(cache)
                 return
             }
@@ -74,7 +74,7 @@ public class MastodonInstance {
         }
     }
     
-    func createApp(name: String = "iMast", redirect_uri:String = "imast://callback/") -> Promise<MastodonApp> {
+    func createApp(name: String = "iMast", redirect_uri: String = "imast://callback/") -> Promise<MastodonApp> {
         return Promise<MastodonApp> { resolve, reject, _ in
             var params = [
                 "client_name": name,
@@ -109,7 +109,7 @@ public class MastodonApp {
     var instance: MastodonInstance
     var id: String
     
-    init(instance:MastodonInstance, info: JSON, name: String, redirectUri: String) {
+    init(instance: MastodonInstance, info: JSON, name: String, redirectUri: String) {
         self.instance = instance
         print(info)
         clientId = info["client_id"].stringValue
@@ -119,7 +119,7 @@ public class MastodonApp {
         self.id = genRandomString()
     }
     
-    init(instance:MastodonInstance, clientId: String, clientSecret: String, name: String, redirectUri: String) {
+    init(instance: MastodonInstance, clientId: String, clientSecret: String, name: String, redirectUri: String) {
         self.instance = instance
         self.clientId = clientId
         self.clientSecret = clientSecret
@@ -155,12 +155,12 @@ public class MastodonApp {
                     self.clientSecret,
                     self.name,
                     self.redirectUri,
-                    self.instance.hostName
+                    self.instance.hostName,
                 ])
             }
             return true
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return false
         }
     }
@@ -177,7 +177,7 @@ public class MastodonApp {
                 "client_id": self.clientId,
                 "client_secret": self.clientSecret,
                 "code": code,
-                "state": self.id
+                "state": self.id,
             ]).responseJSON { res in
                 if res.result.value == nil {
                     reject(APIError.nil("res.response.value"))
@@ -194,15 +194,15 @@ public class MastodonApp {
         }
     }
     
-    func authorizeWithPassword(email: String, password: String) -> Promise<MastodonUserToken>{
-        return Promise() { resolve, reject, _ in
+    func authorizeWithPassword(email: String, password: String) -> Promise<MastodonUserToken> {
+        return Promise { resolve, reject, _ in
             Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "password",
                 "username": email,
                 "password": password,
                 "client_id": self.clientId,
                 "client_secret": self.clientSecret,
-                "scope": "read write follow"
+                "scope": "read write follow",
             ]).responseJSON { response in
                 if ((response.response?.url?.absoluteString) ?? "").contains("/auth/sign_in") { // MastodonのAPIはクソ!w
                     reject(APIError.errorReturned(errorMessage: "Emailかパスワードが誤っています", errorHttpCode: -1))
@@ -242,7 +242,6 @@ public class MastodonUserToken {
     var screenName: String?
     var avatarUrl: String?
     
-    
     init(app: MastodonApp, token: String) {
         self.app = app
         self.token = token
@@ -273,7 +272,6 @@ public class MastodonUserToken {
         }
     }
     
-    
     static func initFromRow(row: Row, app: MastodonApp) -> MastodonUserToken {
         let usertoken = MastodonUserToken(
             app: app,
@@ -296,8 +294,8 @@ public class MastodonUserToken {
                 }
                 return nil
             }
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return nil
         }
     }
@@ -326,8 +324,8 @@ public class MastodonUserToken {
                     usertokens.append(initFromRow(row: row, app: app))
                 }
             }
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return []
         }
         return usertokens
@@ -335,11 +333,11 @@ public class MastodonUserToken {
     
     @discardableResult
     func save() -> Bool {
-        print("save",self.screenName ?? "undefined screenName")
+        print("save", self.screenName ?? "undefined screenName")
         do {
             try dbQueue.inDatabase { db in
-                let idFound = try Row.fetchOne(db, "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1",arguments: [
-                    self.id
+                let idFound = try Row.fetchOne(db, "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
+                    self.id,
                     ]) != nil
                 try db.execute(!idFound ?
                     "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
@@ -350,12 +348,12 @@ public class MastodonUserToken {
                     self.screenName,
                     self.avatarUrl,
                     self.app.instance.hostName,
-                    self.id
+                    self.id,
                 ])
             }
             return true
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return false
         }
     }
@@ -366,12 +364,12 @@ public class MastodonUserToken {
             try dbQueue.inDatabase { db in
                 try db.execute("UPDATE user SET last_used=? WHERE id=?", arguments: [
                     Date().timeIntervalSince1970,
-                    self.id
+                    self.id,
                 ])
             }
             return true
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return false
         }
         
@@ -382,19 +380,19 @@ public class MastodonUserToken {
         do {
             try dbQueue.inDatabase { db in
                 try db.execute("DELETE FROM user WHERE id=?", arguments: [
-                    self.id
+                    self.id,
                 ])
             }
             return true
-        } catch (let e) {
-            print(e)
+        } catch {
+            print(error)
             return false
         }
     }
     
     static var verifyCredentialsCache: [String: JSON] = [:]
     
-    func getUserInfo(cache:Bool = false) -> Promise<JSON> {
+    func getUserInfo(cache: Bool = false) -> Promise<JSON> {
         if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] {
             return Promise.init(resolved: cacheObj)
         }
@@ -443,8 +441,8 @@ public class MastodonUserToken {
                 }
                 var json = JSON(response.result.value!)
                 json["_response_code"].int = response.response?.statusCode ?? 599
-                var maxId: MastodonID? = nil
-                var sinceId: MastodonID? = nil
+                var maxId: MastodonID?
+                var sinceId: MastodonID?
                 if let linkHeader = (response.response?.allHeaderFields["Link"] as? String) {
                     if let maxIdStr = linkHeader.pregMatch(pattern: "max_id=(\\d+)").safe(1) {
                         maxId = MastodonID(string: maxIdStr)
@@ -503,7 +501,7 @@ public class MastodonUserToken {
         }
     }
     
-    func upload(file: Data, mimetype: String, filename:String = "imast_upload_file") -> Promise<JSON> {
+    func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             Alamofire.upload(
                 multipartFormData: { (multipartFormData) in
@@ -533,7 +531,7 @@ public class MastodonUserToken {
                             resolve(json)
                         }
                     case .failure(let encodingError):
-                        print("UploadError",encodingError)
+                        print("UploadError", encodingError)
                         reject(encodingError)
                         break
                     }
@@ -544,11 +542,11 @@ public class MastodonUserToken {
     
 }
 
-var imageCache: [String:UIImage] = [:]
-var imageResizeCache: [String:[Int:UIImage]] = [:]
+var imageCache: [String: UIImage] = [:]
+var imageResizeCache: [String: [Int: UIImage]] = [:]
 
 @available(*, unavailable)
-public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
+public func getImage(url: String, size: Int = -1) -> Promise<UIImage> {
     return Promise(in: .background) { resolve, reject, _ in
         let resizedImagePath = NSHomeDirectory() + "/Library/Caches/image/" + url.sha256 + "_resize_\(String(size))_scale_"+UIScreen.main.scale.description
         if size>0 {
@@ -556,10 +554,10 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
                 resolve(resizedImageCache)
                 return
             }
-            if FileManager.default.fileExists(atPath:resizedImagePath) {
+            if FileManager.default.fileExists(atPath: resizedImagePath) {
                 print("Get From Storage(with resized image):"+url)
                 do {
-                    if let resizedCacheImage = UIImage(data:try Data(contentsOf: URL(fileURLWithPath: resizedImagePath),options:NSData.ReadingOptions.mappedIfSafe)) {
+                    if let resizedCacheImage = UIImage(data: try Data(contentsOf: URL(fileURLWithPath: resizedImagePath), options: NSData.ReadingOptions.mappedIfSafe)) {
                         if imageResizeCache[url] == nil {
                             imageResizeCache[url] = [:]
                         }
@@ -573,7 +571,7 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
                 }
             }
         }
-        if let cacheImage = imageCache[url]{
+        if let cacheImage = imageCache[url] {
             resolve(cacheImage)
             return
         }
@@ -582,14 +580,14 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
         var isInternet = false
         if FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Library/Caches/image/" + url.sha256) {
             print("Get From Storage:"+url)
-            img = UIImage(data: (try? Data(contentsOf: URL(fileURLWithPath: NSHomeDirectory() + "/Library/Caches/image/" + url.sha256),options:NSData.ReadingOptions.mappedIfSafe)) ?? Data())
+            img = UIImage(data: (try? Data(contentsOf: URL(fileURLWithPath: NSHomeDirectory() + "/Library/Caches/image/" + url.sha256), options: NSData.ReadingOptions.mappedIfSafe)) ?? Data())
             if img == nil {
                 try? FileManager.default.removeItem(atPath: NSHomeDirectory() + "/Library/Caches/image/" + url.sha256)
             }
         }
         if img == nil {
             print("Get From Server:"+url)
-            imgData = try Data(contentsOf: URL(string: url)!,options:NSData.ReadingOptions.mappedIfSafe)
+            imgData = try Data(contentsOf: URL(string: url)!, options: NSData.ReadingOptions.mappedIfSafe)
             img = UIImage(data: imgData)
             isInternet = true
             do {
@@ -613,9 +611,9 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
             if let resizedImageCache = imageResizeCache[url]?[size] {
                 img = resizedImageCache
             } else {
-                let resizedSize = CGSize(width: size, height:size)
+                let resizedSize = CGSize(width: size, height: size)
                 UIGraphicsBeginImageContextWithOptions(resizedSize, false, UIScreen.main.scale)
-                img?.draw(in:CGRect(origin: .zero, size:resizedSize))
+                img?.draw(in: CGRect(origin: .zero, size: resizedSize))
                 img = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
                 if imageResizeCache[url] == nil {
@@ -628,7 +626,7 @@ public func getImage(url: String, size:Int = -1) -> Promise<UIImage> {
     }
 }
     
-public func genRandomString() -> String{
+public func genRandomString() -> String {
     return (Date().timeIntervalSince1970*1000).description.sha256 + (arc4random().description.sha256)
 }
 

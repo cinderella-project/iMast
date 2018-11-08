@@ -40,7 +40,6 @@ class AddAccountSuccessViewController: UIViewController {
     @IBAction func goTimelineTapped(_ sender: Any) {
         changeRootVC(MainTabBarController(), animated: true)
     }
-    
 
     /*
     // MARK: - Navigation

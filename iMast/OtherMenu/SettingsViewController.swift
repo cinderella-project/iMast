@@ -16,10 +16,11 @@ import SwiftyJSON
 
 class SettingsViewController: FormViewController {
 
+    // swiftlint:disable function_body_length
     override func viewDidLoad() {
         super.viewDidLoad()
         let generalSettings = Section()
-        generalSettings <<< PushStringRow() { row in
+        generalSettings <<< PushStringRow { row in
             row.title = "ストリーミング自動接続"
             row.userDefaultsConnect(.streamingAutoConnect, map: [
                 ("no", "しない"),
@@ -27,18 +28,18 @@ class SettingsViewController: FormViewController {
                 ("always", "常に接続"),
             ])
         }
-        generalSettings <<< TextRow() { row in
+        generalSettings <<< TextRow { row in
             row.title = "新規連携時のvia"
             row.placeholder = "iMast"
             row.userDefaultsConnect(.newAccountVia)
         }
-        generalSettings <<< SwitchRow() { row in
+        generalSettings <<< SwitchRow { row in
                 row.title = "フォロー関係を以前の表記にする"
                 row.userDefaultsConnect(.followRelationshipsOld)
         }
         self.form +++ generalSettings
         if #available(iOS 10.0, *), let section = self.form.allSections.last {
-            section <<< ButtonRow() { row in
+            section <<< ButtonRow { row in
                 row.title = "プッシュ通知"
                 row.onCellSelection { cell, row in
                     OtherMenuPushSettingsTableViewController.openRequest(vc: self)
@@ -46,11 +47,11 @@ class SettingsViewController: FormViewController {
             }
         }
         self.form +++ Section("投稿設定")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "投稿時にメディアURL追加"
                 row.userDefaultsConnect(.appendMediaUrl)
             }
-            <<< PushStringRow() { row in
+            <<< PushStringRow { row in
                 row.title = "画像の自動リサイズ"
                 let sentakusi = [ // 自動リサイズの選択肢
                     0,
@@ -66,25 +67,25 @@ class SettingsViewController: FormViewController {
                 }
                 row.userDefaultsConnect(.autoResizeSize, map: smap)
             }
-            <<< LabelRow() { row in
+            <<< LabelRow { row in
                 row.title = "nowplayingのフォーマット"
             }
-            <<< TextAreaRow() { row in
+            <<< TextAreaRow { row in
                 row.placeholder = "#nowplaying {title} - {artist} ({albumTitle})"
                 row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                 row.userDefaultsConnect(.nowplayingFormat)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "デフォルト公開範囲を利用"
                 row.userDefaultsConnect(.usingDefaultVisibility)
         }
         self.form +++ Section("投稿詳細")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "トゥート削除をておくれにする"
                 row.userDefaultsConnect(.deleteTootTeokure)
         }
         self.form +++ Section("タイムライン")
-            <<< SliderRow() { row in
+            <<< SliderRow { row in
                 row.title = "ユーザー名の文字の大きさ"
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
@@ -93,7 +94,7 @@ class SettingsViewController: FormViewController {
                 row.steps = 20
                 row.userDefaultsConnect(.timelineUsernameFontsize)
             }
-            <<< SliderRow() { row in
+            <<< SliderRow { row in
                 row.title = "本文の文字の大きさ"
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
@@ -102,11 +103,11 @@ class SettingsViewController: FormViewController {
                 row.steps = 20
                 row.userDefaultsConnect(.timelineTextFontsize)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "本文を太字で表示"
                 row.userDefaultsConnect(.timelineTextBold)
             }
-            <<< SliderRow() { row in
+            <<< SliderRow { row in
                 row.title = "アイコンの大きさ"
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 72
@@ -115,15 +116,15 @@ class SettingsViewController: FormViewController {
                 row.steps = (72-24)*2
                 row.userDefaultsConnect(.timelineIconSize)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "公開範囲を絵文字で表示"
                 row.userDefaultsConnect(.visibilityEmoji)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "inReplyToの有無を絵文字で表示"
                 row.userDefaultsConnect(.inReplyToEmoji)
             }
-            <<< SliderRow() { row in
+            <<< SliderRow { row in
                 row.title = "サムネイルの高さ"
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 100
@@ -132,15 +133,15 @@ class SettingsViewController: FormViewController {
                 row.steps = 100/5
                 row.userDefaultsConnect(.thumbnailHeight)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "WebMをVLCで開く"
                 row.userDefaultsConnect(.webmVlcOpen)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "ぬるぬるモード(再起動後反映)"
                 row.userDefaultsConnect(.timelineNurunuruMode)
             }
-            <<< SliderRow() { row in
+            <<< SliderRow { row in
                 row.title = "ピン留めトゥートの行数制限"
                 row.userDefaultsConnect(.pinnedTootLinesLimit)
                 row.cellSetup { cell, row in
@@ -152,31 +153,31 @@ class SettingsViewController: FormViewController {
         }
         if #available(iOS 10.0, *) {
             self.form +++ Section("ウィジェット")
-                <<< LabelRow() { row in
+                <<< LabelRow { row in
                     row.title = "投稿フォーマット"
                 }
-                <<< TextAreaRow() { row in
+                <<< TextAreaRow { row in
                     row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                     row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
                     row.userDefaultsConnect(.widgetFormat)
                 }
-                <<< TextRow() { row in
+                <<< TextRow { row in
                     row.title = "フィルタ"
                     row.placeholder = "[0-9]{7}"
                     row.userDefaultsConnect(.widgetFilter)
             }
         } else {
             self.form +++ Section("ウィジェット")
-                <<< LabelRow() { row in
+                <<< LabelRow { row in
                     row.title = "ウィジェットはiOS10以上でないと利用できません。"
             }
         }
         self.form +++ Section("共有")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "Twitterにトラッキングさせない"
                 row.userDefaultsConnect(.shareNoTwitterTracking)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "GPMを共有する時にNowPlayingフォーマットを使用"
                 row.userDefaultsConnect(.usingNowplayingFormatInShareGooglePlayMusicUrl)
                 row.cellStyle = .subtitle
@@ -187,7 +188,7 @@ class SettingsViewController: FormViewController {
                 }
         }
         self.form +++ Section("画像キャッシュ")
-            <<< TextRow() { row in
+            <<< TextRow { row in
                 row.title = "キャッシュの容量"
                 row.disabled = true
                 let size = UInt64(SDWebImageManager.shared().imageCache?.getSize() ?? 0)
@@ -209,7 +210,7 @@ class SettingsViewController: FormViewController {
                 }
                 
             }
-            <<< ButtonRow() { row in
+            <<< ButtonRow { row in
                 row.title = "ストレージ上のキャッシュを削除"
             }.onCellSelection { (cell, row) in
                 let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
@@ -229,11 +230,11 @@ class SettingsViewController: FormViewController {
                 }
             }
         self.form +++ Section("実験的な要素")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "新しいHTMLパーサーを使う"
                 row.userDefaultsConnect(.newHtmlParser)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "通知タブの無限スクロール"
                 row.userDefaultsConnect(.notifyTabInfiniteScroll)
             }
@@ -243,7 +244,7 @@ class SettingsViewController: FormViewController {
             self.present(safari, animated: true, completion: nil)
         }
         self.navigationItem.rightBarButtonItems = [
-            callhelpitem
+            callhelpitem,
         ]
     }
 

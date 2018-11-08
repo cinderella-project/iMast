@@ -737,6 +737,7 @@
 			buildPhases = (
 				4B77653ACFD6F075F5A4B543 /* [CP] Check Pods Manifest.lock */,
 				CE392A6B216374090046C84F /* ShellScript */,
+				CE099D0521943C1E00A4BCCB /* ShellScript */,
 				2AF352131EAB9C5500777C2E /* Sources */,
 				2AF352141EAB9C5500777C2E /* Frameworks */,
 				2AF352151EAB9C5500777C2E /* Resources */,
@@ -1180,6 +1181,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMast/Pods-iMast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CE099D0521943C1E00A4BCCB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		CE392A6B216374090046C84F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

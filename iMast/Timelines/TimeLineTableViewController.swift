@@ -13,11 +13,11 @@ import ReachabilitySwift
 
 class TimeLineTableViewController: UITableViewController {
     
-    var posts:[MastodonPost] = []
+    var posts: [MastodonPost] = []
     var streamingNavigationItem: UIBarButtonItem?
-    var postsQueue:[MastodonPost] = []
-    var cellCache:[String:MastodonPostCell] = [:]
-    var isAlreadyAdded:[String:Bool] = [:]
+    var postsQueue: [MastodonPost] = []
+    var cellCache: [String: MastodonPostCell] = [:]
+    var isAlreadyAdded: [String: Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
     var isReadmoreLoading = false {
@@ -29,7 +29,7 @@ class TimeLineTableViewController: UITableViewController {
     var isReadmoreEnabled = true
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
-    var timelineType: MastodonTimelineType? = nil
+    var timelineType: MastodonTimelineType?
     var pinnedPosts: [MastodonPost] = []
     
     override func viewDidLoad() {
@@ -40,7 +40,6 @@ class TimeLineTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
 
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -57,7 +56,7 @@ class TimeLineTableViewController: UITableViewController {
             self.streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(self.streamingStatusTapped))
             self.streamingNavigationItem?.tintColor = UIColor.gray
             self.navigationItem.leftBarButtonItems = [
-                self.streamingNavigationItem!
+                self.streamingNavigationItem!,
             ]
         }
         if !isNurunuru {
@@ -96,7 +95,7 @@ class TimeLineTableViewController: UITableViewController {
             return Void()
         }
     }
-    @objc func refreshTimeline(){
+    @objc func refreshTimeline() {
         guard let timelineType = self.timelineType else {
             print("refreshTimelineを実装するか、self.timelineTypeを定義してください。")
             self.refreshControl?.endRefreshing()
@@ -111,7 +110,7 @@ class TimeLineTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
         }
     }
-    func readMoreTimeline(){
+    func readMoreTimeline() {
         guard let timelineType = self.timelineType else {
             print("readMoreTimelineを実装してください!!!!!!")
             isReadmoreLoading = false
@@ -161,7 +160,7 @@ class TimeLineTableViewController: UITableViewController {
             return false
         })
         posts.forEach { post in
-            _ = getCell(post:post)
+            _ = getCell(post: post)
         }
         
         /*
@@ -278,7 +277,7 @@ class TimeLineTableViewController: UITableViewController {
                 self.websocketConnect(auto: false)
             }))
         }
-        alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionRefresh(),  style: .default, handler: { (action) in
+        alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionRefresh(), style: .default, handler: { (action) in
             let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
@@ -349,14 +348,12 @@ class TimeLineTableViewController: UITableViewController {
         }
         let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
         // Reply
-        let replyAction = UITableViewRowAction(style: .normal, title: "返信"){
-            (action, index) -> Void in
+        let replyAction = UITableViewRowAction(style: .normal, title: "返信") { (action, index) -> Void in
             tableView.isEditing = false
             print("reply")
         }
         // ブースト
-        let boostAction = UITableViewRowAction(style: .normal, title: "ブースト"){
-            (action,index) -> Void in
+        let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
             MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
                 let post = post_.repost!
                 var indexs: [IndexPath] = []
@@ -387,8 +384,7 @@ class TimeLineTableViewController: UITableViewController {
             print("repost")
         }
         // like
-        let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ"){
-            (action,index) -> Void in
+        let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ") { (action, index) -> Void in
             MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
                 var indexs: [IndexPath] = []
                 self.pinnedPosts = self.pinnedPosts.enumerated().map({ (index, map_post) -> MastodonPost in
@@ -431,12 +427,12 @@ class TimeLineTableViewController: UITableViewController {
         return [
             // replyAction,
             boostAction,
-            likeAction
+            likeAction,
         ].reversed()
     }
     
     func appendNewPosts(posts: [MastodonPost]) {
-        var rows:[IndexPath] = []
+        var rows: [IndexPath] = []
         posts.forEach { (post) in
             _ = self.getCell(post: post)
             self.posts.append(post)
@@ -488,6 +484,5 @@ class TimeLineTableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
 
 }

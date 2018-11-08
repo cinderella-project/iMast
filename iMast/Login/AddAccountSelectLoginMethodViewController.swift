@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDelegate{
+class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDelegate {
     
     var app: MastodonApp?
     @IBOutlet weak var warnView: UITextView!
@@ -45,7 +45,6 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let safari = SFSafariViewController(url: URL)
@@ -95,6 +94,3 @@ class AddAccountSelectLoginMethodViewController: UIViewController, UITextViewDel
         self.loginSafari?.open(url: url, viewController: self)
     }
 }
-
-
-

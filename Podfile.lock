@@ -36,6 +36,7 @@ PODS:
   - SDWebImage/Core (4.4.2)
   - Starscream (3.0.5)
   - SVProgressHUD (2.2.5)
+  - SwiftLint (0.27.0)
   - SwiftyJSON (4.1.0)
   - Texture (2.7):
     - Texture/PINRemoteImage (= 2.7)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
   - Starscream
   - SVProgressHUD
+  - SwiftLint
   - SwiftyJSON
   - Texture
   - XCGLogger (~> 6.0.2)
@@ -90,6 +92,7 @@ SPEC REPOS:
     - SDWebImage
     - Starscream
     - SVProgressHUD
+    - SwiftLint
     - SwiftyJSON
     - Texture
     - XCGLogger
@@ -125,10 +128,11 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: 12b18586d7f74190650fa7bc29c1fa9d4e9998f2
+PODFILE CHECKSUM: f33e2a8c1be138be218a76246422d68bf7f3d7db
 
 COCOAPODS: 1.5.3

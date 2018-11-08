@@ -13,8 +13,8 @@ import SwiftyJSON
 
 class AddAccountProgressViewController: UIViewController {
     
-    var hostName:String = ""
-    var maxIndex:Int = 4
+    var hostName: String = ""
+    var maxIndex: Int = 4
     @IBOutlet weak var nowText: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
@@ -37,7 +37,6 @@ class AddAccountProgressViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -54,9 +53,9 @@ class AddAccountProgressViewController: UIViewController {
     }
 
     func nowStateSet(_ nowIndex: Int, _ nowText: String) {
-        self.nowText.text = nowText;
-        progressView.progress = Float(nowIndex) / Float(maxIndex);
-        progressLabel.text = String(nowIndex) + " / " + String(maxIndex);
+        self.nowText.text = nowText
+        progressView.progress = Float(nowIndex) / Float(maxIndex)
+        progressLabel.text = String(nowIndex) + " / " + String(maxIndex)
     }
     
     func startLogin() {
@@ -69,9 +68,9 @@ class AddAccountProgressViewController: UIViewController {
     func stage1() {
         nowStateSet(1, R.string.login.authStage1())
         instance = MastodonInstance(hostName: hostName)
-        instance!.getInfo().then{ _ in
+        instance!.getInfo().then { _ in
             self.stage2()
-        }.catch { (error) -> (Void) in
+        }.catch { (error) -> Void in
             do {
                 throw error
             } catch {
@@ -90,7 +89,7 @@ class AddAccountProgressViewController: UIViewController {
             self.app = app
             self.app!.save()
             self.stage3()
-        }.catch { (error) -> (Void) in
+        }.catch { (error) -> Void in
                 do {
                     throw error
                 } catch {

@@ -107,13 +107,13 @@ extension MastodonUserToken {
         }
     }
     
-    func getFollows(target: MastodonID, type: MastodonFollowFetchType, maxId: MastodonID?) -> Promise<MastodonCursorWrapper<Array<MastodonAccount>>> {
+    func getFollows(target: MastodonID, type: MastodonFollowFetchType, maxId: MastodonID?) -> Promise<MastodonCursorWrapper<[MastodonAccount]>> {
         var params: [String: Any] = [:]
         if let maxId = maxId {
             params["max_id"] = maxId.string
         }
-        return self.getWithCursorWrapper("accounts/\(target.string)/\(type)", params: params).then { res -> MastodonCursorWrapper<Array<MastodonAccount>> in
-            return MastodonCursorWrapper(result: try Array<MastodonAccount>.decode(json: res.result), max: res.max, since: res.since)
+        return self.getWithCursorWrapper("accounts/\(target.string)/\(type)", params: params).then { res -> MastodonCursorWrapper<[MastodonAccount]> in
+            return MastodonCursorWrapper(result: try [MastodonAccount].decode(json: res.result), max: res.max, since: res.since)
         }
     }
 }

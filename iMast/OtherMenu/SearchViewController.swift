@@ -13,8 +13,8 @@ import SafariServices
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     var result: MastodonSearchResult?
     let searchBar = UISearchBar()
-    var trendTags: ThirdpartyTrendsTags? = nil
-    var trendTagsArray: Array<(tag: String, score: Float)> = []
+    var trendTags: ThirdpartyTrendsTags?
+    var trendTagsArray: [(tag: String, score: Float)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self
-        self.refreshControl = UIRefreshControl() { _ in
+        self.refreshControl = UIRefreshControl { _ in
             self.reloadTrendTags()
             self.refreshControl?.endRefreshing()
         }
         self.reloadTrendTags()
     }
-
 
     /*
     // MARK: - Navigation

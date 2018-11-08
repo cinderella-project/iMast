@@ -27,34 +27,33 @@ class OtherMenuPushSettingsGroupNotifyTableViewController: FormViewController {
         self.title = "グループ化のルール設定 (β)"
         
         self.form +++ Section()
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "アカウント毎にグループを分ける"
                 row.userDefaultsConnect(.groupNotifyAccounts)
             }
         +++ Section(header: "通知タイプ毎にグループを分ける", footer: "ONにしたタイプはすべて個別のグループになります。")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "ブースト"
                 row.userDefaultsConnect(.groupNotifyTypeBoost)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "お気に入り"
                 row.userDefaultsConnect(.groupNotifyTypeFavourite)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "メンション"
                 row.userDefaultsConnect(.groupNotifyTypeMention)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "フォロー"
                 row.userDefaultsConnect(.groupNotifyTypeFollow)
             }
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "その他"
                 row.userDefaultsConnect(.groupNotifyTypeUnknown)
             }
     
     }
-    
 
     /*
     // MARK: - Navigation

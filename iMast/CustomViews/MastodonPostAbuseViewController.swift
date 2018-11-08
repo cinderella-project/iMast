@@ -14,14 +14,14 @@ import ActionClosurable
 class MastodonPostAbuseViewController: FormViewController {
 
     var placeholder = ""
-    var targetPost:MastodonPost!
+    var targetPost: MastodonPost!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "通報"
         
         self.form +++ Section()
-            <<< TextAreaRow() {
+            <<< TextAreaRow {
                 $0.tag = "text"
                 $0.placeholder = self.placeholder
                 $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
@@ -29,7 +29,7 @@ class MastodonPostAbuseViewController: FormViewController {
         
         if let remoteInstance = targetPost.account.acct.split(separator: "@").safe(1) {
             self.form +++ Section(footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。")
-                <<< SwitchRow() {
+                <<< SwitchRow {
                     $0.tag = "forward"
                     $0.title = "リモートインスタンスに転送"
                 }
@@ -38,7 +38,7 @@ class MastodonPostAbuseViewController: FormViewController {
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "送信", style: .done) { _ in
                 self.submitButtonTapped()
-            }
+            },
         ]
     }
 
@@ -56,8 +56,6 @@ class MastodonPostAbuseViewController: FormViewController {
             }
         }
     }
-
-    
 
     /*
     // MARK: - Navigation

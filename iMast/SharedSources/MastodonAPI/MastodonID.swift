@@ -14,10 +14,8 @@ class MastodonID: Codable, CustomStringConvertible {
     var raw: Any
     
     var description: String {
-        get{
-            print("WARNING: get description")
-            return self.string
-        }
+        print("WARNING: get description")
+        return self.string
     }
     
     init(string: String) {

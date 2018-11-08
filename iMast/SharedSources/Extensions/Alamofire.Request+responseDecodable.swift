@@ -15,7 +15,6 @@ extension Alamofire.DataRequest {
         case httpError(message: String, code: Int)
     }
     
-    
     func responseDecodable<T: Decodable>(_ type: T.Type) -> Promise<T> {
         return Promise<T> { resolve, reject, _ in
             self.responseData { res in

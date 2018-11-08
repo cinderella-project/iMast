@@ -107,8 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         guard let location = Navigator.parse(url: url) else {
             return false
         }
@@ -129,10 +128,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     nextVC.userToken = usertoken
                     changeRootVC(nextVC, animated: false)
                 }
-                break
             case "from-backend/push/oauth-finished":
                 Notifwift.post(.pushSettingsAccountReload)
-                break
             default:
                 break
         }
@@ -182,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    func registerDefaultsFromSettingsBundle(){
+    func registerDefaultsFromSettingsBundle() {
         // UserDefaultsAppGroup.register(defaults: defaultValues)
     }
     
@@ -196,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("MIGRATE: UserDefaults -> AppGroup User Defaults")
         for key in oldUserDefaultsDictionary.keys {
             UserDefaultsAppGroup.set(oldUserDefaultsDictionary[key], forKey: key)
-            print("migrating:",key)
+            print("migrating:", key)
         }
         UserDefaultsAppGroup.set(true, forKey: migrateKeyName)
         UserDefaultsAppGroup.synchronize()
@@ -268,7 +265,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-func openVLC(_ url: String) -> Bool{
+func openVLC(_ url: String) -> Bool {
     if !UserDefaults.standard.bool(forKey: "webm_vlc_open") {
         return false
     }

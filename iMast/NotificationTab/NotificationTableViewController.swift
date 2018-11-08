@@ -31,7 +31,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             self.addSubnode(self.notifyTypeImage)
             
             self.notifyTitleText.attributedText = NSAttributedString(string: NSLocalizedString("tabs.notifications.cell.\(notification.type).title", comment: "").replace("%", notification.account?.acct ?? ""), attributes: [
-                .font: UIFont.systemFont(ofSize: 14)
+                .font: UIFont.systemFont(ofSize: 14),
             ])
             self.notifyTitleText.truncationMode = .byTruncatingTail
             self.notifyTitleText.maximumNumberOfLines = 1
@@ -39,7 +39,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             
             let notifyBody = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replace("\n", " ")
             self.notifyBodyText.attributedText = NSAttributedString(string: notifyBody, attributes: [
-                .font: UIFont.systemFont(ofSize: 17)
+                .font: UIFont.systemFont(ofSize: 17),
             ])
             self.notifyBodyText.truncationMode = .byTruncatingTail
             self.notifyBodyText.maximumNumberOfLines = 1
@@ -125,7 +125,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         }
     }
 
-    var notifications:[MastodonNotification] = []
+    var notifications: [MastodonNotification] = []
     let refreshControl = UIRefreshControl()
     let readmoreCell = NotificationReadmoreCell()
     
@@ -284,8 +284,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         }
         if let status = notification.status { // 投稿つき
             if notification.type == "mention" {
-                let storyboard = UIStoryboard(name: "MastodonPostDetail", bundle: nil)
-                let newVC = storyboard.instantiateInitialViewController() as! MastodonPostDetailTableViewController
+                let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
                 newVC.load(post: status)
                 self.navigationController?.pushViewController(newVC, animated: animated)
                 return
@@ -295,7 +294,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             newVC.users = [account]
             newVC.title = [
                 "favourite": "ふぁぼられ",
-                "reblog": "ブースト"
+                "reblog": "ブースト",
             ][notification.type]
             self.navigationController?.pushViewController(newVC, animated: animated)
         } else { // ユーザーつき

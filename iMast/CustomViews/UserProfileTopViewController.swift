@@ -20,8 +20,8 @@ class UserProfileTopViewController: StableTableViewController {
     var user: MastodonAccount?
     var externalServiceLinks: [(name: String, userId: String?, url: URL)] = []
     
-    let infoCell = Bundle.main.loadNibNamed("UserProfileInfoTableViewCell", owner: self, options: nil)!.first! as! UserProfileInfoTableViewCell
-    let bioCell = Bundle.main.loadNibNamed("UserProfileBioTableViewCell", owner: self, options: nil)!.first! as! UserProfileBioTableViewCell
+    let infoCell = R.nib.userProfileInfoTableViewCell.firstView(owner: self as AnyObject)!
+    let bioCell = R.nib.userProfileBioTableViewCell.firstView(owner: self as AnyObject)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,11 +145,10 @@ class UserProfileTopViewController: StableTableViewController {
             let screenName = "@"+user.acct
             let actionSheet = UIAlertController(title: R.string.localizable.profileActionsTitle(), message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
-            actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsShare(), style: UIAlertAction.Style.default, handler: {
-                (action: UIAlertAction!) in
-                let activityItems:[Any] = [
+            actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsShare(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+                let activityItems: [Any] = [
                     (user.name != "" ? user.name : user.screenName).emojify()+"さんのプロフィール - Mastodon",
-                    NSURL(string: user.url)!
+                    NSURL(string: user.url)!,
                 ]
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
                 activityVC.popoverPresentationController?.sourceView = self.moreButton.value(forKey: "view") as? UIView
@@ -159,15 +158,13 @@ class UserProfileTopViewController: StableTableViewController {
             if myScreenName != screenName {
                 if !relationship.following { // 未フォロー
                     if !relationship.requested { // 未フォロー
-                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollow(), style: UIAlertAction.Style.default, handler: {
-                            (action: UIAlertAction!) in
+                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollow(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             MastodonUserToken.getLatestUsed()?.follow(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
                     } else {// フォローリクエスト中
-                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollowRequestCancel(), style: UIAlertAction.Style.destructive, handler: {
-                            (action: UIAlertAction!) in
+                        actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsFollowRequestCancel(), style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
                             self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
                                 if !result {
                                     return
@@ -179,8 +176,7 @@ class UserProfileTopViewController: StableTableViewController {
                         }))
                     }
                 } else { // フォロー済み
-                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnfollow(), style: UIAlertAction.Style.destructive, handler: {
-                        (action: UIAlertAction!) in
+                    actionSheet.addAction(UIAlertAction(title: R.string.localizable.profileActionsUnfollow(), style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
                         self.confirm(title: "確認", message: screenName+"のフォローを解除しますか?", okButtonMessage: "解除", style: .destructive).then({ (result) in
                             if !result {
                                 return

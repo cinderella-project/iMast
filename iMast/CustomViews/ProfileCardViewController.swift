@@ -29,16 +29,16 @@ class ProfileCardViewController: UIViewController {
 
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: [
             "inputMessage": user.url.data(using: .utf8),
-            "inputCorrectionLevel": "H"
+            "inputCorrectionLevel": "H",
         ])
         let invertQr = CIFilter(name: "CIColorInvert", parameters: [
-            "inputImage": qr!.outputImage!
+            "inputImage": qr!.outputImage!,
             ])
         let alphaInvertQr = CIFilter(name: "CIMaskToAlpha", parameters: [
-            "inputImage": invertQr!.outputImage!
+            "inputImage": invertQr!.outputImage!,
         ])
         let alphaQr = CIFilter(name: "CIColorInvert", parameters: [
-            "inputImage": alphaInvertQr!.outputImage!
+            "inputImage": alphaInvertQr!.outputImage!,
         ])
         userNameLabel.text = user.name != "" ? user.name : user.screenName
         userScreenNameLabel.text = "@" + user.screenName + "@" + MastodonUserToken.getLatestUsed()!.app.instance.hostName
@@ -49,7 +49,6 @@ class ProfileCardViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

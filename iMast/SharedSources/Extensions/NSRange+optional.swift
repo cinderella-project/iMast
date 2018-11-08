@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSRange {
-    var optional: NSRange? { get {
+    var optional: NSRange? {
         return self.location == NSNotFound ? nil : self
-    } }
+    }
 }

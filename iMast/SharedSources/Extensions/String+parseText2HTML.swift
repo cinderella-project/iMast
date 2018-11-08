@@ -20,13 +20,13 @@ extension String {
             
             let fetchNodeTypes: [Fuzi.XMLNodeType] = [
                 .Text,
-                .Element
+                .Element,
             ]
             
             func generateAttrStr(nodes: [XMLNode]) -> NSMutableAttributedString {
                 let attrStr = NSMutableAttributedString(string: "")
                 for node in nodes {
-                    switch(node.type) {
+                    switch node.type {
                     case .Text:
                         attrStr.append(NSAttributedString(string: node.stringValue))
                     case .Element:
@@ -91,7 +91,7 @@ extension String {
         if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes) {
             return newParserResult
         }
-        if !self.replace("<p>","").replace("</p>","").contains("<") {
+        if !self.replace("<p>", "").replace("</p>", "").contains("<") {
             return nil
         }
         
@@ -99,9 +99,9 @@ extension String {
         let encodeData = self.data(using: String.Encoding.utf8, allowLossyConversion: true)
         
         // 表示データのオプションを設定する
-        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey : Any] = [
+        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey: Any] = [
             NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
-            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue
+            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue,
         ]
         
         // 文字列の変換処理

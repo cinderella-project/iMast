@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let homeVC = UINavigationController(rootViewController:  HomeTimeLineTableViewController())
+        let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController())
         homeVC.tabBarItem.image = R.image.homeOutline()
         homeVC.tabBarItem.selectedImage = R.image.home()
         homeVC.tabBarItem.title = R.string.localizable.tabsHomeShortTitle()
@@ -44,7 +44,7 @@ class MainTabBarController: UITabBarController {
             vc.navigationItem.leftBarButtonItems = [
                 UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
                     navC.dismiss(animated: true, completion: nil)
-                }
+                },
             ]
             vc.title = "アカウントを変更"
             navC.pushViewController(vc, animated: false)

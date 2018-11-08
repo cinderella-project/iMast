@@ -14,7 +14,6 @@ enum NotificationServiceError: Error {
 }
 
 class NotificationService: UNNotificationServiceExtension {
-
     
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?

@@ -16,7 +16,7 @@ class FollowTableViewController: UITableViewController {
     let readmoreCell = ReadmoreTableViewCell()
     
     var users: [MastodonAccount] = []
-    var maxId: MastodonID? = nil
+    var maxId: MastodonID?
     
     init(type: MastodonFollowFetchType, userId: MastodonID) {
         self.type = type

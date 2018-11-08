@@ -188,19 +188,15 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         var urlString = shareUrl.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let post = self.post {
-            for mention in post.mentions {
-                if urlString == mention.url {
-                    MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                        let newVC = openUserProfile(user: user)
-                        self.viewController?.navigationController?.pushViewController(newVC, animated: true)
-                    })
-                    return false
-                }
+            if let mention = post.mentions.first(where: { $0.url == urlString }) {
+                MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
+                    let newVC = openUserProfile(user: user)
+                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                })
+                return false
             }
-            for media in post.attachments {
-                if urlString == media.textUrl {
-                    urlString = media.url
-                }
+            if let media = post.attachments.first(where: { $0.textUrl == urlString }) {
+                urlString = media.url
             }
             if visibleString.starts(with: "#") {
                 let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
@@ -220,9 +216,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
     }
     
-    
     static func getInstance(owner: Any? = nil) -> MastodonPostCell {
-        return UINib(nibName: "MastodonPostCell", bundle: nil).instantiate(withOwner: owner, options: nil).first as! MastodonPostCell
+        return R.nib.mastodonPostCell.firstView(owner: owner as AnyObject)!
     }
 
 }

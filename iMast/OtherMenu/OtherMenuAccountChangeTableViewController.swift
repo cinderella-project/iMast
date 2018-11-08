@@ -57,12 +57,12 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         userTokens.forEach { (userToken) in
             promise = promise.then { _ in
                 return userToken.getUserInfo()
-            }.then{ _ in
+            }.then { _ in
                 userToken.save()
                 successCount += 1
                 redrawRefreshControl()
                 return
-            }.catch{ _ in
+            }.catch { _ in
                 failedCount += 1
                 redrawRefreshControl()
                 return
@@ -138,10 +138,8 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
     }
     */
     
-    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .normal, title: "削除"){
-            (action, index) -> Void in
+        let deleteAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
             tableView.isEditing = false
             let userToken = self.userTokens[indexPath[1]]
             let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n"+String.init(format: "@%@@%@", userToken.screenName ?? "--unknown--", userToken.app.instance.hostName), preferredStyle: .actionSheet)
@@ -163,10 +161,9 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         }
         deleteAction.backgroundColor = UIColor.red
         return [
-            deleteAction
+            deleteAction,
         ]
     }
-
 
     /*
     // Override to support rearranging the table view.

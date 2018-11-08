@@ -37,8 +37,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                     blue: 0.01,
                     alpha: 1
                 )
-              : UIColor.darkGray
-            , for: .normal)
+              : UIColor.darkGray, for: .normal)
         }
     }
     var isBoosted = false {
@@ -50,8 +49,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                     blue: 1,
                     alpha: 1
                 )
-                : UIColor.darkGray
-            , for: .normal)
+                : UIColor.darkGray, for: .normal)
         }
     }
     override func viewDidLoad() {
@@ -93,7 +91,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             html += postHtml
         }
         if let attrStr = html.parseText2HTML(attributes: [
-            .font: UIFont.systemFont(ofSize: 14)
+            .font: UIFont.systemFont(ofSize: 14),
         ]) {
             textView.attributedText = attrStr
         } else {
@@ -251,19 +249,15 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 self.tableView.reloadData()
                 return false
             }
-            for mention in post.mentions {
-                if urlString == mention.url {
-                    MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                        let newVC = openUserProfile(user: user)
-                        self.navigationController?.pushViewController(newVC, animated: true)
-                    })
-                    return false
-                }
+            if let mention = post.mentions.first(where: { $0.url == urlString }) {
+                MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
+                    let newVC = openUserProfile(user: user)
+                    self.navigationController?.pushViewController(newVC, animated: true)
+                })
+                return false
             }
-            for media in post.attachments {
-                if urlString == media.textUrl {
-                    urlString = media.url
-                }
+            if let media = post.attachments.first(where: { $0.textUrl == urlString }) {
+                urlString = media.url
             }
             if visibleString.starts(with: "#") {
                 let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])

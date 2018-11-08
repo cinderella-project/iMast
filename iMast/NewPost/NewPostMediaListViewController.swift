@@ -52,7 +52,7 @@ class NewPostMediaListViewController: UIViewController {
                 imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
-                let tapGesture = UITapGestureRecognizer() { _ in
+                let tapGesture = UITapGestureRecognizer { _ in
                     let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: "プレビュー", style: .default, handler: { _ in
                         let viewController = UIViewController()
@@ -62,7 +62,7 @@ class NewPostMediaListViewController: UIViewController {
                         imageView.ignoreSmartInvert()
                         imageView.contentMode = .scaleAspectFit
                         viewController.view = imageView
-                        let closeGesture = UITapGestureRecognizer() { _ in
+                        let closeGesture = UITapGestureRecognizer { _ in
                             viewController.dismiss(animated: true, completion: nil)
                         }
                         imageView.isUserInteractionEnabled = true
@@ -100,8 +100,8 @@ class NewPostMediaListViewController: UIViewController {
     
     @IBAction func tapAddImage(_ sender: UIButton) {
         let pickerSelector = CustomDocumentMenuViewController(
-            documentTypes:[
-                "public.image"
+            documentTypes: [
+                "public.image",
             ],
             in: UIDocumentPickerMode.import
         )
@@ -138,10 +138,10 @@ class NewPostMediaListViewController: UIViewController {
     }
 }
 
-fileprivate class TransparentViewController: UIViewController {
+private class TransparentViewController: UIViewController {
     override func viewDidLoad() {
-        let touchGesture = UITapGestureRecognizer() { _ in
-            let _ = self.alertWithPromise(title: "内部エラー", message: "このダイアログはでないはずだよ\n(loc: TransparentViewController.viewDidLoad.touchGesture)").then {
+        let touchGesture = UITapGestureRecognizer { _ in
+            _ = self.alertWithPromise(title: "内部エラー", message: "このダイアログはでないはずだよ\n(loc: TransparentViewController.viewDidLoad.touchGesture)").then {
                 self.dismiss(animated: false, completion: nil)
             }
         }
@@ -150,8 +150,8 @@ fileprivate class TransparentViewController: UIViewController {
     }
 }
 
-fileprivate class CustomDocumentMenuViewController: UIDocumentMenuViewController {
-    var parentVC: UIViewController? = nil
+private class CustomDocumentMenuViewController: UIDocumentMenuViewController {
+    var parentVC: UIViewController?
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         super.dismiss(animated: flag, completion: {
             if let parentVC = self.parentVC {
@@ -181,17 +181,17 @@ extension NewPostMediaListViewController: UIDocumentPickerDelegate {
 
 extension NewPostMediaListViewController: UIDocumentMenuDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
+        let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
         self.addMedia(media: UploadableMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
     }
 }
 
 extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true, completion: nil)
         print(info)
         if #available(iOS 11.0, *), let url = info[.imageURL] as? URL {
-            let data = try! Data(contentsOf: url, options:NSData.ReadingOptions.mappedIfSafe)
+            let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
             self.addMedia(media: UploadableMedia(type: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
         } else if let assetUrl = info[.referenceURL] as? URL {
             let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)

@@ -60,99 +60,7 @@ class ShareViewController: SLComposeServiceViewController {
             for itemProvider in inputItem.attachments ?? [] {
                 print(itemProvider)
                 if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-                    itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
-                        if let error = error {
-                            self.extensionContext!.cancelRequest(withError: error)
-                            return
-                        }
-                        guard var url = urlItem as? NSURL else {
-                            return
-                        }
-                        if url.scheme == "file" {
-                            return
-                        }
-                        let query = urlComponentsToDict(url: url as URL)
-                        
-                        // Twitterトラッキングを蹴る
-                        if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
-                            var urlComponents = URLComponents(string: url.absoluteString!)!
-                            urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
-                            if (urlComponents.queryItems ?? []).count == 0 {
-                                urlComponents.query = nil
-                            }
-                            let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-                            url = NSURL(string: urlString)!
-                        }
-                        self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
-                        
-                        // Twitter共有の引き継ぎ
-                        if url.host == "twitter.com" && url.path == "/intent/tweet" {
-                            var twitterPostText: String = ""
-                            if let text = query["text"] {
-                                twitterPostText += text
-                            }
-                            if let url = query["url"] {
-                                twitterPostText += " " + url
-                            }
-                            if let hashtags = query["hashtags"] {
-                                hashtags.components(separatedBy: ",").forEach { hashtag in
-                                    twitterPostText += " #" + hashtag
-                                }
-                            }
-                            if let via = query["via"] {
-                                twitterPostText += " https://twitter.com/\(via)さんから"
-                            }
-                            DispatchQueue.main.sync() {
-                                self.textView.text = twitterPostText
-                                self.postUrl = ""
-                            }
-                        }
-                        
-                        // GPMなうぷれ対応
-                        if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
-                            url.scheme == "https", url.host == "play.google.com",
-                            let path = url.path, path.starts(with: "/music/m/"),
-                            let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1)
-                        {
-                            let previewUrl = "https://play.google.com/music/preview/\(objectId)"
-                            Alamofire.request(previewUrl).responseData { res in
-                                print(res)
-                                switch res.result {
-                                case .success(let data):
-                                    guard let doc = try? Fuzi.HTMLDocument(data: data) else {
-                                        print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
-                                        return
-                                    }
-                                    guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
-                                        print("GPMNowPlayingError: PlayMusicTrackがなかった")
-                                        return
-                                    }
-                                    if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
-                                        print("GPMNowPlayingError: parentがAlbum")
-                                        return
-                                    }
-                                    guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
-                                        print("GPMNowPlayingError: nameがない")
-                                        return
-                                    }
-                                    let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
-                                    let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
-                                    let nowPlayingText = Defaults[.nowplayingFormat]
-                                        .replace("{title}", title)
-                                        .replace("{artist}", artist ?? "")
-                                        .replace("{albumTitle}", albumTitle ?? "")
-                                        .replace("{albumArtist}", "")
-                                    print(Thread.isMainThread)
-                                    DispatchQueue.mainSafeSync {
-                                        self.textView.text = nowPlayingText
-                                    }
-                                case .failure(let error):
-                                    print("GPMNowPlayingError: Failed fetch Information", error)
-                                }
-                            }
-                            print("GPMやないかーい", previewUrl)
-                        }
-                    }
+                    self.processUrl(itemProvider: itemProvider)
                 }
                 if itemProvider.hasItemConformingToTypeIdentifier("public.image") {
                     itemProvider.loadItem(forTypeIdentifier: "public.image", options: nil, completionHandler: { (imageItem, error) in
@@ -181,6 +89,101 @@ class ShareViewController: SLComposeServiceViewController {
         self.charactersRemaining = 500 - self.contentText.count - self.postUrl.count as NSNumber
         return Int(self.charactersRemaining) >= 0 && self.isMastodonLogged
     }
+    
+    func processUrl(itemProvider: NSItemProvider) {
+        itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
+            if let error = error {
+                self.extensionContext!.cancelRequest(withError: error)
+                return
+            }
+            guard var url = urlItem as? NSURL else {
+                return
+            }
+            if url.scheme == "file" {
+                return
+            }
+            let query = urlComponentsToDict(url: url as URL)
+            
+            // Twitterトラッキングを蹴る
+            if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
+                var urlComponents = URLComponents(string: url.absoluteString!)!
+                urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
+                if (urlComponents.queryItems ?? []).count == 0 {
+                    urlComponents.query = nil
+                }
+                let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+                url = NSURL(string: urlString)!
+            }
+            self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
+            
+            // Twitter共有の引き継ぎ
+            if url.host == "twitter.com" && url.path == "/intent/tweet" {
+                var twitterPostText: String = ""
+                if let text = query["text"] {
+                    twitterPostText += text
+                }
+                if let url = query["url"] {
+                    twitterPostText += " " + url
+                }
+                if let hashtags = query["hashtags"] {
+                    hashtags.components(separatedBy: ",").forEach { hashtag in
+                        twitterPostText += " #" + hashtag
+                    }
+                }
+                if let via = query["via"] {
+                    twitterPostText += " https://twitter.com/\(via)さんから"
+                }
+                DispatchQueue.main.sync {
+                    self.textView.text = twitterPostText
+                    self.postUrl = ""
+                }
+            }
+            
+            // GPMなうぷれ対応
+            if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
+                url.scheme == "https", url.host == "play.google.com",
+                let path = url.path, path.starts(with: "/music/m/"),
+                let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1) {
+                let previewUrl = "https://play.google.com/music/preview/\(objectId)"
+                Alamofire.request(previewUrl).responseData { res in
+                    print(res)
+                    switch res.result {
+                    case .success(let data):
+                        guard let doc = try? Fuzi.HTMLDocument(data: data) else {
+                            print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
+                            return
+                        }
+                        guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
+                            print("GPMNowPlayingError: PlayMusicTrackがなかった")
+                            return
+                        }
+                        if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
+                            print("GPMNowPlayingError: parentがAlbum")
+                            return
+                        }
+                        guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
+                            print("GPMNowPlayingError: nameがない")
+                            return
+                        }
+                        let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
+                        let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
+                        let nowPlayingText = Defaults[.nowplayingFormat]
+                            .replace("{title}", title)
+                            .replace("{artist}", artist ?? "")
+                            .replace("{albumTitle}", albumTitle ?? "")
+                            .replace("{albumArtist}", "")
+                        print(Thread.isMainThread)
+                        DispatchQueue.mainSafeSync {
+                            self.textView.text = nowPlayingText
+                        }
+                    case .failure(let error):
+                        print("GPMNowPlayingError: Failed fetch Information", error)
+                    }
+                }
+                print("GPMやないかーい", previewUrl)
+            }
+        }
+    }
 
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
@@ -204,17 +207,17 @@ class ShareViewController: SLComposeServiceViewController {
             return results
         }
         promise.then { images in
-            self.userToken!.post("statuses",params: [
+            self.userToken!.post("statuses", params: [
                 "status": self.contentText + self.postUrl,
                 "visibility": self.visibility,
                 "media_ids": images.map({ (media) -> JSON in
                     return media["id"]
-                })
+                }),
             ]).then { res in
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
             }
-        }.catch { (error) -> (Void) in
+        }.catch { (error) -> Void in
             alert.dismiss(animated: false)
             var promise: Promise<Void>!
             do {
@@ -234,7 +237,7 @@ class ShareViewController: SLComposeServiceViewController {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         return [
             accountConfig,
-            visibilityConfig
+            visibilityConfig,
         ]
     }
 }

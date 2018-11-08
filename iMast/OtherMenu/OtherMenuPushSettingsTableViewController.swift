@@ -21,7 +21,6 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     var loginSafari: LoginSafari!
     let notifwift = Notifwift()
     
-    
     var accounts: [PushServiceToken] = []
     
     let accountsSection = Section("アカウント一覧")
@@ -47,16 +46,16 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         }
         self.form.append(self.accountsSection)
         self.form +++ Section("共通設定")
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                 row.title = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する"
                 row.userDefaultsConnect(.showPushServiceError)
             }.cellUpdate { cell, row in
                 cell.textLabel?.numberOfLines = 0
             }
-            <<< ButtonRow() { row in
+            <<< ButtonRow { row in
                 row.title = "グループ化のルール設定 (β)"
                 row.cellStyle = .default
-                row.cellUpdate{ (cell, row) in
+                row.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = .black
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
@@ -65,7 +64,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     self.navigationController?.pushViewController(OtherMenuPushSettingsGroupNotifyTableViewController(), animated: true)
                 }
             }
-            <<< ButtonRow() { row in
+            <<< ButtonRow { row in
                 row.title = "プッシュ通知の設定を削除"
             }.cellUpdate { cell, row in
                 cell.textLabel?.textColor = UIColor.red
@@ -101,7 +100,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         PushService.getRegisterAccounts().then { accounts in
             print(accounts)
             let rows = accounts.map { account -> BaseRow in
-                return ButtonRow() { row in
+                return ButtonRow { row in
                     row.title = account.acct
                     row.cellStyle = .default
                 }.cellUpdate { cell, row in
@@ -116,10 +115,10 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             }
             self.accountsSection.removeAll()
             self.accountsSection.append(contentsOf: rows)
-            self.accountsSection <<< ButtonRow() { row in
+            self.accountsSection <<< ButtonRow { row in
                 row.title = "アカウントを追加"
             }.onCellSelection { cell, row in
-                Promise<String?>() { resolve, reject, _ in
+                Promise<String?> { resolve, reject, _ in
                     let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
                     alert.addTextField { textField in
                         textField.placeholder = "mstdn.example.com"

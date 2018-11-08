@@ -20,7 +20,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         self.timelineType = .list(self.list)
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(self.editList))
+            UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(self.editList)),
         ]
     }
     
@@ -34,7 +34,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         vc.form +++ Section()
             <<< titleRow
             +++ Section()
-            <<< ButtonRow() { row in
+            <<< ButtonRow { row in
                     row.title = "リストを削除"
                 }.cellUpdate { cell, row in
                     cell.textLabel?.textColor = .red
@@ -55,7 +55,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         vc.navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
                 navC.dismiss(animated: true, completion: nil)
-            }
+            },
         ]
         let loadingItem = UIBarButtonItem()
         let actIndV = UIActivityIndicatorView(style: .gray)
@@ -74,7 +74,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
                         navC.dismiss(animated: true, completion: nil)
 //                    }
                 }
-            }
+            },
         ]
         self.present(navC, animated: true, completion: nil)
     }

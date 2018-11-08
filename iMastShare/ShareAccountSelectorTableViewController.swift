@@ -43,7 +43,6 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return userTokens.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: nil)
@@ -72,7 +71,6 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         nowUserTokenId = userTokens[indexPath[1]].id!
         tableView.reloadData()  
     }
-
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

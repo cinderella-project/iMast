@@ -121,7 +121,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
         
-        let uploadPromise = async() { _ -> [JSON] in
+        let uploadPromise = async { _ -> [JSON] in
             var imageJSONs: [JSON] = []
             for (index, medium) in self.media.enumerated() {
                 DispatchQueue.main.async {
@@ -168,12 +168,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 "sensitive": self.isNSFW || (self.isCW && self.cwInput.text != nil && self.cwInput.text != ""),
                 "spoiler_text": self.isCW ? self.cwInput.text ?? "" : "",
                 "status": text,
-                "visibility": self.scope
+                "visibility": self.scope,
             ]
             if let replyToPost = self.replyToPost {
                 params["in_reply_to_id"] = replyToPost.id.raw
             }
-            return MastodonUserToken.getLatestUsed()!.post("statuses",params: params)
+            return MastodonUserToken.getLatestUsed()!.post("statuses", params: params)
         }.then { res in
             if res["_response_code"].intValue >= 400 {
                 alert.dismiss(animated: false, completion: {
@@ -246,7 +246,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         nowPlayingText = nowPlayingText.replace("{albumArtist}", nowPlayingMusic!.albumArtist ?? "")
         nowPlayingText = nowPlayingText.replace("{albumTitle}", nowPlayingMusic!.albumTitle ?? "")
         
-        self.textInput.text = self.textInput.text + nowPlayingText
+        self.textInput.text += nowPlayingText
     }
     @IBAction func scopeSelectButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "公開範囲", message: "公開範囲を選択してください。", preferredStyle: .actionSheet)
@@ -279,4 +279,3 @@ extension NewPostViewController: UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
-
