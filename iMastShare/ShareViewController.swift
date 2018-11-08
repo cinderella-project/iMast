@@ -29,7 +29,7 @@ class ShareViewController: SLComposeServiceViewController {
             visibilityConfig.value = VisibilityLocalizedString[VisibilityString.index(of: visibility) ?? 0]
         }
     }
-    var postImage:UIImage?
+    var postMedia: [UploadableMedia] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,128 +56,124 @@ class ShareViewController: SLComposeServiceViewController {
             VC.parentVC = self
             self.pushConfigurationViewController(VC)
         }
-        (self.extensionContext!.inputItems[0] as! NSExtensionItem).attachments!.forEach({ (ip) in
-            let itemProvider = ip 
-            //
-            print(itemProvider)
-            if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-                itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
-                    if let error = error {
-                        self.extensionContext!.cancelRequest(withError: error)
-                        return
-                    }
-                    guard var url = urlItem as? NSURL else {
-                        return
-                    }
-                    if url.scheme == "file" {
-                        return
-                    }
-                    let queryItems = urlComponentsToDict(url: url as URL)
-                    
-                    // Twitterトラッキングを蹴る
-                    if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
-                        var urlComponents = URLComponents(string: url.absoluteString!)!
-                        urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
-                        if (urlComponents.queryItems ?? []).count == 0 {
-                            urlComponents.query = nil
+        for inputItem in self.extensionContext!.inputItems as! [NSExtensionItem] {
+            for itemProvider in inputItem.attachments ?? [] {
+                print(itemProvider)
+                if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
+                    itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (urlItem, error) in
+                        if let error = error {
+                            self.extensionContext!.cancelRequest(withError: error)
+                            return
                         }
-                        let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-                        url = NSURL(string: urlString)!
-                    }
-                    self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
-                    
-                    // Twitter共有の引き継ぎ
-                    if url.host == "twitter.com" && url.path == "/intent/tweet" {
-                        let query = urlComponentsToDict(url: URL(string: url.absoluteString!)!)
-                        var twitterPostText: String = ""
-                        if let text = query["text"] {
-                            twitterPostText += text
+                        guard var url = urlItem as? NSURL else {
+                            return
                         }
-                        if let url = query["url"] {
-                            twitterPostText += " " + url
+                        if url.scheme == "file" {
+                            return
                         }
-                        if let hashtags = query["hashtags"] {
-                            hashtags.components(separatedBy: ",").forEach { hashtag in
-                                twitterPostText += " #" + hashtag
+                        let query = urlComponentsToDict(url: url as URL)
+                        
+                        // Twitterトラッキングを蹴る
+                        if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
+                            var urlComponents = URLComponents(string: url.absoluteString!)!
+                            urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
+                            if (urlComponents.queryItems ?? []).count == 0 {
+                                urlComponents.query = nil
+                            }
+                            let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+                            url = NSURL(string: urlString)!
+                        }
+                        self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
+                        
+                        // Twitter共有の引き継ぎ
+                        if url.host == "twitter.com" && url.path == "/intent/tweet" {
+                            var twitterPostText: String = ""
+                            if let text = query["text"] {
+                                twitterPostText += text
+                            }
+                            if let url = query["url"] {
+                                twitterPostText += " " + url
+                            }
+                            if let hashtags = query["hashtags"] {
+                                hashtags.components(separatedBy: ",").forEach { hashtag in
+                                    twitterPostText += " #" + hashtag
+                                }
+                            }
+                            if let via = query["via"] {
+                                twitterPostText += " https://twitter.com/\(via)さんから"
+                            }
+                            DispatchQueue.main.sync() {
+                                self.textView.text = twitterPostText
+                                self.postUrl = ""
                             }
                         }
-                        if let via = query["via"] {
-                            twitterPostText += " https://twitter.com/\(via)さんから"
-                        }
-                        DispatchQueue.main.sync() {
-                            self.textView.text = twitterPostText
-                            self.postUrl = ""
-                        }
-                    }
-                    
-                    // GPMなうぷれ対応
-                    if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
-                        url.scheme == "https", url.host == "play.google.com",
-                        let path = url.path, path.starts(with: "/music/m/"),
-                        let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1)
-                    {
-                        let previewUrl = "https://play.google.com/music/preview/\(objectId)"
-                        Alamofire.request(previewUrl).responseData { res in
-                            print(res)
-                            switch res.result {
-                            case .success(let data):
-                                guard let doc = try? Fuzi.HTMLDocument(data: data) else {
-                                    print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
-                                    return
+                        
+                        // GPMなうぷれ対応
+                        if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
+                            url.scheme == "https", url.host == "play.google.com",
+                            let path = url.path, path.starts(with: "/music/m/"),
+                            let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1)
+                        {
+                            let previewUrl = "https://play.google.com/music/preview/\(objectId)"
+                            Alamofire.request(previewUrl).responseData { res in
+                                print(res)
+                                switch res.result {
+                                case .success(let data):
+                                    guard let doc = try? Fuzi.HTMLDocument(data: data) else {
+                                        print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
+                                        return
+                                    }
+                                    guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
+                                        print("GPMNowPlayingError: PlayMusicTrackがなかった")
+                                        return
+                                    }
+                                    if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
+                                        print("GPMNowPlayingError: parentがAlbum")
+                                        return
+                                    }
+                                    guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
+                                        print("GPMNowPlayingError: nameがない")
+                                        return
+                                    }
+                                    let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
+                                    let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
+                                    let nowPlayingText = Defaults[.nowplayingFormat]
+                                        .replace("{title}", title)
+                                        .replace("{artist}", artist ?? "")
+                                        .replace("{albumTitle}", albumTitle ?? "")
+                                        .replace("{albumArtist}", "")
+                                    print(Thread.isMainThread)
+                                    DispatchQueue.mainSafeSync {
+                                        self.textView.text = nowPlayingText
+                                    }
+                                case .failure(let error):
+                                    print("GPMNowPlayingError: Failed fetch Information", error)
                                 }
-                                guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
-                                    print("GPMNowPlayingError: PlayMusicTrackがなかった")
-                                    return
-                                }
-                                if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
-                                    print("GPMNowPlayingError: parentがAlbum")
-                                    return
-                                }
-                                guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
-                                    print("GPMNowPlayingError: nameがない")
-                                    return
-                                }
-                                let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
-                                let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
-                                let nowPlayingText = Defaults[.nowplayingFormat]
-                                    .replace("{title}", title)
-                                    .replace("{artist}", artist ?? "")
-                                    .replace("{albumTitle}", albumTitle ?? "")
-                                    .replace("{albumArtist}", "")
-                                print(Thread.isMainThread)
-                                DispatchQueue.mainSafeSync {
-                                    self.textView.text = nowPlayingText
-                                }
-                            case .failure(let error):
-                                print("GPMNowPlayingError: Failed fetch Information", error)
                             }
+                            print("GPMやないかーい", previewUrl)
                         }
-                        print("GPMやないかーい", previewUrl)
                     }
                 }
-            }
-            if itemProvider.hasItemConformingToTypeIdentifier("public.image") {
-                itemProvider.loadItem(forTypeIdentifier: "public.image", options: nil, completionHandler: { (imageItem, error) in
-                    if let error = error {
-                        self.extensionContext!.cancelRequest(withError: error)
-                        return
-                    }
-                    if let image = imageItem as? UIImage {
-                        self.postImage = image
-                    }
-                    if let imageUrl = imageItem as? NSURL {
-                        print(imageUrl)
-                        if(imageUrl.isFileURL) {
-                            self.postImage = UIImage(contentsOfFile: imageUrl.path!)
+                if itemProvider.hasItemConformingToTypeIdentifier("public.image") {
+                    itemProvider.loadItem(forTypeIdentifier: "public.image", options: nil, completionHandler: { (imageItem, error) in
+                        if let error = error {
+                            self.extensionContext!.cancelRequest(withError: error)
+                            return
                         }
-                    }
-                    if let imageData = imageItem as? Data {
-                        self.postImage = UIImage(data: imageData)
-                    }
-                })
+                        if let imageData = imageItem as? Data {
+                            self.postMedia.append(UploadableMedia(type: .png, data: imageData, thumbnailImage: UIImage(data: imageData)!))
+                        } else if let imageUrl = imageItem as? NSURL {
+                            print(imageUrl)
+                            if imageUrl.isFileURL, let data = try? Data(contentsOf: imageUrl as URL) {
+                                self.postMedia.append(UploadableMedia(type: (imageUrl.pathExtension ?? "").lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
+                            }
+                        } else if let image = imageItem as? UIImage {
+                            self.postMedia.append(UploadableMedia(type: .png, data: image.pngData()!, thumbnailImage: image))
+                        }
+                    })
+                }
             }
-
-        })
+        }
     }
     
     override func isContentValid() -> Bool {
@@ -192,14 +188,20 @@ class ShareViewController: SLComposeServiceViewController {
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
-        var promise:Promise<[JSON]> = Promise.init(resolved: [])
-        if let postImage = self.postImage {
-            promise = userToken!.upload(file: postImage.pngData()!, mimetype: "image/png").then { (response) -> [JSON] in
-                if response["_response_code"].intValue >= 400 {
-                    throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode: response["_response_code"].intValue)
+        let promise: Promise<[JSON]> = async { status -> [JSON] in
+            var results: [JSON] = []
+            for medium in self.postMedia {
+                let result = try await(self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                if result["_response_code"].intValue >= 400 {
+                    throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
                 }
-                return response["id"].exists() ? [response] : []
+                if result["id"].exists() {
+                    results.append(result)
+                } else {
+                    print(result)
+                }
             }
+            return results
         }
         promise.then { images in
             self.userToken!.post("statuses",params: [
