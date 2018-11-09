@@ -94,6 +94,8 @@ class NotificationService: UNNotificationServiceExtension {
                 if Defaults[.groupNotifyTypeUnknown] {
                     self.bestAttemptContent?.threadIdentifier += "type=unknown,"
                 }
+            case "information":
+                self.bestAttemptContent?.threadIdentifier += "type=information,"
             default:
                 print("whats this is", notifyType)
             }

@@ -12,6 +12,7 @@ import ActionClosurable
 import UserNotifications
 import SVProgressHUD
 import Notifwift
+import SafariServices
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -210,6 +211,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        print(userInfo)
+        if let urlString = userInfo["informationUrl"] as? String, let url = URL(string: urlString) {
+            let safariVC = SFSafariViewController(url: url)
+            UIApplication.shared.keyWindow?.rootViewController?.present(safariVC, animated: true, completion: nil)
+            return
+        }
+        
         guard let receiveUser = userInfo["receiveUser"] as? [String] else {
             completionHandler()
             return
@@ -246,7 +255,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 }
             }
         }
-        
+
         guard let notificationJson = userInfo["upstreamObject"] as? String else {
             print("notify object not found")
             completionHandler()
