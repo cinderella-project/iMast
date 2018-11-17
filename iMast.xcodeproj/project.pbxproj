@@ -173,6 +173,7 @@
 		CEE357241FF6068000675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* SettingsViewController.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
+		CEEEEE2A2197F13000105483 /* ReadmoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
@@ -375,6 +376,7 @@
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		CEE357251FF6410600675DFC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
+		CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreCellNode.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		DD2CB81438091DF9C6D9C858 /* Pods_iMastNotifyService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastNotifyService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -625,6 +627,7 @@
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
+				CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CE1002D4200683850041B636 /* ReportError.swift */,
 				CE099D022194315800A4BCCB /* UploadableMedia.swift */,
@@ -1286,6 +1289,7 @@
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
+				CEEEEE2A2197F13000105483 /* ReadmoreCellNode.swift in Sources */,
 				CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */,
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CE90855D21918751006769DC /* R.generated.swift in Sources */,

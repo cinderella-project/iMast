@@ -66,74 +66,14 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         }
     }
     
-    class NotificationReadmoreCell: ASCellNode {
-        enum State {
-            case enabled
-            case loading
-            case nothingMore
-            case withError
-        }
-        let textNode = ASTextNode()
-        let indicatorView = UIActivityIndicatorView(style: .gray)
-        var indicatorNode: ASDisplayNode!
-        var lastError: Error?
-        
-        var state: State = .enabled { didSet {
-            self.textNode.isHidden = state == .loading
-            if oldValue != state {
-                if state != .loading {
-                    self.indicatorView.stopAnimating()
-                } else {
-                    self.indicatorView.startAnimating()
-                }
-                switch state {
-                case .enabled:
-                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreTitle(), attributes: [
-                        .font: UIFont.systemFont(ofSize: 15),
-                        .foregroundColor: self.tintColor,
-                    ])
-                case .nothingMore:
-                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreDisabledTitle(), attributes: [
-                        .font: UIFont.systemFont(ofSize: 15),
-                        .foregroundColor: UIColor.darkGray,
-                    ])
-                case .withError:
-                    self.textNode.attributedText = NSAttributedString(string: R.string.localizable.tabsNotificationsCellReadmoreFetchError(), attributes: [
-                        .font: UIFont.systemFont(ofSize: 15),
-                        .foregroundColor: UIColor.red,
-                    ])
-                default:
-                    break
-                }
-            }
-        }}
-        
-        override init() {
-            super.init()
-            self.indicatorNode = ASDisplayNode { () -> UIView in
-                return self.indicatorView
-            }
-
-            self.addSubnode(self.textNode)
-            self.addSubnode(self.indicatorNode)
-            self.style.height = ASDimensionMake(44)
-            self.selectionStyle = .none
-        }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            return ASOverlayLayoutSpec(child: ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: [], child: self.textNode), overlay: self.indicatorNode)
-        }
-    }
-
     var notifications: [MastodonNotification] = []
     let refreshControl = UIRefreshControl()
-    let readmoreCell = NotificationReadmoreCell()
+    let readmoreCell = ReadmoreCellNode()
     
     init() {
         super.init(node: ASTableNode(style: .plain))
         self.node.dataSource = self
         self.node.delegate = self
-        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         self.title = R.string.localizable.tabsNotificationsTitle()
     }
     
@@ -150,6 +90,8 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        // init refreshControl
+        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         self.node.view.addSubview(self.refreshControl)
         
         self.readmoreCell.state = .loading
@@ -221,6 +163,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     
     var oldFetchedTime = Date.timeIntervalSinceReferenceDate
     var oldOffset: CGFloat = 0
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard Defaults[.notifyTabInfiniteScroll] else {
             return
@@ -232,28 +175,30 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         if #available(iOS 11.0, *) {
             bottomHeight = scrollView.adjustedContentInset.bottom
         }
-        
-        let diffTrue = Int(diff + bottomHeight)
-        print(diff, diffTrue, bottomHeight)
-        let nowTime = Date.timeIntervalSinceReferenceDate
-        
-        let diffTime = nowTime - self.oldFetchedTime
-        if diffTime > 0.1 {
-            self.oldFetchedTime = nowTime
-            let speed = currentOffset - oldOffset
-            if speed > 10 {
-                let estOffset = diffTrue - Int(speed / CGFloat(diffTime)) // 1秒後も同じ速さでスクロールしていた場合の位置
-                print(estOffset)
-                if estOffset < 200 {
-                    self.readMore()
+
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
+            let diffTrue = Int(diff + bottomHeight)
+            print(diff, diffTrue, bottomHeight)
+            let nowTime = Date.timeIntervalSinceReferenceDate
+            
+            let diffTime = nowTime - self.oldFetchedTime
+            if diffTime > 0.1 {
+                self.oldFetchedTime = nowTime
+                let speed = currentOffset - self.oldOffset
+                if speed > 10 {
+                    let estOffset = diffTrue - Int(speed / CGFloat(diffTime)) // 1秒後も同じ速さでスクロールしていた場合の位置
+                    print(estOffset)
+                    if estOffset < 200 {
+                        self.readMore()
+                    }
                 }
+                self.oldFetchedTime = nowTime
+                self.oldOffset = currentOffset
             }
-            self.oldFetchedTime = nowTime
-            self.oldOffset = currentOffset
-        }
-        
-        if diffTrue < 200 {
-            self.readMore()
+            
+            if diffTrue < 200 {
+                self.readMore()
+            }
         }
     }
     
