@@ -30,6 +30,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             self.reloadTrendTags()
             self.refreshControl?.endRefreshing()
         }
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.reloadTrendTags()
     }
 
