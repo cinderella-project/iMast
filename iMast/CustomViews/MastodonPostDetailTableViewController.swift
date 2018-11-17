@@ -65,8 +65,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             loadAfter = false
             load(post: post!)
         }
+        tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
-        textView.sizeToFit()
+//        textView.sizeToFit()
         textView.delegate = self
     }
     
@@ -128,9 +129,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         isBoosted = post.reposted
         
         let thumbnail_height = Defaults[.thumbnailHeight]
-        if nsfwGuardView.isUserInteractionEnabled {
-            nsfwGuardView.isHidden = !post.sensitive && post.attachments.count > 0
-        }
+        nsfwGuardView.isHidden = !(post.sensitive && post.attachments.count > 0)
 
         for subview in self.imageStackView.arrangedSubviews {
             self.imageStackView.removeArrangedSubview(subview)
@@ -219,7 +218,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath[0] == 0 && indexPath[1] == 0 {
-            return textView.frame.minY + textView.frame.height + 16 + imageStackView.frame.height
+//            return textView.frame.minY + textView.frame.height + 16 + imageStackView.frame.height
+            return UITableView.automaticDimension
         }
         if indexPath[0] == 0 && indexPath[1] == 1 {
             if (actionCountCell.textLabel?.text ?? "") == ""{
