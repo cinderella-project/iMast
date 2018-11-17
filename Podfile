@@ -10,6 +10,7 @@ def based_pods
   pod 'XCGLogger', '~> 6.0.2'
   pod 'SDWebImage', '~> 4.0'
   pod 'Fuzi', '~> 2.1.0'
+  pod 'SnapKit'
 end
 
 target 'iMast' do

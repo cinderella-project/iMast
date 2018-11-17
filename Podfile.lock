@@ -34,6 +34,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - SnapKit (4.2.0)
   - Starscream (3.0.5)
   - SVProgressHUD (2.2.5)
   - SwiftLint (0.27.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 3)
   - SDWebImage (~> 4.0)
+  - SnapKit
   - Starscream
   - SVProgressHUD
   - SwiftLint
@@ -90,6 +92,7 @@ SPEC REPOS:
     - R.swift.Library
     - ReachabilitySwift
     - SDWebImage
+    - SnapKit
     - Starscream
     - SVProgressHUD
     - SwiftLint
@@ -126,6 +129,7 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
@@ -133,6 +137,6 @@ SPEC CHECKSUMS:
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
 
-PODFILE CHECKSUM: f33e2a8c1be138be218a76246422d68bf7f3d7db
+PODFILE CHECKSUM: d501ebc0cc532e3e82fabfcd71b31201df3da4db
 
 COCOAPODS: 1.5.3
