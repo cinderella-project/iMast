@@ -125,7 +125,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     }
     
     @objc func refreshNotification() {
-        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: notifications.safe(0)?.id).then({ new_notifications in
+        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: notifications.first?.id).then({ new_notifications in
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
