@@ -10,7 +10,7 @@ import UIKit
 import Hydra
 import SwiftyJSON
 
-class OtherMenuAccountChangeTableViewController: UITableViewController {
+class ChangeActiveAccountViewController: UITableViewController {
 
     @IBOutlet var accountsTableView: UITableView!
     var userTokens: [MastodonUserToken] = []
@@ -25,7 +25,7 @@ class OtherMenuAccountChangeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
-        refreshControl?.addTarget(self, action: #selector(OtherMenuAccountChangeTableViewController.refresh), for: UIControl.Event.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(ChangeActiveAccountViewController.refresh), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl!)
         
         tableView.rowHeight = 44

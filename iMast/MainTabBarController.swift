@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
                 return
             }
             let navC = UINavigationController()
-            let vc = OtherMenuAccountChangeTableViewController()
+            let vc = ChangeActiveAccountViewController()
             vc.navigationItem.leftBarButtonItems = [
                 UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
                     navC.dismiss(animated: true, completion: nil)
