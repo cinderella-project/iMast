@@ -50,6 +50,7 @@ PODS:
     - XCGLogger/Core (= 6.0.4)
   - XCGLogger/Core (6.0.4):
     - ObjcExceptionBridging
+  - "※ikemen (0.5.0)"
 
 DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - SwiftyJSON
   - Texture
   - XCGLogger (~> 6.0.2)
+  - "※ikemen"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -99,6 +101,7 @@ SPEC REPOS:
     - SwiftyJSON
     - Texture
     - XCGLogger
+    - "※ikemen"
 
 EXTERNAL SOURCES:
   ActionClosurable:
@@ -136,7 +139,8 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
+  "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: d501ebc0cc532e3e82fabfcd71b31201df3da4db
+PODFILE CHECKSUM: 72789532763290d7592a936dd195551c428e8cd8
 
 COCOAPODS: 1.5.3

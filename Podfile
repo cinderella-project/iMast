@@ -11,6 +11,7 @@ def based_pods
   pod 'SDWebImage', '~> 4.0'
   pod 'Fuzi', '~> 2.1.0'
   pod 'SnapKit'
+  pod '※ikemen'
 end
 
 target 'iMast' do
