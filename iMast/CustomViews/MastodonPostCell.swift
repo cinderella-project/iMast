@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import SafariServices
 import SDWebImage
+import AVKit
 
 class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     
@@ -180,10 +181,20 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if media.url.hasSuffix("webm") && openVLC(media.url) {
             return
         }
+        if media.type == "video" || media.type == "gifv", Defaults[.useAVPlayer], let url = URL(string: media.url) {
+            let item = AVPlayerItem(url: url)
+            let player = AVPlayer(playerItem: item)
+            let viewController = LoopableAVPlayerViewController()
+            viewController.player = player
+            player.play()
+            viewController.isLoop = media.type == "gifv"
+            self.viewController?.present(viewController, animated: true, completion: nil)
+            return
+        }
         let safari = SFSafariViewController(url: URL(string: media.url)!)
         self.viewController?.present(safari, animated: true, completion: nil)
     }
-    
+
     func textView(_ textView: UITextView, shouldInteractWith shareUrl: URL, in characterRange: NSRange) -> Bool {
         var urlString = shareUrl.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)

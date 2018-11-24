@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SafariServices
+import AVKit
 
 class MastodonPostDetailTableViewController: UITableViewController, UITextViewDelegate {
 
@@ -166,6 +167,18 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         if media.url.hasSuffix("webm") && openVLC(media.url) {
             return
         }
+
+        if media.type == "video" || media.type == "gifv", let url = URL(string: media.url) {
+            let item = AVPlayerItem(url: url)
+            let player = AVPlayer(playerItem: item)
+            let viewController = LoopableAVPlayerViewController()
+            viewController.player = player
+            player.play()
+            viewController.isLoop = media.type == "gifv"
+            self.present(viewController, animated: true, completion: nil)
+            return
+        }
+
         let safari = SFSafariViewController(url: URL(string: media.url)!)
         self.present(safari, animated: true, completion: nil)
     }

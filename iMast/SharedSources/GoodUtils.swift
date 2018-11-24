@@ -321,6 +321,7 @@ extension DefaultsKeys {
     static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji", default: true)
     static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
     static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
+    static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)
     static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
     static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)

@@ -138,6 +138,10 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.webmVlcOpen)
             }
             <<< SwitchRow { row in
+                row.title = "動画再生にAVPlayerを利用"
+                row.userDefaultsConnect(.useAVPlayer)
+            }
+            <<< SwitchRow { row in
                 row.title = "ぬるぬるモード(再起動後反映)"
                 row.userDefaultsConnect(.timelineNurunuruMode)
             }
