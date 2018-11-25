@@ -10,11 +10,19 @@ import Foundation
 
 class MastodonAttachment: Codable {
     let id: MastodonID
-    let type: String
+    let type: MediaType
     let url: String
     let previewUrl: String
     let remoteUrl: String?
     let textUrl: String?
+    
+    enum MediaType: String, Codable {
+        case video
+        case gifv
+        case image
+        case unknown
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case type
