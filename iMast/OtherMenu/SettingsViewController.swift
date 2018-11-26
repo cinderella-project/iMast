@@ -100,7 +100,7 @@ class SettingsViewController: FormViewController {
         section <<< TextRow { row in
             row.title = "新規連携時のvia"
             row.placeholder = "iMast"
-            row.userDefaultsConnect(.newAccountVia)
+            row.userDefaultsConnect(.newAccountVia, ifEmptyUseDefaultValue: true)
         }
         section <<< SwitchRow { row in
             row.title = "フォロー関係を以前の表記にする"

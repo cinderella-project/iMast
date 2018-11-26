@@ -26,7 +26,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     }
 }
 extension TextRow {
-    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -34,7 +34,8 @@ extension TextRow {
                 return
             }
             oldValue = row.value
-            Defaults[key] = row.value ?? ""
+            let newValue = row.value ?? ""
+            Defaults[key] = newValue == "" ? (key._default ?? "") : newValue
         }
     }
 }
@@ -67,7 +68,7 @@ extension SliderRow {
     }
 }
 extension TextAreaRow {
-    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = Defaults[key]
         var oldValue = self.value
         self.cellUpdate { cell, row in
@@ -75,7 +76,8 @@ extension TextAreaRow {
                 return
             }
             oldValue = row.value
-            Defaults[key] = row.value ?? ""
+            let newValue = row.value ?? ""
+            Defaults[key] = newValue == "" ? (key._default ?? "") : newValue
         }
     }
 }
