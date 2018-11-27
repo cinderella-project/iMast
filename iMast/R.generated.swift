@@ -402,9 +402,9 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 5 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 6 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -422,22 +422,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellMentionTitle = Rswift.StringResource(key: "tabs.notifications.cell.mention.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Actions
-      /// 
-      /// Locales: en, ja
-      static let profileActionsTitle = Rswift.StringResource(key: "profile.actions.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Block
-      /// 
-      /// Locales: en, ja
-      static let profileActionsBlock = Rswift.StringResource(key: "profile.actions.block", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionCancel = Rswift.StringResource(key: "timeline.streaming.action.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Cancel follow request
-      /// 
-      /// Locales: en, ja
-      static let profileActionsFollowRequestCancel = Rswift.StringResource(key: "profile.actions.followRequestCancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Connect
       /// 
       /// Locales: en, ja
@@ -454,10 +442,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellReadmoreFetchError = Rswift.StringResource(key: "tabs.notifications.cell.readmore.fetchError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Follow
-      /// 
-      /// Locales: en, ja
-      static let profileActionsFollow = Rswift.StringResource(key: "profile.actions.follow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, ja
@@ -474,10 +458,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Mute
-      /// 
-      /// Locales: en, ja
-      static let profileActionsMute = Rswift.StringResource(key: "profile.actions.mute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
@@ -494,10 +474,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineToPostButtonTitle = Rswift.StringResource(key: "timeline.toPostButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Profile Card
-      /// 
-      /// Locales: en, ja
-      static let profileActionsProfileCard = Rswift.StringResource(key: "profile.actions.profileCard", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Read more
       /// 
       /// Locales: en, ja
@@ -506,10 +482,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Share
-      /// 
-      /// Locales: en, ja
-      static let profileActionsShare = Rswift.StringResource(key: "profile.actions.share", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -518,18 +490,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Unblock
-      /// 
-      /// Locales: en, ja
-      static let profileActionsUnblock = Rswift.StringResource(key: "profile.actions.unblock", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Unfollow
-      /// 
-      /// Locales: en, ja
-      static let profileActionsUnfollow = Rswift.StringResource(key: "profile.actions.unfollow", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Unmute
-      /// 
-      /// Locales: en, ja
-      static let profileActionsUnmute = Rswift.StringResource(key: "profile.actions.unmute", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       
       /// en translation: @% boosted your toot
       /// 
@@ -559,32 +519,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.notifications.cell.mention.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Actions
-      /// 
-      /// Locales: en, ja
-      static func profileActionsTitle(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Block
-      /// 
-      /// Locales: en, ja
-      static func profileActionsBlock(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.block", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
       static func timelineStreamingActionCancel(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.cancel", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Cancel follow request
-      /// 
-      /// Locales: en, ja
-      static func profileActionsFollowRequestCancel(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.followRequestCancel", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Connect
@@ -615,13 +554,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.notifications.cell.readmore.fetchError", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Follow
-      /// 
-      /// Locales: en, ja
-      static func profileActionsFollow(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.follow", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Home
       /// 
       /// Locales: en, ja
@@ -648,13 +580,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func tabsLocalTimelineTitle(_: Void = ()) -> String {
         return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Mute
-      /// 
-      /// Locales: en, ja
-      static func profileActionsMute(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.mute", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Not connected
@@ -685,13 +610,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.toPostButton.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Profile Card
-      /// 
-      /// Locales: en, ja
-      static func profileActionsProfileCard(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.profileCard", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Read more
       /// 
       /// Locales: en, ja
@@ -706,13 +624,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Share
-      /// 
-      /// Locales: en, ja
-      static func profileActionsShare(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.share", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -725,27 +636,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unblock
-      /// 
-      /// Locales: en, ja
-      static func profileActionsUnblock(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.unblock", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unfollow
-      /// 
-      /// Locales: en, ja
-      static func profileActionsUnfollow(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.unfollow", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Unmute
-      /// 
-      /// Locales: en, ja
-      static func profileActionsUnmute(_: Void = ()) -> String {
-        return NSLocalizedString("profile.actions.unmute", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -1419,6 +1309,177 @@ struct R: Rswift.Validatable {
       /// Locales: ja, en
       static func title(_: Void = ()) -> String {
         return NSLocalizedString("title", tableName: "Search", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This `R.string.userProfile` struct is generated, and contains static references to 15 localization keys.
+    struct userProfile {
+      /// ja translation: Profile
+      /// 
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: アクション
+      /// 
+      /// Locales: ja, en
+      static let actionsTitle = Rswift.StringResource(key: "actions.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: トゥート
+      /// 
+      /// Locales: ja, en
+      static let cellsTootsTitle = Rswift.StringResource(key: "cells.toots.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ブロック
+      /// 
+      /// Locales: ja, en
+      static let actionsBlock = Rswift.StringResource(key: "actions.block", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ブロック解除
+      /// 
+      /// Locales: ja, en
+      static let actionsUnblock = Rswift.StringResource(key: "actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロワー
+      /// 
+      /// Locales: ja, en
+      static let cellsFollowersTitle = Rswift.StringResource(key: "cells.followers.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー
+      /// 
+      /// Locales: ja, en
+      static let actionsFollow = Rswift.StringResource(key: "actions.follow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー
+      /// 
+      /// Locales: ja, en
+      static let cellsFollowingTitle = Rswift.StringResource(key: "cells.following.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォローリクエストを撤回
+      /// 
+      /// Locales: ja, en
+      static let actionsFollowRequestCancel = Rswift.StringResource(key: "actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー解除
+      /// 
+      /// Locales: ja, en
+      static let actionsUnfollow = Rswift.StringResource(key: "actions.unfollow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ミュート
+      /// 
+      /// Locales: ja, en
+      static let actionsMute = Rswift.StringResource(key: "actions.mute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ミュート解除
+      /// 
+      /// Locales: ja, en
+      static let actionsUnmute = Rswift.StringResource(key: "actions.unmute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 共有
+      /// 
+      /// Locales: ja, en
+      static let actionsShare = Rswift.StringResource(key: "actions.share", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 名刺
+      /// 
+      /// Locales: ja, en
+      static let actionsProfileCard = Rswift.StringResource(key: "actions.profileCard", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 登録日
+      /// 
+      /// Locales: ja, en
+      static let cellsCreatedAtTitle = Rswift.StringResource(key: "cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      
+      /// ja translation: Profile
+      /// 
+      /// Locales: ja, en
+      static func title(_: Void = ()) -> String {
+        return NSLocalizedString("title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: アクション
+      /// 
+      /// Locales: ja, en
+      static func actionsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("actions.title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: トゥート
+      /// 
+      /// Locales: ja, en
+      static func cellsTootsTitle(_: Void = ()) -> String {
+        return NSLocalizedString("cells.toots.title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: ブロック
+      /// 
+      /// Locales: ja, en
+      static func actionsBlock(_: Void = ()) -> String {
+        return NSLocalizedString("actions.block", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: ブロック解除
+      /// 
+      /// Locales: ja, en
+      static func actionsUnblock(_: Void = ()) -> String {
+        return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォロワー
+      /// 
+      /// Locales: ja, en
+      static func cellsFollowersTitle(_: Void = ()) -> String {
+        return NSLocalizedString("cells.followers.title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォロー
+      /// 
+      /// Locales: ja, en
+      static func actionsFollow(_: Void = ()) -> String {
+        return NSLocalizedString("actions.follow", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォロー
+      /// 
+      /// Locales: ja, en
+      static func cellsFollowingTitle(_: Void = ()) -> String {
+        return NSLocalizedString("cells.following.title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォローリクエストを撤回
+      /// 
+      /// Locales: ja, en
+      static func actionsFollowRequestCancel(_: Void = ()) -> String {
+        return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォロー解除
+      /// 
+      /// Locales: ja, en
+      static func actionsUnfollow(_: Void = ()) -> String {
+        return NSLocalizedString("actions.unfollow", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: ミュート
+      /// 
+      /// Locales: ja, en
+      static func actionsMute(_: Void = ()) -> String {
+        return NSLocalizedString("actions.mute", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: ミュート解除
+      /// 
+      /// Locales: ja, en
+      static func actionsUnmute(_: Void = ()) -> String {
+        return NSLocalizedString("actions.unmute", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: 共有
+      /// 
+      /// Locales: ja, en
+      static func actionsShare(_: Void = ()) -> String {
+        return NSLocalizedString("actions.share", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: 名刺
+      /// 
+      /// Locales: ja, en
+      static func actionsProfileCard(_: Void = ()) -> String {
+        return NSLocalizedString("actions.profileCard", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: 登録日
+      /// 
+      /// Locales: ja, en
+      static func cellsCreatedAtTitle(_: Void = ()) -> String {
+        return NSLocalizedString("cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

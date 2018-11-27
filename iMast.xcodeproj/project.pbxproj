@@ -151,6 +151,7 @@
 		CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
 		CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
 		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
@@ -363,6 +364,8 @@
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojify.swift"; sourceTree = "<group>"; };
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
+		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
@@ -717,6 +720,7 @@
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
 				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
+				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
 				CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */,
@@ -969,6 +973,7 @@
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
 				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
+				CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */,
@@ -1531,6 +1536,15 @@
 				CE845D25217223A900AF35B4 /* ja */,
 			);
 			name = OtherMenu.storyboard;
+			sourceTree = "<group>";
+		};
+		CECB175A21ACABE800D57F65 /* UserProfile.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CECB175921ACABE800D57F65 /* ja */,
+				CECB175B21ACABEA00D57F65 /* en */,
+			);
+			name = UserProfile.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

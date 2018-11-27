@@ -1,0 +1,28 @@
+/* 
+  UserProfile.strings
+  iMast
+
+  Created by user on 2018/11/27.
+  Copyright © 2018 rinsuki. All rights reserved.
+*/
+
+"title" = "Profile";
+
+"cells.toots.title" = "Toots";
+"cells.following.title" = "Following";
+"cells.followers.title" = "Followers";
+"cells.createdAt.title" = "Created At";
+
+"actions.title" = "Actions";
+"actions.share" = "Share";
+"actions.profileCard" = "Card";
+
+"actions.follow" = "Follow";
+"actions.followRequestCancel" = "Cancel follow request";
+"actions.unfollow" = "Unfollow";
+
+"actions.mute" = "Mute";
+"actions.unmute" = "Unmute";
+
+"actions.block" = "Block";
+"actions.unblock" = "Unblock";

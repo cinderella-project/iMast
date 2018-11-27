@@ -1,0 +1,28 @@
+/* 
+  UserProfile.strings
+  iMast
+
+  Created by user on 2018/11/27.
+  Copyright © 2018 rinsuki. All rights reserved.
+*/
+
+"title" = "Profile";
+
+"cells.toots.title" = "トゥート";
+"cells.following.title" = "フォロー";
+"cells.followers.title" = "フォロワー";
+"cells.createdAt.title" = "登録日";
+
+"actions.title" = "アクション";
+"actions.share" = "共有";
+"actions.profileCard" = "名刺";
+
+"actions.follow" = "フォロー";
+"actions.followRequestCancel" = "フォローリクエストを撤回";
+"actions.unfollow" = "フォロー解除";
+
+"actions.mute" = "ミュート";
+"actions.unmute" = "ミュート解除";
+
+"actions.block" = "ブロック";
+"actions.unblock" = "ブロック解除";
