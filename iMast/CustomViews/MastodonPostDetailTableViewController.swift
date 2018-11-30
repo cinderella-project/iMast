@@ -94,7 +94,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         if let attrStr = html.parseText2HTML(attributes: [
             .font: UIFont.systemFont(ofSize: 14),
-        ]) {
+        ], asyncLoadProgressHandler: {
+            self.textView.setNeedsDisplay()
+        }) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()

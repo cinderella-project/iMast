@@ -63,7 +63,9 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         if post.spoilerText != "" {
             textView.text = post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        } else if let attrStr = attrStrTmp.parseText2HTML(attributes: attrs) {
+        } else if let attrStr = attrStrTmp.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
+            self.textView.setNeedsDisplay()
+        }) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()
