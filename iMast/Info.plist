@@ -46,6 +46,10 @@
 	<string>投稿に添付する画像の撮影や、アイコンに使用する画像の撮影、バーコードリーダーに利用します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>投稿に添付する画像の選択や、アイコンに使用する画像の選択に利用します。</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>TootIntent</string>
+	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

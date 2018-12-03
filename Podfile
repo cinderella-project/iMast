@@ -58,6 +58,11 @@ target 'iMast' do
     based_pods
   end
 
+  target 'iMastIntents' do
+    inherit! :search_paths
+    based_pods
+  end
+
 end
 
 post_install do | installer |

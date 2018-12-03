@@ -153,6 +153,9 @@
 		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
+		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
+		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CED6078321B365A500F6232E /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CED6078221B365A500F6232E /* Intents.intentdefinition */; };
 		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
@@ -178,6 +181,33 @@
 		CEEEEE2A2197F13000105483 /* ReadmoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
+		CEFE6AF521B5010600AF5E40 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CEFE6AF621B5010600AF5E40 /* MastodonCursorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */; };
+		CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
+		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
+		CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CEFE6AFA21B5011700AF5E40 /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CEFE6AFB21B5011700AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
+		CEFE6AFC21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
+		CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
+		CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
+		CEFE6AFF21B5012500AF5E40 /* MastodonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254222004A8B2005FEB6F /* MastodonAccount.swift */; };
+		CEFE6B0021B5012500AF5E40 /* MastodonAccountRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */; };
+		CEFE6B0121B5012500AF5E40 /* MastodonPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254272004B5AA005FEB6F /* MastodonPost.swift */; };
+		CEFE6B0221B5012500AF5E40 /* MastodonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE254292004B802005FEB6F /* MastodonApplication.swift */; };
+		CEFE6B0321B5012500AF5E40 /* MastodonNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */; };
+		CEFE6B0421B5012500AF5E40 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
+		CEFE6B0521B5012500AF5E40 /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
+		CEFE6B0621B5012500AF5E40 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
+		CEFE6B0721B5012500AF5E40 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
+		CEFE6B0821B5012500AF5E40 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
+		CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
+		CEFE6B0A21B5013200AF5E40 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
+		CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
+		CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
+		CEFE6B0D21B5021E00AF5E40 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CED6078221B365A500F6232E /* Intents.intentdefinition */; };
+		CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */; };
+		D0A62A0ADFA4525112D858F6 /* Pods_iMastIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6E3B30AB898E2E0A9CEC11 /* Pods_iMastIntents.framework */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +247,13 @@
 			remoteGlobalIDString = CEC6BC0021074EFB003ECE10;
 			remoteInfo = iMastNotifyService;
 		};
+		CED6077C21B3658F00F6232E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CED6077621B3658F00F6232E;
+			remoteInfo = iMastIntents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -227,6 +264,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */,
+				CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */,
 				CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */,
 				CE51AC051F40C06B00E43607 /* iMastTodayWidget.appex in Embed App Extensions */,
 			);
@@ -273,10 +311,13 @@
 		2D0AAAF651190DDB458E8AA3 /* Pods-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastNotifyService/Pods-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
+		7F6E3B30AB898E2E0A9CEC11 /* Pods_iMastIntents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastIntents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E97A0E2A958C920BEE3AD79 /* Pods-iMastShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A170AED211C0289085506BAB /* Pods-iMast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMast/Pods-iMast.debug.xcconfig"; sourceTree = "<group>"; };
 		A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B418FB7F7FDC7A1F80D52101 /* Pods-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		BCCF751817BD58EDB56B0C1A /* Pods-iMastTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableAVPlayerViewController.swift; sourceTree = "<group>"; };
 		CE099D022194315800A4BCCB /* UploadableMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableMedia.swift; sourceTree = "<group>"; };
@@ -367,6 +408,10 @@
 		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
+		CED6077721B3658F00F6232E /* iMastIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED6077921B3658F00F6232E /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		CED6077B21B3658F00F6232E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED6078221B365A500F6232E /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
 		CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonList.swift; sourceTree = "<group>"; };
@@ -384,6 +429,8 @@
 		CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreCellNode.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
+		CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootIntentHandler.swift; sourceTree = "<group>"; };
+		CEFE6B1021B508A600AF5E40 /* iMastIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastIntents.entitlements; sourceTree = "<group>"; };
 		DD2CB81438091DF9C6D9C858 /* Pods_iMastNotifyService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastNotifyService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F01DF6B7BFCD336446726F5F /* Pods-iMastNotifyService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastNotifyService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastNotifyService/Pods-iMastNotifyService.debug.xcconfig"; sourceTree = "<group>"; };
@@ -441,6 +488,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CED6077421B3658F00F6232E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A62A0ADFA4525112D858F6 /* Pods_iMastIntents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -459,6 +514,8 @@
 				F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */,
 				F01DF6B7BFCD336446726F5F /* Pods-iMastNotifyService.debug.xcconfig */,
 				2D0AAAF651190DDB458E8AA3 /* Pods-iMastNotifyService.release.xcconfig */,
+				B418FB7F7FDC7A1F80D52101 /* Pods-iMastIntents.debug.xcconfig */,
+				687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -475,6 +532,7 @@
 				CE78CFA51EE812AD008313EA /* iMastShare */,
 				CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */,
 				CEC6BC0221074EFB003ECE10 /* iMastNotifyService */,
+				CED6077821B3658F00F6232E /* iMastIntents */,
 				2AF352181EAB9C5500777C2E /* Products */,
 				125AADA9AE2BD3C447287A06 /* Pods */,
 				8076AB24184E0217BCEE6A2B /* Frameworks */,
@@ -490,6 +548,7 @@
 				CE78CFA41EE812AD008313EA /* iMastShare.appex */,
 				CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */,
 				CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */,
+				CED6077721B3658F00F6232E /* iMastIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,6 +608,7 @@
 				CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */,
 				F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */,
 				DD2CB81438091DF9C6D9C858 /* Pods_iMastNotifyService.framework */,
+				7F6E3B30AB898E2E0A9CEC11 /* Pods_iMastIntents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -606,6 +666,18 @@
 				CEC6BC0521074EFB003ECE10 /* Info.plist */,
 			);
 			path = iMastNotifyService;
+			sourceTree = "<group>";
+		};
+		CED6077821B3658F00F6232E /* iMastIntents */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE6B1021B508A600AF5E40 /* iMastIntents.entitlements */,
+				CED6077921B3658F00F6232E /* IntentHandler.swift */,
+				CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */,
+				CED6077B21B3658F00F6232E /* Info.plist */,
+				CED6078221B365A500F6232E /* Intents.intentdefinition */,
+			);
+			path = iMastIntents;
 			sourceTree = "<group>";
 		};
 		CEE254262004B593005FEB6F /* MastodonAPI */ = {
@@ -760,6 +832,7 @@
 				CE78CFAD1EE812AD008313EA /* PBXTargetDependency */,
 				CE51AC041F40C06B00E43607 /* PBXTargetDependency */,
 				CEC6BC0721074EFB003ECE10 /* PBXTargetDependency */,
+				CED6077D21B3658F00F6232E /* PBXTargetDependency */,
 			);
 			name = iMast;
 			productName = iMast;
@@ -859,13 +932,31 @@
 			productReference = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		CED6077621B3658F00F6232E /* iMastIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CED6078121B3658F00F6232E /* Build configuration list for PBXNativeTarget "iMastIntents" */;
+			buildPhases = (
+				25351F637A2789ED5417587B /* [CP] Check Pods Manifest.lock */,
+				CED6077321B3658F00F6232E /* Sources */,
+				CED6077421B3658F00F6232E /* Frameworks */,
+				CED6077521B3658F00F6232E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMastIntents;
+			productName = iMastIntents;
+			productReference = CED6077721B3658F00F6232E /* iMastIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2AF3520F1EAB9C5500777C2E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = rinsuki;
 				TargetAttributes = {
@@ -882,6 +973,9 @@
 								enabled = 0;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
 								enabled = 1;
 							};
 							com.apple.iCloud = {
@@ -933,6 +1027,16 @@
 							};
 						};
 					};
+					CED6077621B3658F00F6232E = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = 4XKKKM86RN;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 2AF352121EAB9C5500777C2E /* Build configuration list for PBXProject "iMast" */;
@@ -955,6 +1059,7 @@
 				CE78CFA31EE812AD008313EA /* iMastShare */,
 				CE51ABF81F40C06B00E43607 /* iMastTodayWidget */,
 				CEC6BC0021074EFB003ECE10 /* iMastNotifyService */,
+				CED6077621B3658F00F6232E /* iMastIntents */,
 			);
 		};
 /* End PBXProject section */
@@ -1022,6 +1127,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CED6077521B3658F00F6232E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1037,6 +1149,28 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-iMastUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		25351F637A2789ED5417587B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMastIntents-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1279,6 +1413,7 @@
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */,
+				CEFE6B0D21B5021E00AF5E40 /* Intents.intentdefinition in Sources */,
 				CE8C713B2153323D00D53BCF /* String+parseText2HTML.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
@@ -1363,6 +1498,7 @@
 				CE2C9806210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CE1002CE20065FF20041B636 /* MastodonNotification.swift in Sources */,
 				CEE254252004B57A005FEB6F /* MastodonAccount.swift in Sources */,
+				CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
@@ -1403,6 +1539,7 @@
 				CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
+				CEFE6AFC21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CEDEDCA12007F8E300CD2784 /* MastodonList.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,
@@ -1421,8 +1558,10 @@
 				CEC6BC0C21076D09003ECE10 /* GoodUtils.swift in Sources */,
 				CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */,
 				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
+				CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */,
 				CE2D2AFA210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */,
@@ -1432,6 +1571,36 @@
 				CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */,
 				CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CED6077321B3658F00F6232E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEFE6B0A21B5013200AF5E40 /* Alamofire.Request+responseDecodable.swift in Sources */,
+				CEFE6AFA21B5011700AF5E40 /* UserDefaultsDict.swift in Sources */,
+				CEFE6B0221B5012500AF5E40 /* MastodonApplication.swift in Sources */,
+				CEFE6B0321B5012500AF5E40 /* MastodonNotification.swift in Sources */,
+				CEFE6AFF21B5012500AF5E40 /* MastodonAccount.swift in Sources */,
+				CEFE6AF521B5010600AF5E40 /* MastodonModel.swift in Sources */,
+				CEFE6B0821B5012500AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
+				CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */,
+				CEFE6B0421B5012500AF5E40 /* MastodonAttachment.swift in Sources */,
+				CEFE6B0121B5012500AF5E40 /* MastodonPost.swift in Sources */,
+				CED6078321B365A500F6232E /* Intents.intentdefinition in Sources */,
+				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
+				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
+				CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */,
+				CEFE6B0521B5012500AF5E40 /* MastodonList.swift in Sources */,
+				CEFE6B0021B5012500AF5E40 /* MastodonAccountRelationship.swift in Sources */,
+				CEFE6B0721B5012500AF5E40 /* MastodonID.swift in Sources */,
+				CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */,
+				CEFE6AF621B5010600AF5E40 /* MastodonCursorWrapper.swift in Sources */,
+				CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */,
+				CEFE6AFB21B5011700AF5E40 /* EventListener.swift in Sources */,
+				CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */,
+				CEFE6B0621B5012500AF5E40 /* MastodonSearchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1462,6 +1631,11 @@
 			isa = PBXTargetDependency;
 			target = CEC6BC0021074EFB003ECE10 /* iMastNotifyService */;
 			targetProxy = CEC6BC0621074EFB003ECE10 /* PBXContainerItemProxy */;
+		};
+		CED6077D21B3658F00F6232E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CED6077621B3658F00F6232E /* iMastIntents */;
+			targetProxy = CED6077C21B3658F00F6232E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1926,6 +2100,61 @@
 			};
 			name = Release;
 		};
+		CED6077F21B3658F00F6232E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B418FB7F7FDC7A1F80D52101 /* Pods-iMastIntents.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastIntents/iMastIntents.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastIntents/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CED6078021B3658F00F6232E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = iMastIntents/iMastIntents.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastIntents/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1988,6 +2217,15 @@
 			buildConfigurations = (
 				CEC6BC0921074EFB003ECE10 /* Debug */,
 				CEC6BC0A21074EFB003ECE10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CED6078121B3658F00F6232E /* Build configuration list for PBXNativeTarget "iMastIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CED6077F21B3658F00F6232E /* Debug */,
+				CED6078021B3658F00F6232E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

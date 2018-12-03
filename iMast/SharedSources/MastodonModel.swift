@@ -261,9 +261,11 @@ public class MastodonUserToken {
         }
     }
     
-    static func initFromId(id: String) -> MastodonUserToken {
+    static func initFromId(id: String) -> MastodonUserToken? {
         return try! dbQueue.inDatabase { db in
-            let row = try Row.fetchOne(db, "SELECT * from user where id=? LIMIT 1", arguments: [id])!
+            guard let row = try Row.fetchOne(db, "SELECT * from user where id=? LIMIT 1", arguments: [id]) else {
+                return nil
+            }
             let approw = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
             let app = MastodonApp.initFromRow(row: approw)
             return initFromRow(row: row, app: app)
