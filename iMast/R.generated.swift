@@ -1314,7 +1314,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.userProfile` struct is generated, and contains static references to 15 localization keys.
+    /// This `R.string.userProfile` struct is generated, and contains static references to 16 localization keys.
     struct userProfile {
       /// ja translation: アクション
       /// 
@@ -1352,6 +1352,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ja, en
       static let actionsFollowRequestCancel = Rswift.StringResource(key: "actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォローリクエスト一覧
+      /// 
+      /// Locales: ja, en
+      static let actionsFollowRequestsList = Rswift.StringResource(key: "actions.followRequestsList", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       /// ja translation: フォロー解除
       /// 
       /// Locales: ja, en
@@ -1438,6 +1442,13 @@ struct R: Rswift.Validatable {
       /// Locales: ja, en
       static func actionsFollowRequestCancel(_: Void = ()) -> String {
         return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: フォローリクエスト一覧
+      /// 
+      /// Locales: ja, en
+      static func actionsFollowRequestsList(_: Void = ()) -> String {
+        return NSLocalizedString("actions.followRequestsList", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
       }
       
       /// ja translation: フォロー解除

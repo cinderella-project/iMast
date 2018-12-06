@@ -26,3 +26,5 @@
 
 "actions.block" = "Block";
 "actions.unblock" = "Unblock";
+
+"actions.followRequestsList" = "Pending follow requests";
