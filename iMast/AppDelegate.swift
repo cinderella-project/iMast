@@ -29,21 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        // とりあえずlaunchScreen出しとく
-        if let launchScreen = R.storyboard.launchScreen.instantiateInitialViewController() {
-            changeRootVC(launchScreen, animated: false)
-        }
-        
         let myAccount = MastodonUserToken.getLatestUsed()
         if let myAccount = myAccount {
+            changeRootVC(MainTabBarController(), animated: false)
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
                     if let vc = R.storyboard.login.instantiateInitialViewController() {
                         changeRootVC(vc, animated: false)
                     }
-                } else {
-                    changeRootVC(MainTabBarController(), animated: false)
                 }
             }
         } else {
