@@ -1316,10 +1316,6 @@ struct R: Rswift.Validatable {
     
     /// This `R.string.userProfile` struct is generated, and contains static references to 15 localization keys.
     struct userProfile {
-      /// ja translation: Profile
-      /// 
-      /// Locales: ja, en
-      static let title = Rswift.StringResource(key: "title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       /// ja translation: アクション
       /// 
       /// Locales: ja, en
@@ -1336,6 +1332,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ja, en
       static let actionsUnblock = Rswift.StringResource(key: "actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: プロフィール
+      /// 
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       /// ja translation: フォロワー
       /// 
       /// Locales: ja, en
@@ -1377,13 +1377,6 @@ struct R: Rswift.Validatable {
       /// Locales: ja, en
       static let cellsCreatedAtTitle = Rswift.StringResource(key: "cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       
-      /// ja translation: Profile
-      /// 
-      /// Locales: ja, en
-      static func title(_: Void = ()) -> String {
-        return NSLocalizedString("title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// ja translation: アクション
       /// 
       /// Locales: ja, en
@@ -1410,6 +1403,13 @@ struct R: Rswift.Validatable {
       /// Locales: ja, en
       static func actionsUnblock(_: Void = ()) -> String {
         return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ja translation: プロフィール
+      /// 
+      /// Locales: ja, en
+      static func title(_: Void = ()) -> String {
+        return NSLocalizedString("title", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
       }
       
       /// ja translation: フォロワー
