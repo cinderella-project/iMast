@@ -251,7 +251,7 @@ class UserProfileTopViewController: StableTableViewController {
                     })
                 }
             }
-            actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel))
+            actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsCancel(), style: UIAlertAction.Style.cancel))
             self.present(actionSheet, animated: true, completion: nil)
         })
     }

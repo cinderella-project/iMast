@@ -28,3 +28,5 @@
 "actions.unblock" = "ブロック解除";
 
 "actions.followRequestsList" = "フォローリクエスト一覧";
+
+"actions.cancel" = "キャンセル";
