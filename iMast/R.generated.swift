@@ -988,7 +988,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.newPost` struct is generated, and contains static references to 7 localization keys.
+    /// This `R.string.newPost` struct is generated, and contains static references to 8 localization keys.
     struct newPost {
       /// en translation:  0
       /// 
@@ -1014,6 +1014,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let vdu9C5JKTitle = Rswift.StringResource(key: "vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Siri
+      /// 
+      /// Locales: en, ja
+      static let nxvAb3PETitle = Rswift.StringResource(key: "NXV-Ab-3PE.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
       /// 
       /// Locales: en, ja
@@ -1059,6 +1063,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func vdu9C5JKTitle(_: Void = ()) -> String {
         return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Siri
+      /// 
+      /// Locales: en, ja
+      static func nxvAb3PETitle(_: Void = ()) -> String {
+        return NSLocalizedString("NXV-Ab-3PE.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
