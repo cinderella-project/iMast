@@ -31,4 +31,4 @@
 
 "actions.cancel" = "Cancel";
 
-"federatedUserWarning" = "Since this user is beloged to another instance, some informations may not be accurate.";
+"federatedUserWarning" = "Since this user is belonged to another instance, some informations may not be accurate.";
