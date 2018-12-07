@@ -30,3 +30,5 @@
 "actions.followRequestsList" = "Pending follow requests";
 
 "actions.cancel" = "Cancel";
+
+"federatedUserWarning" = "Since this user is belonged to another instance, some informations may not be accurate.";

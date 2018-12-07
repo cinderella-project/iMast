@@ -30,3 +30,5 @@
 "actions.followRequestsList" = "フォローリクエスト一覧";
 
 "actions.cancel" = "キャンセル";
+
+"federatedUserWarning" = "このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。";
