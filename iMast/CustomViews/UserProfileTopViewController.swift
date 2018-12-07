@@ -44,7 +44,6 @@ class UserProfileTopViewController: StableTableViewController {
         self.navigationItem.rightBarButtonItems = [
             self.moreButton,
         ]
-        self.tableView.separatorInset = .zero
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
@@ -66,6 +65,7 @@ class UserProfileTopViewController: StableTableViewController {
         }
         
         self.infoCell.load(user: user)
+        self.infoCell.separatorInset = .zero
         self.bioCell.load(user: user)
         
         let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -260,10 +260,6 @@ class UserProfileTopViewController: StableTableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        return -1
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
@@ -296,6 +292,13 @@ class UserProfileTopViewController: StableTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 2 && self.cells[2].count > 0 {
             return "外部サービスのアカウント"
+        }
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0, self.user?.acct.contains("@") ?? false {
+            return R.string.userProfile.federatedUserWarning()
         }
         return nil
     }

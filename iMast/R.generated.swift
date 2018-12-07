@@ -1325,8 +1325,12 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.userProfile` struct is generated, and contains static references to 17 localization keys.
+    /// This `R.string.userProfile` struct is generated, and contains static references to 18 localization keys.
     struct userProfile {
+      /// ja translation: このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
+      /// 
+      /// Locales: ja, en
+      static let federatedUserWarning = Rswift.StringResource(key: "federatedUserWarning", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
       /// ja translation: アクション
       /// 
       /// Locales: ja, en
@@ -1395,6 +1399,13 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ja, en
       static let cellsCreatedAtTitle = Rswift.StringResource(key: "cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      
+      /// ja translation: このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
+      /// 
+      /// Locales: ja, en
+      static func federatedUserWarning(_: Void = ()) -> String {
+        return NSLocalizedString("federatedUserWarning", tableName: "UserProfile", bundle: R.hostingBundle, comment: "")
+      }
       
       /// ja translation: アクション
       /// 
