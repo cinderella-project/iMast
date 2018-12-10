@@ -79,33 +79,40 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
         self.iconView.sd_setImage(with: URL(string: iconUrl))
         self.iconView.ignoreSmartInvert()
-        timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
+        var timeViewTexts: [NSAttributedString] = []
+        timeViewTexts.append(NSAttributedString(string: DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")))
         if Defaults[.visibilityEmoji] {
             switch post.visibility {
             case "unlisted":
-                timeView.text = "🔓" + (timeView.text ?? "")
+                timeViewTexts.append(NSAttributedString(string: "🔓a", attributes: [
+                    .foregroundColor: UIColor.black.withAlphaComponent(0.5),
+                ]))
             case "private":
-                timeView.text = "🔒" + (timeView.text ?? "")
+                timeViewTexts.append(NSAttributedString(string: "🔒"))
             case "direct":
-                timeView.text = "✉️" + (timeView.text ?? "")
+                timeViewTexts.append(NSAttributedString(string: "✉️"))
             default:
                 break
             }
         }
         
         if Defaults[.inReplyToEmoji] && post.inReplyToId != nil {
-            timeView.text = "💬" + (timeView.text ?? "")
+            timeViewTexts.append(NSAttributedString(string: "💬"))
         }
         
         if self.pinned {
-            timeView.text = "📌"+(timeView.text ?? "")
+            timeViewTexts.append(NSAttributedString(string: "📌"))
             let limit = Int(Defaults[.pinnedTootLinesLimit])
             if limit > 0 {
                 textView.textContainer.maximumNumberOfLines = Int(Defaults[.pinnedTootLinesLimit])
                 textView.textContainer.lineBreakMode = .byTruncatingTail
             }
         }
-        timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
+        let timeViewText = timeViewTexts.reversed().reduce(into: NSMutableAttributedString()) { (result, str) in
+            result.append(str)
+        }
+        timeViewText.addAttribute(.font, value: UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize])), range: NSRange(location: 0, length: timeViewText.length))
+        timeView.attributedText = timeViewText
         iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         iconHeightConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         // -- タッチ周り --
