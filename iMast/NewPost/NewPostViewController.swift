@@ -10,8 +10,6 @@ import UIKit
 import Hydra
 import SwiftyJSON
 import MediaPlayer
-import Intents
-import IntentsUI
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
     
@@ -272,14 +270,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentVC.popoverPresentationController?.permittedArrowDirections = .down
         contentVC.popoverPresentationController?.delegate = self
         self.present(contentVC, animated: true, completion: nil)
-    }
-
-    @IBAction func addToSiriButtonTapped(_ sender: Any) {
-        if #available(iOS 12.0, *) {
-        } else {
-            // Fallback on earlier versions
-            self.alert(title: "Sorry", message: "This feature requires iOS 12.0 or later.\nPlease upgrade your device.")
-        }
     }
 }
 
