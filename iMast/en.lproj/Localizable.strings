@@ -34,4 +34,4 @@
 "timeline.streaming.action.refresh" = "Refresh";
 "timeline.streaming.action.cancel" = "Cancel";
 
-"error.requiredNewerOS" = "This feature requires iOS %.1f or newer. Please update your device, or buy newer device.";
+"error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";

@@ -33,4 +33,4 @@
 "timeline.streaming.action.refresh" = "再取得";
 "timeline.streaming.action.cancel" = "キャンセル";
 
-"error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上がインストールされている必要があります。iOSの設定→ソフトウェアアップデートでアップデートするか、新しい端末をご利用ください。";
+"error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
