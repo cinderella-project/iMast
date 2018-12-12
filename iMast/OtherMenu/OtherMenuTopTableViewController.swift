@@ -33,8 +33,11 @@ class OtherMenuTopTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selected = indexPath[1]
         print(selected)
+        guard let cell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
 
-        switch tableView.cellForRow(at: indexPath)?.reuseIdentifier ?? "" {
+        switch cell.reuseIdentifier ?? "" {
         case "myProfile":
             MastodonUserToken.getLatestUsed()!.verifyCredentials().then { account in
                 print(account)
@@ -63,6 +66,15 @@ class OtherMenuTopTableViewController: UITableViewController {
              */
             let vc = SettingsViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case "siri_shortcuts":
+            if #available(iOS 12.0, *) {
+                let vc = CreateSiriShortcutsViewController()
+                vc.title = cell.textLabel?.text
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                // Fallback on earlier versions
+                self.alert(title: "エラー", message: R.string.localizable.errorRequiredNewerOS(12.0))
+            }
         default: // 何?
             break // いや知らんがなｗ
         }

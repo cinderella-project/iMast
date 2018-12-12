@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 def based_pods
   pod 'SwiftLint'
-  pod 'Alamofire', '~> 4.5'
+  pod 'Alamofire', '~> 4.8'
   pod 'GRDB.swift', '~> 3.5.0'
   pod 'SwiftyJSON'
   pod 'HydraAsync'

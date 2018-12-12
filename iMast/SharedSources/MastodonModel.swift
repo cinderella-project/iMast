@@ -232,7 +232,7 @@ public class MastodonApp {
     }
 }
 
-public class MastodonUserToken {
+public class MastodonUserToken: Equatable {
     var id: String?
     var token: String
     var app: MastodonApp
@@ -540,6 +540,9 @@ public class MastodonUserToken {
         }
     }
     
+    public static func == (lhs: MastodonUserToken, rhs: MastodonUserToken) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 var imageCache: [String: UIImage] = [:]

@@ -257,7 +257,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 4 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `OtherMenuAccountChangeCell`.
     static let otherMenuAccountChangeCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "OtherMenuAccountChangeCell")
@@ -267,6 +267,8 @@ struct R: Rswift.Validatable {
     static let myProfile: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "myProfile")
     /// Reuse identifier `settings`.
     static let settings: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "settings")
+    /// Reuse identifier `siri_shortcuts`.
+    static let siri_shortcuts: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "siri_shortcuts")
     
     fileprivate init() {}
   }
@@ -404,7 +406,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 6 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -490,6 +492,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: This feature requires iOS %.1f or newer. Please update your device, or buy newer device.
+      /// 
+      /// Locales: en, ja
+      static let errorRequiredNewerOS = Rswift.StringResource(key: "error.requiredNewerOS", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       
       /// en translation: @% boosted your toot
       /// 
@@ -636,6 +642,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: This feature requires iOS %.1f or newer. Please update your device, or buy newer device.
+      /// 
+      /// Locales: en, ja
+      static func errorRequiredNewerOS(_ value1: Double) -> String {
+        return String(format: NSLocalizedString("error.requiredNewerOS", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       fileprivate init() {}
@@ -1082,7 +1095,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.otherMenu` struct is generated, and contains static references to 16 localization keys.
+    /// This `R.string.otherMenu` struct is generated, and contains static references to 17 localization keys.
     struct otherMenu {
       /// en translation: Add
       /// 
@@ -1132,6 +1145,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let yHs8Q6OSText = Rswift.StringResource(key: "YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Siri Shortcuts
+      /// 
+      /// Locales: en, ja
+      static let qFQvOXDText = Rswift.StringResource(key: "2qF-Qv-oXD.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Subtitle
       /// 
       /// Locales: en, ja
@@ -1231,6 +1248,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func yHs8Q6OSText(_: Void = ()) -> String {
         return NSLocalizedString("YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Siri Shortcuts
+      /// 
+      /// Locales: en, ja
+      static func qFQvOXDText(_: Void = ()) -> String {
+        return NSLocalizedString("2qF-Qv-oXD.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Subtitle
