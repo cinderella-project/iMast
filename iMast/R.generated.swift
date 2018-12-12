@@ -492,7 +492,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: This feature requires iOS %.1f or newer. Please update your device, or buy newer device.
+      /// en translation: This feature requires iOS %.1f or higher.
       /// 
       /// Locales: en, ja
       static let errorRequiredNewerOS = Rswift.StringResource(key: "error.requiredNewerOS", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
@@ -644,7 +644,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: This feature requires iOS %.1f or newer. Please update your device, or buy newer device.
+      /// en translation: This feature requires iOS %.1f or higher.
       /// 
       /// Locales: en, ja
       static func errorRequiredNewerOS(_ value1: Double) -> String {
