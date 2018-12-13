@@ -406,7 +406,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 6 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -440,6 +440,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionDisconnect = Rswift.StringResource(key: "timeline.streaming.action.disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Error
+      /// 
+      /// Locales: en, ja
+      static let errorTitle = Rswift.StringResource(key: "error.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Fetch failed
       /// 
       /// Locales: en, ja
@@ -551,6 +555,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingActionDisconnect(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.action.disconnect", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Error
+      /// 
+      /// Locales: en, ja
+      static func errorTitle(_: Void = ()) -> String {
+        return NSLocalizedString("error.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Fetch failed

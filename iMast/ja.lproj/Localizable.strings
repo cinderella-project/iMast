@@ -33,4 +33,5 @@
 "timeline.streaming.action.refresh" = "再取得";
 "timeline.streaming.action.cancel" = "キャンセル";
 
+"error.title" = "エラー";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
