@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0FB917C9C633573D4A18C537 /* Pods_iMastTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5316284C2500771FE522C89 /* Pods_iMastTodayWidget.framework */; };
-		12016E1E6EA21B23C8624547 /* Pods_iMast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */; };
+		12016E1E6EA21B23C8624547 /* Pods_iMast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */; };
 		2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */; };
 		2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */; };
@@ -81,6 +81,7 @@
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
 		CE51ABFB1F40C06B00E43607 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */; };
 		CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */; };
 		CE51AC011F40C06B00E43607 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE51ABFF1F40C06B00E43607 /* MainInterface.storyboard */; };
@@ -100,6 +101,8 @@
 		CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */; };
 		CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */; };
 		CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */; };
+		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
+		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -155,7 +158,6 @@
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
 		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CED6078321B365A500F6232E /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CED6078221B365A500F6232E /* Intents.intentdefinition */; };
 		CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
@@ -205,7 +207,6 @@
 		CEFE6B0A21B5013200AF5E40 /* Alamofire.Request+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */; };
 		CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
-		CEFE6B0D21B5021E00AF5E40 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CED6078221B365A500F6232E /* Intents.intentdefinition */; };
 		CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */; };
 		D0A62A0ADFA4525112D858F6 /* Pods_iMastIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6E3B30AB898E2E0A9CEC11 /* Pods_iMastIntents.framework */; };
 		F9B465888FFACAB87FA870B5 /* Pods_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A401B8CD069466B90850AE6D /* Pods_iMastShare.framework */; };
@@ -342,6 +343,7 @@
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
+		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +366,10 @@
 		CE6EA6DC217BF54800809A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
 		CE6EA6E0217BF81100809A65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Login.strings; sourceTree = "<group>"; };
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
+		CE75AE1C21C0EF2400BA3C9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
+		CE75AE2021C0EF3100BA3C9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
+		CE75AE2221C0EF3200BA3C9F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Intents.strings; sourceTree = "<group>"; };
+		CE75AE2321C1030400BA3C9F /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		CE78CFA41EE812AD008313EA /* iMastShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE78CFA61EE812AD008313EA /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -411,7 +417,6 @@
 		CED6077721B3658F00F6232E /* iMastIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED6077921B3658F00F6232E /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		CED6077B21B3658F00F6232E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CED6078221B365A500F6232E /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
 		CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonList.swift; sourceTree = "<group>"; };
@@ -601,6 +606,7 @@
 		8076AB24184E0217BCEE6A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE75AE2321C1030400BA3C9F /* Intents.framework */,
 				4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */,
 				3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */,
 				233F93890AFA8A380B3A3DC0 /* Pods_iMastUITests.framework */,
@@ -675,7 +681,7 @@
 				CED6077921B3658F00F6232E /* IntentHandler.swift */,
 				CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */,
 				CED6077B21B3658F00F6232E /* Info.plist */,
-				CED6078221B365A500F6232E /* Intents.intentdefinition */,
+				CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */,
 			);
 			path = iMastIntents;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 			children = (
 				CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */,
 				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
+				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
 				CE367DFC2186F97F0068EBE7 /* Search.strings */,
 				2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */,
@@ -1413,7 +1420,7 @@
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */,
-				CEFE6B0D21B5021E00AF5E40 /* Intents.intentdefinition in Sources */,
+				CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CE8C713B2153323D00D53BCF /* String+parseText2HTML.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
@@ -1459,6 +1466,7 @@
 				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
+				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
@@ -1588,7 +1596,7 @@
 				CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEFE6B0421B5012500AF5E40 /* MastodonAttachment.swift in Sources */,
 				CEFE6B0121B5012500AF5E40 /* MastodonPost.swift in Sources */,
-				CED6078321B365A500F6232E /* Intents.intentdefinition in Sources */,
+				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
 				CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */,
@@ -1673,6 +1681,16 @@
 				CE51AC001F40C06B00E43607 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE75AE1C21C0EF2400BA3C9F /* Base */,
+				CE75AE2021C0EF3100BA3C9F /* en */,
+				CE75AE2221C0EF3200BA3C9F /* ja */,
+			);
+			name = Intents.intentdefinition;
 			sourceTree = "<group>";
 		};
 		CE78CFA81EE812AD008313EA /* MainInterface.storyboard */ = {

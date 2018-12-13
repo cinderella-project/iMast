@@ -10,8 +10,6 @@ import UIKit
 import Hydra
 import SwiftyJSON
 import MediaPlayer
-import Intents
-import IntentsUI
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
     
@@ -273,43 +271,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentVC.popoverPresentationController?.delegate = self
         self.present(contentVC, animated: true, completion: nil)
     }
-
-    @IBAction func addToSiriButtonTapped(_ sender: Any) {
-        if #available(iOS 12.0, *) {
-            let intent = TootIntent()
-            guard let userToken = MastodonUserToken.getLatestUsed() else {
-                return
-            }
-            intent.accountId = userToken.id
-            intent.accountScreenName = userToken.screenName
-            intent.accountHostName = userToken.app.instance.hostName
-            intent.text = self.textInput.text
-            if let shortcut = INShortcut(intent: intent) {
-                let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
-                viewController.modalPresentationStyle = .formSheet
-                viewController.delegate = self
-                self.present(viewController, animated: true, completion: nil)
-            }
-        } else {
-            // Fallback on earlier versions
-            self.alert(title: "Sorry", message: "This feature requires iOS 12.0 or later.\nPlease upgrade your device.")
-        }
-    }
 }
 
 extension NewPostViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
-    }
-}
-
-@available(iOS 12.0, *)
-extension NewPostViewController: INUIAddVoiceShortcutViewControllerDelegate {
-    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }

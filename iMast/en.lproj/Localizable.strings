@@ -33,3 +33,5 @@
 "timeline.streaming.action.disconnect" = "Disconnect";
 "timeline.streaming.action.refresh" = "Refresh";
 "timeline.streaming.action.cancel" = "Cancel";
+
+"error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
