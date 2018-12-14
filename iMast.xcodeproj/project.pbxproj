@@ -130,7 +130,6 @@
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
 		CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
-		CEA54E382171EAB900DB7AD3 /* OtherMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
@@ -380,9 +379,6 @@
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
-		CE845D232172236300AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OtherMenu.strings; sourceTree = "<group>"; };
-		CE845D24217223A400AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OtherMenu.storyboard; sourceTree = "<group>"; };
-		CE845D25217223A900AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OtherMenu.strings; sourceTree = "<group>"; };
 		CE845D272172504A00AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewPost.storyboard; sourceTree = "<group>"; };
 		CE845D2A2172504D00AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE845D2C2172505000AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewPost.strings; sourceTree = "<group>"; };
@@ -749,7 +745,6 @@
 		CEE357191FF519E000675DFC /* OtherMenu */ = {
 			isa = PBXGroup;
 			children = (
-				CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */,
 				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
 				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
@@ -1092,7 +1087,6 @@
 				2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */,
 				2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */,
 				CE87300B216884360038D964 /* Localizable.strings in Resources */,
-				CEA54E382171EAB900DB7AD3 /* OtherMenu.storyboard in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1718,16 +1712,6 @@
 				CE87300F2168843F0038D964 /* ja */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE845D232172236300AF35B4 /* en */,
-				CE845D24217223A400AF35B4 /* Base */,
-				CE845D25217223A900AF35B4 /* ja */,
-			);
-			name = OtherMenu.storyboard;
 			sourceTree = "<group>";
 		};
 		CECB175A21ACABE800D57F65 /* UserProfile.strings */ = {
