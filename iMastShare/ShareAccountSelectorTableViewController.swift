@@ -50,7 +50,7 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         let userToken = userTokens[indexPath[1]]
         cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         cell.textLabel!.text = userToken.name
-        cell.detailTextLabel!.text = "@\((userToken.screenName ?? "--unknown--"))@"+userToken.app.instance.hostName
+        cell.detailTextLabel!.text = "@" + userToken.acct
         if userToken.id == self.nowUserTokenId {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }

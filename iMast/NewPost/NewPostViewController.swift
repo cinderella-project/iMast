@@ -61,7 +61,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.nowAccountLabel.text = (MastodonUserToken.getLatestUsed()?.screenName)! + "@" + (MastodonUserToken.getLatestUsed()?.app.instance.hostName)!
+        self.nowAccountLabel.text = MastodonUserToken.getLatestUsed()!.acct
         if let replyToPost = replyToPost {
             self.nowAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.pregReplace(pattern: "<.+?>", with: ""))"
             var replyAccounts = [replyToPost.account.acct]

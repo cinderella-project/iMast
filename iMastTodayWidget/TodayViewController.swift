@@ -56,7 +56,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             postButton.isEnabled = false
         }
         let userToken = MastodonUserToken.getLatestUsed()!
-        userScreenNameView.text = "@" + userToken.screenName! + "@" + userToken.app.instance.hostName
+        userScreenNameView.text = "@" + userToken.acct
         if let avatarUrl = userToken.avatarUrl {
             self.userIconView.sd_setImage(with: URL(string: avatarUrl))
             self.userIconView.ignoreSmartInvert()

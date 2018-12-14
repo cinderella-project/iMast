@@ -41,7 +41,7 @@ class ProfileCardViewController: UIViewController {
             "inputImage": alphaInvertQr!.outputImage!,
         ])
         userNameLabel.text = user.name != "" ? user.name : user.screenName
-        userScreenNameLabel.text = "@" + user.screenName + "@" + MastodonUserToken.getLatestUsed()!.app.instance.hostName
+        userScreenNameLabel.text = "@" + user.acct
         barcodeImageView.image = UIImage(ciImage: alphaQr!.outputImage!.transformed(by: CGAffineTransform(scaleX: 10, y: 10)))
     }
 

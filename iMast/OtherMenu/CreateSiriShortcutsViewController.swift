@@ -26,7 +26,7 @@ class CreateSiriShortcutsViewController: FormViewController {
                 guard let userToken = userToken else {
                     return nil
                 }
-                return "\(userToken.screenName ?? "")@\(userToken.app.instance.hostName) (\(userToken.app.name))"
+                return "\(userToken.acct) (\(userToken.app.name))"
             }
             row.value = row.options?.first
         }.onPresent { (form, vc) in
@@ -39,7 +39,7 @@ class CreateSiriShortcutsViewController: FormViewController {
                     return
                 }
                 cell.textLabel?.text = userToken.name
-                cell.detailTextLabel?.text = "\(userToken.screenName ?? "")@\(userToken.app.instance.hostName) (\(userToken.app.name))"
+                cell.detailTextLabel?.text = "\(userToken.acct) (\(userToken.app.name))"
                 if let url = URL(string: userToken.avatarUrl ?? "") {
                     cell.imageView?.sd_setImage(with: url, completed: { (_, _, _, _) in
                         cell.setNeedsLayout()

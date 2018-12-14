@@ -99,7 +99,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         let userToken = userTokens[indexPath[1]]
                 
         cell.textLabel!.text = userToken.name   
-        cell.detailTextLabel!.text = String.init(format: "@%@@%@ (%@)", userToken.screenName ?? "--unknown--", userToken.app.instance.hostName, userToken.app.name)
+        cell.detailTextLabel!.text = "@\(userToken.acct) (\(userToken.app.name))"
         if indexPath[1] == 0 {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
@@ -142,7 +142,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
             tableView.isEditing = false
             let userToken = self.userTokens[indexPath[1]]
-            let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n"+String.init(format: "@%@@%@", userToken.screenName ?? "--unknown--", userToken.app.instance.hostName), preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n@\(userToken.acct)", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "削除", style: .destructive) { _ in
                 if userToken.delete() {
                     self.userTokens = MastodonUserToken.getAllUserTokens()

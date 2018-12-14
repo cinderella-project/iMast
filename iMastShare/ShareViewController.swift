@@ -18,7 +18,7 @@ class ShareViewController: SLComposeServiceViewController {
     var isMastodonLogged = false
     var userToken = MastodonUserToken.getLatestUsed() {
         didSet {
-            accountConfig.value = self.userToken!.screenName!+"@"+self.userToken!.app.instance.hostName
+            accountConfig.value = self.userToken!.acct
         }
     }
     var accountConfig = SLComposeSheetConfigurationItem()!
@@ -42,7 +42,7 @@ class ShareViewController: SLComposeServiceViewController {
             return
         }
         accountConfig.title = "アカウント"
-        accountConfig.value = self.userToken!.screenName!+"@"+self.userToken!.app.instance.hostName
+        accountConfig.value = self.userToken!.acct
         accountConfig.tapHandler = {
             let VC = ShareAccountSelectorTableViewController()
             VC.nowUserTokenId = self.userToken!.id!

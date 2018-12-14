@@ -240,6 +240,10 @@ public class MastodonUserToken: Equatable {
     var screenName: String?
     var avatarUrl: String?
     
+    var acct: String {
+        return "\(self.screenName ?? "")@\(self.app.instance.hostName)"
+    }
+    
     init(app: MastodonApp, token: String) {
         self.app = app
         self.token = token
@@ -393,7 +397,7 @@ public class MastodonUserToken: Equatable {
     static var verifyCredentialsCache: [String: JSON] = [:]
     
     func getUserInfo(cache: Bool = false) -> Promise<JSON> {
-        if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] {
+        if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache[self.acct] {
             return Promise.init(resolved: cacheObj)
         }
         return self.get("accounts/verify_credentials").then { (response) -> Promise<JSON> in
@@ -407,7 +411,7 @@ public class MastodonUserToken: Equatable {
                 self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
             }
             if response["error"].isEmpty {
-                MastodonUserToken.verifyCredentialsCache["\(self.screenName ?? "")@\(self.app.instance.hostName)"] = response
+                MastodonUserToken.verifyCredentialsCache[self.acct] = response
             }
             return Promise.init(resolved: response)
         }
