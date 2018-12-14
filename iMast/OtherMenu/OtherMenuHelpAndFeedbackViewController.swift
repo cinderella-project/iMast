@@ -29,6 +29,8 @@ class OtherMenuHelpAndFeedbackViewController: FormViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.title = R.string.localizable.tabsOtherHelpAndFeedback()
+        
         let section = Section()
         section <<< ButtonRow { row in
             row.title = "ヘルプ"

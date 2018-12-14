@@ -388,7 +388,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 5 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -418,6 +418,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingStatusConnected = Rswift.StringResource(key: "timeline.streaming.status.connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Current: @%@
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSwitchActiveAccountSubTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.subTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
@@ -430,6 +434,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellReadmoreFetchError = Rswift.StringResource(key: "tabs.notifications.cell.readmore.fetchError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherHelpAndFeedback = Rswift.StringResource(key: "tabs.other.helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, ja
@@ -442,10 +450,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineShortTitle = Rswift.StringResource(key: "tabs.localTimeline.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherLists = Rswift.StringResource(key: "tabs.other.lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherMyProfile = Rswift.StringResource(key: "tabs.other.myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
@@ -474,6 +490,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSettings = Rswift.StringResource(key: "tabs.other.settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -482,6 +502,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSwitchActiveAccountTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: This feature requires Mastodon %@ or higher.
+      /// 
+      /// Locales: en, ja
+      static let errorRequiredNewerMastodon = Rswift.StringResource(key: "error.requiredNewerMastodon", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: This feature requires iOS %.1f or higher.
       /// 
       /// Locales: en, ja
@@ -536,6 +564,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.status.connected", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Current: @%@
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSwitchActiveAccountSubTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("tabs.other.switchActiveAccount.subTitle", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
@@ -555,6 +590,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func tabsNotificationsCellReadmoreFetchError(_: Void = ()) -> String {
         return NSLocalizedString("tabs.notifications.cell.readmore.fetchError", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherHelpAndFeedback(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.helpAndFeedback", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home
@@ -578,11 +620,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.localTimeline.shortTitle", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherLists(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.lists", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
       static func tabsLocalTimelineTitle(_: Void = ()) -> String {
         return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherMyProfile(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.myProfile", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Not connected
@@ -634,6 +690,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSettings(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.settings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -646,6 +709,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSwitchActiveAccountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.switchActiveAccount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: This feature requires Mastodon %@ or higher.
+      /// 
+      /// Locales: en, ja
+      static func errorRequiredNewerMastodon(_ value1: String) -> String {
+        return String(format: NSLocalizedString("error.requiredNewerMastodon", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: This feature requires iOS %.1f or higher.

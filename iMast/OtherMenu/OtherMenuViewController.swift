@@ -35,17 +35,17 @@ class OtherMenuViewController: FormViewController {
         
         let section = Section()
         section <<< ButtonRow { row in
-            row.title = "アカウント変更"
+            row.title = R.string.localizable.tabsOtherSwitchActiveAccountTitle()
             row.cellStyle = .subtitle
             row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
         }.cellSetup { cell, row in
             cell.height = { 44 }
         }.cellUpdate { (cell, row) in
-            cell.detailTextLabel?.text = "現在のアカウント: @\(self.nowAccount?.acct ?? "")"
+            cell.detailTextLabel?.text = R.string.localizable.tabsOtherSwitchActiveAccountSubTitle(self.nowAccount?.acct ?? "")
         }
         
         section <<< ButtonRow { row in
-            row.title = "自分のプロフィール"
+            row.title = R.string.localizable.tabsOtherMyProfile()
         }.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
@@ -61,7 +61,7 @@ class OtherMenuViewController: FormViewController {
         }
         
         section <<< ButtonRow { row in
-            row.title = "リスト"
+            row.title = R.string.localizable.tabsOtherLists()
         }.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
@@ -70,11 +70,11 @@ class OtherMenuViewController: FormViewController {
             // TODO: ここの下限バージョンの処理をあとで共通化する
             MastodonUserToken.getLatestUsed()!.getIntVersion().then { version in
                 if version < MastodonVersionStringToInt("2.1.0rc1") {
-                    self.alert(title: "エラー", message: "この機能はMastodonインスタンスのバージョンが2.1.0rc1以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。")
+                    self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("2.1.0rc1"))
                     return
                 }
                 MastodonUserToken.getLatestUsed()!.lists().then({ lists in
-                    let vc = OtherMenuListsTableViewController()
+                    let vc = ListsTableViewController()
                     vc.lists = lists
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
@@ -82,7 +82,7 @@ class OtherMenuViewController: FormViewController {
         }
         
         section <<< ButtonRow { row in
-            row.title = "設定"
+            row.title = R.string.localizable.tabsOtherSettings()
             row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
         }
         
@@ -99,12 +99,12 @@ class OtherMenuViewController: FormViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 // Fallback on earlier versions
-                self.alert(title: "エラー", message: R.string.localizable.errorRequiredNewerOS(12.0))
+                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerOS(12.0))
             }
         }
         
         section <<< ButtonRow { row in
-            row.title = "ヘルプ / Feedback"
+            row.title = R.string.localizable.tabsOtherHelpAndFeedback()
             row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuHelpAndFeedbackViewController() }), onDismiss: nil)
         }
         
