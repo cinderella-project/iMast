@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class OtherMenuListsTableViewController: UITableViewController {
+class ListsTableViewController: UITableViewController {
 
     var lists: [MastodonList] = []
     

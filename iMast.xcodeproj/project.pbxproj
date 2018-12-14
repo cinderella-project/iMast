@@ -107,7 +107,7 @@
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
-		CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */; };
+		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
@@ -374,7 +374,7 @@
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
-		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
+		CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
@@ -755,7 +755,7 @@
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
 				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */,
-				CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */,
+				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
 			);
@@ -1401,7 +1401,7 @@
 				CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */,
 				CE2D2AF8210FCAAD003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
-				CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */,
+				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
 				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
