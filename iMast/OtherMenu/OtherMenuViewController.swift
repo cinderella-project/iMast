@@ -9,6 +9,7 @@
 import UIKit
 import Eureka
 import SafariServices
+import ActionClosurable
 
 class OtherMenuViewController: FormViewController {
 
@@ -109,6 +110,10 @@ class OtherMenuViewController: FormViewController {
         }
         
         self.form +++ section
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search) { (item) in
+            self.navigationController?.pushViewController(SearchViewController(), animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
