@@ -33,5 +33,14 @@
 "timeline.streaming.action.refresh" = "再取得";
 "timeline.streaming.action.cancel" = "キャンセル";
 
+"tabs.other.title" = "その他";
+"tabs.other.switchActiveAccount.title" = "アカウントを変更";
+"tabs.other.switchActiveAccount.subTitle" = "現在のアカウント: @%@";
+"tabs.other.myProfile" = "自分のプロフィール";
+"tabs.other.lists" = "リスト";
+"tabs.other.settings" = "設定";
+"tabs.other.helpAndFeedback" = "ヘルプ / Feedback";
+
 "error.title" = "エラー";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
+"error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";

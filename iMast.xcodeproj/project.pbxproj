@@ -17,7 +17,7 @@
 		2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */; };
 		2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */; };
 		2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
-		2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */; };
+		2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuViewController.swift */; };
 		2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */; };
 		2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */; };
 		2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
@@ -76,7 +76,7 @@
 		CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE367DFC2186F97F0068EBE7 /* Search.strings */; };
-		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */; };
+		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
@@ -107,7 +107,7 @@
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
-		CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */; };
+		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
@@ -130,7 +130,6 @@
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
 		CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
-		CEA54E382171EAB900DB7AD3 /* OtherMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
@@ -288,7 +287,7 @@
 		2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountProgressViewController.swift; sourceTree = "<group>"; };
 		2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSelectLoginMethodViewController.swift; sourceTree = "<group>"; };
 		2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonModel.swift; sourceTree = "<group>"; };
-		2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuTopTableViewController.swift; sourceTree = "<group>"; };
+		2A533F791ECD08130062630F /* OtherMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuViewController.swift; sourceTree = "<group>"; };
 		2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeActiveAccountViewController.swift; sourceTree = "<group>"; };
 		2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountLoginViewController.swift; sourceTree = "<group>"; };
 		2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodUtils.swift; sourceTree = "<group>"; };
@@ -340,7 +339,7 @@
 		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
 		CE367DFB2186F97F0068EBE7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Search.strings; sourceTree = "<group>"; };
 		CE367DFD2186F9800068EBE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
-		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
+		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
@@ -375,14 +374,11 @@
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
-		CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuListsTableViewController.swift; sourceTree = "<group>"; };
+		CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
-		CE845D232172236300AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OtherMenu.strings; sourceTree = "<group>"; };
-		CE845D24217223A400AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OtherMenu.storyboard; sourceTree = "<group>"; };
-		CE845D25217223A900AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OtherMenu.strings; sourceTree = "<group>"; };
 		CE845D272172504A00AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewPost.storyboard; sourceTree = "<group>"; };
 		CE845D2A2172504D00AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE845D2C2172505000AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewPost.strings; sourceTree = "<group>"; };
@@ -749,8 +745,7 @@
 		CEE357191FF519E000675DFC /* OtherMenu */ = {
 			isa = PBXGroup;
 			children = (
-				CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */,
-				2A533F791ECD08130062630F /* OtherMenuTopTableViewController.swift */,
+				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
 				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
 				CE367DFC2186F97F0068EBE7 /* Search.strings */,
@@ -759,8 +754,8 @@
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
-				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift */,
-				CE7ABB411FC5C1610087B387 /* OtherMenuListsTableViewController.swift */,
+				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */,
+				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
 			);
@@ -1092,7 +1087,6 @@
 				2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */,
 				2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */,
 				CE87300B216884360038D964 /* Localizable.strings in Resources */,
-				CEA54E382171EAB900DB7AD3 /* OtherMenu.storyboard in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1407,9 +1401,9 @@
 				CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */,
 				CE2D2AF8210FCAAD003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
-				CE7ABB421FC5C1610087B387 /* OtherMenuListsTableViewController.swift in Sources */,
+				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
-				2A533F7A1ECD08130062630F /* OtherMenuTopTableViewController.swift in Sources */,
+				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
 				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
 				CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
@@ -1436,7 +1430,7 @@
 				CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */,
 				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
-				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackTableViewController.swift in Sources */,
+				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,
 				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -1718,16 +1712,6 @@
 				CE87300F2168843F0038D964 /* ja */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		CEA54E3A2171EAB900DB7AD3 /* OtherMenu.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE845D232172236300AF35B4 /* en */,
-				CE845D24217223A400AF35B4 /* Base */,
-				CE845D25217223A900AF35B4 /* ja */,
-			);
-			name = OtherMenu.storyboard;
 			sourceTree = "<group>";
 		};
 		CECB175A21ACABE800D57F65 /* UserProfile.strings */ = {

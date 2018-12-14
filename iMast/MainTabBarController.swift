@@ -27,12 +27,17 @@ class MainTabBarController: UITabBarController {
         ltlVC.tabBarItem.image = R.image.peopleOutline()
         ltlVC.tabBarItem.selectedImage = R.image.people()
         ltlVC.tabBarItem.title = R.string.localizable.tabsLocalTimelineShortTitle()
+
+        let otherVC = UINavigationController(rootViewController: OtherMenuViewController())
+        otherVC.tabBarItem.image = R.image.moreOutline()
+        otherVC.tabBarItem.selectedImage = R.image.more()
+        otherVC.tabBarItem.title = R.string.localizable.tabsOtherTitle()
         
         self.setViewControllers([
             homeVC,
             notifyVC,
             ltlVC,
-            R.storyboard.otherMenu.instantiateInitialViewController()!,
+            otherVC,
         ], animated: false)
         
         let longPressRecognizer = UILongPressGestureRecognizer { _ in

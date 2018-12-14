@@ -1,26 +1,34 @@
 //
-//  OtherMenuHelpAndFeedbackTableViewController.swift
+//  OtherMenuListsTableViewController.swift
 //  iMast
 //
-//  Created by rinsuki on 2017/10/05.
+//  Created by user on 2017/11/22.
 //  Copyright © 2017年 rinsuki. All rights reserved.
 //
 
 import UIKit
-import SafariServices
-import Eureka
-import Alamofire
+import SwiftyJSON
 
-class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
+class ListsTableViewController: UITableViewController {
 
+    var lists: [MastodonList] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "リスト"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addList)),
+        ]
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshList), for: .valueChanged)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,45 +36,62 @@ class OtherMenuHelpAndFeedbackTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selected = indexPath[1]
-        switch selected {
-        case 0:
-            let safariVC = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/")!)
-            present(safariVC, animated: true, completion: nil)
-        case 1:
-            navigationController?.pushViewController(FeedbackViewController(), animated: true)
-        case 2:
-            let safariVC = SFSafariViewController(url: URL(string: "https://github.com/cinderella-project/iMast/issues")!)
-            present(safariVC, animated: true, completion: nil)
-        default:
-            print("凛「ここ、どこ...?プロデューサーは...?」")
+    @objc func addList() {
+        let alert = UIAlertController(title: "リストの作成", message: "リスト名を決めてください", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "リスト名"
+        }
+        alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
+            MastodonUserToken.getLatestUsed()!.list(title: alert.textFields![0].text ?? "").then { list in
+                let vc = ListTimeLineTableViewController()
+                vc.list = list
+                vc.title = list.title
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.refreshList()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func refreshList() {
+        MastodonUserToken.getLatestUsed()!.lists().then { lists in
+            self.lists = lists
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }
     }
 
     // MARK: - Table view data source
 
-    /*
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.lists.count
     }
- */
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = UITableViewCell()
 
         // Configure the cell...
+        let list = self.lists[indexPath[1]]
+        cell.textLabel?.text = list.title
+        cell.accessoryType = .disclosureIndicator
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let list = self.lists[indexPath[1]]
+        let vc = ListTimeLineTableViewController()
+        vc.list = list
+        vc.title = list.title
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

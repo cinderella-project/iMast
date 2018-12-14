@@ -34,5 +34,14 @@
 "timeline.streaming.action.refresh" = "Refresh";
 "timeline.streaming.action.cancel" = "Cancel";
 
+"tabs.other.title" = "Others";
+"tabs.other.switchActiveAccount.title" = "Switch active account";
+"tabs.other.switchActiveAccount.subTitle" = "Current: @%@";
+"tabs.other.myProfile" = "My Profile";
+"tabs.other.lists" = "Lists";
+"tabs.other.settings" = "Settings";
+"tabs.other.helpAndFeedback" = "Help / Feedback";
+
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
+"error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";

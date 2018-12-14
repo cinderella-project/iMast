@@ -257,19 +257,8 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 5 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
   struct reuseIdentifier {
-    /// Reuse identifier `OtherMenuAccountChangeCell`.
-    static let otherMenuAccountChangeCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "OtherMenuAccountChangeCell")
-    /// Reuse identifier `list`.
-    static let list: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "list")
-    /// Reuse identifier `myProfile`.
-    static let myProfile: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "myProfile")
-    /// Reuse identifier `settings`.
-    static let settings: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "settings")
-    /// Reuse identifier `siri_shortcuts`.
-    static let siri_shortcuts: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "siri_shortcuts")
-    
     fileprivate init() {}
   }
   
@@ -356,7 +345,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
@@ -366,8 +355,6 @@ struct R: Rswift.Validatable {
     static let mastodonPostDetail = _R.storyboard.mastodonPostDetail()
     /// Storyboard `NewPost`.
     static let newPost = _R.storyboard.newPost()
-    /// Storyboard `OtherMenu`.
-    static let otherMenu = _R.storyboard.otherMenu()
     /// Storyboard `ProfileCard`.
     static let profileCard = _R.storyboard.profileCard()
     
@@ -391,11 +378,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIStoryboard(resource: R.storyboard.newPost)
     }
     
-    /// `UIStoryboard(name: "OtherMenu", bundle: ...)`
-    static func otherMenu(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.otherMenu)
-    }
-    
     /// `UIStoryboard(name: "ProfileCard", bundle: ...)`
     static func profileCard(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.profileCard)
@@ -404,9 +386,9 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 6 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 5 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -436,6 +418,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingStatusConnected = Rswift.StringResource(key: "timeline.streaming.status.connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Current: @%@
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSwitchActiveAccountSubTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.subTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
@@ -448,6 +434,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsCellReadmoreFetchError = Rswift.StringResource(key: "tabs.notifications.cell.readmore.fetchError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherHelpAndFeedback = Rswift.StringResource(key: "tabs.other.helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, ja
@@ -460,10 +450,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineShortTitle = Rswift.StringResource(key: "tabs.localTimeline.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherLists = Rswift.StringResource(key: "tabs.other.lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
       static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherMyProfile = Rswift.StringResource(key: "tabs.other.myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
@@ -476,6 +474,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsTitle = Rswift.StringResource(key: "tabs.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherTitle = Rswift.StringResource(key: "tabs.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Post
       /// 
       /// Locales: en, ja
@@ -488,6 +490,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSettings = Rswift.StringResource(key: "tabs.other.settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -496,6 +502,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherSwitchActiveAccountTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: This feature requires Mastodon %@ or higher.
+      /// 
+      /// Locales: en, ja
+      static let errorRequiredNewerMastodon = Rswift.StringResource(key: "error.requiredNewerMastodon", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: This feature requires iOS %.1f or higher.
       /// 
       /// Locales: en, ja
@@ -550,6 +564,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.status.connected", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Current: @%@
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSwitchActiveAccountSubTitle(_ value1: String) -> String {
+        return String(format: NSLocalizedString("tabs.other.switchActiveAccount.subTitle", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
@@ -569,6 +590,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func tabsNotificationsCellReadmoreFetchError(_: Void = ()) -> String {
         return NSLocalizedString("tabs.notifications.cell.readmore.fetchError", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Help / Feedback
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherHelpAndFeedback(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.helpAndFeedback", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home
@@ -592,11 +620,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.localTimeline.shortTitle", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Lists
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherLists(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.lists", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
       static func tabsLocalTimelineTitle(_: Void = ()) -> String {
         return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My Profile
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherMyProfile(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.myProfile", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Not connected
@@ -620,6 +662,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("tabs.notifications.title", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Post
       /// 
       /// Locales: en, ja
@@ -641,6 +690,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Settings
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSettings(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.settings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Status: %
       /// 
       /// Locales: en, ja
@@ -653,6 +709,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func timelineStreamingTitle(_: Void = ()) -> String {
         return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Switch active account
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherSwitchActiveAccountTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.switchActiveAccount.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: This feature requires Mastodon %@ or higher.
+      /// 
+      /// Locales: en, ja
+      static func errorRequiredNewerMastodon(_ value1: String) -> String {
+        return String(format: NSLocalizedString("error.requiredNewerMastodon", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: This feature requires iOS %.1f or higher.
@@ -1106,199 +1176,6 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.otherMenu` struct is generated, and contains static references to 17 localization keys.
-    struct otherMenu {
-      /// en translation: Add
-      /// 
-      /// Locales: en, ja
-      static let rltBv3z1Title = Rswift.StringResource(key: "RLT-bv-3z1.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Current: @%
-      /// 
-      /// Locales: en, ja
-      static let u6oPDFAoText = Rswift.StringResource(key: "u6o-PD-FAo.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Feedback
-      /// 
-      /// Locales: en, ja
-      static let khmBGWukText = Rswift.StringResource(key: "khm-bG-wuk.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: GitHub Issues
-      /// 
-      /// Locales: en, ja
-      static let hz61ILDFText = Rswift.StringResource(key: "hz6-1I-lDF.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Help
-      /// 
-      /// Locales: en, ja
-      static let uRKWEXFbText = Rswift.StringResource(key: "uRK-WE-xFb.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Help / Feedback
-      /// 
-      /// Locales: en, ja
-      static let btXv8G4Text = Rswift.StringResource(key: "2bt-xv-8G4.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Help / Feedback
-      /// 
-      /// Locales: en, ja
-      static let uStBSK30Title = Rswift.StringResource(key: "uSt-bS-k30.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Lists
-      /// 
-      /// Locales: en, ja
-      static let tloCgUrgText = Rswift.StringResource(key: "tlo-Cg-Urg.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: My Profile
-      /// 
-      /// Locales: en, ja
-      static let fOoWeUfbText = Rswift.StringResource(key: "fOo-We-ufb.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Others
-      /// 
-      /// Locales: en, ja
-      static let nR3CvGJDTitle = Rswift.StringResource(key: "nR3-cv-gJD.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Others
-      /// 
-      /// Locales: en, ja
-      static let ycOQPHO8Title = Rswift.StringResource(key: "ycO-qP-HO8.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Settings
-      /// 
-      /// Locales: en, ja
-      static let yHs8Q6OSText = Rswift.StringResource(key: "YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Siri Shortcuts
-      /// 
-      /// Locales: en, ja
-      static let qFQvOXDText = Rswift.StringResource(key: "2qF-Qv-oXD.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Subtitle
-      /// 
-      /// Locales: en, ja
-      static let zXuCiHLKText = Rswift.StringResource(key: "ZXu-Ci-hLK.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Switch active account
-      /// 
-      /// Locales: en, ja
-      static let dGXRGJsText = Rswift.StringResource(key: "5dG-XR-GJs.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Switch active account
-      /// 
-      /// Locales: en, ja
-      static let uAMHWNgRTitle = Rswift.StringResource(key: "uAM-HW-NgR.title", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Title
-      /// 
-      /// Locales: en, ja
-      static let eFLVHUdSText = Rswift.StringResource(key: "eFL-VH-udS.text", tableName: "OtherMenu", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      
-      /// en translation: Add
-      /// 
-      /// Locales: en, ja
-      static func rltBv3z1Title(_: Void = ()) -> String {
-        return NSLocalizedString("RLT-bv-3z1.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Current: @%
-      /// 
-      /// Locales: en, ja
-      static func u6oPDFAoText(_: Void = ()) -> String {
-        return NSLocalizedString("u6o-PD-FAo.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Feedback
-      /// 
-      /// Locales: en, ja
-      static func khmBGWukText(_: Void = ()) -> String {
-        return NSLocalizedString("khm-bG-wuk.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: GitHub Issues
-      /// 
-      /// Locales: en, ja
-      static func hz61ILDFText(_: Void = ()) -> String {
-        return NSLocalizedString("hz6-1I-lDF.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Help
-      /// 
-      /// Locales: en, ja
-      static func uRKWEXFbText(_: Void = ()) -> String {
-        return NSLocalizedString("uRK-WE-xFb.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Help / Feedback
-      /// 
-      /// Locales: en, ja
-      static func btXv8G4Text(_: Void = ()) -> String {
-        return NSLocalizedString("2bt-xv-8G4.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Help / Feedback
-      /// 
-      /// Locales: en, ja
-      static func uStBSK30Title(_: Void = ()) -> String {
-        return NSLocalizedString("uSt-bS-k30.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Lists
-      /// 
-      /// Locales: en, ja
-      static func tloCgUrgText(_: Void = ()) -> String {
-        return NSLocalizedString("tlo-Cg-Urg.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: My Profile
-      /// 
-      /// Locales: en, ja
-      static func fOoWeUfbText(_: Void = ()) -> String {
-        return NSLocalizedString("fOo-We-ufb.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Others
-      /// 
-      /// Locales: en, ja
-      static func nR3CvGJDTitle(_: Void = ()) -> String {
-        return NSLocalizedString("nR3-cv-gJD.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Others
-      /// 
-      /// Locales: en, ja
-      static func ycOQPHO8Title(_: Void = ()) -> String {
-        return NSLocalizedString("ycO-qP-HO8.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Settings
-      /// 
-      /// Locales: en, ja
-      static func yHs8Q6OSText(_: Void = ()) -> String {
-        return NSLocalizedString("YHs-8Q-6OS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Siri Shortcuts
-      /// 
-      /// Locales: en, ja
-      static func qFQvOXDText(_: Void = ()) -> String {
-        return NSLocalizedString("2qF-Qv-oXD.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Subtitle
-      /// 
-      /// Locales: en, ja
-      static func zXuCiHLKText(_: Void = ()) -> String {
-        return NSLocalizedString("ZXu-Ci-hLK.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Switch active account
-      /// 
-      /// Locales: en, ja
-      static func dGXRGJsText(_: Void = ()) -> String {
-        return NSLocalizedString("5dG-XR-GJs.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Switch active account
-      /// 
-      /// Locales: en, ja
-      static func uAMHWNgRTitle(_: Void = ()) -> String {
-        return NSLocalizedString("uAM-HW-NgR.title", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Title
-      /// 
-      /// Locales: en, ja
-      static func eFLVHUdSText(_: Void = ()) -> String {
-        return NSLocalizedString("eFL-VH-udS.text", tableName: "OtherMenu", bundle: R.hostingBundle, comment: "")
-      }
-      
-      fileprivate init() {}
-    }
-    
     /// This `R.string.search` struct is generated, and contains static references to 5 localization keys.
     struct search {
       /// ja translation: アカウント
@@ -1651,7 +1528,6 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try login.validate()
-      try otherMenu.validate()
       try newPost.validate()
     }
     
@@ -1708,20 +1584,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "Camera") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Camera' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "ArrowUp") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ArrowUp' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "NowPlaying") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'NowPlaying' is used in storyboard 'NewPost', but couldn't be loaded.") }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct otherMenu: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UINavigationController
-      
-      let bundle = R.hostingBundle
-      let name = "OtherMenu"
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "More") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'More' is used in storyboard 'OtherMenu', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "MoreOutline") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'MoreOutline' is used in storyboard 'OtherMenu', but couldn't be loaded.") }
       }
       
       fileprivate init() {}
