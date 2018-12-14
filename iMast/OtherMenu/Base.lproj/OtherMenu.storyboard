@@ -12,7 +12,7 @@
         <!--その他-->
         <scene sceneID="Exu-XM-F8Z">
             <objects>
-                <tableViewController id="Akz-vi-J7G" customClass="OtherMenuTopTableViewController" customModule="iMast" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Akz-vi-J7G" customClass="OtherMenuViewController" customModule="iMast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5rk-kO-YxF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,7 +212,7 @@
         <!--ヘルプ / Feedback-->
         <scene sceneID="ldF-Na-iW7">
             <objects>
-                <tableViewController title="ヘルプ / Feedback" id="uSt-bS-k30" customClass="OtherMenuHelpAndFeedbackTableViewController" customModule="iMast" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="ヘルプ / Feedback" id="uSt-bS-k30" customClass="OtherMenuHelpAndFeedbackViewController" customModule="iMast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DSR-kz-8Kj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

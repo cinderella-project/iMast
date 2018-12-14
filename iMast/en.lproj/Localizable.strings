@@ -21,6 +21,8 @@
 "tabs.localTimeline.title" = "Local Timeline";
 "tabs.localTimeline.shortTitle" = "LTL";
 
+"tabs.other.title" = "Others";
+
 "timeline.toPostButton.title" = "Post";
 
 "timeline.streaming.title" = "Streaming";

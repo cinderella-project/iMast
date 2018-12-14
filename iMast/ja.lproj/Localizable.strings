@@ -21,6 +21,8 @@
 "tabs.localTimeline.title" = "ローカルタイムライン";
 "tabs.localTimeline.shortTitle" = "LTL";
 
+"tabs.other.title" = "その他";
+
 "timeline.toPostButton.title" = "投稿";
 "timeline.streaming.title" = "Streaming";
 "timeline.streaming.status.base" = "状態: %";

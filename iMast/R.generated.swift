@@ -406,7 +406,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 6 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 23 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
     struct localizable {
       /// en translation: @% boosted your toot
       /// 
@@ -476,6 +476,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let tabsNotificationsTitle = Rswift.StringResource(key: "tabs.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static let tabsOtherTitle = Rswift.StringResource(key: "tabs.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Post
       /// 
       /// Locales: en, ja
@@ -618,6 +622,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func tabsNotificationsTitle(_: Void = ()) -> String {
         return NSLocalizedString("tabs.notifications.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Others
+      /// 
+      /// Locales: en, ja
+      static func tabsOtherTitle(_: Void = ()) -> String {
+        return NSLocalizedString("tabs.other.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Post
