@@ -42,7 +42,7 @@ platform :ios do
 
     get_provisioning_profile
 
-    project = Xcodeproj::Project.open("iMast.xcodeproj")
+    project = Xcodeproj::Project.open("../iMast.xcodeproj")
     bundle_id = "jp.pronama.imast"
     
     target = project.targets.find { |target| target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"] == bundle_id}
