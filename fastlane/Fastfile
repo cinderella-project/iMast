@@ -9,6 +9,7 @@
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
+require "xcodeproj"
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
@@ -40,7 +41,17 @@ platform :ios do
     push_to_git_remote
 
     get_provisioning_profile
-    `git status`
+
+    project = Xcodeproj::Project.open("iMast.xcodeproj")
+    bundle_id = "jp.pronama.imast"
+    
+    target = project.targets.find { |target| target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"] == bundle_id}
+    appexs = target.dependencies.select { |dep| dep.target.product_type == "com.apple.product-type.app-extension" }
+    
+    for appex in appexs do
+        get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
+    end
+
     build_app(workspace: "iMast.xcworkspace", scheme: "iMast")
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
