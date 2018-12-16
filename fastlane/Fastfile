@@ -49,10 +49,10 @@ platform :ios do
     appexs = target.dependencies.select { |dep| dep.target.product_type == "com.apple.product-type.app-extension" }
     
     for appex in appexs do
-        get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
+       get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
     end
 
     build_app(workspace: "iMast.xcworkspace", scheme: "iMast")
-    upload_to_testflight(skip_waiting_for_build_processing: true)
+    upload_to_testflight(changelog: "nighly build testing...", distribute_external: true, wait_processing_interval: 90)
   end
 end
