@@ -9,6 +9,7 @@
 import UIKit
 import Hydra
 import SwiftyJSON
+import ActionClosurable
 
 class ChangeActiveAccountViewController: UITableViewController {
 
@@ -23,13 +24,21 @@ class ChangeActiveAccountViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.title = R.string.localizable.tabsOtherSwitchActiveAccountTitle()
+        
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
         refreshControl.addTarget(self, action: #selector(ChangeActiveAccountViewController.refresh), for: UIControl.Event.valueChanged)
         self.refreshControl = refreshControl
         
-        tableView.rowHeight = 44
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, closure: { _ in
+            if let vc = R.storyboard.login.logintop() {
+                changeRootVC(vc, animated: true)
+            }
+        })
         
+        tableView.rowHeight = 44
         updateTableView()
     }
 
@@ -72,12 +81,6 @@ class ChangeActiveAccountViewController: UITableViewController {
             self.updateTableView()
             self.refreshControl?.endRefreshing()
             self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
-        }
-    }
-
-    @IBAction func addAccountButtonTapped(_ sender: Any) {
-        if let vc = R.storyboard.login.logintop() {
-            changeRootVC(vc, animated: true)
         }
     }
     
