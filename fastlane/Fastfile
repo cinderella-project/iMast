@@ -59,6 +59,6 @@ platform :ios do
     end
 
     build_app(workspace: "iMast.xcworkspace", scheme: "iMast")
-    upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90)
+    upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90, groups: ["外部テスター"])
   end
 end
