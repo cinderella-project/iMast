@@ -12,21 +12,6 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - PINCache (3.0.1-beta.6):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
-    - PINCache/Core (= 3.0.1-beta.6)
-  - PINCache/Arc-exception-safe (3.0.1-beta.6):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.6):
-    - PINOperation (~> 1.1.0)
-  - PINOperation (1.1.1)
-  - PINRemoteImage/Core (3.0.0-beta.13):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.13):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.13):
-    - PINCache (= 3.0.1-beta.6)
-    - PINRemoteImage/Core
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
@@ -39,13 +24,6 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftLint (0.27.0)
   - SwiftyJSON (4.1.0)
-  - Texture (2.7):
-    - Texture/PINRemoteImage (= 2.7)
-  - Texture/Core (2.7)
-  - Texture/PINRemoteImage (2.7):
-    - PINRemoteImage/iOS (= 3.0.0-beta.13)
-    - PINRemoteImage/PINCache
-    - Texture/Core
   - XCGLogger (6.0.4):
     - XCGLogger/Core (= 6.0.4)
   - XCGLogger/Core (6.0.4):
@@ -71,7 +49,6 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftLint
   - SwiftyJSON
-  - Texture
   - XCGLogger (~> 6.0.2)
   - "※ikemen"
 
@@ -87,9 +64,6 @@ SPEC REPOS:
     - KeychainAccess
     - Notifwift
     - ObjcExceptionBridging
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
@@ -99,7 +73,6 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftLint
     - SwiftyJSON
-    - Texture
     - XCGLogger
     - "※ikemen"
 
@@ -125,9 +98,6 @@ SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
-  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
-  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
@@ -137,10 +107,9 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: dae96a284b7412332afbfe18a99735a79b2bd78d
+PODFILE CHECKSUM: 7d551c67f3d8346bd380f0c852c042dc76643e5d
 
 COCOAPODS: 1.5.3

@@ -8,73 +8,13 @@
 
 import UIKit
 import SwiftyJSON
-import AsyncDisplayKit
 
-class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDataSource, ASTableDelegate {
-    
-    class NotificationCell: ASCellNode {
-        let notifyTypeImage = ASImageNode()
-        let notifyTitleText = ASTextNode()
-        let notifyBodyText = ASTextNode()
-        
-        init(notification: MastodonNotification) {
-            super.init()
-            
-            self.notifyTypeImage.image = [
-                "follow": R.image.follow(),
-                "reblog": R.image.boost(),
-                "favourite": R.image.star(),
-                "mention": R.image.reply(),
-            ][notification.type] ?? nil
-            self.notifyTypeImage.style.width = ASDimension(unit: .points, value: 16)
-            self.notifyTypeImage.style.height = ASDimension(unit: .points, value: 16)
-            self.addSubnode(self.notifyTypeImage)
-            
-            self.notifyTitleText.attributedText = NSAttributedString(string: NSLocalizedString("tabs.notifications.cell.\(notification.type).title", comment: "").replace("%", notification.account?.acct ?? ""), attributes: [
-                .font: UIFont.systemFont(ofSize: 14),
-            ])
-            self.notifyTitleText.truncationMode = .byTruncatingTail
-            self.notifyTitleText.maximumNumberOfLines = 1
-            self.addSubnode(self.notifyTitleText)
-            
-            let notifyBody = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replace("\n", " ")
-            self.notifyBodyText.attributedText = NSAttributedString(string: notifyBody, attributes: [
-                .font: UIFont.systemFont(ofSize: 17),
-            ])
-            self.notifyBodyText.truncationMode = .byTruncatingTail
-            self.notifyBodyText.maximumNumberOfLines = 1
-            self.addSubnode(self.notifyBodyText)
-        }
-        
-        override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-            let main = ASStackLayoutSpec(direction: .vertical, spacing: 4, justifyContent: .start, alignItems: .start, children: [
-                self.notifyTitleText,
-                self.notifyBodyText,
-            ])
-            main.style.flexGrow = 1
-            main.style.flexShrink = 1
-            
-            let top = ASStackLayoutSpec(direction: .horizontal, spacing: 8, justifyContent: .start, alignItems: .start, children: [
-                self.notifyTypeImage,
-                main,
-            ])
-            
-            top.style.flexGrow = 1
-            top.style.flexShrink = 1
-
-            return ASInsetLayoutSpec(insets: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16), child: top)
-        }
-    }
-    
+class NotificationTableViewController: UITableViewController {
     var notifications: [MastodonNotification] = []
-    let refreshControl = UIRefreshControl()
-    let readmoreCell = ReadmoreCellNode()
+    let readmoreCell = ReadmoreTableViewCell()
     
     init() {
-        super.init(node: ASTableNode(style: .plain))
-        self.node.dataSource = self
-        self.node.delegate = self
-        self.title = R.string.localizable.tabsNotificationsTitle()
+        super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +24,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = R.string.localizable.tabsNotificationsTitle()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -91,18 +32,20 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // init refreshControl
-        self.refreshControl.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
-        self.node.view.addSubview(self.refreshControl)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         
         self.readmoreCell.state = .loading
         MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
-            self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
+            self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
             self.notifications = notifications
-            self.node.reloadData()
+            self.tableView.reloadData()
         }.catch { error in
             self.readmoreCell.lastError = error
             self.readmoreCell.state = .withError
         }
+        
+        self.tableView.register(R.nib.notificationTableViewCell)
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,11 +55,11 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
 
     // MARK: - Table view data source
 
-    func numberOfSections(in tableNode: ASTableNode) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return notifications.count
         } else {
@@ -129,23 +72,25 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
-            self.node.reloadData()
-            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }).catch { error in
             self.errorReport(error: error)
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
         }
     }
     
-    func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return NotificationCell(notification: self.notifications[indexPath.row])
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.notificationTableViewCell, for: indexPath)!
+            cell.load(notification: self.notifications[indexPath.row])
+            return cell
         } else {
             return self.readmoreCell
         }
     }
     
-    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let notification = self.notifications[indexPath.row]
             self.openNotify(notification)
@@ -154,7 +99,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             if self.readmoreCell.state == .withError {
                 let error = self.readmoreCell.lastError!
                 self.errorReport(error: error)
-                self.readmoreCell.state = .enabled
+                self.readmoreCell.state = .moreLoadable
             } else {
                 self.readMore()
             }
@@ -164,7 +109,7 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
     var oldFetchedTime = Date.timeIntervalSinceReferenceDate
     var oldOffset: CGFloat = 0
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard Defaults[.notifyTabInfiniteScroll] else {
             return
         }
@@ -189,7 +134,9 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
                     let estOffset = diffTrue - Int(speed / CGFloat(diffTime)) // 1秒後も同じ速さでスクロールしていた場合の位置
                     print(estOffset)
                     if estOffset < 200 {
-                        self.readMore()
+                        DispatchQueue.main.async {
+                            self.readMore()
+                        }
                     }
                 }
                 self.oldFetchedTime = nowTime
@@ -197,13 +144,15 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             }
             
             if diffTrue < 200 {
-                self.readMore()
+                DispatchQueue.main.async {
+                    self.readMore()
+                }
             }
         }
     }
     
     func readMore() {
-        guard self.readmoreCell.state == .enabled else {
+        guard self.readmoreCell.state == .moreLoadable else {
             return
         }
         
@@ -211,12 +160,10 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
         MastodonUserToken.getLatestUsed()?.getNoficitaions(limit: 40, maxId: self.notifications.last?.id).then { notifications in
             let oldCount = self.notifications.count
             self.notifications.append(contentsOf: notifications)
-            self.node.performBatchUpdates({
-                for i in oldCount..<oldCount + notifications.count {
-                    self.node.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
-                }
-            }, completion: nil)
-            self.readmoreCell.state = notifications.count > 0 ? .enabled : .nothingMore
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: (oldCount..<oldCount + notifications.count).map { IndexPath(row: $0, section: 0)}, with: .automatic)
+            self.tableView.endUpdates()
+            self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
         }.catch { error in
             self.readmoreCell.lastError = error
             self.readmoreCell.state = .withError
@@ -246,5 +193,12 @@ class NotificationTableViewController: ASViewController<ASTableNode>, ASTableDat
             let newVC = openUserProfile(user: account)
             self.navigationController?.pushViewController(newVC, animated: animated)
         }
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

@@ -216,12 +216,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `MastodonPostCell`.
     static let mastodonPostCell = _R.nib._MastodonPostCell()
     /// Nib `NewPostMediaListViewController`.
     static let newPostMediaListViewController = _R.nib._NewPostMediaListViewController()
+    /// Nib `NotificationTableViewCell`.
+    static let notificationTableViewCell = _R.nib._NotificationTableViewCell()
     /// Nib `TimeLineReadMoreCell`.
     static let timeLineReadMoreCell = _R.nib._TimeLineReadMoreCell()
     /// Nib `UserProfileBioTableViewCell`.
@@ -237,6 +239,11 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "NewPostMediaListViewController", in: bundle)`
     static func newPostMediaListViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.newPostMediaListViewController)
+    }
+    
+    /// `UINib(name: "NotificationTableViewCell", in: bundle)`
+    static func notificationTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.notificationTableViewCell)
     }
     
     /// `UINib(name: "TimeLineReadMoreCell", in: bundle)`
@@ -257,8 +264,11 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `notificationTableViewCell`.
+    static let notificationTableViewCell: Rswift.ReuseIdentifier<NotificationTableViewCell> = Rswift.ReuseIdentifier(identifier: "notificationTableViewCell")
+    
     fileprivate init() {}
   }
   
@@ -1484,6 +1494,20 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _NotificationTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = NotificationTableViewCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "notificationTableViewCell"
+      let name = "NotificationTableViewCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> NotificationTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
       }
       
       fileprivate init() {}

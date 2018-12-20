@@ -13,7 +13,10 @@ class ReadmoreTableViewCell: UITableViewCell {
         case moreLoadable
         case allLoaded
         case loading
+        case withError
     }
+    
+    var lastError: Error?
     
     let indicator = UIActivityIndicatorView()
     

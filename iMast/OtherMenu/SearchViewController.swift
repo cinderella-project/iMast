@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AsyncDisplayKit
 import SafariServices
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {

@@ -100,6 +100,8 @@
 		CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */; };
 		CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */; };
 		CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */; };
+		CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */; };
+		CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */; };
 		CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */; };
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
@@ -179,7 +181,6 @@
 		CEE357241FF6068000675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* SettingsViewController.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
-		CEEEEE2A2197F13000105483 /* ReadmoreCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEFE6AF521B5010600AF5E40 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
@@ -362,6 +363,8 @@
 		CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTopViewController.swift; sourceTree = "<group>"; };
 		CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaExtension.swift; sourceTree = "<group>"; };
+		CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		CE6EA6DC217BF54800809A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
 		CE6EA6E0217BF81100809A65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Login.strings; sourceTree = "<group>"; };
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
@@ -427,7 +430,6 @@
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		CEE357251FF6410600675DFC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
-		CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreCellNode.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootIntentHandler.swift; sourceTree = "<group>"; };
@@ -707,7 +709,6 @@
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
-				CEEEEE292197F13000105483 /* ReadmoreCellNode.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CE1002D4200683850041B636 /* ReportError.swift */,
 				CE099D022194315800A4BCCB /* UploadableMedia.swift */,
@@ -781,6 +782,8 @@
 			isa = PBXGroup;
 			children = (
 				CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */,
+				CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */,
+				CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */,
 			);
 			path = NotificationTab;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
 				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
+				CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */,
 				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
 				CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
@@ -1286,9 +1290,6 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Notifwift/Notifwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
-				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
-				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1296,7 +1297,6 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/※ikemen/Ikemen.framework",
 			);
@@ -1313,9 +1313,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Notifwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1323,7 +1320,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 			);
@@ -1426,6 +1422,7 @@
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
 				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,
+				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
 				CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */,
 				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
@@ -1437,7 +1434,6 @@
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
-				CEEEEE2A2197F13000105483 /* ReadmoreCellNode.swift in Sources */,
 				CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */,
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CE90855D21918751006769DC /* R.generated.swift in Sources */,
