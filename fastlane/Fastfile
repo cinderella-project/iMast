@@ -35,9 +35,15 @@ platform :ios do
     ensure_git_status_clean
     increment_build_number(xcodeproj: "iMast.xcodeproj")
 
+    old_tag = last_git_tag
+    logs = sh("git", "log", '--pretty=format:"%s (%h)"', old_tag + "...master")
+
     version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
+
+    changelog = "This is nightly build.\n\ncommmits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
+
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)
-    add_git_tag(tag: version)
+    add_git_tag(tag: version, message: changelog)
     push_to_git_remote
 
     get_provisioning_profile
@@ -53,6 +59,6 @@ platform :ios do
     end
 
     build_app(workspace: "iMast.xcworkspace", scheme: "iMast")
-    upload_to_testflight(changelog: "nighly build testing...", distribute_external: true, wait_processing_interval: 90)
+    upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90)
   end
 end
