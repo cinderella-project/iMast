@@ -40,7 +40,7 @@ platform :ios do
 
     version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
 
-    changelog = "This is nightly build.\n\ncommmits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
+    changelog = "This is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)
     add_git_tag(tag: version, message: changelog)
