@@ -35,6 +35,8 @@
 	<string>public.app-category.social-networking</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>nicovideo</string>
+		<string>nicocas</string>
 		<string>org-appextension-feature-password-management</string>
 		<string>vlc-x-callback</string>
 	</array>

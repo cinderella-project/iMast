@@ -18,7 +18,7 @@ class UserProfileTopViewController: StableTableViewController {
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
-    var externalServiceLinks: [(name: String, userId: String?, url: URL)] = []
+    var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
     let infoCell = R.nib.userProfileInfoTableViewCell.firstView(owner: self as AnyObject)!
     let bioCell = R.nib.userProfileBioTableViewCell.firstView(owner: self as AnyObject)!
@@ -100,15 +100,20 @@ class UserProfileTopViewController: StableTableViewController {
         tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.externalServiceLinks = []
 
-        if let niconicoUrl = user.niconicoUrl {
-            let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last
-            self.externalServiceLinks.append((name: "niconico", userId: niconicoId != nil ? "user/"+niconicoId! : nil, url: niconicoUrl))
+        if let niconicoUrl = user.niconicoUrl, let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last {
+            self.externalServiceLinks.append((name: "niconico", userId: niconicoId != nil ? "user/"+niconicoId : nil, urls: [
+                (appName: "Web", url: niconicoUrl),
+                (appName: "niconicoアプリ", url: URL(string: "nicovideo://web?/User?id=\(niconicoId)")!),
+                (appName: "nicocasアプリ(自動再生注意)", url: URL(string: "nicocas://user/\(niconicoId)")!),
+            ]))
         }
         
         if let oauthAuths = user.oauthAuthentications {
             for auth in oauthAuths {
                 if auth.provider != "pixiv" { continue }
-                self.externalServiceLinks.append((name: "pixiv", userId: auth.uid, url: URL(string: "https://www.pixiv.net/member.php?id="+auth.uid)!))
+                self.externalServiceLinks.append((name: "pixiv", userId: auth.uid, urls: [
+                    (appName: "Web", url: URL(string: "https://www.pixiv.net/member.php?id="+auth.uid)!),
+                ]))
             }
         }
         self.cells = [
@@ -276,8 +281,33 @@ class UserProfileTopViewController: StableTableViewController {
         }
         
         if indexPath.section == 2 {
-            let safariVC = SFSafariViewController(url: self.externalServiceLinks[indexPath.row].url)
-            self.present(safariVC, animated: true, completion: nil)
+            let urls = self.externalServiceLinks[indexPath.row].urls.filter { UIApplication.shared.canOpenURL($0.url) }
+            func openUrl(url: URL) {
+                if url.scheme?.starts(with: "http") ?? false {
+                    let safariVC = SFSafariViewController(url: url)
+                    self.present(safariVC, animated: true, completion: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            
+            if urls.count == 0 {
+                return
+            } else if urls.count == 1 {
+                openUrl(url: urls[0].url)
+                return
+            } else if urls.count > 1 {
+                let alert = UIAlertController(title: "リンクの開き方", message: "リンクを開くアプリを選択してください。", preferredStyle: .alert)
+                for url in urls {
+                    alert.addAction(UIAlertAction(title: url.appName, style: .default, handler: { _ in
+                        openUrl(url: url.url)
+                    }))
+                }
+                alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { _ in
+                    
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
             return
         }
     }
