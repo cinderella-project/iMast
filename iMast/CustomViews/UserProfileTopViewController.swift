@@ -101,7 +101,7 @@ class UserProfileTopViewController: StableTableViewController {
         self.externalServiceLinks = []
 
         if let niconicoUrl = user.niconicoUrl, let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last {
-            self.externalServiceLinks.append((name: "niconico", userId: niconicoId != nil ? "user/"+niconicoId : nil, urls: [
+            self.externalServiceLinks.append((name: "niconico", userId: "user/\(niconicoId)", urls: [
                 (appName: "Web", url: niconicoUrl),
                 (appName: "niconicoアプリ", url: URL(string: "nicovideo://web?/User?id=\(niconicoId)")!),
                 (appName: "nicocasアプリ(自動再生注意)", url: URL(string: "nicocas://user/\(niconicoId)")!),
