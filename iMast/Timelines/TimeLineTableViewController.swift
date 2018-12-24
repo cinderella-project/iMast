@@ -85,6 +85,12 @@ class TimeLineTableViewController: UITableViewController {
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        if self.isMovingFromParent {
+            self.socket?.disconnect()
+        }
+    }
+    
     func loadTimeline() -> Promise<()> {
         guard let timelineType = self.timelineType else {
             print("loadTimelineを実装するか、self.timelineTypeを定義してください。")
