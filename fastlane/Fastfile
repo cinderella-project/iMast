@@ -43,8 +43,8 @@ platform :ios do
     changelog = "This is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)
-    add_git_tag(tag: version, message: changelog)
     push_to_git_remote
+    add_git_tag(tag: version, message: changelog)
 
     get_provisioning_profile
 
@@ -60,5 +60,6 @@ platform :ios do
 
     build_app(workspace: "iMast.xcworkspace", scheme: "iMast")
     upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90, groups: ["外部テスター"])
+    push_to_git_remote
   end
 end
