@@ -131,7 +131,6 @@ class AddAccountProgressViewController: UIViewController {
         if segue.identifier == "goSuccess" {
             let nextVC = segue.destination as! AddAccountSuccessViewController
             nextVC.userToken = self.userToken
-            nextVC.userRes = self.userRes
         }
     }
     

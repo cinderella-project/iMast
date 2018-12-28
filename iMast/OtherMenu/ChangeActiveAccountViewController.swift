@@ -33,9 +33,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         self.refreshControl = refreshControl
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, closure: { _ in
-            if let vc = R.storyboard.login.logintop() {
-                changeRootVC(vc, animated: true)
-            }
+            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
         })
         
         tableView.rowHeight = 44
@@ -154,7 +152,7 @@ class ChangeActiveAccountViewController: UITableViewController {
                         if self.userTokens.count > 0 {
                             changeRootVC(MainTabBarController(), animated: true)
                         } else {
-                            changeRootVC(R.storyboard.login.instantiateInitialViewController()!, animated: true)
+                            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
                         }
                     }
                 }

@@ -41,9 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         } else {
-            if let vc = R.storyboard.login.instantiateInitialViewController() {
-                changeRootVC(vc, animated: false)
-            }
+            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
         }
 
         Navigator.scheme="imast"

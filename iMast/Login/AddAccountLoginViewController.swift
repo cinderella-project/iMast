@@ -7,26 +7,43 @@
 //
 
 import UIKit
+import Hydra
+import Eureka
 import OnePasswordExtension
 
-class AddAccountLoginViewController: UIViewController {
+class AddAccountLoginViewController: FormViewController {
 
-    @IBOutlet weak var mailAddressInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    @IBOutlet weak var callPasswordManagerButton: UIButton!
-    var app: MastodonApp?
-    var userToken: MastodonUserToken?
+    var app: MastodonApp!
+    var userToken: MastodonUserToken!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.callPasswordManagerButton.isHidden = !OnePasswordExtension.shared().isAppExtensionAvailable()
+        if OnePasswordExtension.shared().isAppExtensionAvailable() {
+            let onePassBundle = Bundle(for: OnePasswordExtension.self)
+            let onePassResourceBundle = Bundle(path: onePassBundle.bundlePath + "/OnePasswordExtensionResources.bundle")
+            let buttonImage = UIImage(named: "onepassword-button", in: onePassResourceBundle!, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+            let button = UIBarButtonItem(image: buttonImage, style: .plain, closure: { item in
+                self.callPasswordManager()
+            })
+            self.navigationItem.rightBarButtonItem = button
+        }
         
-        let onePassBundle = Bundle(for: OnePasswordExtension.self)
-        let onePassResourceBundle = Bundle(path: onePassBundle.bundlePath + "/OnePasswordExtensionResources.bundle")
-        let buttonImage = UIImage(named: "onepassword-button", in: onePassResourceBundle!, compatibleWith: nil)
-        self.callPasswordManagerButton.setImage(buttonImage?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.form +++ Section()
+        <<< TextRow("mail") { row in
+            row.placeholder = "メールアドレス"
+        }
+        <<< PasswordRow("password") { row in
+            row.placeholder = "パスワード"
+        }
+        self.form +++ Section()
+        <<< ButtonRow { row in
+            row.title = "ログイン"
+            row.onCellSelection { cell, row in
+                self.loginButtonTapped()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,56 +60,68 @@ class AddAccountLoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func loginButtonTapped(_ sender: Any) {
-        if mailAddressInput.text == nil {
-            alert(title: "エラー", message: "メールアドレスを入力してください")
+    func loginButtonTapped() {
+        guard let mailAddress = (self.form.rowBy(tag: "mail") as? TextRow)?.value, mailAddress.count > 0 else {
+            self.alert(title: "エラー", message: "メールアドレスを入力してください")
             return
         }
-        if passwordInput.text == nil {
-            alert(title: "エラー", message: "パスワードを入力してください")
+        
+        guard let password = (self.form.rowBy(tag: "password") as? PasswordRow)?.value, password.count > 0 else {
+            self.alert(title: "エラー", message: "パスワードを入力してください")
             return
         }
-        if app == nil {
-            error(errorMsg: "appがnilです(AddAccountLoginViewController)")
-            return
-        }
-        app!.authorizeWithPassword(email: mailAddressInput.text!, password: passwordInput.text!).then { userToken in
-            self.userToken = userToken
-            self.performSegue(withIdentifier: "backToProgress", sender: self)
-        }.catch { (error) -> Void in
-            print(error)
-            do {
-                throw error
-            } catch APIError.errorReturned (let e) {
-                self.apiError(e.errorMessage, e.errorHttpCode)
-            } catch APIError.unknownResponse (let e) {
-                self.apiError(nil, e)
-            } catch {
-                self.apiError(nil, nil)
+        
+        let promise = async { status -> MastodonUserToken in
+            let userToken = try await(self.app.authorizeWithPassword(email: mailAddress, password: password))
+            let info = try await(userToken.getUserInfo())
+            if info["error"].exists() {
+                throw APIError.errorReturned(errorMessage: info["error"].stringValue, errorHttpCode: info["_response_code"].intValue)
             }
-        }
+            userToken.save()
+            userToken.use()
+            return userToken
+        }.then(in: Context.main, { userToken in
+            let alert = UIAlertController(title: "ログイン成功", message: "ようこそ、@\(userToken.acct)さん!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "タイムラインへ", style: .default, handler: { _ in
+                changeRootVC(MainTabBarController(), animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        })
+//        app!.authorizeWithPassword(email: mailAddressInput.text!, password: passwordInput.text!).then { userToken in
+//            self.userToken = userToken
+//            self.performSegue(withIdentifier: "backToProgress", sender: self)
+//        }.catch { (error) -> Void in
+//            print(error)
+//            do {
+//                throw error
+//            } catch APIError.errorReturned (let e) {
+//                self.apiError(e.errorMessage, e.errorHttpCode)
+//            } catch APIError.unknownResponse (let e) {
+//                self.apiError(nil, e)
+//            } catch {
+//                self.apiError(nil, nil)
+//            }
+//        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "backToProgress" {
-            let nextVC = segue.destination as! AddAccountProgressViewController
-            nextVC.app = app
-            nextVC.userToken = userToken
-            nextVC.start3 = true
-        }
-    }
-    @IBAction func callPasswordManager(_ sender: Any) {
-        OnePasswordExtension.shared().findLogin(forURLString: "https://" + self.app!.instance.hostName, for: self, sender: sender) { (dict, error) in
+    func callPasswordManager() {
+        OnePasswordExtension.shared().findLogin(forURLString: "https://" + self.app!.instance.hostName, for: self, sender: self) { (dict, error) in
             if let error = error {
                 print(error)
                 return
             }
             guard let dict = dict else { return }
             if let mailAddress = dict[AppExtensionUsernameKey] as? String {
-                self.mailAddressInput.text = mailAddress
+                if let row = self.form.rowBy(tag: "mail") as? TextRow {
+                    row.value = mailAddress
+                    row.reload()
+                }
             }
             if let password = dict[AppExtensionPasswordKey] as? String {
-                self.passwordInput.text = password
+                if let row = self.form.rowBy(tag: "password") as? PasswordRow {
+                    row.value = password
+                    row.reload()
+                }
             }
         }
     }

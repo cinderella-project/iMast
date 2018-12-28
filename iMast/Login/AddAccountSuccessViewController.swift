@@ -14,22 +14,15 @@ class AddAccountSuccessViewController: UIViewController {
 
     @IBOutlet weak var myIconImageView: UIImageView!
     @IBOutlet weak var welcomeMessageLabel: UILabel!
-    var userToken: MastodonUserToken?
-    var userRes: JSON?
+    var userToken: MastodonUserToken!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if userRes == nil {
-            error(errorMsg: "userResがありません(AddAccountSuccessViewController)")
-            return
+        welcomeMessageLabel.text = welcomeMessageLabel.text?.replace("%", userToken?.name ?? "")
+        if let avatarUrl = self.userToken.avatarUrl {
+            self.myIconImageView.sd_setImage(with: URL(string: avatarUrl))
         }
-        if userRes!["username"].string == nil {
-            error(errorMsg: "userRes.usernameがありません(AddAccountSuccessViewController)")
-            return
-        }
-        welcomeMessageLabel.text = welcomeMessageLabel.text?.replace("%", userRes!["username"].stringValue)
-        self.myIconImageView.sd_setImage(with: URL(string: userRes!["avatar_static"].stringValue))
         self.myIconImageView.ignoreSmartInvert()
     }
 
