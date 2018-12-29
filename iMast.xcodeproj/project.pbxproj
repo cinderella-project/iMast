@@ -81,6 +81,7 @@
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
+		CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */; };
 		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
 		CE51ABFB1F40C06B00E43607 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */; };
 		CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */; };
@@ -343,6 +344,7 @@
 		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
+		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -728,6 +730,7 @@
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
+				CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1075,6 +1078,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
+				CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */,
 				CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */,
 				CE8DF1851FED41C4005278FE /* Podfile in Resources */,
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,

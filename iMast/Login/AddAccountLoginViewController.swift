@@ -81,11 +81,9 @@ class AddAccountLoginViewController: FormViewController {
             userToken.use()
             return userToken
         }.then(in: Context.main, { userToken in
-            let alert = UIAlertController(title: "ログイン成功", message: "ようこそ、@\(userToken.acct)さん!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "タイムラインへ", style: .default, handler: { _ in
-                changeRootVC(MainTabBarController(), animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
+            let successVC = AddAccountSuccessViewController()
+            successVC.userToken = userToken
+            self.present(successVC, animated: true, completion: nil)
         })
 //        app!.authorizeWithPassword(email: mailAddressInput.text!, password: passwordInput.text!).then { userToken in
 //            self.userToken = userToken

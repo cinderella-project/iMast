@@ -216,8 +216,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
   struct nib {
+    /// Nib `AddAccountSuccessViewController`.
+    static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
     /// Nib `MastodonPostCell`.
     static let mastodonPostCell = _R.nib._MastodonPostCell()
     /// Nib `NewPostMediaListViewController`.
@@ -230,6 +232,11 @@ struct R: Rswift.Validatable {
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
     static let userProfileInfoTableViewCell = _R.nib._UserProfileInfoTableViewCell()
+    
+    /// `UINib(name: "AddAccountSuccessViewController", in: bundle)`
+    static func addAccountSuccessViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.addAccountSuccessViewController)
+    }
     
     /// `UINib(name: "MastodonPostCell", in: bundle)`
     static func mastodonPostCell(_: Void = ()) -> UIKit.UINib {
@@ -1473,6 +1480,17 @@ struct _R: Rswift.Validatable {
   }
   
   struct nib {
+    struct _AddAccountSuccessViewController: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "AddAccountSuccessViewController"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _MastodonPostCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "MastodonPostCell"

@@ -110,16 +110,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch location.path { // Nintendo Switch
             case "callback":
-                if params["code"] == nil {
+                guard let code = params["code"], let state = params["state"] else {
                     break
                 }
-                let nextVC = R.storyboard.login.progress()!
-                nextVC.isCallback = true
-                nextVC.app = MastodonApp.initFromId(appId: params["state"]!)
-                nextVC.instance = nextVC.app?.instance
-                nextVC.app?.authorizeWithCode(code: params["code"]!).then { usertoken in
-                    nextVC.userToken = usertoken
-                    changeRootVC(nextVC, animated: false)
+                let nextVC = AddAccountSuccessViewController()
+                let app = MastodonApp.initFromId(appId: state)
+                app.authorizeWithCode(code: code).then { userToken in
+                    userToken.getUserInfo().then { json in
+                        nextVC.userToken = userToken
+                        changeRootVC(nextVC, animated: false)
+                    }
                 }
             case "from-backend/push/oauth-finished":
                 Notifwift.post(.pushSettingsAccountReload)
