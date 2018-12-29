@@ -74,13 +74,6 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func clickLoginHelpButton(_ sender: Any) {
-        alert(
-            title: R.string.login.loginMethodHelpTitle(),
-            message: R.string.login.loginMethodHelpMessage()
-        )
-    }
-    
     private var loginSafari: LoginSafari?
     
     func safariLoginButton() {

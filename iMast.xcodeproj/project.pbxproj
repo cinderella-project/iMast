@@ -14,7 +14,6 @@
 		2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */; };
 		2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */; };
 		2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */; };
-		2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */; };
 		2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */; };
 		2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuViewController.swift */; };
@@ -25,7 +24,6 @@
 		2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */; };
 		2ADE64191ED142C600ED1CB1 /* MastodonPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */; };
 		2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */; };
-		2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF3521E1EAB9C5600777C2E /* Login.storyboard */; };
 		2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF352211EAB9C5600777C2E /* Assets.xcassets */; };
 		2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */; };
 		2AF352301EAB9C5600777C2E /* iMastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3522F1EAB9C5600777C2E /* iMastTests.swift */; };
@@ -286,7 +284,6 @@
 		2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountIndexViewController.swift; sourceTree = "<group>"; };
-		2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountProgressViewController.swift; sourceTree = "<group>"; };
 		2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSelectLoginMethodViewController.swift; sourceTree = "<group>"; };
 		2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonModel.swift; sourceTree = "<group>"; };
 		2A533F791ECD08130062630F /* OtherMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuViewController.swift; sourceTree = "<group>"; };
@@ -300,7 +297,6 @@
 		2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostCell.swift; sourceTree = "<group>"; };
 		2AF352171EAB9C5500777C2E /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2AF3521F1EAB9C5600777C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		2AF352211EAB9C5600777C2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AF352241EAB9C5600777C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AF352261EAB9C5600777C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -367,8 +363,6 @@
 		CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaExtension.swift; sourceTree = "<group>"; };
 		CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
-		CE6EA6DC217BF54800809A65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
-		CE6EA6E0217BF81100809A65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Login.strings; sourceTree = "<group>"; };
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
 		CE75AE1C21C0EF2400BA3C9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		CE75AE2021C0EF3100BA3C9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -724,9 +718,7 @@
 		CEE357171FF516A800675DFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2AF3521E1EAB9C5600777C2E /* Login.storyboard */,
 				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
-				2A4A6C2A1EAC49BF001BB00A /* AddAccountProgressViewController.swift */,
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
@@ -1093,7 +1085,6 @@
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */,
 				2ADE64161ED1201800ED1CB1 /* MastodonPostCell.xib in Resources */,
-				2AF352201EAB9C5600777C2E /* Login.storyboard in Resources */,
 				CE87300B216884360038D964 /* Localizable.strings in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 			);
@@ -1461,7 +1452,6 @@
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
-				2A4A6C2B1EAC49BF001BB00A /* AddAccountProgressViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
@@ -1642,16 +1632,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2AF3521E1EAB9C5600777C2E /* Login.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AF3521F1EAB9C5600777C2E /* Base */,
-				CE6EA6DC217BF54800809A65 /* en */,
-				CE6EA6E0217BF81100809A65 /* ja */,
-			);
-			name = Login.storyboard;
-			sourceTree = "<group>";
-		};
 		2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

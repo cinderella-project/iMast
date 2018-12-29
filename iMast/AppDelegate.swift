@@ -35,9 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
-                    if let vc = R.storyboard.login.instantiateInitialViewController() {
-                        changeRootVC(vc, animated: false)
-                    }
+                    changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
                 }
             }
         } else {
