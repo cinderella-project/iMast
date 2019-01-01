@@ -105,7 +105,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
                 textView.textContainer.lineBreakMode = .byTruncatingTail
             }
         }
-        timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineTextFontsize]))
+        timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
         iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         iconHeightConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         // -- タッチ周り --
