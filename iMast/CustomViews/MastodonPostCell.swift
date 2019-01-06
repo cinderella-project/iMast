@@ -79,7 +79,12 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
         self.iconView.sd_setImage(with: URL(string: iconUrl))
         self.iconView.ignoreSmartInvert()
-        timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
+        let calendar = Calendar(identifier: .gregorian)
+        if calendar.isDateInToday(post.createdAt) {
+            timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
+        } else {
+            timeView.text = DateUtils.stringFromDate(post.createdAt, format: "yyyy/MM/dd HH:mm:ss")
+        }
         if Defaults[.visibilityEmoji] {
             switch post.visibility {
             case "unlisted":
