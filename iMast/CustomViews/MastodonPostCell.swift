@@ -82,6 +82,8 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         let calendar = Calendar(identifier: .gregorian)
         if calendar.isDateInToday(post.createdAt) {
             timeView.text = DateUtils.stringFromDate(post.createdAt, format: "HH:mm:ss")
+        } else if calendar.component(.year, from: Date()) == calendar.component(.year, from: post.createdAt) {
+            timeView.text = DateUtils.stringFromDate(post.createdAt, format: "MM/dd HH:mm:ss")
         } else {
             timeView.text = DateUtils.stringFromDate(post.createdAt, format: "yyyy/MM/dd HH:mm:ss")
         }
