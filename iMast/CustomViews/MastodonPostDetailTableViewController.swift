@@ -132,7 +132,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         isBoosted = post.reposted
         
         let thumbnail_height = Defaults[.thumbnailHeight]
-        nsfwGuardView.isHidden = !(post.sensitive && post.attachments.count > 0)
+        nsfwGuardView.isHidden = !(nsfwGuardView.explicitlyOpened == false && post.sensitive && post.attachments.count > 0)
 
         for subview in self.imageStackView.arrangedSubviews {
             self.imageStackView.removeArrangedSubview(subview)

@@ -11,6 +11,8 @@ import ActionClosurable
 
 class NSFWGuardView: UIView {
     
+    var explicitlyOpened = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -70,6 +72,7 @@ class NSFWGuardView: UIView {
         let touchGesture = UITapGestureRecognizer { _ in
             self.isHidden = true
             self.isUserInteractionEnabled = false
+            self.explicitlyOpened = true
         }
 
         self.addGestureRecognizer(touchGesture)
