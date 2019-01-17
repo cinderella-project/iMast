@@ -10,17 +10,19 @@ import Foundation
 import UIKit
 
 struct UploadableMedia {
-    enum MediaType {
+    enum MeidaFormat {
         case jpeg
         case png
+        case mp4
     }
-    let type: UploadableMedia.MediaType
+    let format: UploadableMedia.MeidaFormat
     let data: Data
+    let url: URL?
     let thumbnailImage: UIImage
     
     func toUploadableData() -> Data {
         let newSize = Defaults[.autoResizeSize]
-        if newSize != 0, self.type == .jpeg || self.type == .png {
+        if newSize != 0, self.format == .jpeg || self.format == .png {
             // 画像の縮小と再圧縮
             guard let image = UIImage(data: self.data) else {
                 return self.data
@@ -49,17 +51,19 @@ struct UploadableMedia {
             guard let result = newImage else {
                 return self.data
             }
-            return ((self.type == .png ? result.pngData() : result.jpegData(compressionQuality: 1.0))!)
+            return ((self.format == .png ? result.pngData() : result.jpegData(compressionQuality: 1.0))!)
         }
         return self.data
     }
     
     func getMimeType() -> String {
-        switch self.type {
+        switch self.format {
         case .jpeg:
             return "image/jpeg"
         case .png:
             return "image/png"
+        case .mp4:
+            return "video/mp4"
         }
     }
 }

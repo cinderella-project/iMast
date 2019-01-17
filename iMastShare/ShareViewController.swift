@@ -69,14 +69,14 @@ class ShareViewController: SLComposeServiceViewController {
                             return
                         }
                         if let imageData = imageItem as? Data {
-                            self.postMedia.append(UploadableMedia(type: .png, data: imageData, thumbnailImage: UIImage(data: imageData)!))
+                            self.postMedia.append(UploadableMedia(format: .png, data: imageData, url: nil, thumbnailImage: UIImage(data: imageData)!))
                         } else if let imageUrl = imageItem as? NSURL {
                             print(imageUrl)
                             if imageUrl.isFileURL, let data = try? Data(contentsOf: imageUrl as URL) {
-                                self.postMedia.append(UploadableMedia(type: (imageUrl.pathExtension ?? "").lowercased() == "png" ? .png : .jpeg, data: data, thumbnailImage: UIImage(data: data)!))
+                                self.postMedia.append(UploadableMedia(format: (imageUrl.pathExtension ?? "").lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
                             }
                         } else if let image = imageItem as? UIImage {
-                            self.postMedia.append(UploadableMedia(type: .png, data: image.pngData()!, thumbnailImage: image))
+                            self.postMedia.append(UploadableMedia(format: .png, data: image.pngData()!, url: nil, thumbnailImage: image))
                         }
                     })
                 }
