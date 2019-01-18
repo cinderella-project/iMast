@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerDefaultsFromSettingsBundle()
         self.migrateUserDefaultsToAppGroup()
         initDatabase()
-        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        UserDefaults.standard.setValue(true, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
         let myAccount = MastodonUserToken.getLatestUsed()
         if let myAccount = myAccount {

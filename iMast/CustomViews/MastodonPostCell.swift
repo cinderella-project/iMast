@@ -11,22 +11,33 @@ import SwiftyJSON
 import SafariServices
 import SDWebImage
 import AVKit
+import Ikemen
+import NorthLayout
 
 class MastodonPostCell: UITableViewCell, UITextViewDelegate {
+    static let boostColor = UIColor(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
+    static let favouritedColor = UIColor(red: 0.9, green: 0.8, blue: 0.1, alpha: 1)
     
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var userView: UILabel!
-    @IBOutlet weak var timeView: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageThumbnailStackView: UIStackView!
-    @IBOutlet weak var boostedUserIcon: UIImageView!
-    @IBOutlet weak var tootInfoView: UIView!
-    @IBOutlet weak var nsfwGuardView: NSFWGuardView!
+    let iconView = UIImageView()
+    let userView = UILabel()
+    let timeView = UILabel()
+    let textView = UITextView() ※ {
+        $0.isScrollEnabled = false
+        $0.isEditable = false
+    }
+    let imageThumbnailStackView = UIStackView()
+    let boostedUserIcon = UIImageView()
+    let tootInfoView =  UIView() ※ {
+        $0.backgroundColor = MastodonPostCell.boostColor
+    }
+    let nsfwGuardView = NSFWGuardView()
     var post: MastodonPost?
-    @IBOutlet weak var myBoostedView: UIView!
-    @IBOutlet weak var myFavouritedView: UIView!
+    let myBoostedView = UIView() ※ {
+        $0.backgroundColor = MastodonPostCell.boostColor
+    }
+    let myFavouritedView = UIView() ※ {
+        $0.backgroundColor = MastodonPostCell.favouritedColor
+    }
     var pinned: Bool = false
     
     func viewDidLayoutSubviews() {
@@ -41,16 +52,51 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     }
     */
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let northLayout = northLayoutFormat([
+            "outerPadding": 8,
+            "infoWidth": 3,
+            "iconSize": CGFloat(Defaults[.timelineIconSize]),
+        ], [
+            "icon": self.iconView,
+            "tootInfo": self.tootInfoView,
+            "user": self.userView,
+            "time": self.timeView,
+            "text": self.textView,
+            "myBoosted": self.myBoostedView,
+            "myFavourited": self.myFavouritedView,
+            "images": self.imageThumbnailStackView,
+            "boostedUser": self.boostedUserIcon,
+        ])
+        northLayout("H:|[tootInfo(==infoWidth)]")
+        northLayout("H:[myBoosted(==infoWidth,==myFavourited)]|")
+        northLayout("H:[myFavourited]|")
+        northLayout("H:|-outerPadding-[icon(==iconSize)]-outerPadding-[user]-[time]-outerPadding-|")
+        northLayout("H:[icon]-[text]-outerPadding-|")
+        northLayout("H:[icon]-outerPadding-[images]-outerPadding-|")
+        northLayout("H:|-outerPadding-(iconSize*0.5)-[boostedUser(==iconSize*0.5)]")
+        northLayout("V:|-outerPadding-[icon(==iconSize)]-(>=outerPadding)-|")
+        northLayout("V:|[tootInfo]|")
+        northLayout("V:|-outerPadding-[user]-4-[text]-[images]-outerPadding-|")
+        northLayout("V:|-outerPadding-[time]-4-[text]")
+        northLayout("V:|[myBoosted(==myFavourited)][myFavourited]|")
+        northLayout("V:|-outerPadding-(iconSize*0.5)-[boostedUser(==iconSize*0.5)]")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func load(post post_: MastodonPost) {
         let post = post_.repost ?? post_
         if let repost = post_.repost {
             self.boostedUserIcon.sd_setImage(with: URL(string: post_.account.avatarUrl))
             self.boostedUserIcon.ignoreSmartInvert()
-            self.tootInfoView.backgroundColor = UIColor.init(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
         } else {
-            self.tootInfoView.backgroundColor = nil
             self.boostedUserIcon.image = nil
         }
+        self.tootInfoView.isHidden = post_.repost == nil
         self.post = post
         // textView.dataDetectorTypes = .link
         let attrStrTmp = (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis))
@@ -113,8 +159,6 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
             }
         }
         timeView.font = timeView.font.withSize(CGFloat(Defaults[.timelineUsernameFontsize]))
-        iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
-        iconHeightConstraint.constant = CGFloat(Defaults[.timelineIconSize])
         // -- タッチ周り --
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         textView.textContainer.lineFragmentPadding = 0
@@ -237,7 +281,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
     }
     
     static func getInstance(owner: Any? = nil) -> MastodonPostCell {
-        return R.nib.mastodonPostCell.firstView(owner: owner as AnyObject)!
+        return MastodonPostCell(style: .default, reuseIdentifier: nil)
     }
 
 }

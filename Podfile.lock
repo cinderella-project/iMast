@@ -4,10 +4,13 @@ PODS:
   - Alamofire (4.8.0)
   - Compass (6.0.0)
   - Eureka (4.3.0)
+  - FootlessParser (0.5.1)
   - Fuzi (2.1.0)
   - GRDB.swift (3.5.0)
   - HydraAsync (1.2.1)
   - KeychainAccess (3.1.1)
+  - NorthLayout (5.2.0):
+    - FootlessParser (~> 0.4)
   - Notifwift (1.0.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
@@ -19,7 +22,6 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SnapKit (4.2.0)
   - Starscream (3.0.5)
   - SVProgressHUD (2.2.5)
   - SwiftLint (0.27.0)
@@ -40,11 +42,11 @@ DEPENDENCIES:
   - GRDB.swift (~> 3.5.0)
   - HydraAsync
   - KeychainAccess
+  - NorthLayout
   - Notifwift
   - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 3)
   - SDWebImage (~> 4.0)
-  - SnapKit
   - Starscream
   - SVProgressHUD
   - SwiftLint
@@ -58,17 +60,18 @@ SPEC REPOS:
     - Alamofire
     - Compass
     - Eureka
+    - FootlessParser
     - Fuzi
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
+    - NorthLayout
     - Notifwift
     - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
     - SDWebImage
-    - SnapKit
     - Starscream
     - SVProgressHUD
     - SwiftLint
@@ -92,17 +95,18 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
   Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
+  FootlessParser: d59a9266ec55ed5a801fb171e25be43abfb42927
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
   GRDB.swift: 225cf9c1354753e92e20c2a1fa2912b924c9da6e
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  NorthLayout: 308a58a8f7d96f316e6399ff6432f8769321bbdf
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 7d551c67f3d8346bd380f0c852c042dc76643e5d
+PODFILE CHECKSUM: b625e46e427ad479c81cd4dd5961e39d814ad31a
 
 COCOAPODS: 1.5.3
