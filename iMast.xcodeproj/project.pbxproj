@@ -1832,7 +1832,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\" \"-D\" \"IS_DEBUG_BUILD\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
@@ -1857,7 +1857,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
@@ -1992,7 +1992,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2021,7 +2021,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
