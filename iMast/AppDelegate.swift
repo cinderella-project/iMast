@@ -115,6 +115,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let app = MastodonApp.initFromId(appId: state)
                 app.authorizeWithCode(code: code).then { userToken in
                     userToken.getUserInfo().then { json in
+                        userToken.save()
+                        userToken.use()
                         nextVC.userToken = userToken
                         changeRootVC(nextVC, animated: false)
                     }
