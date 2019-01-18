@@ -222,6 +222,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 let outUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".mp4")
                 exportSession.outputFileType = AVFileType.mp4
                 exportSession.outputURL = outUrl
+                exportSession.shouldOptimizeForNetworkUse = true
                 let alert = UIAlertController(title: "動画の処理中", message: "しばらくお待ちください", preferredStyle: .alert)
                 self.present(alert, animated: true) {
                     exportSession.exportAsynchronously {
