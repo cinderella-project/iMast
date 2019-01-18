@@ -95,6 +95,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("remove failed...", error)
         }
+        do {
+            print("tmp files deleting...")
+            for path in try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory()) {
+                var isDir: ObjCBool = false
+                guard try FileManager.default.fileExists(atPath: NSTemporaryDirectory() + "/" + path, isDirectory: &isDir) else {
+                    continue
+                }
+                guard isDir.boolValue == false else {
+                    continue
+                }
+                print(path)
+                try FileManager.default.removeItem(atPath: NSTemporaryDirectory() + "/" + path)
+            }
+            print("tmp files delete succuessful!")
+        } catch {
+            print("tmp remove failed...", error)
+        }
         return true
     }
     

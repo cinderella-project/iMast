@@ -129,10 +129,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 }
                 let response = try await(MastodonUserToken.getLatestUsed()!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if response["_response_code"].intValue >= 400 {
-                    alert.dismiss(animated: false, completion: {
-                        self.apiError(response["error"].string, response["_response_code"].int)
-                    })
-                    throw APIError.alreadyError()
+                    throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode:  response["_response_code"].intValue)
                 }
                 if !response["id"].exists() {
                     throw APIError.nil("id")
@@ -189,9 +186,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }
         }.catch { err in
-            alert.dismiss(animated: false, completion: {
-                self.alert(title: "エラー", message: "エラーが発生しました。\(err)")
-            })
+            DispatchQueue.main.async {
+                alert.dismiss(animated: false, completion: {
+                    self.alert(title: "エラー", message: "エラーが発生しました。\(err)")
+                })
+            }
         }
     }
     func configureObserver() {
