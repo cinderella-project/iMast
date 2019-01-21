@@ -16,4 +16,20 @@ extension DispatchQueue {
             DispatchQueue.main.sync(execute: closure)
         }
     }
+    
+    class func mainSafeSync<T>(execute closure: () -> T) -> T {
+        if Thread.isMainThread {
+            return closure()
+        } else {
+            return DispatchQueue.main.sync(execute: closure)
+        }
+    }
+    
+    class func mainSafeSync<T>(execute closure: () throws -> T) rethrows -> T {
+        if Thread.isMainThread {
+            return try closure()
+        } else {
+            return try DispatchQueue.main.sync(execute: closure)
+        }
+    }
 }

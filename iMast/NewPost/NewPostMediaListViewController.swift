@@ -12,6 +12,7 @@ import MobileCoreServices
 import AVFoundation
 import AVKit
 import Photos
+import Hydra
 
 class NewPostMediaListViewController: UIViewController {
 
@@ -212,44 +213,59 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
                 self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
             } else if let url = info[.mediaURL] as? URL {
-                let asset = AVURLAsset(url: url)
-                // サムネイルを作る
-                let imageGenerator = AVAssetImageGenerator(asset: asset)
-                let cgImage = try! imageGenerator.copyCGImage(at: CMTime.zero, actualTime: nil)
-                let thumbnailImage = UIImage(cgImage: cgImage)
-                // H.264でなかったら再エンコードが必要
-                // (H.265とかでもSafariなら見られるがみんなChrome使ってるので...)
-                var requiredReEncoding = false
-                if let videoTrack = asset.tracks(withMediaType: .video).first {
-                    let formats = videoTrack.formatDescriptions as! [CMFormatDescription]
-                    for (index, formatDesc) in formats.enumerated() {
-                        let type = CMFormatDescriptionGetMediaType(formatDesc).toString()
-                        guard type == "vide" else { continue }
-                        let format = CMFormatDescriptionGetMediaSubType(formatDesc).toString()
-                        guard type == "avc1" else { continue }
-                        // H.264じゃないので再エンコードが必要
-                        requiredReEncoding = true
-                    }
-                }
-                // mp4にコンテナ交換
-                let exportSession = AVAssetExportSession(asset: asset, presetName: requiredReEncoding ? AVAssetExportPreset1280x720 : AVAssetExportPresetPassthrough)!
-                let outUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".mp4")
-                print(outUrl)
-                exportSession.outputFileType = AVFileType.mp4
-                exportSession.outputURL = outUrl
-                exportSession.shouldOptimizeForNetworkUse = true
-                let alert = UIAlertController(title: "動画の処理中", message: "しばらくお待ちください", preferredStyle: .alert)
-                self.present(alert, animated: true) {
-                    let timer = Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { _ in
-                        alert.message = "しばらくお待ちください (\(String(format: "%.1f", arguments: [exportSession.progress * 100.0]))%)"
-                    })
-                    exportSession.exportAsynchronously {
-                        timer.invalidate()
-                        let data = try! Data(contentsOf: outUrl)
-                        DispatchQueue.mainSafeSync {
-                            alert.dismiss(animated: true, completion: nil)
-                            self.addMedia(media: UploadableMedia(format: .mp4, data: data, url: outUrl, thumbnailImage: thumbnailImage))
+                async(in: .background) {
+                    let asset = AVURLAsset(url: url)
+                    // サムネイルを作る
+                    let imageGenerator = AVAssetImageGenerator(asset: asset)
+                    let cgImage = try! imageGenerator.copyCGImage(at: CMTime.zero, actualTime: nil)
+                    let thumbnailImage = UIImage(cgImage: cgImage)
+                    // H.264でなかったら再エンコードが必要
+                    // (H.265とかでもSafariなら見られるがみんなChrome使ってるので...)
+                    var requiredReEncoding = false
+                    if let videoTrack = asset.tracks(withMediaType: .video).first {
+                        let formats = videoTrack.formatDescriptions as! [CMFormatDescription]
+                        for (index, formatDesc) in formats.enumerated() {
+                            let type = CMFormatDescriptionGetMediaType(formatDesc).toString()
+                            guard type == "vide" else { continue }
+                            let format = CMFormatDescriptionGetMediaSubType(formatDesc).toString()
+                            guard type == "avc1" else { continue }
+                            // H.264じゃないので再エンコードが必要
+                            requiredReEncoding = true
                         }
+                    }
+                    // mp4にコンテナ交換
+                    let exportSession = AVAssetExportSession(asset: asset, presetName: requiredReEncoding ? AVAssetExportPreset1280x720 : AVAssetExportPresetPassthrough)!
+                    let outUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".mp4")
+                    print(outUrl)
+                    exportSession.outputFileType = AVFileType.mp4
+                    exportSession.outputURL = outUrl
+                    exportSession.shouldOptimizeForNetworkUse = true
+                    exportSession.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
+                    if exportSession.estimatedOutputFileLength > 40_000_000 {
+                        guard try! await(self.confirm(
+                            title: "確認",
+                            message: "動画をこのままエンコードすると40MBを越えそうです(予想される出力ファイルサイズ: \(exportSession.estimatedOutputFileLength)bytes)。このままエンコードしますか?",
+                            okButtonMessage: "OK",
+                            style: .default,
+                            cancelButtonMessage: "キャンセル"
+                        )) else { return }
+                    }
+                    let alert = DispatchQueue.mainSafeSync {
+                        UIAlertController(title: "動画の処理中", message: "しばらくお待ちください", preferredStyle: .alert)
+                    }
+                    try! await(self.presentPromise(alert, animated: true))
+                    let timer = DispatchQueue.mainSafeSync {
+                        Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { _ in
+                            alert.message = "しばらくお待ちください (\(String(format: "%.1f", arguments: [exportSession.progress * 100.0]))%, est: \(exportSession.estimatedOutputFileLength))"
+                        })
+                    }
+                    try! await(exportSession.exportPromise())
+                    timer.invalidate()
+//                    print((try? FileManager.default.attributesOfItem(atPath: outUrl.path)))
+                    let data = try! Data(contentsOf: outUrl)
+                    DispatchQueue.mainSafeSync {
+                        alert.dismiss(animated: true, completion: nil)
+                        self.addMedia(media: UploadableMedia(format: .mp4, data: data, url: outUrl, thumbnailImage: thumbnailImage))
                     }
                 }
                 return
