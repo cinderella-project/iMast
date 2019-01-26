@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import Hydra
 import ReachabilitySwift
+import SafariServices
 
 class TimeLineTableViewController: UITableViewController {
     
@@ -99,6 +100,24 @@ class TimeLineTableViewController: UITableViewController {
         return MastodonUserToken.getLatestUsed()!.timeline(timelineType).then { (posts) -> Void in
             self._addNewPosts(posts: posts)
             return Void()
+        }.catch { e in
+            switch e {
+            case MastodonIDError.failedConvertToInt:
+                let vc = UIAlertController(title: "エラー", message: """
+このエラーが出たのがPleromaインスタンスなら、恐らくPleromaが最近行った破壊的変更が原因であり、iMastはその破壊的変更に追従するか決めかねています。
+なぜなら、iMastはMastodonクライアントであり、Pleromaクライアントではないからです。
+どちらにせよ、数日の間は他のクライアントを使うなり他のインスタンスを使うなりしてください。
+""", preferredStyle: .alert)
+                vc.addAction(UIAlertAction(title: "詳しい情報", style: .default) { _ in
+                    let vc = SFSafariViewController(url: URL(string: "https://esa-pages.io/p/sharing/9631/posts/26/4d083d0759a7491b4f76.html")!)
+                    self.present(vc, animated: true, completion: nil)
+                })
+                vc.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(vc, animated: true, completion: nil)
+                throw e
+            default:
+                throw e
+            }
         }
     }
     @objc func refreshTimeline() {
