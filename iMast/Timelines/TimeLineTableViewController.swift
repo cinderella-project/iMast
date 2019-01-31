@@ -67,11 +67,9 @@ class TimeLineTableViewController: UITableViewController {
                         usleep(500)
                     }
                     let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
-                        return a.id.int > b.id.int
+                        return a.id.compare(b.id) == .orderedDescending
                     })
-                    print(posts.map({ (post) -> Int64  in
-                        return post.id.int
-                    }))
+                    print(posts.map { $0.id.raw })
                     self.postsQueue = []
                     DispatchQueue.main.async {
                         self._addNewPosts(posts: posts)
@@ -100,24 +98,6 @@ class TimeLineTableViewController: UITableViewController {
         return MastodonUserToken.getLatestUsed()!.timeline(timelineType).then { (posts) -> Void in
             self._addNewPosts(posts: posts)
             return Void()
-        }.catch { e in
-            switch e {
-            case MastodonIDError.failedConvertToInt:
-                let vc = UIAlertController(title: "エラー", message: """
-このエラーが出たのがPleromaインスタンスなら、恐らくPleromaが最近行った破壊的変更が原因であり、iMastはその破壊的変更に追従するか決めかねています。
-なぜなら、iMastはMastodonクライアントであり、Pleromaクライアントではないからです。
-どちらにせよ、数日の間は他のクライアントを使うなり他のインスタンスを使うなりしてください。
-""", preferredStyle: .alert)
-                vc.addAction(UIAlertAction(title: "詳しい情報", style: .default) { _ in
-                    let vc = SFSafariViewController(url: URL(string: "https://esa-pages.io/p/sharing/9631/posts/26/4d083d0759a7491b4f76.html")!)
-                    self.present(vc, animated: true, completion: nil)
-                })
-                vc.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(vc, animated: true, completion: nil)
-                throw e
-            default:
-                throw e
-            }
         }
     }
     @objc func refreshTimeline() {
@@ -173,7 +153,7 @@ class TimeLineTableViewController: UITableViewController {
         }
         let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
-            return a.id.int > b.id.int
+            return a.id.compare(b.id) == .orderedDescending
         }).filter({ (post) -> Bool in
 //            if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
 //                return false

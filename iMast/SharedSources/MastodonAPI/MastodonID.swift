@@ -9,7 +9,8 @@
 import Foundation
 
 class MastodonID: Codable, CustomStringConvertible {
-    var int: Int64
+    @available(*, unavailable)
+    var int: Int64 = -1
     var string: String
     var raw: Any
     
@@ -20,7 +21,7 @@ class MastodonID: Codable, CustomStringConvertible {
     
     init(string: String) {
         self.string = string
-        self.int = Int64(string)!
+//        self.int = Int64(string)!
         self.raw = string
     }
     
@@ -35,17 +36,17 @@ class MastodonID: Codable, CustomStringConvertible {
             guard let int = raw as? Int64 else {
                 throw MastodonIDError.convertFailed
             }
-            self.int = int
-            self.string = self.int.description
+//            self.int = int
+            self.string = int.description
         } else if raw is String {
             guard let string = raw as? String else {
                 throw MastodonIDError.convertFailed
             }
             self.string = string
-            guard let int = Int64(self.string) else {
-                throw MastodonIDError.failedConvertToInt
-            }
-            self.int = int
+//            guard let int = Int64(self.string) else {
+//                throw MastodonIDError.failedConvertToInt
+//            }
+//            self.int = int
         } else {
             throw MastodonIDError.notIntAndStringWhat
         }
@@ -59,6 +60,23 @@ class MastodonID: Codable, CustomStringConvertible {
         } else if let raw = raw as? Int64 {
             try container.encode(raw)
         }
+    }
+    
+    func compare(_ otherId: MastodonID) -> ComparisonResult {
+        if self.string == otherId.string {
+            return .orderedSame
+        }
+        if self.string.count != otherId.string.count {
+            return self.string.count > otherId.string.count ? .orderedDescending : .orderedAscending
+        }
+        for i in 0..<self.string.count {
+            let selfChar = self.string[self.string.index(self.string.startIndex, offsetBy: i)]
+            let otherChar = otherId.string[otherId.string.index(otherId.string.startIndex, offsetBy: i)]
+            if selfChar != otherChar {
+                return selfChar > otherChar ? .orderedDescending : .orderedAscending
+            }
+        }
+        fatalError("ここに届くのはおかしい")
     }
 }
 
