@@ -304,6 +304,14 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 self.navigationController?.pushViewController(bunmyakuVC, animated: true)
             }
         }))
+        if (post.emojis.count) + (post.profileEmojis.count) > 0 { // カスタム絵文字がある
+            actionSheet.addAction(UIAlertAction(title: "カスタム絵文字一覧", style: .default, handler: { _ in
+                let newVC = EmojiListTableViewController()
+                newVC.emojis = post.emojis + post.profileEmojis
+                newVC.account = post.account
+                self.navigationController?.pushViewController(newVC, animated: true)
+            }))
+        }
         if MastodonUserToken.getLatestUsed()!.screenName == post.account.acct {
             actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive, handler: { (action) in
                 self.confirm(title: "投稿の削除", message: Defaults[.deleteTootTeokure] ? "失った信頼はもう戻ってきませんが、本当にこのトゥートを削除しますか?" : "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
