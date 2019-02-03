@@ -1,13 +1,14 @@
 PODS:
   - 1PasswordExtension (1.8.5)
   - ActionClosurable (1.2.0)
-  - Alamofire (4.8.0)
+  - Alamofire (4.8.1)
   - Compass (6.0.0)
-  - Eureka (4.3.0)
+  - Eureka (4.3.1)
   - Fuzi (2.1.0)
-  - GRDB.swift (3.5.0)
+  - GRDB.swift (3.6.2)
   - HydraAsync (1.2.1)
-  - KeychainAccess (3.1.1)
+  - KeychainAccess (3.1.2)
+  - LicensePlist (2.1.0)
   - Notifwift (1.0.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
@@ -15,41 +16,42 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - ReachabilitySwift (3)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - ReachabilitySwift (4.3.0)
+  - SDWebImage (4.4.5):
+    - SDWebImage/Core (= 4.4.5)
+  - SDWebImage/Core (4.4.5)
   - SnapKit (4.2.0)
-  - Starscream (3.0.5)
+  - Starscream (3.0.6)
   - SVProgressHUD (2.2.5)
-  - SwiftLint (0.27.0)
-  - SwiftyJSON (4.1.0)
-  - XCGLogger (6.0.4):
-    - XCGLogger/Core (= 6.0.4)
-  - XCGLogger/Core (6.0.4):
+  - SwiftLint (0.30.1)
+  - SwiftyJSON (4.2.0)
+  - XCGLogger (6.1.0):
+    - XCGLogger/Core (= 6.1.0)
+  - XCGLogger/Core (6.1.0):
     - ObjcExceptionBridging
   - "※ikemen (0.5.0)"
 
 DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
   - ActionClosurable (from `https://github.com/rinsuki/ActionClosurable.git`, branch `fix/swift4.2`)
-  - Alamofire (~> 4.8)
+  - Alamofire (~> 4.8.1)
   - Compass
-  - Eureka (~> 4.3.0)
+  - Eureka (~> 4.3.1)
   - Fuzi (~> 2.1.0)
-  - GRDB.swift (~> 3.5.0)
+  - GRDB.swift (~> 3.6.2)
   - HydraAsync
-  - KeychainAccess
+  - KeychainAccess (~> 3.1.2)
+  - LicensePlist (~> 2.1.0)
   - Notifwift
   - R.swift (~> 4.0.0)
-  - ReachabilitySwift (~> 3)
-  - SDWebImage (~> 4.0)
+  - ReachabilitySwift (~> 4.3.0)
+  - SDWebImage (~> 4.4.5)
   - SnapKit
-  - Starscream
+  - Starscream (~> 3.0.6)
   - SVProgressHUD
-  - SwiftLint
-  - SwiftyJSON
-  - XCGLogger (~> 6.0.2)
+  - SwiftLint (~> 0.30.1)
+  - SwiftyJSON (~> 4.2.0)
+  - XCGLogger (~> 6.1.0)
   - "※ikemen"
 
 SPEC REPOS:
@@ -62,6 +64,7 @@ SPEC REPOS:
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
+    - LicensePlist
     - Notifwift
     - ObjcExceptionBridging
     - R.swift
@@ -89,27 +92,28 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
-  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
-  GRDB.swift: 225cf9c1354753e92e20c2a1fa2912b924c9da6e
+  GRDB.swift: e10787d857b6b8135354b9e08fb23b4bb8e2fab7
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
-  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  LicensePlist: 304c23a2e9f484f3985b6b873db7ae32086279af
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  XCGLogger: 4fc1bc0bdd5828cb8dc8da7a843536cda1bea8f3
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 7d551c67f3d8346bd380f0c852c042dc76643e5d
+PODFILE CHECKSUM: 9582ee823f104e2968011f56b825c700d9bec4bc
 
 COCOAPODS: 1.5.3

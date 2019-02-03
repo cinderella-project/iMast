@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Hydra
-import ReachabilitySwift
+import Reachability
 import SafariServices
 
 class TimeLineTableViewController: UITableViewController {

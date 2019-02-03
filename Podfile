@@ -2,13 +2,13 @@
 platform :ios, '9.0'
 
 def based_pods
-  pod 'SwiftLint'
-  pod 'Alamofire', '~> 4.8'
-  pod 'GRDB.swift', '~> 3.5.0'
-  pod 'SwiftyJSON'
+  pod 'SwiftLint', '~> 0.30.1'
+  pod 'Alamofire', '~> 4.8.1'
+  pod 'GRDB.swift', '~> 3.6.2'
+  pod 'SwiftyJSON', '~> 4.2.0'
   pod 'HydraAsync'
-  pod 'XCGLogger', '~> 6.0.2'
-  pod 'SDWebImage', '~> 4.0'
+  pod 'XCGLogger', '~> 6.1.0'
+  pod 'SDWebImage', '~> 4.4.5'
   pod 'Fuzi', '~> 2.1.0'
   pod 'SnapKit'
   pod '※ikemen'
@@ -22,15 +22,16 @@ target 'iMast' do
 
   based_pods
   pod 'Compass'
-  pod 'Starscream'
-  pod 'ReachabilitySwift', '~> 3'
-  pod 'Eureka', '~> 4.3.0'
+  pod 'Starscream', '~> 3.0.6'
+  pod 'ReachabilitySwift', '~> 4.3.0'
+  pod 'Eureka', '~> 4.3.1'
   pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
-  pod 'KeychainAccess'
+  pod 'KeychainAccess', '~> 3.1.2'
   pod 'SVProgressHUD'
   pod 'Notifwift'
   pod 'R.swift', '~> 4.0.0'
   pod '1PasswordExtension', '~> 1.8.5'
+  pod 'LicensePlist', '~> 2.1.0'
 
   target 'iMastTests' do
     inherit! :search_paths
@@ -65,10 +66,6 @@ target 'iMast' do
 end
 
 post_install do | installer |
-  # Acknowledgements file auto generate
-  require 'fileutils'
-  FileUtils.cp_r('Pods/Target Support Files/Pods-iMast/Pods-iMast-acknowledgements.plist', 'iMast/Settings.bundle/Acknowledgements.plist')
-
   # R.swift in Swift 4.2 workaround
   # 5.0が出るまで我慢
   installer.pods_project.targets.each do | target |

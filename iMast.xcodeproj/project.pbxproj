@@ -312,6 +312,9 @@
 		2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMastUITests.swift; sourceTree = "<group>"; };
 		2AF3523C1EAB9C5600777C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0AAAF651190DDB458E8AA3 /* Pods-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastNotifyService/Pods-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
+		36EBC379F7E8278D227A333F /* Acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Acknowledgements.plist; path = iMast/Settings.bundle/Acknowledgements.plist; sourceTree = "<group>"; };
+		36EBC83E8164ACB27CEDC2DA /* license_plist.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = license_plist.yml; sourceTree = "<group>"; };
+		36EBCA366AA32976481B4C3F /* Acknowledgements-Others.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "Acknowledgements-Others.plist"; path = "iMast/Settings.bundle/Acknowledgements-Others.plist"; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
@@ -534,6 +537,7 @@
 			children = (
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
+				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
 				CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */,
 				2AF352191EAB9C5500777C2E /* iMast */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
@@ -545,6 +549,8 @@
 				2AF352181EAB9C5500777C2E /* Products */,
 				125AADA9AE2BD3C447287A06 /* Pods */,
 				8076AB24184E0217BCEE6A2B /* Frameworks */,
+				36EBC379F7E8278D227A333F /* Acknowledgements.plist */,
+				36EBCA366AA32976481B4C3F /* Acknowledgements-Others.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -833,8 +839,9 @@
 			buildConfigurationList = 2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast" */;
 			buildPhases = (
 				4B77653ACFD6F075F5A4B543 /* [CP] Check Pods Manifest.lock */,
-				CE392A6B216374090046C84F /* ShellScript */,
-				CE099D0521943C1E00A4BCCB /* ShellScript */,
+				CE392A6B216374090046C84F /* R.swift Generate */,
+				CE099D0521943C1E00A4BCCB /* SwiftLint */,
+				CE9B75C822079C3600EBAB1B /* Generate LicensePlist */,
 				2AF352131EAB9C5500777C2E /* Sources */,
 				2AF352141EAB9C5500777C2E /* Frameworks */,
 				2AF352151EAB9C5500777C2E /* Resources */,
@@ -1301,7 +1308,7 @@
 				"${BUILT_PRODUCTS_DIR}/Notifwift/Notifwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -1324,7 +1331,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Notifwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -1338,7 +1345,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iMast/Pods-iMast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE099D0521943C1E00A4BCCB /* ShellScript */ = {
+		CE099D0521943C1E00A4BCCB /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1347,6 +1354,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1355,7 +1363,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		CE392A6B216374090046C84F /* ShellScript */ = {
+		CE392A6B216374090046C84F /* R.swift Generate */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1364,6 +1372,7 @@
 			);
 			inputPaths = (
 			);
+			name = "R.swift Generate";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1388,6 +1397,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$TARGET_NAME\"\n";
+		};
+		CE9B75C822079C3600EBAB1B /* Generate LicensePlist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate LicensePlist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path $PRODUCT_NAME/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

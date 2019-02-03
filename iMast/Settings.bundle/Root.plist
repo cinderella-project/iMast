@@ -10,17 +10,9 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Acknowledgements (Libraries)</string>
+			<string>オープンソースライセンス</string>
 			<key>File</key>
-			<string>Acknowledgements</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>Acknowledgements (Others)</string>
-			<key>File</key>
-			<string>Acknowledgements-Others</string>
+			<string>com.mono0926.LicensePlist</string>
 		</dict>
 	</array>
 </dict>

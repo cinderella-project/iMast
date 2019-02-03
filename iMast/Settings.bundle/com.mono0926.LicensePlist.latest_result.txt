@@ -1,0 +1,277 @@
+name: 1PasswordExtension, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 1.8.5
+
+name: ActionClosurable, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.2.0
+
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.8.1
+
+name: Compass, nameSpecified: 
+body: Licensed under the *…
+version: 6.0.0
+
+name: Eureka, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.3.1
+
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 2.1.0
+
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 2.1.0
+
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 2.1.0
+
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 2.1.0
+
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 2.1.0
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 3.6.2
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 3.6.2
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 3.6.2
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 3.6.2
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 3.6.2
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 1.2.1
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 1.2.1
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 1.2.1
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 1.2.1
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 1.2.1
+
+name: KeychainAccess, nameSpecified: 
+body: The MIT License (MIT…
+version: 3.1.2
+
+name: LicensePlist, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 2.1.0
+
+name: Notifwift, nameSpecified: 
+body: Copyright (c) 2016 t…
+version: 1.0.0
+
+name: ObjcExceptionBridging, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.1
+
+name: ObjcExceptionBridging, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.1
+
+name: ObjcExceptionBridging, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.1
+
+name: ObjcExceptionBridging, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.1
+
+name: ObjcExceptionBridging, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.1
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.0.0
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.0.0
+
+name: ReachabilitySwift, nameSpecified: 
+body: Copyright (c) 2016 A…
+version: 4.3.0
+
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 4.4.5
+
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 4.4.5
+
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 4.4.5
+
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 4.4.5
+
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 4.4.5
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 4.2.0
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 4.2.0
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 4.2.0
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 4.2.0
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 4.2.0
+
+name: Starscream, nameSpecified: 
+body:                     …
+version: 3.0.6
+
+name: SVProgressHUD, nameSpecified: 
+body: MIT License
+
+Copyrig…
+version: 2.2.5
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.30.1
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.30.1
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.30.1
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.30.1
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.30.1
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.0
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.0
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.0
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.0
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.0
+
+name: XCGLogger, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: XCGLogger, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: XCGLogger, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: XCGLogger, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: XCGLogger, nameSpecified: 
+body: The MIT License (MIT…
+version: 6.1.0
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
+
+name: mikutter, nameSpecified: , owner: mikutter, version: 
+
+add-version-numbers: true
+
+LicensePlist Version: 1.8.3
