@@ -109,17 +109,17 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         userScreenNameView.text = "@"+post.account.acct
         iconView.sd_setImage(with: URL(string: iconUrl))
         iconView.ignoreSmartInvert()
-        var actionText = ""
+        var actionTexts: [String] = []
         if post.repostCount > 0 {
-            actionText += "%d件のブースト ".format(post.repostCount)
+            actionTexts.append("%d件のブースト".format(post.repostCount))
         }
         if post.favouritesCount > 0 {
-            actionText += "%d件のふぁぼ ".format(post.favouritesCount)
+            actionTexts.append("%d件のふぁぼ".format(post.favouritesCount))
         }
         if let app = post.application {
-            actionText += "via \(app.name) "
+            actionTexts.append("via \(app.name)")
         }
-        actionCountCell.textLabel?.text = actionText
+        actionCountCell.textLabel?.text = actionTexts.joined(separator: " ")
         
         iconView.isUserInteractionEnabled = true
         iconView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tapUser)))

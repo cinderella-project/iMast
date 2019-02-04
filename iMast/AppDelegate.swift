@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let vc = application.viewController {
                 let newVC = UIStoryboard(name: "NewPost", bundle: nil).instantiateInitialViewController()!
                 let wrapVC = UINavigationController(rootViewController: newVC)
-                newVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
+                newVC.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.cancel(), style: .plain) { _ in
                     wrapVC.dismiss(animated: true, completion: nil)
                 }
                 vc.present(wrapVC, animated: true, completion: nil)
@@ -233,7 +233,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         guard let userToken = try! MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
-            UIApplication.shared.viewController?.alert(title: "エラー", message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。")
+            UIApplication.shared.viewController?.alert(title: R.string.localizable.errorTitle(), message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。")
             completionHandler()
             return
         }

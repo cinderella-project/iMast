@@ -15,13 +15,13 @@ class AddAccountIndexViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "ログイン"
+        self.title = R.string.localizable.login()
         if MastodonUserToken.getLatestUsed() != nil {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel) { _ in
                 changeRootVC(MainTabBarController(), animated: true)
             }
         }
-        self.form +++ Section("Mastodonのインスタンスを入力してください")
+        self.form +++ Section(R.string.localizable.pleaseInputMastodonInstance())
         <<< TextRow("instance") { row in
             row.placeholder = "mstdn.jp"
         }.cellUpdate { cell, row in
@@ -36,7 +36,7 @@ class AddAccountIndexViewController: FormViewController {
                     return
                 }
                 guard let hostName = instanceRow.value ?? instanceRow.placeholder else {
-                    self.alert(title: "エラー", message: "インスタンスを入力してください")
+                    self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorPleaseInputInstance())
                     return
                 }
                 let alert = UIAlertController(title: "ログイン中...", message: "ログインしています", preferredStyle: .alert)

@@ -18,7 +18,7 @@ class HashtagTimeLineTableViewController: TimeLineTableViewController {
         super.init(style: .plain)
         self.timelineType = .hashtag(hashtag)
         self.title = "#" + hashtag
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.timelineToPostButtonTitle(), style: .bordered) { _ in
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.post(), style: .bordered) { _ in
             let postVC = R.storyboard.newPost.instantiateInitialViewController()!
             postVC.appendBottomString = " #\(hashtag)"
             self.navigationController?.pushViewController(postVC, animated: true)

@@ -15,7 +15,7 @@ class ListsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = R.string.localizable.tabsOtherLists()
+        self.title = R.string.localizable.lists()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

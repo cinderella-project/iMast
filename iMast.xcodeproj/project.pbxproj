@@ -312,9 +312,7 @@
 		2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMastUITests.swift; sourceTree = "<group>"; };
 		2AF3523C1EAB9C5600777C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0AAAF651190DDB458E8AA3 /* Pods-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastNotifyService/Pods-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
-		36EBC379F7E8278D227A333F /* Acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Acknowledgements.plist; path = iMast/Settings.bundle/Acknowledgements.plist; sourceTree = "<group>"; };
 		36EBC83E8164ACB27CEDC2DA /* license_plist.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = license_plist.yml; sourceTree = "<group>"; };
-		36EBCA366AA32976481B4C3F /* Acknowledgements-Others.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = "Acknowledgements-Others.plist"; path = "iMast/Settings.bundle/Acknowledgements-Others.plist"; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EABF09BB4A0E0D3ABBB0120 /* Pods_iMast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
@@ -549,8 +547,6 @@
 				2AF352181EAB9C5500777C2E /* Products */,
 				125AADA9AE2BD3C447287A06 /* Pods */,
 				8076AB24184E0217BCEE6A2B /* Frameworks */,
-				36EBC379F7E8278D227A333F /* Acknowledgements.plist */,
-				36EBCA366AA32976481B4C3F /* Acknowledgements-Others.plist */,
 			);
 			sourceTree = "<group>";
 		};

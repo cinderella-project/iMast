@@ -25,7 +25,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.title = R.string.localizable.tabsOtherSwitchActiveAccountTitle()
+        self.title = R.string.localizable.switchActiveAccount()
         
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")

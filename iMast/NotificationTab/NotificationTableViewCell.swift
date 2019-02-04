@@ -39,9 +39,25 @@ class NotificationTableViewCell: UITableViewCell {
         }
     }
     
+    func getTitle(notification: MastodonNotification) -> String {
+        let acct = notification.account?.acct ?? ""
+        switch notification.type {
+        case "reblog":
+            return R.string.localizable.boostedYourToot(acct)
+        case "favourite":
+            return R.string.localizable.favouritedYourToot(acct)
+        case "mention":
+            return R.string.localizable.mentionedYou(acct)
+        case "follow":
+            return R.string.localizable.followedYou(acct)
+        default:
+            return R.string.localizable.unknownNotificationType(notification.type)
+        }
+    }
+    
     func load(notification: MastodonNotification) {
         self.notifyTypeImageView.image = NotificationTableViewCell.getIcon(type: notification.type)
-        self.titleLabel.text = NSLocalizedString("tabs.notifications.cell.\(notification.type).title", comment: "").replace("%", notification.account?.acct ?? "")
+        self.titleLabel.text = self.getTitle(notification: notification)
         self.descriptionLabel.text = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replace("\n", " ")
     }
     

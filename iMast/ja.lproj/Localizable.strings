@@ -6,41 +6,47 @@
   Copyright © 2018 rinsuki. All rights reserved.
 */
 
-"tabs.notifications.title" = "通知";
-"tabs.notifications.cell.follow.title" = "@%さんにフォローされました";
-"tabs.notifications.cell.favourite.title" = "@%さんにふぁぼられました";
-"tabs.notifications.cell.mention.title" = "@%さんからのメンション";
-"tabs.notifications.cell.reblog.title" = "@%さんにブーストされました";
-"tabs.notifications.cell.readmore.title" = "もっと";
-"tabs.notifications.cell.readmore.disabledTitle" = "ここまで";
-"tabs.notifications.cell.readmore.fetchError" = "取得失敗";
+"notifications" = "通知";
+"followedYou" = "@%@さんにフォローされました";
+"favouritedYourToot" = "@%@さんにふぁぼられました";
+"mentionedYou" = "@%@さんからのメンション";
+"boostedYourToot" = "@%@さんにブーストされました";
+"unknownNotificationType" = "不明な通知: %@";
 
-"tabs.home.title" = "ホームタイムライン";
-"tabs.home.shortTitle" = "ホーム";
+"readmore" = "もっと";
+"nothingMore" = "ここまで";
+"fetchFailed" = "取得失敗";
 
-"tabs.localTimeline.title" = "ローカルタイムライン";
-"tabs.localTimeline.shortTitle" = "LTL";
+"homeTimeline" = "ホームタイムライン";
+"homeTimeline.short" = "ホーム";
 
-"timeline.toPostButton.title" = "投稿";
-"timeline.streaming.title" = "Streaming";
-"timeline.streaming.status.base" = "状態: %";
+"localTimeline" = "ローカルタイムライン";
+"localTimeline.short" = "LTL";
 
-"timeline.streaming.status.connected" = "接続中";
-"timeline.streaming.status.notConnected" = "接続していません";
+"post" = "投稿";
+"streaming" = "Streaming";
+"streamingStatus" = "状態: %@";
 
-"timeline.streaming.action.connect" = "接続";
-"timeline.streaming.action.disconnect" = "切断";
-"timeline.streaming.action.refresh" = "再取得";
-"timeline.streaming.action.cancel" = "キャンセル";
+"connected" = "接続中";
+"notConnected" = "接続していません";
 
-"tabs.other.title" = "その他";
-"tabs.other.switchActiveAccount.title" = "アカウントを変更";
-"tabs.other.switchActiveAccount.subTitle" = "現在のアカウント: @%@";
-"tabs.other.myProfile" = "自分のプロフィール";
-"tabs.other.lists" = "リスト";
-"tabs.other.settings" = "設定";
-"tabs.other.helpAndFeedback" = "ヘルプ / Feedback";
+"connect" = "接続";
+"disconnect" = "切断";
+"refetch" = "再取得";
+"cancel" = "キャンセル";
+
+"other" = "その他";
+"switchActiveAccount" = "アカウントを変更";
+"currentAccount" = "現在のアカウント: @%@";
+"myProfile" = "自分のプロフィール";
+"lists" = "リスト";
+"settings" = "設定";
+"helpAndFeedback" = "ヘルプ / Feedback";
+
+"login" = "ログイン";
+"pleaseInputMastodonInstance" = "Mastodonのインスタンスを入力してください";
 
 "error.title" = "エラー";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
 "error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
+"error.pleaseInputInstance" = "インスタンスを入力してください。";

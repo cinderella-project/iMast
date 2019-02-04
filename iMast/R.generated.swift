@@ -320,44 +320,44 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 4 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 35 localization keys.
     struct localizable {
-      /// en translation: @% boosted your toot
+      /// en translation: @%@ boosted your toot
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellReblogTitle = Rswift.StringResource(key: "tabs.notifications.cell.reblog.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: @% favorited your toot
+      static let boostedYourToot = Rswift.StringResource(key: "boostedYourToot", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @%@ favorited your toot
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellFavouriteTitle = Rswift.StringResource(key: "tabs.notifications.cell.favourite.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: @% followed you
+      static let favouritedYourToot = Rswift.StringResource(key: "favouritedYourToot", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @%@ followed you
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellFollowTitle = Rswift.StringResource(key: "tabs.notifications.cell.follow.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: @% mentioned you
+      static let followedYou = Rswift.StringResource(key: "followedYou", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: @%@ mentioned you
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellMentionTitle = Rswift.StringResource(key: "tabs.notifications.cell.mention.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let mentionedYou = Rswift.StringResource(key: "mentionedYou", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
-      static let timelineStreamingActionCancel = Rswift.StringResource(key: "timeline.streaming.action.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Connect
       /// 
       /// Locales: en, ja
-      static let timelineStreamingActionConnect = Rswift.StringResource(key: "timeline.streaming.action.connect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let connect = Rswift.StringResource(key: "connect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Connected
       /// 
       /// Locales: en, ja
-      static let timelineStreamingStatusConnected = Rswift.StringResource(key: "timeline.streaming.status.connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let connected = Rswift.StringResource(key: "connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Current: @%@
       /// 
       /// Locales: en, ja
-      static let tabsOtherSwitchActiveAccountSubTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.subTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let currentAccount = Rswift.StringResource(key: "currentAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
-      static let timelineStreamingActionDisconnect = Rswift.StringResource(key: "timeline.streaming.action.disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let disconnect = Rswift.StringResource(key: "disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Error
       /// 
       /// Locales: en, ja
@@ -365,79 +365,87 @@ struct R: Rswift.Validatable {
       /// en translation: Fetch failed
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellReadmoreFetchError = Rswift.StringResource(key: "tabs.notifications.cell.readmore.fetchError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let fetchFailed = Rswift.StringResource(key: "fetchFailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Help / Feedback
       /// 
       /// Locales: en, ja
-      static let tabsOtherHelpAndFeedback = Rswift.StringResource(key: "tabs.other.helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let helpAndFeedback = Rswift.StringResource(key: "helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, ja
-      static let tabsHomeShortTitle = Rswift.StringResource(key: "tabs.home.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let homeTimelineShort = Rswift.StringResource(key: "homeTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Home Timeline
       /// 
       /// Locales: en, ja
-      static let tabsHomeTitle = Rswift.StringResource(key: "tabs.home.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let homeTimeline = Rswift.StringResource(key: "homeTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: LTL
       /// 
       /// Locales: en, ja
-      static let tabsLocalTimelineShortTitle = Rswift.StringResource(key: "tabs.localTimeline.shortTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let localTimelineShort = Rswift.StringResource(key: "localTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Lists
       /// 
       /// Locales: en, ja
-      static let tabsOtherLists = Rswift.StringResource(key: "tabs.other.lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let lists = Rswift.StringResource(key: "lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
-      static let tabsLocalTimelineTitle = Rswift.StringResource(key: "tabs.localTimeline.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let localTimeline = Rswift.StringResource(key: "localTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: My Profile
       /// 
       /// Locales: en, ja
-      static let tabsOtherMyProfile = Rswift.StringResource(key: "tabs.other.myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let myProfile = Rswift.StringResource(key: "myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
-      static let timelineStreamingStatusNotConnected = Rswift.StringResource(key: "timeline.streaming.status.notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let notConnected = Rswift.StringResource(key: "notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Nothing more
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellReadmoreDisabledTitle = Rswift.StringResource(key: "tabs.notifications.cell.readmore.disabledTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let nothingMore = Rswift.StringResource(key: "nothingMore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Notifications
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsTitle = Rswift.StringResource(key: "tabs.notifications.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let notifications = Rswift.StringResource(key: "notifications", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Others
       /// 
       /// Locales: en, ja
-      static let tabsOtherTitle = Rswift.StringResource(key: "tabs.other.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let other = Rswift.StringResource(key: "other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Please input instance.
+      /// 
+      /// Locales: en, ja
+      static let errorPleaseInputInstance = Rswift.StringResource(key: "error.pleaseInputInstance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Please input mastodon instance
+      /// 
+      /// Locales: en, ja
+      static let pleaseInputMastodonInstance = Rswift.StringResource(key: "pleaseInputMastodonInstance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Post
       /// 
       /// Locales: en, ja
-      static let timelineToPostButtonTitle = Rswift.StringResource(key: "timeline.toPostButton.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let post = Rswift.StringResource(key: "post", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Read more
       /// 
       /// Locales: en, ja
-      static let tabsNotificationsCellReadmoreTitle = Rswift.StringResource(key: "tabs.notifications.cell.readmore.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let readmore = Rswift.StringResource(key: "readmore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Refresh
       /// 
       /// Locales: en, ja
-      static let timelineStreamingActionRefresh = Rswift.StringResource(key: "timeline.streaming.action.refresh", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let refetch = Rswift.StringResource(key: "refetch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Settings
       /// 
       /// Locales: en, ja
-      static let tabsOtherSettings = Rswift.StringResource(key: "tabs.other.settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Status: %
+      static let settings = Rswift.StringResource(key: "settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Status: %@
       /// 
       /// Locales: en, ja
-      static let timelineStreamingStatusBase = Rswift.StringResource(key: "timeline.streaming.status.base", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let streamingStatus = Rswift.StringResource(key: "streamingStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Streaming
       /// 
       /// Locales: en, ja
-      static let timelineStreamingTitle = Rswift.StringResource(key: "timeline.streaming.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let streaming = Rswift.StringResource(key: "streaming", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Switch active account
       /// 
       /// Locales: en, ja
-      static let tabsOtherSwitchActiveAccountTitle = Rswift.StringResource(key: "tabs.other.switchActiveAccount.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      static let switchActiveAccount = Rswift.StringResource(key: "switchActiveAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: This feature requires Mastodon %@ or higher.
       /// 
       /// Locales: en, ja
@@ -446,68 +454,76 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let errorRequiredNewerOS = Rswift.StringResource(key: "error.requiredNewerOS", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      
-      /// en translation: @% boosted your toot
+      /// en translation: Unknown Notification: %@
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellReblogTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.reblog.title", bundle: R.hostingBundle, comment: "")
+      static let unknownNotificationType = Rswift.StringResource(key: "unknownNotificationType", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: ログイン
+      /// 
+      /// Locales: en, ja
+      static let login = Rswift.StringResource(key: "login", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      
+      /// en translation: @%@ boosted your toot
+      /// 
+      /// Locales: en, ja
+      static func boostedYourToot(_ value1: String) -> String {
+        return String(format: NSLocalizedString("boostedYourToot", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: @% favorited your toot
+      /// en translation: @%@ favorited your toot
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellFavouriteTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.favourite.title", bundle: R.hostingBundle, comment: "")
+      static func favouritedYourToot(_ value1: String) -> String {
+        return String(format: NSLocalizedString("favouritedYourToot", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: @% followed you
+      /// en translation: @%@ followed you
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellFollowTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.follow.title", bundle: R.hostingBundle, comment: "")
+      static func followedYou(_ value1: String) -> String {
+        return String(format: NSLocalizedString("followedYou", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
-      /// en translation: @% mentioned you
+      /// en translation: @%@ mentioned you
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellMentionTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.mention.title", bundle: R.hostingBundle, comment: "")
+      static func mentionedYou(_ value1: String) -> String {
+        return String(format: NSLocalizedString("mentionedYou", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
-      static func timelineStreamingActionCancel(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.action.cancel", bundle: R.hostingBundle, comment: "")
+      static func cancel(_: Void = ()) -> String {
+        return NSLocalizedString("cancel", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Connect
       /// 
       /// Locales: en, ja
-      static func timelineStreamingActionConnect(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.action.connect", bundle: R.hostingBundle, comment: "")
+      static func connect(_: Void = ()) -> String {
+        return NSLocalizedString("connect", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Connected
       /// 
       /// Locales: en, ja
-      static func timelineStreamingStatusConnected(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.status.connected", bundle: R.hostingBundle, comment: "")
+      static func connected(_: Void = ()) -> String {
+        return NSLocalizedString("connected", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Current: @%@
       /// 
       /// Locales: en, ja
-      static func tabsOtherSwitchActiveAccountSubTitle(_ value1: String) -> String {
-        return String(format: NSLocalizedString("tabs.other.switchActiveAccount.subTitle", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      static func currentAccount(_ value1: String) -> String {
+        return String(format: NSLocalizedString("currentAccount", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Disconnect
       /// 
       /// Locales: en, ja
-      static func timelineStreamingActionDisconnect(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.action.disconnect", bundle: R.hostingBundle, comment: "")
+      static func disconnect(_: Void = ()) -> String {
+        return NSLocalizedString("disconnect", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Error
@@ -520,134 +536,148 @@ struct R: Rswift.Validatable {
       /// en translation: Fetch failed
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellReadmoreFetchError(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.readmore.fetchError", bundle: R.hostingBundle, comment: "")
+      static func fetchFailed(_: Void = ()) -> String {
+        return NSLocalizedString("fetchFailed", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Help / Feedback
       /// 
       /// Locales: en, ja
-      static func tabsOtherHelpAndFeedback(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.helpAndFeedback", bundle: R.hostingBundle, comment: "")
+      static func helpAndFeedback(_: Void = ()) -> String {
+        return NSLocalizedString("helpAndFeedback", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home
       /// 
       /// Locales: en, ja
-      static func tabsHomeShortTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.home.shortTitle", bundle: R.hostingBundle, comment: "")
+      static func homeTimelineShort(_: Void = ()) -> String {
+        return NSLocalizedString("homeTimeline.short", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home Timeline
       /// 
       /// Locales: en, ja
-      static func tabsHomeTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.home.title", bundle: R.hostingBundle, comment: "")
+      static func homeTimeline(_: Void = ()) -> String {
+        return NSLocalizedString("homeTimeline", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: LTL
       /// 
       /// Locales: en, ja
-      static func tabsLocalTimelineShortTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.localTimeline.shortTitle", bundle: R.hostingBundle, comment: "")
+      static func localTimelineShort(_: Void = ()) -> String {
+        return NSLocalizedString("localTimeline.short", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Lists
       /// 
       /// Locales: en, ja
-      static func tabsOtherLists(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.lists", bundle: R.hostingBundle, comment: "")
+      static func lists(_: Void = ()) -> String {
+        return NSLocalizedString("lists", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Local Timeline
       /// 
       /// Locales: en, ja
-      static func tabsLocalTimelineTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.localTimeline.title", bundle: R.hostingBundle, comment: "")
+      static func localTimeline(_: Void = ()) -> String {
+        return NSLocalizedString("localTimeline", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My Profile
       /// 
       /// Locales: en, ja
-      static func tabsOtherMyProfile(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.myProfile", bundle: R.hostingBundle, comment: "")
+      static func myProfile(_: Void = ()) -> String {
+        return NSLocalizedString("myProfile", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Not connected
       /// 
       /// Locales: en, ja
-      static func timelineStreamingStatusNotConnected(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.status.notConnected", bundle: R.hostingBundle, comment: "")
+      static func notConnected(_: Void = ()) -> String {
+        return NSLocalizedString("notConnected", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Nothing more
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellReadmoreDisabledTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.readmore.disabledTitle", bundle: R.hostingBundle, comment: "")
+      static func nothingMore(_: Void = ()) -> String {
+        return NSLocalizedString("nothingMore", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Notifications
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.title", bundle: R.hostingBundle, comment: "")
+      static func notifications(_: Void = ()) -> String {
+        return NSLocalizedString("notifications", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Others
       /// 
       /// Locales: en, ja
-      static func tabsOtherTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.title", bundle: R.hostingBundle, comment: "")
+      static func other(_: Void = ()) -> String {
+        return NSLocalizedString("other", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please input instance.
+      /// 
+      /// Locales: en, ja
+      static func errorPleaseInputInstance(_: Void = ()) -> String {
+        return NSLocalizedString("error.pleaseInputInstance", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Please input mastodon instance
+      /// 
+      /// Locales: en, ja
+      static func pleaseInputMastodonInstance(_: Void = ()) -> String {
+        return NSLocalizedString("pleaseInputMastodonInstance", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Post
       /// 
       /// Locales: en, ja
-      static func timelineToPostButtonTitle(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.toPostButton.title", bundle: R.hostingBundle, comment: "")
+      static func post(_: Void = ()) -> String {
+        return NSLocalizedString("post", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Read more
       /// 
       /// Locales: en, ja
-      static func tabsNotificationsCellReadmoreTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.notifications.cell.readmore.title", bundle: R.hostingBundle, comment: "")
+      static func readmore(_: Void = ()) -> String {
+        return NSLocalizedString("readmore", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Refresh
       /// 
       /// Locales: en, ja
-      static func timelineStreamingActionRefresh(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.action.refresh", bundle: R.hostingBundle, comment: "")
+      static func refetch(_: Void = ()) -> String {
+        return NSLocalizedString("refetch", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Settings
       /// 
       /// Locales: en, ja
-      static func tabsOtherSettings(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.settings", bundle: R.hostingBundle, comment: "")
+      static func settings(_: Void = ()) -> String {
+        return NSLocalizedString("settings", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Status: %
+      /// en translation: Status: %@
       /// 
       /// Locales: en, ja
-      static func timelineStreamingStatusBase(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.status.base", bundle: R.hostingBundle, comment: "")
+      static func streamingStatus(_ value1: String) -> String {
+        return String(format: NSLocalizedString("streamingStatus", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// en translation: Streaming
       /// 
       /// Locales: en, ja
-      static func timelineStreamingTitle(_: Void = ()) -> String {
-        return NSLocalizedString("timeline.streaming.title", bundle: R.hostingBundle, comment: "")
+      static func streaming(_: Void = ()) -> String {
+        return NSLocalizedString("streaming", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Switch active account
       /// 
       /// Locales: en, ja
-      static func tabsOtherSwitchActiveAccountTitle(_: Void = ()) -> String {
-        return NSLocalizedString("tabs.other.switchActiveAccount.title", bundle: R.hostingBundle, comment: "")
+      static func switchActiveAccount(_: Void = ()) -> String {
+        return NSLocalizedString("switchActiveAccount", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: This feature requires Mastodon %@ or higher.
@@ -662,6 +692,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func errorRequiredNewerOS(_ value1: Double) -> String {
         return String(format: NSLocalizedString("error.requiredNewerOS", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Unknown Notification: %@
+      /// 
+      /// Locales: en, ja
+      static func unknownNotificationType(_ value1: String) -> String {
+        return String(format: NSLocalizedString("unknownNotificationType", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: ログイン
+      /// 
+      /// Locales: en, ja
+      static func login(_: Void = ()) -> String {
+        return NSLocalizedString("login", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

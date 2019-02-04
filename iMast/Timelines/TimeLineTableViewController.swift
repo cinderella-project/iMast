@@ -267,22 +267,26 @@ class TimeLineTableViewController: UITableViewController {
         print("called")
         let nowStreamConnected = (socket?.webSocket.isConnected ?? false)
         let alertVC = UIAlertController(
-            title: R.string.localizable.timelineStreamingTitle(),
-            message: R.string.localizable.timelineStreamingStatusBase().replace("%", nowStreamConnected ? R.string.localizable.timelineStreamingStatusConnected() : R.string.localizable.timelineStreamingStatusNotConnected()),
+            title: R.string.localizable.streaming(),
+            message: R.string.localizable.streamingStatus(
+                nowStreamConnected
+                ? R.string.localizable.connected()
+                : R.string.localizable.notConnected()
+            ),
             preferredStyle: .actionSheet
         )
         alertVC.popoverPresentationController?.sourceView = (self.streamingNavigationItem?.value(forKey: "view") as! UIView)
         alertVC.popoverPresentationController?.sourceRect = (self.streamingNavigationItem?.value(forKey: "view") as! UIView).frame
         if nowStreamConnected {
-            alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionDisconnect(), style: .default, handler: { (action) in
+            alertVC.addAction(UIAlertAction(title: R.string.localizable.disconnect(), style: .default, handler: { (action) in
                 self.socket?.disconnect()
             }))
         } else {
-            alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionConnect(), style: .default, handler: { (action) in
+            alertVC.addAction(UIAlertAction(title: R.string.localizable.connect(), style: .default, handler: { (action) in
                 self.websocketConnect(auto: false)
             }))
         }
-        alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionRefresh(), style: .default, handler: { (action) in
+        alertVC.addAction(UIAlertAction(title: R.string.localizable.refetch(), style: .default, handler: { (action) in
             let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
@@ -302,7 +306,7 @@ class TimeLineTableViewController: UITableViewController {
                 }
             }
         }))
-        alertVC.addAction(UIAlertAction(title: R.string.localizable.timelineStreamingActionCancel(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     

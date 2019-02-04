@@ -17,7 +17,7 @@ class OtherMenuViewController: FormViewController {
 
     init() {
         super.init(style: .plain)
-        self.title = R.string.localizable.tabsOtherTitle()
+        self.title = R.string.localizable.other()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,17 +36,17 @@ class OtherMenuViewController: FormViewController {
         
         let section = Section()
         section <<< ButtonRow { row in
-            row.title = R.string.localizable.tabsOtherSwitchActiveAccountTitle()
+            row.title = R.string.localizable.switchActiveAccount()
             row.cellStyle = .subtitle
             row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
         }.cellSetup { cell, row in
             cell.height = { 44 }
         }.cellUpdate { (cell, row) in
-            cell.detailTextLabel?.text = R.string.localizable.tabsOtherSwitchActiveAccountSubTitle(self.nowAccount?.acct ?? "")
+            cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.nowAccount?.acct ?? "")
         }
         
         section <<< ButtonRow { row in
-            row.title = R.string.localizable.tabsOtherMyProfile()
+            row.title = R.string.localizable.myProfile()
         }.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
@@ -62,7 +62,7 @@ class OtherMenuViewController: FormViewController {
         }
         
         section <<< ButtonRow { row in
-            row.title = R.string.localizable.tabsOtherLists()
+            row.title = R.string.localizable.lists()
         }.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
@@ -83,7 +83,7 @@ class OtherMenuViewController: FormViewController {
         }
         
         section <<< ButtonRow { row in
-            row.title = R.string.localizable.tabsOtherSettings()
+            row.title = R.string.localizable.settings()
             row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
         }
         
@@ -105,7 +105,7 @@ class OtherMenuViewController: FormViewController {
         }
         
         section <<< ButtonRow { row in
-            row.title = R.string.localizable.tabsOtherHelpAndFeedback()
+            row.title = R.string.localizable.helpAndFeedback()
             row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuHelpAndFeedbackViewController() }), onDismiss: nil)
         }
         

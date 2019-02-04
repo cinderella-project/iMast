@@ -6,42 +6,49 @@
   Copyright © 2018 rinsuki. All rights reserved.
 */
 
-"tabs.notifications.title" = "Notifications";
-"tabs.notifications.cell.follow.title" = "@% followed you";
-"tabs.notifications.cell.favourite.title" = "@% favorited your toot";
-"tabs.notifications.cell.mention.title" = "@% mentioned you";
-"tabs.notifications.cell.reblog.title" = "@% boosted your toot";
-"tabs.notifications.cell.readmore.title" = "Read more";
-"tabs.notifications.cell.readmore.disabledTitle" = "Nothing more";
-"tabs.notifications.cell.readmore.fetchError" = "Fetch failed";
+"notifications" = "Notifications";
+"followedYou" = "@%@ followed you";
+"favouritedYourToot" = "@%@ favorited your toot";
+"mentionedYou" = "@%@ mentioned you";
+"boostedYourToot" = "@%@ boosted your toot";
+"unknownNotificationType" = "Unknown Notification: %@";
 
-"tabs.home.title" = "Home Timeline";
-"tabs.home.shortTitle" = "Home";
+"readmore" = "Read more";
+"nothingMore" = "Nothing more";
+"fetchFailed" = "Fetch failed";
 
-"tabs.localTimeline.title" = "Local Timeline";
-"tabs.localTimeline.shortTitle" = "LTL";
+"homeTimeline" = "Home Timeline";
+"homeTimeline.short" = "Home";
 
-"timeline.toPostButton.title" = "Post";
+"localTimeline" = "Local Timeline";
+"localTimeline.short" = "LTL";
 
-"timeline.streaming.title" = "Streaming";
+"post" = "Post";
 
-"timeline.streaming.status.base" = "Status: %";
-"timeline.streaming.status.connected" = "Connected";
-"timeline.streaming.status.notConnected" = "Not connected";
+"streaming" = "Streaming";
 
-"timeline.streaming.action.connect" = "Connect";
-"timeline.streaming.action.disconnect" = "Disconnect";
-"timeline.streaming.action.refresh" = "Refresh";
-"timeline.streaming.action.cancel" = "Cancel";
+"streamingStatus" = "Status: %@";
+"connected" = "Connected";
+"notConnected" = "Not connected";
 
-"tabs.other.title" = "Others";
-"tabs.other.switchActiveAccount.title" = "Switch active account";
-"tabs.other.switchActiveAccount.subTitle" = "Current: @%@";
-"tabs.other.myProfile" = "My Profile";
-"tabs.other.lists" = "Lists";
-"tabs.other.settings" = "Settings";
-"tabs.other.helpAndFeedback" = "Help / Feedback";
+"connect" = "Connect";
+"disconnect" = "Disconnect";
+"refetch" = "Refresh";
+"cancel" = "Cancel";
+
+"other" = "Others";
+"switchActiveAccount" = "Switch active account";
+"currentAccount" = "Current: @%@";
+"myProfile" = "My Profile";
+"lists" = "Lists";
+"settings" = "Settings";
+"helpAndFeedback" = "Help / Feedback";
+
+"login" = "ログイン";
+"pleaseInputMastodonInstance" = "Please input mastodon instance";
+
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";
+"error.pleaseInputInstance" = "Please input instance.";

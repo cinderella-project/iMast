@@ -16,22 +16,22 @@ class MainTabBarController: UITabBarController {
         let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController())
         homeVC.tabBarItem.image = R.image.homeOutline()
         homeVC.tabBarItem.selectedImage = R.image.home()
-        homeVC.tabBarItem.title = R.string.localizable.tabsHomeShortTitle()
+        homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableViewController())
         notifyVC.tabBarItem.image = R.image.notificationOutline()
         notifyVC.tabBarItem.selectedImage = R.image.notification()
-        notifyVC.tabBarItem.title = R.string.localizable.tabsNotificationsTitle()
+        notifyVC.tabBarItem.title = R.string.localizable.notifications()
 
         let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController())
         ltlVC.tabBarItem.image = R.image.peopleOutline()
         ltlVC.tabBarItem.selectedImage = R.image.people()
-        ltlVC.tabBarItem.title = R.string.localizable.tabsLocalTimelineShortTitle()
+        ltlVC.tabBarItem.title = R.string.localizable.localTimelineShort()
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController())
         otherVC.tabBarItem.image = R.image.moreOutline()
         otherVC.tabBarItem.selectedImage = R.image.more()
-        otherVC.tabBarItem.title = R.string.localizable.tabsOtherTitle()
+        otherVC.tabBarItem.title = R.string.localizable.other()
         
         self.setViewControllers([
             homeVC,
@@ -47,11 +47,11 @@ class MainTabBarController: UITabBarController {
             let navC = UINavigationController()
             let vc = ChangeActiveAccountViewController()
             vc.navigationItem.leftBarButtonItems = [
-                UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
+                UIBarButtonItem(title: R.string.localizable.cancel(), style: .plain) { _ in
                     navC.dismiss(animated: true, completion: nil)
                 },
             ]
-            vc.title = "アカウントを変更"
+            vc.title = R.string.localizable.switchActiveAccount()
             navC.pushViewController(vc, animated: false)
             self.present(navC, animated: true, completion: nil)
         }
