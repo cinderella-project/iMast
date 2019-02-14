@@ -8,6 +8,30 @@ PODS:
   - GRDB.swift (3.6.2)
   - HydraAsync (1.2.1)
   - KeychainAccess (3.1.2)
+  - libwebp (0.6.1):
+    - libwebp/core (= 0.6.1)
+    - libwebp/dec (= 0.6.1)
+    - libwebp/demux (= 0.6.1)
+    - libwebp/dsp (= 0.6.1)
+    - libwebp/enc (= 0.6.1)
+    - libwebp/mux (= 0.6.1)
+    - libwebp/utils (= 0.6.1)
+    - libwebp/webp (= 0.6.1)
+  - libwebp/core (0.6.1):
+    - libwebp/webp
+  - libwebp/dec (0.6.1):
+    - libwebp/core
+  - libwebp/demux (0.6.1):
+    - libwebp/core
+  - libwebp/dsp (0.6.1):
+    - libwebp/core
+  - libwebp/enc (0.6.1):
+    - libwebp/core
+  - libwebp/mux (0.6.1):
+    - libwebp/core
+  - libwebp/utils (0.6.1):
+    - libwebp/core
+  - libwebp/webp (0.6.1)
   - LicensePlist (2.1.0)
   - Notifwift (1.0.0)
   - ObjcExceptionBridging (1.0.1):
@@ -20,6 +44,9 @@ PODS:
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
   - SDWebImage/Core (4.4.5)
+  - SDWebImage/WebP (4.4.5):
+    - libwebp (~> 0.5)
+    - SDWebImage/Core
   - SnapKit (4.2.0)
   - Starscream (3.0.6)
   - SVProgressHUD (2.2.5)
@@ -46,6 +73,7 @@ DEPENDENCIES:
   - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 4.3.0)
   - SDWebImage (~> 4.4.5)
+  - SDWebImage/WebP (~> 4.4.5)
   - SnapKit
   - Starscream (~> 3.0.6)
   - SVProgressHUD
@@ -64,6 +92,7 @@ SPEC REPOS:
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
+    - libwebp
     - LicensePlist
     - Notifwift
     - ObjcExceptionBridging
@@ -99,6 +128,7 @@ SPEC CHECKSUMS:
   GRDB.swift: e10787d857b6b8135354b9e08fb23b4bb8e2fab7
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   LicensePlist: 304c23a2e9f484f3985b6b873db7ae32086279af
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
@@ -114,6 +144,6 @@ SPEC CHECKSUMS:
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 13b6d631026678b84109a0eee778981712b43cf6
+PODFILE CHECKSUM: 0792bbfe8140855e254d511284e5990241abe770
 
 COCOAPODS: 1.5.3

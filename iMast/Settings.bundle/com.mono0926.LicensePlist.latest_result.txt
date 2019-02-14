@@ -98,6 +98,26 @@ name: KeychainAccess, nameSpecified:
 body: The MIT License (MIT…
 version: 3.1.2
 
+name: libwebp, nameSpecified: 
+body: Copyright (c) 2010, …
+version: 0.6.1
+
+name: libwebp, nameSpecified: 
+body: Copyright (c) 2010, …
+version: 0.6.1
+
+name: libwebp, nameSpecified: 
+body: Copyright (c) 2010, …
+version: 0.6.1
+
+name: libwebp, nameSpecified: 
+body: Copyright (c) 2010, …
+version: 0.6.1
+
+name: libwebp, nameSpecified: 
+body: Copyright (c) 2010, …
+version: 0.6.1
+
 name: LicensePlist, nameSpecified: 
 body: MIT License
 

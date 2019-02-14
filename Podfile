@@ -9,6 +9,7 @@ def based_pods
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.1.0'
   pod 'SDWebImage', '~> 4.4.5'
+  pod 'SDWebImage/WebP', '~> 4.4.5'
   pod 'Fuzi', '~> 2.1.0'
   pod 'SnapKit'
   pod '※ikemen'
