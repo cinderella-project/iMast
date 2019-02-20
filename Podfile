@@ -30,7 +30,7 @@ target 'iMast' do
   pod 'KeychainAccess', '~> 3.1.2'
   pod 'SVProgressHUD'
   pod 'Notifwift'
-  pod 'R.swift', '~> 4.0.0'
+  pod 'R.swift', '~> 5.0.0'
   pod '1PasswordExtension', '~> 1.8.5'
   pod 'LicensePlist', '~> 2.1.0'
 
@@ -64,16 +64,4 @@ target 'iMast' do
     based_pods
   end
 
-end
-
-post_install do | installer |
-  # R.swift in Swift 4.2 workaround
-  # 5.0が出るまで我慢
-  installer.pods_project.targets.each do | target |
-    if ["R.swift.Library"].include? target.name
-      target.build_configurations.each do | config |
-        config.build_settings['SWIFT_VERSION'] = '4.0'
-      end
-    end
-  end
 end
