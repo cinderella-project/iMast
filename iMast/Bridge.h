@@ -10,5 +10,8 @@
 #define Briding_Header_h
 
 #include <CommonCrypto/CommonDigest.h>
+#include <mruby.h>
+#include <mruby/compile.h>
+#include <mruby/proc.h>
 
 #endif /* Briding_Header_h */

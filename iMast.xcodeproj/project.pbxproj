@@ -51,6 +51,7 @@
 		CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
+		CE250632222455B800316BE6 /* RubyMikuWorld.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE250631222455B800316BE6 /* RubyMikuWorld.bundle */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -184,6 +185,10 @@
 		CEE357231FF6067F00675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357241FF6068000675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* SettingsViewController.swift */; };
+		CEE3CC76222035F500D75CAE /* libmruby.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE3CC74222035DA00D75CAE /* libmruby.a */; };
+		CEE3CC78222049C700D75CAE /* PluginDirectoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3CC77222049C700D75CAE /* PluginDirectoryTableViewController.swift */; };
+		CEE3CC7A22207D9D00D75CAE /* PluginFileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3CC7922207D9D00D75CAE /* PluginFileEditViewController.swift */; };
+		CEE3CC8922210ADF00D75CAE /* ArgsOptionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3CC8822210ADF00D75CAE /* ArgsOptionWrapper.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
@@ -330,6 +335,7 @@
 		CE1002D4200683850041B636 /* ReportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError.swift; sourceTree = "<group>"; };
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
+		CE250631222455B800316BE6 /* RubyMikuWorld.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RubyMikuWorld.bundle; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
@@ -436,6 +442,10 @@
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		CEE357251FF6410600675DFC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CEE3CC74222035DA00D75CAE /* libmruby.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmruby.a; path = mruby/libmruby.a; sourceTree = "<group>"; };
+		CEE3CC77222049C700D75CAE /* PluginDirectoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginDirectoryTableViewController.swift; sourceTree = "<group>"; };
+		CEE3CC7922207D9D00D75CAE /* PluginFileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginFileEditViewController.swift; sourceTree = "<group>"; };
+		CEE3CC8822210ADF00D75CAE /* ArgsOptionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgsOptionWrapper.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +463,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE3CC76222035F500D75CAE /* libmruby.a in Frameworks */,
 				12016E1E6EA21B23C8624547 /* Pods_iMast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +544,7 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
+				CEE3CC74222035DA00D75CAE /* libmruby.a */,
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
@@ -581,6 +593,7 @@
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
+				CEE3CC7B22208B2500D75CAE /* MikuWorld */,
 				CEE357161FF5165700675DFC /* SharedSources */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				2A66E80A1EB0254400735081 /* Bridge.h */,
@@ -765,6 +778,8 @@
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
+				CEE3CC77222049C700D75CAE /* PluginDirectoryTableViewController.swift */,
+				CEE3CC7922207D9D00D75CAE /* PluginFileEditViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
 				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */,
 				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
@@ -825,6 +840,15 @@
 				CE2D2AF5210C81ED003B92B8 /* ReadmoreTableViewCell.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		CEE3CC7B22208B2500D75CAE /* MikuWorld */ = {
+			isa = PBXGroup;
+			children = (
+				CE250631222455B800316BE6 /* RubyMikuWorld.bundle */,
+				CEE3CC8822210ADF00D75CAE /* ArgsOptionWrapper.swift */,
+			);
+			path = MikuWorld;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1089,6 +1113,7 @@
 			files = (
 				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
 				CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */,
+				CE250632222455B800316BE6 /* RubyMikuWorld.bundle in Resources */,
 				CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */,
 				CE8DF1851FED41C4005278FE /* Podfile in Resources */,
 				CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */,
@@ -1422,11 +1447,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */,
+				CEE3CC7A22207D9D00D75CAE /* PluginFileEditViewController.swift in Sources */,
 				CEE254282004B5AA005FEB6F /* MastodonPost.swift in Sources */,
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
 				CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */,
 				CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
+				CEE3CC78222049C700D75CAE /* PluginDirectoryTableViewController.swift in Sources */,
 				CE818B91218570B800948309 /* ThirdpartyTrendTags.swift in Sources */,
 				CEE254232004A8B2005FEB6F /* MastodonAccount.swift in Sources */,
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
@@ -1474,6 +1501,7 @@
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
 				CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */,
+				CEE3CC8922210ADF00D75CAE /* ArgsOptionWrapper.swift in Sources */,
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CE90855D21918751006769DC /* R.generated.swift in Sources */,
 				CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */,
@@ -1799,6 +1827,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/mruby/src/mruby/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1851,6 +1880,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/mruby/src/mruby/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1871,16 +1901,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(SRCROOT)/mruby/src/mruby/include",
+				);
 				INFOPLIST_FILE = iMast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mruby",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\" \"-D\" \"IS_DEBUG_BUILD\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 4.2;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1896,16 +1934,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(SRCROOT)/mruby/src/mruby/include",
+				);
 				INFOPLIST_FILE = iMast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mruby",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 4.2;
+				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

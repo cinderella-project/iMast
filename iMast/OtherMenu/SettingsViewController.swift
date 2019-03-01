@@ -77,6 +77,10 @@ class SettingsViewController: FormViewController {
                 row.title = "通知タブの無限スクロール"
                 row.userDefaultsConnect(.notifyTabInfiniteScroll)
             }
+            <<< ButtonRow { row in
+                row.title = "プラグインディレクトリ"
+                row.presentationMode = .show(controllerProvider: .callback(builder: { PluginDirectoryTableViewController() }), onDismiss: nil)
+            }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
