@@ -11,8 +11,12 @@ import SwiftyJSON
 import Hydra
 import Reachability
 import SafariServices
+import Ikemen
+import SnapKit
 
-class TimeLineTableViewController: UITableViewController {
+class TimeLineTableViewController: UIViewController {
+    let tableView: UITableView
+    let refreshControl = UIRefreshControl()
     
     var posts: [MastodonPost] = []
     var streamingNavigationItem: UIBarButtonItem?
@@ -33,8 +37,36 @@ class TimeLineTableViewController: UITableViewController {
     var timelineType: MastodonTimelineType?
     var pinnedPosts: [MastodonPost] = []
     
+    init(style: UITableView.Style = .plain) {
+        tableView = UITableView(frame: .zero, style: .plain)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        _ = tableView ※ {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview($0)
+            $0.snp.makeConstraints { make in
+                make.center.width.height.equalTo(self.view)
+            }
+            
+            $0.estimatedRowHeight = 100
+            $0.rowHeight = UITableView.automaticDimension
+
+            // 引っ張って更新
+            $0.refreshControl = refreshControl ※ {
+                $0.addTarget(self, action: #selector(self.refreshTimeline), for: .valueChanged)
+            }
+            
+            $0.delegate = self
+            $0.dataSource = self
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,16 +74,11 @@ class TimeLineTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
-        // 引っ張って更新
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(self.refreshTimeline), for: UIControl.Event.valueChanged)
-        tableView.addSubview(refreshControl!)
         loadTimeline().then {
             self.tableView.reloadData()
             self.websocketConnect(auto: true)
         }
+        
         self.navigationItem.leftItemsSupplementBackButton = true
         if self.websocketEndpoint() != nil {
             self.streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(self.streamingStatusTapped))
@@ -103,7 +130,7 @@ class TimeLineTableViewController: UITableViewController {
     @objc func refreshTimeline() {
         guard let timelineType = self.timelineType else {
             print("refreshTimelineを実装するか、self.timelineTypeを定義してください。")
-            self.refreshControl?.endRefreshing()
+            self.refreshControl.endRefreshing()
             return
         }
         MastodonUserToken.getLatestUsed()!.timeline(
@@ -112,7 +139,7 @@ class TimeLineTableViewController: UITableViewController {
             since: self.posts.first
         ).then { posts in
             self.addNewPosts(posts: posts)
-            self.refreshControl?.endRefreshing()
+            self.refreshControl.endRefreshing()
         }
     }
     func readMoreTimeline() {
@@ -275,8 +302,7 @@ class TimeLineTableViewController: UITableViewController {
             ),
             preferredStyle: .actionSheet
         )
-        alertVC.popoverPresentationController?.sourceView = (self.streamingNavigationItem?.value(forKey: "view") as! UIView)
-        alertVC.popoverPresentationController?.sourceRect = (self.streamingNavigationItem?.value(forKey: "view") as! UIView).frame
+        alertVC.popoverPresentationController?.barButtonItem = self.streamingNavigationItem
         if nowStreamConnected {
             alertVC.addAction(UIAlertAction(title: R.string.localizable.disconnect(), style: .default, handler: { (action) in
                 self.socket?.disconnect()
@@ -315,21 +341,6 @@ class TimeLineTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return pinnedPosts.count
-        }
-        return posts.count == 0 ? 0 : posts.count + (isReadmoreEnabled ? 1 : 0)
-    }
-    
     func getCell(post: MastodonPost, section: Int = 1) -> UITableViewCell {
         let cellHash = "\(section):\(post.id.string)"
         if let cell = cellCache[cellHash] {
@@ -343,7 +354,36 @@ class TimeLineTableViewController: UITableViewController {
         return postView
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func appendNewPosts(posts: [MastodonPost]) {
+        var rows: [IndexPath] = []
+        posts.forEach { (post) in
+            _ = self.getCell(post: post)
+            self.posts.append(post)
+            rows.append(IndexPath(row: self.posts.count-1, section: 1))
+        }
+        self.tableView.insertRows(at: rows, with: .automatic)
+        self.maxPostCount += posts.count
+    }
+}
+
+extension TimeLineTableViewController: UITableViewDataSource {
+    
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return pinnedPosts.count
+        }
+        return posts.count == 0 ? 0 : posts.count + (isReadmoreEnabled ? 1 : 0)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == posts.count && posts.count != 0 {
             return readmoreCell
         }
@@ -351,7 +391,16 @@ class TimeLineTableViewController: UITableViewController {
         return getCell(post: post, section: indexPath.section)
     }
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    // Override to support conditional editing of the table view.
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return indexPath.row < (indexPath.section == 0 ? self.pinnedPosts : self.posts).count
+    }
+}
+
+extension TimeLineTableViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 1 && indexPath.row >= self.posts.count {
             return []
         }
@@ -437,61 +486,6 @@ class TimeLineTableViewController: UITableViewController {
             // replyAction,
             boostAction,
             likeAction,
-        ].reversed()
+            ].reversed()
     }
-    
-    func appendNewPosts(posts: [MastodonPost]) {
-        var rows: [IndexPath] = []
-        posts.forEach { (post) in
-            _ = self.getCell(post: post)
-            self.posts.append(post)
-            rows.append(IndexPath(row: self.posts.count-1, section: 1))
-        }
-        self.tableView.insertRows(at: rows, with: .automatic)
-        self.maxPostCount += posts.count
-    }
-    
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return indexPath.row < (indexPath.section == 0 ? self.pinnedPosts : self.posts).count
-    }
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
 }
