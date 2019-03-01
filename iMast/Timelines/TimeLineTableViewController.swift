@@ -36,6 +36,8 @@ class TimeLineTableViewController: UIViewController {
     let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType?
     var pinnedPosts: [MastodonPost] = []
+    var postFabButton = UIButton()
+    var isNewPostAvailable = false
     
     init(style: UITableView.Style = .plain) {
         tableView = UITableView(frame: .zero, style: style)
@@ -106,6 +108,35 @@ class TimeLineTableViewController: UIViewController {
             }
         }
         
+        if isNewPostAvailable {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.post(), style: .plain) { _ in
+                self.openNewPostVC()
+            }
+            
+            if Defaults[.postFabEnabled] {
+                _ = self.postFabButton ※ {
+                    $0.setTitle("投稿", for: .normal)
+                    $0.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+                    $0.backgroundColor = self.view.tintColor
+                    
+                    self.view.addSubview(self.postFabButton)
+                    let size = 56
+                    $0.snp.makeConstraints { make in
+                        make.right.bottom.equalTo(self.fakeSafeAreaLayoutGuide).offset(-16)
+                        make.width.height.equalTo(size)
+                    }
+                    $0.layer.cornerRadius = CGFloat(size / 2)
+                    
+                    $0.layer.shadowOpacity = 0.25
+                    $0.layer.shadowRadius = 2
+                    $0.layer.shadowColor = UIColor.black.cgColor
+                    $0.layer.shadowOffset = CGSize(width: 0, height: 2)
+                    
+                    $0.addTarget(self, action: #selector(self.postFabTapped(sender:)), for: .touchUpInside)
+                }
+            }
+        }
+
         readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
         readmoreCell.layer.zPosition = CGFloat(FLT_MAX)
         (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
@@ -127,6 +158,7 @@ class TimeLineTableViewController: UIViewController {
             return Void()
         }
     }
+    
     @objc func refreshTimeline() {
         guard let timelineType = self.timelineType else {
             print("refreshTimelineを実装するか、self.timelineTypeを定義してください。")
@@ -142,6 +174,7 @@ class TimeLineTableViewController: UIViewController {
             self.refreshControl.endRefreshing()
         }
     }
+    
     func readMoreTimeline() {
         guard let timelineType = self.timelineType else {
             print("readMoreTimelineを実装してください!!!!!!")
@@ -157,6 +190,20 @@ class TimeLineTableViewController: UIViewController {
             self.appendNewPosts(posts: posts)
             self.isReadmoreLoading = false
         }
+    }
+    
+    func processNewPostVC(newPostVC: NewPostViewController) {
+        // オーバーライド用
+    }
+    
+    func openNewPostVC() {
+        let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        self.processNewPostVC(newPostVC: vc)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func postFabTapped(sender: UITapGestureRecognizer) {
+        self.openNewPostVC()
     }
     
     @objc func readMoreTimelineTapped(sender: UITapGestureRecognizer) {

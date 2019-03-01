@@ -18,10 +18,8 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
     
     override func viewDidLoad() {
         self.timelineType = .list(self.list)
+        self.isNewPostAvailable = true
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(self.editList)),
-        ]
     }
     
     @objc func editList() {

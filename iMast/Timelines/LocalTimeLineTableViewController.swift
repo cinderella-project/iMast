@@ -14,9 +14,7 @@ class LocalTimeLineTableViewController: TimeLineTableViewController {
     override func viewDidLoad() {
         self.timelineType = .local
         self.navigationItem.title = R.string.localizable.localTimeline()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.post(), style: .plain) { (_) in
-            self.navigationController?.pushViewController(R.storyboard.newPost.instantiateInitialViewController()!, animated: true)
-        }
+        self.isNewPostAvailable = true
         super.viewDidLoad()
     }
     

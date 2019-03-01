@@ -51,6 +51,7 @@
 		CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
+		CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -330,6 +331,7 @@
 		CE1002D4200683850041B636 /* ReportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError.swift; sourceTree = "<group>"; };
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
+		CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+fakeSafeAreaLayoutGuide.swift"; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
 				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
+				CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */,
 				CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */,
 				CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */,
 				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
@@ -1465,6 +1468,7 @@
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
 				CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */,
 				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
+				CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */,
 				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
 				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,

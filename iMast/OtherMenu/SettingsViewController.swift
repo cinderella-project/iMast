@@ -227,6 +227,10 @@ class SettingsViewController: FormViewController {
             cell.slider.maximumValue = 10
             cell.slider.minimumValue = 0
         }
+        section <<< SwitchRow { row in
+            row.title = "右下のでかい投稿ボタンを表示"
+            row.userDefaultsConnect(.postFabEnabled)
+        }
         return section
     }
     
