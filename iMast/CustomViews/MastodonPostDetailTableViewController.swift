@@ -292,6 +292,24 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertController.Style.actionSheet)
         actionSheet.popoverPresentationController?.sourceView = self.moreButton as UIView
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
+        // mruby zone
+        let plugin = mrb_obj_value(UnsafeMutableRawPointer(mrb_class_get(pluginVM, "Plugin")))
+        let args = [
+            mrb_symbol_value(mrb_intern_cstr(pluginVM, "command")),
+            mrb_class_new_instance(pluginVM, 0, nil, mrb_class_get(pluginVM, "Hash"))
+        ]
+//        let argsAddr = UnsafeMutablePointer<mrb_value>(mrb_calloc(pluginVM, args.count, MemoryLayout<mrb_value>.size))
+//        argsAddr[0] = args[0]
+        let arr = mrb_funcall_argv(pluginVM, plugin, mrb_intern_cstr(pluginVM, "filtering"), 2, args)
+        print(mrb_any_to_s(pluginVM, arr))
+        print(arr)
+        var callback = mrb_obj_value(mrb_proc_new_cfunc(pluginVM, { (vm, prop) -> mrb_value in
+            print("む")
+            let arr = Array(UnsafeBufferPointer(start: mrb_get_argv(vm), count: Int(mrb_get_argc(vm))))
+            print(arr)
+            return prop
+        }))
+        mrb_funcall_argv(pluginVM, arr, mrb_intern_cstr(pluginVM, "foreach"), 1, &callback)
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertAction.Style.default, handler: { action in
             MastodonUserToken.getLatestUsed()?.context(post: post).then { res in

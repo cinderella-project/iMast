@@ -17,6 +17,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.jp.pronama.imast</string>
+		<string>group.jp.pronama.imast.plugins</string>
 	</array>
 </dict>
 </plist>

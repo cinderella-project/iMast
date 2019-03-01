@@ -112,6 +112,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("tmp remove failed...", error)
         }
+        
+        try! FileManager.default.createDirectory(at: pluginHome, withIntermediateDirectories: true, attributes: nil)
+        
+        mrb_define_global_const(pluginVM, "IMAST_PLUGIN_DIRECTORY", mrb_str_new_cstr(pluginVM, pluginHome.path))
+//        mrb_define_method(pluginVM, mrb_module_get(pluginVM, "Kernel"), "command", { (mrb, value) -> mrb_value in
+//            print(value)
+//            
+//            let count = mrb_get_argc(mrb)
+//            let argv = mrb_get_argv(mrb)
+//            print(count)
+//            var value2 = value
+//            let ret = mrb_funcall_argv(pluginVM, mrb_obj_value(UnsafeMutableRawPointer(pluginVM!.pointee.kernel_module)), mrb_intern_cstr(pluginVM, "p"), count, argv)
+//            return value
+//        }, .rest)
+        print(R.file.rubyMikuWorldBundle.url()!.appendingPathComponent("bootstrap.rb"))
+        mrb_load_string(pluginVM, "require '\(R.file.rubyMikuWorldBundle.url()!.appendingPathComponent("bootstrap.rb").path)'")
+        
         return true
     }
     
@@ -313,3 +330,8 @@ func changeRootVC(_ viewController: UIViewController, animated: Bool) {
         window.rootViewController = viewController
     }
 }
+
+let pluginAppGroup = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast.plugins")!
+let pluginHome = pluginAppGroup.appendingPathComponent("Documents").appendingPathComponent("plugin")
+let pluginVM = mrb_open()
+
