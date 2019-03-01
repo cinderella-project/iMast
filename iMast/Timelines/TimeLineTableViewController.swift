@@ -38,7 +38,7 @@ class TimeLineTableViewController: UIViewController {
     var pinnedPosts: [MastodonPost] = []
     
     init(style: UITableView.Style = .plain) {
-        tableView = UITableView(frame: .zero, style: .plain)
+        tableView = UITableView(frame: .zero, style: style)
         super.init(nibName: nil, bundle: nil)
     }
     
