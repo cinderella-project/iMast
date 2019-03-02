@@ -307,6 +307,31 @@ var defaultValues: [String: Any] = [
 ]
 */
 
+enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIterable {
+    var description: String {
+        switch self {
+        case .leftCenter:
+            return "左中央"
+        case .rightCenter:
+            return "右中央"
+        case .leftBottom:
+            return "左下"
+        case .centerBottom:
+            return "中央下"
+        case .rightBottom:
+            return "右下"
+        }
+    }
+    
+    static var _defaultValue: PostFabLocation = .rightBottom
+    
+    case leftCenter
+    case rightCenter
+    case leftBottom
+    case centerBottom
+    case rightBottom
+}
+
 extension DefaultsKeys {
     static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect", default: "always")
     static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
@@ -323,6 +348,7 @@ extension DefaultsKeys {
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
     static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
     static let postFabEnabled = DefaultsKey<Bool>("post_fab_enabled", default: true)
+    static let postFabLocation = DefaultsKey<PostFabLocation>("post_fab_location", default: .rightBottom)
 
     static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
     static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)

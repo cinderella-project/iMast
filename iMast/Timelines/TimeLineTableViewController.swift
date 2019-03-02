@@ -122,7 +122,24 @@ class TimeLineTableViewController: UIViewController {
                     self.view.addSubview(self.postFabButton)
                     let size = 56
                     $0.snp.makeConstraints { make in
-                        make.right.bottom.equalTo(self.fakeSafeAreaLayoutGuide).offset(-16)
+                        let offset = 16
+                        // X
+                        switch Defaults[.postFabLocation] {
+                        case .leftCenter, .leftBottom:
+                            make.left.equalTo(self.fakeSafeAreaLayoutGuide).offset(offset)
+                        case .rightCenter, .rightBottom:
+                            make.right.equalTo(self.fakeSafeAreaLayoutGuide).offset(-offset)
+                        case .centerBottom:
+                            make.centerX.equalTo(self.fakeSafeAreaLayoutGuide)
+                        }
+                        
+                        // Y
+                        switch Defaults[.postFabLocation] {
+                        case .leftCenter, .rightCenter:
+                            make.centerY.equalTo(self.fakeSafeAreaLayoutGuide)
+                        case .leftBottom, .centerBottom, .rightBottom:
+                            make.bottom.equalTo(self.fakeSafeAreaLayoutGuide).offset(-offset)
+                        }
                         make.width.height.equalTo(size)
                     }
                     $0.layer.cornerRadius = CGFloat(size / 2)

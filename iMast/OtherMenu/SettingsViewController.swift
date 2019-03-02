@@ -228,8 +228,13 @@ class SettingsViewController: FormViewController {
             cell.slider.minimumValue = 0
         }
         section <<< SwitchRow { row in
-            row.title = "右下のでかい投稿ボタンを表示"
+            row.title = "でかい投稿ボタンを表示"
             row.userDefaultsConnect(.postFabEnabled)
+        }
+        section <<< PushRow<PostFabLocation> { row in
+            row.title = "でかい投稿ボタンの場所"
+            row.options = PostFabLocation.allCases
+            row.userDefaultsConnect(.postFabLocation)
         }
         return section
     }

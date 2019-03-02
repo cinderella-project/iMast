@@ -25,6 +25,19 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
         }
     }
 }
+
+extension PushRow where T: WithDefaultValue & RawRepresentable {
+    func userDefaultsConnect(_ key: DefaultsKey<T>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+        self.value = Defaults[key]
+        self.cellUpdate { (cell, row) in
+            guard let value = row.value else {
+                return
+            }
+            Defaults[key] = value
+        }
+    }
+}
+
 extension TextRow {
     func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = Defaults[key]
