@@ -21,7 +21,7 @@ class FeedbackViewController: FormViewController {
             row.placeholder = "Feedbackの内容をお書きください"
             row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
         }
-        self.form +++ Section()
+        self.form +++ Section(footer: "GitHub アカウントをお持ちの場合、公開できる内容のバグ報告は GitHub 上でしてくれるとうれしいです\nhttps://github.com/cinderella-project/iMast")
             <<< tar
         self.form +++ Section("Feedbackを送信すると、以下の情報も一緒に送信され、iMastの改善に役立てられます。")
             <<< LabelRow {
