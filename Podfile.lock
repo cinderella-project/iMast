@@ -33,6 +33,7 @@ PODS:
     - libwebp/core
   - libwebp/webp (0.6.1)
   - LicensePlist (2.1.0)
+  - Mew (0.1.0)
   - Notifwift (1.0.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - HydraAsync
   - KeychainAccess (~> 3.1.2)
   - LicensePlist (~> 2.1.0)
+  - Mew (from `https://github.com/mercari/Mew.git`, branch `0.2.2`)
   - Notifwift
   - R.swift (~> 4.0.0)
   - ReachabilitySwift (~> 4.3.0)
@@ -112,11 +114,17 @@ EXTERNAL SOURCES:
   ActionClosurable:
     :branch: fix/swift4.2
     :git: https://github.com/rinsuki/ActionClosurable.git
+  Mew:
+    :branch: 0.2.2
+    :git: https://github.com/mercari/Mew.git
 
 CHECKOUT OPTIONS:
   ActionClosurable:
     :commit: 7ff27004679e9a47b90c9edacee22b267783e1b2
     :git: https://github.com/rinsuki/ActionClosurable.git
+  Mew:
+    :commit: dd27b41c15156b9ffa1bd29ae3ee842979610849
+    :git: https://github.com/mercari/Mew.git
 
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
@@ -130,6 +138,7 @@ SPEC CHECKSUMS:
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   LicensePlist: 304c23a2e9f484f3985b6b873db7ae32086279af
+  Mew: aea94158daf170b2b49a58f2458e2960de06ce01
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
@@ -144,6 +153,6 @@ SPEC CHECKSUMS:
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 0792bbfe8140855e254d511284e5990241abe770
+PODFILE CHECKSUM: add64c83048acd11ba04f463062c6515298a7751
 
 COCOAPODS: 1.5.3
