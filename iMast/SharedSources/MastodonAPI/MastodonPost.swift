@@ -54,6 +54,7 @@ class MastodonPost: Codable {
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
     var tags: [MastodonPostHashtag]?
+    var poll: MastodonPoll?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -79,6 +80,7 @@ class MastodonPost: Codable {
         case visibility
         case mentions
         case tags
+        case poll
     }
     
     @available(*, deprecated, message: "Do not use.")
@@ -117,6 +119,22 @@ class MastodonPostMention: Codable {
         fatalError("Swift 4.1 work around")
     }
 }
+
+class MastodonPoll: Codable {
+    let id: MastodonID
+    let expires_at: Date
+    let expired: Bool
+    let multiple: Bool
+    let votes_count: Int
+    let voted: Bool
+    let options: [MastodonPollOption]
+}
+
+class MastodonPollOption: Codable {
+    let title: String
+    let votes_count: Int
+}
+
 
 extension MastodonUserToken {
     func newPost(status: String) -> Promise<MastodonPost> {
