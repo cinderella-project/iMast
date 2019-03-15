@@ -43,6 +43,9 @@ public class MastodonInstance {
     var name: String?
     var description: String?
     var email: String?
+    var url: URL {
+        return URL(string: "https://\(self.hostName)")!
+    }
         
     init(hostName: String = "mastodon.social") {
         self.hostName = hostName.pregReplace(pattern: ".+\\@", with: "").lowercased()

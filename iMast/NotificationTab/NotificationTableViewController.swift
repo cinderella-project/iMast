@@ -181,7 +181,7 @@ class NotificationTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(newVC, animated: animated)
                 return
             }
-            let newVC = PostAndUserViewController(style: .grouped)
+            let newVC = PostAndUserViewController(with: .grouped)
             newVC.posts = [status]
             newVC.users = [account]
             newVC.title = [

@@ -15,7 +15,7 @@ class HashtagTimeLineTableViewController: TimeLineTableViewController {
     
     init(hashtag: String) {
         self.hashtag = hashtag
-        super.init(style: .plain)
+        super.init(with: .plain)
         self.timelineType = .hashtag(hashtag)
         self.title = "#" + hashtag
         self.isNewPostAvailable = true
@@ -27,6 +27,10 @@ class HashtagTimeLineTableViewController: TimeLineTableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    required init(with input: Input, environment: Environment) {
+        fatalError("init(with:environment:) has not been implemented")
     }
     
     var originalBack: UIBarButtonItem?

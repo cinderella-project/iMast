@@ -13,7 +13,7 @@ def based_pods
   pod 'Fuzi', '~> 2.1.0'
   pod 'SnapKit'
   pod '※ikemen'
-  pod 'Mew', :git => 'https://github.com/mercari/Mew.git', :branch => "0.2.2"
+  pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
 end
 
 target 'iMast' do

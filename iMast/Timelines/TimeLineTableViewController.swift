@@ -13,15 +13,21 @@ import Reachability
 import SafariServices
 import Ikemen
 import SnapKit
+import Mew
 
-class TimeLineTableViewController: UIViewController {
+class TimeLineTableViewController: UIViewController, Instantiatable {
+    var environment: Environment
+    
+    typealias Input = UITableView.Style
+    
+    typealias Environment = MastodonUserToken
+    
     let tableView: UITableView
     let refreshControl = UIRefreshControl()
     
     var posts: [MastodonPost] = []
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue: [MastodonPost] = []
-    var cellCache: [String: MastodonPostCell] = [:]
     var isAlreadyAdded: [String: Bool] = [:]
     var readmoreCell: UITableViewCell!
     var maxPostCount = 100
@@ -39,8 +45,9 @@ class TimeLineTableViewController: UIViewController {
     var postFabButton = UIButton()
     var isNewPostAvailable = false
     
-    init(style: UITableView.Style = .plain) {
-        tableView = UITableView(frame: .zero, style: style)
+    required init(with input: Input = .plain, environment: Environment = MastodonUserToken.getLatestUsed()!) {
+        tableView = UITableView(frame: .zero, style: input)
+        self.environment = environment
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -76,6 +83,8 @@ class TimeLineTableViewController: UIViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        TableViewCell<MastodonPostCellViewController>.register(to: tableView)
+        
         loadTimeline().then {
             self.tableView.reloadData()
             self.websocketConnect(auto: true)
@@ -256,7 +265,7 @@ class TimeLineTableViewController: UIViewController {
             return false
         })
         posts.forEach { post in
-            _ = getCell(post: post)
+//            _ = getCell(post: post)
         }
         
         /*
@@ -341,9 +350,6 @@ class TimeLineTableViewController: UIViewController {
                         return false
                     })
                     if tootFound {
-                        for section in [0, 1] {
-                            self.cellCache["\(section):\(object["payload"].stringValue)"] = nil
-                        }
                         self.tableView.reloadData()
                     }
                 } else {
@@ -383,12 +389,11 @@ class TimeLineTableViewController: UIViewController {
             }
             self.posts = []
             self.tableView.reloadData()
-            self.cellCache = [:]
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
                 print(self.posts)
                 self.posts.forEach({ (post) in
-                    _ = self.getCell(post: post)
+//                    _ = self.getCell(post: post)
                 })
                 self.tableView.reloadData()
                 if isStreamingConnectingNow {
@@ -405,23 +410,19 @@ class TimeLineTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getCell(post: MastodonPost, section: Int = 1) -> UITableViewCell {
-        let cellHash = "\(section):\(post.id.string)"
-        if let cell = cellCache[cellHash] {
-            return cell
-        }
-        let postView = MastodonPostCell.getInstance(owner: self)
-        postView.pinned = section == 0  
-        // Configure the cell...
-        postView.load(post: post)
-        cellCache[cellHash] = postView
-        return postView
-    }
-    
+//    func getCell(post: MastodonPost, section: Int = 1) -> UITableViewCell {
+//        let postView = MastodonPostCell.getInstance(owner: self)
+//        postView.pinned = section == 0
+//        // Configure the cell...
+//        postView.load(post: post)
+//
+//        return postView
+//    }
+//
     func appendNewPosts(posts: [MastodonPost]) {
         var rows: [IndexPath] = []
         posts.forEach { (post) in
-            _ = self.getCell(post: post)
+//            _ = self.getCell(post: post)
             self.posts.append(post)
             rows.append(IndexPath(row: self.posts.count-1, section: 1))
         }
@@ -452,7 +453,13 @@ extension TimeLineTableViewController: UITableViewDataSource {
             return readmoreCell
         }
         let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
-        return getCell(post: post, section: indexPath.section)
+        return TableViewCell<MastodonPostCellViewController>.dequeued(
+            from: self.tableView,
+            for: indexPath,
+            input: post,
+            parentViewController: self
+        )
+//        return getCell(post: post, section: indexPath.section)
     }
     
     // Override to support conditional editing of the table view.
@@ -495,11 +502,6 @@ extension TimeLineTableViewController: UITableViewDelegate {
                         return map_post
                     }
                 })
-                for section in [0, 1] {
-                    if let cell = self.cellCache["\(section):\(post.id.string)"] {
-                        cell.load(post: post)
-                    }
-                }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
@@ -525,11 +527,6 @@ extension TimeLineTableViewController: UITableViewDelegate {
                         return map_post
                     }
                 })
-                for section in [0, 1] {
-                    if let cell = self.cellCache["\(section):\(post.id.string)"] {
-                        cell.load(post: post)
-                    }
-                }
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
