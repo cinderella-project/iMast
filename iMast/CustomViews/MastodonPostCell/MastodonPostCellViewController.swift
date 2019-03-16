@@ -48,11 +48,16 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
     func input(_ originalInput: MastodonPost) {
         let input = originalInput.repost ?? originalInput
+        
+        // アイコン
         self.iconView.input(input.account)
         self.iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
 
+        // ユーザー名
+        let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineUsernameFontsize]))
         self.userNameLabel.text = input.account.name.emptyAsNil ?? input.account.screenName
 
+        // 投稿日時の表示
         let calendar = Calendar(identifier: .gregorian)
         var timeFormat = "yyyy/MM/dd HH:mm:ss"
         if calendar.component(.year, from: Date()) == calendar.component(.year, from: input.createdAt) {
@@ -63,23 +68,26 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         self.createdAtLabel.text = DateUtils.stringFromDate(input.createdAt, format: timeFormat)
 
-        let attrStrTmp = (input.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: input.emojis, profile_emoji: input.profileEmojis))
-        var attrs: [NSAttributedString.Key: Any] = [:]
+        // 投稿本文の処理
+        let html = (input.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: input.emojis, profile_emoji: input.profileEmojis))
+        var font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
         if Defaults[.timelineTextBold] {
-            attrs[.font] = UIFont.boldSystemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-        } else {
-            attrs[.font] = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+            font = UIFont.boldSystemFont(ofSize: font.pointSize)
         }
+        let attrs: [NSAttributedString.Key: Any] = [
+            .font: font,
+        ]
         if input.spoilerText != "" {
+            textView.attributedText = nil
             textView.text = input.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(input.attachments.count != 0 ? ", \(input.attachments.count)個の添付メディア" : ""))"
             textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        } else if let attrStr = attrStrTmp.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
+        } else if let attrStr = html.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
         }) {
             textView.attributedText = attrStr
         } else {
             textView.text = input.status.toPlainText()
         }
-        textView.font = textView.font?.withSize(CGFloat(Defaults[.timelineTextFontsize]))
+        textView.font = font
     }
 }
