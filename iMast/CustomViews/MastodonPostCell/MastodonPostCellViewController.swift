@@ -56,6 +56,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         // ユーザー名
         let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineUsernameFontsize]))
         self.userNameLabel.text = input.account.name.emptyAsNil ?? input.account.screenName
+        self.userNameLabel.font = userNameFont
 
         // 投稿日時の表示
         let calendar = Calendar(identifier: .gregorian)
@@ -67,6 +68,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             timeFormat = "HH:mm:ss"
         }
         self.createdAtLabel.text = DateUtils.stringFromDate(input.createdAt, format: timeFormat)
+        self.createdAtLabel.font = userNameFont
 
         // 投稿本文の処理
         let html = (input.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: input.emojis, profile_emoji: input.profileEmojis))
