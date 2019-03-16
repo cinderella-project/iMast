@@ -37,6 +37,7 @@ class UserIconViewController: UIViewController, Instantiatable, Injectable {
     }
 
     func input(_ input: MastodonAccount) {
+        self.input = input
         imageView.sd_setImage(with: URL(string: input.avatarUrl, relativeTo: environment.app.instance.url), completed: nil)
     }
     
