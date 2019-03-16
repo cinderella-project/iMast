@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode10.1
 before_install:
   - gem install xcpretty
+  - bundle install
 install:
   - travis_wait pod install --repo-update
 script:
