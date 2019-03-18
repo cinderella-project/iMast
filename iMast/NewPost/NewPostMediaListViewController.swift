@@ -233,6 +233,11 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                             requiredReEncoding = true
                         }
                     }
+                    let RE_ENCODING_BORDER = 40 * 1000 * 1000 // 40MB
+                    // 40MB越えてたら再エンコ
+                    if let attr = try? FileManager.default.attributesOfItem(atPath: url.path) as NSDictionary, attr.fileSize() >= RE_ENCODING_BORDER {
+                        requiredReEncoding = true
+                    }
                     // mp4にコンテナ交換
                     let exportSession = AVAssetExportSession(asset: asset, presetName: requiredReEncoding ? AVAssetExportPreset1280x720 : AVAssetExportPresetPassthrough)!
                     let outUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString + ".mp4")
@@ -241,7 +246,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                     exportSession.outputURL = outUrl
                     exportSession.shouldOptimizeForNetworkUse = true
                     exportSession.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
-                    if exportSession.estimatedOutputFileLength > 40_000_000 {
+                    if exportSession.estimatedOutputFileLength >= RE_ENCODING_BORDER {
                         guard try! await(self.confirm(
                             title: "確認",
                             message: "動画をこのままエンコードすると40MBを越えそうです(予想される出力ファイルサイズ: \(exportSession.estimatedOutputFileLength)bytes)。このままエンコードしますか?",
