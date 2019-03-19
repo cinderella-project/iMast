@@ -96,6 +96,7 @@
 		CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */; };
 		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE58956022408BCA0024FDBF /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58955F22408BCA0024FDBF /* ColorSet.swift */; };
+		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5DE87B21F4FF9D0008D437 /* UIViewController+presentPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */; };
 		CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */; };
 		CE5DE8B921F5CB6D0008D437 /* UIViewController+dismissPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */; };
@@ -368,6 +369,7 @@
 		CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileBioTableViewCell.xib; sourceTree = "<group>"; };
 		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE58955F22408BCA0024FDBF /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 				2ADE64151ED1201800ED1CB1 /* MastodonPostCell.xib */,
 				2ADE64181ED142C600ED1CB1 /* MastodonPostCell.swift */,
 				CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */,
+				CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */,
 				CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */,
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
 				CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */,
@@ -1518,6 +1521,7 @@
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
+				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
 				CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,

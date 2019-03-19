@@ -28,8 +28,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     var input: Input
 
     let userNameLabel = UILabel() ※ { v in
-        v.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        v.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        v.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
     }
     let createdAtLabel = UILabel()
     let textView = UITextView() ※ { v in
@@ -44,10 +43,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             make.width.equalTo(3)
         }
     }
+    let attachedMediaListViewContrller: AttachedMediaListViewController
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
         self.input = input
+        self.attachedMediaListViewContrller = AttachedMediaListViewController(with: input, environment: Void())
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,10 +74,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         ]) ※ {
             $0.axis = .horizontal
         }
-        let topStackView = UIStackView(arrangedSubviews: [
+        let topStackView = ContainerView(arrangedSubviews: [
             userStackView,
             textView,
         ]) ※ {
+            $0.addArrangedViewController(attachedMediaListViewContrller, parentViewController: self)
             $0.axis = .vertical
             $0.spacing = 2
         }
@@ -148,6 +150,14 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             textView.text = input.status.toPlainText()
         }
         textView.font = font
+        
+        // 添付ファイルの処理
+        if input.attachments.count == 0 {
+            attachedMediaListViewContrller.view.isHidden = true
+        } else {
+            attachedMediaListViewContrller.view.isHidden = false
+            attachedMediaListViewContrller.input(input)
+        }
     }
     
     @IBAction func iconTapped(_ sender: Any) {
