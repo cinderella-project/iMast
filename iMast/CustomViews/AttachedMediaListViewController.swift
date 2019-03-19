@@ -79,7 +79,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let leftButtonWidth = 30
+        let leftButtonWidth = 48
         
         self.view.addSubview(mediaStackView)
         mediaStackView.snp.makeConstraints { make in
