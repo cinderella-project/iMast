@@ -23,6 +23,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.snp.makeConstraints { make in
             make.width.equalTo(v.snp.height)
         }
+        v.isUserInteractionEnabled = true
     }
     
     var input: Input
@@ -61,6 +62,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
         // layout
         self.view.addSubview(iconView)
+        iconView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.iconTapped)))
         iconWidthConstraint = iconView.widthAnchor.constraint(equalToConstant: 64) ※ {
             $0.isActive = true
         }
@@ -68,12 +70,14 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             make.leading.top.equalToSuperview().offset(8)
             make.bottom.lessThanOrEqualToSuperview().offset(-8)
         }
+
         let userStackView = UIStackView(arrangedSubviews: [
             userNameLabel,
             createdAtLabel,
         ]) ※ {
             $0.axis = .horizontal
         }
+        
         let topStackView = ContainerView(arrangedSubviews: [
             userStackView,
             textView,
@@ -98,6 +102,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
 
     func input(_ originalInput: MastodonPost) {
+        self.input = originalInput
         let input = originalInput.repost ?? originalInput
         // ブースト時の処理
         if originalInput.repost != nil {
@@ -160,8 +165,8 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
     }
     
-    @IBAction func iconTapped(_ sender: Any) {
-        let vc = openUserProfile(user: input.account)
+    @objc func iconTapped() {
+        let vc = openUserProfile(user: (input.repost ?? input).account)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
