@@ -216,12 +216,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
   struct nib {
     /// Nib `AddAccountSuccessViewController`.
     static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
-    /// Nib `MastodonPostCellViewController`.
-    static let mastodonPostCellViewController = _R.nib._MastodonPostCellViewController()
     /// Nib `MastodonPostCell`.
     static let mastodonPostCell = _R.nib._MastodonPostCell()
     /// Nib `NewPostMediaListViewController`.
@@ -230,8 +228,6 @@ struct R: Rswift.Validatable {
     static let notificationTableViewCell = _R.nib._NotificationTableViewCell()
     /// Nib `TimeLineReadMoreCell`.
     static let timeLineReadMoreCell = _R.nib._TimeLineReadMoreCell()
-    /// Nib `UserIconViewController`.
-    static let userIconViewController = _R.nib._UserIconViewController()
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
@@ -247,11 +243,6 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.mastodonPostCell)
     }
     
-    /// `UINib(name: "MastodonPostCellViewController", in: bundle)`
-    static func mastodonPostCellViewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.mastodonPostCellViewController)
-    }
-    
     /// `UINib(name: "NewPostMediaListViewController", in: bundle)`
     static func newPostMediaListViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.newPostMediaListViewController)
@@ -265,11 +256,6 @@ struct R: Rswift.Validatable {
     /// `UINib(name: "TimeLineReadMoreCell", in: bundle)`
     static func timeLineReadMoreCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.timeLineReadMoreCell)
-    }
-    
-    /// `UINib(name: "UserIconViewController", in: bundle)`
-    static func userIconViewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.userIconViewController)
     }
     
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
@@ -1128,21 +1114,6 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    struct _MastodonPostCellViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "MastodonPostCellViewController"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
     struct _NewPostMediaListViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "NewPostMediaListViewController"
@@ -1174,21 +1145,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UITableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _UserIconViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "UserIconViewController"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
       
       fileprivate init() {}

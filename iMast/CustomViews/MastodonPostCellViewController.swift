@@ -8,6 +8,8 @@
 
 import UIKit
 import Mew
+import SnapKit
+import Ikemen
 
 class MastodonPostCellViewController: UIViewController, Instantiatable, Injectable {
     typealias Input = MastodonPost
@@ -16,18 +18,35 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
     var environment: MastodonUserToken
 
-    @IBOutlet weak var iconContainerView: ContainerView!
-    @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
-    let iconView: UserIconViewController
+    var iconWidthConstraint: NSLayoutConstraint!
+    let iconView = UIImageView() ※ { v in
+        v.snp.makeConstraints { make in
+            make.width.equalTo(v.snp.height)
+        }
+    }
+    
     var input: Input
 
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var createdAtLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    let userNameLabel = UILabel() ※ { v in
+        v.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        v.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    }
+    let createdAtLabel = UILabel()
+    let textView = UITextView() ※ { v in
+        v.isScrollEnabled = false
+        v.isEditable = false
+        v.textContainerInset = .zero
+        v.textContainer.lineFragmentPadding = 0
+    }
+    let isBoostedView = UIView() ※ { v in
+        v.backgroundColor = ColorSet.boostedBar
+        v.snp.makeConstraints { make in
+            make.width.equalTo(3)
+        }
+    }
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
-        self.iconView = UserIconViewController(with: input.account, environment: environment)
         self.input = input
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,18 +58,56 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.iconContainerView.addArrangedViewController(self.iconView, parentViewController: self)
-        self.input(input)
+        // layout
+        self.view.addSubview(iconView)
+        iconWidthConstraint = iconView.widthAnchor.constraint(equalToConstant: 64) ※ {
+            $0.isActive = true
+        }
+        iconView.snp.makeConstraints { make in
+            make.leading.top.equalToSuperview().offset(8)
+            make.bottom.lessThanOrEqualToSuperview().offset(-8)
+        }
+        let userStackView = UIStackView(arrangedSubviews: [
+            userNameLabel,
+            createdAtLabel,
+        ]) ※ {
+            $0.axis = .horizontal
+        }
+        let topStackView = UIStackView(arrangedSubviews: [
+            userStackView,
+            textView,
+        ]) ※ {
+            $0.axis = .vertical
+            $0.spacing = 2
+        }
+        self.view.addSubview(topStackView)
+        topStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(8)
+            make.bottom.trailing.equalToSuperview().offset(-8)
+            make.leading.equalTo(iconView.snp.trailing).offset(8)
+        }
         
-        self.textView.textContainerInset = .zero
+        self.view.addSubview(isBoostedView)
+        isBoostedView.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview()
+        }
+        
+        self.input(input)
     }
 
     func input(_ originalInput: MastodonPost) {
         let input = originalInput.repost ?? originalInput
+        // ブースト時の処理
+        if originalInput.repost != nil {
+            isBoostedView.isHidden = false
+        } else {
+            isBoostedView.isHidden = true
+        }
         
         // アイコン
-        self.iconView.input(input.account)
+        self.iconView.sd_setImage(with: URL(string: input.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
+            print("loaded")
+        })
         self.iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
 
         // ユーザー名
@@ -91,5 +148,10 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             textView.text = input.status.toPlainText()
         }
         textView.font = font
+    }
+    
+    @IBAction func iconTapped(_ sender: Any) {
+        let vc = openUserProfile(user: input.account)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
