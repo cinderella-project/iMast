@@ -166,11 +166,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                     "private": "🔒",
                     "direct": "✉️",
                 ][post.visibility]
+                self.visibilityLabel.font = userNameFont
             }
         } else {
             self.visibilityLabel.isHidden = true
         }
         self.pinnedLabel.isHidden = !input.pinned
+        self.pinnedLabel.font = userNameFont
         
         // 投稿日時の表示
         let calendar = Calendar(identifier: .gregorian)
