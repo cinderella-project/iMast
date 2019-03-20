@@ -44,6 +44,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             make.width.equalTo(3)
         }
     }
+    let boostedIconView = UIImageView()
     let attachedMediaListViewContrller: AttachedMediaListViewController
     
     required init(with input: Input, environment: Environment) {
@@ -69,6 +70,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         iconView.snp.makeConstraints { make in
             make.leading.top.equalToSuperview().offset(8)
             make.bottom.lessThanOrEqualToSuperview().offset(-8)
+        }
+        iconView.addSubview(boostedIconView)
+        boostedIconView.snp.makeConstraints { make in
+            make.trailing.bottom.equalToSuperview()
+            make.width.height.equalToSuperview().multipliedBy(0.5)
         }
 
         let userStackView = UIStackView(arrangedSubviews: [
@@ -107,8 +113,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         // ブースト時の処理
         if originalInput.repost != nil {
             isBoostedView.isHidden = false
+            boostedIconView.isHidden = false
+            boostedIconView.image = nil
+            boostedIconView.sd_setImage(with: URL(string: originalInput.account.avatarUrl), completed: nil)
         } else {
             isBoostedView.isHidden = true
+            boostedIconView.isHidden = true
         }
         
         // アイコン
