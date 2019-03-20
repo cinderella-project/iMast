@@ -456,7 +456,7 @@ extension TimeLineTableViewController: UITableViewDataSource {
         return TableViewCell<MastodonPostCellViewController>.dequeued(
             from: self.tableView,
             for: indexPath,
-            input: post,
+            input: MastodonPostCellViewController.Input(post: post, pinned: indexPath.section == 0),
             parentViewController: self
         )
 //        return getCell(post: post, section: indexPath.section)
