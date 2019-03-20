@@ -114,6 +114,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         
         let thumbnailHeight = Defaults[.thumbnailHeight]
         
+        // mediaStackView内のimageViewのストックが足りなかったら追加する
         while mediaStackView.arrangedSubviews.count < input.attachments.count {
             let imageView = UIImageView() ※ {
                 $0.ignoreSmartInvert()
@@ -128,6 +129,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             }
             mediaStackView.addArrangedSubview(imageView)
         }
+        
         for (i, media) in input.attachments.enumerated() {
             // swiftlint:disable:next force_cast
             let imageView = mediaStackView.arrangedSubviews[i] as! UIImageView
@@ -135,10 +137,10 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             imageView.sd_setImage(with: URL(string: media.previewUrl), completed: nil)
             imageView.isHidden = false
         }
-        _ = mediaStackView.arrangedSubviews ※ {
-            for view in $0[input.attachments.count...] {
-                view.isHidden = true
-            }
+        
+        // 越えてるストックは非表示にしておく
+        for view in mediaStackView.arrangedSubviews[input.attachments.count...] {
+            view.isHidden = true
         }
     }
     
