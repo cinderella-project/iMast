@@ -119,7 +119,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
         // ユーザー名
         let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineUsernameFontsize]))
-        self.userNameLabel.text = input.account.name.emptyAsNil ?? input.account.screenName
+        self.userNameLabel.attributedText = NSAttributedString(string: input.account.name.emptyAsNil ?? input.account.screenName, attributes: [
+            .font: userNameFont,
+        ]).emojify(asyncLoadProgressHandler: {
+            self.userNameLabel.setNeedsDisplay()
+        }, emojifyProtocol: input.account)
         self.userNameLabel.font = userNameFont
 
         // 投稿日時の表示
@@ -135,7 +139,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.createdAtLabel.font = userNameFont
 
         // 投稿本文の処理
-        let html = (input.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(custom_emoji: input.emojis, profile_emoji: input.profileEmojis))
+        let html = (input.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(emojifyProtocol: input))
         var font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
         if Defaults[.timelineTextBold] {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)

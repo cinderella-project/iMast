@@ -9,7 +9,7 @@
 import Foundation
 import Hydra
 
-class MastodonAccount: Codable {
+class MastodonAccount: Codable, EmojifyProtocol {
     let id: MastodonID
     let name: String
     let screenName: String
@@ -30,6 +30,9 @@ class MastodonAccount: Codable {
     
     // for pawoo
     let oauthAuthentications: [MastodonAccountOAuthAuthenticate]?
+    
+    let emojis: [MastodonCustomEmoji]?
+    let profileEmojis: [MastodonCustomEmoji]?
     enum CodingKeys: String, CodingKey {
         case id
         case name = "display_name"
@@ -49,6 +52,9 @@ class MastodonAccount: Codable {
         
         case niconicoUrl = "nico_url"
         case oauthAuthentications = "oauth_authentications"
+        
+        case emojis
+        case profileEmojis = "profile_emojis"
     }
     
     @available(*, deprecated, message: "Do not use.")

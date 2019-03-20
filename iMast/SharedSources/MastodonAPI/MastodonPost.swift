@@ -15,7 +15,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-class MastodonPost: Codable {
+class MastodonPost: Codable, EmojifyProtocol {
     let id: MastodonID
     let url: String?
     let account: MastodonAccount
@@ -43,14 +43,8 @@ class MastodonPost: Codable {
     let attachments: [MastodonAttachment]
     let application: MastodonApplication?
     var pinned: Bool?
-    private var _emojis: [MastodonCustomEmoji]?
-    private var _profileEmojis: [MastodonCustomEmoji]?
-    var emojis: [MastodonCustomEmoji] {
-        return self._emojis ?? []
-    }
-    var profileEmojis: [MastodonCustomEmoji] {
-        return self._profileEmojis ?? []
-    }
+    var emojis: [MastodonCustomEmoji]?
+    var profileEmojis: [MastodonCustomEmoji]?
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
     var tags: [MastodonPostHashtag]?
@@ -75,8 +69,8 @@ class MastodonPost: Codable {
         case pinned
         case application
         case attachments = "media_attachments"
-        case _emojis = "emojis"
-        case _profileEmojis = "profile_emojis"
+        case emojis
+        case profileEmojis = "profile_emojis"
         case visibility
         case mentions
         case tags

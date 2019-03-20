@@ -110,6 +110,12 @@
 		CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */; };
 		CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */; };
 		CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */; };
+		CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */; };
+		CE71AF502242309E0054A008 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
+		CE71AF51224230F40054A008 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
+		CE71AF52224230F50054A008 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
+		CE71AF53224230F50054A008 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
+		CE71AF54224230F60054A008 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
@@ -383,6 +389,8 @@
 		CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostCellViewController.swift; sourceTree = "<group>"; };
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
+		CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+emojify.swift"; sourceTree = "<group>"; };
+		CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojifyProtocol.swift; sourceTree = "<group>"; };
 		CE75AE1C21C0EF2400BA3C9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		CE75AE2021C0EF3100BA3C9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
 		CE75AE2221C0EF3200BA3C9F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -681,6 +689,7 @@
 				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
 				CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */,
 				CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */,
+				CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */,
 				CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */,
 			);
 			path = Extensions;
@@ -731,6 +740,7 @@
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CEE254262004B593005FEB6F /* MastodonAPI */,
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
+				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
@@ -1499,6 +1509,7 @@
 				CE58956022408BCA0024FDBF /* ColorSet.swift in Sources */,
 				CE2D2AF0210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift in Sources */,
 				CE2D2AF6210C81ED003B92B8 /* ReadmoreTableViewCell.swift in Sources */,
+				CE71AF502242309E0054A008 /* EmojifyProtocol.swift in Sources */,
 				CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */,
 				CE2D2AEE210C5668003B92B8 /* Notification.Name.swift in Sources */,
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
@@ -1517,6 +1528,7 @@
 				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
+				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
@@ -1560,6 +1572,7 @@
 				CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
+				CE71AF52224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
@@ -1584,6 +1597,7 @@
 				CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE1002C520065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEE254242004B57A005FEB6F /* MastodonAccount.swift in Sources */,
+				CE71AF51224230F40054A008 /* EmojifyProtocol.swift in Sources */,
 				CEE357231FF6067F00675DFC /* EventListener.swift in Sources */,
 				CEDEDC9B2007CAF600CD2784 /* MastodonID.swift in Sources */,
 				CE1002D1200663760041B636 /* MastodonSearchResult.swift in Sources */,
@@ -1620,6 +1634,7 @@
 				CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CE71AF53224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */,
@@ -1650,6 +1665,7 @@
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
+				CE71AF54224230F60054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */,
 				CEFE6B0521B5012500AF5E40 /* MastodonList.swift in Sources */,
 				CEFE6B0021B5012500AF5E40 /* MastodonAccountRelationship.swift in Sources */,

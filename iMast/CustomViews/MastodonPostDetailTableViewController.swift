@@ -80,7 +80,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         print(post)
         var html = ""
-        let postHtml = post.status.emojify(custom_emoji: post.emojis, profile_emoji: post.profileEmojis).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+        let postHtml = post.status.emojify(emojifyProtocol: post).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         if post.spoilerText != "" {
             html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
             if !spoiler {
@@ -304,10 +304,10 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 self.navigationController?.pushViewController(bunmyakuVC, animated: true)
             }
         }))
-        if (post.emojis.count) + (post.profileEmojis.count) > 0 { // カスタム絵文字がある
+        if (post.emojis?.count ?? 0) + (post.profileEmojis?.count ?? 0) > 0 { // カスタム絵文字がある
             actionSheet.addAction(UIAlertAction(title: "カスタム絵文字一覧", style: .default, handler: { _ in
                 let newVC = EmojiListTableViewController()
-                newVC.emojis = post.emojis + post.profileEmojis
+                newVC.emojis = (post.emojis ?? []) + (post.profileEmojis ?? [])
                 newVC.account = post.account
                 self.navigationController?.pushViewController(newVC, animated: true)
             }))
