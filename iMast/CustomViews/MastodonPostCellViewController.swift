@@ -49,7 +49,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.textContainerInset = .zero
         v.textContainer.lineFragmentPadding = 0
     }
-    let isBoostedView = UIView() ※ { v in
+    let tootInfoView = UIView() ※ { v in
         v.backgroundColor = ColorSet.boostedBar
         v.snp.makeConstraints { make in
             make.width.equalTo(3)
@@ -57,6 +57,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     let boostedIconView = UIImageView()
     let attachedMediaListViewContrller: AttachedMediaListViewController
+    
+    let isBoostedView = UIView() ※ { v in
+        v.backgroundColor = ColorSet.boostedBar
+    }
+    let isFavouritedView = UIView() ※ { v in
+        v.backgroundColor = ColorSet.favouriteBar
+    }
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
@@ -113,9 +120,22 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             make.leading.equalTo(iconView.snp.trailing).offset(8)
         }
         
-        self.view.addSubview(isBoostedView)
-        isBoostedView.snp.makeConstraints { make in
+        self.view.addSubview(tootInfoView)
+        tootInfoView.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
+        }
+        
+        let actionStatusStackView = UIStackView(arrangedSubviews: [
+            isBoostedView,
+            isFavouritedView,
+        ])  ※ {
+            $0.axis = .vertical
+            $0.distribution = .fillEqually
+        }
+        self.view.addSubview(actionStatusStackView)
+        actionStatusStackView.snp.makeConstraints { make in
+            make.trailing.top.bottom.equalToSuperview()
+            make.width.equalTo(3)
         }
         
         self.input(input)
@@ -127,12 +147,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         let post = originalPost.repost ?? originalPost
         // ブースト時の処理
         if originalPost.repost != nil {
-            isBoostedView.isHidden = false
+            tootInfoView.isHidden = false
             boostedIconView.isHidden = false
             boostedIconView.image = nil
             boostedIconView.sd_setImage(with: URL(string: originalPost.account.avatarUrl), completed: nil)
         } else {
-            isBoostedView.isHidden = true
+            tootInfoView.isHidden = true
             boostedIconView.isHidden = true
         }
         
@@ -173,6 +193,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         self.pinnedLabel.isHidden = !input.pinned
         self.pinnedLabel.font = userNameFont
+        
+        // ブースト/ふぁぼったかどうか
+        
+        self.isBoostedView.isHidden = !post.reposted
+        self.isFavouritedView.isHidden = !post.favourited
         
         // 投稿日時の表示
         let calendar = Calendar(identifier: .gregorian)

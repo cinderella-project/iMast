@@ -13,6 +13,7 @@ import UIKit
 // iOS 10.xを切ったらとっととColor Assetsに移行する
 struct ColorSet {
     static let boostedBar = UIColor(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
+    static let favouriteBar = UIColor(hue: 52 / 360.0, saturation: 0.9, brightness: 0.9, alpha: 1)
     
     @available(*, unavailable)
     init() {
