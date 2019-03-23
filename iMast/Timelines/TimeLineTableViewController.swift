@@ -391,10 +391,6 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             self.tableView.reloadData()
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
-                print(self.posts)
-                self.posts.forEach({ (post) in
-//                    _ = self.getCell(post: post)
-                })
                 self.tableView.reloadData()
                 if isStreamingConnectingNow {
                     self.socket?.connect()
@@ -485,23 +481,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
             MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
                 let post = post_.repost!
-                var indexs: [IndexPath] = []
-                self.pinnedPosts = self.pinnedPosts.enumerated().map({ (index, map_post) -> MastodonPost in
-                    if map_post.id == post.id {
-                        indexs.append(IndexPath(row: index, section: 0))
-                        return post
-                    } else {
-                        return map_post
-                    }
-                })
-                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
-                    if map_post.id == post.id {
-                        indexs.append(IndexPath(row: index, section: 1))
-                        return post
-                    } else {
-                        return map_post
-                    }
-                })
+                self.updatePost(from: post, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
@@ -510,23 +490,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         // like
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ") { (action, index) -> Void in
             MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
-                var indexs: [IndexPath] = []
-                self.pinnedPosts = self.pinnedPosts.enumerated().map({ (index, map_post) -> MastodonPost in
-                    if map_post.id == post.id {
-                        indexs.append(IndexPath(row: index, section: 0))
-                        return post
-                    } else {
-                        return map_post
-                    }
-                })
-                self.posts = self.posts.enumerated().map({ (index, map_post) -> MastodonPost in
-                    if map_post.id == post.id {
-                        indexs.append(IndexPath(row: index, section: 1))
-                        return post
-                    } else {
-                        return map_post
-                    }
-                })
+                self.updatePost(from: post, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
@@ -548,5 +512,30 @@ extension TimeLineTableViewController: UITableViewDelegate {
             boostAction,
             likeAction,
             ].reversed()
+    }
+    
+    func updatePost(from: MastodonPost, includeRepost: Bool) {
+        var indexPaths = [] as [IndexPath]
+        
+        func processPost(section: Int, posts: inout [MastodonPost]) {
+            for (row, post) in posts.enumerated() {
+                if from.id == post.id {
+                    posts[row] = from
+                } else if includeRepost, from.id == post.repost?.id {
+                    posts[row] = from
+                } else {
+                    continue
+                }
+                indexPaths.append(IndexPath(row: row, section: section))
+            }
+        }
+        
+        processPost(section: 0, posts: &self.pinnedPosts)
+        processPost(section: 1, posts: &self.posts)
+        
+        self.tableView.reloadRows(
+            at: indexPaths,
+            with: .right
+        )
     }
 }
