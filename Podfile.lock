@@ -65,7 +65,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.8.1)
   - Compass
   - Eureka (~> 4.3.1)
-  - Fuzi (~> 2.1.0)
+  - Fuzi (from `https://github.com/cezheng/Fuzi.git`, commit `b26786259f13b8a83eaff0ac46dd052c18960df5`)
   - GRDB.swift (~> 3.6.2)
   - HydraAsync
   - KeychainAccess (~> 3.1.2)
@@ -90,7 +90,6 @@ SPEC REPOS:
     - Alamofire
     - Compass
     - Eureka
-    - Fuzi
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
@@ -114,6 +113,9 @@ EXTERNAL SOURCES:
   ActionClosurable:
     :branch: fix/swift4.2
     :git: https://github.com/rinsuki/ActionClosurable.git
+  Fuzi:
+    :commit: b26786259f13b8a83eaff0ac46dd052c18960df5
+    :git: https://github.com/cezheng/Fuzi.git
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
@@ -122,6 +124,9 @@ CHECKOUT OPTIONS:
   ActionClosurable:
     :commit: 7ff27004679e9a47b90c9edacee22b267783e1b2
     :git: https://github.com/rinsuki/ActionClosurable.git
+  Fuzi:
+    :commit: b26786259f13b8a83eaff0ac46dd052c18960df5
+    :git: https://github.com/cezheng/Fuzi.git
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -153,6 +158,6 @@ SPEC CHECKSUMS:
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 70eb46b57587d54ac39cf06de1ce38846249080f
+PODFILE CHECKSUM: 810eb1e6dbe42325167e68dd52171a5f022664fc
 
 COCOAPODS: 1.6.1

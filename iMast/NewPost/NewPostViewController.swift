@@ -43,7 +43,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     var scope = "public" {
         didSet {
-            _ = VisibilityString.index(of: scope)! // 意図しないものが指定されたらクラッシュさせる
+            _ = VisibilityString.firstIndex(of: scope)! // 意図しないものが指定されたらクラッシュさせる
             scopeSelectButton.image = UIImage(named: "visibility-"+scope)
         }
     }

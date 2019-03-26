@@ -610,7 +610,7 @@ public func getImage(url: String, size: Int = -1) -> Promise<UIImage> {
         }
         if img == nil {
             print("Error Image Decode Failed:"+url)
-            reject(APIError.decodeFailed())
+            reject(APIError.decodeFailed)
             return
         }
         if isInternet {

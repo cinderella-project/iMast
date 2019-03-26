@@ -27,7 +27,7 @@ class ShareViewController: SLComposeServiceViewController {
     var postUrl = ""
     var visibility = "public" {
         didSet {
-            visibilityConfig.value = VisibilityLocalizedString[VisibilityString.index(of: visibility) ?? 0]
+            visibilityConfig.value = VisibilityLocalizedString[VisibilityString.firstIndex(of: visibility) ?? 0]
         }
     }
     var postMedia: [UploadableMedia] = []

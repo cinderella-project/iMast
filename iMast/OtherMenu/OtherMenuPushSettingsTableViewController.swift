@@ -132,7 +132,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     self.present(alert, animated: true, completion: nil)
                 }.then { host -> Promise<String> in
                     guard let host = host else {
-                        throw APIError.alreadyError()
+                        throw APIError.alreadyError
                     }
                     return PushService.getAuthorizeUrl(host: host)
                 }.then { res in
@@ -140,7 +140,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     self.loginSafari.open(url: URL(string: res)!, viewController: self)
                 }.catch { error in
                     switch error {
-                    case APIError.alreadyError():
+                    case APIError.alreadyError:
                         break
                     default:
                         self.alert(title: "エラー", message: error.localizedDescription)
