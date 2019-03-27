@@ -5,7 +5,7 @@ PODS:
   - Compass (6.0.0)
   - Eureka (4.3.1)
   - Fuzi (2.1.0)
-  - GRDB.swift (3.6.2)
+  - GRDB.swift (3.7.0)
   - HydraAsync (1.2.1)
   - KeychainAccess (3.1.2)
   - libwebp (0.6.1):
@@ -66,7 +66,7 @@ DEPENDENCIES:
   - Compass
   - Eureka (~> 4.3.1)
   - Fuzi (from `https://github.com/cezheng/Fuzi.git`, commit `b26786259f13b8a83eaff0ac46dd052c18960df5`)
-  - GRDB.swift (~> 3.6.2)
+  - GRDB.swift (~> 3.7.0)
   - HydraAsync
   - KeychainAccess (~> 3.1.2)
   - LicensePlist (~> 2.1.0)
@@ -138,7 +138,7 @@ SPEC CHECKSUMS:
   Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
-  GRDB.swift: e10787d857b6b8135354b9e08fb23b4bb8e2fab7
+  GRDB.swift: 51cc9e57ae8ff7083a9d674c97925aa1de06aac5
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
@@ -158,6 +158,6 @@ SPEC CHECKSUMS:
   XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 810eb1e6dbe42325167e68dd52171a5f022664fc
+PODFILE CHECKSUM: 4a9e3ace61a2c54a1124e34701b6709306c390d0
 
 COCOAPODS: 1.6.1

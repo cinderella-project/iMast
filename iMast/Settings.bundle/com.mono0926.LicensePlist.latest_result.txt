@@ -56,23 +56,23 @@ version: 2.1.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
-version: 3.6.2
+version: 3.7.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
-version: 3.6.2
+version: 3.7.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
-version: 3.6.2
+version: 3.7.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
-version: 3.6.2
+version: 3.7.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
-version: 3.6.2
+version: 3.7.0
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…

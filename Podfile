@@ -4,7 +4,7 @@ platform :ios, '9.0'
 def based_pods
   pod 'SwiftLint', '~> 0.30.1'
   pod 'Alamofire', '~> 4.8.1'
-  pod 'GRDB.swift', '~> 3.6.2'
+  pod 'GRDB.swift', '~> 3.7.0'
   pod 'SwiftyJSON', '~> 4.2.0'
   pod 'HydraAsync'
   pod 'XCGLogger', '~> 6.1.0'
@@ -75,6 +75,11 @@ post_install do | installer |
     if ["R.swift.Library"].include? target.name
       target.build_configurations.each do | config |
         config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
+    end
+    if ["GRDB.swift", "XCGLogger"].include? target.name
+      target.build_configurations.each do | config |
+        config.build_settings['SWIFT_VERSION'] = '4.2'
       end
     end
   end
