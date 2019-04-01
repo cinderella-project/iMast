@@ -36,23 +36,23 @@ version: 4.3.1
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 2.1.0
+version: 3.0.0
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 2.1.0
+version: 3.0.0
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 2.1.0
+version: 3.0.0
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 2.1.0
+version: 3.0.0
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 2.1.0
+version: 3.0.0
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…

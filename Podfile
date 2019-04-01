@@ -10,8 +10,7 @@ def based_pods
   pod 'XCGLogger', '~> 6.1.0'
   pod 'SDWebImage', '~> 4.4.5'
   pod 'SDWebImage/WebP', '~> 4.4.5'
-#  pod 'Fuzi', '~> 2.1.0'
-  pod 'Fuzi', :git => 'https://github.com/cezheng/Fuzi.git', :commit => 'b26786259f13b8a83eaff0ac46dd052c18960df5'
+  pod 'Fuzi', '~> 3.0.0'
   pod 'SnapKit'
   pod '※ikemen'
   pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"

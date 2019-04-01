@@ -14,7 +14,7 @@ import SDWebImage
 extension String {
     func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> ())? = nil) -> NSAttributedString? {
         do {
-            let document = try Fuzi.HTMLDocument(string: "<html><body>\(self)</body></html>")
+            let document = try Fuzi.HTMLDocument(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {
                 print("empty root")
                 return NSAttributedString(string: "")
