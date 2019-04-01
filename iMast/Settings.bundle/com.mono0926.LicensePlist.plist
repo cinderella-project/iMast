@@ -128,7 +128,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift</string>
 			<key>Title</key>
-			<string>R.swift (4.0.0)</string>
+			<string>R.swift (5.0.3)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -136,7 +136,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift.Library</string>
 			<key>Title</key>
-			<string>R.swift.Library (4.0.0)</string>
+			<string>R.swift.Library (5.0.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

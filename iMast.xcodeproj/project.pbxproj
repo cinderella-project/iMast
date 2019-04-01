@@ -860,7 +860,7 @@
 			buildConfigurationList = 2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast" */;
 			buildPhases = (
 				4B77653ACFD6F075F5A4B543 /* [CP] Check Pods Manifest.lock */,
-				CE392A6B216374090046C84F /* R.swift Generate */,
+				CEE343F9225287910040EB48 /* R.swift Generate */,
 				CE099D0521943C1E00A4BCCB /* SwiftLint */,
 				CE9B75C822079C3600EBAB1B /* Generate LicensePlist */,
 				2AF352131EAB9C5500777C2E /* Sources */,
@@ -943,7 +943,7 @@
 			buildConfigurationList = CE78CFAF1EE812AD008313EA /* Build configuration list for PBXNativeTarget "iMastShare" */;
 			buildPhases = (
 				963FEFF2A023C9F19A244C40 /* [CP] Check Pods Manifest.lock */,
-				CE90855E21918864006769DC /* ShellScript */,
+				CE90855E21918864006769DC /* R.swift Generate */,
 				CE78CFA01EE812AD008313EA /* Sources */,
 				CE78CFA11EE812AD008313EA /* Frameworks */,
 				CE78CFA21EE812AD008313EA /* Resources */,
@@ -1390,7 +1390,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		CE392A6B216374090046C84F /* R.swift Generate */ = {
+		CE90855E21918864006769DC /* R.swift Generate */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1398,32 +1398,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = "R.swift Generate";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				$SRCROOT/$TARGET_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$TARGET_NAME\"\n";
-		};
-		CE90855E21918864006769DC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$TARGET_NAME\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$TARGET_NAME/R.generated.swift\"\n";
 		};
 		CE9B75C822079C3600EBAB1B /* Generate LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1442,6 +1427,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path $PRODUCT_NAME/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
+		};
+		CEE343F9225287910040EB48 /* R.swift Generate */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "R.swift Generate";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/iMast/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/R.generated.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

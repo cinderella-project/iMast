@@ -38,9 +38,9 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
+  - R.swift (5.0.3):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.1)
   - ReachabilitySwift (4.3.0)
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
@@ -72,7 +72,7 @@ DEPENDENCIES:
   - LicensePlist (~> 2.1.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - Notifwift
-  - R.swift (~> 4.0.0)
+  - R.swift (~> 5.0.3)
   - ReachabilitySwift (~> 4.3.0)
   - SDWebImage (~> 4.4.5)
   - SDWebImage/WebP (~> 4.4.5)
@@ -141,8 +141,8 @@ SPEC CHECKSUMS:
   Mew: 0b5fb383e0cdd2ff6ff3098c48b0b2ac37fe78a2
   Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
+  R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
@@ -153,6 +153,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 6c523fdfdd45800253ff3328ff0ad68fb9e5d564
+PODFILE CHECKSUM: c745ee249af32b61e2c146ac34fb2ec6def71531
 
 COCOAPODS: 1.6.1

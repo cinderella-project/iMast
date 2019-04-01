@@ -170,11 +170,43 @@ version: 1.0.1
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.0.0
+version: 5.0.3
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.3
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.3
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.3
+
+name: R.swift, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.3
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.0.0
+version: 5.0.1
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.1
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.1
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.1
+
+name: R.swift.Library, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.1
 
 name: ReachabilitySwift, nameSpecified: 
 body: Copyright (c) 2016 A…
