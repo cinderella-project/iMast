@@ -7,7 +7,7 @@ def based_pods
   pod 'GRDB.swift', '~> 3.7.0'
   pod 'SwiftyJSON', '~> 4.2.0'
   pod 'HydraAsync'
-  pod 'XCGLogger', '~> 6.1.0'
+  pod 'XCGLogger', '~> 7.0.0'
   pod 'SDWebImage', '~> 4.4.5'
   pod 'SDWebImage/WebP', '~> 4.4.5'
   pod 'Fuzi', '~> 3.0.0'
@@ -76,7 +76,7 @@ post_install do | installer |
         config.build_settings['SWIFT_VERSION'] = '4.0'
       end
     end
-    if ["GRDB.swift", "XCGLogger"].include? target.name
+    if ["GRDB.swift"].include? target.name
       target.build_configurations.each do | config |
         config.build_settings['SWIFT_VERSION'] = '4.2'
       end

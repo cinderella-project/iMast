@@ -53,9 +53,9 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftLint (0.30.1)
   - SwiftyJSON (4.2.0)
-  - XCGLogger (6.1.0):
-    - XCGLogger/Core (= 6.1.0)
-  - XCGLogger/Core (6.1.0):
+  - XCGLogger (7.0.0):
+    - XCGLogger/Core (= 7.0.0)
+  - XCGLogger/Core (7.0.0):
     - ObjcExceptionBridging
   - "※ikemen (0.5.0)"
 
@@ -81,7 +81,7 @@ DEPENDENCIES:
   - SVProgressHUD
   - SwiftLint (~> 0.30.1)
   - SwiftyJSON (~> 4.2.0)
-  - XCGLogger (~> 6.1.0)
+  - XCGLogger (~> 7.0.0)
   - "※ikemen"
 
 SPEC REPOS:
@@ -150,9 +150,9 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
-  XCGLogger: 7f7f43f15dfe3a305fa1342b7dc29af656289abd
+  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: 96871c68371b3f6ab3d013446665fcf65568605c
+PODFILE CHECKSUM: 6c523fdfdd45800253ff3328ff0ad68fb9e5d564
 
 COCOAPODS: 1.6.1
