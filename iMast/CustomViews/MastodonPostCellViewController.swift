@@ -43,7 +43,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     let visibilityLabel = UILabel()
     
-    let textView = UITextView() ※ { v in
+    let textView = NotSelectableTextView() ※ { v in
         v.isScrollEnabled = false
         v.isEditable = false
         v.textContainerInset = .zero
