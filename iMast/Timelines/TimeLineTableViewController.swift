@@ -541,7 +541,9 @@ extension TimeLineTableViewController: UITableViewDelegate {
                 if from.id == post.id {
                     posts[row] = from
                 } else if includeRepost, from.id == post.repost?.id {
-                    posts[row] = from
+                    var post = posts[row]
+                    post.repost = from
+                    posts[row] = post
                 } else {
                     continue
                 }

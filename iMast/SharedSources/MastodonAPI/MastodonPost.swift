@@ -21,7 +21,7 @@ class MastodonPost: Codable, EmojifyProtocol {
     let account: MastodonAccount
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
-    let repost: MastodonPost?
+    var repost: MastodonPost?
     let status: String
     let createdAt: Date
     let repostCount: Int
