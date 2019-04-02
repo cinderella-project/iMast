@@ -53,7 +53,7 @@ class PostAndUserViewController: TimeLineTableViewController {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath[0] == 1 { // post
             let post = self.posts[indexPath[1]]
             // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController

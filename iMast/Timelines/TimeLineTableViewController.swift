@@ -513,6 +513,25 @@ extension TimeLineTableViewController: UITableViewDelegate {
             likeAction,
             ].reversed()
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            // pinned posts
+            let post = self.pinnedPosts[indexPath.row]
+            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            postDetailVC.load(post: post)
+            self.navigationController?.pushViewController(postDetailVC, animated: true)
+        case 1:
+            // posts
+            let post = self.posts[indexPath.row]
+            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            postDetailVC.load(post: post)
+            self.navigationController?.pushViewController(postDetailVC, animated: true)
+        default:
+            break
+        }
+    }
     
     func updatePost(from: MastodonPost, includeRepost: Bool) {
         var indexPaths = [] as [IndexPath]
