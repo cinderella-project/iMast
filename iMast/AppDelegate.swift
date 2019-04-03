@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // AppGroup/imageCacheを消す
         do {
             let imageCacheUrl = appGroupFileUrl.appendingPathComponent("imageCache")
-            if try FileManager.default.fileExists(atPath: imageCacheUrl.path) {
+            if FileManager.default.fileExists(atPath: imageCacheUrl.path) {
                 print("start imageCache removing...")
                 for path in try FileManager.default.contentsOfDirectory(at: imageCacheUrl, includingPropertiesForKeys: nil, options: []) {
                     try FileManager.default.removeItem(at: path)
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("tmp files deleting...")
             for path in try FileManager.default.contentsOfDirectory(atPath: NSTemporaryDirectory()) {
                 var isDir: ObjCBool = false
-                guard try FileManager.default.fileExists(atPath: NSTemporaryDirectory() + "/" + path, isDirectory: &isDir) else {
+                guard FileManager.default.fileExists(atPath: NSTemporaryDirectory() + "/" + path, isDirectory: &isDir) else {
                     continue
                 }
                 guard isDir.boolValue == false else {
