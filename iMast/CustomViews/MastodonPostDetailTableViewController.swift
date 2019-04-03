@@ -72,7 +72,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         textView.delegate = self
     }
     
-    func load(post: MastodonPost, spoiler: Bool = false) {
+    func load(post originalPost: MastodonPost, spoiler: Bool = false) {
+        let post = originalPost.repost ?? originalPost
         self.post = post
         if isLoaded == false {
             loadAfter = true
