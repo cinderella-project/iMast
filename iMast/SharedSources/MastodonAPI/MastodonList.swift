@@ -20,6 +20,11 @@ extension MastodonUserToken {
             return try res.arrayValue.map({try MastodonList.decode(json: $0)})
         }
     }
+    func lists(joinedUser: MastodonAccount) -> Promise<[MastodonList]> {
+        return self.get("accounts/\(joinedUser.id.string)/lists").then { res in
+            return try res.arrayValue.map({try MastodonList.decode(json: $0)})
+        }
+    }
     func list(title: String) -> Promise<MastodonList> {
         return self.post("lists", params: ["title": title]).then { res in
             return try MastodonList.decode(json: res)
@@ -30,6 +35,13 @@ extension MastodonUserToken {
             return try MastodonList.decode(json: res)
         }
     }
+    func list(list: MastodonList, addUserIds: [MastodonID]) -> Promise<Void> {
+        return self.post("lists/\(list.id.string)/accounts", params: ["account_ids": addUserIds.map { $0.raw }]).then { _ in return }
+    }
+    func list(list: MastodonList, removeUserIds: [MastodonID]) -> Promise<Void> {
+        return self.delete("lists/\(list.id.string)/accounts", params: ["account_ids": removeUserIds.map { $0.raw }]).then { _ in return }
+    }
+    
     func delete(list: MastodonList) -> Promise<Void> {
         return self.delete("lists/\(list.id.string)").then { res in
             return Void()

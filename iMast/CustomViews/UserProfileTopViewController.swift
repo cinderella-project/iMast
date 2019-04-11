@@ -160,15 +160,15 @@ class UserProfileTopViewController: StableTableViewController {
                 activityVC.popoverPresentationController?.sourceRect = (self.moreButton.value(forKey: "view") as! UIView).bounds
                 self.present(activityVC, animated: true, completion: nil)
             }))
-            if myScreenName != screenName {
+            if myScreenName != screenName { // 自分じゃない
                 if !relationship.following { // 未フォロー
-                    if !relationship.requested { // 未フォロー
+                    if !relationship.requested { // リクエストもしてない
                         actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollow(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             MastodonUserToken.getLatestUsed()?.follow(account: user).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
-                    } else {// フォローリクエスト中
+                    } else { // フォローリクエスト中
                         actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestCancel(), style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
                             self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
                                 if !result {
@@ -190,6 +190,10 @@ class UserProfileTopViewController: StableTableViewController {
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
+                    }))
+                    actionSheet.addAction(UIAlertAction(title: "リストへ追加/削除", style: .default, handler: { _ in
+                        let newVC = ListAdderTableViewController(with: user, environment: MastodonUserToken.getLatestUsed()!)
+                        self.navigationController?.pushViewController(newVC, animated: true)
                     }))
                 }
                 if !relationship.muting { // 未ミュート
@@ -239,7 +243,7 @@ class UserProfileTopViewController: StableTableViewController {
                         
                     }))
                 }
-            } else {
+            } else { // 自分なら
                 actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsProfileCard(), style: .default, handler: { action in
                     let storyboard = UIStoryboard(name: "ProfileCard", bundle: nil)
                     let newVC = storyboard.instantiateInitialViewController()! as! ProfileCardViewController
