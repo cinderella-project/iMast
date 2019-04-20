@@ -215,6 +215,10 @@ class SettingsViewController: FormViewController {
             row.userDefaultsConnect(.useAVPlayer)
         }
         section <<< SwitchRow { row in
+            row.title = "Universal Linksを優先"
+            row.userDefaultsConnect(.useUniversalLink)
+        }
+        section <<< SwitchRow { row in
             row.title = "ぬるぬるモード(再起動後反映)"
             row.userDefaultsConnect(.timelineNurunuruMode)
         }

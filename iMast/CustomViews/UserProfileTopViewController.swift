@@ -288,8 +288,7 @@ class UserProfileTopViewController: StableTableViewController {
             let urls = self.externalServiceLinks[indexPath.row].urls.filter { UIApplication.shared.canOpenURL($0.url) }
             func openUrl(url: URL) {
                 if url.scheme?.starts(with: "http") ?? false {
-                    let safariVC = SFSafariViewController(url: url)
-                    self.present(safariVC, animated: true, completion: nil)
+                    self.open(url: url)
                 } else {
                     UIApplication.shared.openURL(url)
                 }

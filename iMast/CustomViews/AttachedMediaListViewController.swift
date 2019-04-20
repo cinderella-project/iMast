@@ -182,7 +182,6 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             return
         }
 
-        let safari = SFSafariViewController(url: URL(string: media.url)!)
-        self.present(safari, animated: true, completion: nil)
+        self.open(url: URL(string: media.url)!)
     }
 }

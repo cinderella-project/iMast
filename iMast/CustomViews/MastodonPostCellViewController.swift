@@ -143,6 +143,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         
         self.input(input)
+        
+        // delegate
+        self.textView.delegate = self
     }
 
     func input(_ input: Input) {
@@ -249,5 +252,30 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     @objc func iconTapped() {
         let vc = openUserProfile(user: (input.post.repost ?? input.post).account)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension MastodonPostCellViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
+        var urlString = url.absoluteString
+        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
+        if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
+            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
+                let newVC = openUserProfile(user: user)
+                self.navigationController?.pushViewController(newVC, animated: true)
+            })
+            return false
+        }
+        if let media = input.post.attachments.first(where: { $0.textUrl == urlString }) {
+            urlString = media.url
+        }
+        if visibleString.starts(with: "#") {
+            let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            self.navigationController?.pushViewController(newVC, animated: true)
+            return false
+        }
+        self.open(url: URL(string: urlString)!)
+        return false
     }
 }

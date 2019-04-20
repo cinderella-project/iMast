@@ -352,6 +352,7 @@ extension DefaultsKeys {
 
     static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
     static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)
+    static let useUniversalLink = DefaultsKey<Bool>("use_universal_link", default: true)
 
     static let widgetFormat = DefaultsKey<String>("widget_format", default: "{clipboard}")
     static let widgetFilter = DefaultsKey<String>("widget_filter")

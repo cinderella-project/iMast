@@ -251,15 +251,15 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         let newVC = openUserProfile(user: post.account)
         self.navigationController?.pushViewController(newVC, animated: true)
     }
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        var urlString = URL.absoluteString
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
+        var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let post = self.post {
-            if URL.scheme == "imast" {
-                if URL.absoluteString == "imast://cw/show" {
+            if url.scheme == "imast" {
+                if url.absoluteString == "imast://cw/show" {
                     self.load(post: post, spoiler: true)
                 }
-                if URL.absoluteString == "imast://cw/hide" {
+                if url.absoluteString == "imast://cw/hide" {
                     self.load(post: post, spoiler: false)
                 }
                 self.tableView.reloadData()
@@ -282,8 +282,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 return false
             }
         }
-        let safari = SFSafariViewController(url: URL)
-        self.present(safari, animated: true, completion: nil)
+        self.open(url: URL(string: urlString)!)
         return false
     }
     @IBAction func moreButtonTapped(_ sender: Any) {
