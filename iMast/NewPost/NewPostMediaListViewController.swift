@@ -228,7 +228,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                             let type = CMFormatDescriptionGetMediaType(formatDesc).toString()
                             guard type == "vide" else { continue }
                             let format = CMFormatDescriptionGetMediaSubType(formatDesc).toString()
-                            guard type == "avc1" else { continue }
+                            guard type != "avc1" else { continue }
                             // H.264じゃないので再エンコードが必要
                             requiredReEncoding = true
                         }
