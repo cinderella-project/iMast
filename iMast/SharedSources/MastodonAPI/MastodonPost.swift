@@ -116,7 +116,7 @@ class MastodonPostMention: Codable {
 
 class MastodonPoll: Codable {
     let id: MastodonID
-    let expires_at: Date
+    let expires_at: Date?
     let expired: Bool
     let multiple: Bool
     let votes_count: Int
