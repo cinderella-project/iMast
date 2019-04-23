@@ -334,7 +334,21 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         actionSheet.addAction(UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel))
         self.present(actionSheet, animated: true, completion: nil)
     }
-
+    
+    @IBAction func pushReplyTree(_ sender: Any) {
+        guard let post = post else {
+            return
+        }
+        MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
+            let posts = res.ancestors + [post] + res.descendants
+            let bunmyakuVC = TimeLineTableViewController()
+            bunmyakuVC.posts = posts
+            bunmyakuVC.isReadmoreEnabled = false
+            bunmyakuVC.title = "文脈"
+            self.navigationController?.pushViewController(bunmyakuVC, animated: true)
+        }
+    }
+    
     // MARK: - Table view data source
 
     /*
