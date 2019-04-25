@@ -53,7 +53,7 @@ class MastodonPostCell: UITableViewCell, UITextViewDelegate {
         }
         self.post = post
         // textView.dataDetectorTypes = .link
-        let attrStrTmp = (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(emojifyProtocol: post))
+        let attrStrTmp = (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify())
         var attrs: [NSAttributedString.Key: Any] = [:]
         if Defaults[.timelineTextBold] {
             attrs[.font] = UIFont.boldSystemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))

@@ -219,7 +219,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.createdAtLabel.font = userNameFont
 
         // 投稿本文の処理
-        let html = (post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").emojify(emojifyProtocol: post))
+        let html = post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         var font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
         if Defaults[.timelineTextBold] {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)
@@ -228,12 +228,16 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             .font: font,
         ]
         if post.spoilerText != "" {
-            textView.attributedText = nil
-            textView.text = post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))"
-            textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+            textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
+                .foregroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.6),
+            ]).emojify(asyncLoadProgressHandler: {
+                self.textView.setNeedsDisplay()
+            }, emojifyProtocol: post)
         } else if let attrStr = html.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
-        }) {
+        })?.emojify(asyncLoadProgressHandler: {
+            self.textView.setNeedsDisplay()
+        }, emojifyProtocol: post) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()

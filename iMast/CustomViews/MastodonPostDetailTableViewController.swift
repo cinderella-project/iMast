@@ -81,9 +81,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         print(post)
         var html = ""
-        let postHtml = post.status.emojify(emojifyProtocol: post).replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+        let postHtml = post.status.emojify().replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
         if post.spoilerText != "" {
-            html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>")
+            html += post.spoilerText.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>").emojify()
             if !spoiler {
                 html += "<br><a href=\"imast://cw/show\">(CWの内容を読む)</a><br>"
             } else {
@@ -97,7 +97,9 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             .font: UIFont.systemFont(ofSize: 14),
         ], asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
-        }) {
+        })?.emojify(asyncLoadProgressHandler: {
+            self.textView.setNeedsDisplay()
+        }, emojifyProtocol: post) {
             textView.attributedText = attrStr
         } else {
             textView.text = post.status.toPlainText()

@@ -25,30 +25,44 @@ extension String {
                 .Element,
             ]
             
-            func generateAttrStr(nodes: [XMLNode]) -> (NSMutableAttributedString, [Promise<Void>]) {
+            func generateAttrStr(attributes: [NSAttributedString.Key: Any], nodes: [XMLNode]) -> (NSMutableAttributedString, [Promise<Void>]) {
                 var promises: [Promise<Void>] = []
                 let attrStr = NSMutableAttributedString(string: "")
                 for node in nodes {
                     switch node.type {
                     case .Text:
-                        attrStr.append(NSAttributedString(string: node.stringValue))
+                        attrStr.append(NSAttributedString(string: node.stringValue, attributes: attributes))
                     case .Element:
+                        var attrs = attributes
                         if let element = node.toElement() {
-                            var (childAttrStr, childPromises) = generateAttrStr(nodes: element.childNodes(ofTypes: fetchNodeTypes))
+                            let tagName = element.tag?.lowercased() ?? ""
+                            // タグ前処理
+                            switch tagName {
+                            case "a":
+                                if let href = element.attributes["href"]?.addingPercentEncoding(withAllowedCharacters: CharacterSet.init(charactersIn: Unicode.Scalar(0)...Unicode.Scalar(0x7f))) {
+                                    attrs[.link] = href
+                                    attrs[.underlineStyle] = NSUnderlineStyle.single.rawValue
+                                }
+                            case "strong", "b":
+                                let font = (attrs[.font] as? UIFont) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+                                if let fontDescriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
+                                    let newFont = UIFont(descriptor: fontDescriptor, size: font.pointSize)
+                                    attrs[.font] = newFont
+                                }
+                            default:
+                                break
+                            }
+                            
+                            var (childAttrStr, childPromises) = generateAttrStr(attributes: attrs, nodes: element.childNodes(ofTypes: fetchNodeTypes))
                             promises += childPromises
+                            
+                            // タグ後処理
                             if let tagName = element.tag?.lowercased() {
                                 switch tagName {
                                 case "br":
                                     childAttrStr.append(NSAttributedString(string: "\n"))
                                 case "p":
                                     childAttrStr.append(NSAttributedString(string: "\n\n"))
-                                case "a":
-                                    if let href = element.attributes["href"]?.addingPercentEncoding(withAllowedCharacters: CharacterSet.init(charactersIn: Unicode.Scalar(0)...Unicode.Scalar(0x7f))) {
-                                        childAttrStr.addAttributes([
-                                            .link: href,
-                                            .underlineStyle: NSUnderlineStyle.single.rawValue,
-                                        ], range: NSRange(location: 0, length: childAttrStr.length))
-                                    }
                                 case "img":
                                     if let src = element.attributes["src"], let srcUrl = URL(string: src) {
                                         let attachment = NSTextAttachment()
@@ -86,7 +100,7 @@ extension String {
                 return (attrStr, promises)
             }
             
-            let (attrStr, promises) = generateAttrStr(nodes: root.childNodes(ofTypes: fetchNodeTypes))
+            let (attrStr, promises) = generateAttrStr(attributes: attributes, nodes: root.childNodes(ofTypes: fetchNodeTypes))
             if promises.count > 0 {
                 if let asyncLoadProgressHandler = asyncLoadProgressHandler {
                     for promise in promises {
@@ -105,7 +119,6 @@ extension String {
                 }
             }
             attrStr.deleteCharacters(in: NSRange(location: attrStr.length - count, length: count))
-            attrStr.addAttributes(attributes, range: NSRange(location: 0, length: attrStr.length))
             return attrStr
         } catch let error {
             print("failed to parse in new parser", error)
