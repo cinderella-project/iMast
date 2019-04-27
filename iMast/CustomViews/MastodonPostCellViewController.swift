@@ -33,8 +33,14 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     
     let userNameLabel = UILabel() ※ { v in
         v.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
-        v.setContentCompressionResistancePriority(UILayoutPriority(249), for: .horizontal)
+        v.setContentCompressionResistancePriority(UILayoutPriority(248), for: .horizontal)
     }
+    let acctNameLabel = UILabel() ※ { v in
+        v.setContentHuggingPriority(UILayoutPriority(248), for: .horizontal)
+        v.setContentCompressionResistancePriority(UILayoutPriority(249), for: .horizontal)
+        v.alpha = 0.5
+    }
+    
     let createdAtLabel = UILabel()
     let pinnedLabel = UILabel() ※ { v in
         v.text = "📌"
@@ -101,11 +107,17 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
         let userStackView = UIStackView(arrangedSubviews: [
             userNameLabel,
-            isReplyTreeLabel,
-            visibilityLabel,
-            pinnedLabel,
-            createdAtLabel,
+            acctNameLabel,
+            UIStackView(arrangedSubviews: [
+                isReplyTreeLabel,
+                visibilityLabel,
+                pinnedLabel,
+                createdAtLabel,
+            ]) ※ {
+                $0.axis = .horizontal
+            }
         ]) ※ {
+            $0.spacing = 6
             $0.axis = .horizontal
         }
         
@@ -177,6 +189,25 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             self.userNameLabel.setNeedsDisplay()
         }, emojifyProtocol: post.account)
         self.userNameLabel.font = userNameFont
+        
+        // acct
+        let acctNsString = post.account.acct as NSString
+        let acctAttrText = NSMutableAttributedString(string: "@" + (acctNsString as String), attributes: [
+            .font: userNameFont,
+        ])
+        if let splitterPoint = acctNsString.rangeOfCharacter(from: CharacterSet(charactersIn: "@")).optional {
+            acctAttrText.setAttributes(
+                [
+                    .font: userNameFont.withSize(userNameFont.pointSize * 0.75)
+                ],
+                range: NSRange(
+                    location: splitterPoint.location + 1,
+                    length: acctNsString.length - splitterPoint.location
+                )
+            )
+        }
+        
+        self.acctNameLabel.attributedText = acctAttrText
 
         // 右上のいろいろ
         self.isReplyTreeLabel.isHidden = !(Defaults[.inReplyToEmoji] && post.inReplyToId != nil)
