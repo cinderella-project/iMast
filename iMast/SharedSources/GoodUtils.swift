@@ -347,6 +347,7 @@ extension DefaultsKeys {
     static let timelineTextBold = DefaultsKey<Bool>("timeline_text_bold", default: false)
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
     static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
+    static let acctAbbr = DefaultsKey<Bool>("acct_abbr", default: true)
     static let postFabEnabled = DefaultsKey<Bool>("post_fab_enabled", default: true)
     static let postFabLocation = DefaultsKey<PostFabLocation>("post_fab_location", default: .rightBottom)
 

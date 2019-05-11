@@ -191,7 +191,21 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.userNameLabel.font = userNameFont
         
         // acct
-        let acctNsString = post.account.acct as NSString
+        var acct = post.account.acct
+        if Defaults[.acctAbbr] {
+            var acctSplitted = acct.split(separator: "@").map { String($0) }
+            if acctSplitted.count == 2 {
+                acctSplitted[1] = acctSplitted[1].split(separator: ".").map { str -> String in
+                    if str.count >= 5 {
+                        return "\(str.first!)\(str.count - 2)\(str.last!)"
+                    } else {
+                        return String(str)
+                    }
+                }.joined(separator: ".")
+            }
+            acct = acctSplitted.joined(separator: "@")
+        }
+        let acctNsString = acct as NSString
         let acctAttrText = NSMutableAttributedString(string: "@" + (acctNsString as String), attributes: [
             .font: userNameFont,
         ])

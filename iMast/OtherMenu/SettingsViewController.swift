@@ -240,6 +240,14 @@ class SettingsViewController: FormViewController {
             row.options = PostFabLocation.allCases
             row.userDefaultsConnect(.postFabLocation)
         }
+        section <<< SwitchRow { row in
+            row.title = "acctのホスト名を略す"
+            row.userDefaultsConnect(.acctAbbr)
+            row.cellStyle = .subtitle
+            row.cellUpdate { cell, row in
+                cell.detailTextLabel?.text = "例: m6n.s4l"
+            }
+        }
         return section
     }
     
