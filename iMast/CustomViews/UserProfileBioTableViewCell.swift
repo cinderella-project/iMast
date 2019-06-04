@@ -43,6 +43,7 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
         if let attrStr = user.bio.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").parseText2HTML(attributes: [
             .paragraphStyle: paragraph,
             .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.label,
         ]) {
             self.profileTextView.attributedText = attrStr
         }

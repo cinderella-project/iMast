@@ -95,6 +95,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         if let attrStr = html.parseText2HTML(attributes: [
             .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.label,
         ], asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
         })?.emojify(asyncLoadProgressHandler: {

@@ -271,10 +271,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         let attrs: [NSAttributedString.Key: Any] = [
             .font: font,
+            .foregroundColor: UIColor.label,
         ]
         if post.spoilerText != "" {
             textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
-                .foregroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.6),
+                .foregroundColor: UIColor.secondaryLabel,
             ]).emojify(asyncLoadProgressHandler: {
                 self.textView.setNeedsDisplay()
             }, emojifyProtocol: post)
