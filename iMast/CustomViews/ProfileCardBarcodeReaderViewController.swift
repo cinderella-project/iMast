@@ -28,8 +28,13 @@ class ProfileCardBarcodeReaderViewController: UIViewController {
         
         do {
             let captureSession = AVCaptureSession()
-            let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-            let captureInput = try AVCaptureDeviceInput.init(device: captureDevice!)
+            guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+                self.alertWithPromise(title: "エラー", message: "使用できるカメラがありません").then {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                return
+            }
+            let captureInput = try AVCaptureDeviceInput.init(device: captureDevice)
             captureSession.addInput(captureInput)
             
             let metadataOutput = AVCaptureMetadataOutput()
