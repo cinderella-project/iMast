@@ -1094,10 +1094,9 @@
 			};
 			buildConfigurationList = 2AF352121EAB9C5500777C2E /* Build configuration list for PBXProject "iMast" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = Japanese;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Japanese,
 				en,
 				Base,
 				ja,
