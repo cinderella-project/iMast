@@ -56,7 +56,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 row.title = "グループ化のルール設定 (β)"
                 row.cellStyle = .default
                 row.cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = .black
+                    cell.textLabel?.textColor = .label
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
                 }
