@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 def based_pods
   pod 'SwiftLint', '~> 0.30.1'
@@ -27,7 +27,10 @@ target 'iMast' do
   pod 'Compass'
   pod 'Starscream', '~> 3.0.6'
   pod 'ReachabilitySwift', '~> 4.3.0'
-  pod 'Eureka', '~> 4.3.1'
+  # for iOS 13 Dark Mode supports
+  # after merged https://github.com/xmartlabs/Eureka/pull/1866 , need to change to upstream 
+  pod 'Eureka', :git => "https://github.com/ykphuah/Eureka", :commit => "82abe8cf232e8b95bc99c888b0fb9829654ee43d"
+  # pod 'Eureka', '~> 4.3.1'
   pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
   pod 'KeychainAccess', '~> 3.1.2'
   pod 'SVProgressHUD'
