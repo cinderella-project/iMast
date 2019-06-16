@@ -12,4 +12,3 @@ Website: <https://cinderella-project.github.io/iMast/> (source: [website-src bra
 恐らく署名回りでとてもとても面倒くさいことになると思いますが、一応役に立ちそうなことを書いておきます
 
 - サードパーティーライブラリの管理には CocoaPods を利用しています。
-- 現時点で開発にはXcode 10とmacOS Mojave 10.14を利用しています。
