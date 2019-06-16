@@ -14,18 +14,18 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController())
-        homeVC.tabBarItem.image = R.image.homeOutline()
-        homeVC.tabBarItem.selectedImage = R.image.home()
+        homeVC.tabBarItem.image = UIImage(systemName: "house")
+        homeVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableViewController())
-        notifyVC.tabBarItem.image = R.image.notificationOutline()
-        notifyVC.tabBarItem.selectedImage = R.image.notification()
+        notifyVC.tabBarItem.image = UIImage(systemName: "bell")
+        notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
         notifyVC.tabBarItem.title = R.string.localizable.notifications()
 
         let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController())
-        ltlVC.tabBarItem.image = R.image.peopleOutline()
-        ltlVC.tabBarItem.selectedImage = R.image.people()
+        ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person")
+        ltlVC.tabBarItem.selectedImage = UIImage(systemName: "person.and.person.fill")
         ltlVC.tabBarItem.title = R.string.localizable.localTimelineShort()
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController())

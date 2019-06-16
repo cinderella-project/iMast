@@ -46,7 +46,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `ArrowDown`.
     static let arrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "ArrowDown")
@@ -58,24 +58,12 @@ struct R: Rswift.Validatable {
     static let camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "Camera")
     /// Image `Follow`.
     static let follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "Follow")
-    /// Image `HomeOutline`.
-    static let homeOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "HomeOutline")
-    /// Image `Home`.
-    static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "Home")
     /// Image `MoreOutline`.
     static let moreOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "MoreOutline")
     /// Image `More`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "More")
-    /// Image `NotificationOutline`.
-    static let notificationOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "NotificationOutline")
-    /// Image `Notification`.
-    static let notification = Rswift.ImageResource(bundle: R.hostingBundle, name: "Notification")
     /// Image `NowPlaying`.
     static let nowPlaying = Rswift.ImageResource(bundle: R.hostingBundle, name: "NowPlaying")
-    /// Image `PeopleOutline`.
-    static let peopleOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PeopleOutline")
-    /// Image `People`.
-    static let people = Rswift.ImageResource(bundle: R.hostingBundle, name: "People")
     /// Image `PhotosInline`.
     static let photosInline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PhotosInline")
     /// Image `Reply`.
@@ -118,16 +106,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.follow, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "Home", bundle: ..., traitCollection: ...)`
-    static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "HomeOutline", bundle: ..., traitCollection: ...)`
-    static func homeOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.homeOutline, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "More", bundle: ..., traitCollection: ...)`
     static func more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.more, compatibleWith: traitCollection)
@@ -138,29 +116,9 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.moreOutline, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "Notification", bundle: ..., traitCollection: ...)`
-    static func notification(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.notification, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "NotificationOutline", bundle: ..., traitCollection: ...)`
-    static func notificationOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.notificationOutline, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "NowPlaying", bundle: ..., traitCollection: ...)`
     static func nowPlaying(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.nowPlaying, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "People", bundle: ..., traitCollection: ...)`
-    static func people(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.people, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "PeopleOutline", bundle: ..., traitCollection: ...)`
-    static func peopleOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.peopleOutline, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "PhotosInline", bundle: ..., traitCollection: ...)`
