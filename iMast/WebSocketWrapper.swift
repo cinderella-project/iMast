@@ -66,9 +66,16 @@ func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
     return userToken.app.instance.getInfo().then { info in
         var streamingUrlString = ""
         streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+userToken.app.instance.hostName
-        streamingUrlString += "/api/v1/streaming/?access_token=" + userToken.token
-        streamingUrlString += "&stream=" + endpoint
-        let webSocket = WebSocket(url: URL(string: streamingUrlString)!)
+        streamingUrlString += "/api/v1/streaming/?stream=" + endpoint
+        let protocols: [String]?
+        if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
+            protocols = [userToken.token]
+        } else {
+            streamingUrlString += "&access_token=" + userToken.token
+            protocols = nil
+        }
+        let urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+        let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
         let wrap = WebSocketWrapper(webSocket: webSocket)
         _ = wrap.event.connect.on {
             print("WebSocket::Connect", endpoint)
