@@ -74,7 +74,8 @@ func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
             streamingUrlString += "&access_token=" + userToken.token
             protocols = nil
         }
-        let urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+        var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+        urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
         let wrap = WebSocketWrapper(webSocket: webSocket)
         _ = wrap.event.connect.on {
