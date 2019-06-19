@@ -76,7 +76,7 @@
 		CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE367DFC2186F97F0068EBE7 /* Search.strings */; };
-		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */; };
+		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
@@ -97,6 +97,7 @@
 		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE58956022408BCA0024FDBF /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58955F22408BCA0024FDBF /* ColorSet.swift */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
+		CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */; };
 		CE5DE87B21F4FF9D0008D437 /* UIViewController+presentPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */; };
 		CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */; };
 		CE5DE8B921F5CB6D0008D437 /* UIViewController+dismissPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */; };
@@ -359,7 +360,7 @@
 		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
 		CE367DFB2186F97F0068EBE7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Search.strings; sourceTree = "<group>"; };
 		CE367DFD2186F9800068EBE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
-		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackViewController.swift; sourceTree = "<group>"; };
+		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackView.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
@@ -379,6 +380,7 @@
 		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE58955F22408BCA0024FDBF /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
+		CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariCellView.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */,
 				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
 				CEE357211FF5E0B300675DFC /* EventListener.swift */,
+				CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */,
 			);
 			path = SharedSources;
 			sourceTree = "<group>";
@@ -797,7 +800,7 @@
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
-				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */,
+				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */,
 				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
@@ -1509,7 +1512,7 @@
 				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */,
 				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
-				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */,
+				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,
 				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -1549,6 +1552,7 @@
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
+				CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,

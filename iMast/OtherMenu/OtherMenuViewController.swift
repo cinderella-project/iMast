@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import SafariServices
 import ActionClosurable
+import SwiftUI
 
 class OtherMenuViewController: FormViewController {
 
@@ -106,7 +107,7 @@ class OtherMenuViewController: FormViewController {
         
         section <<< ButtonRow { row in
             row.title = R.string.localizable.helpAndFeedback()
-            row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuHelpAndFeedbackViewController() }), onDismiss: nil)
+            row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: OtherMenuHelpAndFeedbackView()) }), onDismiss: nil)
         }
         
         self.form +++ section
