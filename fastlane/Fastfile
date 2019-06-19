@@ -40,7 +40,7 @@ platform :ios do
 
     version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
 
-    changelog = "※タイムライン再実装中に伴い絶賛デグレ中 間違えてアップグレードしちゃったらTestFlight内のiMastのページから「前のビルド」で3.2→3.2 (126)をインストールするとデグレ前に戻ります\n進捗→ https://github.com/cinderella-project/iMast/issues/136 \nThis is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
+    changelog = "今週末までには3.2を審査に出したいので、何か既知の不具合があったら @rinsuki@mstdn.rinsuki.net もしくは @imast_ios@mstdn.rinsuki.net までご報告ください\nThis is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
     changelog = changelog.gsub("→", "->")
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)

@@ -196,13 +196,16 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         if Defaults[.acctAbbr] {
             var acctSplitted = acct.split(separator: "@").map { String($0) }
             if acctSplitted.count == 2 {
-                acctSplitted[1] = acctSplitted[1].split(separator: ".").map { str -> String in
-                    if str.count >= 5 {
-                        return "\(str.first!)\(str.count - 2)\(str.last!)"
-                    } else {
-                        return String(str)
-                    }
-                }.joined(separator: ".")
+                var acctHost = acctSplitted[1]
+                let regex = try! NSRegularExpression(pattern: "[a-zA-Z]{4,}")
+                var replaceTarget: Set<String> = []
+                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.count)) {
+                    replaceTarget.insert((acctHost as NSString).substring(with: r.range))
+                }
+                for r in replaceTarget {
+                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.count-2)\(r.last!)")
+                }
+                acctSplitted[1] = acctHost
             }
             acct = acctSplitted.joined(separator: "@")
         }

@@ -146,6 +146,11 @@
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
 		CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
+		CEA3C30622BABF6100BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA3C30722BABF6F00BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA3C30A22BABF7100BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
@@ -428,6 +433,7 @@
 		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
+		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
@@ -761,6 +767,7 @@
 				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
 				CEE357211FF5E0B300675DFC /* EventListener.swift */,
 				CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */,
+				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 			);
 			path = SharedSources;
 			sourceTree = "<group>";
@@ -1557,6 +1564,7 @@
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
+				CEA3C30622BABF6100BF68C0 /* UserAgent.swift in Sources */,
 				CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
 				CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */,
@@ -1594,6 +1602,7 @@
 				CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
+				CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF52224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
@@ -1616,6 +1625,7 @@
 				CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */,
 				CE1002CB20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
+				CEA3C30722BABF6F00BF68C0 /* UserAgent.swift in Sources */,
 				CE7B1446212EB957004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE1002C520065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEE254242004B57A005FEB6F /* MastodonAccount.swift in Sources */,
@@ -1656,6 +1666,7 @@
 				CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF53224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -1683,6 +1694,7 @@
 				CEFE6B0821B5012500AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEFE6B0421B5012500AF5E40 /* MastodonAttachment.swift in Sources */,
+				CEA3C30A22BABF7100BF68C0 /* UserAgent.swift in Sources */,
 				CEFE6B0121B5012500AF5E40 /* MastodonPost.swift in Sources */,
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
@@ -1933,7 +1945,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
@@ -1958,7 +1970,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
@@ -1981,7 +1993,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				INFOPLIST_FILE = iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastTests;
@@ -1998,7 +2010,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				INFOPLIST_FILE = iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastTests;
@@ -2014,7 +2026,7 @@
 			baseConfigurationReference = 2605ADA75A3A0522311BE304 /* Pods-iMastUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				INFOPLIST_FILE = iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastUITests;
@@ -2030,7 +2042,7 @@
 			baseConfigurationReference = E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				INFOPLIST_FILE = iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastUITests;
@@ -2047,7 +2059,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2067,7 +2079,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2093,7 +2105,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
@@ -2122,7 +2134,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
