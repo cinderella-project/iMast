@@ -39,7 +39,7 @@ platform :ios do
     logs = sh("git", "log", '--pretty=format:- %s (%h)', old_tag + "...HEAD").split("\n").select { |line| !line.start_with? "- Merge branch 'master'" }.join("\n")
     version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
 
-    changelog = "今週末までには3.2を審査に出したいので、何か既知の不具合があったら @rinsuki@mstdn.rinsuki.net もしくは @imast_ios@mstdn.rinsuki.net までご報告ください\nThis is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
+    changelog = "This is nightly build.\n\ncommits:\n" + logs + "\n\nGitHub: https://github.com/cinderella-project/iMast/compare/" + old_tag + "..." + version
     changelog = changelog.gsub("→", "->")
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)
