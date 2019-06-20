@@ -35,7 +35,7 @@ platform :ios do
     ensure_git_status_clean
     increment_build_number(xcodeproj: "iMast.xcodeproj")
 
-    old_tag = sh("git", "rev-list", "--tags", "--max-count", "1").strip
+    old_tag = sh("git", "rev-list", "--tags", "--max-count", "1").strip[0,7]
     logs = sh("git", "log", '--pretty=format:- %s (%h)', old_tag + "...HEAD").split("\n").select { |line| !line.start_with? "- Merge branch 'master'" }.join("\n")
     version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
 
