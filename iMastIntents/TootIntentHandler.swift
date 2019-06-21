@@ -7,18 +7,53 @@
 //
 
 import Foundation
+import Intents
 
 class TootIntentHandler: NSObject, TootIntentHandling {
+    func provideAccountOptions(for intent: TootIntent, with completion: @escaping ([Account]?, Error?) -> Void) {
+        completion(MastodonUserToken.getAllUserTokens().map { $0.toIntentAccount() }, nil)
+    }
+    
+    func resolveAccount(for intent: TootIntent, with completion: @escaping (AccountResolutionResult) -> Void) {
+        if let account = intent.account {
+            completion(.success(with: account))
+        } else {
+            completion(.disambiguation(with:
+                MastodonUserToken.getAllUserTokens().map { $0.toIntentAccount() }
+            ))
+        }
+    }
+    
+    func resolveText(for intent: TootIntent, with completion: @escaping (INStringResolutionResult) -> Void) {
+        if let text = intent.text {
+            completion(.success(with: text))
+        } else {
+            completion(.success(with: ""))
+        }
+    }
+    
     func handle(intent: TootIntent, completion: @escaping (TootIntentResponse) -> Void) {
         print(intent)
         var findUserToken: MastodonUserToken?, findFlag = false
-        if let accountId = intent.accountId {
-            findUserToken = MastodonUserToken.initFromId(id: accountId)
+//        if let accountId = intent.account?.defaultToken {
+//            findUserToken = MastodonUserToken.initFromId(id: accountId)
+//            findFlag = true
+//        }
+//        if let accountScreenName = intent.account?.screenName, let accountHostName = intent.account?.hostName {
+//            findUserToken = (try? MastodonUserToken.findUserToken(userName: accountScreenName, instance: accountHostName)) ?? nil
+//            findFlag = true
+//        }
+        
+        if let account = intent.account {
             findFlag = true
-        }
-        if let accountScreenName = intent.accountScreenName, let accountHostName = intent.accountHostName {
-            findUserToken = (try? MastodonUserToken.findUserToken(userName: accountScreenName, instance: accountHostName)) ?? nil
-            findFlag = true
+            if let identifier = account.identifier {
+                findUserToken = MastodonUserToken.initFromId(id: identifier)
+            } else if let acct = account.acct {
+                let splitted = acct.split(separator: "@")
+                findUserToken = try? MastodonUserToken.findUserToken(
+                    userName: String(splitted.first!), instance: String(splitted.last!)
+                )
+            }
         }
         
         if findFlag == false {
@@ -26,6 +61,7 @@ class TootIntentHandler: NSObject, TootIntentHandling {
         }
         
         guard let userToken = findUserToken else {
+            print("failed to fetch")
             completion(.init(code: .failureAccountError, userActivity: nil))
             return
         }
@@ -33,6 +69,7 @@ class TootIntentHandler: NSObject, TootIntentHandling {
         userToken.newPost(status: intent.text ?? "").then { (post) in
             completion(.init(code: .success, userActivity: nil))
         }.catch { (error) in
+            print(error)
             completion(.init(code: .failure, userActivity: nil))
         }
     }

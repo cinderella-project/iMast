@@ -58,17 +58,9 @@ class CreateSiriShortcutsViewController: FormViewController {
             row.title = "Add to Siri"
         }.onCellSelection { cell, row in
             let intent = TootIntent()
-            guard let userToken = (self.form.rowBy(tag: "account") as? PushRow<MastodonUserToken>)?.value else {
-                self.alert(title: "エラー", message: "投稿するアカウントを選択してください")
-                return
-            }
-            guard let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value else {
-                self.alert(title: "エラー", message: "テキストを入力してください")
-                return
-            }
-            intent.accountId = userToken.id
-            intent.accountScreenName = userToken.screenName
-            intent.accountHostName = userToken.app.instance.hostName
+            let userToken = (self.form.rowBy(tag: "account") as? PushRow<MastodonUserToken>)?.value
+            let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value
+            intent.account = userToken?.toIntentAccount()
             intent.text = text
             if let shortcut = INShortcut(intent: intent) {
                 let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
