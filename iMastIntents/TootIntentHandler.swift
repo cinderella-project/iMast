@@ -8,6 +8,7 @@
 
 import Foundation
 import Intents
+import KeychainAccess
 
 class TootIntentHandler: NSObject, TootIntentHandling {
     func provideAccountOptions(for intent: TootIntent, with completion: @escaping ([Account]?, Error?) -> Void) {
@@ -18,6 +19,7 @@ class TootIntentHandler: NSObject, TootIntentHandling {
         if let account = intent.account {
             completion(.success(with: account))
         } else {
+            try! Keychain().accessibility(.whenUnlockedThisDeviceOnly).set("testvalue", key: "test")
             completion(.disambiguation(with:
                 MastodonUserToken.getAllUserTokens().map { $0.toIntentAccount() }
             ))
