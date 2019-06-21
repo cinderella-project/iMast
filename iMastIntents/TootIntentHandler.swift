@@ -35,14 +35,6 @@ class TootIntentHandler: NSObject, TootIntentHandling {
     func handle(intent: TootIntent, completion: @escaping (TootIntentResponse) -> Void) {
         print(intent)
         var findUserToken: MastodonUserToken?, findFlag = false
-//        if let accountId = intent.account?.defaultToken {
-//            findUserToken = MastodonUserToken.initFromId(id: accountId)
-//            findFlag = true
-//        }
-//        if let accountScreenName = intent.account?.screenName, let accountHostName = intent.account?.hostName {
-//            findUserToken = (try? MastodonUserToken.findUserToken(userName: accountScreenName, instance: accountHostName)) ?? nil
-//            findFlag = true
-//        }
         
         if let account = intent.account {
             findFlag = true
