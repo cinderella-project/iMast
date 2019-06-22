@@ -52,10 +52,10 @@ class FeedbackViewController: FormViewController {
                     ]
                     Alamofire.request("https://imast-backend.rinsuki.net/old-api/feedback", method: .post, parameters: postBody).responseJSON { request in
                         if (request.response?.statusCode ?? 0) >= 400 {
-                            self.alert(title: "通信エラー", message: "通信に失敗しました。(HTTP-\((request.response?.statusCode ?? 599)))\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@imastodon.netへのリプライでも受け付けています。")
+                            self.alert(title: "通信エラー", message: "通信に失敗しました。(HTTP-\((request.response?.statusCode ?? 599)))\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@mstdn.rinsuki.netへのリプライでも受け付けています。")
                         }
                         if request.error != nil {
-                            self.alert(title: "通信エラー", message: "通信に失敗しました。\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@imastodon.netへのリプライでも受け付けています。")
+                            self.alert(title: "通信エラー", message: "通信に失敗しました。\nしばらく待ってから、もう一度送信してみてください。\nFeedbackは@imast_ios@mstdn.rinsuki.netへのリプライでも受け付けています。")
                             return
                         }
                         self.navigationController?.popViewController(animated: true)
