@@ -173,7 +173,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
 
-        if media.type == .video || media.type == .gifv, let url = URL(string: media.url) {
+        if media.type == .video || media.type == .gifv || media.type == .audio, let url = URL(string: media.url) {
             let item = AVPlayerItem(url: url)
             let player = AVPlayer(playerItem: item)
             let viewController = LoopableAVPlayerViewController()
