@@ -20,6 +20,7 @@ class MastodonAttachment: Codable {
         case video
         case gifv
         case image
+        case audio
         case unknown
     }
     
