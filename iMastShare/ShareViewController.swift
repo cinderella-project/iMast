@@ -32,7 +32,6 @@ class ShareViewController: SLComposeServiceViewController {
     }
     var postMedia: [UploadableMedia] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Mastodonで共有"

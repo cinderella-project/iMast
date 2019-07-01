@@ -74,8 +74,8 @@ class MastodonAccountOAuthAuthenticate: Codable {
 }
 
 enum MastodonFollowFetchType: String {
-    case following = "following"
-    case followers = "followers"
+    case following
+    case followers
 }
 
 struct MastodonFollowList {

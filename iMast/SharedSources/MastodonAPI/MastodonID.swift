@@ -81,7 +81,7 @@ class MastodonID: Codable, CustomStringConvertible {
 }
 
 extension MastodonID: Equatable {
-    static func ==(lhs: MastodonID, rhs: MastodonID) -> Bool {
+    static func == (lhs: MastodonID, rhs: MastodonID) -> Bool {
         return lhs.string == rhs.string
     }
 }
