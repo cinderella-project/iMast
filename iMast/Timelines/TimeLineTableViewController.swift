@@ -455,7 +455,6 @@ extension TimeLineTableViewController: UITableViewDataSource {
             input: MastodonPostCellViewController.Input(post: post, pinned: indexPath.section == 0),
             parentViewController: self
         )
-//        return getCell(post: post, section: indexPath.section)
     }
     
     // Override to support conditional editing of the table view.

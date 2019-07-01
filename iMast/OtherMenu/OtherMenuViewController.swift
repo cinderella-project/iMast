@@ -112,16 +112,12 @@ class OtherMenuViewController: FormViewController {
         self.form +++ section
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search) { (item) in
-            self.navigationController?.pushViewController(SearchViewController(), animated: true)
+            self.navigationController?.pushViewController(SearchViewController(with: (), environment: MastodonUserToken.getLatestUsed()!), animated: true)
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func searchButtonTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(SearchViewController(), animated: true)
     }
 }
