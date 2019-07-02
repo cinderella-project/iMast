@@ -164,7 +164,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `AddAccountSuccessViewController`.
     static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
@@ -172,8 +172,6 @@ struct R: Rswift.Validatable {
     static let newPostMediaListViewController = _R.nib._NewPostMediaListViewController()
     /// Nib `NotificationTableViewCell`.
     static let notificationTableViewCell = _R.nib._NotificationTableViewCell()
-    /// Nib `TimeLineReadMoreCell`.
-    static let timeLineReadMoreCell = _R.nib._TimeLineReadMoreCell()
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
@@ -195,12 +193,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.notificationTableViewCell) instead")
     static func notificationTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.notificationTableViewCell)
-    }
-    
-    /// `UINib(name: "TimeLineReadMoreCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.timeLineReadMoreCell) instead")
-    static func timeLineReadMoreCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.timeLineReadMoreCell)
     }
     
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
@@ -225,10 +217,6 @@ struct R: Rswift.Validatable {
     
     static func notificationTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
       return R.nib.notificationTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
-    }
-    
-    static func timeLineReadMoreCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
-      return R.nib.timeLineReadMoreCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
     }
     
     static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
@@ -1089,17 +1077,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _TimeLineReadMoreCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TimeLineReadMoreCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
       }
       
       fileprivate init() {}

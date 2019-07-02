@@ -96,11 +96,7 @@ class NotificationTableViewController: UITableViewController {
             self.openNotify(notification)
         } else {
             // read more
-            if self.readmoreCell.state == .withError {
-                let error = self.readmoreCell.lastError!
-                self.errorReport(error: error)
-                self.readmoreCell.state = .moreLoadable
-            } else {
+            self.readmoreCell.readMoreTapped(viewController: self) {
                 self.readMore()
             }
         }

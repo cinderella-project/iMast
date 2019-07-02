@@ -44,7 +44,7 @@ class ReadmoreTableViewCell: UITableViewCell {
         self.textLabel?.textColor = self.tintColor
         self.selectionStyle = .gray
         self.addSubview(self.indicator)
-        self.indicator.style = .gray
+        self.indicator.style = .medium
         self.indicator.hidesWhenStopped = true
         self.indicator.translatesAutoresizingMaskIntoConstraints = false
         self.indicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -60,5 +60,15 @@ class ReadmoreTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func readMoreTapped(viewController: UIViewController, next: () -> Void) {
+        if self.state == .withError {
+            if let error = self.lastError {
+                viewController.errorReport(error: error)
+            }
+            self.state = .moreLoadable
+        } else {
+            next()
+        }
+    }
 }
