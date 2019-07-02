@@ -109,6 +109,9 @@ extension UIViewController {
             })
 
             textView.text = "\(error)"
+            
+            textView.font = UIFont(name: "Menlo", size: 15)
+            textView.adjustsFontForContentSizeCategory = true
             textView.isEditable = false
 
             self.present(navVC, animated: true, completion: nil)
