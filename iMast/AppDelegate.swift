@@ -42,21 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
         }
-        /*
-        // DARK THEME
-        UINavigationBar.appearance().barTintColor = .black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName:UIColor.white
-        ]
-        UITabBar.appearance().barTintColor = .black
-        UITableView.appearance().backgroundColor = .darkGray
-        UIView.appearance(whenContainedInInstancesOf: [UITableViewController.self]).backgroundColor = .black
-        UITableViewCell.appearance().backgroundColor = .black
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = .white
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = .black
-        UITextView.appearance().backgroundColor = .black
-        UITextView.appearance().textColor = .white
-        */
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
