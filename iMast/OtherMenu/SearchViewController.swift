@@ -8,8 +8,22 @@
 
 import UIKit
 import SafariServices
+import Mew
 
-class SearchViewController: UITableViewController, UISearchBarDelegate {
+class SearchViewController: UITableViewController, UISearchBarDelegate, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
+    let environment: Environment
+
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var result: MastodonSearchResult?
     let searchBar = UISearchBar()
     var trendTags: ThirdpartyTrendsTags?
@@ -32,6 +46,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
         self.reloadTrendTags()
+        TableViewCell<MastodonPostCellViewController>.register(to: self.tableView)
     }
 
     /*
@@ -139,9 +154,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             return cell
         case 2:
             let post = self.result!.posts[indexPath.row]
-            let cell = MastodonPostCell.getInstance()
-            cell.load(post: post)
-            return cell
+            return TableViewCell<MastodonPostCellViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: .init(post: post, pinned: false),
+                parentViewController: self
+            )
         case 3:
             let tag = self.trendTagsArray[indexPath.row]
             let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -164,6 +182,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         case 2:
             let vc = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
             vc.load(post: self.result!.posts[indexPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag)
             self.navigationController?.pushViewController(vc, animated: true)

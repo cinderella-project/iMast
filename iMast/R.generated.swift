@@ -164,12 +164,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 7 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `AddAccountSuccessViewController`.
     static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
-    /// Nib `MastodonPostCell`.
-    static let mastodonPostCell = _R.nib._MastodonPostCell()
     /// Nib `NewPostMediaListViewController`.
     static let newPostMediaListViewController = _R.nib._NewPostMediaListViewController()
     /// Nib `NotificationTableViewCell`.
@@ -185,12 +183,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.addAccountSuccessViewController) instead")
     static func addAccountSuccessViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.addAccountSuccessViewController)
-    }
-    
-    /// `UINib(name: "MastodonPostCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.mastodonPostCell) instead")
-    static func mastodonPostCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.mastodonPostCell)
     }
     
     /// `UINib(name: "NewPostMediaListViewController", in: bundle)`
@@ -225,10 +217,6 @@ struct R: Rswift.Validatable {
     
     static func addAccountSuccessViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.addAccountSuccessViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-    
-    static func mastodonPostCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MastodonPostCell? {
-      return R.nib.mastodonPostCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MastodonPostCell
     }
     
     static func newPostMediaListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -1076,17 +1064,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _MastodonPostCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "MastodonPostCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> MastodonPostCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? MastodonPostCell
       }
       
       fileprivate init() {}
