@@ -171,7 +171,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             return
         }
         
-        if media.type == .video || media.type == .gifv, Defaults[.useAVPlayer], let url = URL(string: media.url) {
+        if media.type == .video || media.type == .gifv || media.type == .audio, Defaults[.useAVPlayer], let url = URL(string: media.url) {
             let item = AVPlayerItem(url: url)
             let player = AVPlayer(playerItem: item)
             let viewController = LoopableAVPlayerViewController()
