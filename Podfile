@@ -25,7 +25,7 @@ target 'iMast' do
   # Pods for iMast
 
   based_pods
-  pod 'Compass'
+  pod 'Crossroad'
   pod 'Starscream', '~> 3.0.6'
   pod 'ReachabilitySwift', '~> 4.3.0'
   pod 'Eureka', '~> 4.3.1'

@@ -2,7 +2,7 @@ PODS:
   - 1PasswordExtension (1.8.5)
   - ActionClosurable (1.2.0)
   - Alamofire (4.8.1)
-  - Compass (6.0.0)
+  - Crossroad (2.1.0)
   - Eureka (4.3.1)
   - Fuzi (3.0.0)
   - GRDB.swift (3.7.0)
@@ -63,7 +63,7 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
   - ActionClosurable (from `https://github.com/rinsuki/ActionClosurable.git`, branch `fix/swift4.2`)
   - Alamofire (~> 4.8.1)
-  - Compass
+  - Crossroad
   - Eureka (~> 4.3.1)
   - Fuzi (~> 3.0.0)
   - GRDB.swift (~> 3.7.0)
@@ -88,7 +88,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - 1PasswordExtension
     - Alamofire
-    - Compass
+    - Crossroad
     - Eureka
     - Fuzi
     - GRDB.swift
@@ -130,7 +130,7 @@ SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   ActionClosurable: ff826688551b031c6bd936cb4928ebf63571893a
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Compass: ff30e2056c549ea5cb5b8a307d28ef628e4209ff
+  Crossroad: 06b0c3b8f4a6deb6f34107655fa39bf8c9dcb643
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   Fuzi: a758e57fab9fbec6fd218ea7f2e00aa79325a93a
   GRDB.swift: 51cc9e57ae8ff7083a9d674c97925aa1de06aac5
@@ -153,6 +153,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
 
-PODFILE CHECKSUM: a7c5448a5cd01090d04a4c64476bebcd908491e7
+PODFILE CHECKSUM: 87b4e46af2497e4f721421e80d3cf0db196b9b8f
 
 COCOAPODS: 1.7.4

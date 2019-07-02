@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import Compass
+import Crossroad
 import ActionClosurable
 import UserNotifications
 import SVProgressHUD
 import Notifwift
 import SafariServices
+import Hydra
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,12 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
         }
-
-        Navigator.scheme="imast"
-        Navigator.routes=[
-            "callback",
-            "from-backend/push/oauth-finished",
-        ]
         /*
         // DARK THEME
         UINavigationBar.appearance().barTintColor = .black
@@ -116,34 +111,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        guard let location = Navigator.parse(url: url) else {
-            return false
-        }
-        
-        let arguments = location.arguments
-        let params = urlComponentsToDict(url: url)
-        
-        switch location.path { // Nintendo Switch
-            case "callback":
-                guard let code = params["code"], let state = params["state"] else {
-                    break
+        let router = DefaultRouter(scheme: "imast")
+        router.register([
+            ("callback/", { context in
+                guard
+                    let code: String = context.parameter(for: "code"),
+                    let state: String = context.parameter(for: "state")
+                else {
+                    return false
                 }
                 let nextVC = AddAccountSuccessViewController()
                 let app = MastodonApp.initFromId(appId: state)
-                app.authorizeWithCode(code: code).then { userToken in
-                    userToken.getUserInfo().then { json in
-                        userToken.save()
-                        userToken.use()
-                        nextVC.userToken = userToken
-                        changeRootVC(nextVC, animated: false)
-                    }
+                async { _ in
+                    let userToken = try await(app.authorizeWithCode(code: code))
+                    _ = try await(userToken.getUserInfo())
+                    userToken.save()
+                    userToken.use()
+                    nextVC.userToken = userToken
+                }.then(in: .main) {
+                    changeRootVC(nextVC, animated: false)
                 }
-            case "from-backend/push/oauth-finished":
+                return true
+            }),
+            ("from-backend/push/oauth-finished", { _ in
                 Notifwift.post(.pushSettingsAccountReload)
-            default:
-                break
-        }
-        return true
+                return true
+            })
+        ])
+        return router.openIfPossible(url, options: options)
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
