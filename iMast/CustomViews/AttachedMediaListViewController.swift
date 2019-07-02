@@ -23,7 +23,6 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
     var environment: Environment
     var output: Output = .show {
         didSet {
-            print("change detected!")
             if output != oldValue {
                 let isShow = output == .show
                 guardViewLeadingConstraint.isActive = isShow

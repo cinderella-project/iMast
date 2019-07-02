@@ -178,7 +178,6 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         
         // アイコン
         self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
-            print("loaded")
         })
         self.iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
 

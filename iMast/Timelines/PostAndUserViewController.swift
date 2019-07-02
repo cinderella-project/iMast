@@ -8,14 +8,29 @@
 
 import UIKit
 import SwiftyJSON
+import Mew
 
-class PostAndUserViewController: TimeLineTableViewController {
+class PostAndUserViewController: UITableViewController, Instantiatable {
+    typealias Input = (posts: [MastodonPost], users: [MastodonAccount])
+    typealias Environment = MastodonUserToken
     
-    var users: [MastodonAccount] = []
+    var environment: Environment
+    var input: Input
+    
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
+        super.init(style: .grouped)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        TableViewCell<MastodonPostCellViewController>.register(to: self.tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,47 +39,42 @@ class PostAndUserViewController: TimeLineTableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 2
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 1 {
-            return posts.count
-        } else if section == 2 {
-            return users.count
-        }
-        return 0
+        return section == 0 ? input.posts.count : input.users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath[0] != 2 {
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            return cell
+        switch indexPath.section {
+        case 0: // post
+            return TableViewCell<MastodonPostCellViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: .init(post: input.posts[indexPath.row], pinned: false),
+                parentViewController: self
+            )
+        case 1: // user
+            return MastodonUserCell.getInstance(user: input.users[indexPath.row])
+        default:
+            fatalError("unknown indexPath section")
         }
-        let user = users[indexPath[1]]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "user_"+user.acct)
-        cell.textLabel?.text = user.name
-        cell.detailTextLabel?.text = "@" + user.acct
-        cell.imageView?.sd_setImage(with: URL(string: user.avatarUrl), completed: { (image, error, cacheType, url) in
-            cell.setNeedsLayout()
-        })
-        cell.imageView?.ignoreSmartInvert()
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath[0] == 1 { // post
-            let post = self.posts[indexPath[1]]
-            // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
+        switch indexPath.section {
+        case 0:
+            let post = input.posts[indexPath.row]
             let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
             newVC.load(post: post.repost ?? post)
             self.navigationController?.pushViewController(newVC, animated: true)
-        } else if indexPath[0] == 2 { // user
-            let user = self.users[indexPath[1]]
+        case 1:
+            let user = input.users[indexPath.row]
             let newVC = openUserProfile(user: user)
             self.navigationController?.pushViewController(newVC, animated: true)
-            
+        default:
+            fatalError("unknown indexPath section")
         }
     }
 }

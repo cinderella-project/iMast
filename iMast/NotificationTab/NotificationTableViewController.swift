@@ -181,9 +181,7 @@ class NotificationTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(newVC, animated: animated)
                 return
             }
-            let newVC = PostAndUserViewController(with: .grouped)
-            newVC.posts = [status]
-            newVC.users = [account]
+            let newVC = PostAndUserViewController(with: ([status], [account]), environment: MastodonUserToken.getLatestUsed()!)
             newVC.title = [
                 "favourite": "ふぁぼられ",
                 "reblog": "ブースト",

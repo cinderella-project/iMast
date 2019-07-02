@@ -28,7 +28,9 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                 MastodonUserToken.getLatestUsed()!.timeline(.user(self.user)),
             ])
         }.then { res -> Void in
-            self.pinnedPosts = res[0]
+            let snapshot = self.diffableDataSource.snapshot()
+            snapshot.appendItems(res[0].map { .post(content: $0, pinned: true) }, toSection: .pinned)
+            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
             self._addNewPosts(posts: res[1])
             return Void()
         }

@@ -16,6 +16,17 @@ import SnapKit
 import Mew
 
 class TimeLineTableViewController: UIViewController, Instantiatable {
+    enum TableSection: String, Hashable {
+        case pinned
+        case posts
+        case readMore
+    }
+    
+    enum TableBody: Hashable {
+        case post(content: MastodonPost, pinned: Bool)
+        case readMore
+    }
+    
     var environment: Environment
     
     typealias Input = UITableView.Style
@@ -25,7 +36,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     let tableView: UITableView
     let refreshControl = UIRefreshControl()
     
-    var posts: [MastodonPost] = []
+    var diffableDataSource: UITableViewDiffableDataSource<TableSection, TableBody>!
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue: [MastodonPost] = []
     var isAlreadyAdded: [String: Bool] = [:]
@@ -37,12 +48,13 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             (readmoreCell.viewWithTag(1) as! UIButton).alpha = isReadmoreLoading ? 0 : 1
         }
     }
-    var isReadmoreEnabled = true
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType?
-    var pinnedPosts: [MastodonPost] = []
     var postFabButton = UIButton()
+    
+    var isRefreshEnabled = true
+    var isReadmoreEnabled = true
     var isNewPostAvailable = false
     
     required init(with input: Input = .plain, environment: Environment = MastodonUserToken.getLatestUsed()!) {
@@ -69,21 +81,44 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             $0.rowHeight = UITableView.automaticDimension
 
             // 引っ張って更新
-            $0.refreshControl = refreshControl ※ {
-                $0.addTarget(self, action: #selector(self.refreshTimeline), for: .valueChanged)
+            if isRefreshEnabled {
+                $0.refreshControl = refreshControl ※ {
+                    $0.addTarget(self, action: #selector(self.refreshTimeline), for: .valueChanged)
+                }
             }
             
             $0.delegate = self
-            $0.dataSource = self
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         TableViewCell<MastodonPostCellViewController>.register(to: tableView)
+        
+        readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
+        readmoreCell.layer.zPosition = CGFloat(FLT_MAX)
+        (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
+
+        
+        self.diffableDataSource = UITableViewDiffableDataSource(tableView: tableView) { (tableView, indexPath, target) -> UITableViewCell? in
+            switch target {
+            case .post(let content, let pinned):
+                return TableViewCell<MastodonPostCellViewController>.dequeued(
+                    from: tableView,
+                    for: indexPath,
+                    input: .init(post: content, pinned: pinned),
+                    parentViewController: self
+                )
+            case .readMore:
+                return self.readmoreCell
+            }
+        }
+        self.tableView.dataSource = self.diffableDataSource
+        
+        _ = self.diffableDataSource.snapshot() ※ {
+            $0.appendSections([.pinned, .posts, .readMore])
+            if self.isReadmoreEnabled {
+                $0.appendItems([.readMore], toSection: .readMore)
+            }
+            self.diffableDataSource.apply($0, animatingDifferences: false)
+        }
         
         loadTimeline().then {
             self.tableView.reloadData()
@@ -162,10 +197,6 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                 }
             }
         }
-
-        readmoreCell = Bundle.main.loadNibNamed("TimeLineReadMoreCell", owner: self, options: nil)?.first as! UITableViewCell
-        readmoreCell.layer.zPosition = CGFloat(FLT_MAX)
-        (readmoreCell.viewWithTag(1) as! UIButton).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.readMoreTimelineTapped)))
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -191,10 +222,18 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             self.refreshControl.endRefreshing()
             return
         }
+        let snapshot = self.diffableDataSource.snapshot()
+        var pointer: MastodonPost?
+        if let v = snapshot.itemIdentifiers(inSection: .posts).first,
+            case .post(let content, _) = v {
+            pointer = content
+        } else {
+            pointer = nil
+        }
         MastodonUserToken.getLatestUsed()!.timeline(
             timelineType,
             limit: 40,
-            since: self.posts.first
+            since: pointer
         ).then { posts in
             self.addNewPosts(posts: posts)
             self.refreshControl.endRefreshing()
@@ -207,11 +246,18 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             isReadmoreLoading = false
             return
         }
-        
+        let snapshot = self.diffableDataSource.snapshot()
+        var pointer: MastodonPost?
+        if let v = snapshot.itemIdentifiers(inSection: .posts).last,
+            case .post(let content, _) = v {
+            pointer = content
+        } else {
+            pointer = nil
+        }
         MastodonUserToken.getLatestUsed()!.timeline(
             timelineType,
             limit: 40,
-            max: self.posts.last
+            max: pointer
         ).then { posts in
             self.appendNewPosts(posts: posts)
             self.isReadmoreLoading = false
@@ -251,56 +297,26 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         if posts_.count == 0 {
             return
         }
-        let myAccount = MastodonUserToken.getLatestUsed()!.screenName!
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
             return a.id.compare(b.id) == .orderedDescending
         }).filter({ (post) -> Bool in
-//            if ((post.sensitive && myAccount != post.account.acct) || post.repost?.sensitive ?? false) && post.spoilerText == "" { // Appleに怒られたのでNSFWだったら隠す
-//                return false
-//            }
             if isAlreadyAdded[post.id.string] != true {
                 isAlreadyAdded[post.id.string] = true
                 return true
             }
             return false
         })
-        posts.forEach { post in
-//            _ = getCell(post: post)
-        }
         
-        /*
-        if self.posts.count == 0 {
-            self.posts = posts
-            tableView.reloadData()
-            return
+        let snapshot = self.diffableDataSource.snapshot()
+        snapshot.prependItems(
+            posts.map { .post(content: $0, pinned: false) },
+            section: .posts
+        )
+        if snapshot.numberOfItems(inSection: .posts) > maxPostCount { // メモリ節約
+            let items = snapshot.itemIdentifiers(inSection: .posts)
+            snapshot.deleteItems(Array(items.dropFirst(maxPostCount)))
         }
-         */
-        let usingAnimationFlag = self.posts.count != 0
-        if usingAnimationFlag {
-            self.tableView.beginUpdates()
-        }
-        var cnt = 0
-        var indexPaths: [IndexPath] = []
-        var deleteIndexPaths: [IndexPath] = []
-        posts.forEach { (post) in
-            self.posts.insert(post, at: cnt)
-            indexPaths.append(IndexPath(row: cnt, section: 1))
-            cnt += 1
-
-        }
-        if self.posts.count - cnt > maxPostCount { // メモリ節約
-            for i in (maxPostCount+cnt)..<self.posts.count {
-                deleteIndexPaths.append(IndexPath(row: i - cnt, section: 1))
-            }
-            self.posts = Array(self.posts.prefix(maxPostCount + cnt))
-        }
-        if usingAnimationFlag {
-            self.tableView.insertRows(at: indexPaths, with: .none)
-            self.tableView.deleteRows(at: deleteIndexPaths, with: .none)
-            self.tableView.endUpdates()
-        } else {
-            self.tableView.reloadData()
-        }
+        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
     
     func websocketEndpoint() -> String? {
@@ -332,25 +348,24 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                 var object = JSON(parseJSON: text)
                 if object["event"].string == "update" {
                     object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
-                    /*
-                     self.tableView.beginUpdates()
-                     self.posts.insert(object["payload"], at: 0)
-                     let indexPath = IndexPath(row: 0, section: 0)
-                     self.tableView.insertRows(at: [indexPath], with: .automatic)
-                     self.tableView.endUpdates()
-                     */
                     self.addNewPosts(posts: [try! MastodonPost.decode(json: object["payload"])])
                 } else if object["event"].string == "delete" {
-                    var tootFound = false
-                    self.posts = self.posts.filter({ (post) -> Bool in
-                        if post.id.string != object["payload"].stringValue {
-                            return true
+                    let deletedTootID = object["payload"].stringValue
+                    let snapshot = self.diffableDataSource.snapshot()
+                    var deletePosts: [TableBody] = []
+
+                    for body in snapshot.itemIdentifiers(inSection: .posts) {
+                        if case .post(let content, _) = body {
+                            if content.id.string == deletedTootID {
+                                deletePosts.append(body)
+                            } else if content.repost?.id.string == deletedTootID {
+                                deletePosts.append(body)
+                            }
                         }
-                        tootFound = true
-                        return false
-                    })
-                    if tootFound {
-                        self.tableView.reloadData()
+                    }
+
+                    if deletePosts.count > 0 {
+                        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
                     }
                 } else {
                     print(object)
@@ -387,11 +402,11 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
             }
-            self.posts = []
-            self.tableView.reloadData()
+            let snapshot = self.diffableDataSource.snapshot()
+            snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
+            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
-                self.tableView.reloadData()
                 if isStreamingConnectingNow {
                     self.socket?.connect()
                 }
@@ -416,61 +431,19 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
 //    }
 //
     func appendNewPosts(posts: [MastodonPost]) {
-        var rows: [IndexPath] = []
-        posts.forEach { (post) in
-//            _ = self.getCell(post: post)
-            self.posts.append(post)
-            rows.append(IndexPath(row: self.posts.count-1, section: 1))
-        }
-        self.tableView.insertRows(at: rows, with: .automatic)
+        let snapshot = self.diffableDataSource.snapshot()
+        snapshot.appendItems(posts.map { .post(content: $0, pinned: false) }, toSection: .posts)
+        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
         self.maxPostCount += posts.count
-    }
-}
-
-extension TimeLineTableViewController: UITableViewDataSource {
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return pinnedPosts.count
-        }
-        return posts.count == 0 ? 0 : posts.count + (isReadmoreEnabled ? 1 : 0)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == posts.count && posts.count != 0 {
-            return readmoreCell
-        }
-        let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
-        return TableViewCell<MastodonPostCellViewController>.dequeued(
-            from: self.tableView,
-            for: indexPath,
-            input: MastodonPostCellViewController.Input(post: post, pinned: indexPath.section == 0),
-            parentViewController: self
-        )
-    }
-    
-    // Override to support conditional editing of the table view.
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return indexPath.row < (indexPath.section == 0 ? self.pinnedPosts : self.posts).count
     }
 }
 
 extension TimeLineTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if indexPath.section == 1 && indexPath.row >= self.posts.count {
+        guard case .post(let post, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
             return []
         }
-        let post = (indexPath.section == 0 ? pinnedPosts : posts)[indexPath.row]
         // Reply
         let replyAction = UITableViewRowAction(style: .normal, title: "返信") { (action, index) -> Void in
             tableView.isEditing = false
@@ -514,20 +487,16 @@ extension TimeLineTableViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            // pinned posts
-            let post = self.pinnedPosts[indexPath.row]
+        guard let item = self.diffableDataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        switch item {
+        case .post(let content, _):
             let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            postDetailVC.load(post: post)
+            postDetailVC.load(post: content)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
-        case 1:
-            // posts
-            let post = self.posts[indexPath.row]
-            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            postDetailVC.load(post: post)
-            self.navigationController?.pushViewController(postDetailVC, animated: true)
-        default:
+        case .readMore:
+            // TODO: read more 処理をこっちに移すべき
             break
         }
     }
@@ -550,8 +519,8 @@ extension TimeLineTableViewController: UITableViewDelegate {
             }
         }
         
-        processPost(section: 0, posts: &self.pinnedPosts)
-        processPost(section: 1, posts: &self.posts)
+//        processPost(section: 0, posts: &self.pinnedPosts)
+//        processPost(section: 1, posts: &self.posts)
         
         self.tableView.reloadRows(
             at: indexPaths,

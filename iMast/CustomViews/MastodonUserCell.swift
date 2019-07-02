@@ -29,7 +29,11 @@ class MastodonUserCell: UITableViewCell {
         }
     }
 
-    static func getInstance() -> MastodonUserCell {
-        return MastodonUserCell(style: .subtitle, reuseIdentifier: nil)
+    static func getInstance(user: MastodonAccount? = nil) -> MastodonUserCell {
+        let cell = MastodonUserCell(style: .subtitle, reuseIdentifier: nil)
+        if let user = user {
+            cell.load(user: user)
+        }
+        return cell
     }
 }

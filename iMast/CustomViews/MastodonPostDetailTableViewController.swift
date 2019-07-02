@@ -297,15 +297,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertAction.Style.default, handler: { action in
-            MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
-                print(res)
-                let posts = res.ancestors + [post] + res.descendants
-                let bunmyakuVC = TimeLineTableViewController()
-                bunmyakuVC.posts = posts
-                bunmyakuVC.isReadmoreEnabled = false
-                bunmyakuVC.title = "文脈"
-                self.navigationController?.pushViewController(bunmyakuVC, animated: true)
-            }
+            self.openBunmyaku()
         }))
         if (post.emojis?.count ?? 0) + (post.profileEmojis?.count ?? 0) > 0 { // カスタム絵文字がある
             actionSheet.addAction(UIAlertAction(title: "カスタム絵文字一覧", style: .default, handler: { _ in
@@ -339,17 +331,16 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     
     @IBAction func pushReplyTree(_ sender: Any) {
+        self.openBunmyaku()
+    }
+
+    func openBunmyaku() {
         guard let post = post else {
             return
         }
-        MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
-            let posts = res.ancestors + [post] + res.descendants
-            let bunmyakuVC = TimeLineTableViewController()
-            bunmyakuVC.posts = posts
-            bunmyakuVC.isReadmoreEnabled = false
-            bunmyakuVC.title = "文脈"
-            self.navigationController?.pushViewController(bunmyakuVC, animated: true)
-        }
+        let bunmyakuVC = BunmyakuTableViewController()
+        bunmyakuVC.basePost = post
+        self.navigationController?.pushViewController(bunmyakuVC, animated: true)
     }
     
     // MARK: - Table view data source

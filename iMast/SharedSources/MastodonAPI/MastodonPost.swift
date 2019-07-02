@@ -15,7 +15,16 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-class MastodonPost: Codable, EmojifyProtocol {
+class MastodonPost: Codable, EmojifyProtocol, Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id.string)
+        hasher.combine(self.url)
+    }
+    
+    static func == (lhs: MastodonPost, rhs: MastodonPost) -> Bool {
+        return lhs.id == rhs.id && lhs.url == rhs.url
+    }
+    
     let id: MastodonID
     let url: String?
     let account: MastodonAccount
