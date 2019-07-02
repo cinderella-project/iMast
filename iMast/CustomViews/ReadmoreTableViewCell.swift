@@ -22,17 +22,19 @@ class ReadmoreTableViewCell: UITableViewCell {
     
     var state: State = .moreLoadable {
         didSet {
-            self.textLabel?.isHidden = state == .loading
-            if state == .loading {
-                self.indicator.startAnimating()
-            } else {
-                self.indicator.stopAnimating()
-            }
-            self.selectionStyle = state != .moreLoadable ? .none : .gray
-            if state != .loading {
-                let disabled = state == .allLoaded
-                self.textLabel?.text = disabled ? "ここまで" : "もっと"
-                self.textLabel?.textColor = disabled ? UIColor.lightGray : self.tintColor
+            DispatchQueue.mainSafeSync {
+                self.textLabel?.isHidden = state == .loading
+                if state == .loading {
+                    self.indicator.startAnimating()
+                } else {
+                    self.indicator.stopAnimating()
+                }
+                self.selectionStyle = state != .moreLoadable ? .none : .gray
+                if state != .loading {
+                    let disabled = state == .allLoaded
+                    self.textLabel?.text = disabled ? "ここまで" : "もっと"
+                    self.textLabel?.textColor = disabled ? UIColor.lightGray : self.tintColor
+                }
             }
         }
     }
