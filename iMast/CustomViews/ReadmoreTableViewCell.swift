@@ -32,8 +32,9 @@ class ReadmoreTableViewCell: UITableViewCell {
                 self.selectionStyle = state != .moreLoadable ? .none : .gray
                 if state != .loading {
                     let disabled = state == .allLoaded
-                    self.textLabel?.text = disabled ? "ここまで" : "もっと"
-                    self.textLabel?.textColor = disabled ? UIColor.lightGray : self.tintColor
+                    let isError = state == .withError
+                    self.textLabel?.text = disabled ? "ここまで" : isError ? "エラー" : "もっと"
+                    self.textLabel?.textColor = disabled ? UIColor.lightGray : isError ? .systemRed : self.tintColor
                 }
             }
         }
