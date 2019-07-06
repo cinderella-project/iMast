@@ -136,6 +136,7 @@
 		CE8DF1851FED41C4005278FE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE8DF1841FED41C4005278FE /* Podfile */; };
 		CE8E8E661F172A770007A311 /* MastodonPostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */; };
 		CE8E8E681F18714D0007A311 /* MastodonPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */; };
+		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
 		CE908560219188F9006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855F219188F9006769DC /* R.generated.swift */; };
 		CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */; };
@@ -424,6 +425,7 @@
 		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MastodonPostDetail.storyboard; sourceTree = "<group>"; };
 		CE8E8E671F18714D0007A311 /* MastodonPostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailTableViewController.swift; sourceTree = "<group>"; };
+		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE90855C21918750006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE90855F219188F9006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = imastshare/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+prependItems.swift"; sourceTree = "<group>"; };
@@ -683,6 +685,14 @@
 			path = iMastShare;
 			sourceTree = "<group>";
 		};
+		CE8FD55B22D06D6F00331F15 /* ExtendedClasses */ = {
+			isa = PBXGroup;
+			children = (
+				CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */,
+			);
+			path = ExtendedClasses;
+			sourceTree = "<group>";
+		};
 		CEC6BBF82104F9E6003ECE10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,6 +765,7 @@
 		CEE357161FF5165700675DFC /* SharedSources */ = {
 			isa = PBXGroup;
 			children = (
+				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CEE254262004B593005FEB6F /* MastodonAPI */,
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
@@ -1542,6 +1553,7 @@
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
 				CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */,
+				CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */,
 				CE1002D5200683850041B636 /* ReportError.swift in Sources */,
 				2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */,
 				2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */,

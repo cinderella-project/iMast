@@ -3,7 +3,7 @@
 "3JX-ia-k2a.text" = "rin@mastodon.example.com\n返信先: @uzuki: 凛ちゃんとデートです♪";
 
 /* Class = "UITextField"; placeholder = "CW説明文"; ObjectID = "8NC-Ka-Jwd"; */
-"8NC-Ka-Jwd.placeholder" = "CW説明文";
+"8NC-Ka-Jwd.placeholder" = "CW説明文 (省略可能)";
 
 /* Class = "UIButton"; normalTitle = " 0"; ObjectID = "9zg-4V-9GJ"; */
 "9zg-4V-9GJ.normalTitle" = " 0";
