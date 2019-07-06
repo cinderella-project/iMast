@@ -29,7 +29,7 @@ struct OtherMenuHelpAndFeedbackView: View {
         return List {
             OpenSafariCellView(url: URL(string: "https://cinderella-project.github.io/iMast/help/")!, text: Text("ヘルプ"))
 
-            NavigationButton(destination: AutoRepresentable<FeedbackViewController>().navigationBarTitle(Text("Feedback"))) {
+            NavigationLink(destination: AutoRepresentable<FeedbackViewController>().navigationBarTitle(Text("Feedback"))) {
                 Text("Feedback")
             }
 
