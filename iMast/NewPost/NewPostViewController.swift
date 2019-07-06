@@ -21,21 +21,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var bottomLayout: NSLayoutConstraint!
     @IBOutlet weak var keyboardUpOrDown: UIBarButtonItem!
-    @IBOutlet weak var cwInput: UITextField! {
-        didSet {
-            cwInput.isHidden = true
-        }
-    }
+    @IBOutlet weak var cwInput: UITextField!
     var media: [UploadableMedia] = []
     
     @IBOutlet weak var nowAccountLabel: UILabel!
     
     var nowKeyboardUpOrDown: Bool = false
-    var isCW: Bool = false {
-        didSet {
-            self.CWButton.style = isCW ? UIBarButtonItem.Style.done : UIBarButtonItem.Style.plain
-        }
-    }
     var isNSFW: Bool = false {
         didSet {
             self.NSFWButton.style = isNSFW ? UIBarButtonItem.Style.done : UIBarButtonItem.Style.plain
@@ -51,7 +42,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     
     var isPNG = true
     var isModal = false
-    @IBOutlet weak var CWButton: UIBarButtonItem!
     @IBOutlet weak var NSFWButton: UIBarButtonItem!
     @IBOutlet weak var scopeSelectButton: UIBarButtonItem!
     
@@ -116,7 +106,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     */
     @IBAction func sendPost(_ sender: Any) {
         print(isNSFW)
-        print(isCW)
         let baseMessage = "しばらくお待ちください\n"
         let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
@@ -162,8 +151,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
             var params: [String: Any] = [
                 "media_ids": mediaIds,
-                "sensitive": self.isNSFW || (self.isCW && self.cwInput.text != nil && self.cwInput.text != ""),
-                "spoiler_text": self.isCW ? self.cwInput.text ?? "" : "",
+                "sensitive": self.isNSFW || (self.cwInput.text != nil && self.cwInput.text != ""),
+                "spoiler_text": self.cwInput.text ?? "",
                 "status": text,
                 "visibility": self.scope,
             ]
@@ -226,10 +215,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     @IBAction func nsfwButtonTapped(_ sender: Any) {
         isNSFW = !isNSFW
-    }
-    @IBAction func cwButtonTapped(_ sender: Any) {
-        isCW = !isCW
-        cwInput.isHidden = !isCW
     }
     @IBAction func nowPlayingTapped(_ sender: Any) {
         let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem

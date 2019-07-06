@@ -729,7 +729,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let paxYe0d9Title = Rswift.StringResource(key: "pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: CW Warning text
+      /// en translation: CW Warning text (Optional)
       /// 
       /// Locales: en, ja
       static let ncKaJwdPlaceholder = Rswift.StringResource(key: "8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
@@ -768,7 +768,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: CW Warning text
+      /// en translation: CW Warning text (Optional)
       /// 
       /// Locales: en, ja
       static func ncKaJwdPlaceholder(_: Void = ()) -> String {
