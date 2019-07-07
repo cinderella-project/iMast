@@ -352,7 +352,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                         if case .post(let content, _) = body {
                             if content.id.string == deletedTootID {
                                 deletePosts.append(body)
-                            } else if content.repost?.id.string == deletedTootID {
+                            } else if content.repost?.value.id.string == deletedTootID {
                                 deletePosts.append(body)
                             }
                         }
@@ -438,7 +438,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
             MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
                 let post = post_.repost!
-                self.updatePost(from: post, includeRepost: true)
+                self.updatePost(from: post.value, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
             }
@@ -491,23 +491,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
     func updatePost(from: MastodonPost, includeRepost: Bool) {
         var indexPaths = [] as [IndexPath]
         
-        func processPost(section: Int, posts: inout [MastodonPost]) {
-            for (row, post) in posts.enumerated() {
-                if from.id == post.id {
-                    posts[row] = from
-                } else if includeRepost, from.id == post.repost?.id {
-                    var post = posts[row]
-                    post.repost = from
-                    posts[row] = post
-                } else {
-                    continue
-                }
-                indexPaths.append(IndexPath(row: row, section: section))
-            }
-        }
-        
-//        processPost(section: 0, posts: &self.pinnedPosts)
-//        processPost(section: 1, posts: &self.posts)
+        // TODO: グローバルに更新をpushする
         
         self.tableView.reloadRows(
             at: indexPaths,

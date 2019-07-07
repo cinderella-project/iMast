@@ -164,7 +164,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     func input(_ input: Input) {
         let originalPost = input.post
         self.input = input
-        let post = originalPost.repost ?? originalPost
+        let post = originalPost.originalPost
         // ブースト時の処理
         if originalPost.repost != nil {
             tootInfoView.isHidden = false
@@ -303,7 +303,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     
     @objc func iconTapped() {
-        let vc = openUserProfile(user: (input.post.repost ?? input.post).account)
+        let vc = openUserProfile(user: input.post.originalPost.account)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

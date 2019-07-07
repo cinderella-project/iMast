@@ -9,7 +9,7 @@
 import Foundation
 import Hydra
 
-class MastodonAccountRelationship: Codable {
+struct MastodonAccountRelationship: Codable {
     let id: MastodonID
     let following: Bool
     var showing_reblogs: Bool {

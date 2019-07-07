@@ -9,7 +9,7 @@
 import Foundation
 import Hydra
 
-class MastodonSearchResult: Codable {
+struct MastodonSearchResult: Codable {
     let accounts: [MastodonAccount]
     let posts: [MastodonPost]
     let hashtags: [String]

@@ -8,9 +8,10 @@
 
 import Foundation
 
-class MastodonApplication: Codable {
+struct MastodonApplication: Codable {
     let name: String
     let website: String?
+
     enum CodingKeys: String, CodingKey {
         case name
         case website

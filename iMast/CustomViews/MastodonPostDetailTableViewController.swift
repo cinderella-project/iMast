@@ -73,7 +73,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     
     func load(post originalPost: MastodonPost, spoiler: Bool = false) {
-        let post = originalPost.repost ?? originalPost
+        let post = originalPost.originalPost
         self.post = post
         if isLoaded == false {
             loadAfter = true
@@ -166,7 +166,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     
     @objc func tapImage(sender: UITapGestureRecognizer) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         let media = post.attachments[sender.view!.tag-100]
@@ -190,7 +190,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
     }
     
     @IBAction func replyTapped(_ sender: Any) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         let storyboard = UIStoryboard(name: "NewPost", bundle: nil)
@@ -201,7 +201,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     @IBAction func boostTapped(_ sender: Any) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         if !isBoosted {
@@ -216,7 +216,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         print(isBoosted)
     }
     @IBAction func favouriteTapped(_ sender: Any) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         if !isFavorited {
@@ -248,7 +248,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
     @objc func tapUser(sender: UITapGestureRecognizer) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         let newVC = openUserProfile(user: post.account)
@@ -289,7 +289,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         return false
     }
     @IBAction func moreButtonTapped(_ sender: Any) {
-        guard let post = self.post?.repost ?? self.post else {
+        guard let post = self.post?.originalPost else {
             return
         }
         let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertController.Style.actionSheet)

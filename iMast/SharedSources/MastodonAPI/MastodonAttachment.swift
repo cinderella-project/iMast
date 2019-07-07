@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MastodonAttachment: Codable {
+struct MastodonAttachment: Codable {
     let id: MastodonID
     let type: MediaType
     let url: String

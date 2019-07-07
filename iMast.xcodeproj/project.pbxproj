@@ -179,6 +179,11 @@
 		CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
+		CECBD35D22D16575004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD35E22D1666B004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD35F22D1666C004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD36022D1666C004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD36122D1666D004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
 		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -451,6 +456,7 @@
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CED6077721B3658F00F6232E /* iMastIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED6077921B3658F00F6232E /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -771,6 +777,7 @@
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
 				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
+				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
@@ -1498,6 +1505,7 @@
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
 				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
+				CECBD35D22D16575004530BA /* IndirectBox.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
 				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
 				CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
@@ -1627,6 +1635,7 @@
 				CE2D2B0421105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEDEDCA22007F8E400CD2784 /* MastodonList.swift in Sources */,
 				CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */,
+				CECBD35F22D1666C004530BA /* IndirectBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1657,6 +1666,7 @@
 				CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
+				CECBD35E22D1666B004530BA /* IndirectBox.swift in Sources */,
 				CEFE6AFC21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
 				CEDEDCA12007F8E300CD2784 /* MastodonList.swift in Sources */,
@@ -1691,6 +1701,7 @@
 				CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */,
 				CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */,
+				CECBD36022D1666C004530BA /* IndirectBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1700,6 +1711,7 @@
 			files = (
 				CEFE6B0A21B5013200AF5E40 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEFE6AFA21B5011700AF5E40 /* UserDefaultsDict.swift in Sources */,
+				CECBD36122D1666D004530BA /* IndirectBox.swift in Sources */,
 				CEFE6B0221B5012500AF5E40 /* MastodonApplication.swift in Sources */,
 				CEFE6B0321B5012500AF5E40 /* MastodonNotification.swift in Sources */,
 				CEFE6AFF21B5012500AF5E40 /* MastodonAccount.swift in Sources */,

@@ -15,7 +15,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-class MastodonPost: Codable, EmojifyProtocol, Hashable {
+struct MastodonPost: Codable, EmojifyProtocol, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id.string)
         hasher.combine(self.url)
@@ -30,34 +30,41 @@ class MastodonPost: Codable, EmojifyProtocol, Hashable {
     let account: MastodonAccount
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
-    var repost: MastodonPost?
+    let repost: IndirectBox<MastodonPost>?
+    var originalPost: MastodonPost {
+        return self.repost?.value ?? self
+    }
     let status: String
     let createdAt: Date
     let repostCount: Int
     let favouritesCount: Int
+
     var reposted: Bool {
         return self._reposted ?? false
     }
-    var _reposted: Bool?
+    let _reposted: Bool?
+
     var favourited: Bool {
         return self._favourited ?? false
     }
-    var _favourited: Bool?
+    let _favourited: Bool?
+
     var muted: Bool {
         return self._muted ?? false
     }
-    var _muted: Bool?
+    let _muted: Bool?
+
     let sensitive: Bool
     let spoilerText: String
     let attachments: [MastodonAttachment]
     let application: MastodonApplication?
-    var pinned: Bool?
-    var emojis: [MastodonCustomEmoji]?
-    var profileEmojis: [MastodonCustomEmoji]?
+    let pinned: Bool?
+    let emojis: [MastodonCustomEmoji]?
+    let profileEmojis: [MastodonCustomEmoji]?
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
-    var tags: [MastodonPostHashtag]?
-    var poll: MastodonPoll?
+    let tags: [MastodonPostHashtag]?
+    let poll: MastodonPoll?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -92,7 +99,7 @@ class MastodonPost: Codable, EmojifyProtocol, Hashable {
     }
 }
 
-class MastodonCustomEmoji: Codable {
+struct MastodonCustomEmoji: Codable {
     let shortcode: String
     let url: String
     enum CodingKeys: String, CodingKey {
@@ -106,12 +113,12 @@ class MastodonCustomEmoji: Codable {
     }
 }
 
-class MastodonPostContext: Codable {
+struct MastodonPostContext: Codable {
     let ancestors: [MastodonPost]
     let descendants: [MastodonPost]
 }
 
-class MastodonPostMention: Codable {
+struct MastodonPostMention: Codable {
     let url: String
     let username: String
     let acct: String
@@ -123,7 +130,7 @@ class MastodonPostMention: Codable {
     }
 }
 
-class MastodonPoll: Codable {
+struct MastodonPoll: Codable {
     let id: MastodonID
     let expires_at: Date?
     let expired: Bool
@@ -133,7 +140,7 @@ class MastodonPoll: Codable {
     let options: [MastodonPollOption]
 }
 
-class MastodonPollOption: Codable {
+struct MastodonPollOption: Codable {
     let title: String
     let votes_count: Int
 }

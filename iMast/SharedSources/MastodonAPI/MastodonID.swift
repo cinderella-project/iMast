@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MastodonID: Codable, CustomStringConvertible {
+struct MastodonID: Codable, CustomStringConvertible {
     @available(*, unavailable)
     var int: Int64 = -1
     var string: String
@@ -25,7 +25,7 @@ class MastodonID: Codable, CustomStringConvertible {
         self.raw = string
     }
     
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer()
         do {
             raw = try value.decode(String.self)
