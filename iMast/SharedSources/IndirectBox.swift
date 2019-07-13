@@ -11,16 +11,16 @@ import Foundation
 enum IndirectBox<T> {
     var value: T {
         switch self {
-        case .some(let value):
+        case .value(let value):
             return value
         }
     }
-    indirect case some(T)
+    indirect case value(T)
 }
 
 extension IndirectBox: Decodable where T: Decodable {
     init(from decoder: Decoder) throws {
-        self = .some(try T.init(from: decoder))
+        self = .value(try T.init(from: decoder))
     }
 }
 

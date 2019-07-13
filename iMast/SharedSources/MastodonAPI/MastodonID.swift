@@ -86,6 +86,12 @@ extension MastodonID: Equatable {
     }
 }
 
+extension MastodonID: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.string)
+    }
+}
+
 enum MastodonIDError: Error {
     case failedConvertToInt
     case notIntAndStringWhat

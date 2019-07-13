@@ -23,7 +23,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     }
     
     enum TableBody: Hashable {
-        case post(content: MastodonPost, pinned: Bool)
+        case post(id: MastodonID, pinned: Bool)
         case readMore
     }
     
@@ -84,15 +84,15 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             $0.delegate = self
         }
 
-        TableViewCell<MastodonPostCellViewController>.register(to: tableView)
+        TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.register(to: tableView)
         
         self.diffableDataSource = UITableViewDiffableDataSource(tableView: tableView) { (tableView, indexPath, target) -> UITableViewCell? in
             switch target {
-            case .post(let content, let pinned):
-                return TableViewCell<MastodonPostCellViewController>.dequeued(
+            case .post(let id, let pinned):
+                return TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(
                     from: tableView,
                     for: indexPath,
-                    input: .init(post: content, pinned: pinned),
+                    input: (id: id, pinned: pinned),
                     parentViewController: self
                 )
             case .readMore:
@@ -218,17 +218,17 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             return
         }
         let snapshot = self.diffableDataSource.snapshot()
-        var pointer: MastodonPost?
+        var pointer: MastodonID?
         if let v = snapshot.itemIdentifiers(inSection: .posts).first,
-            case .post(let content, _) = v {
-            pointer = content
+            case .post(let id, _) = v {
+            pointer = id
         } else {
             pointer = nil
         }
         MastodonUserToken.getLatestUsed()!.timeline(
             timelineType,
             limit: 40,
-            since: pointer
+            sinceId: pointer
         ).then { posts in
             self.addNewPosts(posts: posts)
             self.refreshControl.endRefreshing()
@@ -242,10 +242,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             return
         }
         let snapshot = self.diffableDataSource.snapshot()
-        var pointer: MastodonPost?
+        var pointer: MastodonID?
         if let v = snapshot.itemIdentifiers(inSection: .posts).last,
-            case .post(let content, _) = v {
-            pointer = content
+            case .post(let id, _) = v {
+            pointer = id
         } else {
             pointer = nil
         }
@@ -253,7 +253,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         MastodonUserToken.getLatestUsed()!.timeline(
             timelineType,
             limit: 40,
-            max: pointer
+            maxId: pointer
         ).then { posts in
             self.appendNewPosts(posts: posts)
             self.readmoreCell.state = posts.count == 0 ? .allLoaded : .moreLoadable
@@ -294,6 +294,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
             return a.id.compare(b.id) == .orderedDescending
         }).filter({ (post) -> Bool in
+            self.environment.memoryStore.post.change(obj: post)
             if isAlreadyAdded[post.id.string] != true {
                 isAlreadyAdded[post.id.string] = true
                 return true
@@ -303,7 +304,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         
         let snapshot = self.diffableDataSource.snapshot()
         snapshot.prependItems(
-            posts.map { .post(content: $0, pinned: false) },
+            posts.map { .post(id: $0.id, pinned: false) },
             section: .posts
         )
         if snapshot.numberOfItems(inSection: .posts) > maxPostCount { // メモリ節約
@@ -349,10 +350,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                     var deletePosts: [TableBody] = []
 
                     for body in snapshot.itemIdentifiers(inSection: .posts) {
-                        if case .post(let content, _) = body {
-                            if content.id.string == deletedTootID {
+                        if case .post(let id, _) = body {
+                            if id.string == deletedTootID {
                                 deletePosts.append(body)
-                            } else if content.repost?.value.id.string == deletedTootID {
+                            } else if self.environment.memoryStore.post.container[id]?.repost?.value.id.string == deletedTootID {
                                 deletePosts.append(body)
                             }
                         }
@@ -417,7 +418,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     
     func appendNewPosts(posts: [MastodonPost]) {
         let snapshot = self.diffableDataSource.snapshot()
-        snapshot.appendItems(posts.map { .post(content: $0, pinned: false) }, toSection: .posts)
+        for post in posts {
+            environment.memoryStore.post.change(obj: post)
+        }
+        snapshot.appendItems(posts.map { .post(id: $0.id, pinned: false) }, toSection: .posts)
         self.diffableDataSource.apply(snapshot, animatingDifferences: true)
         self.maxPostCount += posts.count
     }
@@ -426,7 +430,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
 extension TimeLineTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        guard case .post(let post, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
+        guard case .post(let id, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
+            return []
+        }
+        guard let post = environment.memoryStore.post.container[id] else {
             return []
         }
         // Reply
@@ -476,9 +483,10 @@ extension TimeLineTableViewController: UITableViewDelegate {
             return
         }
         switch item {
-        case .post(let content, _):
+        case .post(let id, _):
             let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            postDetailVC.load(post: content)
+            // TODO: ここでIDを渡す
+            postDetailVC.load(post: environment.memoryStore.post.container[id]!)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
         case .readMore:
             self.readmoreCell.readMoreTapped(viewController: self) {
@@ -489,13 +497,6 @@ extension TimeLineTableViewController: UITableViewDelegate {
     }
     
     func updatePost(from: MastodonPost, includeRepost: Bool) {
-        var indexPaths = [] as [IndexPath]
-        
-        // TODO: グローバルに更新をpushする
-        
-        self.tableView.reloadRows(
-            at: indexPaths,
-            with: .right
-        )
+        MastodonMemoryStoreContainer[self.environment].post.change(obj: from)
     }
 }

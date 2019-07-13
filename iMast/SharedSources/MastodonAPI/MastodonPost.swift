@@ -15,7 +15,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-struct MastodonPost: Codable, EmojifyProtocol, Hashable {
+struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id.string)
         hasher.combine(self.url)
@@ -30,7 +30,7 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable {
     let account: MastodonAccount
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
-    let repost: IndirectBox<MastodonPost>?
+    var repost: IndirectBox<MastodonPost>?
     var originalPost: MastodonPost {
         return self.repost?.value ?? self
     }
@@ -198,17 +198,16 @@ extension MastodonUserToken {
         }
     }
     
-    func timeline(_ type: MastodonTimelineType, limit: Int? = nil, since: MastodonPost? = nil, max: MastodonPost? = nil) -> Promise<[MastodonPost]> {
+    func timeline(_ type: MastodonTimelineType, limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonPost]> {
         var params = type.params
         if let limit = limit {
             params["limit"] = limit
         }
-        if let since = since {
-            print(since, since.id, since.id.string)
-            params["since_id"] = since.id.string
+        if let sinceId = sinceId {
+            params["since_id"] = sinceId.string
         }
-        if let max = max {
-            params["max_id"] = max.id.string
+        if let maxId = maxId {
+            params["max_id"] = maxId.string
         }
         return self.get(type.endpoint, params: params).then { res in
             return try res.arrayValue.map({try MastodonPost.decode(json: $0)})

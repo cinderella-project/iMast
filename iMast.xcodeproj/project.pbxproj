@@ -139,6 +139,13 @@
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
 		CE908560219188F9006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855F219188F9006769DC /* R.generated.swift */; };
+		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
+		CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5B22D4593900D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5C22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5D22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5E22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */; };
 		CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */; };
 		CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
@@ -433,6 +440,9 @@
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE90855C21918750006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE90855F219188F9006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = imastshare/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
+		CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonIDAvailable.swift; sourceTree = "<group>"; };
+		CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostWrapperViewController.swift; sourceTree = "<group>"; };
 		CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+prependItems.swift"; sourceTree = "<group>"; };
 		CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunmyakuTableViewController.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -764,6 +774,7 @@
 				CE1002C720065DA30041B636 /* MastodonSearchResult.swift */,
 				CEDEDC992007C36400CD2784 /* MastodonID.swift */,
 				CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */,
+				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
 			);
 			path = MastodonAPI;
 			sourceTree = "<group>";
@@ -776,6 +787,7 @@
 				CEE254262004B593005FEB6F /* MastodonAPI */,
 				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
+				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
@@ -872,6 +884,7 @@
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
 				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
 				CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */,
 				CE109713220631E5000A5101 /* EmojiListTableViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
@@ -1495,6 +1508,7 @@
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
 				CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */,
 				CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */,
+				CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
 				CE818B91218570B800948309 /* ThirdpartyTrendTags.swift in Sources */,
 				CEE254232004A8B2005FEB6F /* MastodonAccount.swift in Sources */,
@@ -1513,6 +1527,7 @@
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
 				CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
+				CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */,
 				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
 				CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
@@ -1577,6 +1592,7 @@
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
+				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
@@ -1622,6 +1638,7 @@
 				CEE254252004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
+				CE97DB5C22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
 				CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF52224230F50054A008 /* EmojifyProtocol.swift in Sources */,
@@ -1660,6 +1677,7 @@
 				CE908560219188F9006769DC /* R.generated.swift in Sources */,
 				CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,
+				CE97DB5B22D4593900D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CE2D2AFE211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */,
@@ -1688,6 +1706,7 @@
 				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
 				CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
+				CE97DB5D22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
 				CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF53224230F50054A008 /* EmojifyProtocol.swift in Sources */,
@@ -1724,6 +1743,7 @@
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
+				CE97DB5E22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE71AF54224230F60054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */,
 				CEFE6B0521B5012500AF5E40 /* MastodonList.swift in Sources */,

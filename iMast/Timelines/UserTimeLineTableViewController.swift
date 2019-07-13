@@ -31,7 +31,10 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
         }.then { res -> Void in
             self.readmoreCell.state = .moreLoadable
             let snapshot = self.diffableDataSource.snapshot()
-            snapshot.appendItems(res[0].map { .post(content: $0, pinned: true) }, toSection: .pinned)
+            snapshot.appendItems(res[0].map {
+                self.environment.memoryStore.post.change(obj: $0)
+                return .post(id: $0.id, pinned: true)
+            }, toSection: .pinned)
             self.diffableDataSource.apply(snapshot, animatingDifferences: false)
             self._addNewPosts(posts: res[1])
             return Void()
