@@ -1,29 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FILEHEADER</key>
+	<string>
+//  ___FILENAME___
 //
-//  NotificationCenter.Name+customNames.swift
-//  iMast
+//  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2018/07/28.
-//  
+//  Created on ___DATE___.
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
 // 
-//  Licensed under the Apache License, Version 2.0 (the "License");
+//  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
 // 
 //      http://www.apache.org/licenses/LICENSE-2.0
 // 
 //  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
+//  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
-//  limitations under the License.
-//
-
-import Foundation
-import UIKit
-
-extension Notification.Name {
-    static let pushSettingsAccountReload = Notification.Name("pushSettingsAccountReload")
-}
+//  limitations under the License.</string>
+</dict>
+</plist>

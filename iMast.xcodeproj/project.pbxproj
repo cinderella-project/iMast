@@ -1424,7 +1424,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/$TARGET_NAME/R.generated.swift",
+				$SRCROOT/$TARGET_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1462,7 +1462,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/iMast/R.generated.swift",
+				$SRCROOT/iMast/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
