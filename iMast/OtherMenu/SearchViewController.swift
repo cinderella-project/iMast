@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  iMast
 //
-//  Created by user on 2018/10/27.
+//  Created by rinsuki on 2018/10/27.
 //  
 //  ------------------------------------------------------------------------
 //

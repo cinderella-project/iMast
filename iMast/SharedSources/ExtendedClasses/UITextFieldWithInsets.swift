@@ -2,7 +2,7 @@
 //  UITextFieldWithInsets.swift
 //  iMast
 //
-//  Created by user on 2019/07/06.
+//  Created by rinsuki on 2019/07/06.
 //  
 //  ------------------------------------------------------------------------
 //

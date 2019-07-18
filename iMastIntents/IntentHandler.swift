@@ -2,7 +2,7 @@
 //  IntentHandler.swift
 //  iMastIntents
 //
-//  Created by user on 2018/12/02.
+//  Created by rinsuki on 2018/12/02.
 //  
 //  ------------------------------------------------------------------------
 //

@@ -2,7 +2,7 @@
 //  NSRange+optional.swift
 //  iMast
 //
-//  Created by user on 2018/10/22.
+//  Created by rinsuki on 2018/10/22.
 //  
 //  ------------------------------------------------------------------------
 //

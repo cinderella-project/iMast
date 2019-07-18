@@ -2,7 +2,7 @@
 //  MastodonAccountRelationship.swift
 //  iMast
 //
-//  Created by user on 2018/01/12.
+//  Created by rinsuki on 2018/01/12.
 //  
 //  ------------------------------------------------------------------------
 //

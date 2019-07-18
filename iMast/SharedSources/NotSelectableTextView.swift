@@ -2,7 +2,7 @@
 //  NotSelectableTextView.swift
 //  iMast
 //
-//  Created by user on 2019/04/02.
+//  Created by rinsuki on 2019/04/02.
 //  
 //  ------------------------------------------------------------------------
 //

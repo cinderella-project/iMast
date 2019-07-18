@@ -2,7 +2,7 @@
 //  EurekaExtension.swift
 //  iMast
 //
-//  Created by user on 2017/10/29.
+//  Created by rinsuki on 2017/10/29.
 //  
 //  ------------------------------------------------------------------------
 //

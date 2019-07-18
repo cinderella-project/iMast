@@ -2,7 +2,7 @@
 //  OtherMenuListsTableViewController.swift
 //  iMast
 //
-//  Created by user on 2017/11/22.
+//  Created by rinsuki on 2017/11/22.
 //  
 //  ------------------------------------------------------------------------
 //

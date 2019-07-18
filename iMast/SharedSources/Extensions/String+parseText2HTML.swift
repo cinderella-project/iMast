@@ -2,7 +2,7 @@
 //  String+parseText2HTML.swift
 //  iMast
 //
-//  Created by user on 2018/09/20.
+//  Created by rinsuki on 2018/09/20.
 //  
 //  ------------------------------------------------------------------------
 //

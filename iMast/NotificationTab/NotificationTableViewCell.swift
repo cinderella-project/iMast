@@ -2,7 +2,7 @@
 //  NotificationTableViewCell.swift
 //  iMast
 //
-//  Created by user on 2018/12/20.
+//  Created by rinsuki on 2018/12/20.
 //  
 //  ------------------------------------------------------------------------
 //

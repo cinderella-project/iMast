@@ -2,7 +2,7 @@
 //  ReadmoreTableViewCell.swift
 //  iMast
 //
-//  Created by user on 2018/07/28.
+//  Created by rinsuki on 2018/07/28.
 //  
 //  ------------------------------------------------------------------------
 //

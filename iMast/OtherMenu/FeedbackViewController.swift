@@ -2,7 +2,7 @@
 //  FeedbackViewController.swift
 //  iMast
 //
-//  Created by user on 2018/10/10.
+//  Created by rinsuki on 2018/10/10.
 //  
 //  ------------------------------------------------------------------------
 //

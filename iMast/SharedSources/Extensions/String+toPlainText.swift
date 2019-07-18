@@ -2,7 +2,7 @@
 //  String+toPlainText.swift
 //  iMast
 //
-//  Created by user on 2018/09/22.
+//  Created by rinsuki on 2018/09/22.
 //  
 //  ------------------------------------------------------------------------
 //

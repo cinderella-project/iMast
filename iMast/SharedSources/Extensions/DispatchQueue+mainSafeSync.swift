@@ -2,7 +2,7 @@
 //  DispatchQueue+mainSafeSync.swift
 //  iMast
 //
-//  Created by user on 2018/08/23.
+//  Created by rinsuki on 2018/08/23.
 //  
 //  ------------------------------------------------------------------------
 //

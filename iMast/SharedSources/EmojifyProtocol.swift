@@ -2,7 +2,7 @@
 //  EmojifyProtocol.swift
 //  iMast
 //
-//  Created by user on 2019/03/20.
+//  Created by rinsuki on 2019/03/20.
 //  
 //  ------------------------------------------------------------------------
 //

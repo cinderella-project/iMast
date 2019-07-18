@@ -2,7 +2,7 @@
 //  ThirdpartyTrendTags.swift
 //  iMast
 //
-//  Created by user on 2018/10/28.
+//  Created by rinsuki on 2018/10/28.
 //  
 //  ------------------------------------------------------------------------
 //

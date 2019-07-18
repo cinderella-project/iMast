@@ -2,7 +2,7 @@
 //  UserProfileInfoTableViewCell.swift
 //  iMast
 //
-//  Created by user on 2018/06/25.
+//  Created by rinsuki on 2018/06/25.
 //  
 //  ------------------------------------------------------------------------
 //

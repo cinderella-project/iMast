@@ -2,7 +2,7 @@
 //  String+emojify.swift
 //  iMast
 //
-//  Created by user on 2018/07/24.
+//  Created by rinsuki on 2018/07/24.
 //  
 //  ------------------------------------------------------------------------
 //

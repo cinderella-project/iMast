@@ -2,7 +2,7 @@
 //  String+emptyAsNil.swift
 //  iMast
 //
-//  Created by user on 2019/03/12.
+//  Created by rinsuki on 2019/03/12.
 //  
 //  ------------------------------------------------------------------------
 //

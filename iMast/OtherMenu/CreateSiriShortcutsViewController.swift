@@ -2,7 +2,7 @@
 //  CreateSiriShortcutsViewController.swift
 //  iMast
 //
-//  Created by user on 2018/12/10.
+//  Created by rinsuki on 2018/12/10.
 //  
 //  ------------------------------------------------------------------------
 //

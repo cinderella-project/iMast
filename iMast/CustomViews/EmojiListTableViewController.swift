@@ -2,7 +2,7 @@
 //  EmojiListTableViewController.swift
 //  iMast
 //
-//  Created by user on 2019/02/03.
+//  Created by rinsuki on 2019/02/03.
 //  
 //  ------------------------------------------------------------------------
 //
