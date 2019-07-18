@@ -2,7 +2,7 @@
 //  Alamofire.Request+responseDecodable.swift
 //  iMast
 //
-//  Created by user on 2018/07/31.
+//  Created by rinsuki on 2018/07/31.
 //  
 //  ------------------------------------------------------------------------
 //

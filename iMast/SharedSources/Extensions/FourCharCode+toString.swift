@@ -2,7 +2,7 @@
 //  FourCharCode+toString.swift
 //  iMast
 //
-//  Created by user on 2019/01/18.
+//  Created by rinsuki on 2019/01/18.
 //  
 //  ------------------------------------------------------------------------
 //

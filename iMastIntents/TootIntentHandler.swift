@@ -2,7 +2,7 @@
 //  TootIntentHandler.swift
 //  iMastIntents
 //
-//  Created by user on 2018/12/03.
+//  Created by rinsuki on 2018/12/03.
 //  
 //  ------------------------------------------------------------------------
 //

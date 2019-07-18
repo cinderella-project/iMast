@@ -2,7 +2,7 @@
 //  UIViewController+dismissPromise.swift
 //  iMast
 //
-//  Created by user on 2019/01/21.
+//  Created by rinsuki on 2019/01/21.
 //  
 //  ------------------------------------------------------------------------
 //

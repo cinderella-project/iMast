@@ -2,7 +2,7 @@
 //  OtherMenuPushSettingsTableViewController.swift
 //  iMast
 //
-//  Created by user on 2018/07/17.
+//  Created by rinsuki on 2018/07/17.
 //  
 //  ------------------------------------------------------------------------
 //

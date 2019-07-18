@@ -2,7 +2,7 @@
 //  MastodonPostCellViewController.swift
 //  iMast
 //
-//  Created by user on 2019/03/11.
+//  Created by rinsuki on 2019/03/11.
 //  
 //  ------------------------------------------------------------------------
 //

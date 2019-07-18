@@ -2,7 +2,7 @@
 //  MastodonAttachments.swift
 //  iMast
 //
-//  Created by user on 2018/01/09.
+//  Created by rinsuki on 2018/01/09.
 //  
 //  ------------------------------------------------------------------------
 //

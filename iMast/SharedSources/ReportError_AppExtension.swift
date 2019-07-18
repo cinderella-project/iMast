@@ -2,7 +2,7 @@
 //  ReportError_AppExtension.swift
 //  iMast
 //
-//  Created by user on 2018/01/11.
+//  Created by rinsuki on 2018/01/11.
 //  
 //  ------------------------------------------------------------------------
 //

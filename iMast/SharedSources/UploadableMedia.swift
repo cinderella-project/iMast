@@ -2,7 +2,7 @@
 //  UploadableMedia.swift
 //  iMast
 //
-//  Created by user on 2018/11/08.
+//  Created by rinsuki on 2018/11/08.
 //  
 //  ------------------------------------------------------------------------
 //

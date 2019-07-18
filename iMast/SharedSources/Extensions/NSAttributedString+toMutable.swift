@@ -2,7 +2,7 @@
 //  NSAttributedString+mutableCopy.swift
 //  iMast
 //
-//  Created by user on 2018/09/21.
+//  Created by rinsuki on 2018/09/21.
 //  
 //  ------------------------------------------------------------------------
 //

@@ -2,7 +2,7 @@
 //  UIViewController+fakeSafeAreaLayoutGuide.swift
 //  iMast
 //
-//  Created by user on 2019/03/02.
+//  Created by rinsuki on 2019/03/02.
 //  
 //  ------------------------------------------------------------------------
 //

@@ -2,7 +2,7 @@
 //  MainTabBarController.swift
 //  iMast
 //
-//  Created by user on 2017/11/24.
+//  Created by rinsuki on 2017/11/24.
 //  
 //  ------------------------------------------------------------------------
 //

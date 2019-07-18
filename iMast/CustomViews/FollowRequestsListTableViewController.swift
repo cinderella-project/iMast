@@ -2,7 +2,7 @@
 //  FollowRequestsListTableViewController.swift
 //  iMast
 //
-//  Created by user on 2017/12/30.
+//  Created by rinsuki on 2017/12/30.
 //  
 //  ------------------------------------------------------------------------
 //

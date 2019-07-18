@@ -2,7 +2,7 @@
 //  ProfileCardViewController.swift
 //  iMast
 //
-//  Created by user on 2017/10/23.
+//  Created by rinsuki on 2017/10/23.
 //  
 //  ------------------------------------------------------------------------
 //

@@ -2,7 +2,7 @@
 //  LoopableAVPlayerViewController.swift
 //  iMast
 //
-//  Created by user on 2018/11/25.
+//  Created by rinsuki on 2018/11/25.
 //  
 //  ------------------------------------------------------------------------
 //

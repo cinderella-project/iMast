@@ -2,7 +2,7 @@
 //  SVProgressHUD+Hydra.swift
 //  iMast
 //
-//  Created by user on 2018/07/23.
+//  Created by rinsuki on 2018/07/23.
 //  
 //  ------------------------------------------------------------------------
 //

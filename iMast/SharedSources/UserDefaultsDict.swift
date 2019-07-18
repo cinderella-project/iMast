@@ -2,7 +2,7 @@
 //  UserDefaultsDict.swift
 //  iMast
 //
-//  Created by user on 2017/12/23.
+//  Created by rinsuki on 2017/12/23.
 //  
 //  ------------------------------------------------------------------------
 //

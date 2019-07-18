@@ -2,7 +2,7 @@
 //  NSFWGuardView.swift
 //  iMast
 //
-//  Created by user on 2018/04/29.
+//  Created by rinsuki on 2018/04/29.
 //  
 //  ------------------------------------------------------------------------
 //

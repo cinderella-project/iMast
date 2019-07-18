@@ -2,7 +2,7 @@
 //  AttachedMediaViewController.swift
 //  iMast
 //
-//  Created by user on 2019/03/19.
+//  Created by rinsuki on 2019/03/19.
 //  
 //  ------------------------------------------------------------------------
 //
