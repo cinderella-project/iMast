@@ -232,13 +232,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 [
                     .font: userNameFont.withSize(userNameFont.pointSize * 0.75)
                 ],
-                range: NSRange(
-                    location: splitterPoint.location + 1,
-                    length: acctNsString.length - splitterPoint.location
-                )
+                range: NSRange(location: splitterPoint.location + 1, length: acctNsString.length - splitterPoint.location)
             )
         }
-        
         self.acctNameLabel.attributedText = acctAttrText
 
         // 右上のいろいろ
@@ -287,9 +283,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         if Defaults[.timelineTextBold] {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)
         }
-        let attrs: [NSAttributedString.Key: Any] = [
+        var attrs: [NSAttributedString.Key: Any] = [
             .font: font,
         ]
+        if Defaults[.usePostLanguageInfo], let lang = post.language {
+            attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
+        }
         if post.spoilerText != "" {
             textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
                 .foregroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.6),

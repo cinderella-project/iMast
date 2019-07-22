@@ -365,6 +365,7 @@ extension DefaultsKeys {
     static let acctAbbr = DefaultsKey<Bool>("acct_abbr", default: true)
     static let postFabEnabled = DefaultsKey<Bool>("post_fab_enabled", default: true)
     static let postFabLocation = DefaultsKey<PostFabLocation>("post_fab_location", default: .rightBottom)
+    static let usePostLanguageInfo = DefaultsKey<Bool>("use_post_language_info", default: true)
 
     static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
     static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)

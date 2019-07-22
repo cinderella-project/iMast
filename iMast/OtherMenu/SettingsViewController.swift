@@ -263,6 +263,10 @@ class SettingsViewController: FormViewController {
                 cell.detailTextLabel?.text = "例: m6n.s4l"
             }
         }
+        section <<< SwitchRow { row in
+            row.title = "投稿の言語情報を表示時に考慮"
+            row.userDefaultsConnect(.usePostLanguageInfo)
+        }
         return section
     }
     

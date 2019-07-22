@@ -64,6 +64,7 @@ class MastodonPost: Codable, EmojifyProtocol {
     private(set) var mentions: [MastodonPostMention] = []
     var tags: [MastodonPostHashtag]?
     var poll: MastodonPoll?
+    var language: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -90,6 +91,7 @@ class MastodonPost: Codable, EmojifyProtocol {
         case mentions
         case tags
         case poll
+        case language
     }
     
     @available(*, deprecated, message: "Do not use.")
