@@ -309,6 +309,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertController.Style.actionSheet)
         actionSheet.popoverPresentationController?.sourceView = self.moreButton as UIView
         actionSheet.popoverPresentationController?.sourceRect = (self.moreButton as UIView).bounds
+        actionSheet.popoverPresentationController?.permittedArrowDirections = [.up]
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertAction.Style.default, handler: { action in
             MastodonUserToken.getLatestUsed()?.context(post: post).then { res in
