@@ -90,10 +90,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.ignoreSmartInvert()
     }
     
+    let pollViewController: MastodonCompactPollViewController
+    
     required init(with input: Input, environment: Environment) {
         self.environment = environment
         self.input = input
         self.attachedMediaListViewContrller = AttachedMediaListViewController(with: input.post, environment: Void())
+        self.pollViewController = .instantiate(input.post, environment: environment)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -141,6 +144,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             textView,
         ]) ※ {
             $0.addArrangedViewController(attachedMediaListViewContrller, parentViewController: self)
+            $0.addArrangedViewController(pollViewController, parentViewController: self)
             $0.axis = .vertical
             $0.spacing = 2
         }
@@ -313,6 +317,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             attachedMediaListViewContrller.view.isHidden = false
             attachedMediaListViewContrller.input(post)
         }
+        
+        // 投票の処理
+        pollViewController.input(post)
     }
     
     @objc func iconTapped() {
