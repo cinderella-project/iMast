@@ -533,14 +533,12 @@ extension TimeLineTableViewController: UITableViewDelegate {
         case 0:
             // pinned posts
             let post = self.pinnedPosts[indexPath.row]
-            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            postDetailVC.load(post: post)
+            let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
         case 1:
             // posts
             let post = self.posts[indexPath.row]
-            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            postDetailVC.load(post: post)
+            let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
         default:
             break

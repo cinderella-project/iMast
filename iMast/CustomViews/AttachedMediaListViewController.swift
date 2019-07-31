@@ -129,6 +129,13 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         self.output = input.sensitive ? .hide : .show
         self.outputHandler?(self.output)
         
+        if input.attachments.count == 0 {
+            self.view.isHidden = true
+            return
+        } else {
+            self.view.isHidden = false
+        }
+        
         let thumbnailHeight = Defaults[.thumbnailHeight]
         
         // mediaStackView内のimageViewのストックが足りなかったら追加する

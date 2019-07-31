@@ -292,12 +292,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
-    /// Storyboard `MastodonPostDetail`.
-    static let mastodonPostDetail = _R.storyboard.mastodonPostDetail()
     /// Storyboard `NewPost`.
     static let newPost = _R.storyboard.newPost()
     /// Storyboard `ProfileCard`.
@@ -306,11 +304,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
-    }
-    
-    /// `UIStoryboard(name: "MastodonPostDetail", bundle: ...)`
-    static func mastodonPostDetail(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.mastodonPostDetail)
     }
     
     /// `UIStoryboard(name: "NewPost", bundle: ...)`
@@ -1175,7 +1168,6 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try launchScreen.validate()
-      try mastodonPostDetail.validate()
       try newPost.validate()
       try profileCard.validate()
     }
@@ -1185,20 +1177,6 @@ struct _R: Rswift.Validatable {
       
       let bundle = R.hostingBundle
       let name = "LaunchScreen"
-      
-      static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct mastodonPostDetail: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = MastodonPostDetailTableViewController
-      
-      let bundle = R.hostingBundle
-      let name = "MastodonPostDetail"
       
       static func validate() throws {
         if #available(iOS 11.0, *) {

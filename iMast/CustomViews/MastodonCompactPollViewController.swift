@@ -134,8 +134,7 @@ class MastodonCompactPollViewController: UIViewController, Instantiatable, Injec
     }
     
     @objc func onTapped() {
-        let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-        newVC.load(post: self.input)
+        let newVC = MastodonPostDetailViewController.instantiate(self.input, environment: self.environment)
         self.navigationController?.pushViewController(newVC, animated: true)
     }
 }
