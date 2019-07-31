@@ -125,9 +125,6 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
                 input: self.input.originalPost,
                 parentViewController: self
             )
-        default:
-            cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "unknown type:\(source)"
         }
         return cell
     }
