@@ -50,6 +50,8 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         v.textContainer.lineFragmentPadding = 0
     }
     
+    let userButton = UIButton()
+    
     let attachedMediaListViewController: AttachedMediaListViewController
 
     required init(with input: Input, environment: Environment) {
@@ -80,10 +82,17 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
             v.alignment = .center
             v.spacing = 8
             v.axis = .horizontal
+            v.isUserInteractionEnabled = false
+        }
+        
+        userButton.addTarget(self, action: #selector(self.tapUser), for: .touchUpInside)
+        userButton.addSubview(userStackView)
+        userStackView.snp.makeConstraints { make in
+            make.center.size.equalToSuperview()
         }
         
         let stackView = ContainerView(arrangedSubviews: [
-            userStackView,
+            userButton,
             textView,
         ]) ※ { v in
             v.axis = .vertical
@@ -121,5 +130,10 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         }, emojifyProtocol: input)
         
         attachedMediaListViewController.input(post)
+    }
+    
+    @objc func tapUser() {
+        let vc = openUserProfile(user: input.originalPost.account)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
