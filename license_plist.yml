@@ -1,3 +1,9 @@
 github:
   - owner: mikutter
     name: mikutter
+manual:
+  - name: iMast (NOTICE)
+    file: NOTICE
+  - name: iMast (LICENSE)
+    file: LICENSE
+
