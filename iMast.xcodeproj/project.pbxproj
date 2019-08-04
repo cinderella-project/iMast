@@ -153,7 +153,6 @@
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
-		CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */; };
 		CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */; };
 		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */; };
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
@@ -435,7 +434,6 @@
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
-		CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonCompactPollViewController.swift; sourceTree = "<group>"; };
 		CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+toString.swift"; sourceTree = "<group>"; };
 		CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Hydra.swift"; sourceTree = "<group>"; };
 		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSafari.swift; sourceTree = "<group>"; };
@@ -850,7 +848,6 @@
 			isa = PBXGroup;
 			children = (
 				CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */,
-				CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */,
 				CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */,
 				CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */,
 				CE8E8E651F172A770007A311 /* MastodonPostDetail.storyboard */,
@@ -1560,7 +1557,6 @@
 				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */,
-				CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
