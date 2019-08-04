@@ -1,4 +1,12 @@
-                                 Apache License
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>FooterText</key>
+			<string>                                 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
@@ -174,3 +182,10 @@
       of your accepting any such warranty or additional liability.
 
    END OF TERMS AND CONDITIONS
+</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>

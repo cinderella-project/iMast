@@ -346,6 +346,13 @@ version:
 
 name: mikutter, nameSpecified: , owner: mikutter, version: 
 
+name: iMast (LICENSE), nameSpecified: , version: 
+body:                     …
+
+name: iMast (NOTICE), nameSpecified: , version: 
+body: iMast
+Copyright 2017…
+
 add-version-numbers: true
 
 LicensePlist Version: 1.8.3
