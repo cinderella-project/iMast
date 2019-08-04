@@ -311,7 +311,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         textView.font = font
         
         // 添付ファイルの処理
-        attachedMediaListViewContrller.input(post)
+        if post.attachments.count == 0 {
+            attachedMediaListViewContrller.view.isHidden = true
+        } else {
+            attachedMediaListViewContrller.view.isHidden = false
+            attachedMediaListViewContrller.input(post)
+        }
         
         // 投票の処理
         pollViewController.input(post)

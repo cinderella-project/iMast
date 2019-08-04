@@ -37,9 +37,6 @@ class MastodonPost: Codable, EmojifyProtocol {
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
     var repost: MastodonPost?
-    var originalPost: MastodonPost {
-        return self.repost ?? self
-    }
     let status: String
     let createdAt: Date
     let repostCount: Int
@@ -174,7 +171,7 @@ extension MastodonUserToken {
         }
     }
     func unfavourite(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/unfavourite", params: [:]).then { res -> MastodonPost in
+        return self.post("statuses/\(post.id.string)/favourite", params: [:]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
         }
     }

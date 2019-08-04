@@ -191,7 +191,8 @@ class NotificationTableViewController: UITableViewController {
         }
         if let status = notification.status { // 投稿つき
             if notification.type == "mention" {
-                let newVC = MastodonPostDetailViewController.instantiate(status, environment: MastodonUserToken.getLatestUsed()!)
+                let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+                newVC.load(post: status)
                 self.navigationController?.pushViewController(newVC, animated: animated)
                 return
             }

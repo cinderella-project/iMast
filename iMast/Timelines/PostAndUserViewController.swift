@@ -72,7 +72,8 @@ class PostAndUserViewController: TimeLineTableViewController {
         if indexPath[0] == 1 { // post
             let post = self.posts[indexPath[1]]
             // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
-            let newVC = MastodonPostDetailViewController.instantiate(post.originalPost, environment: self.environment)
+            let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            newVC.load(post: post.repost ?? post)
             self.navigationController?.pushViewController(newVC, animated: true)
         } else if indexPath[0] == 2 { // user
             let user = self.users[indexPath[1]]
