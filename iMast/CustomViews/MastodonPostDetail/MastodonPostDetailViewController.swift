@@ -35,6 +35,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
     enum Row {
         case boostedUser
         case content
+        case poll
         case reactions
         case reactionBar
     }
@@ -58,6 +59,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             dataSource.append(.boostedUser)
         }
         dataSource.append(.content)
+        if input.originalPost.poll != nil {
+            dataSource.append(.poll)
+        }
         if input.originalPost.repostCount > 0 || input.originalPost.favouritesCount > 0 || input.application != nil {
             dataSource.append(.reactions)
         }
@@ -73,6 +77,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         TableViewCell<MastodonPostDetailBoostedUserViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailContentViewController>.register(to: tableView)
+        TableViewCell<MastodonPostDetailPollViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailReactionsViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailReactionBarViewController>.register(to: tableView)
         self.input(input)
@@ -109,6 +114,13 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
                 from: tableView,
                 for: indexPath,
                 input: self.input,
+                parentViewController: self
+            )
+        case .poll:
+            cell = TableViewCell<MastodonPostDetailPollViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: self.input.originalPost,
                 parentViewController: self
             )
         case .reactions:
