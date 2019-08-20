@@ -318,7 +318,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     
     @objc func iconTapped() {
-        let vc = openUserProfile(user: input.post.originalPost.account)
+        let vc = UserProfileTopViewController.instantiate(input.post.originalPost.account, environment: self.environment)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -328,8 +328,8 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
-            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                let newVC = openUserProfile(user: user)
+            self.environment.getAccount(id: mention.id).then({ user in
+                let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
                 self.navigationController?.pushViewController(newVC, animated: true)
             })
             return false
@@ -339,7 +339,7 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         }
         if visibleString.starts(with: "#") {
             let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            let newVC = HashtagTimeLineTableViewController.init(hashtag: tag, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: true)
             return false
         }

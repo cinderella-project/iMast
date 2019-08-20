@@ -59,6 +59,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var isModal = false
     @IBOutlet weak var NSFWButton: UIBarButtonItem!
     @IBOutlet weak var scopeSelectButton: UIBarButtonItem!
+    var userToken: MastodonUserToken!
     
     var appendBottomString: String = ""
     
@@ -66,7 +67,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.nowAccountLabel.text = MastodonUserToken.getLatestUsed()!.acct
+        self.nowAccountLabel.text = userToken.acct
         if let replyToPost = replyToPost {
             self.nowAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.pregReplace(pattern: "<.+?>", with: ""))"
             var replyAccounts = [replyToPost.account.acct]
@@ -74,7 +75,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 replyAccounts.append(mention.acct)
             }
             replyAccounts = replyAccounts.filter({ (acct) -> Bool in
-                return acct != MastodonUserToken.getLatestUsed()?.screenName
+                return acct != userToken.screenName
             }).map({ (acct) -> String in
                 return "@\(acct) "
             })
@@ -82,7 +83,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.scope = replyToPost.visibility
         }
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
-            MastodonUserToken.getLatestUsed()!.getUserInfo(cache: true).then { res in
+            userToken.getUserInfo(cache: true).then { res in
                 let myScope = res["source"]["privacy"].string ?? "public"
                 self.scope = myScope
             }
@@ -122,7 +123,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 DispatchQueue.main.async {
                     alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.media.count))"
                 }
-                let response = try await(MastodonUserToken.getLatestUsed()!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                let response = try await(self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if response["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode:  response["_response_code"].intValue)
                 }
@@ -165,7 +166,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             if let replyToPost = self.replyToPost {
                 params["in_reply_to_id"] = replyToPost.id.raw
             }
-            return MastodonUserToken.getLatestUsed()!.post("statuses", params: params)
+            return self.userToken.post("statuses", params: params)
         }.then { res in
             if res["_response_code"].intValue >= 400 {
                 alert.dismiss(animated: false, completion: {

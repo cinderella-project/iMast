@@ -25,14 +25,29 @@ import UIKit
 import SwiftyJSON
 import Accounts
 import SafariServices
+import Mew
 
-class UserProfileTopViewController: StableTableViewController {
+class UserProfileTopViewController: StableTableViewController, Instantiatable, Injectable {
+    typealias Input = MastodonAccount
+    typealias Environment = MastodonUserToken
 
+    internal let environment: Environment
+    private var input: Input
+    
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
+        super.init(style: .grouped)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var moreButton: UIBarButtonItem!
 
     var loadAfter = false
     var isLoaded = false
-    var user: MastodonAccount?
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
     let infoCell = R.nib.userProfileInfoTableViewCell.firstView(owner: self as AnyObject)!
@@ -46,11 +61,7 @@ class UserProfileTopViewController: StableTableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        isLoaded = true
-        if loadAfter {
-            loadAfter = false
-            load(user: user!)
-        }
+        
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
         
@@ -62,43 +73,45 @@ class UserProfileTopViewController: StableTableViewController {
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
+        
+        self.input(self.input)
     }
     
     @objc func reload(sender: UIRefreshControl) {
-        MastodonUserToken.getLatestUsed()!.getAccount(id: user!.id).then { res in
+        self.environment.getAccount(id: self.input.id).then { res in
             print(res)
-            self.load(user: res)
+            self.input(res)
             self.refreshControl?.endRefreshing()
         }
     }
     
-    func load(user: MastodonAccount) {
-        self.user = user
+    func input(_ input: Input) {
+        self.input = input
         if isLoaded == false {
             loadAfter = true
             return
         }
         
-        self.infoCell.load(user: user)
+        self.infoCell.load(user: input)
         self.infoCell.separatorInset = .zero
-        self.bioCell.load(user: user)
+        self.bioCell.load(user: input)
         
         let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         tootCell.textLabel?.text = R.string.userProfile.cellsTootsTitle()
         tootCell.accessoryType = .disclosureIndicator
-        tootCell.detailTextLabel?.text = numToCommaString(user.postsCount)
+        tootCell.detailTextLabel?.text = numToCommaString(input.postsCount)
 
         let followingCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         followingCell.textLabel?.text = R.string.userProfile.cellsFollowingTitle()
         followingCell.accessoryType = .disclosureIndicator
-        followingCell.detailTextLabel?.text = numToCommaString(user.followingCount)
+        followingCell.detailTextLabel?.text = numToCommaString(input.followingCount)
 
         let followersCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         followersCell.textLabel?.text = R.string.userProfile.cellsFollowersTitle()
         followersCell.accessoryType = .disclosureIndicator
-        followersCell.detailTextLabel?.text = numToCommaString(user.followersCount)
+        followersCell.detailTextLabel?.text = numToCommaString(input.followersCount)
 
-        let createdAt = user.createdAt
+        let createdAt = input.createdAt
         let createdAtCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         createdAtCell.textLabel?.text = R.string.userProfile.cellsCreatedAtTitle()
         createdAtCell.detailTextLabel?.text = DateUtils.stringFromDate(
@@ -112,10 +125,10 @@ class UserProfileTopViewController: StableTableViewController {
         
         let tootDaysCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         tootDaysCell.textLabel?.text = "平均トゥート/日"
-        tootDaysCell.detailTextLabel?.text = numToCommaString(-(user.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
+        tootDaysCell.detailTextLabel?.text = numToCommaString(-(input.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.externalServiceLinks = []
 
-        if let niconicoUrl = user.niconicoUrl, let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last {
+        if let niconicoUrl = input.niconicoUrl, let niconicoId = niconicoUrl.absoluteString.components(separatedBy: "/").last {
             self.externalServiceLinks.append((name: "niconico", userId: "user/\(niconicoId)", urls: [
                 (appName: "Web", url: niconicoUrl),
                 (appName: "niconicoアプリ", url: URL(string: "nicovideo://web?/User?id=\(niconicoId)")!),
@@ -123,7 +136,7 @@ class UserProfileTopViewController: StableTableViewController {
             ]))
         }
         
-        if let oauthAuths = user.oauthAuthentications {
+        if let oauthAuths = input.oauthAuthentications {
             for auth in oauthAuths {
                 if auth.provider != "pixiv" { continue }
                 self.externalServiceLinks.append((name: "pixiv", userId: auth.uid, urls: [
@@ -156,19 +169,16 @@ class UserProfileTopViewController: StableTableViewController {
     }
 
     @IBAction func moreButtonTapped(_ sender: Any) {
-        guard let user = self.user else {
-            return
-        }
-        let myScreenName = "@"+(MastodonUserToken.getLatestUsed()!.screenName!)
-        MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
+        let myScreenName = "@"+self.environment.screenName!
+        self.environment.getRelationship([input]).then({ (relationships) in
             let relationship = relationships[0]
-            let screenName = "@"+user.acct
+            let screenName = "@"+self.input.acct
             let actionSheet = UIAlertController(title: R.string.userProfile.actionsTitle(), message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
             actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsShare(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                 let activityItems: [Any] = [
-                    (user.name != "" ? user.name : user.screenName).emojify()+"さんのプロフィール - Mastodon",
-                    NSURL(string: user.url)!,
+                    (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
+                    NSURL(string: self.input.url)!,
                 ]
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
                 activityVC.popoverPresentationController?.sourceView = self.moreButton.value(forKey: "view") as? UIView
@@ -179,7 +189,7 @@ class UserProfileTopViewController: StableTableViewController {
                 if !relationship.following { // 未フォロー
                     if !relationship.requested { // リクエストもしてない
                         actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollow(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
-                            MastodonUserToken.getLatestUsed()?.follow(account: user).then({ (res) in
+                            self.environment.follow(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
@@ -189,7 +199,7 @@ class UserProfileTopViewController: StableTableViewController {
                                 if !result {
                                     return
                                 }
-                                MastodonUserToken.getLatestUsed()?.unfollow(account: user).then({ (res) in
+                                self.environment.unfollow(account: self.input).then({ (res) in
                                     self.reload(sender: self.refreshControl!)
                                 })
                             })
@@ -201,13 +211,13 @@ class UserProfileTopViewController: StableTableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.unfollow(account: user).then({ (res) in
+                            self.environment.unfollow(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
                     }))
                     actionSheet.addAction(UIAlertAction(title: "リストへ追加/削除", style: .default, handler: { _ in
-                        let newVC = ListAdderTableViewController(with: user, environment: MastodonUserToken.getLatestUsed()!)
+                        let newVC = ListAdderTableViewController(with: self.input, environment: self.environment)
                         self.navigationController?.pushViewController(newVC, animated: true)
                     }))
                 }
@@ -217,7 +227,7 @@ class UserProfileTopViewController: StableTableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.mute(account: user).then({ (res) in
+                            self.environment.mute(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -228,7 +238,7 @@ class UserProfileTopViewController: StableTableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.unmute(account: user).then({ (res) in
+                            self.environment.unmute(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -240,7 +250,7 @@ class UserProfileTopViewController: StableTableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.block(account: user).then({ (res) in
+                            self.environment.block(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -251,7 +261,7 @@ class UserProfileTopViewController: StableTableViewController {
                             if !result {
                                 return
                             }
-                            MastodonUserToken.getLatestUsed()?.unblock(account: user).then({ (res) in
+                            self.environment.unblock(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         })
@@ -260,15 +270,16 @@ class UserProfileTopViewController: StableTableViewController {
                 }
             } else { // 自分なら
                 actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsProfileCard(), style: .default, handler: { action in
-                    let storyboard = UIStoryboard(name: "ProfileCard", bundle: nil)
-                    let newVC = storyboard.instantiateInitialViewController()! as! ProfileCardViewController
-                    newVC.user = user
+                    guard let newVC = R.storyboard.profileCard.instantiateInitialViewController() else {
+                        return
+                    }
+                    newVC.user = self.input
                     self.navigationController?.pushViewController(newVC, animated: true)
                 }))
-                if user.isLocked {
+                if self.input.isLocked {
                     actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestsList(), style: .default) { _ in
-                        MastodonUserToken.getLatestUsed()?.followRequests().then { res in
-                            let newVC = FollowRequestsListTableViewController()
+                        self.environment.followRequests().then { res in
+                            let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
                             newVC.followRequests = res
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
@@ -287,13 +298,16 @@ class UserProfileTopViewController: StableTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
-                let newVC = UserTimeLineTableViewController()
-                newVC.user = self.user!
+                let newVC = UserTimeLineTableViewController.instantiate(.plain, environment: self.environment)
+                newVC.user = self.input
                 newVC.title = "トゥート一覧"
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return
             } else if indexPath.row == 1 || indexPath.row == 2 {
-                let newVC = FollowTableViewController(type: indexPath.row == 1 ? .following : .followers, userId: self.user!.id)
+                let newVC = FollowTableViewController.instantiate(
+                    (type: indexPath.row == 1 ? .following : .followers, userId: self.input.id),
+                    environment: self.environment
+                )
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return
             }
@@ -345,16 +359,9 @@ class UserProfileTopViewController: StableTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == 0, self.user?.acct.contains("@") ?? false {
+        if section == 0, self.input.acct.contains("@") {
             return R.string.userProfile.federatedUserWarning()
         }
         return nil
     }
-
-}
-
-func openUserProfile(user: MastodonAccount) -> UserProfileTopViewController {
-    let newVC = UserProfileTopViewController(style: .grouped)
-    newVC.load(user: user)
-    return newVC
 }

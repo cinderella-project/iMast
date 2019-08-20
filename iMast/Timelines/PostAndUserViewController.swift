@@ -82,11 +82,12 @@ class PostAndUserViewController: UITableViewController, Instantiatable {
         case 0:
             let post = input.posts[indexPath.row]
             let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            newVC.userToken = environment
             newVC.load(post: post.originalPost)
             self.navigationController?.pushViewController(newVC, animated: true)
         case 1:
             let user = input.users[indexPath.row]
-            let newVC = openUserProfile(user: user)
+            let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
             self.navigationController?.pushViewController(newVC, animated: true)
         default:
             fatalError("unknown indexPath section")

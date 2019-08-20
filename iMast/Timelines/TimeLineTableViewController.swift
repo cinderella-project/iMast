@@ -42,7 +42,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         case readMore
     }
     
-    var environment: Environment
+    let environment: Environment
     
     typealias Input = UITableView.Style
     
@@ -66,7 +66,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var isReadmoreEnabled = true
     var isNewPostAvailable = false
     
-    required init(with input: Input = .plain, environment: Environment = MastodonUserToken.getLatestUsed()!) {
+    required init(with input: Input = .plain, environment: Environment) {
         tableView = UITableView(frame: .zero, style: input)
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
@@ -216,7 +216,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         }
         
         self.readmoreCell.state = .loading
-        return MastodonUserToken.getLatestUsed()!.timeline(timelineType).then { (posts) -> Void in
+        return self.environment.timeline(timelineType).then { (posts) -> Void in
             self.readmoreCell.state = .moreLoadable
             self._addNewPosts(posts: posts)
             return Void()
@@ -240,7 +240,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         } else {
             pointer = nil
         }
-        MastodonUserToken.getLatestUsed()!.timeline(
+        environment.timeline(
             timelineType,
             limit: 40,
             sinceId: pointer
@@ -265,7 +265,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             pointer = nil
         }
         
-        MastodonUserToken.getLatestUsed()!.timeline(
+        environment.timeline(
             timelineType,
             limit: 40,
             maxId: pointer
@@ -284,6 +284,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     
     func openNewPostVC() {
         let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        vc.userToken = self.environment
         self.processNewPostVC(newPostVC: vc)
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -317,7 +318,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             return false
         })
         
-        let snapshot = self.diffableDataSource.snapshot()
+        var snapshot = self.diffableDataSource.snapshot()
         snapshot.prependItems(
             posts.map { .post(id: $0.id, pinned: false) },
             section: .posts
@@ -347,7 +348,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         guard let webSocketEndpoint = self.websocketEndpoint() else {
             return
         }
-        getWebSocket(endpoint: webSocketEndpoint).then { socket in
+        environment.getWebSocket(endpoint: webSocketEndpoint).then { socket in
             socket.event.connect.on {
                 self.streamingNavigationItem?.tintColor = nil
             }
@@ -412,7 +413,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
             }
-            let snapshot = self.diffableDataSource.snapshot()
+            var snapshot = self.diffableDataSource.snapshot()
             snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
             self.diffableDataSource.apply(snapshot, animatingDifferences: false)
             self.isAlreadyAdded = [:]
@@ -432,7 +433,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     }
     
     func appendNewPosts(posts: [MastodonPost]) {
-        let snapshot = self.diffableDataSource.snapshot()
+        var snapshot = self.diffableDataSource.snapshot()
         for post in posts {
             environment.memoryStore.post.change(obj: post)
         }
@@ -458,7 +459,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         }
         // ブースト
         let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
-            MastodonUserToken.getLatestUsed()!.repost(post: post).then { post_ in
+            self.environment.repost(post: post).then { post_ in
                 let post = post_.repost!
                 self.updatePost(from: post.value, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
@@ -468,7 +469,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         }
         // like
         let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ") { (action, index) -> Void in
-            MastodonUserToken.getLatestUsed()!.favourite(post: post).then { post in
+            self.environment.favourite(post: post).then { post in
                 self.updatePost(from: post, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 tableView.isEditing = false
@@ -500,6 +501,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         switch item {
         case .post(let id, _):
             let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            postDetailVC.userToken = environment
             // TODO: ここでIDを渡す
             postDetailVC.load(post: environment.memoryStore.post.container[id]!)
             self.navigationController?.pushViewController(postDetailVC, animated: true)

@@ -76,32 +76,33 @@ class WebSocketWrapper {
     }
 }
 
-func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
-    let userToken = MastodonUserToken.getLatestUsed()!
-    return userToken.app.instance.getInfo().then { info in
-        var streamingUrlString = ""
-        streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+userToken.app.instance.hostName
-        streamingUrlString += "/api/v1/streaming/?stream=" + endpoint
-        let protocols: [String]?
-        if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
-            protocols = [userToken.token]
-        } else {
-            streamingUrlString += "&access_token=" + userToken.token
-            protocols = nil
+extension MastodonUserToken {
+    func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
+        return self.app.instance.getInfo().then { info in
+            var streamingUrlString = ""
+            streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
+            streamingUrlString += "/api/v1/streaming/?stream=" + endpoint
+            let protocols: [String]?
+            if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
+                protocols = [self.token]
+            } else {
+                streamingUrlString += "&access_token=" + self.token
+                protocols = nil
+            }
+            var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+            urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+            let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
+            let wrap = WebSocketWrapper(webSocket: webSocket)
+            _ = wrap.event.connect.on {
+                print("WebSocket::Connect", endpoint)
+            }
+            _ = wrap.event.disconnect.on { error in
+                print("WebSocket::Disconnect", endpoint, error?.localizedDescription ?? "no desc")
+            }
+            wrap.connect()
+            webSockets.append(wrap)
+            return Promise(resolved: wrap)
         }
-        var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
-        urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-        let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
-        let wrap = WebSocketWrapper(webSocket: webSocket)
-        _ = wrap.event.connect.on {
-            print("WebSocket::Connect", endpoint)
-        }
-        _ = wrap.event.disconnect.on { error in
-            print("WebSocket::Disconnect", endpoint, error?.localizedDescription ?? "no desc")
-        }
-        wrap.connect()
-        webSockets.append(wrap)
-        return Promise(resolved: wrap)
     }
 }
 

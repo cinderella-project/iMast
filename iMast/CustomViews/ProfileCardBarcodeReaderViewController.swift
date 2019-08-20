@@ -24,8 +24,22 @@
 import UIKit
 import AVFoundation
 import SafariServices
+import Mew
 
-class ProfileCardBarcodeReaderViewController: UIViewController {
+class ProfileCardBarcodeReaderViewController: UIViewController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
+    
+    internal let environment: Environment
+    
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     let ui2videoOrientation = [
         UIInterfaceOrientation.portrait: AVCaptureVideoOrientation.portrait,
@@ -123,7 +137,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                 print(urlencoded)
                 let loadingAlert = UIAlertController(title: "取得中", message: "取得中です...", preferredStyle: .alert)
                 self.present(loadingAlert, animated: true, completion: nil)
-                MastodonUserToken.getLatestUsed()!.search(q: urlencoded, resolve: true).then { res in
+                self.environment.search(q: urlencoded, resolve: true).then { res in
                     print(res)
                     if res.accounts.count == 0 {
                         loadingAlert.dismiss(animated: false) {
@@ -131,7 +145,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                         }
                     }
                     if res.accounts.count == 1 {
-                        let newVC = openUserProfile(user: res.accounts[0])
+                        let newVC = UserProfileTopViewController.instantiate(res.accounts[0], environment: self.environment)
                         loadingAlert.dismiss(animated: false) {
                             self.navigationController?.pushViewController(newVC, animated: true)
                         }
@@ -141,7 +155,7 @@ extension ProfileCardBarcodeReaderViewController: AVCaptureMetadataOutputObjects
                             let alert = UIAlertController(title: "選択", message: "複数のユーザーが見つかりました。どのユーザーを表示しますか?", preferredStyle: .alert)
                             for account in res.accounts {
                                 alert.addAction(UIAlertAction(title: "@"+account.acct, style: .default, handler: { action in
-                                    let newVC = openUserProfile(user: account)
+                                    let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
                                     self.navigationController?.pushViewController(newVC, animated: true)
                                 }))
                             }

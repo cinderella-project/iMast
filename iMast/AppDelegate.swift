@@ -45,19 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        let myAccount = MastodonUserToken.getLatestUsed()
-        if let myAccount = myAccount {
-            changeRootVC(MainTabBarController(), animated: false)
-            myAccount.getUserInfo().then { json in
-                if json["error"].string != nil && json["_response_code"].number == 401 {
-                    myAccount.delete()
-                    changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
-                }
-            }
-        } else {
-            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
-        }
-        
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
@@ -129,7 +116,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     userToken.use()
                     nextVC.userToken = userToken
                 }.then(in: .main) {
-                    changeRootVC(nextVC, animated: false)
+                    guard let scene = application.connectedScenes.first as? UIWindowScene else {
+                        return
+                    }
+                    guard let window = scene.windows.first else {
+                        return
+                    }
+                    window.rootViewController = nextVC
                 }
                 return true
             }),
@@ -161,6 +154,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 //        print("DeviceToken",deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)})
 //        print("isDebugBuild", isDebugBuild)
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -234,7 +231,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         if userToken.id != MastodonUserToken.getLatestUsed()?.id {
             userToken.use()
-            changeRootVC(MainTabBarController(), animated: true)
+            // TODO: あとでいい感じにする
+//            self.changeRootVC(MainTabBarController.instantiate(environment: userToken), animated: true)
         }
         
         guard let topVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
@@ -290,21 +288,20 @@ func openVLC(_ url: String) -> Bool {
     return false
 }
 
-func changeRootVC(_ viewController: UIViewController, animated: Bool) {
-    guard let window = UIApplication.shared.keyWindow else {
-        // windowがないなら、作ってkeyWindowにする
-        let window = UIWindow()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-        (UIApplication.shared.delegate as! AppDelegate).window = window
-        return
-    }
-    if animated {
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            changeRootVC(viewController, animated: false)
-        }, completion: nil)
-    } else {
-        allWebSocketDisconnect()
-        window.rootViewController = viewController
+extension UIViewController {
+    func changeRootVC(_ viewController: UIViewController, animated: Bool) {
+        guard let window = self.view.window else {
+            fatalError("windowないが")
+            return
+        }
+        if animated {
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.changeRootVC(viewController, animated: false)
+            }, completion: nil)
+        } else {
+            // TODO: あとでちゃんとやる
+//            allWebSocketDisconnect()
+            window.rootViewController = viewController
+        }
     }
 }

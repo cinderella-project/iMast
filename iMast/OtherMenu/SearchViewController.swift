@@ -79,7 +79,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             return
         }
         self.refreshControl?.beginRefreshing()
-        MastodonUserToken.getLatestUsed()!.search(q: text).then { result in
+        environment.search(q: text).then { result in
             self.result = result
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
@@ -87,14 +87,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     }
     
     func reloadTrendTags() {
-        guard let token = MastodonUserToken.getLatestUsed() else {
-            return
-        }
         // TODO: トレンドタグのwhitelistを外部指定できるようにする
-        guard ["imastodon.net", "imastodon.blue"].contains(token.app.instance.hostName) else {
+        guard ["imastodon.net", "imastodon.blue"].contains(environment.app.instance.hostName) else {
             return
         }
-        token.getTrendTags().then { res in
+        environment.getTrendTags().then { res in
             self.trendTags = res
             self.trendTagsArray = res.score.map { $0 }.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
             print(self.trendTagsArray)
@@ -156,7 +153,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             cell.textLabel?.text = account.name == "" ? account.screenName : account.name
             cell.detailTextLabel?.text = "@" + account.acct
-            let iconUrl = URL(string: account.avatarUrl, relativeTo: URL(string: "https://" + MastodonUserToken.getLatestUsed()!.app.instance.hostName)!)
+            let iconUrl = URL(string: account.avatarUrl, relativeTo: URL(string: "https://" + environment.app.instance.hostName)!)
             cell.imageView?.sd_setImage(with: iconUrl, completed: { (_, _, _, _) in
                 cell.setNeedsLayout()
                 cell.layoutIfNeeded()
@@ -189,17 +186,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            let vc = openUserProfile(user: self.result!.accounts[indexPath.row])
+            let vc = UserProfileTopViewController.instantiate(self.result!.accounts[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row])
+            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            vc.userToken = environment
             vc.load(post: self.result!.posts[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case 3:
-            let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag)
+            let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag, environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break

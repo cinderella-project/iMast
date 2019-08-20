@@ -37,7 +37,7 @@ class BunmyakuTableViewController: TimeLineTableViewController {
     
     override func loadTimeline() -> Promise<()> {
         self.readmoreCell.state = .loading
-        return MastodonUserToken.getLatestUsed()!.context(post: self.basePost).then { res in
+        return environment.context(post: self.basePost).then { res in
             self.readmoreCell.state = .moreLoadable
             self._addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
         }.catch { e in

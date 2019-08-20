@@ -23,10 +23,24 @@
 
 import UIKit
 import SwiftyJSON
+import Mew
 
-class ListsTableViewController: UITableViewController {
+class ListsTableViewController: UITableViewController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
+    
+    internal var environment: Environment
 
     var lists: [MastodonList] = []
+    
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +71,8 @@ class ListsTableViewController: UITableViewController {
             textField.placeholder = "リスト名"
         }
         alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
-            MastodonUserToken.getLatestUsed()!.list(title: alert.textFields![0].text ?? "").then { list in
-                let vc = ListTimeLineTableViewController()
+            self.environment.list(title: alert.textFields![0].text ?? "").then { list in
+                let vc = ListTimeLineTableViewController.instantiate(.plain, environment: self.environment)
                 vc.list = list
                 vc.title = list.title
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -70,7 +84,7 @@ class ListsTableViewController: UITableViewController {
     }
     
     @objc func refreshList() {
-        MastodonUserToken.getLatestUsed()!.lists().then { lists in
+        self.environment.lists().then { lists in
             self.lists = lists
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
@@ -101,8 +115,8 @@ class ListsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let list = self.lists[indexPath[1]]
-        let vc = ListTimeLineTableViewController()
+        let list = self.lists[indexPath.row]
+        let vc = ListTimeLineTableViewController(environment: self.environment)
         vc.list = list
         vc.title = list.title
         self.navigationController?.pushViewController(vc, animated: true)

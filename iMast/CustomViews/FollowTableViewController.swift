@@ -23,20 +23,23 @@
 
 import UIKit
 import ActionClosurable
+import Mew
 
-class FollowTableViewController: UITableViewController {
+class FollowTableViewController: UITableViewController, Instantiatable {
+    typealias Input = (type: MastodonFollowFetchType, userId: MastodonID)
+    typealias Environment = MastodonUserToken
+    
+    private var input: Input
+    internal let environment: Environment
 
-    let type: MastodonFollowFetchType
-    let userId: MastodonID
     let readmoreCell = ReadmoreTableViewCell()
     
     var users: [MastodonAccount] = []
     var maxId: MastodonID?
     
-    init(type: MastodonFollowFetchType, userId: MastodonID) {
-        self.type = type
-        self.userId = userId
-        
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
         super.init(style: .plain)
     }
     
@@ -52,13 +55,13 @@ class FollowTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = type == .following ? "フォロー一覧" : "フォロワー一覧"
+        self.title = input.type == .following ? "フォロー一覧" : "フォロワー一覧"
         self.load()
     }
     
     func load() {
         self.readmoreCell.state = .loading
-        MastodonUserToken.getLatestUsed()?.getFollows(target: self.userId, type: self.type, maxId: self.maxId).then { res in
+        self.environment.getFollows(target: self.input.userId, type: self.input.type, maxId: self.maxId).then { res in
             self.users.append(contentsOf: res.result)
             self.maxId = res.max
             self.readmoreCell.state = res.max == nil ? .allLoaded : .moreLoadable
@@ -101,7 +104,7 @@ class FollowTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            let newVC = openUserProfile(user: self.users[indexPath.row])
+            let newVC = UserProfileTopViewController.instantiate(self.users[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(newVC, animated: true)
         } else if self.readmoreCell.state == .moreLoadable {
             self.load()

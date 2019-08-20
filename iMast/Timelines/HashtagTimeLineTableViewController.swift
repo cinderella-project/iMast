@@ -24,13 +24,14 @@
 import UIKit
 import Hydra
 import SwiftyJSON
+import Mew
 
 class HashtagTimeLineTableViewController: TimeLineTableViewController {
     let hashtag: String
     
-    init(hashtag: String) {
+    init(hashtag: String, environment: MastodonUserToken) {
         self.hashtag = hashtag
-        super.init(with: .plain)
+        super.init(with: .plain, environment: environment)
         self.timelineType = .hashtag(hashtag)
         self.title = "#" + hashtag
         self.isNewPostAvailable = true
@@ -44,7 +45,7 @@ class HashtagTimeLineTableViewController: TimeLineTableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    required init(with input: Input, environment: Environment) {
+    required init(with input: Input = .plain, environment: Environment) {
         fatalError("init(with:environment:) has not been implemented")
     }
     

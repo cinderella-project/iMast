@@ -46,7 +46,7 @@ class AddAccountSuccessViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func goTimelineTapped(_ sender: Any) {
-        changeRootVC(MainTabBarController(), animated: true)
+        changeRootVC(MainTabBarController(with: (), environment: self.userToken), animated: true)
     }
 
     /*

@@ -24,9 +24,22 @@
 import UIKit
 import SwiftyJSON
 import SDWebImage
+import Mew
 
-class FollowRequestsListTableViewController: UITableViewController {
-
+class FollowRequestsListTableViewController: UITableViewController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
+    internal let environment: Environment
+    
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var followRequests: [MastodonAccount] = []
     
     override func viewDidLoad() {
@@ -48,7 +61,7 @@ class FollowRequestsListTableViewController: UITableViewController {
     }
     
     @objc func refresh() {
-        MastodonUserToken.getLatestUsed()?.followRequests().then { res in
+        environment.followRequests().then { res in
             self.followRequests = res
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
@@ -88,13 +101,13 @@ class FollowRequestsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = self.followRequests[indexPath.row]
         let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
-            MastodonUserToken.getLatestUsed()?.followRequestAuthorize(target: user).then { res in
+            self.environment.followRequestAuthorize(target: user).then { res in
                 self.refresh()
             }
         }
         authorizeAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         let rejectAction = UITableViewRowAction(style: .destructive, title: "拒否") { _, _ in
-            MastodonUserToken.getLatestUsed()?.followRequestReject(target: user).then { res in
+            self.environment.followRequestReject(target: user).then { res in
                 self.refresh()
             }
         }
@@ -105,7 +118,7 @@ class FollowRequestsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newVC = openUserProfile(user: self.followRequests[indexPath.row])
+        let newVC = UserProfileTopViewController.instantiate(self.followRequests[indexPath.row], environment: self.environment)
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     

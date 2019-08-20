@@ -33,7 +33,7 @@ class AddAccountIndexViewController: FormViewController {
         self.title = R.string.localizable.login()
         if MastodonUserToken.getLatestUsed() != nil {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel) { _ in
-                changeRootVC(MainTabBarController(), animated: true)
+                // TODO: あとで戻れるようにしておく
             }
         }
         self.form +++ Section(R.string.localizable.pleaseInputMastodonInstance())

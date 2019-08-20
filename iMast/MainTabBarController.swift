@@ -23,27 +23,41 @@
 
 import UIKit
 import ActionClosurable
+import Mew
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
 
+    let environment: Environment
+
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController())
+        let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController.instantiate(.plain, environment: self.environment))
         homeVC.tabBarItem.image = UIImage(systemName: "house")
         homeVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
 
-        let notifyVC = UINavigationController(rootViewController: NotificationTableViewController())
+        let notifyVC = UINavigationController(rootViewController: NotificationTableViewController.instantiate(environment: self.environment))
         notifyVC.tabBarItem.image = UIImage(systemName: "bell")
         notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
         notifyVC.tabBarItem.title = R.string.localizable.notifications()
 
-        let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController())
+        let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController.instantiate(.plain, environment: self.environment))
         ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person")
         ltlVC.tabBarItem.selectedImage = UIImage(systemName: "person.and.person.fill")
         ltlVC.tabBarItem.title = R.string.localizable.localTimelineShort()
 
-        let otherVC = UINavigationController(rootViewController: OtherMenuViewController())
+        let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
         otherVC.tabBarItem.image = R.image.moreOutline()
         otherVC.tabBarItem.selectedImage = R.image.more()
         otherVC.tabBarItem.title = R.string.localizable.other()

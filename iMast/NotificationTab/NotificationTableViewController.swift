@@ -23,12 +23,19 @@
 
 import UIKit
 import SwiftyJSON
+import Mew
 
-class NotificationTableViewController: UITableViewController {
+class NotificationTableViewController: UITableViewController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
+    
+    internal let environment: Environment
+    
     var notifications: [MastodonNotification] = []
     let readmoreCell = ReadmoreTableViewCell()
     
-    init() {
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
         super.init(style: .plain)
     }
     
@@ -51,7 +58,7 @@ class NotificationTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         
         self.readmoreCell.state = .loading
-        MastodonUserToken.getLatestUsed()?.getNoficitaions().then { notifications in
+        environment.getNoficitaions().then { notifications in
             self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
             self.notifications = notifications
             self.tableView.reloadData()
@@ -83,7 +90,7 @@ class NotificationTableViewController: UITableViewController {
     }
     
     @objc func refreshNotification() {
-        MastodonUserToken.getLatestUsed()?.getNoficitaions(sinceId: notifications.first?.id).then({ new_notifications in
+        environment.getNoficitaions(sinceId: notifications.first?.id).then({ new_notifications in
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
@@ -168,7 +175,7 @@ class NotificationTableViewController: UITableViewController {
         }
         
         self.readmoreCell.state = .loading
-        MastodonUserToken.getLatestUsed()?.getNoficitaions(limit: 40, maxId: self.notifications.last?.id).then { notifications in
+        environment.getNoficitaions(limit: 40, maxId: self.notifications.last?.id).then { notifications in
             let oldCount = self.notifications.count
             self.notifications.append(contentsOf: notifications)
             self.tableView.beginUpdates()
@@ -188,18 +195,19 @@ class NotificationTableViewController: UITableViewController {
         if let status = notification.status { // 投稿つき
             if notification.type == "mention" {
                 let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+                newVC.userToken = self.environment
                 newVC.load(post: status)
                 self.navigationController?.pushViewController(newVC, animated: animated)
                 return
             }
-            let newVC = PostAndUserViewController(with: ([status], [account]), environment: MastodonUserToken.getLatestUsed()!)
+            let newVC = PostAndUserViewController(with: ([status], [account]), environment: environment)
             newVC.title = [
                 "favourite": "ふぁぼられ",
                 "reblog": "ブースト",
             ][notification.type]
             self.navigationController?.pushViewController(newVC, animated: animated)
         } else { // ユーザーつき
-            let newVC = openUserProfile(user: account)
+            let newVC = UserProfileTopViewController.instantiate(account, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: animated)
         }
     }

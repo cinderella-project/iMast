@@ -25,11 +25,26 @@ import UIKit
 import SwiftyJSON
 import Eureka
 import ActionClosurable
+import Mew
 
-class MastodonPostAbuseViewController: FormViewController {
-
+class MastodonPostAbuseViewController: FormViewController, Instantiatable {
+    typealias Input = MastodonPost
+    typealias Environment = MastodonUserToken
+    
+    private let input: Input
+    internal let environment: Environment
+    
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
+        super.init(style: .grouped)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var placeholder = ""
-    var targetPost: MastodonPost!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +57,7 @@ class MastodonPostAbuseViewController: FormViewController {
                 $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
         }
         
-        if let remoteInstance = targetPost.account.acct.split(separator: "@").safe(1) {
+        if let remoteInstance = input.account.acct.split(separator: "@").safe(1) {
             self.form +++ Section(footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。")
                 <<< SwitchRow {
                     $0.tag = "forward"
@@ -65,7 +80,7 @@ class MastodonPostAbuseViewController: FormViewController {
     func submitButtonTapped() {
         let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value ?? ""
         let forward = (self.form.rowBy(tag: "forward") as? SwitchRow)?.value ?? false
-        MastodonUserToken.getLatestUsed()!.reports(account: self.targetPost.account, comment: text, forward: forward, posts: [targetPost]).then { (res) in
+        environment.reports(account: self.input.account, comment: text, forward: forward, posts: [input]).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }

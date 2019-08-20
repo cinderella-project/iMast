@@ -48,7 +48,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         self.refreshControl = refreshControl
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, closure: { _ in
-            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
+            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
         })
         
         tableView.rowHeight = 44
@@ -133,8 +133,9 @@ class ChangeActiveAccountViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        userTokens[indexPath[1]].use()
-        changeRootVC(MainTabBarController(), animated: true)
+        let token = userTokens[indexPath.row]
+        token.use()
+        changeRootVC(MainTabBarController.instantiate(environment: token), animated: true)
     }
     
     /*
@@ -163,11 +164,11 @@ class ChangeActiveAccountViewController: UITableViewController {
                 if userToken.delete() {
                     self.userTokens = MastodonUserToken.getAllUserTokens()
                     self.tableView.reloadData()
-                    if indexPath[1] == 0 {
-                        if self.userTokens.count > 0 {
-                            changeRootVC(MainTabBarController(), animated: true)
+                    if indexPath.row == 0 {
+                        if let token = MastodonUserToken.getLatestUsed() {
+                            self.changeRootVC(MainTabBarController.instantiate(environment: token), animated: true)
                         } else {
-                            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
+                            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
                         }
                     }
                 }

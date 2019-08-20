@@ -54,7 +54,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
                 }.onCellSelection { cell, row in
                     let alert = UIAlertController(title: "確認", message: "リスト「\(self.title ?? "")」を削除してもよろしいですか?", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive) { _ in
-                        MastodonUserToken.getLatestUsed()!.delete(list: self.list).then {
+                        self.environment.delete(list: self.list).then {
                             vc.dismiss(animated: true, completion: nil)
                             self.navigationController?.popViewController(animated: true)
                         }
@@ -78,7 +78,7 @@ class ListTimeLineTableViewController: TimeLineTableViewController {
         vc.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "保存", style: .plain) { item in
                 vc.navigationItem.rightBarButtonItems = [loadingItem]
-                MastodonUserToken.getLatestUsed()!.list(list: self.list, title: titleRow.value ?? "").then { res in
+                self.environment.list(list: self.list, title: titleRow.value ?? "").then { res in
 //                    if res["error"].exists() {
 //                        vc.navigationItem.rightBarButtonItems = [item]
 //                        vc.apiError(res)

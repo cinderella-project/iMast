@@ -27,7 +27,8 @@ import SafariServices
 import AVKit
 
 class MastodonPostDetailTableViewController: UITableViewController, UITextViewDelegate {
-
+    var userToken: MastodonUserToken!
+    
     @IBOutlet weak var firstCell: UITableViewCell!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var iconView: UIImageView!
@@ -122,7 +123,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         }
         var iconUrl = post.account.avatarUrl
         if iconUrl.count >= 1 && iconUrl[iconUrl.startIndex] == "/" {
-            iconUrl = "https://"+MastodonUserToken.getLatestUsed()!.app.instance.hostName+iconUrl
+            iconUrl = "https://"+self.userToken.app.instance.hostName+iconUrl
         }
         userNameView.text = (post.account.name != "" ? post.account.name : post.account.screenName).emojify()
         userScreenNameView.text = "@"+post.account.acct
@@ -208,9 +209,10 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         guard let post = self.post?.originalPost else {
             return
         }
-        let storyboard = UIStoryboard(name: "NewPost", bundle: nil)
-        // let newVC = storyboard.instantiateViewController(withIdentifier: "topVC") as! UserProfileTopViewController
-        let newVC = storyboard.instantiateInitialViewController() as! NewPostViewController
+        guard let newVC = R.storyboard.newPost.instantiateInitialViewController() else {
+            return
+        }
+        newVC.userToken = self.userToken
         newVC.replyToPost = post
         newVC.title = "返信"
         self.navigationController?.pushViewController(newVC, animated: true)
@@ -220,11 +222,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
         if !isBoosted {
-            MastodonUserToken.getLatestUsed()!.repost(post: post).then({ (res) in
+            self.userToken.repost(post: post).then({ (res) in
                 self.isBoosted = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.unrepost(post: post).then({ (res) in
+            self.userToken.unrepost(post: post).then({ (res) in
                 self.isBoosted = false
             })
         }
@@ -235,11 +237,11 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             return
         }
         if !isFavorited {
-            MastodonUserToken.getLatestUsed()!.favourite(post: post).then({ (res) in
+            self.userToken.favourite(post: post).then({ (res) in
                 self.isFavorited = true
             })
         } else {
-            MastodonUserToken.getLatestUsed()!.unfavourite(post: post).then({ (res) in
+            self.userToken.unfavourite(post: post).then({ (res) in
                 self.isFavorited = false
             })
         }
@@ -266,7 +268,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         guard let post = self.post?.originalPost else {
             return
         }
-        let newVC = openUserProfile(user: post.account)
+        let newVC = UserProfileTopViewController.instantiate(post.account, environment: self.userToken)
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
@@ -284,8 +286,8 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 return false
             }
             if let mention = post.mentions.first(where: { $0.url == urlString }) {
-                MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                    let newVC = openUserProfile(user: user)
+                self.userToken.getAccount(id: mention.id).then({ user in
+                    let newVC = UserProfileTopViewController.instantiate(user, environment: self.userToken)
                     self.navigationController?.pushViewController(newVC, animated: true)
                 })
                 return false
@@ -295,7 +297,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             }
             if visibleString.starts(with: "#") {
                 let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-                let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+                let newVC = HashtagTimeLineTableViewController(hashtag: tag, environment: self.userToken)
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return false
             }
@@ -322,13 +324,13 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
                 self.navigationController?.pushViewController(newVC, animated: true)
             }))
         }
-        if MastodonUserToken.getLatestUsed()!.screenName == post.account.acct {
+        if self.userToken.screenName == post.account.acct {
             actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive, handler: { (action) in
                 self.confirm(title: "投稿の削除", message: Defaults[.deleteTootTeokure] ? "失った信頼はもう戻ってきませんが、本当にこのトゥートを削除しますか?" : "この投稿を削除しますか?", okButtonMessage: "削除", style: .destructive).then({ (res) in
                     if res == false {
                         return
                     }
-                    MastodonUserToken.getLatestUsed()!.delete(post: post).then({ (res) in
+                    self.userToken.delete(post: post).then({ (res) in
                         self.navigationController?.popViewController(animated: true)
                         self.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
                     })
@@ -336,8 +338,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
             }))
         }
         actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertAction.Style.destructive, handler: { (action) in
-            let newVC = MastodonPostAbuseViewController()
-            newVC.targetPost = post
+            let newVC = MastodonPostAbuseViewController.instantiate(post, environment: self.userToken)
             newVC.placeholder = "『\(post.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
             self.navigationController?.pushViewController(newVC, animated: true)
         }))
@@ -353,7 +354,7 @@ class MastodonPostDetailTableViewController: UITableViewController, UITextViewDe
         guard let post = post else {
             return
         }
-        let bunmyakuVC = BunmyakuTableViewController()
+        let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: self.userToken)
         bunmyakuVC.basePost = post
         self.navigationController?.pushViewController(bunmyakuVC, animated: true)
     }
