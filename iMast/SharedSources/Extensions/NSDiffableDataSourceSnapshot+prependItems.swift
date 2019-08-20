@@ -25,7 +25,7 @@
 import UIKit
 
 extension NSDiffableDataSourceSnapshot {
-    func prependItems(_ items: [ItemIdentifierType], section: SectionIdentifierType) {
+    mutating func prependItems(_ items: [ItemIdentifierType], section: SectionIdentifierType) {
         if let firstItem = self.itemIdentifiers(inSection: section).first {
             self.insertItems(items, beforeItem: firstItem)
         } else {
