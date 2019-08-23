@@ -26,11 +26,13 @@ import Mew
 import Ikemen
 import SnapKit
 
-class MastodonPostDetailContentViewController: UIViewController, Instantiatable, Injectable {
+class MastodonPostDetailContentViewController: UIViewController, Instantiatable, Injectable, Interactable {
     typealias Input = MastodonPost
     typealias Environment = MastodonUserToken
+    typealias Output = Void
     let environment: Environment
     var input: Input
+    var handler: ((Output) -> Void)?
     
     let userIconView = UIImageView() ※ { v in
         v.snp.makeConstraints { make in
@@ -48,16 +50,39 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         v.isScrollEnabled = false
         v.isEditable = false
         v.textContainer.lineFragmentPadding = 0
+        v.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
     
     let userButton = UIButton()
     
+    let cwWarningStackView: UIStackView
+    let cwWarningLabel = UILabel() ※ { v in
+        v.font = UIFont.preferredFont(forTextStyle: .body)
+    }
+    let cwToggleButton = UIButton() ※ { v in
+        v.layer.cornerRadius = 4
+        v.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        v.setTitleColor(.black, for: .normal)
+    }
+    
     let attachedMediaListViewController: AttachedMediaListViewController
+    
+    var showCWContent = false
+    var restrictTextViewHeight: NSLayoutConstraint!
 
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
         attachedMediaListViewController = .instantiate(input, environment: ())
+        cwWarningStackView = UIStackView(arrangedSubviews: [
+            UIView(/* スペース取り用ダミー*/) ※ { $0.heightAnchor.constraint(equalToConstant: 0).isActive = true },
+            cwWarningLabel,
+            cwToggleButton,
+        ]) ※ { v in
+            v.axis = .vertical
+            v.spacing = 8
+            v.setContentCompressionResistancePriority(.required, for: .vertical)
+        }
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
     }
     
@@ -91,9 +116,15 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
             make.center.size.equalToSuperview()
         }
         
+        updateCWToggleButton()
+        cwToggleButton.addTarget(self, action: #selector(self.tapCWToggle), for: .touchUpInside)
+        restrictTextViewHeight = textView.heightAnchor.constraint(equalToConstant: 1)
+        
         let stackView = ContainerView(arrangedSubviews: [
             userButton,
+            cwWarningStackView,
             textView,
+            UIView() ※ { $0.setContentHuggingPriority(.required, for: .vertical)}, // CWの開閉時のアニメーションをマシにするため
         ]) ※ { v in
             v.axis = .vertical
             v.addArrangedViewController(attachedMediaListViewController, parentViewController: self)
@@ -123,6 +154,9 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         }
         userAcctLabel.attributedText = userAcctString
         
+        cwWarningLabel.text = post.spoilerText
+        updateCWHiddenFlag()
+        
         textView.attributedText = post.status.parseText2HTMLNew(attributes: [
             .font: UIFont.preferredFont(forTextStyle: .body),
         ])?.emojify(asyncLoadProgressHandler: { [weak textView] in
@@ -130,6 +164,36 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         }, emojifyProtocol: input)
         
         attachedMediaListViewController.input(post)
+    }
+    
+    func output(_ handler: ((Output) -> Void)?) {
+        self.handler = handler
+    }
+    
+    @objc func tapCWToggle() {
+        showCWContent.toggle()
+        updateCWHiddenFlag()
+        updateCWToggleButton()
+        print("hoge", showCWContent)
+    }
+    
+    func updateCWHiddenFlag() {
+        if input.originalPost.spoilerText != "" {
+            cwWarningStackView.isHidden = false
+            restrictTextViewHeight?.isActive = !showCWContent
+        } else {
+            cwWarningStackView.isHidden = true
+            restrictTextViewHeight.isActive = false
+        }
+        handler?(())
+    }
+    
+    func updateCWToggleButton() {
+        if showCWContent {
+            cwToggleButton.setTitle("CWの内容を閉じる", for: .normal)
+        } else {
+            cwToggleButton.setTitle("CWの内容を開く", for: .normal)
+        }
     }
     
     @objc func tapUser() {

@@ -141,6 +141,11 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
                 from: tableView,
                 for: indexPath,
                 input: self.input,
+                output: { [weak self] in
+                    guard let tableView = self?.tableView else { return }
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+                },
                 parentViewController: self
             )
         case .poll:
