@@ -118,7 +118,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         
         updateCWToggleButton()
         cwToggleButton.addTarget(self, action: #selector(self.tapCWToggle), for: .touchUpInside)
-        restrictTextViewHeight = textView.heightAnchor.constraint(equalToConstant: 1)
+        restrictTextViewHeight = textView.heightAnchor.constraint(equalToConstant: 8)
         
         let stackView = ContainerView(arrangedSubviews: [
             userButton,
@@ -180,7 +180,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     func updateCWHiddenFlag() {
         if input.originalPost.spoilerText != "" {
             cwWarningStackView.isHidden = false
-            restrictTextViewHeight?.isActive = !showCWContent
+            restrictTextViewHeight.isActive = !showCWContent
         } else {
             cwWarningStackView.isHidden = true
             restrictTextViewHeight.isActive = false
