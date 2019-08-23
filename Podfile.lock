@@ -86,10 +86,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
-    - Crossroad
-  https://github.com/cocoapods/specs.git:
     - 1PasswordExtension
     - Alamofire
+    - Crossroad
     - Eureka
     - Fuzi
     - GRDB.swift
