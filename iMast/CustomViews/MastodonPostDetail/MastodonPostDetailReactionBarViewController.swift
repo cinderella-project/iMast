@@ -54,7 +54,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         v.setTitleColor(.gray, for: .normal)
     }
     let othersButton = UIButton() ※ { v in
-        v.setTitle("…", for: .normal)
+        v.setTitle("⋯", for: .normal)
         v.setTitleColor(.gray, for: .normal)
     }
     
