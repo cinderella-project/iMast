@@ -149,7 +149,6 @@ class MastodonPollOption: Codable {
     let votes_count: Int
 }
 
-
 extension MastodonUserToken {
     func newPost(status: String) -> Promise<MastodonPost> {
         return self.post("statuses", params: ["status": status]).then { res -> MastodonPost in
