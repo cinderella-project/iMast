@@ -162,6 +162,17 @@ struct MastodonPollOption: Codable {
 
 
 extension MastodonUserToken {
+    func canBoost(post: MastodonPost) -> Bool {
+        switch post.visibility {
+        case "direct":
+            return false
+        case "private":
+            return post.account.acct == self.screenName
+        default:
+            return true
+        }
+    }
+    
     func newPost(status: String) -> Promise<MastodonPost> {
         return self.post("statuses", params: ["status": status]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
