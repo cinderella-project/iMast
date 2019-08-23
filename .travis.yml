@@ -4,7 +4,7 @@ before_install:
   - gem install xcpretty
   - bundle install
 install:
-  - travis_wait pod install --repo-update
+  - travis_wait pod install
 script:
   - set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme iMast CODE_SIGNING_REQUIRED=NO | xcpretty -c
 cache:
