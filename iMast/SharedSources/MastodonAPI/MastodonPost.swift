@@ -80,6 +80,7 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
     private(set) var mentions: [MastodonPostMention] = []
     let tags: [MastodonPostHashtag]?
     let poll: MastodonPoll?
+    let language: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -106,6 +107,7 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
         case mentions
         case tags
         case poll
+        case language
     }
     
     @available(*, deprecated, message: "Do not use.")
@@ -160,7 +162,6 @@ struct MastodonPollOption: Codable {
     let votes_count: Int
 }
 
-
 extension MastodonUserToken {
     func canBoost(post: MastodonPost) -> Bool {
         switch post.visibility {
@@ -196,7 +197,7 @@ extension MastodonUserToken {
         }
     }
     func unfavourite(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/favourite", params: [:]).then { res -> MastodonPost in
+        return self.post("statuses/\(post.id.string)/unfavourite", params: [:]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
         }
     }
@@ -238,6 +239,18 @@ extension MastodonUserToken {
         return self.get(type.endpoint, params: params).then { res in
             return try res.arrayValue.map({try MastodonPost.decode(json: $0)})
         }
+    }
+    
+    func vote(poll: MastodonPoll, choices: [Int]) -> Promise<MastodonPoll> {
+        return self.post("polls/\(poll.id.string)/votes", params: [
+            "choices": choices
+        ]).then { res in
+            return try MastodonPoll.decode(json: res)
+        }
+    }
+    
+    func refresh(post: MastodonPost) -> Promise<MastodonPost> {
+        return self.get("statuses/\(post.id.string)").then { try MastodonPost.decode(json: $0) }
     }
 }
 

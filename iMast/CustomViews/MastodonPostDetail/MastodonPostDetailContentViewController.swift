@@ -1,0 +1,230 @@
+//
+//  MastodonPostDetailContentViewController.swift
+//
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by rinsuki on 2019/07/29.
+//
+//  ------------------------------------------------------------------------
+//
+//  Copyright 2017-2019 rinsuki and other contributors.
+// 
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
+import UIKit
+import Mew
+import Ikemen
+import SnapKit
+
+class MastodonPostDetailContentViewController: UIViewController, Instantiatable, Injectable, Interactable {
+    typealias Input = MastodonPost
+    typealias Environment = MastodonUserToken
+    typealias Output = Void
+    let environment: Environment
+    var input: Input
+    var handler: ((Output) -> Void)?
+    
+    let userIconView = UIImageView() ※ { v in
+        v.snp.makeConstraints { make in
+            make.width.height.equalTo(UIFont.systemFontSize * 4)
+        }
+    }
+    let userNameLabel = UILabel() ※ { v in
+        v.text = String(repeating: "User Name", count: 30)
+    }
+    let userAcctLabel = UILabel() ※ { v in
+        v.text = "@veryl\(String(repeating: "o", count: 30))ng@mastodon.example"
+    }
+    
+    let textView = UITextView() ※ { v in
+        v.isScrollEnabled = false
+        v.isEditable = false
+        v.textContainer.lineFragmentPadding = 0
+        v.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+    }
+    
+    let userButton = UIButton()
+    
+    let cwWarningStackView: UIStackView
+    let cwWarningLabel = UILabel() ※ { v in
+        v.font = UIFont.preferredFont(forTextStyle: .body)
+    }
+    let cwToggleButton = UIButton() ※ { v in
+        v.layer.cornerRadius = 4
+        v.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        v.setTitleColor(.black, for: .normal)
+    }
+    
+    let attachedMediaListViewController: AttachedMediaListViewController
+    
+    var showCWContent = false
+    var restrictTextViewHeight: NSLayoutConstraint!
+
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
+        attachedMediaListViewController = .instantiate(input, environment: ())
+        cwWarningStackView = UIStackView(arrangedSubviews: [
+            UIView(/* スペース取り用ダミー*/) ※ { $0.heightAnchor.constraint(equalToConstant: 0).isActive = true },
+            cwWarningLabel,
+            cwToggleButton,
+        ]) ※ { v in
+            v.axis = .vertical
+            v.spacing = 8
+            v.setContentCompressionResistancePriority(.required, for: .vertical)
+        }
+        super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        let userStackView = UIStackView(arrangedSubviews: [
+            userIconView,
+            UIStackView(arrangedSubviews: [
+                userNameLabel,
+                userAcctLabel,
+            ]) ※ { v in
+                v.axis = .vertical
+                v.spacing = 2
+            },
+        ]) ※ { v in
+            v.alignment = .center
+            v.spacing = 8
+            v.axis = .horizontal
+            v.isUserInteractionEnabled = false
+        }
+        
+        userButton.addTarget(self, action: #selector(self.tapUser), for: .touchUpInside)
+        userButton.addSubview(userStackView)
+        userStackView.snp.makeConstraints { make in
+            make.center.size.equalToSuperview()
+        }
+        
+        updateCWToggleButton()
+        cwToggleButton.addTarget(self, action: #selector(self.tapCWToggle), for: .touchUpInside)
+        textView.delegate = self
+        restrictTextViewHeight = textView.heightAnchor.constraint(equalToConstant: 8)
+        
+        let stackView = ContainerView(arrangedSubviews: [
+            userButton,
+            cwWarningStackView,
+            textView,
+            UIView() ※ { $0.setContentHuggingPriority(.required, for: .vertical)}, // CWの開閉時のアニメーションをマシにするため
+        ]) ※ { v in
+            v.axis = .vertical
+            v.addArrangedViewController(attachedMediaListViewController, parentViewController: self)
+        }
+        
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(view.readableContentGuide)
+            make.top.bottom.equalToSuperview().inset(8)
+        }
+        self.input(input)
+    }
+    
+    func input(_ input: Input) {
+        self.input = input
+        let post = input.originalPost
+        
+        userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
+        userNameLabel.text = post.account.name
+        let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
+            .foregroundColor: UIColor.gray,
+        ])
+        if !post.account.acct.contains("@") { // acctにhostがない場合は追加する
+            userAcctString.append(NSAttributedString(string: "@\(environment.app.instance.hostName)", attributes: [
+                .foregroundColor: UIColor.lightGray,
+            ]))
+        }
+        userAcctLabel.attributedText = userAcctString
+        
+        cwWarningLabel.text = post.spoilerText
+        updateCWHiddenFlag()
+        
+        textView.attributedText = post.status.parseText2HTMLNew(attributes: [
+            .font: UIFont.preferredFont(forTextStyle: .body),
+        ])?.emojify(asyncLoadProgressHandler: { [weak textView] in
+            textView?.setNeedsDisplay()
+        }, emojifyProtocol: input)
+        
+        attachedMediaListViewController.input(post)
+    }
+    
+    func output(_ handler: ((Output) -> Void)?) {
+        self.handler = handler
+    }
+    
+    @objc func tapCWToggle() {
+        showCWContent.toggle()
+        updateCWHiddenFlag()
+        updateCWToggleButton()
+        print("hoge", showCWContent)
+    }
+    
+    func updateCWHiddenFlag() {
+        if input.originalPost.spoilerText != "" {
+            cwWarningStackView.isHidden = false
+            restrictTextViewHeight.isActive = !showCWContent
+        } else {
+            cwWarningStackView.isHidden = true
+            restrictTextViewHeight.isActive = false
+        }
+        handler?(())
+    }
+    
+    func updateCWToggleButton() {
+        if showCWContent {
+            cwToggleButton.setTitle("CWの内容を閉じる", for: .normal)
+        } else {
+            cwToggleButton.setTitle("CWの内容を開く", for: .normal)
+        }
+    }
+    
+    @objc func tapUser() {
+        let vc = openUserProfile(user: input.originalPost.account)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// TODO: リンクを開く処理をMastodonPostCellViewController側と共通化する
+extension MastodonPostDetailContentViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
+        var urlString = url.absoluteString
+        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
+        if let mention = input.mentions.first(where: { $0.url == urlString }) {
+            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
+                let newVC = openUserProfile(user: user)
+                self.navigationController?.pushViewController(newVC, animated: true)
+            })
+            return false
+        }
+        if let media = input.attachments.first(where: { $0.textUrl == urlString }) {
+            urlString = media.url
+        }
+        if visibleString.starts(with: "#") {
+            let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            self.navigationController?.pushViewController(newVC, animated: true)
+            return false
+        }
+        self.open(url: URL(string: urlString)!)
+        return false
+    }
+}

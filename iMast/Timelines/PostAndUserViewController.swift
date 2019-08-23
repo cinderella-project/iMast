@@ -81,9 +81,7 @@ class PostAndUserViewController: UITableViewController, Instantiatable {
         switch indexPath.section {
         case 0:
             let post = input.posts[indexPath.row]
-            let newVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            newVC.userToken = environment
-            newVC.load(post: post.originalPost)
+            let newVC = MastodonPostDetailViewController.instantiate(post.originalPost, environment: self.environment)
             self.navigationController?.pushViewController(newVC, animated: true)
         case 1:
             let user = input.users[indexPath.row]

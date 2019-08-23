@@ -25,7 +25,7 @@ target 'iMast' do
   # Pods for iMast
 
   based_pods
-  pod 'Crossroad'
+  pod 'Crossroad', '~> 3.0'
   pod 'Starscream', '~> 3.0.6'
   pod 'ReachabilitySwift', '~> 4.3.0'
   # for iOS 13 Dark Mode supports

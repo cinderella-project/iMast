@@ -192,9 +192,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 2:
-            let vc = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
-            vc.userToken = environment
-            vc.load(post: self.result!.posts[indexPath.row])
+            let vc = MastodonPostDetailViewController.instantiate(self.result!.posts[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag, environment: self.environment)

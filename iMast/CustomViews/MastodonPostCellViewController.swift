@@ -91,10 +91,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.ignoreSmartInvert()
     }
     
+    let pollViewController: MastodonCompactPollViewController
+    
     required init(with input: Input, environment: Environment) {
         self.environment = environment
         self.input = input
         self.attachedMediaListViewContrller = AttachedMediaListViewController(with: input.post, environment: Void())
+        self.pollViewController = .instantiate(input.post, environment: environment)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -142,6 +145,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             textView,
         ]) ※ {
             $0.addArrangedViewController(attachedMediaListViewContrller, parentViewController: self)
+            $0.addArrangedViewController(pollViewController, parentViewController: self)
             $0.axis = .vertical
             $0.spacing = 2
         }
@@ -232,13 +236,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 [
                     .font: userNameFont.withSize(userNameFont.pointSize * 0.75)
                 ],
-                range: NSRange(
-                    location: splitterPoint.location + 1,
-                    length: acctNsString.length - splitterPoint.location
-                )
+                range: NSRange(location: splitterPoint.location + 1, length: acctNsString.length - splitterPoint.location)
             )
         }
-        
         self.acctNameLabel.attributedText = acctAttrText
 
         // 右上のいろいろ
@@ -287,10 +287,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         if Defaults[.timelineTextBold] {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)
         }
-        let attrs: [NSAttributedString.Key: Any] = [
+        var attrs: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: UIColor.label,
         ]
+        if Defaults[.usePostLanguageInfo], let lang = post.language {
+            attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
+        }
         if post.spoilerText != "" {
             textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
                 .foregroundColor: UIColor.secondaryLabel,
@@ -309,12 +312,10 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         textView.font = font
         
         // 添付ファイルの処理
-        if post.attachments.count == 0 {
-            attachedMediaListViewContrller.view.isHidden = true
-        } else {
-            attachedMediaListViewContrller.view.isHidden = false
-            attachedMediaListViewContrller.input(post)
-        }
+        attachedMediaListViewContrller.input(post)
+        
+        // 投票の処理
+        pollViewController.input(post)
     }
     
     @objc func iconTapped() {

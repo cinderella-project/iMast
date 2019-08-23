@@ -504,7 +504,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         }
         switch item {
         case .post(let id, _):
-            let postDetailVC = R.storyboard.mastodonPostDetail.instantiateInitialViewController()!
+            let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             postDetailVC.userToken = environment
             // TODO: ここでIDを渡す
             postDetailVC.load(post: environment.memoryStore.post.container[id]!)

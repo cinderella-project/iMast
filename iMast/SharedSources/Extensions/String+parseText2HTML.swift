@@ -75,9 +75,9 @@ extension String {
                             if let tagName = element.tag?.lowercased() {
                                 switch tagName {
                                 case "br":
-                                    childAttrStr.append(NSAttributedString(string: "\n"))
+                                    childAttrStr.append(NSAttributedString(string: "\n", attributes: attrs))
                                 case "p":
-                                    childAttrStr.append(NSAttributedString(string: "\n\n"))
+                                    childAttrStr.append(NSAttributedString(string: "\n\n", attributes: attrs))
                                 case "img":
                                     if let src = element.attributes["src"], let srcUrl = URL(string: src) {
                                         let attachment = NSTextAttachment()
