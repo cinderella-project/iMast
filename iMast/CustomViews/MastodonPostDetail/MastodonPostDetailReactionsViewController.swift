@@ -48,7 +48,9 @@ class MastodonPostDetailReactionsViewController: UIViewController, Instantiatabl
         // Do any additional setup after loading the view.
         view.addSubview(label)
         label.snp.makeConstraints { make in
-            make.center.size.equalTo(view.readableContentGuide)
+            // TODO: iOS 10対応が終わったら戻す
+            make.centerX.width.equalTo(view.readableContentGuide)
+            make.centerY.height.equalToSuperview()
             make.height.greaterThanOrEqualTo(44)
         }
         self.input(input)
