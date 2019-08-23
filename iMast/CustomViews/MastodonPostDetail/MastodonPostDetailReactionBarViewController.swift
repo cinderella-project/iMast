@@ -149,7 +149,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
                 strongSelf.navigationController?.pushViewController(newVC, animated: true)
             }))
         }
-        if MastodonUserToken.getLatestUsed()!.screenName == input.account.acct {
+        if environment.screenName == input.account.acct {
             actionSheet.addAction(UIAlertAction(title: "削除", style: UIAlertAction.Style.destructive, handler: { [weak self] (action) in
                 let message = Defaults[.deleteTootTeokure]
                     ? "失った信頼はもう戻ってきませんが、本当にこのトゥートを削除しますか?"
