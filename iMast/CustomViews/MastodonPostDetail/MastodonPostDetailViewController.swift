@@ -84,6 +84,20 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         tableView.refreshControl = refreshControl
+
+        self.title = "投稿詳細"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain) { [weak self] _ in
+            guard let strongSelf = self else { return }
+            strongSelf.environment.context(post: strongSelf.input).then { [weak self] res in
+                guard let strongSelf = self else { return }
+                let posts = res.ancestors + [strongSelf.input] + res.descendants
+                let bunmyakuVC = TimeLineTableViewController()
+                bunmyakuVC.posts = posts
+                bunmyakuVC.isReadmoreEnabled = false
+                bunmyakuVC.title = "文脈"
+                strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
+            }
+        }
         self.input(input)
     }
     
