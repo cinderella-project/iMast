@@ -30,24 +30,24 @@ class MastodonPostDetailPollViewController: UIViewController, Instantiatable, In
     typealias Environment = MastodonUserToken
     let environment: Environment
     var input: Input
-    let buttonStackView = UIStackView() ※ { v in
-        v.axis = .vertical
-        v.spacing = 8
-    }
+    let selectorVC: MastodonPostDetailPollSelectorViewController
+    let voteButtonVC: MastodonPostDetailPollVoteButtonViewController
+    let statVC: MastodonPostDetailPollStatViewController
     let voteCountLabel = UILabel() ※ { v in
         v.font = .preferredFont(forTextStyle: .footnote)
     }
     let voteExpiresLabel = UILabel() ※ { v in
         v.font = .preferredFont(forTextStyle: .footnote)
     }
-    let voteButton = UIButton() ※ { v in
-        v.setTitle("投票", for: .normal)
-    }
     var voteLabelStackView: UIStackView!
+    var selected: [Int] = []
     
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
+        self.selectorVC = .instantiate(input.poll!, environment: environment)
+        self.voteButtonVC = .instantiate((poll: input.poll!, selected: []), environment: environment)
+        self.statVC = .instantiate(input.poll!, environment: environment)
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
     }
     
@@ -67,29 +67,44 @@ class MastodonPostDetailPollViewController: UIViewController, Instantiatable, In
         ]) ※ { v in
             v.spacing = 4
         }
-        let mainStackView = UIStackView(arrangedSubviews: [
-            buttonStackView,
-            UIStackView(arrangedSubviews: [
-                voteLabelStackView,
-                voteButton,
-            ]) ※ { v in
+        let mainStackView = ContainerView() ※ { v in
+            v.addArrangedViewController(selectorVC, parentViewController: self)
+            v.addArrangedViewController(statVC, parentViewController: self)
+            v.addArrangedSubview(ContainerView() ※ { v in
+                v.addArrangedSubview(voteLabelStackView)
+                v.addArrangedViewController(voteButtonVC, parentViewController: self)
                 v.axis = .horizontal
-            },
-        ]) ※ { v in
+                v.spacing = 8
+            })
             v.axis = .vertical
+            v.spacing = 8
         }
         self.view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
-            make.center.size.equalTo(view.readableContentGuide)
+            make.center.width.equalTo(view.readableContentGuide)
+            make.height.equalTo(view).inset(8)
         }
-        voteButton.backgroundColor = self.view.tintColor
+
+        selectorVC.output { [weak self] selected in
+            guard let strongSelf = self else { return }
+            strongSelf.selected = selected
+            strongSelf.voteButtonVC.input((strongSelf.input.poll!, selected))
+        }
+        
+        voteButtonVC.output { [weak self] poll in
+            guard let strongSelf = self else { return }
+            let newInput = strongSelf.input
+            newInput.poll = poll
+            strongSelf.input(newInput)
+        }
+
         self.input(input)
     }
     
     func input(_ input: Input) {
         let poll = input.poll!
         let canVotable = !(poll.voted || poll.expired)
-        voteCountLabel.text = "\(poll.votes_count)票"
+        voteCountLabel.text = "\(poll.votes_count)票 / \(poll.multiple ? "複数選択" : "一つ選択")"
         if poll.expired {
             voteExpiresLabel.text = "締め切り済み"
         } else if let expires = poll.expires_at {
@@ -101,6 +116,13 @@ class MastodonPostDetailPollViewController: UIViewController, Instantiatable, In
             voteExpiresLabel.text = "無期限"
         }
         voteLabelStackView.axis = canVotable ? .vertical : .horizontal
-        voteButton.isHidden = !canVotable
+        selectorVC.view.isHidden = !canVotable
+        voteButtonVC.view.isHidden = !canVotable
+        statVC.view.isHidden = canVotable
+        if canVotable {
+            selectorVC.input(poll)
+        } else {
+            statVC.input(poll)
+        }
     }
 }

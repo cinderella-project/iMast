@@ -177,6 +177,9 @@
 		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
 		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
+		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
+		CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */; };
+		CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */; };
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
 		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEDEC6D3226BC7FA00B581A9 /* UIViewController+openURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */; };
@@ -451,6 +454,9 @@
 		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
+		CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollSelectorViewController.swift; sourceTree = "<group>"; };
+		CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollVoteButtonViewController.swift; sourceTree = "<group>"; };
+		CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollStatViewController.swift; sourceTree = "<group>"; };
 		CED6077721B3658F00F6232E /* iMastIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED6077921B3658F00F6232E /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		CED6077B21B3658F00F6232E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -890,6 +896,9 @@
 				CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */,
 				CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */,
 				CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */,
+				CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */,
+				CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */,
+				CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */,
 				CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */,
 				CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */,
 			);
@@ -1528,6 +1537,7 @@
 				CE8C713B2153323D00D53BCF /* String+parseText2HTML.swift in Sources */,
 				CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
+				CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
 				CEF6DCBB22EDEA6F0008B64D /* MastodonPostDetailViewController.swift in Sources */,
 				CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */,
@@ -1538,6 +1548,7 @@
 				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
+				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,
 				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,
 				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
@@ -1565,6 +1576,7 @@
 				CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */,
 				CE2D2AEE210C5668003B92B8 /* Notification.Name.swift in Sources */,
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
+				CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */,
 				CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */,
 				CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */,

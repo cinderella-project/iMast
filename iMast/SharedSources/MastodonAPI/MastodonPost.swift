@@ -218,6 +218,18 @@ extension MastodonUserToken {
             return try res.arrayValue.map({try MastodonPost.decode(json: $0)})
         }
     }
+    
+    func vote(poll: MastodonPoll, choices: [Int]) -> Promise<MastodonPoll> {
+        return self.post("polls/\(poll.id.string)/votes", params: [
+            "choices": choices
+        ]).then { res in
+            return try MastodonPoll.decode(json: res)
+        }
+    }
+    
+    func refresh(post: MastodonPost) -> Promise<MastodonPost> {
+        return self.get("statuses/\(post.id.string)").then { try MastodonPost.decode(json: $0) }
+    }
 }
 
 class MastodonTimelineType {
