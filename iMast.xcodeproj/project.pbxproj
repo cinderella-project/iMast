@@ -151,6 +151,7 @@
 		CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
 		CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */; };
+		CE9BD65E2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */; };
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
 		CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
@@ -450,6 +451,7 @@
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileCard.storyboard; sourceTree = "<group>"; };
 		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
+		CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUITableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MastodonUserToken+toIntentAccount.swift"; path = "/Users/user/work/github.com/cinderella-project/iMast/iMastIntents/MastodonUserToken+toIntentAccount.swift"; sourceTree = "<absolute>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */,
+				CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */,
 			);
 			path = ExtendedClasses;
 			sourceTree = "<group>";
@@ -1531,6 +1534,7 @@
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
 				CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
 				CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */,
+				CE9BD65E2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift in Sources */,
 				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
 				CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,

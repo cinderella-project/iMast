@@ -51,7 +51,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     let tableView: UITableView
     let refreshControl = UIRefreshControl()
     
-    var diffableDataSource: UITableViewDiffableDataSource<TableSection, TableBody>!
+    var diffableDataSource: EditableUITableViewDiffableDataSource<TableSection, TableBody>!
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue: [MastodonPost] = []
     var isAlreadyAdded: [String: Bool] = [:]
@@ -101,7 +101,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
 
         TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.register(to: tableView)
         
-        self.diffableDataSource = UITableViewDiffableDataSource(tableView: tableView) { (tableView, indexPath, target) -> UITableViewCell? in
+        self.diffableDataSource = .init(tableView: tableView) { (tableView, indexPath, target) -> UITableViewCell? in
             switch target {
             case .post(let id, let pinned):
                 return TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(
