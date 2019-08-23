@@ -80,7 +80,20 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         TableViewCell<MastodonPostDetailPollViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailReactionsViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailReactionBarViewController>.register(to: tableView)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         self.input(input)
+    }
+    
+    @objc func reload() {
+        environment.refresh(post: input).then { [weak self] res in
+            guard let strongSelf = self else { return }
+            strongSelf.input(res)
+            strongSelf.tableView.refreshControl?.endRefreshing()
+            print("end refresh")
+        }
     }
     
     func input(_ input: Input) {
