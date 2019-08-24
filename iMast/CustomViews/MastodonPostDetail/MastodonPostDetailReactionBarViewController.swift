@@ -70,17 +70,9 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         ]) ※ { v in
             v.distribution = .fillEqually
         }
-        for view in stackView.arrangedSubviews {
-            // iOS 10対応
-            if let button = view as? UIButton, let titleLabel = button.titleLabel {
-                titleLabel.font = .systemFont(ofSize: 17)
-            }
-        }
         self.view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            // TODO: iOS 10対応が終わったら`center.size`に戻す
-            make.centerX.width.equalTo(self.view.readableContentGuide)
-            make.centerY.height.equalToSuperview()
+            make.center.size.equalTo(self.view.readableContentGuide)
             make.height.equalTo(44)
         }
         

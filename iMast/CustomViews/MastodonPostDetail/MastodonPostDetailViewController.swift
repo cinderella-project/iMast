@@ -73,7 +73,6 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.rowHeight = UITableView.automaticDimension // TODO: iOS 10の対応を切ったらここを捨てる
         self.tableView.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 0, height: 0.01)) // remove header space
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         TableViewCell<MastodonPostDetailBoostedUserViewController>.register(to: tableView)
@@ -177,10 +176,5 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         default:
             break
         }
-    }
-    
-    // TODO: iOS 10 対応切ったらここを捨てる
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }
