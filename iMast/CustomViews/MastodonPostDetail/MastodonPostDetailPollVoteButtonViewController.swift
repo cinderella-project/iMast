@@ -63,7 +63,7 @@ class MastodonPostDetailPollVoteButtonViewController: UIViewController, Instanti
         }
         voteButton.layer.cornerRadius = 8
         voteButton.layer.borderWidth = 1
-        voteButton.setTitleColor(.lightGray, for: .disabled)
+        voteButton.setTitleColor(.systemGray, for: .disabled)
         voteButton.addTarget(self, action: #selector(self.tapVote), for: .touchUpInside)
         self.input(input)
     }
@@ -84,7 +84,7 @@ class MastodonPostDetailPollVoteButtonViewController: UIViewController, Instanti
                 guard let voteButton = voteButton else { return }
                 voteButton.isEnabled = false
                 voteButton.backgroundColor = .clear
-                voteButton.layer.borderColor = UIColor.lightGray.cgColor
+                voteButton.layer.borderColor = UIColor.systemGray.cgColor
             }
         }
     }

@@ -36,7 +36,7 @@ class MastodonPostDetailPollStatViewController: UIViewController, Instantiatable
             $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         }
         let barView = UIView() ※ {
-            $0.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            $0.backgroundColor = UIColor.systemGray5
         }
         
         var barWidth: Constraint!

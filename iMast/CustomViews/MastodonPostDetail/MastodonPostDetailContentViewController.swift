@@ -51,6 +51,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         v.isEditable = false
         v.textContainer.lineFragmentPadding = 0
         v.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        v.backgroundColor = .clear
     }
     
     let userButton = UIButton()
@@ -61,8 +62,8 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     let cwToggleButton = UIButton() ※ { v in
         v.layer.cornerRadius = 4
-        v.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        v.setTitleColor(.black, for: .normal)
+        v.backgroundColor = .systemGray5
+        v.setTitleColor(.label, for: .normal)
     }
     
     let attachedMediaListViewController: AttachedMediaListViewController
@@ -146,11 +147,11 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
         userNameLabel.text = post.account.name
         let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
-            .foregroundColor: UIColor.gray,
+            .foregroundColor: UIColor.systemGray,
         ])
         if !post.account.acct.contains("@") { // acctにhostがない場合は追加する
             userAcctString.append(NSAttributedString(string: "@\(environment.app.instance.hostName)", attributes: [
-                .foregroundColor: UIColor.lightGray,
+                .foregroundColor: UIColor.systemGray2,
             ]))
         }
         userAcctLabel.attributedText = userAcctString
@@ -160,6 +161,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         
         textView.attributedText = post.status.parseText2HTMLNew(attributes: [
             .font: UIFont.preferredFont(forTextStyle: .body),
+            .foregroundColor: UIColor.label,
         ])?.emojify(asyncLoadProgressHandler: { [weak textView] in
             textView?.setNeedsDisplay()
         }, emojifyProtocol: input)
