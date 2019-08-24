@@ -30,6 +30,8 @@ class MainTabBarController: UITabBarController, Instantiatable {
     typealias Environment = MastodonUserToken
 
     let environment: Environment
+    
+    var lazyLoadVCs: [UIViewController] = []
 
     required init(with input: Input, environment: Environment) {
         self.environment = environment
@@ -46,28 +48,32 @@ class MainTabBarController: UITabBarController, Instantiatable {
         homeVC.tabBarItem.image = UIImage(systemName: "house")
         homeVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
+        homeVC.tabBarItem.accessibilityIdentifier = "home"
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableViewController.instantiate(environment: self.environment))
         notifyVC.tabBarItem.image = UIImage(systemName: "bell")
         notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
         notifyVC.tabBarItem.title = R.string.localizable.notifications()
+        notifyVC.tabBarItem.accessibilityIdentifier = "notifications"
 
         let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController.instantiate(.plain, environment: self.environment))
         ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person")
         ltlVC.tabBarItem.selectedImage = UIImage(systemName: "person.and.person.fill")
         ltlVC.tabBarItem.title = R.string.localizable.localTimelineShort()
+        ltlVC.tabBarItem.accessibilityIdentifier = "ltl"
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
         otherVC.tabBarItem.image = R.image.moreOutline()
         otherVC.tabBarItem.selectedImage = R.image.more()
         otherVC.tabBarItem.title = R.string.localizable.other()
+        otherVC.tabBarItem.accessibilityIdentifier = "others"
         
-        self.setViewControllers([
+        lazyLoadVCs = [
             homeVC,
             notifyVC,
             ltlVC,
             otherVC,
-        ], animated: false)
+        ]
         
         let longPressRecognizer = UILongPressGestureRecognizer { _ in
             if self.selectedIndex != (self.tabBar.items ?? []).count-1 {
@@ -85,5 +91,34 @@ class MainTabBarController: UITabBarController, Instantiatable {
             self.present(navC, animated: true, completion: nil)
         }
         self.tabBar.addGestureRecognizer(longPressRecognizer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.setViewControllers(lazyLoadVCs, animated: false)
+        if var mastodonStateRestoration = view.window?.windowScene?.session.mastodonStateRestoration {
+            print("connected")
+            mastodonStateRestoration.userToken = environment
+            _ = try? dbQueue.inDatabase { db in
+                try mastodonStateRestoration.save(db)
+            }
+            let displayingScreen = mastodonStateRestoration.displayingScreen.split(separator: ".")
+            if displayingScreen.safe(0) == "main", let id = displayingScreen.safe(1).map({ String($0) }) {
+                for vc in viewControllers ?? [] {
+                    if vc.tabBarItem.accessibilityIdentifier == id {
+                        self.selectedViewController = vc
+                    }
+                }
+            }
+        }
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if let id = item.accessibilityIdentifier,
+            var mastodonStateRestoration = view.window?.windowScene?.session.mastodonStateRestoration {
+            mastodonStateRestoration.displayingScreen = ["main", id].joined(separator: ".")
+            _ = try? dbQueue.inDatabase { db in
+                try mastodonStateRestoration.save(db)
+            }
+        }
     }
 }

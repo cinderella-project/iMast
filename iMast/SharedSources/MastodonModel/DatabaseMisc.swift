@@ -48,6 +48,13 @@ func initDatabase() {
         try db.execute("CREATE TABLE IF NOT EXISTS app (id text primary key, client_id text, client_secret text, redirect_uri text, instance_hostname text, name text)", arguments: nil)
         try db.execute("CREATE TABLE IF NOT EXISTS user (id text primary key, access_token text, instance_hostname text, app_id text, name text, screen_name text, avatar_url text, last_used int)", arguments: nil)
     }
+    migrator.registerMigration("state_restoration") { db in
+        try db.create(table: "state_restoration") { table in
+            table.column("system_persistent_identifier", .text).primaryKey()
+            table.column("user", .text).references("user", column: "id", onDelete: .restrict, onUpdate: .cascade, deferred: true)
+            table.column("displaying_screen", .text)
+        }
+    }
     try! migrator.migrate(dbQueue)
 }
 

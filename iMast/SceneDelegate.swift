@@ -29,22 +29,23 @@ import Notifwift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var windows: [UIWindow] = []
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            if let myAccount = MastodonUserToken.getLatestUsed() {
-                window.rootViewController = MainTabBarController.instantiate(environment: myAccount)
-                myAccount.getUserInfo().then { json in
-                    if json["error"].string != nil && json["_response_code"].number == 401 {
-                        myAccount.delete()
-                        window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
-                    }
+        print(session.mastodonStateRestoration)
+        guard let windowScene = scene as? UIWindowScene else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let stateRestoration = session.mastodonStateRestoration
+        if let myAccount = stateRestoration.userToken ?? MastodonUserToken.getLatestUsed() {
+            window.rootViewController = MainTabBarController.instantiate(environment: myAccount)
+            myAccount.getUserInfo().then { json in
+                if json["error"].string != nil && json["_response_code"].number == 401 {
+                    myAccount.delete()
+                    window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
                 }
-            } else {
-                window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
             }
-            window.makeKeyAndVisible()
-            self.windows.append(window)
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
         }
+        window.makeKeyAndVisible()
+        self.windows.append(window)
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

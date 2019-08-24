@@ -176,6 +176,7 @@
 		CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30A22BABF7100BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA95256231135B900A8CCA2 /* MastodonStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
@@ -481,6 +482,7 @@
 		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MastodonUserToken+toIntentAccount.swift"; path = "/Users/user/work/github.com/cinderella-project/iMast/iMastIntents/MastodonUserToken+toIntentAccount.swift"; sourceTree = "<absolute>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
+		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */,
+				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
 				CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */,
 				CE5F7CB523112D12005E819E /* MastodonInstance.swift */,
 				CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */,
@@ -1674,6 +1677,7 @@
 				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
+				CEA95256231135B900A8CCA2 /* MastodonStateRestoration.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,

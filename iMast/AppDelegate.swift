@@ -110,6 +110,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        for session in sceneSessions {
+            print("deleting session \(session.persistentIdentifier)")
+            _ = try? dbQueue.inDatabase { db in
+                try MastodonStateRestoration.deleteOne(db, key: [
+                    MastodonStateRestoration.CodingKeys.systemPersistentIdentifier.rawValue: session.persistentIdentifier,
+                ])
+            }
+        }
+    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let authHeader = try? PushService.getAuthorizationHeader() {
