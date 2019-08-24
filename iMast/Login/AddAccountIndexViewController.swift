@@ -31,9 +31,9 @@ class AddAccountIndexViewController: FormViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = R.string.localizable.login()
-        if MastodonUserToken.getLatestUsed() != nil {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel) { _ in
-                // TODO: あとで戻れるようにしておく
+        if let latestToken = MastodonUserToken.getLatestUsed() {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel) { [latestToken, weak self] _ in
+                self?.changeRootVC(MainTabBarController.instantiate((), environment: latestToken), animated: true)
             }
         }
         self.form +++ Section(R.string.localizable.pleaseInputMastodonInstance())
