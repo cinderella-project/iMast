@@ -224,7 +224,29 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         isNSFW = !isNSFW
     }
     @IBAction func nowPlayingTapped(_ sender: Any) {
-        let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+        switch MPMediaLibrary.authorizationStatus() {
+        case .denied:
+            self.alert(title: "エラー", message: "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。")
+            return
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization { [weak self, sender] status in
+                DispatchQueue.main.async {
+                    self?.nowPlayingTapped(sender)
+                }
+            }
+            return
+        case .restricted:
+            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is restricted")
+            return
+        case .authorized:
+            break
+        @unknown default:
+            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is unknown value")
+            return
+        }
+        let musicPlayer = MPMusicPlayerController.systemMusicPlayer
+        print("--")
+        let nowPlayingMusic = musicPlayer.nowPlayingItem
         if nowPlayingMusic == nil {
             return
         }
