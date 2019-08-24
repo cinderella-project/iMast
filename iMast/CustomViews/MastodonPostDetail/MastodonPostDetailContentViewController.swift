@@ -198,7 +198,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     
     @objc func tapUser() {
-        let vc = openUserProfile(user: input.originalPost.account)
+        let vc = UserProfileTopViewController.instantiate(input.originalPost.account, environment: environment)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -209,9 +209,10 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.mentions.first(where: { $0.url == urlString }) {
-            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                let newVC = openUserProfile(user: user)
-                self.navigationController?.pushViewController(newVC, animated: true)
+            environment.getAccount(id: mention.id).then({ [weak self] user in
+                guard let strongSelf = self else { return }
+                let newVC = UserProfileTopViewController.instantiate(user, environment: strongSelf.environment)
+                strongSelf.navigationController?.pushViewController(newVC, animated: true)
             })
             return false
         }
@@ -220,7 +221,7 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         }
         if visibleString.starts(with: "#") {
             let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            let newVC = HashtagTimeLineTableViewController(hashtag: tag, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: true)
             return false
         }

@@ -79,7 +79,7 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
     let tags: [MastodonPostHashtag]?
-    let poll: MastodonPoll?
+    var poll: MastodonPoll?
     let language: String?
 
     enum CodingKeys: String, CodingKey {

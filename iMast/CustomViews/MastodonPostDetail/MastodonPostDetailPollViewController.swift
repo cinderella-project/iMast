@@ -93,7 +93,7 @@ class MastodonPostDetailPollViewController: UIViewController, Instantiatable, In
         
         voteButtonVC.output { [weak self] poll in
             guard let strongSelf = self else { return }
-            let newInput = strongSelf.input
+            var newInput = strongSelf.input
             newInput.poll = poll
             strongSelf.input(newInput)
         }

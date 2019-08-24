@@ -504,10 +504,8 @@ extension TimeLineTableViewController: UITableViewDelegate {
         }
         switch item {
         case .post(let id, _):
+            guard let post = environment.memoryStore.post.container[id] else { break }
             let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
-            postDetailVC.userToken = environment
-            // TODO: ここでIDを渡す
-            postDetailVC.load(post: environment.memoryStore.post.container[id]!)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
         case .readMore:
             self.readmoreCell.readMoreTapped(viewController: self) {

@@ -138,15 +138,9 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         // ---
         actionSheet.addAction(UIAlertAction(title: "文脈", style: UIAlertAction.Style.default, handler: { [weak self] action in
             guard let strongSelf = self else { return }
-            strongSelf.environment.context(post: strongSelf.input).then { [weak self] res in
-                guard let strongSelf = self else { return }
-                let posts = res.ancestors + [strongSelf.input] + res.descendants
-                let bunmyakuVC = TimeLineTableViewController()
-                bunmyakuVC.posts = posts
-                bunmyakuVC.isReadmoreEnabled = false
-                bunmyakuVC.title = "文脈"
-                strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
-            }
+            let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: strongSelf.environment)
+            bunmyakuVC.basePost = strongSelf.input.originalPost
+            strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
         }))
         if (input.emojis?.count ?? 0) + (input.profileEmojis?.count ?? 0) > 0 { // カスタム絵文字がある
             actionSheet.addAction(UIAlertAction(title: "カスタム絵文字一覧", style: .default, handler: { [weak self] _ in
@@ -176,8 +170,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         }
         actionSheet.addAction(UIAlertAction(title: "通報", style: UIAlertAction.Style.destructive, handler: { [weak self] action in
             guard let strongSelf = self else { return }
-            let newVC = MastodonPostAbuseViewController()
-            newVC.targetPost = strongSelf.input
+            let newVC = MastodonPostAbuseViewController.instantiate(strongSelf.input, environment: strongSelf.environment)
             newVC.placeholder = "『\(strongSelf.input.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
             strongSelf.navigationController?.pushViewController(newVC, animated: true)
         }))

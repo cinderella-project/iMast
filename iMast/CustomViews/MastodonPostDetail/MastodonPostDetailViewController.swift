@@ -89,15 +89,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         self.title = "投稿詳細"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain) { [weak self] _ in
             guard let strongSelf = self else { return }
-            strongSelf.environment.context(post: strongSelf.input).then { [weak self] res in
-                guard let strongSelf = self else { return }
-                let posts = res.ancestors + [strongSelf.input] + res.descendants
-                let bunmyakuVC = TimeLineTableViewController()
-                bunmyakuVC.posts = posts
-                bunmyakuVC.isReadmoreEnabled = false
-                bunmyakuVC.title = "文脈"
-                strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
-            }
+            let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: strongSelf.environment)
+            bunmyakuVC.basePost = strongSelf.input.originalPost
+            strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
         }
         self.input(input)
     }
@@ -178,7 +172,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         let source = self.dataSource[indexPath.row]
         switch source {
         case .boostedUser:
-            let vc = openUserProfile(user: input.account)
+            let vc = UserProfileTopViewController.instantiate(input.account, environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
