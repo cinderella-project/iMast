@@ -22,6 +22,9 @@
 //  limitations under the License.
 
 import UIKit
+import Crossroad
+import Hydra
+import Notifwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var windows: [UIWindow] = []
@@ -41,6 +44,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             window.makeKeyAndVisible()
             self.windows.append(window)
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let router = DefaultRouter(scheme: "imast")
+        router.register([
+            ("/callback/", { context in
+                guard
+                    let code: String = context[parameter: "code"],
+                    let state: String = context[parameter: "state"]
+                else {
+                    return false
+                }
+                let nextVC = AddAccountSuccessViewController()
+                let app = MastodonApp.initFromId(appId: state)
+                async { _ in
+                    let userToken = try await(app.authorizeWithCode(code: code))
+                    _ = try await(userToken.getUserInfo())
+                    userToken.save()
+                    userToken.use()
+                    nextVC.userToken = userToken
+                }.then(in: .main) { [weak scene] in
+                    guard let scene = scene as? UIWindowScene else {
+                        return
+                    }
+                    guard let window = scene.windows.first else {
+                        return
+                    }
+                    window.rootViewController = nextVC
+                }
+                return true
+            }),
+            ("/from-backend/push/oauth-finished", { _ in
+                Notifwift.post(.pushSettingsAccountReload)
+                return true
+            }),
+        ])
+        for context in URLContexts {
+            if router.openIfPossible(context.url, options: [:]) {
+                return
+            }
         }
     }
     

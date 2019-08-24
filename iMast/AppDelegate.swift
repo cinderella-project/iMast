@@ -97,43 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let router = DefaultRouter(scheme: "imast")
-        router.register([
-            ("callback/", { context in
-                guard
-                    let code: String = context.parameter(for: "code"),
-                    let state: String = context.parameter(for: "state")
-                else {
-                    return false
-                }
-                let nextVC = AddAccountSuccessViewController()
-                let app = MastodonApp.initFromId(appId: state)
-                async { _ in
-                    let userToken = try await(app.authorizeWithCode(code: code))
-                    _ = try await(userToken.getUserInfo())
-                    userToken.save()
-                    userToken.use()
-                    nextVC.userToken = userToken
-                }.then(in: .main) {
-                    guard let scene = application.connectedScenes.first as? UIWindowScene else {
-                        return
-                    }
-                    guard let window = scene.windows.first else {
-                        return
-                    }
-                    window.rootViewController = nextVC
-                }
-                return true
-            }),
-            ("from-backend/push/oauth-finished", { _ in
-                Notifwift.post(.pushSettingsAccountReload)
-                return true
-            })
-        ])
-        return router.openIfPossible(url, options: options)
-    }
-    
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         if MastodonUserToken.getLatestUsed() != nil {
             if let vc = application.viewController {
