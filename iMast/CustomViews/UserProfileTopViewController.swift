@@ -70,11 +70,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.navigationItem.rightBarButtonItems = [
             self.moreButton,
         ]
-        
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        self.input(self.input)
+       
+        self.input(input)
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -87,13 +84,11 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     
     func input(_ input: Input) {
         self.input = input
-        if isLoaded == false {
-            loadAfter = true
-            return
-        }
         
+        self.infoCell.userToken = environment
         self.infoCell.load(user: input)
         self.infoCell.separatorInset = .zero
+        self.bioCell.userToken = environment
         self.bioCell.load(user: input)
         
         let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
