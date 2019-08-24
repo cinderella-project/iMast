@@ -40,6 +40,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var media: [UploadableMedia] = []
     
     @IBOutlet weak var nowAccountLabel: UILabel!
+    @IBOutlet weak var exactOnepixelConstraint: NSLayoutConstraint!
     
     var nowKeyboardUpOrDown: Bool = false
     var isNSFW: Bool = false {
@@ -94,6 +95,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.textInput.selectedRange.location = nowCount
         }
         self.textInput.text += appendBottomString
+        exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
     }
 
     override func didReceiveMemoryWarning() {
