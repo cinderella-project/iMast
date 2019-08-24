@@ -30,7 +30,7 @@ target 'iMast' do
   pod 'ReachabilitySwift', '~> 4.3.0'
   # for iOS 13 Dark Mode supports
   # after merged https://github.com/xmartlabs/Eureka/pull/1866 , need to change to upstream 
-  pod 'Eureka', :git => "https://github.com/ykphuah/Eureka", :commit => "82abe8cf232e8b95bc99c888b0fb9829654ee43d"
+  pod 'Eureka', :git => "https://github.com/ykphuah/Eureka.git", :commit => "60e0668cc3755ef791c3d685d2951610ddc47597"
   # pod 'Eureka', '~> 4.3.1'
   pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
   pod 'KeychainAccess', '~> 3.1.2'
