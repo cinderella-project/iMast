@@ -58,6 +58,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     let cwWarningStackView: UIStackView
     let cwWarningLabel = UILabel() ※ { v in
         v.font = UIFont.preferredFont(forTextStyle: .body)
+        v.numberOfLines = 0
     }
     let cwToggleButton = UIButton() ※ { v in
         v.layer.cornerRadius = 4
