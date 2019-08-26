@@ -49,6 +49,8 @@ class NotificationTableViewCell: UITableViewCell {
             return R.image.reply()
         case "follow":
             return R.image.follow()
+        case "poll":
+            return R.image.poll()
         default:
             return nil
         }
@@ -65,6 +67,12 @@ class NotificationTableViewCell: UITableViewCell {
             return R.string.localizable.mentionedYou(acct)
         case "follow":
             return R.string.localizable.followedYou(acct)
+        case "poll":
+            if MastodonUserToken.getLatestUsed()?.screenName == notification.account?.acct {
+                return R.string.localizable.myPollEnded()
+            } else {
+                return R.string.localizable.votedPollEnded()
+            }
         default:
             return R.string.localizable.unknownNotificationType(notification.type)
         }

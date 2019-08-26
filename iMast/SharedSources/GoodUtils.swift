@@ -378,6 +378,7 @@ extension DefaultsKeys {
     static let widgetFilter = DefaultsKey<String>("widget_filter")
 
     static let nowplayingFormat = DefaultsKey<String>("nowplaying_format", default: "#nowplaying {title} - {artist} ({albumTitle})")
+    static let nowplayingAddAppleMusicUrl = DefaultsKey<Bool>("nowplaying_add_apple_music_url", default: true)
     static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
 

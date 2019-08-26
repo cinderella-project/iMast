@@ -26,6 +26,8 @@
 "favouritedYourToot" = "@%@ favorited your toot";
 "mentionedYou" = "@%@ mentioned you";
 "boostedYourToot" = "@%@ boosted your toot";
+"myPollEnded" = "Your poll has ended";
+"votedPollEnded" = "A poll you voted has ended";
 "unknownNotificationType" = "Unknown Notification: %@";
 
 "readmore" = "Read more";

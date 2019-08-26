@@ -25,6 +25,7 @@ import UIKit
 import Hydra
 import SwiftyJSON
 import MediaPlayer
+import Alamofire
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
     
@@ -246,22 +247,50 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is unknown value")
             return
         }
-        let musicPlayer = MPMusicPlayerController.systemMusicPlayer
-        print("--")
-        let nowPlayingMusic = musicPlayer.nowPlayingItem
-        if nowPlayingMusic == nil {
-            return
-        }
-        if nowPlayingMusic!.title == nil {
+        guard let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem else { return }
+        if nowPlayingMusic.title == nil {
             return
         }
         var nowPlayingText = Defaults[.nowplayingFormat]
-        nowPlayingText = nowPlayingText.replace("{title}", nowPlayingMusic!.title ?? "")
-        nowPlayingText = nowPlayingText.replace("{artist}", nowPlayingMusic!.artist ?? "")
-        nowPlayingText = nowPlayingText.replace("{albumArtist}", nowPlayingMusic!.albumArtist ?? "")
-        nowPlayingText = nowPlayingText.replace("{albumTitle}", nowPlayingMusic!.albumTitle ?? "")
+        nowPlayingText = nowPlayingText.replace("{title}", nowPlayingMusic.title ?? "")
+        nowPlayingText = nowPlayingText.replace("{artist}", nowPlayingMusic.artist ?? "")
+        nowPlayingText = nowPlayingText.replace("{albumArtist}", nowPlayingMusic.albumArtist ?? "")
+        nowPlayingText = nowPlayingText.replace("{albumTitle}", nowPlayingMusic.albumTitle ?? "")
         
-        self.textInput.text += nowPlayingText
+        func finished(_ text: String) {
+            self.textInput.insertText(text)
+        }
+
+        func checkAppleMusic() -> Bool {
+            guard #available(iOS 10.3, *), Defaults[.nowplayingAddAppleMusicUrl] else { return false }
+            let storeId = nowPlayingMusic.playbackStoreID
+            guard storeId != "0" else { return false }
+            let region = Locale.current.regionCode ?? "jp"
+            var request = URLRequest(url: URL(string: "https://itunes.apple.com/lookup?id=\(storeId)&country=\(region)&media=music")!)
+            request.timeoutInterval = 1.5
+            request.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+            Alamofire.request(request).responseData { [finished] res in
+                var text = nowPlayingText
+                do {
+                    switch res.result {
+                    case .success(let data):
+                        let json = try JSON(data: data)
+                        if let url = json["results"][0]["trackViewUrl"].string {
+                            text += " " + url + " "
+                        }
+                    case .failure(let error):
+                        throw error
+                    }
+                } catch {
+                    print(error)
+                }
+                finished(text)
+            }
+            return true
+        }
+        if !checkAppleMusic() {
+            finished(nowPlayingText)
+        }
     }
     @IBAction func scopeSelectButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "公開範囲", message: "公開範囲を選択してください。", preferredStyle: .actionSheet)

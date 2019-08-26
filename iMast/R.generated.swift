@@ -46,7 +46,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 16 images.
+  /// This `R.image` struct is generated, and contains static references to 17 images.
   struct image {
     /// Image `ArrowDown`.
     static let arrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "ArrowDown")
@@ -66,6 +66,8 @@ struct R: Rswift.Validatable {
     static let nowPlaying = Rswift.ImageResource(bundle: R.hostingBundle, name: "NowPlaying")
     /// Image `PhotosInline`.
     static let photosInline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PhotosInline")
+    /// Image `Poll`.
+    static let poll = Rswift.ImageResource(bundle: R.hostingBundle, name: "Poll")
     /// Image `Reply`.
     static let reply = Rswift.ImageResource(bundle: R.hostingBundle, name: "Reply")
     /// Image `Star`.
@@ -124,6 +126,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "PhotosInline", bundle: ..., traitCollection: ...)`
     static func photosInline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.photosInline, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Poll", bundle: ..., traitCollection: ...)`
+    static func poll(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.poll, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "Reply", bundle: ..., traitCollection: ...)`
@@ -267,7 +274,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 4 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 35 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
     struct localizable {
       /// en translation: @%@ boosted your toot
       /// 
@@ -285,6 +292,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let mentionedYou = Rswift.StringResource(key: "mentionedYou", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: A poll you voted has ended
+      /// 
+      /// Locales: en, ja
+      static let votedPollEnded = Rswift.StringResource(key: "votedPollEnded", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, ja
@@ -405,6 +416,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja
       static let unknownNotificationType = Rswift.StringResource(key: "unknownNotificationType", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Your poll has ended
+      /// 
+      /// Locales: en, ja
+      static let myPollEnded = Rswift.StringResource(key: "myPollEnded", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: ログイン
       /// 
       /// Locales: en, ja
@@ -436,6 +451,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func mentionedYou(_ value1: String) -> String {
         return String(format: NSLocalizedString("mentionedYou", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: A poll you voted has ended
+      /// 
+      /// Locales: en, ja
+      static func votedPollEnded(_: Void = ()) -> String {
+        return NSLocalizedString("votedPollEnded", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Cancel
@@ -646,6 +668,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, ja
       static func unknownNotificationType(_ value1: String) -> String {
         return String(format: NSLocalizedString("unknownNotificationType", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: Your poll has ended
+      /// 
+      /// Locales: en, ja
+      static func myPollEnded(_: Void = ()) -> String {
+        return NSLocalizedString("myPollEnded", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: ログイン
