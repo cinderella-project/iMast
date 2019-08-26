@@ -26,6 +26,8 @@
 "favouritedYourToot" = "@%@さんにふぁぼられました";
 "mentionedYou" = "@%@さんからのメンション";
 "boostedYourToot" = "@%@さんにブーストされました";
+"myPollEnded" = "あなたが作成した投票が終了しました";
+"votedPollEnded" = "あなたが参加した投票が終了しました";
 "unknownNotificationType" = "不明な通知: %@";
 
 "readmore" = "もっと";

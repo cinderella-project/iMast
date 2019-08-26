@@ -190,19 +190,20 @@ class NotificationTableViewController: UITableViewController {
             return
         }
         if let status = notification.status { // 投稿つき
-            if notification.type == "mention" {
+            switch notification.type {
+            case "mention", "poll":
                 let newVC = MastodonPostDetailViewController.instantiate(status, environment: MastodonUserToken.getLatestUsed()!)
                 self.navigationController?.pushViewController(newVC, animated: animated)
-                return
-            }
-            let newVC = PostAndUserViewController(with: .grouped)
-            newVC.posts = [status]
-            newVC.users = [account]
-            newVC.title = [
-                "favourite": "ふぁぼられ",
-                "reblog": "ブースト",
-            ][notification.type]
-            self.navigationController?.pushViewController(newVC, animated: animated)
+            default:
+                let newVC = PostAndUserViewController(with: .grouped)
+                newVC.posts = [status]
+                newVC.users = [account]
+                newVC.title = [
+                    "favourite": "ふぁぼられ",
+                    "reblog": "ブースト",
+                ][notification.type]
+                self.navigationController?.pushViewController(newVC, animated: animated)
+           }
         } else { // ユーザーつき
             let newVC = openUserProfile(user: account)
             self.navigationController?.pushViewController(newVC, animated: animated)
