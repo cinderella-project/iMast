@@ -254,6 +254,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             guard storeId != "0" else { return false }
             let region = Locale.current.regionCode ?? "jp"
             var request = URLRequest(url: URL(string: "https://itunes.apple.com/lookup?id=\(storeId)&country=\(region)&media=music")!)
+            request.timeoutInterval = 1.5
             request.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
             Alamofire.request(request).responseData { [finished] res in
                 var text = nowPlayingText
