@@ -28,7 +28,6 @@ import SafariServices
 import SDWebImage
 import Alamofire
 import SwiftyJSON
-import AuthenticationServices
 
 class SettingsViewController: FormViewController {
 
@@ -40,10 +39,7 @@ class SettingsViewController: FormViewController {
             section <<< ButtonRow { row in
                 row.title = "プッシュ通知"
                 row.onCellSelection { cell, row in
-                    let request = ASAuthorizationAppleIDProvider().createRequest()
-                    let controller = ASAuthorizationController(authorizationRequests: [request])
-                    controller.delegate = self
-                    controller.performRequests()
+                    OtherMenuPushSettingsTableViewController.openRequest(vc: self)
                 }
             }
         }
@@ -334,17 +330,5 @@ class SettingsViewController: FormViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-
-extension SettingsViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let credential as ASAuthorizationAppleIDCredential:
-            print(String(data: credential.authorizationCode!, encoding: .utf8))
-        default:
-            print("え〜〜")
-        }
     }
 }
