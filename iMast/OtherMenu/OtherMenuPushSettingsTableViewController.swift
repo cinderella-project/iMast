@@ -125,7 +125,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     row.title = account.acct
                     row.cellStyle = .default
                 }.cellUpdate { cell, row in
-                    cell.textLabel?.textColor = .black
+                    cell.textLabel?.textColor = .label
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 }.onCellSelection { cell, row in
@@ -139,7 +139,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.accountsSection <<< ButtonRow { row in
                 row.title = "アカウントを追加"
             }.onCellSelection { cell, row in
-                Promise<String?> { resolve, reject, _ in
+                Promise<String?>(in: .main) { resolve, reject, _ in
                     let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
                     alert.addTextField { textField in
                         textField.placeholder = "mstdn.example.com"
@@ -156,7 +156,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                         throw APIError.alreadyError
                     }
                     return PushService.getAuthorizeUrl(host: host)
-                }.then { res in
+                }.then(in: .main) { res in
                     self.loginSafari = getLoginSafari()
                     self.loginSafari.open(url: URL(string: res)!, viewController: self)
                 }.catch { error in
