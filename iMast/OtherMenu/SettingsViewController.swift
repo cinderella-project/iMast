@@ -44,6 +44,7 @@ class SettingsViewController: FormViewController {
             }
         }
         self.form +++ self.getComposeSection()
+        self.form +++ self.getNowPlayingSection()
         self.form +++ self.getPostInfoSection()
         self.form +++ self.getTimelineSection()
         if #available(iOS 10.0, *) {
@@ -146,17 +147,28 @@ class SettingsViewController: FormViewController {
             }
             row.userDefaultsConnect(.autoResizeSize, map: smap)
         }
-        section <<< LabelRow { row in
-            row.title = "nowplayingのフォーマット"
-        }
-        section <<< TextAreaRow { row in
-            row.placeholder = "#nowplaying {title} - {artist} ({albumTitle})"
-            row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-            row.userDefaultsConnect(.nowplayingFormat)
-        }
         section <<< SwitchRow { row in
             row.title = "デフォルト公開範囲を利用"
             row.userDefaultsConnect(.usingDefaultVisibility)
+        }
+        return section
+    }
+    
+    func getNowPlayingSection() -> Section {
+        let section = Section("NowPlaying設定")
+        section <<< LabelRow { row in
+            row.title = "フォーマット"
+        }
+        section <<< TextAreaRow { row in
+            row.placeholder = "#NowPlaying {title} - {artist} ({albumTitle})"
+            row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+            row.userDefaultsConnect(.nowplayingFormat)
+        }
+        if #available(iOS 10.3, *) {
+            section <<< SwitchRow { row in
+                row.title = "Apple MusicならURLを付ける (できれば)"
+                row.userDefaultsConnect(.nowplayingAddAppleMusicUrl)
+            }
         }
         return section
     }
