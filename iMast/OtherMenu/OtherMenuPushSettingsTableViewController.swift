@@ -109,10 +109,16 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     }
     
     func reload(_ blocking: Bool = false) {
+        let vc = ModalLoadingIndicatorViewController()
+        let animatePromise: Promise<Void>
         if blocking {
-            SVProgressHUD.show()
+            animatePromise = self.presentPromise(vc, animated: false)
+        } else {
+            animatePromise = Promise.init(resolved: ())
         }
-        PushService.getRegisterAccounts().then { accounts in
+        animatePromise.then {
+            PushService.getRegisterAccounts()
+        }.then { accounts in
             print(accounts)
             let rows = accounts.map { account -> BaseRow in
                 return ButtonRow { row in
@@ -190,7 +196,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.navigationController?.popViewController(animated: true)
         }.always(in: .main) {
             if blocking {
-                SVProgressHUD.dismiss()
+                vc.dismiss(animated: true, completion: nil)
             }
             self.tableView.refreshControl?.endRefreshing()
         }

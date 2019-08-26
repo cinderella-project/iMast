@@ -48,6 +48,7 @@
 		CE1002D5200683850041B636 /* ReportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D4200683850041B636 /* ReportError.swift */; };
 		CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
 		CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
@@ -387,6 +388,7 @@
 		CE1002C720065DA30041B636 /* MastodonSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonSearchResult.swift; sourceTree = "<group>"; };
 		CE1002D4200683850041B636 /* ReportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError.swift; sourceTree = "<group>"; };
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
+		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
 		CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+fakeSafeAreaLayoutGuide.swift"; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -479,7 +481,7 @@
 		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
 		CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUITableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimeLineTableViewController.swift; sourceTree = "<group>"; };
-		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MastodonUserToken+toIntentAccount.swift"; path = "MastodonUserToken+toIntentAccount.swift"; sourceTree = "<group>"; };
+		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonUserToken+toIntentAccount.swift"; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				CEE357211FF5E0B300675DFC /* EventListener.swift */,
 				CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
+				CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */,
 			);
 			path = SharedSources;
 			sourceTree = "<group>";
@@ -1577,6 +1580,7 @@
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
 				CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */,
 				CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */,
+				CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */,
 				CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
 				CE818B91218570B800948309 /* ThirdpartyTrendTags.swift in Sources */,
