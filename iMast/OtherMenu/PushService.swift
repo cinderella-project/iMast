@@ -157,6 +157,7 @@ class PushService {
         var params: Parameters = [
             "isSandbox": isDebugBuild,
             "deviceToken": deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
+            "appId": "tp",
         ]
         if let versionString = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             params["buildNumber"] = Float(versionString)
