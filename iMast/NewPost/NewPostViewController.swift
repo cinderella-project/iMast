@@ -245,7 +245,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         nowPlayingText = nowPlayingText.replace("{albumTitle}", nowPlayingMusic.albumTitle ?? "")
         
         func finished(_ text: String) {
-            self.textInput.text += text
+            self.textInput.insertText(text)
         }
 
         func checkAppleMusic() -> Bool {
