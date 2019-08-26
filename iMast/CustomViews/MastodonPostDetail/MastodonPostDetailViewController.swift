@@ -89,9 +89,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         self.title = "投稿詳細"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain) { [weak self] _ in
             guard let strongSelf = self else { return }
-            strongSelf.environment.context(post: strongSelf.input).then { [weak self] res in
+            strongSelf.environment.context(post: strongSelf.input.originalPost).then { [weak self] res in
                 guard let strongSelf = self else { return }
-                let posts = res.ancestors + [strongSelf.input] + res.descendants
+                let posts = res.ancestors + [strongSelf.input.originalPost] + res.descendants
                 let bunmyakuVC = TimeLineTableViewController()
                 bunmyakuVC.posts = posts
                 bunmyakuVC.isReadmoreEnabled = false
