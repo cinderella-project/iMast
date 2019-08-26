@@ -263,7 +263,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                     case .success(let data):
                         let json = try JSON(data: data)
                         if let url = json["results"][0]["trackViewUrl"].string {
-                            text += " " + url
+                            text += " " + url + " "
                         }
                     case .failure(let error):
                         throw error
