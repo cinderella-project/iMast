@@ -225,7 +225,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                         vc.present(alert, animated: true, completion: nil)
                     }
                 }
-                return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
+                return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、\n本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
             }.then { result -> Promise<Void> in
                 if result == false {
                     return Promise(resolved: ())
