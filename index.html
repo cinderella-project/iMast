@@ -1,76 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/top.css">
     <meta name="apple-itunes-app" content="app-id=1229461703">
-    <style>
-      body {
-      }
-      #main {
-          padding-top: 3rem;
-          padding-bottom: 3rem;
-      }
-      #main img{
-          width: 80%;
-          max-width: 220px;
-      }
-      #main p {
-          padding: 1.5em 0;
-          word-break: keep-all;
-      }
-      #main span {
-          white-space: nowrap;
-      }
-      .app-icon {
-          border: 1px solid rgba(0,0,0,0.1);
-          border-radius: 20%;
-          display: none;
-      }
-      .col-md-8 > p {
-          max-width: 25em;
-      }
-      @media screen and (min-width: 768px) {
-          .app-icon {
-              display: inline-block;
-          }
-          img {
-              margin: 2em;
-          }
-      }
-      h2 {
-          word-break: keep-all;
-      }
-      #infocontent img{
-          max-width: 80%;
-          max-height: 25em;
-      }
-      #footer {
-          width: 100%;
-          background: #f5f5f5;
-      }
-      #footer .container div {
-          padding: calc(30px - 0.5em) 0;
-      }
-      img,video {
-          max-width: 80%;
-      }
-    </style>
+    <title>iMast</title>
+    <meta name="description" content="シンプルで軽量なiOS用Mastodonクライアント、iMastの公式サイトです。">
   </head>
   <body>
-    <div id="main">
+    <section>
       <div class="container text-center text-md-left">
         <div class="row align-items-center">
           <div class="col-md-8">
             <h1 class="mb-3">iMast</h1>
-            <p class="lead">iMastは、iPhone, iPod touch, iPadで動作する、 Mastodonの 非公式クライアントです。</p>
+            <p class="lead"><span class="one-word">iMastは、</span><span class="wbr"></span><span class="one-word">iPhone, </span><span class="one-word">iPod touch, </span><span class="one-word">iPad用の</span><span class="wbr"></span><span class="one-long-word"><span class="one-word">Mastodon</span><span class="one-word">クライアント</span></span><span class="one-word">です。</span></p><a class="github-button" href="https://github.com/cinderella-project/iMast" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star cinderella-project/iMast on GitHub">Star</a>
           </div>
-          <div class="col-md-4 text-center"><img class="app-icon" src="./assets/imast_icon.png"><a href="https://apps.apple.com/jp/app/imast/id1229461703"><img src="./assets/download_appstore.svg" alt="App Storeでダウンロード"></a></div>
+          <div class="col-md-4 text-center block-center">
+            <div class="app-info"><img class="app-icon m-4 mt-md-0" src="./assets/imast_icon.png"><a class="app-link" href="https://apps.apple.com/jp/app/imast/id1229461703"><img class="appstore" src="./assets/download_appstore.svg" alt="App Storeでダウンロード"></a></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div id="infocontent">
+    </section>
+    <section id="infocontent">
       <div class="container">
         <h2>圧倒的な情報量を、 あなたの手のひらへ</h2>
         <p class="lead">iMastは、あまり使われない「ブースト」や「お気に入り」ボタンをタイムライン上から除去することで、タイムラインに表示できるトゥート数を増やすことに成功しました。</p>
@@ -91,11 +44,12 @@
         <p class="lead">例えば、「写真」アプリで見つけたお気に入りの一枚や、インクを塗り合って戦うあのゲームの戦績も、簡単にシェアできます。</p>
         <div class="text-center"><img src="./assets/share_dialog.png" style="border-radius:8px;"></div>
       </div>
-    </div>
-    <div id="footer">
+    </section>
+    <footer>
       <div class="container">
         <div class="text-muted">Apple、Apple ロゴ、iPhone、iPod touch、およびiPad は米国その他の国で登録された Apple Inc. の商標です。App Store は Apple Inc. のサービスマークです。</div>
       </div>
-    </div>
+    </footer>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
