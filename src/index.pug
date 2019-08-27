@@ -9,7 +9,7 @@ html(lang="ja")
         title iMast
         meta(name="description", content="シンプルで軽量なiOS用Mastodonクライアント、iMastの公式サイトです。")
     body
-        section: .container.text-center.text-md-left
+        section#top: .container.text-center.text-md-left
             .row.align-items-center
                 .col-md-8
                     h1.mb-3 iMast
@@ -30,9 +30,14 @@ html(lang="ja")
                         img.app-icon.m-4.mt-md-0(src="./assets/imast_icon.png")
                         a.app-link(href="https://apps.apple.com/jp/app/imast/id1229461703")
                             img.appstore(src="./assets/download_appstore.svg",alt="App Storeでダウンロード")
-        section#infocontent: .container
+        section: .container 
+            h2 Open Source Software
+            p.lead iMastは、Apache License 2でライセンスされているOSSです。
+            p もしあなたがプログラミングに関する知識を持っていれば、iMastがどのような動作をしているのか、GitHubリポジトリで自由に見ることができます。
+            a(href="https://github.com/cinderella-project/iMast").btn.btn-outline-primary GitHub リポジトリ ≫
+        section: .container
             h2 圧倒的な情報量を、 あなたの手のひらへ
-            p.lead iMastは、あまり使われない「ブースト」や「お気に入り」ボタンをタイムライン上から除去することで、タイムラインに表示できるトゥート数を増やすことに成功しました。
+            p.lead iMastは、投稿へのリアクションをするためのボタンを表から隠すことで、タイムラインの情報量を増やすことに成功しました。
             .row.text-center
                 .col
                     img(src="./assets/timeline_official.png")
@@ -40,14 +45,17 @@ html(lang="ja")
                 .col
                     img(src="./assets/timeline_imast.png")
                     p.lead iMast 
-            p.lead それでは、「ブースト」や「お気に入り」をしたいときはどうすればいいのでしょうか？ご安心ください、投稿を右から左にスライドすれば、隠されたボタンが出てきます。
+            p それでは、リアクションをしたいときはどうすればいいのでしょうか？ご安心ください、投稿を右から左にスライドすれば、隠されたボタンが出てきます。
             .text-center
                 video(src="./assets/toot_action.mp4",autoplay,loop,muted)
-            h2 共有
-            p.lead iMastは、Webサイトやテキストだけでなく、画像も共有することに成功しました。
-            p.lead 例えば、「写真」アプリで見つけたお気に入りの一枚や、インクを塗り合って戦うあのゲームの戦績も、簡単にシェアできます。
+        section: .container
+            h2 Coming soon...
+            p.lead iMastは、現在 iOS 13 に対応するための作業を進めています。
+            p iOS 13がリリースされ次第、ダークモードやマルチウィンドウといった iOS 13 及び iPadOS の新機能に対応したiMastもリリースされる予定です。
+            p それまで、しばらくお待ちください。
+            p.py-2
             .text-center
-                img(src="./assets/share_dialog.png",style={"border-radius": "8px"})
+                a(href="https://mstdn.rinsuki.net/@imast_ios").btn.btn-outline-primary 公式Mastodonアカウント
         footer: .container
             .text-muted Apple、Apple ロゴ、iPhone、iPod touch、およびiPad は米国その他の国で登録された Apple Inc. の商標です。App Store は Apple Inc. のサービスマークです。
         script(async,defer,src="https://buttons.github.io/buttons.js")
