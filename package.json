@@ -6,18 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Petitsurume/iMast.git"
-  },
-  "author": "petitsurume",
   "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/Petitsurume/iMast/issues"
-  },
-  "homepage": "https://github.com/Petitsurume/iMast#readme",
   "dependencies": {
     "gh-pages": "^1.0.0",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.54.7"
   }
 }
