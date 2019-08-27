@@ -1,5 +1,5 @@
 section {
-  min-height: 60vh;
+  min-height: 40vh;
   display: flex;
   align-items: center;
   padding: 3em 0;
@@ -25,6 +25,9 @@ section:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#top {
+  min-height: 50vh;
 }
 .app-info {
   display: inline-block;
