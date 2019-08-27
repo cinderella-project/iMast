@@ -93,6 +93,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     @objc func openReplyVC() {
         let post = self.input.originalPost
         let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        vc.userToken = environment
         vc.replyToPost = post
         vc.title = "返信"
         self.navigationController?.pushViewController(vc, animated: true)
