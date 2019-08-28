@@ -95,20 +95,22 @@ class MainTabBarController: UITabBarController, Instantiatable {
     
     override func viewDidAppear(_ animated: Bool) {
         self.setViewControllers(lazyLoadVCs, animated: false)
-        if var mastodonStateRestoration = view.window?.windowScene?.session.mastodonStateRestoration {
-            print("connected")
-            mastodonStateRestoration.userToken = environment
-            _ = try? dbQueue.inDatabase { db in
-                try mastodonStateRestoration.save(db)
-            }
-            let displayingScreen = mastodonStateRestoration.displayingScreen.split(separator: ".")
-            if displayingScreen.safe(0) == "main", let id = displayingScreen.safe(1).map({ String($0) }) {
-                for vc in viewControllers ?? [] {
-                    if vc.tabBarItem.accessibilityIdentifier == id {
-                        self.selectedViewController = vc
-                    }
-                }
-            }
+        startStateRestoration()
+    }
+    
+    func startStateRestoration() {
+        guard var mastodonStateRestoration = view.window?.windowScene?.session.mastodonStateRestoration else { return }
+        mastodonStateRestoration.userToken = environment
+        _ = try? dbQueue.inDatabase { db in
+            try mastodonStateRestoration.save(db)
+        }
+        let displayingScreen = mastodonStateRestoration.displayingScreen.split(separator: ".")
+        guard displayingScreen.safe(0) == "main" else { return }
+        guard let id = displayingScreen.safe(1).map({ String($0) }) else { return }
+        guard let viewControllers = viewControllers else { return }
+        for vc in viewControllers where vc.tabBarItem.accessibilityIdentifier == id {
+            selectedViewController = vc
+            break
         }
     }
     
