@@ -93,9 +93,14 @@ class MainTabBarController: UITabBarController, Instantiatable {
         self.tabBar.addGestureRecognizer(longPressRecognizer)
     }
     
+    var firstAppear = true
     override func viewDidAppear(_ animated: Bool) {
-        self.setViewControllers(lazyLoadVCs, animated: false)
-        startStateRestoration()
+        if firstAppear {
+            self.setViewControllers(lazyLoadVCs, animated: false)
+            firstAppear = false
+            startStateRestoration()
+        }
+        super.viewDidAppear(animated)
     }
     
     func startStateRestoration() {
