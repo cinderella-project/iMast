@@ -42,6 +42,12 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
     
     let id: MastodonID
     let url: String?
+    var parsedUrl: URL? {
+        guard let url = url else {
+            return nil
+        }
+        return URL(string: url)
+    }
     let account: MastodonAccount
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
@@ -76,6 +82,11 @@ struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
     let pinned: Bool?
     let emojis: [MastodonCustomEmoji]?
     let profileEmojis: [MastodonCustomEmoji]?
+    var hasCustomEmoji: Bool {
+        if let emojis = emojis, emojis.count > 0 { return true }
+        if let profileEmojis = profileEmojis, profileEmojis.count > 0 { return true }
+        return false
+    }
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
     let tags: [MastodonPostHashtag]?
