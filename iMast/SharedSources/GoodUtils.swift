@@ -176,6 +176,13 @@ func urlComponentsToDict(url: URL) -> [String: String] {
 }
 var html2ascache: [String: NSAttributedString?] = [:]
 var html2ascacheavail: [String: Bool] = [:]
+
+extension StringProtocol {
+    var workaround_actualCount: Int {
+        return count
+    }
+}
+
 extension String {
     var sha256: String! {
         if let cstr = self.cString(using: String.Encoding.utf8) {
@@ -198,6 +205,16 @@ extension String {
     }
     //絵文字など(2文字分)も含めた文字数を返します
     var count: Int {
+        WARN("deprecated extended String.count")
+        let callstack = Thread.callStackSymbols.safe(1) ?? ""
+        enum DeprecatedError: Error {
+            case countIsDeprecated(callstack: String)
+        }
+        reportError(error: DeprecatedError.countIsDeprecated(callstack: callstack))
+        return nsLength
+    }
+    
+    var nsLength: Int {
         let string_NS = self as NSString
         return string_NS.length
     }
@@ -207,7 +224,7 @@ extension String {
         guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
             return false
         }
-        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
+        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsLength))
         return matches.count > 0
     }
     
@@ -217,7 +234,7 @@ extension String {
             return []
         }
         var matches: [String] = []
-        let targetStringRange = NSRange(location: 0, length: self.count)
+        let targetStringRange = NSRange(location: 0, length: nsLength)
         let results = regex.matches(in: self, options: [], range: targetStringRange)
         for i in 0 ..< results.count {
             for j in 0 ..< results[i].numberOfRanges {
@@ -232,7 +249,7 @@ extension String {
     func pregReplace(pattern: String, with: String, options: NSRegularExpression.Options = []) -> String {
         // swiftlint:disable force_try
         let regex = try! NSRegularExpression(pattern: pattern, options: options)
-        return regex.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: self.count), withTemplate: with)
+        return regex.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: nsLength), withTemplate: with)
     }
     
     func replace(_ target: String, _ to: String) -> String {

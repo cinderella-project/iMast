@@ -197,12 +197,12 @@ public class MastodonUserToken: Equatable {
         }
         return self.get("accounts/verify_credentials").then { (response) -> Promise<JSON> in
             self.name = response["display_name"].string
-            if self.name == nil || self.name?.count == 0 {
+            if self.name == nil || self.name?.isEmpty == true {
                 self.name = response["name"].string
             }
             self.screenName = response["username"].string
             self.avatarUrl = response["avatar"].string
-            if (self.avatarUrl != nil) && (self.avatarUrl?.count)! >= 1 && self.avatarUrl?[(self.avatarUrl?.startIndex)!] == "/" { // ホスト名がない！！！
+            if let avatarUrl = self.avatarUrl, !avatarUrl.isEmpty, avatarUrl.first == "/" { // ホスト名がない！！！
                 self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
             }
             if response["error"].isEmpty {
