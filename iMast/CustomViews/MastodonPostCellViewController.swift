@@ -217,11 +217,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 var acctHost = acctSplitted[1]
                 let regex = try! NSRegularExpression(pattern: "[a-zA-Z]{4,}")
                 var replaceTarget: Set<String> = []
-                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.count)) {
+                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.nsLength)) {
                     replaceTarget.insert((acctHost as NSString).substring(with: r.range))
                 }
                 for r in replaceTarget {
-                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.count-2)\(r.last!)")
+                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.nsLength-2)\(r.last!)")
                 }
                 acctSplitted[1] = acctHost
             }
