@@ -91,7 +91,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
         }
         self.textInput.becomeFirstResponder()
-        let nowCount = self.textInput.text.count
+        let nowCount = self.textInput.text.nsLength
         DispatchQueue.main.async {
             self.textInput.selectedRange.location = nowCount
         }
