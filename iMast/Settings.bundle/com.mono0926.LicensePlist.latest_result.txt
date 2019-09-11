@@ -34,7 +34,7 @@ version: 3.0.0
 
 name: Eureka, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.3.1
+version: 5.0.0
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…

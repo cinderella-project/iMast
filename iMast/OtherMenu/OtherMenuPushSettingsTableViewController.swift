@@ -71,7 +71,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 row.title = "グループ化のルール設定 (β)"
                 row.cellStyle = .default
                 row.cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = .black
+                    cell.textLabel?.textColor = .label
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
                 }
@@ -109,17 +109,23 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     }
     
     func reload(_ blocking: Bool = false) {
+        let vc = ModalLoadingIndicatorViewController()
+        let animatePromise: Promise<Void>
         if blocking {
-            SVProgressHUD.show()
+            animatePromise = self.presentPromise(vc, animated: false)
+        } else {
+            animatePromise = Promise.init(resolved: ())
         }
-        PushService.getRegisterAccounts().then { accounts in
+        animatePromise.then {
+            PushService.getRegisterAccounts()
+        }.then { accounts in
             print(accounts)
             let rows = accounts.map { account -> BaseRow in
                 return ButtonRow { row in
                     row.title = account.acct
                     row.cellStyle = .default
                 }.cellUpdate { cell, row in
-                    cell.textLabel?.textColor = .black
+                    cell.textLabel?.textColor = .label
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 }.onCellSelection { cell, row in
@@ -133,7 +139,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.accountsSection <<< ButtonRow { row in
                 row.title = "アカウントを追加"
             }.onCellSelection { cell, row in
-                Promise<String?> { resolve, reject, _ in
+                Promise<String?>(in: .main) { resolve, reject, _ in
                     let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
                     alert.addTextField { textField in
                         textField.placeholder = "mstdn.example.com"
@@ -150,7 +156,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                         throw APIError.alreadyError
                     }
                     return PushService.getAuthorizeUrl(host: host)
-                }.then { res in
+                }.then(in: .main) { res in
                     self.loginSafari = getLoginSafari()
                     self.loginSafari.open(url: URL(string: res)!, viewController: self)
                 }.catch { error in
@@ -190,7 +196,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             self.navigationController?.popViewController(animated: true)
         }.always(in: .main) {
             if blocking {
-                SVProgressHUD.dismiss()
+                vc.dismiss(animated: true, completion: nil)
             }
             self.tableView.refreshControl?.endRefreshing()
         }
@@ -219,7 +225,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                         vc.present(alert, animated: true, completion: nil)
                     }
                 }
-                return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
+                return vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、\n本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル")
             }.then { result -> Promise<Void> in
                 if result == false {
                     return Promise(resolved: ())

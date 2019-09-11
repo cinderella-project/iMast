@@ -27,6 +27,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
+    var userToken: MastodonUserToken!
 
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -58,7 +59,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
         self.iconView.ignoreSmartInvert()
         self.nameLabel.text = user.name == "" ? user.screenName : user.name
         self.screenNameLabel.text = "@" + user.acct
-        MastodonUserToken.getLatestUsed()?.getRelationship([user]).then({ (relationships) in
+        self.userToken.getRelationship([user]).then({ (relationships) in
             let relationship = relationships[0]
             let relationshipOld: Bool = Defaults[.followRelationshipsOld]
             if relationship.following && relationship.followed_by {
@@ -73,7 +74,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
             if !relationship.following && !relationship.followed_by {
                 self.relationshipLabel.text = "関係: 無関係"
             }
-            if user.acct == MastodonUserToken.getLatestUsed()?.screenName {
+            if user.acct == self.userToken.screenName {
                 self.relationshipLabel.text = "関係: それはあなたです！"
             }
             if relationship.requested {

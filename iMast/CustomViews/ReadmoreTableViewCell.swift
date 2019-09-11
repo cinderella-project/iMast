@@ -37,17 +37,20 @@ class ReadmoreTableViewCell: UITableViewCell {
     
     var state: State = .moreLoadable {
         didSet {
-            self.textLabel?.isHidden = state == .loading
-            if state == .loading {
-                self.indicator.startAnimating()
-            } else {
-                self.indicator.stopAnimating()
-            }
-            self.selectionStyle = state != .moreLoadable ? .none : .gray
-            if state != .loading {
-                let disabled = state == .allLoaded
-                self.textLabel?.text = disabled ? "ここまで" : "もっと"
-                self.textLabel?.textColor = disabled ? UIColor.lightGray : self.tintColor
+            DispatchQueue.mainSafeSync {
+                self.textLabel?.isHidden = state == .loading
+                if state == .loading {
+                    self.indicator.startAnimating()
+                } else {
+                    self.indicator.stopAnimating()
+                }
+                self.selectionStyle = state != .moreLoadable ? .none : .gray
+                if state != .loading {
+                    let disabled = state == .allLoaded
+                    let isError = state == .withError
+                    self.textLabel?.text = disabled ? "ここまで" : isError ? "エラー" : "もっと"
+                    self.textLabel?.textColor = disabled ? UIColor.lightGray : isError ? .systemRed : self.tintColor
+                }
             }
         }
     }
@@ -59,7 +62,7 @@ class ReadmoreTableViewCell: UITableViewCell {
         self.textLabel?.textColor = self.tintColor
         self.selectionStyle = .gray
         self.addSubview(self.indicator)
-        self.indicator.style = .gray
+        self.indicator.style = .medium
         self.indicator.hidesWhenStopped = true
         self.indicator.translatesAutoresizingMaskIntoConstraints = false
         self.indicator.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -75,5 +78,15 @@ class ReadmoreTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func readMoreTapped(viewController: UIViewController, next: () -> Void) {
+        if self.state == .withError {
+            if let error = self.lastError {
+                viewController.errorReport(error: error)
+            }
+            self.state = .moreLoadable
+        } else {
+            next()
+        }
+    }
 }

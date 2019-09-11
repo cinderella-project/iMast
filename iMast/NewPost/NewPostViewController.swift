@@ -41,6 +41,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var media: [UploadableMedia] = []
     
     @IBOutlet weak var nowAccountLabel: UILabel!
+    @IBOutlet weak var exactOnepixelConstraint: NSLayoutConstraint!
     
     var nowKeyboardUpOrDown: Bool = false
     var isNSFW: Bool = false {
@@ -60,6 +61,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     var isModal = false
     @IBOutlet weak var NSFWButton: UIBarButtonItem!
     @IBOutlet weak var scopeSelectButton: UIBarButtonItem!
+    var userToken: MastodonUserToken!
     
     var appendBottomString: String = ""
     
@@ -67,7 +69,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.nowAccountLabel.text = MastodonUserToken.getLatestUsed()!.acct
+        self.nowAccountLabel.text = userToken.acct
         if let replyToPost = replyToPost {
             self.nowAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.pregReplace(pattern: "<.+?>", with: ""))"
             var replyAccounts = [replyToPost.account.acct]
@@ -75,7 +77,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 replyAccounts.append(mention.acct)
             }
             replyAccounts = replyAccounts.filter({ (acct) -> Bool in
-                return acct != MastodonUserToken.getLatestUsed()?.screenName
+                return acct != userToken.screenName
             }).map({ (acct) -> String in
                 return "@\(acct) "
             })
@@ -83,17 +85,18 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.scope = replyToPost.visibility
         }
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
-            MastodonUserToken.getLatestUsed()!.getUserInfo(cache: true).then { res in
+            userToken.getUserInfo(cache: true).then { res in
                 let myScope = res["source"]["privacy"].string ?? "public"
                 self.scope = myScope
             }
         }
         self.textInput.becomeFirstResponder()
-        let nowCount = self.textInput.text.count
+        let nowCount = self.textInput.text.nsLength
         DispatchQueue.main.async {
             self.textInput.selectedRange.location = nowCount
         }
         self.textInput.text += appendBottomString
+        exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,15 +114,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func sendPost(_ sender: Any) {
         print(isNSFW)
         let baseMessage = "しばらくお待ちください\n"
@@ -132,7 +126,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 DispatchQueue.main.async {
                     alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.media.count))"
                 }
-                let response = try await(MastodonUserToken.getLatestUsed()!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                let response = try await(self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if response["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode:  response["_response_code"].intValue)
                 }
@@ -175,7 +169,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             if let replyToPost = self.replyToPost {
                 params["in_reply_to_id"] = replyToPost.id.raw
             }
-            return MastodonUserToken.getLatestUsed()!.post("statuses", params: params)
+            return self.userToken.post("statuses", params: params)
         }.then { res in
             if res["_response_code"].intValue >= 400 {
                 alert.dismiss(animated: false, completion: {
@@ -233,7 +227,26 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         isNSFW = !isNSFW
     }
     @IBAction func nowPlayingTapped(_ sender: Any) {
-        _ = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+        switch MPMediaLibrary.authorizationStatus() {
+        case .denied:
+            self.alert(title: "エラー", message: "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。")
+            return
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization { [weak self, sender] status in
+                DispatchQueue.main.async {
+                    self?.nowPlayingTapped(sender)
+                }
+            }
+            return
+        case .restricted:
+            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is restricted")
+            return
+        case .authorized:
+            break
+        @unknown default:
+            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is unknown value")
+            return
+        }
         guard let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem else { return }
         if nowPlayingMusic.title == nil {
             return

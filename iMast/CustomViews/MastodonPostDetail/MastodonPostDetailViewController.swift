@@ -73,7 +73,6 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.rowHeight = UITableView.automaticDimension // TODO: iOS 10の対応を切ったらここを捨てる
         self.tableView.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 0, height: 0.01)) // remove header space
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
         TableViewCell<MastodonPostDetailBoostedUserViewController>.register(to: tableView)
@@ -89,15 +88,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         self.title = "投稿詳細"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain) { [weak self] _ in
             guard let strongSelf = self else { return }
-            strongSelf.environment.context(post: strongSelf.input.originalPost).then { [weak self] res in
-                guard let strongSelf = self else { return }
-                let posts = res.ancestors + [strongSelf.input.originalPost] + res.descendants
-                let bunmyakuVC = TimeLineTableViewController()
-                bunmyakuVC.posts = posts
-                bunmyakuVC.isReadmoreEnabled = false
-                bunmyakuVC.title = "文脈"
-                strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
-            }
+            let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: strongSelf.environment)
+            bunmyakuVC.basePost = strongSelf.input.originalPost
+            strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
         }
         self.input(input)
     }
@@ -178,15 +171,10 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         let source = self.dataSource[indexPath.row]
         switch source {
         case .boostedUser:
-            let vc = openUserProfile(user: input.account)
+            let vc = UserProfileTopViewController.instantiate(input.account, environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
-    }
-    
-    // TODO: iOS 10 対応切ったらここを捨てる
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }

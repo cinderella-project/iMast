@@ -262,4 +262,12 @@ class ShareViewController: SLComposeServiceViewController {
             visibilityConfig,
         ]
     }
+    
+    override func loadPreviewView() -> UIView! {
+        if Defaults[.useCustomizedSharePreview] {
+            return nil
+        } else {
+            return super.loadPreviewView()
+        }
+    }
 }

@@ -39,13 +39,13 @@ class LoginSafariNormal: LoginSafari {
 @available(iOS 11.0, *)
 class LoginSafari11: LoginSafari {
     var authSession: SFAuthenticationSession?
-    func open(url: URL, viewController _: UIViewController) {
+    func open(url: URL, viewController: UIViewController) {
         self.authSession = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: {callbackUrl, error in
             guard let callbackUrl = callbackUrl else {
                 return
             }
             print(callbackUrl)
-            UIApplication.shared.openURL(callbackUrl)
+            viewController.view.window?.windowScene?.open(callbackUrl, options: nil, completionHandler: nil)
         })
         self.authSession?.start()
     }

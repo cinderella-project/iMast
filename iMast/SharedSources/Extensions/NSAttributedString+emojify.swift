@@ -30,7 +30,7 @@ extension NSAttributedString {
         let emojis = (emojifyProtocol.emojis ?? []) + (emojifyProtocol.profileEmojis ?? [])
         emojis.forEach { (emoji) in
             print(emoji)
-            if emoji.shortcode.count == 0 {
+            if emoji.shortcode.isEmpty {
                 return
             }
             let shortcode = ":\(emoji.shortcode):"

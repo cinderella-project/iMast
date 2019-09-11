@@ -45,34 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initDatabase()
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
-        let myAccount = MastodonUserToken.getLatestUsed()
-        if let myAccount = myAccount {
-            changeRootVC(MainTabBarController(), animated: false)
-            myAccount.getUserInfo().then { json in
-                if json["error"].string != nil && json["_response_code"].number == 401 {
-                    myAccount.delete()
-                    changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
-                }
-            }
-        } else {
-            changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: false)
-        }
-        /*
-        // DARK THEME
-        UINavigationBar.appearance().barTintColor = .black
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName:UIColor.white
-        ]
-        UITabBar.appearance().barTintColor = .black
-        UITableView.appearance().backgroundColor = .darkGray
-        UIView.appearance(whenContainedInInstancesOf: [UITableViewController.self]).backgroundColor = .black
-        UITableViewCell.appearance().backgroundColor = .black
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).textColor = .white
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = .black
-        UITextView.appearance().backgroundColor = .black
-        UITextView.appearance().textColor = .white
-        */
-        
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized {
@@ -125,37 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        let router = DefaultRouter(scheme: "imast")
-        router.register([
-            ("callback/", { context in
-                guard
-                    let code: String = context.parameter(for: "code"),
-                    let state: String = context.parameter(for: "state")
-                else {
-                    return false
-                }
-                let nextVC = AddAccountSuccessViewController()
-                let app = MastodonApp.initFromId(appId: state)
-                async { _ in
-                    let userToken = try await(app.authorizeWithCode(code: code))
-                    _ = try await(userToken.getUserInfo())
-                    userToken.save()
-                    userToken.use()
-                    nextVC.userToken = userToken
-                }.then(in: .main) {
-                    changeRootVC(nextVC, animated: false)
-                }
-                return true
-            }),
-            ("from-backend/push/oauth-finished", { _ in
-                Notifwift.post(.pushSettingsAccountReload)
-                return true
-            })
-        ])
-        return router.openIfPossible(url, options: options)
-    }
-    
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         if MastodonUserToken.getLatestUsed() != nil {
             if let vc = application.viewController {
@@ -169,6 +110,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        for session in sceneSessions {
+            print("deleting session \(session.persistentIdentifier)")
+            _ = try? dbQueue.inDatabase { db in
+                try MastodonStateRestoration.deleteOne(db, key: [
+                    MastodonStateRestoration.CodingKeys.systemPersistentIdentifier.rawValue: session.persistentIdentifier,
+                ])
+            }
+        }
+    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let authHeader = try? PushService.getAuthorizationHeader() {
@@ -176,6 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 //        print("DeviceToken",deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)})
 //        print("isDebugBuild", isDebugBuild)
+    }
+    
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -249,7 +205,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         if userToken.id != MastodonUserToken.getLatestUsed()?.id {
             userToken.use()
-            changeRootVC(MainTabBarController(), animated: true)
+            // TODO: あとでいい感じにする
+//            self.changeRootVC(MainTabBarController.instantiate(environment: userToken), animated: true)
         }
         
         guard let topVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
@@ -305,21 +262,20 @@ func openVLC(_ url: String) -> Bool {
     return false
 }
 
-func changeRootVC(_ viewController: UIViewController, animated: Bool) {
-    guard let window = UIApplication.shared.keyWindow else {
-        // windowがないなら、作ってkeyWindowにする
-        let window = UIWindow()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-        (UIApplication.shared.delegate as! AppDelegate).window = window
-        return
-    }
-    if animated {
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            changeRootVC(viewController, animated: false)
-        }, completion: nil)
-    } else {
-        allWebSocketDisconnect()
-        window.rootViewController = viewController
+extension UIViewController {
+    func changeRootVC(_ viewController: UIViewController, animated: Bool) {
+        guard let window = self.view.window else {
+            fatalError("windowないが")
+            return
+        }
+        if animated {
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                self.changeRootVC(viewController, animated: false)
+            }, completion: nil)
+        } else {
+            // TODO: あとでちゃんとやる
+//            allWebSocketDisconnect()
+            window.rootViewController = viewController
+        }
     }
 }

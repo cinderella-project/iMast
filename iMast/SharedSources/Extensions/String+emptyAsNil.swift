@@ -25,6 +25,6 @@ import Foundation
 
 extension String {
     var emptyAsNil: String? {
-        return self.count == 0 ? nil : self
+        return self.isEmpty ? nil : self
     }
 }

@@ -66,6 +66,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     let visibilityLabel = UILabel()
     
     let textView = NotSelectableTextView() ※ { v in
+        v.backgroundColor = nil
         v.isScrollEnabled = false
         v.isEditable = false
         v.textContainerInset = .zero
@@ -182,7 +183,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     func input(_ input: Input) {
         let originalPost = input.post
         self.input = input
-        let post = originalPost.repost ?? originalPost
+        let post = originalPost.originalPost
         // ブースト時の処理
         if originalPost.repost != nil {
             tootInfoView.isHidden = false
@@ -196,7 +197,6 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         
         // アイコン
         self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
-            print("loaded")
         })
         self.iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
 
@@ -217,11 +217,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 var acctHost = acctSplitted[1]
                 let regex = try! NSRegularExpression(pattern: "[a-zA-Z]{4,}")
                 var replaceTarget: Set<String> = []
-                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.count)) {
+                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.nsLength)) {
                     replaceTarget.insert((acctHost as NSString).substring(with: r.range))
                 }
                 for r in replaceTarget {
-                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.count-2)\(r.last!)")
+                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.nsLength-2)\(r.last!)")
                 }
                 acctSplitted[1] = acctHost
             }
@@ -289,13 +289,14 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         var attrs: [NSAttributedString.Key: Any] = [
             .font: font,
+            .foregroundColor: UIColor.label,
         ]
         if Defaults[.usePostLanguageInfo], let lang = post.language {
             attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
         }
         if post.spoilerText != "" {
             textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
-                .foregroundColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.6),
+                .foregroundColor: UIColor.secondaryLabel,
             ]).emojify(asyncLoadProgressHandler: {
                 self.textView.setNeedsDisplay()
             }, emojifyProtocol: post)
@@ -318,7 +319,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     
     @objc func iconTapped() {
-        let vc = openUserProfile(user: (input.post.repost ?? input.post).account)
+        let vc = UserProfileTopViewController.instantiate(input.post.originalPost.account, environment: self.environment)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -328,8 +329,8 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
-            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                let newVC = openUserProfile(user: user)
+            self.environment.getAccount(id: mention.id).then({ user in
+                let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
                 self.navigationController?.pushViewController(newVC, animated: true)
             })
             return false
@@ -339,7 +340,7 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         }
         if visibleString.starts(with: "#") {
             let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            let newVC = HashtagTimeLineTableViewController.init(hashtag: tag, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: true)
             return false
         }

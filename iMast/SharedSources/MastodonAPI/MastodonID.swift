@@ -23,7 +23,7 @@
 
 import Foundation
 
-class MastodonID: Codable, CustomStringConvertible {
+struct MastodonID: Codable, CustomStringConvertible {
     @available(*, unavailable)
     var int: Int64 = -1
     var string: String
@@ -40,7 +40,7 @@ class MastodonID: Codable, CustomStringConvertible {
         self.raw = string
     }
     
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer()
         do {
             raw = try value.decode(String.self)
@@ -81,10 +81,10 @@ class MastodonID: Codable, CustomStringConvertible {
         if self.string == otherId.string {
             return .orderedSame
         }
-        if self.string.count != otherId.string.count {
-            return self.string.count > otherId.string.count ? .orderedDescending : .orderedAscending
+        if self.string.workaround_actualCount != otherId.string.workaround_actualCount {
+            return self.string.workaround_actualCount > otherId.string.workaround_actualCount ? .orderedDescending : .orderedAscending
         }
-        for i in 0..<self.string.count {
+        for i in 0..<self.string.workaround_actualCount {
             let selfChar = self.string[self.string.index(self.string.startIndex, offsetBy: i)]
             let otherChar = otherId.string[otherId.string.index(otherId.string.startIndex, offsetBy: i)]
             if selfChar != otherChar {
@@ -98,6 +98,12 @@ class MastodonID: Codable, CustomStringConvertible {
 extension MastodonID: Equatable {
     static func == (lhs: MastodonID, rhs: MastodonID) -> Bool {
         return lhs.string == rhs.string
+    }
+}
+
+extension MastodonID: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.string)
     }
 }
 

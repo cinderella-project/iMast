@@ -15,7 +15,7 @@
 		2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */; };
 		2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */; };
 		2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */; };
-		2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		2A4A6C311EAD8AFC001BB00A /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuViewController.swift */; };
 		2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */; };
 		2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */; };
@@ -48,6 +48,7 @@
 		CE1002D5200683850041B636 /* ReportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D4200683850041B636 /* ReportError.swift */; };
 		CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
 		CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
@@ -75,7 +76,7 @@
 		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE367DFC2186F97F0068EBE7 /* Search.strings */; };
-		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */; };
+		CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
@@ -86,8 +87,7 @@
 		CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */; };
 		CE51AC011F40C06B00E43607 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE51ABFF1F40C06B00E43607 /* MainInterface.storyboard */; };
 		CE51AC051F40C06B00E43607 /* iMastTodayWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
-		CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */; };
+		CE51AC0A1F41862300E43607 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7320E033E20034B63E /* StableTableViewController.swift */; };
 		CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */; };
 		CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */; };
@@ -96,9 +96,11 @@
 		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE58956022408BCA0024FDBF /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE58955F22408BCA0024FDBF /* ColorSet.swift */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
+		CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */; };
 		CE5DE87B21F4FF9D0008D437 /* UIViewController+presentPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */; };
 		CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */; };
 		CE5DE8B921F5CB6D0008D437 /* UIViewController+dismissPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */; };
+		CE5F7CB623112D12005E819E /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
 		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
 		CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
@@ -138,16 +140,44 @@
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
 		CE908560219188F9006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855F219188F9006769DC /* R.generated.swift */; };
+		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
+		CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5B22D4593900D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5C22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5D22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB5E22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
+		CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */; };
+		CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */; };
+		CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */; };
+		CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */; };
+		CE9AEA0723112D6D00EE3B23 /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
+		CE9AEA0823112D6E00EE3B23 /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
+		CE9AEA0923112D6E00EE3B23 /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
+		CE9AEA0A23112D6F00EE3B23 /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
+		CE9AEA0C23112DF600EE3B23 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
+		CE9AEA0D23112E1000EE3B23 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
+		CE9AEA0E23112E1100EE3B23 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
+		CE9AEA0F23112E1100EE3B23 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
+		CE9AEA1023112E1100EE3B23 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
+		CE9AEA1223112E6900EE3B23 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
+		CE9AEA1323112E9A00EE3B23 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
+		CE9AEA1423112E9B00EE3B23 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
+		CE9AEA1523112E9B00EE3B23 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
+		CE9AEA1623112E9B00EE3B23 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
 		CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */; };
+		CE9BD65E2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */; };
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
-		CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
+		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
+		CEA252BA1EE8A2DD002C60F3 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEA3C30622BABF6100BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30722BABF6F00BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CEA3C30A22BABF7100BF68C0 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
+		CEA95256231135B900A8CCA2 /* MastodonStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
@@ -174,8 +204,13 @@
 		CEC6BC1E2108474B003ECE10 /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
 		CEC6BC1F2108474B003ECE10 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
 		CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
-		CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CEC6BC212108474E003ECE10 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
+		CECBD35D22D16575004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD35E22D1666B004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD35F22D1666C004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD36022D1666C004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CECBD36122D1666D004530BA /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
 		CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */; };
 		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
 		CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */; };
@@ -213,7 +248,7 @@
 		CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */; };
 		CEF6DCC322EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */; };
 		CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */; };
-		CEFE6AF521B5010600AF5E40 /* MastodonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */; };
+		CEFE6AF521B5010600AF5E40 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		CEFE6AF621B5010600AF5E40 /* MastodonCursorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */; };
 		CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
@@ -316,7 +351,7 @@
 		2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountIndexViewController.swift; sourceTree = "<group>"; };
 		2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSelectLoginMethodViewController.swift; sourceTree = "<group>"; };
-		2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonModel.swift; sourceTree = "<group>"; };
+		2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseMisc.swift; sourceTree = "<group>"; };
 		2A533F791ECD08130062630F /* OtherMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuViewController.swift; sourceTree = "<group>"; };
 		2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeActiveAccountViewController.swift; sourceTree = "<group>"; };
 		2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountLoginViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +388,7 @@
 		CE1002C720065DA30041B636 /* MastodonSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonSearchResult.swift; sourceTree = "<group>"; };
 		CE1002D4200683850041B636 /* ReportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError.swift; sourceTree = "<group>"; };
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
+		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
 		CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+fakeSafeAreaLayoutGuide.swift"; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -370,7 +406,7 @@
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE367DFB2186F97F0068EBE7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Search.strings; sourceTree = "<group>"; };
 		CE367DFD2186F9800068EBE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
-		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackViewController.swift; sourceTree = "<group>"; };
+		CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuHelpAndFeedbackView.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
@@ -381,7 +417,6 @@
 		CE51AC001F40C06B00E43607 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		CE51AC021F40C06B00E43607 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE51AC091F41855A00E43607 /* iMastTodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastTodayWidget.entitlements; sourceTree = "<group>"; };
-		CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineReadMoreCell.xib; sourceTree = "<group>"; };
 		CE54BC7320E033E20034B63E /* StableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableTableViewController.swift; sourceTree = "<group>"; };
 		CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -390,9 +425,11 @@
 		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE58955F22408BCA0024FDBF /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
+		CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariCellView.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
+		CE5F7CB523112D12005E819E /* MastodonInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonInstance.swift; sourceTree = "<group>"; };
 		CE65772B21560BE300670F0A /* String+toPlainText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toPlainText.swift"; sourceTree = "<group>"; };
 		CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccountSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CE66CE131EEA2AF9006D5B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -431,12 +468,23 @@
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE90855C21918750006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE90855F219188F9006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = imastshare/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
+		CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonIDAvailable.swift; sourceTree = "<group>"; };
+		CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostWrapperViewController.swift; sourceTree = "<group>"; };
+		CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+prependItems.swift"; sourceTree = "<group>"; };
+		CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunmyakuTableViewController.swift; sourceTree = "<group>"; };
+		CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApp.swift; sourceTree = "<group>"; };
+		CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonUserToken.swift; sourceTree = "<group>"; };
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileCard.storyboard; sourceTree = "<group>"; };
 		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
+		CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUITableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimeLineTableViewController.swift; sourceTree = "<group>"; };
+		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonUserToken+toIntentAccount.swift"; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
+		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +501,7 @@
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMenuPushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollSelectorViewController.swift; sourceTree = "<group>"; };
 		CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollVoteButtonViewController.swift; sourceTree = "<group>"; };
@@ -614,6 +663,7 @@
 				CE90855C21918750006769DC /* R.generated.swift */,
 				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
+				CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */,
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
 				CEE3571E1FF51A3900675DFC /* CustomViews */,
 				CEE357171FF516A800675DFC /* Login */,
@@ -680,6 +730,18 @@
 			path = iMastTodayWidget;
 			sourceTree = "<group>";
 		};
+		CE5F7CB423112D01005E819E /* MastodonModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */,
+				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
+				CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */,
+				CE5F7CB523112D12005E819E /* MastodonInstance.swift */,
+				CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */,
+			);
+			path = MastodonModel;
+			sourceTree = "<group>";
+		};
 		CE78CFA51EE812AD008313EA /* iMastShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +760,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */,
+				CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */,
 			);
 			path = ExtendedClasses;
 			sourceTree = "<group>";
@@ -726,6 +789,7 @@
 				CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */,
 				CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */,
 				CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */,
+				CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -745,6 +809,7 @@
 			children = (
 				CEFE6B1021B508A600AF5E40 /* iMastIntents.entitlements */,
 				CED6077921B3658F00F6232E /* IntentHandler.swift */,
+				CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */,
 				CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */,
 				CED6077B21B3658F00F6232E /* Info.plist */,
 				CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */,
@@ -765,6 +830,7 @@
 				CE1002C720065DA30041B636 /* MastodonSearchResult.swift */,
 				CEDEDC992007C36400CD2784 /* MastodonID.swift */,
 				CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */,
+				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
 			);
 			path = MastodonAPI;
 			sourceTree = "<group>";
@@ -772,12 +838,14 @@
 		CEE357161FF5165700675DFC /* SharedSources */ = {
 			isa = PBXGroup;
 			children = (
+				CE5F7CB423112D01005E819E /* MastodonModel */,
 				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CEE254262004B593005FEB6F /* MastodonAPI */,
-				2A4A6C301EAD8AFC001BB00A /* MastodonModel.swift */,
 				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
+				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
+				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
@@ -787,7 +855,9 @@
 				CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */,
 				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
 				CEE357211FF5E0B300675DFC /* EventListener.swift */,
+				CE59166A22BA328900F0EFB3 /* OpenSafariCellView.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
+				CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */,
 			);
 			path = SharedSources;
 			sourceTree = "<group>";
@@ -827,7 +897,7 @@
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
 				CE8209972150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift */,
-				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift */,
+				CE38C8DE1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift */,
 				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
@@ -840,12 +910,12 @@
 			children = (
 				2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */,
 				2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */,
+				CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */,
 				CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */,
 				CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */,
 				CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */,
 				CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */,
 				2A108F901ED559EF00BE1404 /* TimeLineTableViewController.swift */,
-				CE51AC0C1F42D73900E43607 /* TimeLineReadMoreCell.xib */,
 			);
 			path = Timelines;
 			sourceTree = "<group>";
@@ -871,6 +941,7 @@
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
 				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
 				CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */,
 				CE109713220631E5000A5101 /* EmojiListTableViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
@@ -1138,10 +1209,9 @@
 			};
 			buildConfigurationList = 2AF352121EAB9C5500777C2E /* Build configuration list for PBXProject "iMast" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = Japanese;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Japanese,
 				en,
 				Base,
 				ja,
@@ -1176,7 +1246,6 @@
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
 				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
 				CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */,
-				CE51AC0D1F42D73900E43607 /* TimeLineReadMoreCell.xib in Resources */,
 				CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
@@ -1511,6 +1580,8 @@
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
 				CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */,
 				CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */,
+				CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */,
+				CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
 				CE818B91218570B800948309 /* ThirdpartyTrendTags.swift in Sources */,
 				CEE254232004A8B2005FEB6F /* MastodonAccount.swift in Sources */,
@@ -1520,13 +1591,19 @@
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
+				CE9AEA0C23112DF600EE3B23 /* MastodonApp.swift in Sources */,
+				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
+				CECBD35D22D16575004530BA /* IndirectBox.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
 				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
 				CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
+				CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
+				CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */,
+				CE9BD65E2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift in Sources */,
 				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
 				CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
@@ -1539,6 +1616,7 @@
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
+				CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */,
 				CEF6DCBB22EDEA6F0008B64D /* MastodonPostDetailViewController.swift in Sources */,
 				CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */,
 				CEE2542E2004FA76005FEB6F /* MastodonNotification.swift in Sources */,
@@ -1550,12 +1628,14 @@
 				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
 				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,
 				CEDEDC9E2007DEAF00CD2784 /* MastodonAccountRelationship.swift in Sources */,
+				CE5F7CB623112D12005E819E /* MastodonInstance.swift in Sources */,
 				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
 				CE7B1445212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */,
-				2A4A6C311EAD8AFC001BB00A /* MastodonModel.swift in Sources */,
-				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackViewController.swift in Sources */,
+				2A4A6C311EAD8AFC001BB00A /* DatabaseMisc.swift in Sources */,
+				CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */,
+				CE38C8DF1F853438004C4C9B /* OtherMenuHelpAndFeedbackView.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,
 				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -1579,6 +1659,7 @@
 				CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */,
 				CECD756820FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */,
+				CE9AEA1223112E6900EE3B23 /* MastodonUserToken.swift in Sources */,
 				CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */,
 				CE1002D5200683850041B636 /* ReportError.swift in Sources */,
 				2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */,
@@ -1597,9 +1678,12 @@
 				CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */,
 				CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */,
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
+				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
+				CEA95256231135B900A8CCA2 /* MastodonStateRestoration.swift in Sources */,
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
+				CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
@@ -1635,6 +1719,7 @@
 				CE2D2AFF211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEC6BC1621084745003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CE1002CA20065FEC0041B636 /* MastodonPost.swift in Sources */,
+				CE9AEA1323112E9A00EE3B23 /* MastodonUserToken.swift in Sources */,
 				CE1002CC20065FEF0041B636 /* MastodonApplication.swift in Sources */,
 				CEE357241FF6068000675DFC /* EventListener.swift in Sources */,
 				CE2C9806210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -1642,19 +1727,23 @@
 				CEE254252004B57A005FEB6F /* MastodonAccount.swift in Sources */,
 				CEFE6AFD21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002D2200663760041B636 /* MastodonSearchResult.swift in Sources */,
+				CE97DB5C22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */,
+				CE9AEA0F23112E1100EE3B23 /* MastodonApp.swift in Sources */,
 				CEA3C30822BABF6F00BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF52224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CE1002D3200683610041B636 /* GoodUtils.swift in Sources */,
 				CE1002D9200683B30041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE7B1449212EB958004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE2D2AF9210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */,
-				CE51AC0A1F41862300E43607 /* MastodonModel.swift in Sources */,
+				CE51AC0A1F41862300E43607 /* DatabaseMisc.swift in Sources */,
+				CE9AEA0823112D6E00EE3B23 /* MastodonInstance.swift in Sources */,
 				CE1002C620065CC20041B636 /* MastodonAttachment.swift in Sources */,
 				CEDEDC9C2007CAF600CD2784 /* MastodonID.swift in Sources */,
 				CE2D2B0421105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEDEDCA22007F8E400CD2784 /* MastodonList.swift in Sources */,
 				CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */,
+				CECBD35F22D1666C004530BA /* IndirectBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1677,16 +1766,21 @@
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE2D2AFB210FCD0F003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CE908560219188F9006769DC /* R.generated.swift in Sources */,
+				CE9AEA1023112E1100EE3B23 /* MastodonApp.swift in Sources */,
 				CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */,
-				CEA252BA1EE8A2DD002C60F3 /* MastodonModel.swift in Sources */,
+				CEA252BA1EE8A2DD002C60F3 /* DatabaseMisc.swift in Sources */,
+				CE97DB5B22D4593900D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CE2D2AFE211050AD003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */,
 				CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
+				CE9AEA1423112E9B00EE3B23 /* MastodonUserToken.swift in Sources */,
 				CE1002CD20065FF10041B636 /* MastodonNotification.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
+				CECBD35E22D1666B004530BA /* IndirectBox.swift in Sources */,
 				CEFE6AFC21B5012300AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CE1002C920065FEC0041B636 /* MastodonPost.swift in Sources */,
+				CE9AEA0723112D6D00EE3B23 /* MastodonInstance.swift in Sources */,
 				CEDEDCA12007F8E300CD2784 /* MastodonList.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,
 			);
@@ -1696,9 +1790,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC6BC212108474E003ECE10 /* MastodonModel.swift in Sources */,
+				CEC6BC212108474E003ECE10 /* DatabaseMisc.swift in Sources */,
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
 				CEC6BC1721084746003ECE10 /* MastodonAccountRelationship.swift in Sources */,
+				CE9AEA1523112E9B00EE3B23 /* MastodonUserToken.swift in Sources */,
 				CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE2D2B00211050AE003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEC6BC0C21076D09003ECE10 /* GoodUtils.swift in Sources */,
@@ -1706,7 +1801,9 @@
 				CEC6BC1C2108474B003ECE10 /* MastodonNotification.swift in Sources */,
 				CEFE6AFE21B5012400AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
+				CE97DB5D22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CEC6BC1D2108474B003ECE10 /* MastodonAttachment.swift in Sources */,
+				CE9AEA0E23112E1100EE3B23 /* MastodonApp.swift in Sources */,
 				CEA3C30922BABF7000BF68C0 /* UserAgent.swift in Sources */,
 				CE71AF53224230F50054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */,
@@ -1714,11 +1811,13 @@
 				CEC6BC192108474B003ECE10 /* MastodonAccount.swift in Sources */,
 				CE2D2AFA210FCD0E003B92B8 /* MastodonCursorWrapper.swift in Sources */,
 				CEC6BC1E2108474B003ECE10 /* MastodonList.swift in Sources */,
+				CE9AEA0923112D6E00EE3B23 /* MastodonInstance.swift in Sources */,
 				CEC6BC1B2108474B003ECE10 /* MastodonApplication.swift in Sources */,
 				CEC6BC0D21076D84003ECE10 /* UserDefaultsDict.swift in Sources */,
 				CEC6BC202108474B003ECE10 /* MastodonID.swift in Sources */,
 				CE7B144A212EB959004904BA /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEC6BC1A2108474B003ECE10 /* MastodonPost.swift in Sources */,
+				CECBD36022D1666C004530BA /* IndirectBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1726,12 +1825,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9AEA0D23112E1000EE3B23 /* MastodonApp.swift in Sources */,
 				CEFE6B0A21B5013200AF5E40 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEFE6AFA21B5011700AF5E40 /* UserDefaultsDict.swift in Sources */,
+				CECBD36122D1666D004530BA /* IndirectBox.swift in Sources */,
+				CE9AEA0A23112D6F00EE3B23 /* MastodonInstance.swift in Sources */,
 				CEFE6B0221B5012500AF5E40 /* MastodonApplication.swift in Sources */,
 				CEFE6B0321B5012500AF5E40 /* MastodonNotification.swift in Sources */,
 				CEFE6AFF21B5012500AF5E40 /* MastodonAccount.swift in Sources */,
-				CEFE6AF521B5010600AF5E40 /* MastodonModel.swift in Sources */,
+				CEFE6AF521B5010600AF5E40 /* DatabaseMisc.swift in Sources */,
 				CEFE6B0821B5012500AF5E40 /* ThirdpartyTrendTags.swift in Sources */,
 				CEFE6B0B21B5013200AF5E40 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEFE6B0421B5012500AF5E40 /* MastodonAttachment.swift in Sources */,
@@ -1740,6 +1842,7 @@
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
+				CE97DB5E22D4593A00D2BDC6 /* MastodonIDAvailable.swift in Sources */,
 				CE71AF54224230F60054A008 /* EmojifyProtocol.swift in Sources */,
 				CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */,
 				CEFE6B0521B5012500AF5E40 /* MastodonList.swift in Sources */,
@@ -1750,7 +1853,9 @@
 				CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */,
 				CEFE6AFB21B5011700AF5E40 /* EventListener.swift in Sources */,
 				CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */,
+				CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
 				CEFE6B0621B5012500AF5E40 /* MastodonSearchResult.swift in Sources */,
+				CE9AEA1623112E9B00EE3B23 /* MastodonUserToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1914,7 +2019,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1968,7 +2073,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1986,15 +2091,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\" \"-D\" \"IS_DEBUG_BUILD\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 5.0;
@@ -2011,15 +2116,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = iMast/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 5.0;
@@ -2034,7 +2139,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				INFOPLIST_FILE = iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastTests;
@@ -2051,7 +2156,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				INFOPLIST_FILE = iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastTests;
@@ -2067,7 +2172,7 @@
 			baseConfigurationReference = 2605ADA75A3A0522311BE304 /* Pods-iMastUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				INFOPLIST_FILE = iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastUITests;
@@ -2083,7 +2188,7 @@
 			baseConfigurationReference = E639DE94B67EC7C6532AD992 /* Pods-iMastUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				INFOPLIST_FILE = iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iMastUITests;
@@ -2100,13 +2205,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastTodayWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMastTodayWidget;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 5.0;
@@ -2120,13 +2225,13 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastTodayWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMastTodayWidget;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
 				SWIFT_VERSION = 5.0;
@@ -2146,14 +2251,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMastShare;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
@@ -2175,14 +2280,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 175;
+				CURRENT_PROJECT_VERSION = 176;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMastShare;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
@@ -2207,7 +2312,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastNotifyService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastNotifyService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2233,7 +2338,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastNotifyService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastNotifyService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2259,7 +2364,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastIntents/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2287,7 +2392,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = iMastIntents/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastIntents;

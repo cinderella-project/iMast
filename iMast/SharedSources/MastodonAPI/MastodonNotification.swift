@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-class MastodonNotification: Codable {
+struct MastodonNotification: Codable {
     let id: MastodonID
     let type: String
     let status: MastodonPost?

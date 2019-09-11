@@ -30,44 +30,68 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-class MastodonPost: Codable, EmojifyProtocol {
+struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id.string)
+        hasher.combine(self.url)
+    }
+    
+    static func == (lhs: MastodonPost, rhs: MastodonPost) -> Bool {
+        return lhs.id == rhs.id && lhs.url == rhs.url
+    }
+    
     let id: MastodonID
     let url: String?
+    var parsedUrl: URL? {
+        guard let url = url else {
+            return nil
+        }
+        return URL(string: url)
+    }
     let account: MastodonAccount
     let inReplyToId: MastodonID?
     let inReplyToAccountId: MastodonID?
-    var repost: MastodonPost?
+    var repost: IndirectBox<MastodonPost>?
     var originalPost: MastodonPost {
-        return self.repost ?? self
+        return self.repost?.value ?? self
     }
     let status: String
     let createdAt: Date
     let repostCount: Int
     let favouritesCount: Int
+
     var reposted: Bool {
         return self._reposted ?? false
     }
-    var _reposted: Bool?
+    let _reposted: Bool?
+
     var favourited: Bool {
         return self._favourited ?? false
     }
-    var _favourited: Bool?
+    let _favourited: Bool?
+
     var muted: Bool {
         return self._muted ?? false
     }
-    var _muted: Bool?
+    let _muted: Bool?
+
     let sensitive: Bool
     let spoilerText: String
     let attachments: [MastodonAttachment]
     let application: MastodonApplication?
-    var pinned: Bool?
-    var emojis: [MastodonCustomEmoji]?
-    var profileEmojis: [MastodonCustomEmoji]?
+    let pinned: Bool?
+    let emojis: [MastodonCustomEmoji]?
+    let profileEmojis: [MastodonCustomEmoji]?
+    var hasCustomEmoji: Bool {
+        if let emojis = emojis, emojis.count > 0 { return true }
+        if let profileEmojis = profileEmojis, profileEmojis.count > 0 { return true }
+        return false
+    }
     let visibility: String
     private(set) var mentions: [MastodonPostMention] = []
-    var tags: [MastodonPostHashtag]?
+    let tags: [MastodonPostHashtag]?
     var poll: MastodonPoll?
-    var language: String?
+    let language: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -103,7 +127,7 @@ class MastodonPost: Codable, EmojifyProtocol {
     }
 }
 
-class MastodonCustomEmoji: Codable {
+struct MastodonCustomEmoji: Codable {
     let shortcode: String
     let url: String
     enum CodingKeys: String, CodingKey {
@@ -117,12 +141,12 @@ class MastodonCustomEmoji: Codable {
     }
 }
 
-class MastodonPostContext: Codable {
+struct MastodonPostContext: Codable {
     let ancestors: [MastodonPost]
     let descendants: [MastodonPost]
 }
 
-class MastodonPostMention: Codable {
+struct MastodonPostMention: Codable {
     let url: String
     let username: String
     let acct: String
@@ -134,7 +158,7 @@ class MastodonPostMention: Codable {
     }
 }
 
-class MastodonPoll: Codable {
+struct MastodonPoll: Codable {
     let id: MastodonID
     let expires_at: Date?
     let expired: Bool
@@ -144,12 +168,23 @@ class MastodonPoll: Codable {
     let options: [MastodonPollOption]
 }
 
-class MastodonPollOption: Codable {
+struct MastodonPollOption: Codable {
     let title: String
     let votes_count: Int
 }
 
 extension MastodonUserToken {
+    func canBoost(post: MastodonPost) -> Bool {
+        switch post.visibility {
+        case "direct":
+            return false
+        case "private":
+            return post.account.acct == self.screenName
+        default:
+            return true
+        }
+    }
+    
     func newPost(status: String) -> Promise<MastodonPost> {
         return self.post("statuses", params: ["status": status]).then { res -> MastodonPost in
             return try MastodonPost.decode(json: res)
@@ -201,17 +236,16 @@ extension MastodonUserToken {
         }
     }
     
-    func timeline(_ type: MastodonTimelineType, limit: Int? = nil, since: MastodonPost? = nil, max: MastodonPost? = nil) -> Promise<[MastodonPost]> {
+    func timeline(_ type: MastodonTimelineType, limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonPost]> {
         var params = type.params
         if let limit = limit {
             params["limit"] = limit
         }
-        if let since = since {
-            print(since, since.id, since.id.string)
-            params["since_id"] = since.id.string
+        if let sinceId = sinceId {
+            params["since_id"] = sinceId.string
         }
-        if let max = max {
-            params["max_id"] = max.id.string
+        if let maxId = maxId {
+            params["max_id"] = maxId.string
         }
         return self.get(type.endpoint, params: params).then { res in
             return try res.arrayValue.map({try MastodonPost.decode(json: $0)})

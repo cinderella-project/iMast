@@ -24,9 +24,9 @@
 import Foundation
 import Hydra
 
-class ThirdpartyTrendsTags: Codable {
-    var updatedAt: Date
-    var score: [String: Float]
+struct ThirdpartyTrendsTags: Codable {
+    let updatedAt: Date
+    let score: [String: Float]
     
     enum CodingKeys: String, CodingKey {
         case updatedAt = "updated_at"

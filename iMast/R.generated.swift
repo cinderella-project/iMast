@@ -46,7 +46,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 23 images.
+  /// This `R.image` struct is generated, and contains static references to 17 images.
   struct image {
     /// Image `ArrowDown`.
     static let arrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "ArrowDown")
@@ -58,24 +58,12 @@ struct R: Rswift.Validatable {
     static let camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "Camera")
     /// Image `Follow`.
     static let follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "Follow")
-    /// Image `HomeOutline`.
-    static let homeOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "HomeOutline")
-    /// Image `Home`.
-    static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "Home")
     /// Image `MoreOutline`.
     static let moreOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "MoreOutline")
     /// Image `More`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "More")
-    /// Image `NotificationOutline`.
-    static let notificationOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "NotificationOutline")
-    /// Image `Notification`.
-    static let notification = Rswift.ImageResource(bundle: R.hostingBundle, name: "Notification")
     /// Image `NowPlaying`.
     static let nowPlaying = Rswift.ImageResource(bundle: R.hostingBundle, name: "NowPlaying")
-    /// Image `PeopleOutline`.
-    static let peopleOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PeopleOutline")
-    /// Image `People`.
-    static let people = Rswift.ImageResource(bundle: R.hostingBundle, name: "People")
     /// Image `PhotosInline`.
     static let photosInline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PhotosInline")
     /// Image `Poll`.
@@ -120,16 +108,6 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.follow, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "Home", bundle: ..., traitCollection: ...)`
-    static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "HomeOutline", bundle: ..., traitCollection: ...)`
-    static func homeOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.homeOutline, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "More", bundle: ..., traitCollection: ...)`
     static func more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.more, compatibleWith: traitCollection)
@@ -140,29 +118,9 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.moreOutline, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "Notification", bundle: ..., traitCollection: ...)`
-    static func notification(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.notification, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "NotificationOutline", bundle: ..., traitCollection: ...)`
-    static func notificationOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.notificationOutline, compatibleWith: traitCollection)
-    }
-    
     /// `UIImage(named: "NowPlaying", bundle: ..., traitCollection: ...)`
     static func nowPlaying(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.nowPlaying, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "People", bundle: ..., traitCollection: ...)`
-    static func people(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.people, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "PeopleOutline", bundle: ..., traitCollection: ...)`
-    static func peopleOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.peopleOutline, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "PhotosInline", bundle: ..., traitCollection: ...)`
@@ -213,7 +171,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `AddAccountSuccessViewController`.
     static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
@@ -221,8 +179,6 @@ struct R: Rswift.Validatable {
     static let newPostMediaListViewController = _R.nib._NewPostMediaListViewController()
     /// Nib `NotificationTableViewCell`.
     static let notificationTableViewCell = _R.nib._NotificationTableViewCell()
-    /// Nib `TimeLineReadMoreCell`.
-    static let timeLineReadMoreCell = _R.nib._TimeLineReadMoreCell()
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
@@ -244,12 +200,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.notificationTableViewCell) instead")
     static func notificationTableViewCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.notificationTableViewCell)
-    }
-    
-    /// `UINib(name: "TimeLineReadMoreCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.timeLineReadMoreCell) instead")
-    static func timeLineReadMoreCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.timeLineReadMoreCell)
     }
     
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
@@ -274,10 +224,6 @@ struct R: Rswift.Validatable {
     
     static func notificationTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
       return R.nib.notificationTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
-    }
-    
-    static func timeLineReadMoreCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
-      return R.nib.timeLineReadMoreCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
     }
     
     static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
@@ -1153,17 +1099,6 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct _TimeLineReadMoreCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TimeLineReadMoreCell"
-      
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UITableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UITableViewCell
       }
       
       fileprivate init() {}

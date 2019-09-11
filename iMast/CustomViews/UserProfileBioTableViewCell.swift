@@ -28,6 +28,7 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
     var loadAfter = false
     var isLoaded = false
     var user: MastodonAccount?
+    var userToken: MastodonUserToken?
     
     @IBOutlet weak var profileTextView: UITextView!
     
@@ -58,6 +59,7 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
         if let attrStr = user.bio.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").parseText2HTML(attributes: [
             .paragraphStyle: paragraph,
             .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.label,
         ]) {
             self.profileTextView.attributedText = attrStr
         }
@@ -67,7 +69,7 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let string = (textView.attributedText.string as NSString).substring(with: characterRange)
-        if string.hasPrefix("@") {
+        if string.hasPrefix("@"), let userToken = self.userToken {
             let alert = UIAlertController(title: "ユーザー検索中", message: "\(URL.absoluteString)\n\nしばらくお待ちください", preferredStyle: .alert)
             var canceled = false
             alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { _ in
@@ -80,11 +82,11 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
                 let safari = SFSafariViewController(url: URL)
                 self.viewController?.present(safari, animated: true, completion: nil)
             }))
-            MastodonUserToken.getLatestUsed()?.search(q: URL.absoluteString, resolve: true).then { result in
+            userToken.search(q: URL.absoluteString, resolve: true).then { result in
                 if canceled { return }
                 alert.dismiss(animated: true, completion: nil)
-                if result.accounts.count >= 1 {
-                    let newVC = openUserProfile(user: result.accounts[0])
+                if let account = result.accounts.first {
+                    let newVC = UserProfileTopViewController.instantiate(account, environment: userToken)
                     self.viewController?.navigationController?.pushViewController(newVC, animated: true)
                 } else {
                     let safari = SFSafariViewController(url: URL)

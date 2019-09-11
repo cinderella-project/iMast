@@ -82,7 +82,16 @@ class SettingsViewController: FormViewController {
                     cell.detailTextLabel?.text = "GPMのURLを共有しようとする際に https://play.google.com との通信が発生します。また、この機能は非公式であり、問題が発生しても開発者は責任を負いません。自己責任でお使いください。"
                     cell.detailTextLabel?.numberOfLines = 0
                 }
-        }
+            }
+            <<< SwitchRow { row in
+                row.title = "共有プレビューで独自実装を利用"
+                row.userDefaultsConnect(.useCustomizedSharePreview)
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.detailTextLabel?.text = "メモリ制限でクラッシュする問題への対策です。\n何らかの不都合が生じた場合はオフにしてみてください。"
+                    cell.detailTextLabel?.numberOfLines = 0
+                }
+            }
         self.form +++ self.getImageCacheSection()
         self.form +++ Section("実験的な要素")
             <<< SwitchRow { row in

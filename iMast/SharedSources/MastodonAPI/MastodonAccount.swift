@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-class MastodonAccount: Codable, EmojifyProtocol {
+struct MastodonAccount: Codable, EmojifyProtocol {
     let id: MastodonID
     let name: String
     let screenName: String
@@ -39,7 +39,7 @@ class MastodonAccount: Codable, EmojifyProtocol {
     let headerUrl: String
 
     let acct: String
-    let moved: MastodonAccount?
+    let moved: IndirectBox<MastodonAccount>?
     
     let niconicoUrl: URL?
     
@@ -78,7 +78,7 @@ class MastodonAccount: Codable, EmojifyProtocol {
     }
 }
 
-class MastodonAccountOAuthAuthenticate: Codable {
+struct MastodonAccountOAuthAuthenticate: Codable {
     let provider: String
     let uid: String
     

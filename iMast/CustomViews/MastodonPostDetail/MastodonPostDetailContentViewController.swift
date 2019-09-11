@@ -51,6 +51,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         v.isEditable = false
         v.textContainer.lineFragmentPadding = 0
         v.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        v.backgroundColor = .clear
     }
     
     let userButton = UIButton()
@@ -62,8 +63,8 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     let cwToggleButton = UIButton() ※ { v in
         v.layer.cornerRadius = 4
-        v.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        v.setTitleColor(.black, for: .normal)
+        v.backgroundColor = .systemGray5
+        v.setTitleColor(.label, for: .normal)
     }
     
     let attachedMediaListViewController: AttachedMediaListViewController
@@ -147,11 +148,11 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
         userNameLabel.text = post.account.name
         let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
-            .foregroundColor: UIColor.gray,
+            .foregroundColor: UIColor.systemGray,
         ])
         if !post.account.acct.contains("@") { // acctにhostがない場合は追加する
             userAcctString.append(NSAttributedString(string: "@\(environment.app.instance.hostName)", attributes: [
-                .foregroundColor: UIColor.lightGray,
+                .foregroundColor: UIColor.systemGray2,
             ]))
         }
         userAcctLabel.attributedText = userAcctString
@@ -161,6 +162,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         
         textView.attributedText = post.status.parseText2HTMLNew(attributes: [
             .font: UIFont.preferredFont(forTextStyle: .body),
+            .foregroundColor: UIColor.label,
         ])?.emojify(asyncLoadProgressHandler: { [weak textView] in
             textView?.setNeedsDisplay()
         }, emojifyProtocol: input)
@@ -199,7 +201,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     
     @objc func tapUser() {
-        let vc = openUserProfile(user: input.originalPost.account)
+        let vc = UserProfileTopViewController.instantiate(input.originalPost.account, environment: environment)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -210,9 +212,10 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.mentions.first(where: { $0.url == urlString }) {
-            MastodonUserToken.getLatestUsed()!.getAccount(id: mention.id).then({ user in
-                let newVC = openUserProfile(user: user)
-                self.navigationController?.pushViewController(newVC, animated: true)
+            environment.getAccount(id: mention.id).then({ [weak self] user in
+                guard let strongSelf = self else { return }
+                let newVC = UserProfileTopViewController.instantiate(user, environment: strongSelf.environment)
+                strongSelf.navigationController?.pushViewController(newVC, animated: true)
             })
             return false
         }
@@ -221,7 +224,7 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         }
         if visibleString.starts(with: "#") {
             let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimeLineTableViewController(hashtag: tag)
+            let newVC = HashtagTimeLineTableViewController(hashtag: tag, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: true)
             return false
         }

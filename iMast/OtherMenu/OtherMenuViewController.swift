@@ -25,14 +25,18 @@ import UIKit
 import Eureka
 import SafariServices
 import ActionClosurable
+import SwiftUI
+import Mew
 
-class OtherMenuViewController: FormViewController {
+class OtherMenuViewController: FormViewController, Instantiatable {
+    typealias Input = Void
+    typealias Environment = MastodonUserToken
 
-    var nowAccount: MastodonUserToken?
+    internal let environment: Environment
 
-    init() {
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
         super.init(style: .plain)
-        self.title = R.string.localizable.other()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +44,7 @@ class OtherMenuViewController: FormViewController {
     }
     
     override func viewDidLoad() {
+        self.title = R.string.localizable.other()
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -47,8 +52,6 @@ class OtherMenuViewController: FormViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        nowAccount = MastodonUserToken.getLatestUsed()
-        
         let section = Section()
         section <<< ButtonRow { row in
             row.title = R.string.localizable.switchActiveAccount()
@@ -57,7 +60,7 @@ class OtherMenuViewController: FormViewController {
         }.cellSetup { cell, row in
             cell.height = { 44 }
         }.cellUpdate { (cell, row) in
-            cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.nowAccount?.acct ?? "")
+            cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.environment.acct)
         }
         
         section <<< ButtonRow { row in
@@ -67,9 +70,8 @@ class OtherMenuViewController: FormViewController {
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.textColor = nil
         }.onCellSelection { cell, row in
-            MastodonUserToken.getLatestUsed()!.verifyCredentials().then { account in
-                print(account)
-                let newVC = openUserProfile(user: account)
+            self.environment.verifyCredentials().then { account in
+                let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
                 self.navigationController?.pushViewController(newVC, animated: true)
             }.catch { error in
                     print(error)
@@ -84,13 +86,13 @@ class OtherMenuViewController: FormViewController {
             cell.textLabel?.textColor = nil
         }.onCellSelection { cell, row in
             // TODO: ここの下限バージョンの処理をあとで共通化する
-            MastodonUserToken.getLatestUsed()!.getIntVersion().then { version in
+            self.environment.getIntVersion().then { version in
                 if version < MastodonVersionStringToInt("2.1.0rc1") {
                     self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("2.1.0rc1"))
                     return
                 }
-                MastodonUserToken.getLatestUsed()!.lists().then({ lists in
-                    let vc = ListsTableViewController()
+                self.environment.lists().then({ lists in
+                    let vc = ListsTableViewController.instantiate(environment: self.environment)
                     vc.lists = lists
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
@@ -121,13 +123,13 @@ class OtherMenuViewController: FormViewController {
         
         section <<< ButtonRow { row in
             row.title = R.string.localizable.helpAndFeedback()
-            row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuHelpAndFeedbackViewController() }), onDismiss: nil)
+            row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: OtherMenuHelpAndFeedbackView()) }), onDismiss: nil)
         }
         
         self.form +++ section
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search) { (item) in
-            self.navigationController?.pushViewController(SearchViewController(with: (), environment: MastodonUserToken.getLatestUsed()!), animated: true)
+            self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
         }
     }
 

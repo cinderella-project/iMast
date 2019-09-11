@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-class MastodonList: Codable {
+struct MastodonList: Codable {
     let id: MastodonID
     let title: String
 }
