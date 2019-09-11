@@ -37,10 +37,12 @@ struct OpenSafariCellView : View {
                 VStack(alignment: .leading) {
                     text
                     if showUrl {
-                        Text(url.absoluteString).font(.system(.footnote))
+                        Text(url.absoluteString)
+                            .lineLimit(1)
+                            .font(.system(.footnote))
                     }
                 }
-                Spacer()
+                Spacer().layoutPriority(-1)
                 Image(systemName: "safari").colorMultiply(.secondary)
             }
         }
