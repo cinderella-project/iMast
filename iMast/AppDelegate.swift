@@ -274,7 +274,7 @@ extension UIViewController {
             }, completion: nil)
         } else {
             // TODO: あとでちゃんとやる
-//            allWebSocketDisconnect()
+            allWebSocketDisconnect()
             window.rootViewController = viewController
         }
     }
