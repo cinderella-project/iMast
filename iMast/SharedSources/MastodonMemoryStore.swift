@@ -44,7 +44,6 @@ class MastodonMemoryStore<T: MastodonMemoryStorable> {
     }
     
     func change(obj: T) {
-        print("changed", self, obj.id)
         let isFirst = container[obj.id] == nil
         container[obj.id] = obj
         if isFirst {
