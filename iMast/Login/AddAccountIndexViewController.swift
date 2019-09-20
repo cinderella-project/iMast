@@ -38,7 +38,7 @@ class AddAccountIndexViewController: FormViewController {
         }
         self.form +++ Section(R.string.localizable.pleaseInputMastodonInstance())
         <<< TextRow("instance") { row in
-            row.placeholder = "mstdn.jp"
+            row.placeholder = "mastodon.example"
         }.cellUpdate { cell, row in
             cell.textField.autocorrectionType = .no
             cell.textField.autocapitalizationType = .none
@@ -46,12 +46,12 @@ class AddAccountIndexViewController: FormViewController {
         }
         self.form +++ ButtonRow { row in
             row.title = "ログイン"
+            row.disabled = "$instance == nil"
             row.onCellSelection { cell, row in
                 guard let instanceRow = self.form.rowBy(tag: "instance") as? TextRow else {
                     return
                 }
-                guard let hostName = instanceRow.value ?? instanceRow.placeholder else {
-                    self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorPleaseInputInstance())
+                guard let hostName = instanceRow.value else {
                     return
                 }
                 let alert = UIAlertController(title: "ログイン中...", message: "ログインしています", preferredStyle: .alert)
