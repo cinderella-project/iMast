@@ -76,12 +76,12 @@ class AddAccountLoginViewController: FormViewController {
     }
     */
     func loginButtonTapped() {
-        guard let mailAddress = (self.form.rowBy(tag: "mail") as? TextRow)?.value, mailAddress.count > 0 else {
+        guard let mailAddress = (self.form.rowBy(tag: "mail") as? TextRow)?.value else {
             self.alert(title: "エラー", message: "メールアドレスを入力してください")
             return
         }
         
-        guard let password = (self.form.rowBy(tag: "password") as? PasswordRow)?.value, password.count > 0 else {
+        guard let password = (self.form.rowBy(tag: "password") as? PasswordRow)?.value else {
             self.alert(title: "エラー", message: "パスワードを入力してください")
             return
         }
