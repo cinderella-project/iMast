@@ -25,7 +25,7 @@ import UIKit
 
 // thanks to https://stackoverflow.com/a/44878203
 
-class NotSelectableTextView: UITextView {
+class NotSelectableTextView: CustomLinkBehaviourTextView {
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         guard let attributedText = self.attributedText else {
             return false

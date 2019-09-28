@@ -102,6 +102,16 @@ class SettingsViewController: FormViewController {
                 row.title = "通知タブの無限スクロール"
                 row.userDefaultsConnect(.notifyTabInfiniteScroll)
             }
+            <<< SwitchRow { row in
+                row.title = "iOS 13.1(.1)のリンク感度問題のworkaround"
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.detailTextLabel?.text = "iOS 13.1 及び iOS 13.1.1 ではデフォルトで有効です。\nリンク感度がおかしくない場合、この設定を有効にするとリンクが反応しなくなります。"
+                    cell.detailTextLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.workaroundOfiOS13_1UITextView)
+            }
         self.title = "設定"
         let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
             let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)

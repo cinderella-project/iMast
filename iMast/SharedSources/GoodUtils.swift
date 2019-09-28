@@ -372,6 +372,13 @@ extension DefaultsKeys {
     static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
     static let newAccountVia = DefaultsKey<String>("new_account_via", default: "iMast")
     static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old", default: false)
+    static let workaroundOfiOS13_1UITextView = DefaultsKey<Bool>(
+        "workaroundOfiOS13_1UITextView",
+         default: [
+            "13.1",
+            "13.1.1",
+         ].firstIndex(of: UIDevice.current.systemVersion) != nil
+    )
 
     static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize", default: 14)
     static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize", default: 15)

@@ -30,6 +30,7 @@
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
 		98BF1A713F0CE5B65A42E86C /* Pods_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD2CB81438091DF9C6D9C858 /* Pods_iMastNotifyService.framework */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
+		CE070646233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */; };
 		CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE1002C420065CC20041B636 /* MastodonAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C320065CC20041B636 /* MastodonAttachment.swift */; };
@@ -383,6 +384,7 @@
 		B418FB7F7FDC7A1F80D52101 /* Pods-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		BCCF751817BD58EDB56B0C1A /* Pods-iMastTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableAVPlayerViewController.swift; sourceTree = "<group>"; };
+		CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinkBehaviourTextView.swift; sourceTree = "<group>"; };
 		CE099D022194315800A4BCCB /* UploadableMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableMedia.swift; sourceTree = "<group>"; };
 		CE1002C320065CC20041B636 /* MastodonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAttachment.swift; sourceTree = "<group>"; };
 		CE1002C720065DA30041B636 /* MastodonSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonSearchResult.swift; sourceTree = "<group>"; };
@@ -761,6 +763,8 @@
 			children = (
 				CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */,
 				CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */,
+				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
+				CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */,
 			);
 			path = ExtendedClasses;
 			sourceTree = "<group>";
@@ -842,7 +846,6 @@
 				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CEE254262004B593005FEB6F /* MastodonAPI */,
-				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
 				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
@@ -1526,7 +1529,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/$TARGET_NAME/R.generated.swift",
+				$SRCROOT/$TARGET_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1564,7 +1567,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/iMast/R.generated.swift",
+				$SRCROOT/iMast/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1687,6 +1690,7 @@
 				CEDEDC9A2007C36400CD2784 /* MastodonID.swift in Sources */,
 				CE59166B22BA328900F0EFB3 /* OpenSafariCellView.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
+				CE070646233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift in Sources */,
 				CE6EA6E2217CE62100809A65 /* NSRange+optional.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
