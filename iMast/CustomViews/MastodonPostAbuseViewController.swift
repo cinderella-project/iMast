@@ -50,26 +50,26 @@ class MastodonPostAbuseViewController: FormViewController, Instantiatable {
         
         self.title = "通報"
         
-        self.form +++ Section()
-            <<< TextAreaRow {
-                $0.tag = "text"
-                $0.placeholder = self.placeholder
-                $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+        self.form.append {
+            Section {
+                TextAreaRow("text") {
+                    $0.placeholder = self.placeholder
+                    $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+                }
+            }
         }
         
         if let remoteInstance = input.account.acct.split(separator: "@").safe(1) {
-            self.form +++ Section(footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。")
-                <<< SwitchRow {
-                    $0.tag = "forward"
-                    $0.title = "リモートインスタンスに転送"
+            self.form +++ Section(
+                footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。"
+            ) {
+                SwitchRow("forward") { row in
+                    row.title = "リモートインスタンスに転送"
                 }
+            }
         }
         
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "送信", style: .done) { _ in
-                self.submitButtonTapped()
-            },
-        ]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "送信", style: .done, target: self, action: #selector(submitButtonTapped))
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,10 +77,14 @@ class MastodonPostAbuseViewController: FormViewController, Instantiatable {
         // Dispose of any resources that can be recreated.
     }
     
-    func submitButtonTapped() {
-        let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value ?? ""
-        let forward = (self.form.rowBy(tag: "forward") as? SwitchRow)?.value ?? false
-        environment.reports(account: self.input.account, comment: text, forward: forward, posts: [input]).then { (res) in
+    @objc func submitButtonTapped() {
+        let values = form.values()
+        environment.reports(
+            account: self.input.account,
+            comment: (values["text"] as? String) ?? "",
+            forward: (values["forward"] as? Bool) ?? false,
+            posts: [input]
+        ).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }

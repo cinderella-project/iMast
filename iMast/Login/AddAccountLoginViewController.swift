@@ -24,6 +24,7 @@
 import UIKit
 import Hydra
 import Eureka
+import EurekaFormBuilder
 import OnePasswordExtension
 
 class AddAccountLoginViewController: FormViewController {
@@ -45,18 +46,21 @@ class AddAccountLoginViewController: FormViewController {
             self.navigationItem.rightBarButtonItem = button
         }
         
-        self.form +++ Section()
-        <<< TextRow("mail") { row in
-            row.placeholder = "メールアドレス"
-        }
-        <<< PasswordRow("password") { row in
-            row.placeholder = "パスワード"
-        }
-        self.form +++ Section()
-        <<< ButtonRow { row in
-            row.title = "ログイン"
-            row.onCellSelection { cell, row in
-                self.loginButtonTapped()
+        form.append {
+            Section {
+                TextRow("mail") { row in
+                    row.placeholder = "メールアドレス"
+                }
+                PasswordRow("password") { row in
+                    row.placeholder = "パスワード"
+                }
+            }
+            Section {
+                ButtonRow { row in
+                    row.title = "ログイン"
+                }.onCellSelection { [weak self] cell, row in
+                    self?.loginButtonTapped()
+                }
             }
         }
     }
@@ -65,28 +69,20 @@ class AddAccountLoginViewController: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     func loginButtonTapped() {
-        guard let mailAddress = (self.form.rowBy(tag: "mail") as? TextRow)?.value else {
+        let formValues = form.values()
+        guard let mailAddress = formValues["mail"] as? String else {
             self.alert(title: "エラー", message: "メールアドレスを入力してください")
             return
         }
         
-        guard let password = (self.form.rowBy(tag: "password") as? PasswordRow)?.value else {
+        guard let password = formValues["password"] as? String else {
             self.alert(title: "エラー", message: "パスワードを入力してください")
             return
         }
         
-        let promise = async { status -> MastodonUserToken in
+        async { status -> MastodonUserToken in
             let userToken = try await(self.app.authorizeWithPassword(email: mailAddress, password: password))
             let info = try await(userToken.getUserInfo())
             if info["error"].exists() {
@@ -100,42 +96,25 @@ class AddAccountLoginViewController: FormViewController {
             successVC.userToken = userToken
             self.present(successVC, animated: true, completion: nil)
         })
-//        app!.authorizeWithPassword(email: mailAddressInput.text!, password: passwordInput.text!).then { userToken in
-//            self.userToken = userToken
-//            self.performSegue(withIdentifier: "backToProgress", sender: self)
-//        }.catch { (error) -> Void in
-//            print(error)
-//            do {
-//                throw error
-//            } catch APIError.errorReturned (let e) {
-//                self.apiError(e.errorMessage, e.errorHttpCode)
-//            } catch APIError.unknownResponse (let e) {
-//                self.apiError(nil, e)
-//            } catch {
-//                self.apiError(nil, nil)
-//            }
-//        }
     }
     
     func callPasswordManager() {
-        OnePasswordExtension.shared().findLogin(forURLString: "https://" + self.app!.instance.hostName, for: self, sender: self) { (dict, error) in
+        OnePasswordExtension.shared().findLogin(
+            forURLString: "https://" + self.app!.instance.hostName,
+            for: self, sender: self
+        ) { (dict, error) in
             if let error = error {
                 print(error)
                 return
             }
             guard let dict = dict else { return }
             if let mailAddress = dict[AppExtensionUsernameKey] as? String {
-                if let row = self.form.rowBy(tag: "mail") as? TextRow {
-                    row.value = mailAddress
-                    row.reload()
-                }
+                self.form.setValues(["mail": mailAddress])
             }
             if let password = dict[AppExtensionPasswordKey] as? String {
-                if let row = self.form.rowBy(tag: "password") as? PasswordRow {
-                    row.value = password
-                    row.reload()
-                }
+                self.form.setValues(["password": password])
             }
+            self.form.allRows.forEach { $0.reload() }
         }
     }
 }

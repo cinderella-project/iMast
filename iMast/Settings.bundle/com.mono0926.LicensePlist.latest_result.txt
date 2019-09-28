@@ -36,6 +36,10 @@ name: Eureka, nameSpecified:
 body: The MIT License (MIT…
 version: 5.0.0
 
+name: EurekaFormBuilder, nameSpecified: 
+body: Copyright (c) 2019 r…
+version: 0.1.1
+
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
 version: 3.0.0
