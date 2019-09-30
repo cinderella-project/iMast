@@ -55,7 +55,7 @@ public class MastodonApp {
     }
     static func initFromId(appId: String) -> MastodonApp {
         return try! dbQueue.inDatabase { db in
-            let row = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [appId])!
+            let row = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [appId])!
             return initFromRow(row: row)
         }
     }
@@ -75,7 +75,7 @@ public class MastodonApp {
     func save() -> Bool {
         do {
             try dbQueue.inDatabase { db in
-                try db.execute("INSERT OR REPLACE INTO app (id, client_id, client_secret, name, redirect_uri, instance_hostname) VALUES (?,?,?,?,?,?)", arguments: [
+                try db.execute(sql: "INSERT OR REPLACE INTO app (id, client_id, client_secret, name, redirect_uri, instance_hostname) VALUES (?,?,?,?,?,?)", arguments: [
                     self.id,
                     self.clientId,
                     self.clientSecret,

@@ -1,89 +1,76 @@
 PODS:
   - 1PasswordExtension (1.8.5)
-  - Alamofire (4.8.1)
+  - Alamofire (4.9.0)
   - Crossroad (3.0.0)
   - Eureka (5.0.0)
   - EurekaFormBuilder (0.1.1):
     - Eureka (~> 5.0)
-  - Fuzi (3.0.0)
-  - GRDB.swift (3.7.0)
-  - HydraAsync (1.2.1)
-  - KeychainAccess (3.1.2)
-  - libwebp (0.6.1):
-    - libwebp/core (= 0.6.1)
-    - libwebp/dec (= 0.6.1)
-    - libwebp/demux (= 0.6.1)
-    - libwebp/dsp (= 0.6.1)
-    - libwebp/enc (= 0.6.1)
-    - libwebp/mux (= 0.6.1)
-    - libwebp/utils (= 0.6.1)
-    - libwebp/webp (= 0.6.1)
-  - libwebp/core (0.6.1):
+  - Fuzi (3.1.1)
+  - GRDB.swift (4.4.0):
+    - GRDB.swift/standard (= 4.4.0)
+  - GRDB.swift/standard (4.4.0)
+  - HydraAsync (2.0.2)
+  - KeychainAccess (3.2.0)
+  - libwebp (1.0.3):
+    - libwebp/demux (= 1.0.3)
+    - libwebp/mux (= 1.0.3)
+    - libwebp/webp (= 1.0.3)
+  - libwebp/demux (1.0.3):
     - libwebp/webp
-  - libwebp/dec (0.6.1):
-    - libwebp/core
-  - libwebp/demux (0.6.1):
-    - libwebp/core
-  - libwebp/dsp (0.6.1):
-    - libwebp/core
-  - libwebp/enc (0.6.1):
-    - libwebp/core
-  - libwebp/mux (0.6.1):
-    - libwebp/core
-  - libwebp/utils (0.6.1):
-    - libwebp/core
-  - libwebp/webp (0.6.1)
-  - LicensePlist (2.1.0)
+  - libwebp/mux (1.0.3):
+    - libwebp/demux
+  - libwebp/webp (1.0.3)
+  - LicensePlist (2.6.0)
   - Mew (0.1.0)
-  - Notifwift (1.0.0)
+  - Notifwift (1.1.1)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - ReachabilitySwift (4.3.0)
-  - SDWebImage (4.4.5):
-    - SDWebImage/Core (= 4.4.5)
-  - SDWebImage/Core (4.4.5)
-  - SDWebImage/WebP (4.4.5):
-    - libwebp (~> 0.5)
-    - SDWebImage/Core
-  - SnapKit (4.2.0)
-  - Starscream (3.0.6)
+  - ReachabilitySwift (4.3.1)
+  - SDWebImage (5.2.0):
+    - SDWebImage/Core (= 5.2.0)
+  - SDWebImage/Core (5.2.0)
+  - SDWebImageWebPCoder (0.2.4):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.0)
+  - SnapKit (5.0.1)
+  - Starscream (3.1.0)
   - SVProgressHUD (2.2.5)
-  - SwiftLint (0.30.1)
-  - SwiftyJSON (4.2.0)
+  - SwiftLint (0.35.0)
+  - SwiftyJSON (5.0.0)
   - XCGLogger (7.0.0):
     - XCGLogger/Core (= 7.0.0)
   - XCGLogger/Core (7.0.0):
     - ObjcExceptionBridging
-  - "※ikemen (0.5.0)"
+  - "※ikemen (0.6.0)"
 
 DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
-  - Alamofire (~> 4.8.1)
+  - Alamofire (~> 4.9.0)
   - Crossroad (~> 3.0)
   - Eureka (from `https://github.com/ykphuah/Eureka.git`, commit `60e0668cc3755ef791c3d685d2951610ddc47597`)
   - EurekaFormBuilder
-  - Fuzi (~> 3.0.0)
-  - GRDB.swift (~> 3.7.0)
-  - HydraAsync
-  - KeychainAccess (~> 3.1.2)
-  - LicensePlist (~> 2.1.0)
+  - Fuzi (~> 3.1.1)
+  - GRDB.swift (~> 4.4.0)
+  - HydraAsync (~> 2.0.2)
+  - KeychainAccess (~> 3.2.0)
+  - LicensePlist (~> 2.6.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
-  - Notifwift
+  - Notifwift (~> 1.1.1)
   - R.swift (~> 5.0.3)
-  - ReachabilitySwift (~> 4.3.0)
-  - SDWebImage (~> 4.4.5)
-  - SDWebImage/WebP (~> 4.4.5)
-  - SnapKit
-  - Starscream (~> 3.0.6)
+  - ReachabilitySwift (~> 4.3.1)
+  - SDWebImage (~> 5.2.0)
+  - SDWebImageWebPCoder (~> 0.2.4)
+  - SnapKit (~> 5.0.1)
+  - Starscream (~> 3.1.0)
   - SVProgressHUD
-  - SwiftLint (~> 0.30.1)
-  - SwiftyJSON (~> 4.2.0)
+  - SwiftLint (~> 0.35.0)
+  - SwiftyJSON (~> 5.0.0)
   - XCGLogger (~> 7.0.0)
-  - "※ikemen"
+  - "※ikemen (~> 0.6.0)"
 
 SPEC REPOS:
   https://cdn.cocoapods.org/:
@@ -103,6 +90,7 @@ SPEC REPOS:
     - R.swift.Library
     - ReachabilitySwift
     - SDWebImage
+    - SDWebImageWebPCoder
     - SnapKit
     - Starscream
     - SVProgressHUD
@@ -129,31 +117,32 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Crossroad: 6e5c1c0a7bd6a5034dd1499e5619b0875af7e3e5
   Eureka: e7b9a83e08867f8336176247bdc4c199b1f68e5e
   EurekaFormBuilder: 242951fae0d49113ad76c645d8ca5ac8c3514ee6
-  Fuzi: a758e57fab9fbec6fd218ea7f2e00aa79325a93a
-  GRDB.swift: 51cc9e57ae8ff7083a9d674c97925aa1de06aac5
-  HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
-  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
-  libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
-  LicensePlist: 304c23a2e9f484f3985b6b873db7ae32086279af
+  Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
+  GRDB.swift: 4f9b6e7efc9470426f6a6de10ec1fee798ff7e43
+  HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
+  LicensePlist: 04fb95b572038c87068283afa65518a61aff9342
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
-  Notifwift: 1c5d63660ac2cad79870b2eb759d6c8a3e600343
+  Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SDWebImage: 609192dcf3898c910a2848032372ead951e66364
+  SDWebImageWebPCoder: cc72085bb20368b2f8dbb21b7e355c667e1309b7
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
-  "※ikemen": 0cf85af52790db21a846ad31abca356e99da1ffb
+  "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 7ef12e62bd893519eedd5592e0d2be2109e8adf8
+PODFILE CHECKSUM: b76b142f96345e2bc2d76dcbc909c3ec4b4f7ef8
 
 COCOAPODS: 1.7.5

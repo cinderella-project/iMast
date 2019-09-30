@@ -299,7 +299,7 @@ class SettingsViewController: FormViewController {
         section <<< TextRow { row in
             row.title = "キャッシュの容量"
             row.disabled = true
-            let size = UInt64(SDWebImageManager.shared().imageCache?.getSize() ?? 0)
+            let size = SDImageCache.shared.totalDiskSize()
             if size < 10_000 {
                 row.value = size.description + "B"
             } else if size < 10_000_000 {
@@ -320,20 +320,20 @@ class SettingsViewController: FormViewController {
         section <<< ButtonRow { row in
             row.title = "ストレージ上のキャッシュを削除"
         }.onCellSelection { (cell, row) in
-            let size = SDWebImageManager.shared().imageCache?.getSize() ?? 0
+            let size = SDImageCache.shared.totalDiskSize()
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
             formatter.groupingSeparator = ","
             formatter.groupingSize = 3
             let sizeStr = formatter.string(from: size as NSNumber) ?? "0"
-            let count = SDWebImageManager.shared().imageCache?.getDiskCount() ?? 0
+            let count = SDImageCache.shared.totalDiskCount()
             self.confirm(title: "キャッシュ削除の確認", message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?", okButtonMessage: "OK").then { result in
                 if !result {
                     return
                 }
-                SDWebImageManager.shared().imageCache?.clearDisk(onCompletion: {
+                SDImageCache.shared.clearDisk {
                     self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
-                })
+                }
             }
         }
         return section

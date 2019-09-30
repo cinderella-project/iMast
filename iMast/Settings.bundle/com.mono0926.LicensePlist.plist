@@ -16,7 +16,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Alamofire</string>
 			<key>Title</key>
-			<string>Alamofire (4.8.1)</string>
+			<string>Alamofire (4.9.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -48,7 +48,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Fuzi</string>
 			<key>Title</key>
-			<string>Fuzi (3.0.0)</string>
+			<string>Fuzi (3.1.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -56,7 +56,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/GRDB.swift</string>
 			<key>Title</key>
-			<string>GRDB.swift (3.7.0)</string>
+			<string>GRDB.swift (4.4.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -64,7 +64,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/HydraAsync</string>
 			<key>Title</key>
-			<string>HydraAsync (1.2.1)</string>
+			<string>HydraAsync (2.0.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/KeychainAccess</string>
 			<key>Title</key>
-			<string>KeychainAccess (3.1.2)</string>
+			<string>KeychainAccess (3.2.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -96,7 +96,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/libwebp</string>
 			<key>Title</key>
-			<string>libwebp (0.6.1)</string>
+			<string>libwebp (1.0.3)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -104,7 +104,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/LicensePlist</string>
 			<key>Title</key>
-			<string>LicensePlist (2.1.0)</string>
+			<string>LicensePlist (2.6.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -118,17 +118,9 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/mikutter</string>
-			<key>Title</key>
-			<string>mikutter</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/Notifwift</string>
 			<key>Title</key>
-			<string>Notifwift (1.0.0)</string>
+			<string>Notifwift (1.1.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -160,7 +152,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/ReachabilitySwift</string>
 			<key>Title</key>
-			<string>ReachabilitySwift (4.3.0)</string>
+			<string>ReachabilitySwift (4.3.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -168,7 +160,15 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImage</string>
 			<key>Title</key>
-			<string>SDWebImage (4.4.5)</string>
+			<string>SDWebImage (5.2.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
+			<string>com.mono0926.LicensePlist/SDWebImageWebPCoder</string>
+			<key>Title</key>
+			<string>SDWebImageWebPCoder (0.2.4)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SnapKit</string>
 			<key>Title</key>
-			<string>SnapKit (4.2.0)</string>
+			<string>SnapKit (5.0.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -184,7 +184,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Starscream</string>
 			<key>Title</key>
-			<string>Starscream (3.0.6)</string>
+			<string>Starscream (3.1.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -200,7 +200,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SwiftLint</string>
 			<key>Title</key>
-			<string>SwiftLint (0.30.1)</string>
+			<string>SwiftLint (0.35.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -208,7 +208,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SwiftyJSON</string>
 			<key>Title</key>
-			<string>SwiftyJSON (4.2.0)</string>
+			<string>SwiftyJSON (5.0.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

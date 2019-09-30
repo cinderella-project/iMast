@@ -92,7 +92,7 @@ extension String {
                                             }
                                         } else {
                                             let promise = Promise<Void>(in: .background) { res, rej, _ in
-                                                SDWebImageManager.shared().loadImage(with: srcUrl, options: [], progress: nil, completed: { (image, _, _, _, finished, _) in
+                                                SDWebImageManager.shared.loadImage(with: srcUrl, options: [], progress: nil, completed: { (image, _, _, _, finished, _) in
                                                     if let image = image {
                                                         attachment.image = image
                                                         res(())

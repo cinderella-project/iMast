@@ -62,10 +62,10 @@ public class MastodonUserToken: Equatable {
     
     static func initFromId(id: String) -> MastodonUserToken? {
         return try! dbQueue.inDatabase { db in
-            guard let row = try Row.fetchOne(db, "SELECT * from user where id=? LIMIT 1", arguments: [id]) else {
+            guard let row = try Row.fetchOne(db, sql: "SELECT * from user where id=? LIMIT 1", arguments: [id]) else {
                 return nil
             }
-            let approw = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
+            let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
             let app = MastodonApp.initFromRow(row: approw)
             return initFromRow(row: row, app: app)
         }
@@ -86,8 +86,8 @@ public class MastodonUserToken: Equatable {
     static func getLatestUsed() -> MastodonUserToken? {
         do {
             return try dbQueue.inDatabase { db in
-                if let row = try Row.fetchOne(db, "SELECT * from user ORDER BY last_used DESC LIMIT 1") {
-                    let approw = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
+                if let row = try Row.fetchOne(db, sql: "SELECT * from user ORDER BY last_used DESC LIMIT 1") {
+                    let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
                     let app = MastodonApp.initFromRow(row: approw)
                     return initFromRow(row: row, app: app)
                 }
@@ -101,10 +101,10 @@ public class MastodonUserToken: Equatable {
     
     static func findUserToken(userName: String, instance: String) throws -> MastodonUserToken? {
         return try dbQueue.inDatabase { db -> MastodonUserToken? in
-            guard let row = try Row.fetchOne(db, "SELECT * FROM user WHERE screen_name=? AND app_id IN (SELECT id FROM app WHERE instance_hostname = ?) ORDER BY last_used DESC LIMIT 1", arguments: [userName, instance]) else {
+            guard let row = try Row.fetchOne(db, sql: "SELECT * FROM user WHERE screen_name=? AND app_id IN (SELECT id FROM app WHERE instance_hostname = ?) ORDER BY last_used DESC LIMIT 1", arguments: [userName, instance]) else {
                 return nil
             }
-            guard let approw = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]]) else {
+            guard let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]]) else {
                 return nil
             }
             let app = MastodonApp.initFromRow(row: approw)
@@ -116,9 +116,9 @@ public class MastodonUserToken: Equatable {
         var usertokens: [MastodonUserToken] = []
         do {
             try dbQueue.inDatabase { db in
-                let rows = try Row.fetchAll(db, "SELECT * from user ORDER BY last_used DESC")
+                let rows = try Row.fetchAll(db, sql: "SELECT * from user ORDER BY last_used DESC")
                 for row in rows {
-                    let approw = try Row.fetchOne(db, "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
+                    let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
                     let app = MastodonApp.initFromRow(row: approw)
                     usertokens.append(initFromRow(row: row, app: app))
                 }
@@ -135,10 +135,10 @@ public class MastodonUserToken: Equatable {
         print("save", self.screenName ?? "undefined screenName")
         do {
             try dbQueue.inDatabase { db in
-                let idFound = try Row.fetchOne(db, "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
+                let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
                     self.id,
                     ]) != nil
-                try db.execute(!idFound ?
+                try db.execute(sql: !idFound ?
                     "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
                 :   "UPDATE user SET app_id=?,access_token=?,name=?,screen_name=?,avatar_url=?,instance_hostname=? WHERE id=?", arguments: [
                     self.app.id,
@@ -161,7 +161,7 @@ public class MastodonUserToken: Equatable {
     func use() -> Bool {
         do {
             try dbQueue.inDatabase { db in
-                try db.execute("UPDATE user SET last_used=? WHERE id=?", arguments: [
+                try db.execute(sql: "UPDATE user SET last_used=? WHERE id=?", arguments: [
                     Date().timeIntervalSince1970,
                     self.id,
                 ])
@@ -178,7 +178,7 @@ public class MastodonUserToken: Equatable {
     func delete() -> Bool {
         do {
             try dbQueue.inDatabase { db in
-                try db.execute("DELETE FROM user WHERE id=?", arguments: [
+                try db.execute(sql: "DELETE FROM user WHERE id=?", arguments: [
                     self.id,
                 ])
             }

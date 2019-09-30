@@ -45,7 +45,7 @@ extension NSAttributedString {
                 attachment.bounds = CGRect(x: 0, y: 0, width: size, height: size)
                 attachment.bounds.origin = CGPoint(x: 0, y: -4)
                 if let asyncLoadProgressHandler = asyncLoadProgressHandler {
-                    SDWebImageManager.shared().loadImage(with: srcUrl, options: [], progress: nil, completed: { (image, _, _, _, finished, _) in
+                    SDWebImageManager.shared.loadImage(with: srcUrl, options: [], progress: nil, completed: { (image, _, _, _, finished, _) in
                         if let image = image {
                             attachment.image = image
                             asyncLoadProgressHandler()

@@ -57,7 +57,7 @@ class ListAdderTableViewController: UITableViewController, Instantiatable {
     
     @objc func loading() {
         // TODO: ON/OFFの処理をしてるときはそれが終わるまで待ちたい
-        Promise<Void>.zip(environment.lists(), environment.lists(joinedUser: input)).then { allLists, joinedLists in
+        zip(environment.lists(), environment.lists(joinedUser: input)).then { allLists, joinedLists in
             print(allLists, joinedLists)
             let joinedListIds = joinedLists.map { $0.id.string }
             self.lists = allLists.map { (list: $0, isJoined: joinedListIds.contains($0.id.string)) }
