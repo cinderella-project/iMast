@@ -134,7 +134,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 createdAtLabel,
             ]) ※ {
                 $0.axis = .horizontal
-            }
+            },
         ]) ※ {
             $0.spacing = 6
             $0.axis = .horizontal
@@ -234,7 +234,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         if let splitterPoint = acctNsString.rangeOfCharacter(from: CharacterSet(charactersIn: "@")).optional {
             acctAttrText.setAttributes(
                 [
-                    .font: userNameFont.withSize(userNameFont.pointSize * 0.75)
+                    .font: userNameFont.withSize(userNameFont.pointSize * 0.75),
                 ],
                 range: NSRange(location: splitterPoint.location + 1, length: acctNsString.length - splitterPoint.location)
             )

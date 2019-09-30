@@ -67,7 +67,7 @@ class AddAccountIndexViewController: FormViewController {
                         alert.message = "ログインしています\nインスタンス情報を取得中... (1/4)"
                     }
                     let instance = MastodonInstance(hostName: hostName)
-                    let _ = try await(instance.getInfo())
+                    _ = try await(instance.getInfo())
                     DispatchQueue.mainSafeSync {
                         alert.message = "ログインしています\nアプリ情報を登録中... (2/4)"
                     }

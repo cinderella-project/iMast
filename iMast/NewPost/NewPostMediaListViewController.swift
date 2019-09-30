@@ -107,7 +107,7 @@ class NewPostMediaListViewController: UIViewController {
         pickerSelector.addOption(withTitle: "フォトライブラリ", image: UIImage(named: "PhotosInline"), order: UIDocumentMenuOrder.first, handler: {
             print("photo-library")
             let imgPickerC = UIImagePickerController()
-            print (imgPickerC.modalPresentationStyle.rawValue)
+            print(imgPickerC.modalPresentationStyle.rawValue)
             imgPickerC.sourceType = UIImagePickerController.SourceType.photoLibrary
             if #available(iOS 11.0, *) {
                 imgPickerC.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]

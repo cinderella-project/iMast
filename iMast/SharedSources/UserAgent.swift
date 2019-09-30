@@ -25,4 +25,3 @@ import Foundation
 import UIKit
 
 let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))"
-

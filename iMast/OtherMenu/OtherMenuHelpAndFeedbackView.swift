@@ -27,7 +27,6 @@ import SafariServices
 import Alamofire
 import SwiftUI
 
-
 struct OtherMenuHelpAndFeedbackView: View {
     
     struct AutoRepresentable<VC: UIViewController>: UIViewControllerRepresentable {

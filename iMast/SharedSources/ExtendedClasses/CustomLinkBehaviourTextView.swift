@@ -40,7 +40,7 @@ class CustomLinkBehaviourTextView: UITextView {
         gesture.isEnabled = true
     }
     
-    var interactedCallback: (Date, () -> Void)? = nil
+    var interactedCallback: (Date, () -> Void)?
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

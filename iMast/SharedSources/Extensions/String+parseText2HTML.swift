@@ -27,7 +27,7 @@ import Hydra
 import SDWebImage
 
 extension String {
-    func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> ())? = nil) -> NSAttributedString? {
+    func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
         do {
             let document = try Fuzi.HTMLDocument(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {
@@ -141,7 +141,7 @@ extension String {
         }
     }
     
-    func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:], asyncLoadProgressHandler: (() -> ())? = nil) -> NSAttributedString? {
+    func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
         if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
             return newParserResult
         }

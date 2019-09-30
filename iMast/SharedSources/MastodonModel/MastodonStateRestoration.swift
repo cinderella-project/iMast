@@ -59,7 +59,7 @@ extension UISceneSession {
     var mastodonStateRestoration: MastodonStateRestoration {
         return try! dbQueue.inDatabase { db -> MastodonStateRestoration in
             if let record = try MastodonStateRestoration.fetchOne(db, key: [
-                MastodonStateRestoration.CodingKeys.systemPersistentIdentifier.rawValue: persistentIdentifier
+                MastodonStateRestoration.CodingKeys.systemPersistentIdentifier.rawValue: persistentIdentifier,
             ]) {
                 return record
             }

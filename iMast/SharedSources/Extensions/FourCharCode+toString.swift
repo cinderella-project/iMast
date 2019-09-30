@@ -30,7 +30,7 @@ extension FourCharCode {
             CChar((self >> 16) & 0xFF),
             CChar((self >> 8) & 0xFF),
             CChar(self & 0xFF),
-            0
+            0,
         ]
         let result = String(cString: bytes)
         let charset = CharacterSet.whitespaces

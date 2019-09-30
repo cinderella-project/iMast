@@ -25,7 +25,7 @@
 import SwiftUI
 import SafariServices
 
-struct OpenSafariCellView : View {
+struct OpenSafariCellView: View {
     
     let url: URL
     let text: Text
@@ -55,7 +55,7 @@ struct OpenSafariCellView : View {
 }
 
 #if DEBUG
-struct OpenSafariCellView_Previews : PreviewProvider {
+struct OpenSafariCellView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             OpenSafariCellView(url: URL(string: "https://example.com")!, text: Text("Open example.com"), showUrl: true)

@@ -254,7 +254,7 @@ extension MastodonUserToken {
     
     func vote(poll: MastodonPoll, choices: [Int]) -> Promise<MastodonPoll> {
         return self.post("polls/\(poll.id.string)/votes", params: [
-            "choices": choices
+            "choices": choices,
         ]).then { res in
             return try MastodonPoll.decode(json: res)
         }

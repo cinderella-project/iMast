@@ -96,7 +96,7 @@ class MastodonMemoryStoreContainer {
     let post = MastodonMemoryStore<MastodonPost>()
 }
 
-fileprivate var MastodonMemoryStoreArray: [String: MastodonMemoryStoreContainer] = [:]
+private var MastodonMemoryStoreArray: [String: MastodonMemoryStoreContainer] = [:]
 
 extension MastodonMemoryStoreContainer {
     static subscript(index: MastodonUserToken) -> MastodonMemoryStoreContainer {
