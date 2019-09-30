@@ -33,7 +33,6 @@ target 'iMast' do
   pod 'Eureka', :git => "https://github.com/ykphuah/Eureka.git", :commit => "60e0668cc3755ef791c3d685d2951610ddc47597"
   # pod 'Eureka', '~> 4.3.1'
   pod 'EurekaFormBuilder'
-  pod 'ActionClosurable', :git => "https://github.com/rinsuki/ActionClosurable.git", :branch => "fix/swift4.2"
   pod 'KeychainAccess', '~> 3.1.2'
   pod 'SVProgressHUD'
   pod 'Notifwift'

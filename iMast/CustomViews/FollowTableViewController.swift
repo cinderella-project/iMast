@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import ActionClosurable
 import Mew
 
 class FollowTableViewController: UITableViewController, Instantiatable {

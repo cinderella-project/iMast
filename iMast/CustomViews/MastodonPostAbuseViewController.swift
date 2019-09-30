@@ -24,7 +24,6 @@
 import UIKit
 import SwiftyJSON
 import Eureka
-import ActionClosurable
 import Mew
 
 class MastodonPostAbuseViewController: FormViewController, Instantiatable {

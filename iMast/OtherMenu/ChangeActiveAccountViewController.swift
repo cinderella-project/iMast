@@ -24,7 +24,6 @@
 import UIKit
 import Hydra
 import SwiftyJSON
-import ActionClosurable
 
 class ChangeActiveAccountViewController: UITableViewController {
 
@@ -47,9 +46,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(ChangeActiveAccountViewController.refresh), for: UIControl.Event.valueChanged)
         self.refreshControl = refreshControl
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, closure: { _ in
-            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
-        })
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onTapAddAccountButton))
         
         tableView.rowHeight = 44
         updateTableView()
@@ -95,6 +92,11 @@ class ChangeActiveAccountViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
             self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
         }
+    }
+    
+    @objc func onTapAddAccountButton() {
+        let vc = AddAccountIndexViewController()
+        self.changeRootVC(UINavigationController(rootViewController: vc), animated: true)
     }
     
     // MARK: - Table view data source

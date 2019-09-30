@@ -157,9 +157,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         }
         
         if isNewPostAvailable {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.post(), style: .plain) { _ in
-                self.openNewPostVC()
-            }
+            self.navigationItem.rightBarButtonItem = .init(
+                title: R.string.localizable.post(), style: .plain,
+                target: self, action: #selector(openNewPostVC)
+            )
             
             if Defaults[.postFabEnabled] {
                 _ = self.postFabButton ※ {
@@ -282,7 +283,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         // オーバーライド用
     }
     
-    func openNewPostVC() {
+    @objc func openNewPostVC() {
         let vc = R.storyboard.newPost.instantiateInitialViewController()!
         vc.userToken = self.environment
         self.processNewPostVC(newPostVC: vc)

@@ -86,12 +86,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         tableView.refreshControl = refreshControl
 
         self.title = "投稿詳細"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain) { [weak self] _ in
-            guard let strongSelf = self else { return }
-            let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: strongSelf.environment)
-            bunmyakuVC.basePost = strongSelf.input.originalPost
-            strongSelf.navigationController?.pushViewController(bunmyakuVC, animated: true)
-        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain, target: self, action: #selector(openBunmyakuVC))
         self.input(input)
     }
     
@@ -102,6 +97,13 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             strongSelf.tableView.refreshControl?.endRefreshing()
             print("end refresh")
         }
+    }
+    
+    @objc func openBunmyakuVC() {
+
+        let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: environment)
+        bunmyakuVC.basePost = input.originalPost
+        navigationController?.pushViewController(bunmyakuVC, animated: true)
     }
     
     func input(_ input: Input) {

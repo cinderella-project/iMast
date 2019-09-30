@@ -179,11 +179,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
             self.textInput.text = ""
             alert.dismiss(animated: false, completion: {
-                self.navigationController?.popViewController(animated: true)
+                if self.navigationController is ModalNavigationViewController {
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             })
-            if self.isModal {
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }
         }.catch { err in
             DispatchQueue.main.async {
                 alert.dismiss(animated: false, completion: {

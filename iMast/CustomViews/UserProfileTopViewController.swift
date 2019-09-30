@@ -44,8 +44,6 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         fatalError("init(coder:) has not been implemented")
     }
     
-    var moreButton: UIBarButtonItem!
-
     var loadAfter = false
     var isLoaded = false
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
@@ -66,10 +64,10 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
         
         self.title = R.string.userProfile.title()
-        self.moreButton = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, closure: { self.moreButtonTapped($0) })
-        self.navigationItem.rightBarButtonItems = [
-            self.moreButton,
-        ]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "ellipsis.circle.fill"), style: .plain,
+            target: self, action: #selector(moreButtonTapped(_:))
+        )
        
         self.input(input)
     }
@@ -163,21 +161,20 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.tableView.reloadData()
     }
 
-    @IBAction func moreButtonTapped(_ sender: Any) {
+    @IBAction func moreButtonTapped(_ sender: UIBarButtonItem) {
         let myScreenName = "@"+self.environment.screenName!
         self.environment.getRelationship([input]).then({ (relationships) in
             let relationship = relationships[0]
             let screenName = "@"+self.input.acct
             let actionSheet = UIAlertController(title: R.string.userProfile.actionsTitle(), message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
-            actionSheet.popoverPresentationController?.barButtonItem = self.moreButton
+            actionSheet.popoverPresentationController?.barButtonItem = sender
             actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsShare(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                 let activityItems: [Any] = [
                     (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
                     NSURL(string: self.input.url)!,
                 ]
                 let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                activityVC.popoverPresentationController?.sourceView = self.moreButton.value(forKey: "view") as? UIView
-                activityVC.popoverPresentationController?.sourceRect = (self.moreButton.value(forKey: "view") as! UIView).bounds
+                activityVC.popoverPresentationController?.barButtonItem = sender
                 self.present(activityVC, animated: true, completion: nil)
             }))
             if myScreenName != screenName { // 自分じゃない

@@ -141,6 +141,8 @@
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
 		CE908560219188F9006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855F219188F9006769DC /* R.generated.swift */; };
+		CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */; };
+		CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */; };
 		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
 		CE97DB5A22D4591700D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
 		CE97DB5B22D4593900D2BDC6 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
@@ -470,6 +472,8 @@
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE90855C21918750006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		CE90855F219188F9006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = imastshare/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationViewController.swift; sourceTree = "<group>"; };
+		CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListInfoViewController.swift; sourceTree = "<group>"; };
 		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
 		CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonIDAvailable.swift; sourceTree = "<group>"; };
 		CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostWrapperViewController.swift; sourceTree = "<group>"; };
@@ -764,6 +768,7 @@
 				CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */,
 				CE9BD65D2310ADD300763D3A /* EditableUITableViewDiffableDataSource.swift */,
 				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
+				CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */,
 				CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */,
 			);
 			path = ExtendedClasses;
@@ -945,6 +950,7 @@
 				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
+				CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */,
 				CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */,
 				CE109713220631E5000A5101 /* EmojiListTableViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
@@ -1443,7 +1449,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMast/Pods-iMast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/ActionClosurable/ActionClosurable.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
@@ -1469,7 +1474,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OnePasswordExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionClosurable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
@@ -1653,6 +1657,7 @@
 				CE90855D21918751006769DC /* R.generated.swift in Sources */,
 				CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */,
 				2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */,
+				CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */,
 				CEDEC6D3226BC7FA00B581A9 /* UIViewController+openURL.swift in Sources */,
 				CE58956022408BCA0024FDBF /* ColorSet.swift in Sources */,
 				CE2D2AF0210C5CAF003B92B8 /* OtherMenuPushSettingsAccountTableViewController.swift in Sources */,
@@ -1678,6 +1683,7 @@
 				CEF6DCC322EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift in Sources */,
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimeLineTableViewController.swift in Sources */,
+				CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */,
 				CE2D2AFD21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift in Sources */,
 				CEDEDCA02007F2BA00CD2784 /* MastodonList.swift in Sources */,
 				CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */,

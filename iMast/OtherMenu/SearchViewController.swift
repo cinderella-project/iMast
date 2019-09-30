@@ -24,6 +24,7 @@
 import UIKit
 import SafariServices
 import Mew
+import Ikemen
 
 class SearchViewController: UITableViewController, UISearchBarDelegate, Instantiatable {
     typealias Input = Void
@@ -54,26 +55,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.searchBar.delegate = self
-        self.refreshControl = UIRefreshControl { _ in
-            self.reloadTrendTags()
-            self.refreshControl?.endRefreshing()
+        self.refreshControl = .init() ※ { v in
+            v.addTarget(self, action: #selector(reloadTrendTags), for: .valueChanged)
         }
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
         self.reloadTrendTags()
         TableViewCell<MastodonPostCellViewController>.register(to: self.tableView)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {
             return
@@ -86,7 +76,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         }
     }
     
-    func reloadTrendTags() {
+    @objc func reloadTrendTags() {
         // TODO: トレンドタグのwhitelistを外部指定できるようにする
         guard ["imastodon.net", "imastodon.blue"].contains(environment.app.instance.hostName) else {
             return
@@ -96,6 +86,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             self.trendTagsArray = res.score.map { $0 }.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
             print(self.trendTagsArray)
             self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     

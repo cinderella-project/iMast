@@ -26,10 +26,10 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import Eureka
-import ActionClosurable
 import UserNotifications
 import Notifwift
 import Hydra
+import Ikemen
 
 @available(iOS 10.0, *)
 class OtherMenuPushSettingsTableViewController: FormViewController {
@@ -56,8 +56,8 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.tableView.refreshControl = UIRefreshControl { _ in
-            self.reload()
+        self.tableView.refreshControl = UIRefreshControl() ※ { view in
+            view.addTarget(self, action: #selector(reload), for: .valueChanged)
         }
         self.form.append(self.accountsSection)
         self.form +++ Section("共通設定")
@@ -108,7 +108,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
         Notifwift.post(.pushSettingsAccountReload)
     }
     
-    func reload(_ blocking: Bool = false) {
+    @objc func reload(_ blocking: Bool = false) {
         let vc = ModalLoadingIndicatorViewController()
         let animatePromise: Promise<Void>
         if blocking {

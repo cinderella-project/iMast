@@ -27,7 +27,7 @@ import Hydra
 import Alamofire
 import SwiftyJSON
 import XCGLogger
-import ActionClosurable
+import Ikemen
 
 let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
 
@@ -113,26 +113,33 @@ extension UIViewController {
         let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "詳しい情報を見る", style: .default, handler: { _ in
-            let vc = UIViewController()
-            let textView = UITextView()
+            class ErrorReportViewController: UIViewController {
+                let textView = UITextView() ※ { view in
+                    view.font = UIFont.init(name: "Menlo", size: 15)
+                    view.adjustsFontForContentSizeCategory = true
+                    view.isEditable = false
+                }
+                
+                override func loadView() {
+                    view = textView
+                }
+                
+                override func viewDidLoad() {
+                    title = "エラー詳細"
+                    navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+                }
+            }
+            let vc = ErrorReportViewController()
             let navVC = UINavigationController(rootViewController: vc)
-
-            vc.view = textView
-            vc.title = "エラー詳細"
-            vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, closure: { _ in
-                navVC.dismiss(animated: true, completion: nil)
-            })
-
-            textView.text = "\(error)"
-            
-            textView.font = UIFont(name: "Menlo", size: 15)
-            textView.adjustsFontForContentSizeCategory = true
-            textView.isEditable = false
-
+            vc.textView.text = "\(error)"
             self.present(navVC, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func close() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

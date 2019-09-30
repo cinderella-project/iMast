@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import ActionClosurable
 
 class NSFWGuardView: UIView {
     
@@ -48,7 +47,6 @@ class NSFWGuardView: UIView {
     */
 
     func setup() {
-        
         if !UIAccessibility.isReduceTransparencyEnabled {
             self.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: .dark)
@@ -84,14 +82,16 @@ class NSFWGuardView: UIView {
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        let touchGesture = UITapGestureRecognizer { _ in
-            self.isHidden = true
-            self.isUserInteractionEnabled = false
-            self.explicitlyOpened = true
-        }
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(onTouchGuardView))
 
         self.addGestureRecognizer(touchGesture)
         self.setNeedsLayout()
         self.layoutIfNeeded()
+    }
+    
+    @objc func onTouchGuardView() {
+        self.isHidden = true
+        self.isUserInteractionEnabled = false
+        self.explicitlyOpened = true
     }
 }

@@ -36,20 +36,8 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
         self.accountOriginal = account
         self.account = CodableDeepCopy(account)
         super.init(style: .grouped)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "キャンセル", style: .plain) { _ in
-            self.dismiss(animated: true, completion: nil)
-        }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: .done) { _ in
-            SVProgressHUD.show()
-            self.account.update().always {
-                SVProgressHUD.dismiss()
-            }.then { _ in
-                Notifwift.post(.pushSettingsAccountReload)
-                self.dismiss(animated: true, completion: nil)
-            }.catch { error in
-                self.alert(title: "エラー", message: error.localizedDescription)
-            }
-        }
+        self.navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+        self.navigationItem.rightBarButtonItem = .init(title: "保存", style: .done, target: self, action: #selector(onSave))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,5 +109,19 @@ class OtherMenuPushSettingsAccountTableViewController: FormViewController {
                     self.alert(title: "エラー", message: "削除に失敗しました。\n\n\(error.localizedDescription)")
                 }
             }
+    }
+    
+    @objc func onSave() {
+        let vc = ModalLoadingIndicatorViewController()
+        presentPromise(vc, animated: true).then {
+            self.account.update()
+        }.always(in: .main) {
+            vc.dismiss(animated: true, completion: nil)
+        }.then { _ in
+            Notifwift.post(.pushSettingsAccountReload)
+            self.dismiss(animated: true, completion: nil)
+        }.catch { error in
+            self.alert(title: "エラー", message: error.localizedDescription)
+        }
     }
 }

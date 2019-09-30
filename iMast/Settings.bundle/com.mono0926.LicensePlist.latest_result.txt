@@ -2,10 +2,6 @@ name: 1PasswordExtension, nameSpecified:
 body: Copyright (c) 2014 A…
 version: 1.8.5
 
-name: ActionClosurable, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.2.0
-
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014 A…
 version: 4.8.1

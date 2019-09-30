@@ -27,14 +27,20 @@ import Hydra
 
 class AddAccountIndexViewController: FormViewController {
     
+    var latestToken: MastodonUserToken?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = R.string.localizable.login()
-        if let latestToken = MastodonUserToken.getLatestUsed() {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel) { [latestToken, weak self] _ in
-                self?.changeRootVC(MainTabBarController.instantiate((), environment: latestToken), animated: true)
-            }
+        if latestToken == nil {
+            latestToken = MastodonUserToken.getLatestUsed()
+        }
+        if latestToken != nil {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+                barButtonSystemItem: .cancel,
+                target: self, action: #selector(onCancelTapped)
+            )
         }
         self.form +++ Section(R.string.localizable.pleaseInputMastodonInstance())
         <<< TextRow("instance") { row in
@@ -96,18 +102,11 @@ class AddAccountIndexViewController: FormViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "goProgress" {
-//            let nextView = segue.destination as! AddAccountProgressViewController
-//            if let hostName = hostNameField.text, hostName.count > 0 {
-//                nextView.setHost(hostName)
-//            } else if let hostName = hostNameField.placeholder, hostName.count > 0 {
-//                nextView.setHost(hostName)
-//            } else {
-//                alert(title: "エラー", message: "ホスト名を入力してください。")
-//            }
-//            print(nextView.hostName)
-//        }
-//    }
+    
+    @objc func onCancelTapped() {
+        guard let latestToken = latestToken else {
+            return
+        }
+        changeRootVC(MainTabBarController.instantiate((), environment: latestToken), animated: true)
+    }
 }

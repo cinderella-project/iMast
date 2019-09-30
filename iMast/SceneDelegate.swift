@@ -32,9 +32,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print(session.mastodonStateRestoration)
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
+        window.makeKeyAndVisible()
         let stateRestoration = session.mastodonStateRestoration
         if let myAccount = stateRestoration.userToken ?? MastodonUserToken.getLatestUsed() {
             window.rootViewController = MainTabBarController.instantiate(environment: myAccount)
+            if let item = connectionOptions.shortcutItem {
+                self.windowScene(windowScene, performActionFor: item) { _ in }
+            }
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
@@ -44,7 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
         }
-        window.makeKeyAndVisible()
         self.windows.append(window)
     }
     
@@ -87,6 +90,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
         }
+    }
+    
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        guard let token = MastodonUserToken.getLatestUsed() else {
+            return completionHandler(false)
+        }
+        guard let vc = windowScene.windows.first?.rootViewController else {
+            return completionHandler(false)
+        }
+        let newVC = R.storyboard.newPost.instantiateInitialViewController()!
+        newVC.userToken = token
+        vc.present(ModalNavigationViewController(rootViewController: newVC), animated: true, completion: nil)
+        print("animated")
     }
     
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {

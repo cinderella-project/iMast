@@ -40,10 +40,10 @@ class AddAccountLoginViewController: FormViewController {
             let onePassBundle = Bundle(for: OnePasswordExtension.self)
             let onePassResourceBundle = Bundle(path: onePassBundle.bundlePath + "/OnePasswordExtensionResources.bundle")
             let buttonImage = UIImage(named: "onepassword-button", in: onePassResourceBundle!, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-            let button = UIBarButtonItem(image: buttonImage, style: .plain, closure: { item in
-                self.callPasswordManager()
-            })
-            self.navigationItem.rightBarButtonItem = button
+            self.navigationItem.rightBarButtonItem = .init(
+                image: buttonImage, style: .plain,
+                target: self, action: #selector(callPasswordManager)
+            )
         }
         
         form.append {
@@ -98,7 +98,7 @@ class AddAccountLoginViewController: FormViewController {
         })
     }
     
-    func callPasswordManager() {
+    @objc func callPasswordManager() {
         OnePasswordExtension.shared().findLogin(
             forURLString: "https://" + self.app!.instance.hostName,
             for: self, sender: self

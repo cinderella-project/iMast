@@ -23,7 +23,6 @@
 
 import UIKit
 import Eureka
-import ActionClosurable
 import SafariServices
 import SDWebImage
 import Alamofire
@@ -113,13 +112,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.workaroundOfiOS13_1UITextView)
             }
         self.title = "設定"
-        let callhelpitem = UIBarButtonItem(title: "ヘルプ", style: .plain) { _ in
-            let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
-            self.present(safari, animated: true, completion: nil)
-        }
-        self.navigationItem.rightBarButtonItems = [
-            callhelpitem,
-        ]
+        self.navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
     }
 
     func getGeneralSection() -> Section {
@@ -349,5 +342,10 @@ class SettingsViewController: FormViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func openHelp() {
+        let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
+        self.present(safari, animated: true, completion: nil)
     }
 }

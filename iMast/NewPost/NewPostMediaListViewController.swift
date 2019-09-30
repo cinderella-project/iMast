@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import ActionClosurable
 import MobileCoreServices
 import AVFoundation
 import AVKit
@@ -71,41 +70,8 @@ class NewPostMediaListViewController: UIViewController {
                 imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
-                let tapGesture = UITapGestureRecognizer { _ in
-                    let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-                    alertVC.addAction(UIAlertAction(title: "プレビュー", style: .default, handler: { _ in
-                        switch media.format {
-                        case .png, .jpeg:
-                            let viewController = UIViewController()
-                            let imageView = UIImageView()
-                            imageView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-                            imageView.image = UIImage(data: media.data)
-                            imageView.ignoreSmartInvert()
-                            imageView.contentMode = .scaleAspectFit
-                            viewController.view = imageView
-                            let closeGesture = UITapGestureRecognizer { _ in
-                                viewController.dismiss(animated: true, completion: nil)
-                            }
-                            imageView.isUserInteractionEnabled = true
-                            imageView.addGestureRecognizer(closeGesture)
-                            self.present(viewController, animated: true, completion: nil)
-                        case .mp4:
-                            guard let url = media.url else {
-                                return
-                            }
-                            let viewController = AVPlayerViewController()
-                            viewController.player = AVPlayer(url: url)
-                            self.present(viewController, animated: true, completion: nil)
-                        }
-                    }))
-                    alertVC.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
-                        self.newPostVC.media.remove(at: index)
-                        self.refresh()
-                    }))
-                    alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
-                    
-                    self.present(alertVC, animated: true, completion: nil)
-                }
+                imageView.tag = index
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapCurrentMedia(sender:)))
                 tapGesture.numberOfTapsRequired = 1
                 imageView.isUserInteractionEnabled = true
                 imageView.addGestureRecognizer(tapGesture)
@@ -169,17 +135,56 @@ class NewPostMediaListViewController: UIViewController {
             self.transparentVC.present(pickerSelector, animated: true, completion: nil)
         }
     }
+    
+    @objc func tapCurrentMedia(sender: UITapGestureRecognizer) {
+        guard let index = sender.view?.tag else { return }
+        let media = newPostVC.media[index]
+
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "プレビュー", style: .default, handler: { _ in
+            switch media.format {
+            case .png, .jpeg:
+                let viewController = UIViewController()
+                let imageView = UIImageView()
+                imageView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+                imageView.image = UIImage(data: media.data)
+                imageView.ignoreSmartInvert()
+                imageView.contentMode = .scaleAspectFit
+                viewController.view = imageView
+                let closeGesture = UITapGestureRecognizer(target: viewController, action: #selector(viewController.close))
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(closeGesture)
+                self.present(viewController, animated: true, completion: nil)
+            case .mp4:
+                guard let url = media.url else {
+                    return
+                }
+                let viewController = AVPlayerViewController()
+                viewController.player = AVPlayer(url: url)
+                self.present(viewController, animated: true, completion: nil)
+            }
+        }))
+        alertVC.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
+            self.newPostVC.media.remove(at: index)
+            self.refresh()
+        }))
+        alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
 }
 
 private class TransparentViewController: UIViewController {
     override func viewDidLoad() {
-        let touchGesture = UITapGestureRecognizer { _ in
-            _ = self.alertWithPromise(title: "内部エラー", message: "このダイアログはでないはずだよ\n(loc: TransparentViewController.viewDidLoad.touchGesture)").then {
-                self.dismiss(animated: false, completion: nil)
-            }
-        }
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(onTapped))
         touchGesture.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(touchGesture)
+    }
+    
+    @objc func onTapped() {
+        alertWithPromise(title: "内部エラー", message: "このダイアログはでないはずだよ\n(loc: TransparentViewController.viewDidLoad.touchGesture)").then {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
 }
 

@@ -24,7 +24,6 @@
 import UIKit
 import Eureka
 import SafariServices
-import ActionClosurable
 import SwiftUI
 import Mew
 
@@ -128,9 +127,11 @@ class OtherMenuViewController: FormViewController, Instantiatable {
         
         self.form +++ section
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search) { (item) in
-            self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
-        }
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(openSearch))
+    }
+    
+    @objc func openSearch() {
+        self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
     }
 
     override func didReceiveMemoryWarning() {

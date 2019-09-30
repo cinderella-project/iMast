@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import ActionClosurable
 import Mew
 
 class MainTabBarController: UITabBarController, Instantiatable {
@@ -75,21 +74,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
             otherVC,
         ]
         
-        let longPressRecognizer = UILongPressGestureRecognizer { _ in
-            if self.selectedIndex != (self.tabBar.items ?? []).count-1 {
-                return
-            }
-            let navC = UINavigationController()
-            let vc = ChangeActiveAccountViewController()
-            vc.navigationItem.leftBarButtonItems = [
-                UIBarButtonItem(title: R.string.localizable.cancel(), style: .plain) { _ in
-                    navC.dismiss(animated: true, completion: nil)
-                },
-            ]
-            vc.title = R.string.localizable.switchActiveAccount()
-            navC.pushViewController(vc, animated: false)
-            self.present(navC, animated: true, completion: nil)
-        }
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed))
         self.tabBar.addGestureRecognizer(longPressRecognizer)
     }
     
@@ -101,6 +86,17 @@ class MainTabBarController: UITabBarController, Instantiatable {
             startStateRestoration()
         }
         super.viewDidAppear(animated)
+    }
+    
+    @objc func onLongPressed() {
+        if selectedIndex != (tabBar.items ?? []).count-1 {
+            return
+        }
+        let vc = ChangeActiveAccountViewController()
+        vc.title = R.string.localizable.switchActiveAccount()
+        let navC = UINavigationController(rootViewController: vc)
+        vc.navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: navC, action: #selector(navC.close))
+        present(navC, animated: true, completion: nil)
     }
     
     func startStateRestoration() {
