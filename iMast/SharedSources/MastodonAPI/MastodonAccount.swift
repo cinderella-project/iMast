@@ -59,8 +59,8 @@ struct MastodonAccount: Codable, EmojifyProtocol {
         case postsCount = "statuses_count"
         case bio = "note"
         case url
-        case avatarUrl = "avatar"
-        case headerUrl = "header"
+        case avatarUrl = "avatar_static"
+        case headerUrl = "header_static"
 
         case acct
         case moved
