@@ -384,6 +384,7 @@ extension DefaultsKeys {
          default: [
             "13.1",
             "13.1.1",
+            "13.1.2",
          ].firstIndex(of: UIDevice.current.systemVersion) != nil
     )
 
