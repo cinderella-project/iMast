@@ -108,11 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        if let authHeader = try? PushService.getAuthorizationHeader() {
-            PushService.updateDeviceToken(deviceToken: deviceToken)
-        }
-//        print("DeviceToken",deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)})
-//        print("isDebugBuild", isDebugBuild)
+        PushService.updateDeviceToken(deviceToken: deviceToken)
     }
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

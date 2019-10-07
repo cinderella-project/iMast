@@ -174,12 +174,6 @@ func urlComponentsToDict(url: URL) -> [String: String] {
 var html2ascache: [String: NSAttributedString?] = [:]
 var html2ascacheavail: [String: Bool] = [:]
 
-extension StringProtocol {
-    var workaround_actualCount: Int {
-        return count
-    }
-}
-
 extension String {
     var sha256: String! {
         if let cstr = self.cString(using: String.Encoding.utf8) {
@@ -199,16 +193,6 @@ extension String {
         formatter.locale=Locale(identifier: "en_US_POSIX")
         formatter.dateFormat="yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
         return formatter.date(from: self)!
-    }
-    //絵文字など(2文字分)も含めた文字数を返します
-    var count: Int {
-        WARN("deprecated extended String.count")
-        let callstack = Thread.callStackSymbols.safe(1) ?? ""
-        enum DeprecatedError: Error {
-            case countIsDeprecated(callstack: String)
-        }
-        reportError(error: DeprecatedError.countIsDeprecated(callstack: callstack))
-        return nsLength
     }
     
     var nsLength: Int {

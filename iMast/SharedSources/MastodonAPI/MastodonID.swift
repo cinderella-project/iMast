@@ -81,10 +81,10 @@ struct MastodonID: Codable, CustomStringConvertible {
         if self.string == otherId.string {
             return .orderedSame
         }
-        if self.string.workaround_actualCount != otherId.string.workaround_actualCount {
-            return self.string.workaround_actualCount > otherId.string.workaround_actualCount ? .orderedDescending : .orderedAscending
+        if self.string.count != otherId.string.count {
+            return self.string.count > otherId.string.count ? .orderedDescending : .orderedAscending
         }
-        for i in 0..<self.string.workaround_actualCount {
+        for i in 0..<self.string.count {
             let selfChar = self.string[self.string.index(self.string.startIndex, offsetBy: i)]
             let otherChar = otherId.string[otherId.string.index(otherId.string.startIndex, offsetBy: i)]
             if selfChar != otherChar {
