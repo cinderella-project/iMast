@@ -23,6 +23,7 @@
 
 import UIKit
 import Eureka
+import EurekaFormBuilder
 import SafariServices
 import SwiftUI
 import Mew
@@ -32,58 +33,41 @@ class OtherMenuViewController: FormViewController, Instantiatable {
     typealias Environment = MastodonUserToken
 
     internal let environment: Environment
-
-    required init(with input: Input, environment: Environment) {
-        self.environment = environment
-        super.init(style: .plain)
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        self.title = R.string.localizable.other()
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        let section = Section()
-        section <<< ButtonRow { row in
-            row.title = R.string.localizable.switchActiveAccount()
-            row.cellStyle = .subtitle
-            row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
-        }.cellSetup { cell, row in
-            cell.height = { 44 }
-        }.cellUpdate { (cell, row) in
+    private lazy var switchActiveAccountRow = ButtonRow { row in
+        row.title = R.string.localizable.switchActiveAccount()
+        row.cellStyle = .subtitle
+        row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
+        row.cellUpdate { (cell, row) in
             cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.environment.acct)
         }
-        
-        section <<< ButtonRow { row in
-            row.title = R.string.localizable.myProfile()
-        }.cellUpdate { cell, row in
+    }
+    
+    private lazy var myProfileRow = ButtonRow { row in
+        row.title = R.string.localizable.myProfile()
+        row.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.textColor = nil
-        }.onCellSelection { cell, row in
+        }
+        row.onCellSelection { cell, row in
             self.environment.verifyCredentials().then { account in
                 let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
                 self.navigationController?.pushViewController(newVC, animated: true)
             }.catch { error in
-                    print(error)
+                print(error)
             }
         }
-        
-        section <<< ButtonRow { row in
-            row.title = R.string.localizable.lists()
-        }.cellUpdate { cell, row in
+    }
+    
+    private lazy var listsRow = ButtonRow { row in
+        row.title = R.string.localizable.lists()
+        row.cellUpdate { cell, row in
             cell.textLabel?.textAlignment = .left
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.textColor = nil
-        }.onCellSelection { cell, row in
+        }
+        row.onCellSelection { cell, row in
             // TODO: ここの下限バージョンの処理をあとで共通化する
             self.environment.getIntVersion().then { version in
                 if version < MastodonVersionStringToInt("2.1.0rc1") {
@@ -97,35 +81,46 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                 })
             }
         }
-        
-        section <<< ButtonRow { row in
-            row.title = R.string.localizable.settings()
-            row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
-        }
-        
-        section <<< ButtonRow { row in
-            row.title = "Siri Shortcuts"
-        }.cellUpdate { cell, row in
-            cell.textLabel?.textAlignment = .left
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.textColor = nil
-        }.onCellSelection { (cell, row) in
-            if #available(iOS 12.0, *) {
-                let vc = CreateSiriShortcutsViewController()
-                vc.title = cell.textLabel?.text
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                // Fallback on earlier versions
-                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerOS(12.0))
+    }
+    
+    private lazy var settingsRow = ButtonRow { row in
+        row.title = R.string.localizable.settings()
+        row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
+    }
+    
+    private lazy var siriShortcutsRow = ButtonRow { row in
+        row.title = "Siri Shortcuts"
+        row.presentationMode = .show(controllerProvider: .callback(builder: { CreateSiriShortcutsViewController() }), onDismiss: nil)
+    }
+    
+    private lazy var helpAndFeedbackRow = ButtonRow { row in
+        row.title = R.string.localizable.helpAndFeedback()
+        row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: OtherMenuHelpAndFeedbackView()) }), onDismiss: nil)
+    }
+    
+    required init(with input: Input, environment: Environment) {
+        self.environment = environment
+        super.init(style: .plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        self.title = R.string.localizable.other()
+        super.viewDidLoad()
+
+        form.append {
+            Section {
+                switchActiveAccountRow
+                myProfileRow
+                listsRow
+                settingsRow
+                siriShortcutsRow
+                helpAndFeedbackRow
             }
         }
-        
-        section <<< ButtonRow { row in
-            row.title = R.string.localizable.helpAndFeedback()
-            row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: OtherMenuHelpAndFeedbackView()) }), onDismiss: nil)
-        }
-        
-        self.form +++ section
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(openSearch))
     }
