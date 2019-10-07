@@ -156,16 +156,6 @@ extension UIView {
     }
 }
 
-extension UIApplication {
-    var viewController: UIViewController? {
-        var vc = self.keyWindow?.rootViewController
-        while vc?.presentedViewController != nil {
-            vc = vc?.presentedViewController
-        }
-        return vc
-    }
-}
-
 // クエリ文字列をDictionaryに変換するやつ
 func urlComponentsToDict(url: URL) -> [String: String] {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!

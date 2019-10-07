@@ -189,27 +189,32 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     }
     
     func openNotify(_ notification: MastodonNotification, animated: Bool = true) {
+        if let vc = NotificationTableViewController.getNotifyVC(notification, environment: environment) {
+            navigationController?.pushViewController(vc, animated: animated)
+        }
+    }
+    
+    static func getNotifyVC(_ notification: MastodonNotification, environment: MastodonUserToken) -> UIViewController? {
         guard let account = notification.account else {
-            return
+            return nil
         }
         if let status = notification.status { // 投稿つき
             switch notification.type {
             case "mention", "poll":
-                let newVC = MastodonPostDetailViewController.instantiate(status, environment: MastodonUserToken.getLatestUsed()!)
-                self.navigationController?.pushViewController(newVC, animated: animated)
+                return MastodonPostDetailViewController.instantiate(status, environment: environment)
             default:
                 let newVC = PostAndUserViewController(with: ([status], [account]), environment: environment)
                 newVC.title = [
                     "favourite": "ふぁぼられ",
                     "reblog": "ブースト",
                 ][notification.type]
-                self.navigationController?.pushViewController(newVC, animated: animated)
+                return newVC
            }
         } else { // ユーザーつき
-            let newVC = UserProfileTopViewController.instantiate(account, environment: environment)
-            self.navigationController?.pushViewController(newVC, animated: animated)
+            return UserProfileTopViewController.instantiate(account, environment: environment)
         }
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

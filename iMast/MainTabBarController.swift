@@ -109,9 +109,8 @@ class MainTabBarController: UITabBarController, Instantiatable {
         guard displayingScreen.safe(0) == "main" else { return }
         guard let id = displayingScreen.safe(1).map({ String($0) }) else { return }
         guard let viewControllers = viewControllers else { return }
-        for vc in viewControllers where vc.tabBarItem.accessibilityIdentifier == id {
+        if let vc = viewControllers.first(where: { $0.tabBarItem.accessibilityIdentifier == id }) {
             selectedViewController = vc
-            break
         }
     }
     

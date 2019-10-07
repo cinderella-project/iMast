@@ -174,8 +174,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         print(userInfo)
         if let urlString = userInfo["informationUrl"] as? String, let url = URL(string: urlString) {
-            let safariVC = SFSafariViewController(url: url)
-            UIApplication.shared.keyWindow?.rootViewController?.present(safariVC, animated: true, completion: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return
         }
         
@@ -183,38 +182,56 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             completionHandler()
             return
         }
-        guard let userToken = try! MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
-            UIApplication.shared.viewController?.alert(title: R.string.localizable.errorTitle(), message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。")
-            completionHandler()
-            return
-        }
-        if userToken.id != MastodonUserToken.getLatestUsed()?.id {
-            userToken.use()
-            // TODO: あとでいい感じにする
-//            self.changeRootVC(MainTabBarController.instantiate(environment: userToken), animated: true)
-        }
         
-        guard let topVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else {
-            print("failed topVC", UIApplication.shared.keyWindow?.rootViewController)
-            completionHandler()
-            return
-        }
-        
-        topVC.selectedIndex = 1
-        
-        guard let notifyTabVC = (topVC.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? NotificationTableViewController else {
-            print("this is not NotificationTVC")
-            completionHandler()
-            return
-        }
-        
-        if let vcs = notifyTabVC.navigationController?.viewControllers {
-            let count = vcs.count - 2
-            if count >= 0 {
-                for _ in 0...count {
-                    notifyTabVC.navigationController?.popViewController(animated: false)
-                }
+        guard let currentScene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).min(by: {
+            let aScore: Int
+            switch $0.activationState {
+            case .unattached:
+                aScore = 0
+            case .foregroundActive:
+                aScore = 10
+            case .foregroundInactive:
+                aScore = 9
+            case .background:
+                aScore = 5
             }
+            let bScore: Int
+            switch $1.activationState {
+            case .unattached:
+                bScore = 0
+            case .foregroundActive:
+                bScore = 10
+            case .foregroundInactive:
+                bScore = 9
+            case .background:
+                bScore = 5
+            }
+            return aScore > bScore
+        }) else {
+            return
+        }
+        
+        var viewController: UIViewController? = currentScene.windows.first?.rootViewController
+        
+        guard let receivedUserToken = try? MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
+            viewController?.alert(
+                title: R.string.localizable.errorTitle(),
+                message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。"
+            )
+            completionHandler()
+            return
+        }
+        
+        guard let currentUserToken = currentScene.session.mastodonStateRestoration.userToken ?? MastodonUserToken.getLatestUsed() else {
+            completionHandler()
+            return
+        }
+        
+        if receivedUserToken.id != currentUserToken.id {
+            receivedUserToken.use()
+            let vc = MainTabBarController.instantiate(environment: receivedUserToken)
+            viewController = vc
+            currentScene.windows.first!.rootViewController?.changeRootVC(vc, animated: true)
         }
 
         guard let notificationJson = userInfo["upstreamObject"] as? String else {
@@ -230,7 +247,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         
-        notifyTabVC.openNotify(notification, animated: false)
+        guard let newVC = NotificationTableViewController.getNotifyVC(notification, environment: receivedUserToken) else {
+            completionHandler()
+            return
+        }
+        
+        viewController?.present(ModalNavigationViewController(rootViewController: newVC), animated: true, completion: nil)
         completionHandler()
     }
 }
