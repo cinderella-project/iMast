@@ -33,8 +33,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
+        var token = MastodonUserToken.getLatestUsed()
         let stateRestoration = session.mastodonStateRestoration
-        if let myAccount = stateRestoration.userToken ?? MastodonUserToken.getLatestUsed() {
+        if let t = stateRestoration.userToken {
+            token = t
+        }
+        if let notifyRes = connectionOptions.notificationResponse {
+            let content = notifyRes.notification.request.content
+            notificationModal: do {
+                guard let account = content.userInfo["account"] as? [String], account.count == 2 else {
+                    break notificationModal
+                }
+                guard let t = try? MastodonUserToken.findUserToken(userName: account[0], instance: account[1]) else {
+                    break notificationModal
+                }
+                token = t
+            }
+        }
+        if let myAccount = token {
             window.rootViewController = MainTabBarController.instantiate(environment: myAccount)
             if let item = connectionOptions.shortcutItem {
                 self.windowScene(windowScene, performActionFor: item) { _ in }
@@ -43,6 +59,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()
                     window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
+                }
+            }
+            if let notifyRes = connectionOptions.notificationResponse {
+                let content = notifyRes.notification.request.content
+                notificationModal: do {
+                    if let urlString = content.userInfo["informationUrl"] as? String, let url = URL(string: urlString) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        break notificationModal
+                    }
+
+                    guard let notificationJson = content.userInfo["upstreamObject"] as? String else {
+                        print("notify object not found")
+                        break notificationModal
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    guard let notification = try? decoder.decode(MastodonNotification.self, from: notificationJson.data(using: .utf8)!) else {
+                        print("decode failed")
+                        break notificationModal
+                    }
+                    
+                    guard let newVC = NotificationTableViewController.getNotifyVC(notification, environment: myAccount) else {
+                        break notificationModal
+                    }
+                    window.rootViewController?.present(newVC, animated: true, completion: nil)
                 }
             }
         } else {
