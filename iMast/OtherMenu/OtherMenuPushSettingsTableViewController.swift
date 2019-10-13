@@ -26,6 +26,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import Eureka
+import EurekaFormBuilder
 import UserNotifications
 import Notifwift
 import Hydra
@@ -60,47 +61,68 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             view.addTarget(self, action: #selector(reload), for: .valueChanged)
         }
         self.form.append(self.accountsSection)
-        self.form +++ Section("共通設定")
-            <<< SwitchRow { row in
-                row.title = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する"
-                row.userDefaultsConnect(.showPushServiceError)
-            }.cellUpdate { cell, row in
-                cell.textLabel?.numberOfLines = 0
-            }
-            <<< ButtonRow { row in
-                row.title = "グループ化のルール設定 (β)"
-                row.cellStyle = .default
-                row.cellUpdate { (cell, row) in
+        self.form.append {
+            Section(header: "共通設定") {
+                SwitchRow { row in
+                    row.title = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する"
+                    row.userDefaultsConnect(.showPushServiceError)
+                }.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                }
+                ButtonRow { row in
+                    row.title = "グループ化のルール設定 (β)"
+                    row.cellStyle = .default
+                }.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = .label
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
-                }
-                row.onCellSelection { (cell, row) in
+                }.onCellSelection { (cell, row) in
                     self.navigationController?.pushViewController(OtherMenuPushSettingsGroupNotifyTableViewController(), animated: true)
                 }
-            }
-            <<< ButtonRow { row in
-                row.title = "プッシュ通知の設定を削除"
-            }.cellUpdate { cell, row in
-                cell.textLabel?.textColor = UIColor.red
-            }.onCellSelection { cell, row in
-                self.confirm(
-                    title: "確認",
-                    message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
-                    okButtonMessage: "削除する", style: UIAlertAction.Style.destructive,
-                    cancelButtonMessage: "キャンセル"
-                ).then { res -> Promise<Void> in
-                    if res {
-                        return PushService.unRegister().then { _ in
-                            self.navigationController?.popViewController(animated: true)
+                ButtonRow { row in
+                    row.title = "プッシュ通知の設定を削除"
+                }.cellUpdate { cell, row in
+                    cell.textLabel?.textColor = UIColor.red
+                }.onCellSelection { cell, row in
+                    self.confirm(
+                        title: "確認",
+                        message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
+                        okButtonMessage: "削除する", style: UIAlertAction.Style.destructive,
+                        cancelButtonMessage: "キャンセル"
+                    ).then { res -> Promise<Void> in
+                        if res {
+                            return PushService.unRegister().then { _ in
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        } else {
+                            return Promise(resolved: ())
                         }
-                    } else {
-                        return Promise(resolved: ())
+                    }.catch { error in
+                        self.alert(title: "エラー", message: "削除に失敗しました。\n\n" + error.localizedDescription)
                     }
-                }.catch { error in
-                    self.alert(title: "エラー", message: "削除に失敗しました。\n\n" + error.localizedDescription)
                 }
             }
+            Section(header: "サポート用") {
+                ButtonRow { row in
+                    row.title = "プッシュ通知ユーザーIDを確認"
+                }.onCellSelection { cell, row in
+                    guard let userId = try? PushService.keyChain.getString("userId") else {
+                        self.alert(title: "エラー", message: "ユーザーIDがわかりませんでした")
+                        return
+                    }
+                    let alert = UIAlertController(
+                        title: "ユーザーID",
+                        message: "\(userId)",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(.init(title: "コピー", style: .default) { _ in
+                        UIPasteboard.general.string = userId
+                    })
+                    alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
         self.title = "プッシュ通知設定"
         self.notifwift.observe(.pushSettingsAccountReload) { _ in
             self.reload(true)
@@ -173,18 +195,19 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             switch error {
             case Alamofire.DataRequest.DecodableError.httpError(let message, _):
                 if message == "user not found in auth" {
+                    let navigationController = self.navigationController
                     self.confirm(
                         title: "エラー",
-                        message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をしますか?",
-                        okButtonMessage: "再登録",
+                        message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をするために現在のプッシュ通知アカウントを削除しますか?",
+                        okButtonMessage: "削除",
                         style: .destructive,
                         cancelButtonMessage: "キャンセル"
                     ).then { res in
                         if res == false {
                             return
                         }
-                        PushService.deleteAuthInfo().then {
-                            UIApplication.shared.viewController?.alert(title: "削除完了", message: "削除が完了しました。")
+                        PushService.deleteAuthInfo().then { _ in
+                            navigationController?.visibleViewController?.alert(title: "削除完了", message: "削除が完了しました。")
                         }
                     }
                 } else {

@@ -1,6 +1,6 @@
 # iMast
 
-[![Build Status](https://travis-ci.org/cinderella-project/iMast.svg?branch=master)](https://travis-ci.org/cinderella-project/iMast)
+[![Build Status](https://github.com/cinderella-project/iMast/workflows/CI/badge.svg)](https://github.com/cinderella-project/iMast/actions)
 
 iMastはMastodonのコアユーザーのためのiOS用Mastodonクライアントです。
 iPhone 5sなどの画面が小さい端末でも一度に多くの投稿を表示できる点などが特徴です。
