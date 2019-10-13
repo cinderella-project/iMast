@@ -2,7 +2,7 @@ PODS:
   - 1PasswordExtension (1.8.5)
   - Alamofire (4.9.0)
   - Crossroad (3.0.0)
-  - Eureka (5.0.0)
+  - Eureka (5.1.0)
   - EurekaFormBuilder (0.1.1):
     - Eureka (~> 5.0)
   - Fuzi (3.1.1)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
   - Alamofire (~> 4.9.0)
   - Crossroad (~> 3.0)
-  - Eureka (from `https://github.com/ykphuah/Eureka.git`, commit `60e0668cc3755ef791c3d685d2951610ddc47597`)
+  - Eureka (~> 5.1)
   - EurekaFormBuilder
   - Fuzi (~> 3.1.1)
   - GRDB.swift (~> 4.4.0)
@@ -77,6 +77,7 @@ SPEC REPOS:
     - 1PasswordExtension
     - Alamofire
     - Crossroad
+    - Eureka
     - EurekaFormBuilder
     - Fuzi
     - GRDB.swift
@@ -100,17 +101,11 @@ SPEC REPOS:
     - "※ikemen"
 
 EXTERNAL SOURCES:
-  Eureka:
-    :commit: 60e0668cc3755ef791c3d685d2951610ddc47597
-    :git: https://github.com/ykphuah/Eureka.git
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
 
 CHECKOUT OPTIONS:
-  Eureka:
-    :commit: 60e0668cc3755ef791c3d685d2951610ddc47597
-    :git: https://github.com/ykphuah/Eureka.git
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -119,7 +114,7 @@ SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Crossroad: 6e5c1c0a7bd6a5034dd1499e5619b0875af7e3e5
-  Eureka: e7b9a83e08867f8336176247bdc4c199b1f68e5e
+  Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
   EurekaFormBuilder: 242951fae0d49113ad76c645d8ca5ac8c3514ee6
   Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
   GRDB.swift: 4f9b6e7efc9470426f6a6de10ec1fee798ff7e43
@@ -127,7 +122,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   LicensePlist: 04fb95b572038c87068283afa65518a61aff9342
-  Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
+  Mew: 0b5fb383e0cdd2ff6ff3098c48b0b2ac37fe78a2
   Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
@@ -143,6 +138,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: b76b142f96345e2bc2d76dcbc909c3ec4b4f7ef8
+PODFILE CHECKSUM: 5cbc21ccfb8fad5da5c717d2f204ba4bc9213a67
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3

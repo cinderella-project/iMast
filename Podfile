@@ -28,10 +28,7 @@ target 'iMast' do
   pod 'Crossroad', '~> 3.0'
   pod 'Starscream', '~> 3.1.0'
   pod 'ReachabilitySwift', '~> 4.3.1'
-  # for iOS 13 Dark Mode supports
-  # after merged https://github.com/xmartlabs/Eureka/pull/1866 , need to change to upstream 
-  pod 'Eureka', :git => "https://github.com/ykphuah/Eureka.git", :commit => "60e0668cc3755ef791c3d685d2951610ddc47597"
-  # pod 'Eureka', '~> 4.3.1'
+  pod 'Eureka', '~> 5.1'
   pod 'EurekaFormBuilder'
   pod 'KeychainAccess', '~> 3.2.0'
   pod 'SVProgressHUD'
