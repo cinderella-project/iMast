@@ -34,6 +34,9 @@ class OtherMenuViewController: FormViewController, Instantiatable {
 
     internal let environment: Environment
     
+    private lazy var searchResultViewController = SearchViewController.instantiate(environment: self.environment)
+    private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
+    
     private lazy var switchActiveAccountRow = ButtonRow { row in
         row.title = R.string.localizable.switchActiveAccount()
         row.cellStyle = .subtitle
@@ -122,7 +125,10 @@ class OtherMenuViewController: FormViewController, Instantiatable {
             }
         }
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(openSearch))
+        navigationItem.searchController = searchController
+        searchResultViewController.searchBar = searchController.searchBar
+        searchResultViewController.presentor = self
+        searchController.delegate = searchResultViewController
     }
     
     @objc func openSearch() {

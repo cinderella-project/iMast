@@ -30,6 +30,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     typealias Input = Void
     typealias Environment = MastodonUserToken
     let environment: Environment
+    
+    weak var presentor: UIViewController? = nil
 
     required init(with input: Input, environment: Environment) {
         self.environment = environment
@@ -41,7 +43,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     }
     
     var result: MastodonSearchResult?
-    let searchBar = UISearchBar()
+    var searchBar: UISearchBar!
     var trendTags: ThirdpartyTrendsTags?
     var trendTagsArray: [(tag: String, score: Float)] = []
     
@@ -49,8 +51,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.tableHeaderView = self.searchBar
-        searchBar.sizeToFit()
         self.title = R.string.search.title()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -178,18 +178,25 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         switch indexPath.section {
         case 0:
             let vc = UserProfileTopViewController.instantiate(self.result!.accounts[indexPath.row], environment: self.environment)
-            self.navigationController?.pushViewController(vc, animated: true)
+            presentor?.navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row].name, environment: self.environment)
-            self.navigationController?.pushViewController(vc, animated: true)
+            presentor?.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = MastodonPostDetailViewController.instantiate(self.result!.posts[indexPath.row], environment: self.environment)
-            self.navigationController?.pushViewController(vc, animated: true)
+            presentor?.navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag, environment: self.environment)
-            self.navigationController?.pushViewController(vc, animated: true)
+            presentor?.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
+    }
+}
+
+extension SearchViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        result = nil
+        tableView.reloadData()
     }
 }

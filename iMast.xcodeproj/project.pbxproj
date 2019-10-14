@@ -897,8 +897,8 @@
 			isa = PBXGroup;
 			children = (
 				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
-				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
+				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				CE367DFC2186F97F0068EBE7 /* Search.strings */,
 				2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */,
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
@@ -1535,7 +1535,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/$TARGET_NAME/R.generated.swift",
+				$SRCROOT/$TARGET_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1573,7 +1573,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/iMast/R.generated.swift",
+				$SRCROOT/iMast/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
