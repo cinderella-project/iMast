@@ -153,7 +153,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         case 1:
             let hashtag = self.result!.hashtags[indexPath.row]
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "#" + hashtag
+            cell.textLabel?.text = "#" + hashtag.name
             return cell
         case 2:
             let post = self.result!.posts[indexPath.row]
@@ -180,7 +180,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             let vc = UserProfileTopViewController.instantiate(self.result!.accounts[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row], environment: self.environment)
+            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row].name, environment: self.environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = MastodonPostDetailViewController.instantiate(self.result!.posts[indexPath.row], environment: self.environment)

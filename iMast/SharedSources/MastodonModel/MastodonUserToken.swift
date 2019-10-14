@@ -215,7 +215,8 @@ public class MastodonUserToken: Equatable {
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
-            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
+            
+            Alamofire.request(URL(string: endpoint, relativeTo: URL(string: "https://\(self.app.instance.hostName)/api/v1/")!)!, parameters: params, headers: self.getHeader()).responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     var json = JSON(value)

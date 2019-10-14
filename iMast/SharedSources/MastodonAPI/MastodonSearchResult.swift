@@ -24,10 +24,22 @@
 import Foundation
 import Hydra
 
+struct MastodonSearchResultHashtag: Codable {
+    let name: String
+    
+    init(from decoder: Decoder) throws {
+        do {
+            name = try decoder.container(keyedBy: CodingKeys.self).decode(String.self, forKey: .name)
+        } catch {
+            name = try decoder.singleValueContainer().decode(String.self)
+        }
+    }
+}
+
 struct MastodonSearchResult: Codable {
     let accounts: [MastodonAccount]
     let posts: [MastodonPost]
-    let hashtags: [String]
+    let hashtags: [MastodonSearchResultHashtag]
     enum CodingKeys: String, CodingKey {
         case accounts
         case posts = "statuses"
@@ -36,9 +48,12 @@ struct MastodonSearchResult: Codable {
 }
 
 extension MastodonUserToken {
-    func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> { 
-        return self.get("search", params: ["q": q, "resolve": resolve]).then { res -> MastodonSearchResult in
-            return try MastodonSearchResult.decode(json: res)
+    func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> {
+        let params = ["q": q, "resolve": resolve] as [String : Any]
+        return getIntVersion().then { ver in
+            return self.get(ver < MastodonVersionStringToInt("2.4.1") ? "search" : "../v2/search", params: params).then { res -> MastodonSearchResult in
+                return try MastodonSearchResult.decode(json: res)
+            }
         }
     }
 }
