@@ -30,8 +30,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     typealias Input = Void
     typealias Environment = MastodonUserToken
     let environment: Environment
-    
-    weak var presentor: UIViewController? = nil
 
     required init(with input: Input, environment: Environment) {
         self.environment = environment
@@ -42,18 +40,71 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         fatalError("init(coder:) has not been implemented")
     }
     
-    var result: MastodonSearchResult?
     var searchBar: UISearchBar!
-    var trendTags: ThirdpartyTrendsTags?
-    var trendTagsArray: [(tag: String, score: Float)] = []
+    var trendTagsSnapshot = NSDiffableDataSourceSnapshot<Section, Body>()
+
+    weak var presentor: UIViewController?
+
+    enum Section {
+        case accounts
+        case toots
+        case hashtags
+        case trendTags
+    }
+    
+    enum Body: Hashable {
+        case account(MastodonAccount)
+        case toot(MastodonPost)
+        case hashtag(MastodonSearchResultHashtag)
+        case trendTag(tag: String, score: Float)
+    }
+    
+    var dataSource: TableViewDiffableDataSource<Section, Body>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = R.string.search.title()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        dataSource = .init(tableView: tableView, cellProvider: { [environment] tableView, indexPath, body -> UITableViewCell? in
+            switch body {
+            case .account(let account):
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+                cell.textLabel?.text = account.name == "" ? account.screenName : account.name
+                cell.detailTextLabel?.text = "@" + account.acct
+                let iconUrl = URL(string: account.avatarUrl, relativeTo: URL(string: "https://" + environment.app.instance.hostName)!)
+                cell.imageView?.sd_setImage(with: iconUrl, completed: { (_, _, _, _) in
+                    cell.setNeedsLayout()
+                    cell.layoutIfNeeded()
+                })
+                return cell
+            case .hashtag(let tag):
+                let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+                cell.textLabel?.text = "#" + tag.name
+                return cell
+            case .toot(let post):
+                return TableViewCell<MastodonPostCellViewController>.dequeued(
+                    from: tableView,
+                    for: indexPath,
+                    input: .init(post: post, pinned: false),
+                    parentViewController: self
+                )
+            case .trendTag(let tag, let score):
+                let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+                cell.textLabel?.text = "#" + tag
+                cell.detailTextLabel?.text = score.description
+                return cell
+            }
+        })
+        dataSource.sectionTitle = [
+            .accounts: R.string.search.sectionsAccountsTitle(),
+            .toots: R.string.search.sectionsPostsTitle(),
+            .hashtags: R.string.search.sectionsHashtagsTitle(),
+        ]
+        dataSource.defaultRowAnimation = .top
+        
+        title = R.string.search.title()
+        tableView.delegate = self
+        tableView.dataSource = dataSource
         self.searchBar.delegate = self
         self.refreshControl = .init() ※ { v in
             v.addTarget(self, action: #selector(reloadTrendTags), for: .valueChanged)
@@ -70,8 +121,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         }
         self.refreshControl?.beginRefreshing()
         environment.search(q: text).then { result in
-            self.result = result
-            self.tableView.reloadData()
+            var snapshot = self.dataSource.plainSnapshot()
+            if result.accounts.count > 0 {
+                snapshot.appendSections([.accounts])
+                snapshot.appendItems(result.accounts.map { .account($0) }, toSection: .accounts)
+            }
+            if result.hashtags.count > 0 {
+                snapshot.appendSections([.hashtags])
+                snapshot.appendItems(result.hashtags.map { .hashtag($0) }, toSection: .hashtags)
+            }
+            if result.posts.count > 0 {
+                snapshot.appendSections([.toots])
+                snapshot.appendItems(result.posts.map { .toot($0) }, toSection: .toots)
+            }
+            self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
             self.refreshControl?.endRefreshing()
         }
     }
@@ -82,11 +145,20 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             return
         }
         environment.getTrendTags().then { res in
-            self.trendTags = res
-            self.trendTagsArray = res.score.map { $0 }.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
-            print(self.trendTagsArray)
-            self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
+            guard res.score.count > 0 else {
+                return
+            }
+            let f = DateFormatter()
+            f.dateStyle = .short
+            f.timeStyle = .short
+            self.dataSource.sectionTitle[.trendTags] = R.string.search.sectionsTrendTagsTitle(f.string(from: res.updatedAt))
+
+            self.trendTagsSnapshot = .init()
+            let sortedArray = res.score.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
+            self.trendTagsSnapshot.appendSections([.trendTags])
+            self.trendTagsSnapshot.appendItems(sortedArray.map { .trendTag(tag: $0.0, score: $0.1) }, toSection: .trendTags)
+            self.dataSource.apply(self.trendTagsSnapshot)
         }
     }
     
@@ -94,109 +166,33 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         searchBar.endEditing(false)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return result?.accounts.count ?? 0
-        case 1:
-            return result?.hashtags.count ?? 0
-        case 2:
-            return result?.posts.count ?? 0
-        case 3:
-            return result == nil ? trendTagsArray.count : 0
-        default:
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard self.tableView(tableView, numberOfRowsInSection: section) > 0 else {
-            return nil
-        }
-        switch section {
-        case 0:
-            return R.string.search.sectionsAccountsTitle()
-        case 1:
-            return R.string.search.sectionsHashtagsTitle()
-        case 2:
-            return R.string.search.sectionsPostsTitle()
-        case 3:
-            guard let trendTags = self.trendTags else {
-                return nil
-            }
-            let f = DateFormatter()
-            f.dateStyle = .short
-            f.timeStyle = .short
-            return R.string.search.sectionsTrendTagsTitle(f.string(from: trendTags.updatedAt))
-        default:
-            return nil
-        }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let account = self.result!.accounts[indexPath.row]
-            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-            cell.textLabel?.text = account.name == "" ? account.screenName : account.name
-            cell.detailTextLabel?.text = "@" + account.acct
-            let iconUrl = URL(string: account.avatarUrl, relativeTo: URL(string: "https://" + environment.app.instance.hostName)!)
-            cell.imageView?.sd_setImage(with: iconUrl, completed: { (_, _, _, _) in
-                cell.setNeedsLayout()
-                cell.layoutIfNeeded()
-            })
-            return cell
-        case 1:
-            let hashtag = self.result!.hashtags[indexPath.row]
-            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "#" + hashtag.name
-            return cell
-        case 2:
-            let post = self.result!.posts[indexPath.row]
-            return TableViewCell<MastodonPostCellViewController>.dequeued(
-                from: tableView,
-                for: indexPath,
-                input: .init(post: post, pinned: false),
-                parentViewController: self
-            )
-        case 3:
-            let tag = self.trendTagsArray[indexPath.row]
-            let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-            cell.textLabel?.text = "#" + tag.tag
-            cell.detailTextLabel?.text = tag.score.description
-            return cell
-        default:
-            fatalError("what")
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            let vc = UserProfileTopViewController.instantiate(self.result!.accounts[indexPath.row], environment: self.environment)
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        switch item {
+        case .account(let account):
+            let vc = UserProfileTopViewController.instantiate(account, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            let vc = HashtagTimeLineTableViewController(hashtag: self.result!.hashtags[indexPath.row].name, environment: self.environment)
+        case .hashtag(let hashtag):
+            let vc = HashtagTimeLineTableViewController(hashtag: hashtag.name, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
-        case 2:
-            let vc = MastodonPostDetailViewController.instantiate(self.result!.posts[indexPath.row], environment: self.environment)
+        case .toot(let post):
+            let vc = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
-        case 3:
-            let vc = HashtagTimeLineTableViewController(hashtag: self.trendTagsArray[indexPath.row].tag, environment: self.environment)
+        case .trendTag(let tag, _):
+            let vc = HashtagTimeLineTableViewController(hashtag: tag, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
         }
     }
 }
 
 extension SearchViewController: UISearchControllerDelegate {
-    func didPresentSearchController(_ searchController: UISearchController) {
-        result = nil
-        tableView.reloadData()
+    func presentSearchController(_ searchController: UISearchController) {
+        searchController.showsSearchResultsController = true
+        reloadTrendTags()
+    }
+    func didDismissSearchController(_ searchController: UISearchController) {
+        dataSource.apply(trendTagsSnapshot, animatingDifferences: false, completion: nil)
     }
 }

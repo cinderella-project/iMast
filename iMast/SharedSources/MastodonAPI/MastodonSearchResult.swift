@@ -36,6 +36,10 @@ struct MastodonSearchResultHashtag: Codable {
     }
 }
 
+extension MastodonSearchResultHashtag: Hashable {
+    
+}
+
 struct MastodonSearchResult: Codable {
     let accounts: [MastodonAccount]
     let posts: [MastodonPost]

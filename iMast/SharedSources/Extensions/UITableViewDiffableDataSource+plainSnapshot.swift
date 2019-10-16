@@ -1,9 +1,9 @@
 //
-//  EditableUITableViewDiffableDataSource.swift
+//  UITableViewDiffableDataSource+plainSnapshot.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/08/24.
+//  Created by user on 2019/10/14.
 //
 //  ------------------------------------------------------------------------
 //
@@ -23,9 +23,8 @@
 
 import UIKit
 
-// swipe actionsが呼び出せない問題に対するworkaround
-class EditableUITableViewDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentifierType: Hashable>: UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType> {
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+extension UITableViewDiffableDataSource {
+    func plainSnapshot() -> NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType> {
+        return .init()
     }
 }

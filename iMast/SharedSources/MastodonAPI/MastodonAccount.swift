@@ -78,6 +78,16 @@ struct MastodonAccount: Codable, EmojifyProtocol {
     }
 }
 
+extension MastodonAccount: Hashable {
+    static func == (lhs: MastodonAccount, rhs: MastodonAccount) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 struct MastodonAccountOAuthAuthenticate: Codable {
     let provider: String
     let uid: String

@@ -51,7 +51,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     let tableView: UITableView
     let refreshControl = UIRefreshControl()
     
-    var diffableDataSource: EditableUITableViewDiffableDataSource<TableSection, TableBody>!
+    var diffableDataSource: TableViewDiffableDataSource<TableSection, TableBody>!
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue: [MastodonPost] = []
     var isAlreadyAdded: [String: Bool] = [:]
@@ -114,6 +114,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                 return self.readmoreCell
             }
         }
+        self.diffableDataSource.canEditRowAt = true
         self.tableView.dataSource = self.diffableDataSource
         
         _ = self.diffableDataSource.snapshot() ※ {
