@@ -426,6 +426,7 @@
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
+		CE4F758923570DE800CBEB4D /* CHANGELOG_UNRELEASED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG_UNRELEASED.md; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -654,6 +655,7 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
+				CE4F758923570DE800CBEB4D /* CHANGELOG_UNRELEASED.md */,
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
@@ -1513,7 +1515,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/$TARGET_NAME/R.generated.swift",
+				$SRCROOT/$TARGET_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1551,7 +1553,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/iMast/R.generated.swift",
+				$SRCROOT/iMast/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
