@@ -69,6 +69,7 @@ class CreateSiriShortcutsViewController: FormViewController {
 
         self.form +++ mainSection
         
+        #if !targetEnvironment(macCatalyst)
         self.form +++ Section() <<< ButtonRow { row in
             row.title = "Add to Siri"
         }.onCellSelection { cell, row in
@@ -84,6 +85,7 @@ class CreateSiriShortcutsViewController: FormViewController {
                 self.present(viewController, animated: true, completion: nil)
             }
         }
+        #endif
     }
     
     /*

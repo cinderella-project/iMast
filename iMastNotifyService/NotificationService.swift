@@ -53,7 +53,7 @@ class NotificationService: UNNotificationServiceExtension {
             }
             
             let sessionConfig = URLSessionConfiguration.default
-            sessionConfig.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+            sessionConfig.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0)
             let session = URLSession(configuration: sessionConfig)
             let request = URLRequest(url: url)
             let task = session.dataTask(with: request) { data, response, error in

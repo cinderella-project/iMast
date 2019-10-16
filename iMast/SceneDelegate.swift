@@ -52,9 +52,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         if let myAccount = token {
             window.rootViewController = MainTabBarController.instantiate(environment: myAccount)
+            #if !targetEnvironment(macCatalyst)
             if let item = connectionOptions.shortcutItem {
                 self.windowScene(windowScene, performActionFor: item) { _ in }
             }
+            #endif
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
                     myAccount.delete()

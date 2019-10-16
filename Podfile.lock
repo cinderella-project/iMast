@@ -56,7 +56,7 @@ DEPENDENCIES:
   - Fuzi (~> 3.1.1)
   - GRDB.swift (~> 4.4.0)
   - HydraAsync (~> 2.0.2)
-  - KeychainAccess (~> 3.2.0)
+  - KeychainAccess (from `https://github.com/tupperkion/KeychainAccess.git`, commit `e41375d0ea7bf57ec3b464f75e8ab7e2a126cb85`)
   - LicensePlist (~> 2.6.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - Notifwift (~> 1.1.1)
@@ -82,7 +82,6 @@ SPEC REPOS:
     - Fuzi
     - GRDB.swift
     - HydraAsync
-    - KeychainAccess
     - libwebp
     - LicensePlist
     - Notifwift
@@ -101,11 +100,17 @@ SPEC REPOS:
     - "※ikemen"
 
 EXTERNAL SOURCES:
+  KeychainAccess:
+    :commit: e41375d0ea7bf57ec3b464f75e8ab7e2a126cb85
+    :git: https://github.com/tupperkion/KeychainAccess.git
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
 
 CHECKOUT OPTIONS:
+  KeychainAccess:
+    :commit: e41375d0ea7bf57ec3b464f75e8ab7e2a126cb85
+    :git: https://github.com/tupperkion/KeychainAccess.git
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -119,7 +124,7 @@ SPEC CHECKSUMS:
   Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
   GRDB.swift: 4f9b6e7efc9470426f6a6de10ec1fee798ff7e43
   HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
-  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  KeychainAccess: d63fd34c5e53934018d57e7f6f283d3d3ae037dd
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   LicensePlist: 04fb95b572038c87068283afa65518a61aff9342
   Mew: 0b5fb383e0cdd2ff6ff3098c48b0b2ac37fe78a2
@@ -138,6 +143,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 5cbc21ccfb8fad5da5c717d2f204ba4bc9213a67
+PODFILE CHECKSUM: 10662e7cb97c8ab60fd31fd6b5c452182818cc28
 
 COCOAPODS: 1.8.3

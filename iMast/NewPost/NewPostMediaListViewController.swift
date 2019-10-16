@@ -294,22 +294,27 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
             }
             return
         } else if let assetUrl = info[.referenceURL] as? URL {
-            let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
-            guard let asset = assets.firstObject else {
-                self.alert(title: "エラー", message: "failed to fetch assets")
-                return
-            }
-            if asset.mediaType == .image {
-                PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) in
-                    guard let data = data else {
-                        self.alert(title: "エラー", message: "failed to fetch data from PHImageManager")
-                        return
-                    }
-                    self.addMedia(media: UploadableMedia(format: dataUTI == "public.jpeg" ? .jpeg : .png, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
+            #if !targetEnvironment(macCatalyst)
+                let assets = PHAsset.fetchAssets(withALAssetURLs: [assetUrl], options: nil)
+                guard let asset = assets.firstObject else {
+                    self.alert(title: "エラー", message: "failed to fetch assets")
+                    return
                 }
-            } else {
-                self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
-            }
+                if asset.mediaType == .image {
+                    PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) in
+                        guard let data = data else {
+                            self.alert(title: "エラー", message: "failed to fetch data from PHImageManager")
+                            return
+                        }
+                        self.addMedia(media: UploadableMedia(format: dataUTI == "public.jpeg" ? .jpeg : .png, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
+                    }
+                } else {
+                    self.alert(title: "エラー", message: "unknown mediaType: \(asset.mediaType.rawValue)")
+                }
+            #else
+                self.alert(title: "エラー", message: "Mac版ではこの機能は利用できません")
+                return
+            #endif
         } else if let image = info[.originalImage] as? UIImage {
             // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
             guard let data = image.jpegData(compressionQuality: 1) else {

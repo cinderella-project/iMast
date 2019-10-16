@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // とりあえずもろもろ初期化
-        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         self.registerDefaultsFromSettingsBundle()
         self.migrateUserDefaultsToAppGroup()
         initDatabase()

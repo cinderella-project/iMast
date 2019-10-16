@@ -93,11 +93,7 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
     
     func safariLoginButton() {
         let url = URL(string: self.app!.getAuthorizeUrl())!
-        if #available(iOS 11.0, *) {
-            self.loginSafari = LoginSafari11()
-        } else {
-            self.loginSafari = LoginSafariNormal()
-        }
-        self.loginSafari?.open(url: url, viewController: self)
+        loginSafari = getLoginSafari()
+        loginSafari?.open(url: url, viewController: self)
     }
 }

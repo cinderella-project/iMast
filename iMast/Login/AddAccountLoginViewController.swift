@@ -25,7 +25,9 @@ import UIKit
 import Hydra
 import Eureka
 import EurekaFormBuilder
+#if canImport(OnePasswordExtension)
 import OnePasswordExtension
+#endif
 
 class AddAccountLoginViewController: FormViewController {
 
@@ -36,6 +38,7 @@ class AddAccountLoginViewController: FormViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        #if canImport(OnePasswordExtension)
         if OnePasswordExtension.shared().isAppExtensionAvailable() {
             let onePassBundle = Bundle(for: OnePasswordExtension.self)
             let onePassResourceBundle = Bundle(path: onePassBundle.bundlePath + "/OnePasswordExtensionResources.bundle")
@@ -45,6 +48,7 @@ class AddAccountLoginViewController: FormViewController {
                 target: self, action: #selector(callPasswordManager)
             )
         }
+        #endif
         
         form.append {
             Section {
@@ -98,6 +102,7 @@ class AddAccountLoginViewController: FormViewController {
         })
     }
     
+    #if canImport(OnePasswordExtension)
     @objc func callPasswordManager() {
         OnePasswordExtension.shared().findLogin(
             forURLString: "https://" + self.app!.instance.hostName,
@@ -117,4 +122,5 @@ class AddAccountLoginViewController: FormViewController {
             self.form.allRows.forEach { $0.reload() }
         }
     }
+    #endif
 }
