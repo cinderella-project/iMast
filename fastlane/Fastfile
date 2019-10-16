@@ -22,7 +22,7 @@ platform :ios do
     ensure_git_status_clean
     increment_build_number(xcodeproj: "iMast.xcodeproj")
 
-    changelog = open("CHANGELOG_UNRELEASED.md").read
+    changelog = open("../CHANGELOG_UNRELEASED.md").read
     changelog = changelog.gsub("→", "->")
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: "bump build number to " + get_build_number(xcodeproj: "iMast.xcodeproj"))
