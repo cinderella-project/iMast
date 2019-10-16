@@ -84,8 +84,23 @@ class MainTabBarController: UITabBarController, Instantiatable {
             self.setViewControllers(lazyLoadVCs, animated: false)
             firstAppear = false
             startStateRestoration()
+            for (i, vc) in lazyLoadVCs.enumerated() {
+                var cmd = (i + 1)
+                if cmd > 8 && cmd != lazyLoadVCs.count {
+                    continue
+                }
+                if cmd == lazyLoadVCs.count {
+                    cmd = 9
+                }
+                addKeyCommand(.init(title: "\(vc.tabBarItem.title ?? "(unknown)") に切り替え", action: #selector(changeActiveTab(_:)), input: cmd.description, modifierFlags: .command, propertyList: i))
+            }
         }
         super.viewDidAppear(animated)
+    }
+    
+    @objc func changeActiveTab(_ sender: UIKeyCommand) {
+        guard let i = sender.propertyList as? Int else { return }
+        selectedIndex = i
     }
     
     @objc func onLongPressed() {

@@ -97,6 +97,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
         self.textInput.text += appendBottomString
         exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
+        
+        addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
     }
 
     override func didReceiveMemoryWarning() {
