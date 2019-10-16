@@ -26,7 +26,6 @@ platform :ios do
     changelog = changelog.gsub("→", "->")
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: "bump build number to " + get_build_number(xcodeproj: "iMast.xcodeproj"))
-    push_to_git_remote
 
     get_provisioning_profile
 
