@@ -406,6 +406,7 @@ extension DefaultsKeys {
     
     static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: true)
     static let notifyTabInfiniteScroll = DefaultsKey<Bool>("notify_tab_infinite_scroll", default: false)
+    static let newFirstScreen = DefaultsKey<Bool>("new_first_screen", default: false)
 }
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {

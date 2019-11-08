@@ -111,6 +111,10 @@ class SettingsViewController: FormViewController {
                 }
                 row.userDefaultsConnect(.workaroundOfiOS13_1UITextView)
             }
+            <<< SwitchRow { row in
+                row.title = "最初の画面を新しいものに (α)"
+                row.userDefaultsConnect(.newFirstScreen)
+            }
         self.title = "設定"
         self.navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
     }
