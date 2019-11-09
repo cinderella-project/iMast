@@ -28,6 +28,7 @@
 		4DA5F6B8581A005E7D478957 /* Pods_iMastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233F93890AFA8A380B3A3DC0 /* Pods_iMastUITests.framework */; };
 		678BB0732E6808D2590882C3 /* Pods_iMastShared_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9958A463DADC441531113D26 /* Pods_iMastShared_iMastNotifyService.framework */; };
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
+		A29BBF5794901AC432213B0F /* Pods_iMastShared_iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F32CE5E0BD783E2B1DCBECE /* Pods_iMastShared_iMastiOSCore.framework */; };
 		AB5335A93DA9A8C6DC7A73FD /* Pods_iMastShared_iMast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297F93036AE7277C0537CDB6 /* Pods_iMastShared_iMast.framework */; };
 		AF4C0C9ED74EF6617B4468C8 /* Pods_iMastShared_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1E1FF32B096D1CA2A3FB4B /* Pods_iMastShared_iMastShare.framework */; };
 		C16C3D81F6A6A0AA7C238037 /* Pods_iMastShared_iMastTodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFAB2F8AC01612BEE4A2014 /* Pods_iMastShared_iMastTodayWidget.framework */; };
@@ -85,6 +86,11 @@
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */; };
+		CE43BE89237775F100133C86 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
+		CE43BE90237775F100133C86 /* iMastiOSCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BE8F237775F100133C86 /* iMastiOSCoreTests.swift */; };
+		CE43BE92237775F100133C86 /* iMastiOSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE43BE82237775F000133C86 /* iMastiOSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE43BE95237775F100133C86 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
+		CE43BE96237775F100133C86 /* iMastiOSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
 		CE51ABFB1F40C06B00E43607 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */; };
 		CE51ABFE1F40C06B00E43607 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51ABFD1F40C06B00E43607 /* TodayViewController.swift */; };
@@ -299,6 +305,27 @@
 			remoteGlobalIDString = 2AF352161EAB9C5500777C2E;
 			remoteInfo = iMast;
 		};
+		CE43BE8A237775F100133C86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CE43BE8C237775F100133C86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AF352161EAB9C5500777C2E;
+			remoteInfo = iMast;
+		};
+		CE43BE93237775F100133C86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
 		CE51AC031F40C06B00E43607 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
@@ -330,6 +357,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		CE43BE9A237775F100133C86 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE43BE96237775F100133C86 /* iMastiOSCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE78CF9F1EE7FE6B008313EA /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +387,7 @@
 /* Begin PBXFileReference section */
 		084F5046607495FBD36AC809 /* Pods-iMastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTests/Pods-iMastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		08F0E46FC0E5B27E0560E3CA /* Pods-iMastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTests/Pods-iMastTests.release.xcconfig"; sourceTree = "<group>"; };
+		0F32CE5E0BD783E2B1DCBECE /* Pods_iMastShared_iMastiOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_iMastiOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16414B92EDA742EB287C5812 /* Pods-iMastShared-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastIntents/Pods-iMastShared-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		1739BD5070A82654DEC2563D /* Pods-iMast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMast.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMast/Pods-iMast.release.xcconfig"; sourceTree = "<group>"; };
 		1CFAB2F8AC01612BEE4A2014 /* Pods_iMastShared_iMastTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_iMastTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,10 +426,12 @@
 		36EBC83E8164ACB27CEDC2DA /* license_plist.yml */ = {isa = PBXFileReference; lastKnownFileType = file.yml; path = license_plist.yml; sourceTree = "<group>"; };
 		3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		456765C6ED1EC9D4D4F8203F /* Pods-iMastShared-iMastTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastTodayWidget/Pods-iMastShared-iMastTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
+		48FF1798C661B63636936B77 /* Pods-iMastShared-iMastiOSCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastiOSCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastiOSCore/Pods-iMastShared-iMastiOSCore.debug.xcconfig"; sourceTree = "<group>"; };
 		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
 		6964C9CB69C9BCBC54486202 /* Pods-iMastShared-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastIntents/Pods-iMastShared-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		75B87CD1B1A2A37C91E44BB6 /* Pods-iMastShared-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastShare/Pods-iMastShared-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
+		761A42B069FCE6F12074FF27 /* Pods-iMastShared-iMastiOSCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastiOSCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastiOSCore/Pods-iMastShared-iMastiOSCore.release.xcconfig"; sourceTree = "<group>"; };
 		86EAE860F5A628568C76DEE8 /* Pods-iMastShared-iMast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMast.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMast/Pods-iMastShared-iMast.release.xcconfig"; sourceTree = "<group>"; };
 		8724D1E50CFE6E3F352F1028 /* Pods-iMastShared-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastNotifyService/Pods-iMastShared-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
 		8E97A0E2A958C920BEE3AD79 /* Pods-iMastShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -429,6 +470,12 @@
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
+		CE43BE80237775F000133C86 /* iMastiOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iMastiOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE43BE82237775F000133C86 /* iMastiOSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iMastiOSCore.h; sourceTree = "<group>"; };
+		CE43BE83237775F000133C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE43BE88237775F100133C86 /* iMastiOSCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMastiOSCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE43BE8F237775F100133C86 /* iMastiOSCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMastiOSCoreTests.swift; sourceTree = "<group>"; };
+		CE43BE91237775F100133C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4F758923570DE800CBEB4D /* CHANGELOG_UNRELEASED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG_UNRELEASED.md; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -571,6 +618,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE43BE95237775F100133C86 /* iMastiOSCore.framework in Frameworks */,
 				AB5335A93DA9A8C6DC7A73FD /* Pods_iMastShared_iMast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +636,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DA5F6B8581A005E7D478957 /* Pods_iMastUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE7D237775F000133C86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A29BBF5794901AC432213B0F /* Pods_iMastShared_iMastiOSCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE85237775F100133C86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43BE89237775F100133C86 /* iMastiOSCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +718,8 @@
 				75B87CD1B1A2A37C91E44BB6 /* Pods-iMastShared-iMastShare.release.xcconfig */,
 				1D6167F09384145CCE1875B6 /* Pods-iMastShared-iMastTodayWidget.debug.xcconfig */,
 				456765C6ED1EC9D4D4F8203F /* Pods-iMastShared-iMastTodayWidget.release.xcconfig */,
+				48FF1798C661B63636936B77 /* Pods-iMastShared-iMastiOSCore.debug.xcconfig */,
+				761A42B069FCE6F12074FF27 /* Pods-iMastShared-iMastiOSCore.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -683,6 +749,8 @@
 				CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */,
 				CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */,
 				CED6077721B3658F00F6232E /* iMastIntents.appex */,
+				CE43BE80237775F000133C86 /* iMastiOSCore.framework */,
+				CE43BE88237775F100133C86 /* iMastiOSCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -725,6 +793,7 @@
 				9958A463DADC441531113D26 /* Pods_iMastShared_iMastNotifyService.framework */,
 				DA1E1FF32B096D1CA2A3FB4B /* Pods_iMastShared_iMastShare.framework */,
 				1CFAB2F8AC01612BEE4A2014 /* Pods_iMastShared_iMastTodayWidget.framework */,
+				0F32CE5E0BD783E2B1DCBECE /* Pods_iMastShared_iMastiOSCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -732,7 +801,8 @@
 		CE3D453423766DBF006F1198 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				CEE357161FF5165700675DFC /* Core */,
+				CE43BE81237775F000133C86 /* Core */,
+				CEE357161FF5165700675DFC /* Core_NonLib */,
 				CE3D453523766DE5006F1198 /* App */,
 				CE6A4B6323767978005773C7 /* Tests */,
 				CE3D453623766F51006F1198 /* Extensions */,
@@ -763,6 +833,7 @@
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
+				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				2A66E80A1EB0254400735081 /* Bridge.h */,
 				CE87300D216884360038D964 /* Localizable.strings */,
 				CEE213121EF13EE600393C67 /* emoji.json */,
@@ -780,6 +851,56 @@
 				CED6077821B3658F00F6232E /* iMastIntents */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE43BE81237775F000133C86 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE43BE82237775F000133C86 /* iMastiOSCore.h */,
+				CE43BE83237775F000133C86 /* Info.plist */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE43BE8E237775F100133C86 /* iMastiOSCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE43BE8F237775F100133C86 /* iMastiOSCoreTests.swift */,
+				CE43BE91237775F100133C86 /* Info.plist */,
+			);
+			name = iMastiOSCoreTests;
+			path = ../iMastiOSCoreTests;
+			sourceTree = "<group>";
+		};
+		CE43BE9E2377773900133C86 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */,
+				CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */,
+				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
+				CE65772B21560BE300670F0A /* String+toPlainText.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		CE43BE9F2377776300133C86 /* NSAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */,
+				CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */,
+			);
+			path = NSAttributedString;
+			sourceTree = "<group>";
+		};
+		CE43BEA02377776D00133C86 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */,
+				CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */,
+				CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */,
+				CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */ = {
@@ -819,6 +940,7 @@
 		CE6A4B6323767978005773C7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CE43BE8E237775F100133C86 /* iMastiOSCoreTests */,
 				2AF3522E1EAB9C5600777C2E /* iMastTests */,
 				2AF352391EAB9C5600777C2E /* iMastUITests */,
 			);
@@ -853,26 +975,19 @@
 		CEC6BBF82104F9E6003ECE10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE43BEA02377776D00133C86 /* UIViewController */,
+				CE43BE9F2377776300133C86 /* NSAttributedString */,
+				CE43BE9E2377773900133C86 /* String */,
 				CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */,
 				CE2D2AED210C5668003B92B8 /* Notification.Name.swift */,
-				CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */,
 				CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */,
 				CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */,
 				CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */,
-				CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */,
 				CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */,
-				CE65772B21560BE300670F0A /* String+toPlainText.swift */,
 				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
-				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
-				CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */,
-				CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */,
-				CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */,
-				CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */,
 				CE2D2AFC21104D29003B92B8 /* Alamofire.Request+responseDecodable.swift */,
 				CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */,
-				CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */,
-				CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */,
 				CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */,
 				CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */,
 				CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */,
@@ -906,6 +1021,7 @@
 		CEE254262004B593005FEB6F /* MastodonAPI */ = {
 			isa = PBXGroup;
 			children = (
+				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				CEE254222004A8B2005FEB6F /* MastodonAccount.swift */,
 				CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */,
 				CEE254272004B5AA005FEB6F /* MastodonPost.swift */,
@@ -921,17 +1037,15 @@
 			path = MastodonAPI;
 			sourceTree = "<group>";
 		};
-		CEE357161FF5165700675DFC /* Core */ = {
+		CEE357161FF5165700675DFC /* Core_NonLib */ = {
 			isa = PBXGroup;
 			children = (
 				CE5F7CB423112D01005E819E /* MastodonModel */,
 				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CEE254262004B593005FEB6F /* MastodonAPI */,
-				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
-				CE2D2AF7210FCAAD003B92B8 /* MastodonCursorWrapper.swift */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CE1002D4200683850041B636 /* ReportError.swift */,
@@ -944,7 +1058,7 @@
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 				CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */,
 			);
-			path = Core;
+			path = Core_NonLib;
 			sourceTree = "<group>";
 		};
 		CEE357171FF516A800675DFC /* Login */ = {
@@ -1061,6 +1175,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		CE43BE7B237775F000133C86 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43BE92237775F100133C86 /* iMastiOSCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		2AF352161EAB9C5500777C2E /* iMast */ = {
 			isa = PBXNativeTarget;
@@ -1075,6 +1200,7 @@
 				2AF352151EAB9C5500777C2E /* Resources */,
 				A90C2107FDF0B97FD07C7A1E /* [CP] Embed Pods Frameworks */,
 				CE78CF9F1EE7FE6B008313EA /* Embed App Extensions */,
+				CE43BE9A237775F100133C86 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1083,6 +1209,7 @@
 				CE51AC041F40C06B00E43607 /* PBXTargetDependency */,
 				CEC6BC0721074EFB003ECE10 /* PBXTargetDependency */,
 				CED6077D21B3658F00F6232E /* PBXTargetDependency */,
+				CE43BE94237775F100133C86 /* PBXTargetDependency */,
 			);
 			name = iMast;
 			productName = iMast;
@@ -1126,6 +1253,44 @@
 			productName = iMastUITests;
 			productReference = 2AF352361EAB9C5600777C2E /* iMastUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		CE43BE7F237775F000133C86 /* iMastiOSCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE43BE97237775F100133C86 /* Build configuration list for PBXNativeTarget "iMastiOSCore" */;
+			buildPhases = (
+				F4C7F871D1C6E27DB505209E /* [CP] Check Pods Manifest.lock */,
+				CE43BE7B237775F000133C86 /* Headers */,
+				CE43BE7C237775F000133C86 /* Sources */,
+				CE43BE7D237775F000133C86 /* Frameworks */,
+				CE43BE7E237775F000133C86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMastiOSCore;
+			productName = iMastiOSCore;
+			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CE43BE87237775F100133C86 /* iMastiOSCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE43BE9B237775F100133C86 /* Build configuration list for PBXNativeTarget "iMastiOSCoreTests" */;
+			buildPhases = (
+				CE43BE84237775F100133C86 /* Sources */,
+				CE43BE85237775F100133C86 /* Frameworks */,
+				CE43BE86237775F100133C86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE43BE8B237775F100133C86 /* PBXTargetDependency */,
+				CE43BE8D237775F100133C86 /* PBXTargetDependency */,
+			);
+			name = iMastiOSCoreTests;
+			productName = iMastiOSCoreTests;
+			productReference = CE43BE88237775F100133C86 /* iMastiOSCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CE51ABF81F40C06B00E43607 /* iMastTodayWidget */ = {
 			isa = PBXNativeTarget;
@@ -1205,7 +1370,7 @@
 		2AF3520F1EAB9C5500777C2E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = rinsuki;
 				TargetAttributes = {
@@ -1242,6 +1407,13 @@
 						CreatedOnToolsVersion = 8.3.2;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 2AF352161EAB9C5500777C2E;
+					};
+					CE43BE7F237775F000133C86 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					CE43BE87237775F100133C86 = {
+						CreatedOnToolsVersion = 11.1;
 						TestTargetID = 2AF352161EAB9C5500777C2E;
 					};
 					CE51ABF81F40C06B00E43607 = {
@@ -1310,6 +1482,8 @@
 				CE51ABF81F40C06B00E43607 /* iMastTodayWidget */,
 				CEC6BC0021074EFB003ECE10 /* iMastNotifyService */,
 				CED6077621B3658F00F6232E /* iMastIntents */,
+				CE43BE7F237775F000133C86 /* iMastiOSCore */,
+				CE43BE87237775F100133C86 /* iMastiOSCoreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1345,6 +1519,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AF352341EAB9C5600777C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE7E237775F000133C86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE86237775F100133C86 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1587,6 +1775,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/iMast/iOS/App/R.generated.swift\"\n";
 		};
+		F4C7F871D1C6E27DB505209E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMastShared-iMastiOSCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1736,6 +1946,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AF3523B1EAB9C5600777C2E /* iMastUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE7C237775F000133C86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE43BE84237775F100133C86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE43BE90237775F100133C86 /* iMastiOSCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1897,6 +2122,21 @@
 			isa = PBXTargetDependency;
 			target = 2AF352161EAB9C5500777C2E /* iMast */;
 			targetProxy = 2AF352371EAB9C5600777C2E /* PBXContainerItemProxy */;
+		};
+		CE43BE8B237775F100133C86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CE43BE8A237775F100133C86 /* PBXContainerItemProxy */;
+		};
+		CE43BE8D237775F100133C86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AF352161EAB9C5500777C2E /* iMast */;
+			targetProxy = CE43BE8C237775F100133C86 /* PBXContainerItemProxy */;
+		};
+		CE43BE94237775F100133C86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CE43BE93237775F100133C86 /* PBXContainerItemProxy */;
 		};
 		CE51AC041F40C06B00E43607 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2254,6 +2494,130 @@
 			};
 			name = Release;
 		};
+		CE43BE98237775F100133C86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48FF1798C661B63636936B77 /* Pods-iMastShared-iMastiOSCore.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMast/iOS/Core/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CE43BE99237775F100133C86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 761A42B069FCE6F12074FF27 /* Pods-iMastShared-iMastiOSCore.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMast/iOS/Core/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CE43BE9C237775F100133C86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastiOSCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMast.app/iMast";
+			};
+			name = Debug;
+		};
+		CE43BE9D237775F100133C86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = iMastiOSCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iMast.app/iMast";
+			};
+			name = Release;
+		};
 		CE51AC061F40C06B00E43607 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D6167F09384145CCE1875B6 /* Pods-iMastShared-iMastTodayWidget.debug.xcconfig */;
@@ -2538,6 +2902,24 @@
 			buildConfigurations = (
 				2AF352461EAB9C5600777C2E /* Debug */,
 				2AF352471EAB9C5600777C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE43BE97237775F100133C86 /* Build configuration list for PBXNativeTarget "iMastiOSCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE43BE98237775F100133C86 /* Debug */,
+				CE43BE99237775F100133C86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE43BE9B237775F100133C86 /* Build configuration list for PBXNativeTarget "iMastiOSCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE43BE9C237775F100133C86 /* Debug */,
+				CE43BE9D237775F100133C86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

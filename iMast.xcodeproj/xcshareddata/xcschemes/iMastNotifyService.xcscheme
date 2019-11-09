@@ -43,6 +43,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CE43BE87237775F100133C86"
+               BuildableName = "iMastiOSCoreTests.xctest"
+               BlueprintName = "iMastiOSCoreTests"
+               ReferencedContainer = "container:iMast.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
