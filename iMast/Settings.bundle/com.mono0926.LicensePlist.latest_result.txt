@@ -98,23 +98,23 @@ version: 2.0.2
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 3.2.0
+version: 4.1.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 3.2.0
+version: 4.1.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 3.2.0
+version: 4.1.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 3.2.0
+version: 4.1.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 3.2.0
+version: 4.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …

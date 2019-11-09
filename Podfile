@@ -19,7 +19,7 @@ abstract_target 'iMastShared' do
   pod '※ikemen', '~> 0.6.0'
   pod 'R.swift', '~> 5.0.3'
   pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
-  pod 'KeychainAccess', :git => 'https://github.com/tupperkion/KeychainAccess.git', :commit => "e41375d0ea7bf57ec3b464f75e8ab7e2a126cb85"
+  pod 'KeychainAccess', '~> 4.1.0'
 
   target 'iMast' do
     # Pods for iMast
