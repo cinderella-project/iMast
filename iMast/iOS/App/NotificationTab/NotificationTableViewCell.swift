@@ -81,7 +81,7 @@ class NotificationTableViewCell: UITableViewCell {
     func load(notification: MastodonNotification) {
         self.notifyTypeImageView.image = NotificationTableViewCell.getIcon(type: notification.type)
         self.titleLabel.text = self.getTitle(notification: notification)
-        self.descriptionLabel.text = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replace("\n", " ")
+        self.descriptionLabel.text = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replacingOccurrences(of: "\n", with: " ")
     }
     
 }

@@ -145,7 +145,7 @@ extension String {
         if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
             return newParserResult
         }
-        if !self.replace("<p>", "").replace("</p>", "").contains("<") {
+        if !self.replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").contains("<") {
             return nil
         }
         

@@ -64,7 +64,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         print(clipboardText.pregMatch(pattern: "^\(regex)$") as [String])
         if clipboardText.pregMatch(pattern: "^\(regex)$") {
-            postText = Defaults[.widgetFormat].replace("{clipboard}", clipboardText)
+            postText = Defaults[.widgetFormat].replacingOccurrences(of: "{clipboard}", with: clipboardText)
         } else {
             postTextView.text = "正規表現フィルタにマッチしていません。\nフィルタ: "+regex
             postButton.alpha = 0

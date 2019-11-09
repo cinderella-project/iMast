@@ -46,97 +46,6 @@ var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWi
 #endif
 
 extension UIViewController {
-    func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
-        print("alert", title, message)
-        return Promise<Void>(in: .main) { resolve, reject, _ in
-            print("alert", title, message)
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
-                resolve(Void())
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") -> Promise<Bool> {
-        return Promise<Bool>(in: .main) { resolve, reject, _ in
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-            alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
-                resolve(true)
-            }))
-            alert.addAction(UIAlertAction(title: cancelButtonMessage, style: .cancel, handler: { action in
-                resolve(false)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    func alert(title: String = "", message: String = "") {
-        alertWithPromise(title: title, message: message).then {}
-    }
-    
-    func errorWithPromise(errorMsg: String = "不明なエラー") -> Promise<Void> {
-        let promise = alertWithPromise(
-            title: "内部エラー",
-            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。"
-        ).then {}
-        return promise
-    }
-    func error(errorMsg: String = "") {
-        errorWithPromise(errorMsg: errorMsg).then {}
-    }
-    
-    func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void> {
-        let errorMessage: String = String(format: "エラーメッセージ:\n%@ (%@)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。", arguments: [
-            errorMsg ?? "不明なエラー(iMast)",
-            String(httpNumber ?? -1),
-        ])
-        return alertWithPromise(
-            title: "APIエラー",
-            message: errorMessage
-        )
-    }
-    func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) {
-        apiErrorWithPromise(errorMsg, httpNumber).then {}
-    }
-    func apiError(_ json: JSON) {
-        apiError(json["error"].string, json["_response_code"].int)
-    }
-    
-    func errorReport(error: Error) {
-        let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "詳しい情報を見る", style: .default, handler: { _ in
-            class ErrorReportViewController: UIViewController {
-                let textView = UITextView() ※ { view in
-                    view.font = UIFont.init(name: "Menlo", size: 15)
-                    view.adjustsFontForContentSizeCategory = true
-                    view.isEditable = false
-                }
-                
-                override func loadView() {
-                    view = textView
-                }
-                
-                override func viewDidLoad() {
-                    title = "エラー詳細"
-                    navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
-                }
-            }
-            let vc = ErrorReportViewController()
-            let navVC = UINavigationController(rootViewController: vc)
-            vc.textView.text = "\(error)"
-            self.present(navVC, animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
     
     @objc func close() {
         dismiss(animated: true, completion: nil)
@@ -171,22 +80,8 @@ func urlComponentsToDict(url: URL) -> [String: String] {
     
     return dict
 }
-var html2ascache: [String: NSAttributedString?] = [:]
-var html2ascacheavail: [String: Bool] = [:]
 
 extension String {
-    var sha256: String! {
-        if let cstr = self.cString(using: String.Encoding.utf8) {
-            var chars = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-            CC_SHA256(
-                cstr,
-                CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8)),
-                &chars
-            )
-            return chars.map { String(format: "%02X", $0) }.reduce("", +)
-        }
-        return nil
-    }
     
     func toDate() -> Date {
         let formatter = DateFormatter()
@@ -198,43 +93,6 @@ extension String {
     var nsLength: Int {
         let string_NS = self as NSString
         return string_NS.length
-    }
-    
-    //正規表現の検索をします
-    func pregMatch(pattern: String, options: NSRegularExpression.Options = []) -> Bool {
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
-            return false
-        }
-        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: nsLength))
-        return matches.count > 0
-    }
-    
-    //正規表現の検索結果を利用できます
-    func pregMatch(pattern: String, options: NSRegularExpression.Options = []) -> [String] {
-        guard let regex = try? NSRegularExpression(pattern: pattern, options: options) else {
-            return []
-        }
-        var matches: [String] = []
-        let targetStringRange = NSRange(location: 0, length: nsLength)
-        let results = regex.matches(in: self, options: [], range: targetStringRange)
-        for i in 0 ..< results.count {
-            for j in 0 ..< results[i].numberOfRanges {
-                let range = results[i].range(at: j)
-                matches.append((self as NSString).substring(with: range))
-            }
-        }
-        return matches
-    }
-    
-    //正規表現の置換をします
-    func pregReplace(pattern: String, with: String, options: NSRegularExpression.Options = []) -> String {
-        // swiftlint:disable force_try
-        let regex = try! NSRegularExpression(pattern: pattern, options: options)
-        return regex.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0, length: nsLength), withTemplate: with)
-    }
-    
-    func replace(_ target: String, _ to: String) -> String {
-        return self.replacingOccurrences(of: target, with: to)
     }
     
     func format(_ params: CVarArg...) -> String {
@@ -258,22 +116,6 @@ extension UserDefaults {
     }
 }
 
-extension UIDevice {
-    var platform: String {
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        
-        let mirror = Mirror(reflecting: systemInfo.machine)
-        
-        let characters = mirror.children
-            .compactMap { $0.value as? Int8 }
-            .filter { $0 != 0 }
-            .map { Character(UnicodeScalar(UInt8($0))) }
-        
-        return String(characters)
-    }
-}
-
 enum APIError: Error {
     case `nil`(String)
     case alreadyError // すでにエラーをユーザーに伝えているときに使う
@@ -283,45 +125,11 @@ enum APIError: Error {
     case dateParseFailed(dateString: String)
 }
 
-class DateUtils {
-    class func dateFromString(_ string: String, format: String) -> Date {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = format
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter.date(from: string)!
-    }
-    
-    class func stringFromDate(_ date: Date, format: String) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = format
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter.string(from: date)
-    }
-}
-
 func numToCommaString(_ num: Int) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = NumberFormatter.Style.decimal
     return formatter.string(from: num as NSNumber)!
 }
-
-/*
-var defaultValues: [String: Any] = [
-    "streaming_autoconnect": "always",
-    "append_mediaurl": true,
-    "new_account_via": "iMast",
-    "follow_relationships_old": false,
-    "timeline_username_fontsize": Double(17),
-    "timeline_text_fontsize": Double(14),
-    "timeline_icon_size": Double(48),
-    "widget_format": "{clipboard}",
-    "widget_filter": "",
-    "nowplaying_format": "#nowplaying {title} - {artist} ({albumTitle})",
-    "visibility_emoji": true,
-    "thumbnail_height": Int(50),
-    "webm_vlc_open": true,
-]
-*/
 
 enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIterable {
     var description: String {
@@ -348,66 +156,6 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
     case rightBottom
 }
 
-extension DefaultsKeys {
-    static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect", default: "always")
-    static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
-    static let newAccountVia = DefaultsKey<String>("new_account_via", default: "iMast")
-    static let followRelationshipsOld = DefaultsKey<Bool>("follow_relationships_old", default: false)
-    static let workaroundOfiOS13_1UITextView = DefaultsKey<Bool>(
-        "workaroundOfiOS13_1UITextView",
-         default: [
-            "13.1",
-            "13.1.1",
-            "13.1.2",
-            "13.1.3",
-         ].firstIndex(of: UIDevice.current.systemVersion) != nil
-    )
-
-    static let timelineUsernameFontsize = DefaultsKey<Double>("timeline_username_fontsize", default: 14)
-    static let timelineTextFontsize = DefaultsKey<Double>("timeline_text_fontsize", default: 15)
-    static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size", default: 48)
-    static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji", default: true)
-    static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
-    static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)
-    static let timelineTextBold = DefaultsKey<Bool>("timeline_text_bold", default: false)
-    static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
-    static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
-    static let acctAbbr = DefaultsKey<Bool>("acct_abbr", default: true)
-    static let postFabEnabled = DefaultsKey<Bool>("post_fab_enabled", default: true)
-    static let postFabLocation = DefaultsKey<PostFabLocation>("post_fab_location", default: .rightBottom)
-    static let usePostLanguageInfo = DefaultsKey<Bool>("use_post_language_info", default: true)
-
-    static let webmVlcOpen = DefaultsKey<Bool>("webm_vlc_open", default: true)
-    static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)
-    static let useUniversalLink = DefaultsKey<Bool>("use_universal_link", default: true)
-
-    static let widgetFormat = DefaultsKey<String>("widget_format", default: "{clipboard}")
-    static let widgetFilter = DefaultsKey<String>("widget_filter")
-
-    static let nowplayingFormat = DefaultsKey<String>("nowplaying_format", default: "#nowplaying {title} - {artist} ({albumTitle})")
-    static let nowplayingAddAppleMusicUrl = DefaultsKey<Bool>("nowplaying_add_apple_music_url", default: true)
-    static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)
-    static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
-
-    static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
-    static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
-
-    static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
-    static let useCustomizedSharePreview = DefaultsKey<Bool>("use_customized_share_preview", default: true)
-
-    static let showPushServiceError = DefaultsKey<Bool>("show_push_service_error", default: false)
-    
-    static let groupNotifyAccounts = DefaultsKey<Bool>("group_notify_accounts", default: true)
-    static let groupNotifyTypeBoost = DefaultsKey<Bool>("group_notify_type_boost", default: false)
-    static let groupNotifyTypeFavourite = DefaultsKey<Bool>("group_notify_type_favourite", default: false)
-    static let groupNotifyTypeMention = DefaultsKey<Bool>("group_notify_type_mention", default: false)
-    static let groupNotifyTypeFollow = DefaultsKey<Bool>("group_notify_type_follow", default: false)
-    static let groupNotifyTypeUnknown = DefaultsKey<Bool>("group_notify_type_unknown", default: false)
-    
-    static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: true)
-    static let notifyTabInfiniteScroll = DefaultsKey<Bool>("notify_tab_infinite_scroll", default: false)
-    static let newFirstScreen = DefaultsKey<Bool>("new_first_screen", default: false)
-}
 
 let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     let container = try $0.singleValueContainer()
@@ -465,46 +213,6 @@ extension Decodable {
             throw error
         }
     }
-}
-
-extension Array {
-    func safe(_ index: Index) -> Element? {
-        if self.count <= index || index < 0 {
-            return nil
-        }
-        return self[index]
-    }
-}
-
-func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
-    var versionStr = versionStr_
-    var versionInt = 500
-    if versionStr.trim(0, 1) == "v" {
-        versionStr = versionStr.trim(1)
-    }
-    var versionStrs = versionStr.components(separatedBy: ".")
-    if versionStrs.count == 1 {
-        versionStrs.append("0")
-    }
-    if versionStrs.count == 2 {
-        versionStrs.append("0")
-    }
-    if versionStrs.count >= 4 {
-        WARN("versionStrs.count is over 3!")
-    }
-    print(versionStrs)
-    versionInt += (1000 * 100 * 100) * versionStrs[0].parseInt()
-    versionInt += (1000 * 100) * versionStrs[1].parseInt()
-    versionInt += (1000) * versionStrs[2].parseInt()
-    let rc_match = versionStrs[2].pregMatch(pattern: "rc([0-9]+)") as [String]
-    print("rc", rc_match)
-    if rc_match.count >= 2 { // rc version
-        let rc_ver = rc_match[1].parseInt()
-        versionInt -= 400
-        versionInt += rc_ver
-    }
-    print(versionInt)
-    return versionInt
 }
 
 let VisibilityString = ["public", "unlisted", "private", "direct"]

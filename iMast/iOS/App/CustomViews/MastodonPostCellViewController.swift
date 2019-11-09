@@ -282,7 +282,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.createdAtLabel.font = userNameFont
 
         // 投稿本文の処理
-        let html = post.status.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "")
+        let html = post.status.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "")
         var font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
         if Defaults[.timelineTextBold] {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)

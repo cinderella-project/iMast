@@ -1,9 +1,10 @@
 //
-//  String+toPlainText.swift
-//  iMast
+//  Array+safe.swift
 //
-//  Created by rinsuki on 2018/09/22.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2019/11/10.
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
@@ -19,19 +20,14 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 import Foundation
 
-extension String {
-    func toPlainText() -> String {
-        return self.pregReplace(pattern: "<br.+?>", with: "\n")
-            .replacingOccurrences(of: "</p><p>", with: "\n\n")
-            .pregReplace(pattern: "<.+?>", with: "")
-            .replacingOccurrences(of: "&lt;", with: "<")
-            .replacingOccurrences(of: "&gt;", with: ">")
-            .replacingOccurrences(of: "&apos;", with: "'")
-            .replacingOccurrences(of: "&quot;", with: "\"")
-            .replacingOccurrences(of: "&amp;", with: "&")
+extension Array {
+    func safe(_ index: Index) -> Element? {
+        if self.count <= index || index < 0 {
+            return nil
+        }
+        return self[index]
     }
 }

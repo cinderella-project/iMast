@@ -56,7 +56,7 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
         }
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
-        if let attrStr = user.bio.replace("</p><p>", "<br /><br />").replace("<p>", "").replace("</p>", "").parseText2HTML(attributes: [
+        if let attrStr = user.bio.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").parseText2HTML(attributes: [
             .paragraphStyle: paragraph,
             .font: UIFont.systemFont(ofSize: 14),
             .foregroundColor: UIColor.label,

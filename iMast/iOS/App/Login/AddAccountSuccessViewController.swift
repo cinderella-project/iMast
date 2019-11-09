@@ -34,7 +34,7 @@ class AddAccountSuccessViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        welcomeMessageLabel.text = welcomeMessageLabel.text?.replace("%", userToken.acct)
+        welcomeMessageLabel.text = welcomeMessageLabel.text?.replacingOccurrences(of: "%", with: userToken.acct)
         if let avatarUrl = self.userToken.avatarUrl {
             self.myIconImageView.sd_setImage(with: URL(string: avatarUrl))
         }

@@ -28,7 +28,7 @@ extension String {
         var retstr = self
         retstr.pregMatch(pattern: ":.+?:").forEach { (emoji) in
             if let unicodeEmoji = emojidict[emoji].string {
-                retstr = retstr.replace(emoji, unicodeEmoji)
+                retstr = retstr.replacingOccurrences(of: emoji, with: unicodeEmoji)
             }
         }
 //        if let emojifyProtocol = emojifyProtocol {

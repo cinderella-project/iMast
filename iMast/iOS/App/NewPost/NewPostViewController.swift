@@ -255,10 +255,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             return
         }
         var nowPlayingText = Defaults[.nowplayingFormat]
-        nowPlayingText = nowPlayingText.replace("{title}", nowPlayingMusic.title ?? "")
-        nowPlayingText = nowPlayingText.replace("{artist}", nowPlayingMusic.artist ?? "")
-        nowPlayingText = nowPlayingText.replace("{albumArtist}", nowPlayingMusic.albumArtist ?? "")
-        nowPlayingText = nowPlayingText.replace("{albumTitle}", nowPlayingMusic.albumTitle ?? "")
+        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{title}", with: nowPlayingMusic.title ?? "")
+        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{artist}", with: nowPlayingMusic.artist ?? "")
+        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{albumArtist}", with: nowPlayingMusic.albumArtist ?? "")
+        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{albumTitle}", with: nowPlayingMusic.albumTitle ?? "")
         
         func finished(_ text: String) {
             self.textInput.insertText(text)

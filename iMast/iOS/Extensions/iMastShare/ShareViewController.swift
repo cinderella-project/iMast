@@ -174,10 +174,10 @@ class ShareViewController: SLComposeServiceViewController {
                     let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
                     let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
                     let nowPlayingText = Defaults[.nowplayingFormat]
-                        .replace("{title}", title)
-                        .replace("{artist}", artist ?? "")
-                        .replace("{albumTitle}", albumTitle ?? "")
-                        .replace("{albumArtist}", "")
+                        .replacingOccurrences(of: "{title}", with: title)
+                        .replacingOccurrences(of: "{artist}", with: artist ?? "")
+                        .replacingOccurrences(of: "{albumTitle}", with: albumTitle ?? "")
+                        .replacingOccurrences(of: "{albumArtist}", with: "")
                     print(Thread.isMainThread)
                     DispatchQueue.mainSafeSync {
                         self.textView.text = nowPlayingText
