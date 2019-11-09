@@ -94,8 +94,12 @@ class PushServiceToken: Codable {
 }
 
 class PushService {
-    
+
+    #if !targetEnvironment(macCatalyst)
     static let keyChain = Keychain(service: "net.rinsuki.imast-backend.push").accessibility(.alwaysThisDeviceOnly)
+    #else
+    static let keyChain = Keychain(service: "net.rinsuki.imast-backend.push").accessibility(.afterFirstUnlockThisDeviceOnly)
+    #endif
 
     static func getAuthorizationHeader() throws -> String? {
         let time = Int(Date().timeIntervalSince1970)

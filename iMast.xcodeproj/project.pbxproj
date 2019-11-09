@@ -669,12 +669,6 @@
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
 				CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */,
 				2AF352191EAB9C5500777C2E /* iMast */,
-				2AF3522E1EAB9C5600777C2E /* iMastTests */,
-				2AF352391EAB9C5600777C2E /* iMastUITests */,
-				CE78CFA51EE812AD008313EA /* iMastShare */,
-				CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */,
-				CEC6BC0221074EFB003ECE10 /* iMastNotifyService */,
-				CED6077821B3658F00F6232E /* iMastIntents */,
 				2AF352181EAB9C5500777C2E /* Products */,
 				125AADA9AE2BD3C447287A06 /* Pods */,
 				8076AB24184E0217BCEE6A2B /* Frameworks */,
@@ -698,28 +692,7 @@
 		2AF352191EAB9C5500777C2E /* iMast */ = {
 			isa = PBXGroup;
 			children = (
-				CE90855C21918750006769DC /* R.generated.swift */,
-				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
-				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
-				CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */,
-				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
-				CE5357612375CEBA006340E7 /* Top */,
-				CEE3571E1FF51A3900675DFC /* CustomViews */,
-				CEE357171FF516A800675DFC /* Login */,
-				CEE357181FF519C600675DFC /* NewPost */,
-				CEE357191FF519E000675DFC /* OtherMenu */,
-				CEE3571C1FF51A0700675DFC /* Timelines */,
-				CEE3571D1FF51A2800675DFC /* NotificationTab */,
-				2AF352211EAB9C5600777C2E /* Assets.xcassets */,
-				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
-				2AF352261EAB9C5600777C2E /* Info.plist */,
-				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
-				CEE357161FF5165700675DFC /* SharedSources */,
-				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
-				2A66E80A1EB0254400735081 /* Bridge.h */,
-				CE87300D216884360038D964 /* Localizable.strings */,
-				CEE213121EF13EE600393C67 /* emoji.json */,
-				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
+				CE3D453423766DBF006F1198 /* iOS */,
 			);
 			path = iMast;
 			sourceTree = "<group>";
@@ -758,6 +731,59 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE3D453423766DBF006F1198 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEE357161FF5165700675DFC /* Core */,
+				CE3D453523766DE5006F1198 /* App */,
+				CE6A4B6323767978005773C7 /* Tests */,
+				CE3D453623766F51006F1198 /* Extensions */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		CE3D453523766DE5006F1198 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CE90855C21918750006769DC /* R.generated.swift */,
+				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
+				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
+				CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */,
+				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
+				CE5357612375CEBA006340E7 /* Top */,
+				CEE3571E1FF51A3900675DFC /* CustomViews */,
+				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
+				CEE357171FF516A800675DFC /* Login */,
+				CEE357181FF519C600675DFC /* NewPost */,
+				CE845D282172504A00AF35B4 /* NewPost.storyboard */,
+				CEE357191FF519E000675DFC /* OtherMenu */,
+				CE367DFC2186F97F0068EBE7 /* Search.strings */,
+				CEE3571C1FF51A0700675DFC /* Timelines */,
+				CEE3571D1FF51A2800675DFC /* NotificationTab */,
+				2AF352211EAB9C5600777C2E /* Assets.xcassets */,
+				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
+				2AF352261EAB9C5600777C2E /* Info.plist */,
+				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
+				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
+				2A66E80A1EB0254400735081 /* Bridge.h */,
+				CE87300D216884360038D964 /* Localizable.strings */,
+				CEE213121EF13EE600393C67 /* emoji.json */,
+				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CE3D453623766F51006F1198 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE78CFA51EE812AD008313EA /* iMastShare */,
+				CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */,
+				CEC6BC0221074EFB003ECE10 /* iMastNotifyService */,
+				CED6077821B3658F00F6232E /* iMastIntents */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,6 +816,15 @@
 				CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */,
 			);
 			path = MastodonModel;
+			sourceTree = "<group>";
+		};
+		CE6A4B6323767978005773C7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2AF3522E1EAB9C5600777C2E /* iMastTests */,
+				2AF352391EAB9C5600777C2E /* iMastUITests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		CE78CFA51EE812AD008313EA /* iMastShare */ = {
@@ -889,7 +924,7 @@
 			path = MastodonAPI;
 			sourceTree = "<group>";
 		};
-		CEE357161FF5165700675DFC /* SharedSources */ = {
+		CEE357161FF5165700675DFC /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				CE5F7CB423112D01005E819E /* MastodonModel */,
@@ -912,7 +947,7 @@
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 				CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */,
 			);
-			path = SharedSources;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		CEE357171FF516A800675DFC /* Login */ = {
@@ -930,7 +965,6 @@
 		CEE357181FF519C600675DFC /* NewPost */ = {
 			isa = PBXGroup;
 			children = (
-				CE845D282172504A00AF35B4 /* NewPost.storyboard */,
 				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
 				CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */,
 				CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */,
@@ -944,7 +978,6 @@
 				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
 				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
-				CE367DFC2186F97F0068EBE7 /* Search.strings */,
 				2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */,
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
 				CECD756620FD92C1000D059A /* OtherMenuPushSettingsTableViewController.swift */,
@@ -992,7 +1025,6 @@
 				CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */,
 				CEF6DCBD22EE987D0008B64D /* MastodonPostDetail */,
 				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
-				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
 				CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */,
@@ -1535,11 +1567,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/$TARGET_NAME/R.generated.swift,
+				$SRCROOT/iMast/iOS/Extensions/iMastShare/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$TARGET_NAME/R.generated.swift\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/iMast/iOS/Extensions/iMastShare/R.generated.swift\"\n";
 		};
 		CE9B75C822079C3600EBAB1B /* Generate LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1557,7 +1589,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path $PRODUCT_NAME/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path iMast/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
 		};
 		CEE343F9225287910040EB48 /* R.swift Generate */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1573,11 +1605,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/iMast/R.generated.swift,
+				$SRCROOT/iMast/iOS/App/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/R.generated.swift\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/iMast/iOS/App/R.generated.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2111,13 +2143,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/App/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				INFOPLIST_FILE = iMast/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2128,7 +2160,7 @@
 				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2141,13 +2173,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iMast/iMast.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/App/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				INFOPLIST_FILE = iMast/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2158,7 +2190,7 @@
 				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2251,11 +2283,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D6167F09384145CCE1875B6 /* Pods-iMastShared-iMastTodayWidget.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
-				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2266,7 +2298,7 @@
 				PRODUCT_NAME = iMastTodayWidget;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2276,11 +2308,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 456765C6ED1EC9D4D4F8203F /* Pods-iMastShared-iMastTodayWidget.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iMastTodayWidget/iMastTodayWidget.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastTodayWidget/iMastTodayWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
-				INFOPLIST_FILE = iMastTodayWidget/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastTodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2291,7 +2323,7 @@
 				PRODUCT_NAME = iMastTodayWidget;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2307,13 +2339,13 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastShare/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2325,7 +2357,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2342,13 +2374,13 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastShare/iMastShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 182;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastShare/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2360,7 +2392,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2376,13 +2408,13 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastNotifyService/iMastNotifyService.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastNotifyService/iMastNotifyService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastNotifyService/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastNotifyService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2393,7 +2425,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2408,13 +2440,13 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastNotifyService/iMastNotifyService.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastNotifyService/iMastNotifyService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastNotifyService/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastNotifyService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2425,7 +2457,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2440,12 +2472,12 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastIntents/iMastIntents.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastIntents/iMastIntents.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastIntents/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastIntents/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2458,7 +2490,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2473,12 +2505,12 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = iMastIntents/iMastIntents.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iMast/iOS/Extensions/iMastIntents/iMastIntents.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = iMastIntents/Info.plist;
+				INFOPLIST_FILE = iMast/iOS/Extensions/iMastIntents/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2490,7 +2522,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = iMast/Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = iMast/iOS/App/Bridge.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
