@@ -144,7 +144,6 @@
 		CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EC3022374F474002CA268 /* TopViewController.swift */; };
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
-		CE908560219188F9006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855F219188F9006769DC /* R.generated.swift */; };
 		CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */; };
 		CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */; };
 		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
@@ -490,7 +489,6 @@
 		CE8EC3022374F474002CA268 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE90855C21918750006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		CE90855F219188F9006769DC /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = imastshare/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationViewController.swift; sourceTree = "<group>"; };
 		CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListInfoViewController.swift; sourceTree = "<group>"; };
 		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
@@ -831,7 +829,6 @@
 			isa = PBXGroup;
 			children = (
 				CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */,
-				CE90855F219188F9006769DC /* R.generated.swift */,
 				CE78CFA61EE812AD008313EA /* ShareViewController.swift */,
 				CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */,
 				CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */,
@@ -1153,7 +1150,6 @@
 			buildConfigurationList = CE78CFAF1EE812AD008313EA /* Build configuration list for PBXNativeTarget "iMastShare" */;
 			buildPhases = (
 				963FEFF2A023C9F19A244C40 /* [CP] Check Pods Manifest.lock */,
-				CE90855E21918864006769DC /* R.swift Generate */,
 				CE78CFA01EE812AD008313EA /* Sources */,
 				CE78CFA11EE812AD008313EA /* Frameworks */,
 				CE78CFA21EE812AD008313EA /* Resources */,
@@ -1553,26 +1549,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		CE90855E21918864006769DC /* R.swift Generate */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			name = "R.swift Generate";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				$SRCROOT/iMast/iOS/Extensions/iMastShare/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/iMast/iOS/Extensions/iMastShare/R.generated.swift\"\n";
-		};
 		CE9B75C822079C3600EBAB1B /* Generate LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1816,7 +1792,6 @@
 				CE1002D1200663760041B636 /* MastodonSearchResult.swift in Sources */,
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE2D2AFB210FCD0F003B92B8 /* MastodonCursorWrapper.swift in Sources */,
-				CE908560219188F9006769DC /* R.generated.swift in Sources */,
 				CE9AEA1023112E1100EE3B23 /* MastodonApp.swift in Sources */,
 				CEC6BC182108474A003ECE10 /* MastodonAccountRelationship.swift in Sources */,
 				CEA252BA1EE8A2DD002C60F3 /* DatabaseMisc.swift in Sources */,
