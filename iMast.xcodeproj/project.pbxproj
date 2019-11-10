@@ -306,6 +306,34 @@
 			remoteGlobalIDString = CED6077621B3658F00F6232E;
 			remoteInfo = iMastIntents;
 		};
+		CEE4E2DA2377E38300406371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CEE4E2DC2377E38800406371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CEE4E2DE2377E38C00406371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CEE4E2E02377E38F00406371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1388,6 +1416,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEE4E2DF2377E38C00406371 /* PBXTargetDependency */,
 			);
 			name = iMastTodayWidget;
 			productName = iMastTodayWidget;
@@ -1406,6 +1435,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEE4E2E12377E38F00406371 /* PBXTargetDependency */,
 			);
 			name = iMastShare;
 			productName = iMastShare;
@@ -1424,6 +1454,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEE4E2DD2377E38800406371 /* PBXTargetDependency */,
 			);
 			name = iMastNotifyService;
 			productName = iMastNotifyService;
@@ -1442,6 +1473,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CEE4E2DB2377E38300406371 /* PBXTargetDependency */,
 			);
 			name = iMastIntents;
 			productName = iMastIntents;
@@ -2195,6 +2227,26 @@
 			platformFilter = ios;
 			target = CED6077621B3658F00F6232E /* iMastIntents */;
 			targetProxy = CED6077C21B3658F00F6232E /* PBXContainerItemProxy */;
+		};
+		CEE4E2DB2377E38300406371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEE4E2DA2377E38300406371 /* PBXContainerItemProxy */;
+		};
+		CEE4E2DD2377E38800406371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEE4E2DC2377E38800406371 /* PBXContainerItemProxy */;
+		};
+		CEE4E2DF2377E38C00406371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEE4E2DE2377E38C00406371 /* PBXContainerItemProxy */;
+		};
+		CEE4E2E12377E38F00406371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEE4E2E02377E38F00406371 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
