@@ -24,6 +24,7 @@
 import Foundation
 import GRDB
 import UIKit
+import iMastiOSCore
 
 public struct MastodonStateRestoration: PersistableRecord, Decodable, FetchableRecord {
     static public let databaseTableName: String = "state_restoration"

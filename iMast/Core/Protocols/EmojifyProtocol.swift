@@ -22,7 +22,6 @@
 //
 
 import Foundation
-import iMastiOSCore
 
 public protocol EmojifyProtocol {
     var emojis: [MastodonCustomEmoji]? { get }

@@ -24,7 +24,7 @@
 import Foundation
 
 extension DispatchQueue {
-    class func mainSafeSync(execute closure: () -> Void) {
+    static public func mainSafeSync(execute closure: () -> Void) {
         if Thread.isMainThread {
             closure()
         } else {
@@ -32,7 +32,7 @@ extension DispatchQueue {
         }
     }
     
-    class func mainSafeSync<T>(execute closure: () -> T) -> T {
+    static public func mainSafeSync<T>(execute closure: () -> T) -> T {
         if Thread.isMainThread {
             return closure()
         } else {
@@ -40,7 +40,7 @@ extension DispatchQueue {
         }
     }
     
-    class func mainSafeSync<T>(execute closure: () throws -> T) rethrows -> T {
+    static public func mainSafeSync<T>(execute closure: () throws -> T) rethrows -> T {
         if Thread.isMainThread {
             return try closure()
         } else {

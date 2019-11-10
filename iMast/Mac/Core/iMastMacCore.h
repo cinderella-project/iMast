@@ -1,9 +1,10 @@
 //
-//  UserAgent.swift
-//  iMast
+//  iMastMacCore.h
 //
-//  Created by rinsuki on 2019/06/20.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2019/11/10.
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
@@ -19,9 +20,15 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
-import Foundation
-import UIKit
+#import <Foundation/Foundation.h>
 
-let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))"
+//! Project version number for iMastMacCore.
+FOUNDATION_EXPORT double iMastMacCoreVersionNumber;
+
+//! Project version string for iMastMacCore.
+FOUNDATION_EXPORT const unsigned char iMastMacCoreVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <iMastMacCore/PublicHeader.h>
+
+

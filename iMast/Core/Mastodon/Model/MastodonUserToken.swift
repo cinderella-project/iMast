@@ -46,11 +46,11 @@ public class MastodonUserToken: Equatable {
     }
     
     func getHeader() -> [String: String] {
-        print("iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))")
+        print(UserAgentString)
         return [
             "Authorization": "Bearer "+token,
             "Accept-Language": "en-US,en",
-            "User-Agent": "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (iOS/\((UIDevice.current.systemVersion)))",
+            "User-Agent": UserAgentString,
         ]
     }
     

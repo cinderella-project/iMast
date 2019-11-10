@@ -1,10 +1,9 @@
 //
-//  String+sha256.swift
+//  UserAgent.swift
+//  iMast
 //
-//  iMast https://github.com/cinderella-project/iMast
-//
-//  Created by user on 2019/11/10.
-//
+//  Created by rinsuki on 2019/06/20.
+//  
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
@@ -20,21 +19,15 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
 import Foundation
-import CommonCrypto
 
-extension String {
-    public var sha256: String! {
-        if let cstr = self.cString(using: String.Encoding.utf8) {
-            var chars = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-            CC_SHA256(
-                cstr,
-                CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8)),
-                &chars
-            )
-            return chars.map { String(format: "%02X", $0) }.reduce("", +)
-        }
-        return nil
-    }
-}
+#if os(iOS)
+    import UIKit
+    let UserAgentPlatformString = "iOS/\((UIDevice.current.systemVersion))"
+#else
+    let UserAgentPlatformString = "macOS/\(ProcessInfo.processInfo.operatingSystemVersionString)"
+#endif
+
+public let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (\(UserAgentPlatformString))"

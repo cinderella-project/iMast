@@ -1,5 +1,5 @@
 //
-//  String+sha256.swift
+//  iMastMacCoreTests.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -21,20 +21,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import Foundation
-import CommonCrypto
+import XCTest
+@testable import iMastMacCore
 
-extension String {
-    public var sha256: String! {
-        if let cstr = self.cString(using: String.Encoding.utf8) {
-            var chars = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
-            CC_SHA256(
-                cstr,
-                CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8)),
-                &chars
-            )
-            return chars.map { String(format: "%02X", $0) }.reduce("", +)
-        }
-        return nil
+class iMastMacCoreTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
 }
