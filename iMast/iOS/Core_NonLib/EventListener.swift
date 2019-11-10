@@ -33,9 +33,9 @@ class Event<T> {
     
     @discardableResult
     func on(_ listenerFunc: @escaping (_: T) -> Void) -> EventListener<T> {
-        var listenerId = genRandomString()
+        var listenerId = UUID().uuidString
         while listeners[listenerId] != nil {
-            listenerId = genRandomString()
+            listenerId = UUID().uuidString
         }
         let listener = EventListener(id: listenerId, listener: listenerFunc, event: self)
         listeners[listenerId] = listener.listener
@@ -44,7 +44,7 @@ class Event<T> {
     
     @discardableResult
     func onBackground(_ listenerFunc: @escaping (_: T) -> Void) -> EventListener<T> {
-        let uniqueId = genRandomString()
+        let uniqueId = UUID().uuidString
         return self.on { content in
             DispatchQueue(label: "jp.pronama.imast.eventlistener.background."+uniqueId).async {
                 listenerFunc(content)

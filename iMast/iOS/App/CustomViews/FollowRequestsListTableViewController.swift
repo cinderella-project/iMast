@@ -25,6 +25,7 @@ import UIKit
 import SwiftyJSON
 import SDWebImage
 import Mew
+import iMastiOSCore
 
 class FollowRequestsListTableViewController: UITableViewController, Instantiatable {
     typealias Input = Void

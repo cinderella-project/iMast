@@ -24,6 +24,7 @@
 import Foundation
 import Starscream
 import Hydra
+import iMastiOSCore
 
 var webSockets: [WebSocketWrapper] = []
 

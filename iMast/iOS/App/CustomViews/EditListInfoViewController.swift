@@ -26,6 +26,7 @@ import Mew
 import Eureka
 import EurekaFormBuilder
 import Ikemen
+import iMastiOSCore
 
 class EditListInfoViewController: FormViewController, Instantiatable, Interactable {
     typealias Input = MastodonList

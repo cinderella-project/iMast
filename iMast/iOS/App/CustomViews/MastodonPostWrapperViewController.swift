@@ -24,6 +24,7 @@
 
 import UIKit
 import Mew
+import iMastiOSCore
 
 class MastodonPostWrapperViewController<
     T: UIViewController & Instantiatable & Injectable

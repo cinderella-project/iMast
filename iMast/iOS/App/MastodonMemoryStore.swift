@@ -24,6 +24,7 @@
 
 import Foundation
 import Notifwift
+import iMastiOSCore
 
 class MastodonMemoryStore<T: MastodonMemoryStorable> {
     private let notificationCenter = NotificationCenter()

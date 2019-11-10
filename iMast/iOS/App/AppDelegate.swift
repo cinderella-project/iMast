@@ -28,6 +28,7 @@ import SVProgressHUD
 import Notifwift
 import SafariServices
 import Hydra
+import iMastiOSCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

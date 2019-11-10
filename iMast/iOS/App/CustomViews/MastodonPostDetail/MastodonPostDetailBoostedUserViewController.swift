@@ -25,6 +25,7 @@ import UIKit
 import Mew
 import Ikemen
 import SnapKit
+import iMastiOSCore
 
 class MastodonPostDetailBoostedUserViewController: UIViewController, Instantiatable, Injectable {
     typealias Input = MastodonAccount

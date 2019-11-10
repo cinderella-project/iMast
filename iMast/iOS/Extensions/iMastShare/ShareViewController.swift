@@ -28,6 +28,7 @@ import SwiftyJSON
 import Alamofire
 import Fuzi
 import MobileCoreServices
+import iMastiOSCore
 
 class ShareViewController: SLComposeServiceViewController {
     

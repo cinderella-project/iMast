@@ -23,6 +23,7 @@
 
 import UIKit
 import Mew
+import iMastiOSCore
 
 class FollowTableViewController: UITableViewController, Instantiatable {
     typealias Input = (type: MastodonFollowFetchType, userId: MastodonID)

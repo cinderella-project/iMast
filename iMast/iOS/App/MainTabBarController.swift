@@ -23,6 +23,7 @@
 
 import UIKit
 import Mew
+import iMastiOSCore
 
 class MainTabBarController: UITabBarController, Instantiatable {
     typealias Input = Void

@@ -24,6 +24,7 @@
 import UIKit
 import Hydra
 import SwiftyJSON
+import iMastiOSCore
 
 class UserTimeLineTableViewController: TimeLineTableViewController {
     override func viewDidLoad() {

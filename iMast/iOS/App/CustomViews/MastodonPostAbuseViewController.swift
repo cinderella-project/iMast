@@ -25,6 +25,7 @@ import UIKit
 import SwiftyJSON
 import Eureka
 import Mew
+import iMastiOSCore
 
 class MastodonPostAbuseViewController: FormViewController, Instantiatable {
     typealias Input = MastodonPost

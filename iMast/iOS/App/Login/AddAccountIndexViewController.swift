@@ -24,6 +24,7 @@
 import UIKit
 import Eureka
 import Hydra
+import iMastiOSCore
 
 class AddAccountIndexViewController: FormViewController {
     

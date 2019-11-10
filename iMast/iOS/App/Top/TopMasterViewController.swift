@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import UIKit
+import iMastiOSCore
 
 class TopMasterViewController: UITableViewController {
     private var userTokens = MastodonUserToken.getAllUserTokens()

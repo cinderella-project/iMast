@@ -27,6 +27,7 @@ import EurekaFormBuilder
 import SafariServices
 import SwiftUI
 import Mew
+import iMastiOSCore
 
 class OtherMenuViewController: FormViewController, Instantiatable {
     typealias Input = Void

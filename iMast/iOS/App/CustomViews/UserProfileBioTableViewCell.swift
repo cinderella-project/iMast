@@ -23,6 +23,7 @@
 
 import UIKit
 import SafariServices
+import iMastiOSCore
 
 class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
     var loadAfter = false

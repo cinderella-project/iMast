@@ -29,6 +29,7 @@ import SafariServices
 import Ikemen
 import SnapKit
 import Mew
+import iMastiOSCore
 
 class TimeLineTableViewController: UIViewController, Instantiatable {
     enum TableSection: String, Hashable {

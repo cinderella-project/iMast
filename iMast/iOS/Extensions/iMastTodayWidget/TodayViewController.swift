@@ -24,6 +24,7 @@
 import UIKit
 import NotificationCenter
 import SDWebImage
+import iMastiOSCore
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     

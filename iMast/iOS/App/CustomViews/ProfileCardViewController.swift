@@ -24,6 +24,7 @@
 import UIKit
 import CoreImage
 import SwiftyJSON
+import iMastiOSCore
 
 class ProfileCardViewController: UIViewController {
 

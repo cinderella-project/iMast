@@ -24,6 +24,7 @@
 import UIKit
 import Eureka
 import IntentsUI
+import iMastiOSCore
 
 @available(iOS 12.0, *)
 class CreateSiriShortcutsViewController: FormViewController {

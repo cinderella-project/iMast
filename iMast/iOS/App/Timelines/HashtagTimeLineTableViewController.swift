@@ -25,6 +25,7 @@ import UIKit
 import Hydra
 import SwiftyJSON
 import Mew
+import iMastiOSCore
 
 class HashtagTimeLineTableViewController: TimeLineTableViewController {
     let hashtag: String

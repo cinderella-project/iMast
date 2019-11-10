@@ -24,6 +24,7 @@
 import UIKit
 import SwiftyJSON
 import Mew
+import iMastiOSCore
 
 class ListsTableViewController: UITableViewController, Instantiatable {
     typealias Input = Void

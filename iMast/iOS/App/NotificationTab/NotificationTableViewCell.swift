@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class NotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var notifyTypeImageView: UIImageView!

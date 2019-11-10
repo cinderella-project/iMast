@@ -25,6 +25,7 @@ import UIKit
 import SafariServices
 import Mew
 import Ikemen
+import iMastiOSCore
 
 class SearchViewController: UITableViewController, UISearchBarDelegate, Instantiatable {
     typealias Input = Void

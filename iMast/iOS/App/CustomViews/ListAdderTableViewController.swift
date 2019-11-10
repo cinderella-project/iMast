@@ -24,6 +24,7 @@
 import UIKit
 import Mew
 import Hydra
+import iMastiOSCore
 
 class ListAdderTableViewController: UITableViewController, Instantiatable {
     typealias Input = MastodonAccount

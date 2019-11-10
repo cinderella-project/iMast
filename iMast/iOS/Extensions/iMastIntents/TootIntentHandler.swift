@@ -24,6 +24,7 @@
 import Foundation
 import Intents
 import KeychainAccess
+import iMastiOSCore
 
 class TootIntentHandler: NSObject, TootIntentHandling {
     func provideAccountOptions(for intent: TootIntent, with completion: @escaping ([Account]?, Error?) -> Void) {

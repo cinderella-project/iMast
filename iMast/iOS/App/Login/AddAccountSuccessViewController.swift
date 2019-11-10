@@ -24,6 +24,7 @@
 import UIKit
 import SwiftyJSON
 import SDWebImage
+import iMastiOSCore
 
 class AddAccountSuccessViewController: UIViewController {
 

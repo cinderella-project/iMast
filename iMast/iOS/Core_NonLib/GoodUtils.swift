@@ -90,39 +90,16 @@ extension String {
         return formatter.date(from: self)!
     }
     
-    var nsLength: Int {
-        let string_NS = self as NSString
-        return string_NS.length
-    }
-    
     func format(_ params: CVarArg...) -> String {
         return String(format: self, arguments: params)
     }
     
-    func trim(_ start: Int) -> String {
-        return String(self[self.index(self.startIndex, offsetBy: start)..<self.endIndex])
-    }
-    func trim(_ start: Int, _ length: Int) -> String {
-        return String(self[self.index(self.startIndex, offsetBy: start)..<self.index(self.startIndex, offsetBy: start + length)])
-    }
-    func parseInt() -> Int {
-        return Int(self.pregMatch(pattern: "^[0-9]+")[0]) ?? 0
-    }
 }
 
 extension UserDefaults {
     func exists(_ key: String) -> Bool {
         return self.object(forKey: key) != nil
     }
-}
-
-enum APIError: Error {
-    case `nil`(String)
-    case alreadyError // すでにエラーをユーザーに伝えているときに使う
-    case errorReturned(errorMessage: String, errorHttpCode: Int) // APIがまともにエラーを返してきた場合
-    case unknownResponse(errorHttpCode: Int) // APIがJSONではない何かを返してきた場合
-    case decodeFailed // 画像のデコードに失敗したときのエラー
-    case dateParseFailed(dateString: String)
 }
 
 func numToCommaString(_ num: Int) -> String {
@@ -156,25 +133,6 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
     case rightBottom
 }
 
-
-let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
-    let container = try $0.singleValueContainer()
-    let str = try container.decode(String.self)
-    let f = DateFormatter()
-    f.calendar = Calendar(identifier: .gregorian)
-    f.locale = Locale(identifier: "en_US_POSIX")
-    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
-    if let d = f.date(from: str) {
-        return d
-    }
-    // https://github.com/imas/mastodon/pull/200 への対処
-    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZZZZ"
-    if let d = f.date(from: str) {
-        return d
-    }
-    throw APIError.dateParseFailed(dateString: str)
-}
-
 func CodableDeepCopy<T: Codable>(_ object: T) -> T {
     // TODO: ここ `try!` 使ってええんか?
     let encoder = JSONEncoder()
@@ -188,31 +146,6 @@ func CodableCompare<T: Codable>(_ from: T, _ to: T) -> Bool {
     let fromData = try! encoder.encode(from)
     let toData = try! encoder.encode(to)
     return fromData == toData
-}
-
-extension JSONDecoder {
-    static func get() -> JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = jsISODateDecoder
-        return decoder
-    }
-}
-
-extension Decodable {
-    static func decode(json: JSON) throws -> Self {
-        if let error = json["error"].string {
-            throw APIError.errorReturned(errorMessage: error, errorHttpCode: json["_response_code"].intValue)
-        }
-        let decoder = JSONDecoder.get()
-        do {
-            return try decoder.decode(self, from: json.rawData())
-        } catch {
-            if let error = error as? DecodingError {
-                reportError(error: error)
-            }
-            throw error
-        }
-    }
 }
 
 let VisibilityString = ["public", "unlisted", "private", "direct"]

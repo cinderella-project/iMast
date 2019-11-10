@@ -26,6 +26,7 @@ import SwiftyJSON
 import Accounts
 import SafariServices
 import Mew
+import iMastiOSCore
 
 class UserProfileTopViewController: StableTableViewController, Instantiatable, Injectable {
     typealias Input = MastodonAccount

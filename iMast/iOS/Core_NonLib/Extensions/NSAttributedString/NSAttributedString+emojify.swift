@@ -23,6 +23,7 @@
 
 import UIKit
 import SDWebImage
+import iMastiOSCore
 
 extension NSAttributedString {
     func emojify(asyncLoadProgressHandler: (() -> Void)?, emojifyProtocol: EmojifyProtocol) -> NSAttributedString {

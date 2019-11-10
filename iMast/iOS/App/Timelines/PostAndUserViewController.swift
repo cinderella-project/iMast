@@ -24,6 +24,7 @@
 import UIKit
 import SwiftyJSON
 import Mew
+import iMastiOSCore
 
 class PostAndUserViewController: UITableViewController, Instantiatable {
     typealias Input = (posts: [MastodonPost], users: [MastodonAccount])

@@ -23,6 +23,7 @@
 
 import UserNotifications
 import Hydra
+import iMastiOSCore
 
 enum NotificationServiceError: Error {
     case imageDataIsNil

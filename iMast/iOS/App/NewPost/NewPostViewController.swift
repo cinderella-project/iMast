@@ -26,6 +26,7 @@ import Hydra
 import SwiftyJSON
 import MediaPlayer
 import Alamofire
+import iMastiOSCore
 
 class NewPostViewController: UIViewController, UITextViewDelegate {
     

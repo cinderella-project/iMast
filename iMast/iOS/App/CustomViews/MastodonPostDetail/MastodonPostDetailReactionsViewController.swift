@@ -23,6 +23,7 @@
 
 import UIKit
 import Mew
+import iMastiOSCore
 
 class MastodonPostDetailReactionsViewController: UIViewController, Instantiatable, Injectable {
     typealias Input = MastodonPost

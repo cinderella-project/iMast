@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class MastodonUserCell: UITableViewCell {
 

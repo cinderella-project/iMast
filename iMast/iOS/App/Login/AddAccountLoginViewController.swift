@@ -28,6 +28,7 @@ import EurekaFormBuilder
 #if canImport(OnePasswordExtension)
 import OnePasswordExtension
 #endif
+import iMastiOSCore
 
 class AddAccountLoginViewController: FormViewController {
 

@@ -24,6 +24,7 @@
 import UIKit
 import SafariServices
 import Eureka
+import iMastiOSCore
 
 class AddAccountSelectLoginMethodViewController: FormViewController {
     

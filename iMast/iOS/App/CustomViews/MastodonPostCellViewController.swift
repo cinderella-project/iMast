@@ -25,6 +25,7 @@ import UIKit
 import Mew
 import SnapKit
 import Ikemen
+import iMastiOSCore
 
 class MastodonPostCellViewController: UIViewController, Instantiatable, Injectable {
     struct Input {

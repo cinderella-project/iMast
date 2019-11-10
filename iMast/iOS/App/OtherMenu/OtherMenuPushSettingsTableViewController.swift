@@ -31,6 +31,7 @@ import UserNotifications
 import Notifwift
 import Hydra
 import Ikemen
+import iMastiOSCore
 
 @available(iOS 10.0, *)
 class OtherMenuPushSettingsTableViewController: FormViewController {

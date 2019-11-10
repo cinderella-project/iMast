@@ -25,6 +25,7 @@ import UIKit
 import SwiftyJSON
 import Hydra
 import Eureka
+import iMastiOSCore
 
 class ListTimeLineTableViewController: TimeLineTableViewController {
     

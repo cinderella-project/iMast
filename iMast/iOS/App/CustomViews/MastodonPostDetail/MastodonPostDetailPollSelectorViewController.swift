@@ -24,6 +24,7 @@
 import UIKit
 import Mew
 import Ikemen
+import iMastiOSCore
 
 class MastodonPostDetailPollSelectorViewController: UIViewController, Instantiatable, Injectable, Interactable {
     typealias Input = MastodonPoll

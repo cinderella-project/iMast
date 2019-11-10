@@ -25,6 +25,7 @@ import UIKit
 import Crossroad
 import Hydra
 import Notifwift
+import iMastiOSCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var windows: [UIWindow] = []

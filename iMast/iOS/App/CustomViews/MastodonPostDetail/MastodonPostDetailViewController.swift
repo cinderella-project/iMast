@@ -25,6 +25,7 @@ import UIKit
 import Mew
 import SnapKit
 import Ikemen
+import iMastiOSCore
 
 class MastodonPostDetailViewController: UITableViewController, Instantiatable, Injectable {
     typealias Input = MastodonPost

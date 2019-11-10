@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class UserProfileInfoTableViewCell: UITableViewCell {
     var loadAfter = false

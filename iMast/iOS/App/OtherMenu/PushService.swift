@@ -26,6 +26,7 @@ import Foundation
 import SwiftyJSON
 import KeychainAccess
 import Hydra
+import iMastiOSCore
 
 enum PushServiceError: Error {
     case networkError(message: String?)

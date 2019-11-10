@@ -24,6 +24,7 @@
 
 import UIKit
 import Hydra
+import iMastiOSCore
 
 class BunmyakuTableViewController: TimeLineTableViewController {
     var basePost: MastodonPost!

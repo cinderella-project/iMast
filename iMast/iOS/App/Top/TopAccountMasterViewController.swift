@@ -23,6 +23,7 @@
 
 import UIKit
 import Mew
+import iMastiOSCore
 
 class TopAccountMasterViewController: UITableViewController, Instantiatable, Injectable {
     typealias Input = Void

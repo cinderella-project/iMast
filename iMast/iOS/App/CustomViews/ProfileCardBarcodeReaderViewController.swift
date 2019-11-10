@@ -25,6 +25,7 @@ import UIKit
 import AVFoundation
 import SafariServices
 import Mew
+import iMastiOSCore
 
 class ProfileCardBarcodeReaderViewController: UIViewController, Instantiatable {
     typealias Input = Void

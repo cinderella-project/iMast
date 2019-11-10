@@ -23,6 +23,7 @@
 
 import UIKit
 import SDWebImage
+import iMastiOSCore
 
 class ShareAccountSelectorTableViewController: UITableViewController {
 

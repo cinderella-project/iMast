@@ -24,7 +24,7 @@
 import UIKit
 import SafariServices
 import SDWebImage
-
+import iMastiOSCore
 class EmojiListTableViewController: UITableViewController {
     var emojis: [MastodonCustomEmoji] = []
     var account: MastodonAccount!

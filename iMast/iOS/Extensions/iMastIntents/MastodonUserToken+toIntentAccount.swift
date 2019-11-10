@@ -22,6 +22,7 @@
 //
 
 import Foundation
+import iMastiOSCore
 
 extension MastodonUserToken {
     func toIntentAccount() -> Account {
