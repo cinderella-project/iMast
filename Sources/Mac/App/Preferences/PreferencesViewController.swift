@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  PreferencesViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -23,24 +23,20 @@
 
 import Cocoa
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class PreferencesViewController: NSTabViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
 
-    lazy var preferencesWindowController = PreferencesWindowController()
-    
-    @IBAction func openPreferences(_ sender: Any) {
-        preferencesWindowController.showWindow(sender)
+        tabStyle = .toolbar
+        canPropagateSelectedChildViewControllerTitle = true
+        let tabs: [NSViewController & PreferencesPaneProtocol] = [
+            AccountsPreferencesPaneViewController(),
+        ]
+        
+        for tab in tabs {
+            addChild(tab)
+            tab.configureTabViewItem(item: tabViewItem(for: tab)!)
+        }
     }
-    
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
-

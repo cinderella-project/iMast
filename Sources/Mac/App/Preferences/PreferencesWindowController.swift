@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  PreferencesWindowController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -22,25 +22,23 @@
 //  limitations under the License.
 
 import Cocoa
+import Ikemen
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-    lazy var preferencesWindowController = PreferencesWindowController()
-    
-    @IBAction func openPreferences(_ sender: Any) {
-        preferencesWindowController.showWindow(sender)
+class PreferencesWindowController: NSWindowController {
+    init() {
+        let window = NSWindow(contentViewController: PreferencesViewController())
+        window.styleMask = [.titled, .closable]
+        super.init(window: window)
     }
     
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
+    
+        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
-
 
 }
-

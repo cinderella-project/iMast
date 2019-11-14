@@ -1,9 +1,9 @@
 //
-//  AppDelegate.swift
+//  BookmarksTimeLineTableViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/11/10.
+//  Created by user on 2019/11/14.
 //
 //  ------------------------------------------------------------------------
 //
@@ -21,26 +21,19 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import Cocoa
+import UIKit
+import SwiftyJSON
+import Hydra
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-    lazy var preferencesWindowController = PreferencesWindowController()
-    
-    @IBAction func openPreferences(_ sender: Any) {
-        preferencesWindowController.showWindow(sender)
+class BookmarksTimeLineTableViewController: TimeLineTableViewController {
+    override func viewDidLoad() {
+        self.timelineType = .bookmark
+        self.navigationItem.title = "Bookmarks"
+        self.isNewPostAvailable = true
+        super.viewDidLoad()
     }
     
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+    override func websocketEndpoint() -> String? {
+        return nil
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
-

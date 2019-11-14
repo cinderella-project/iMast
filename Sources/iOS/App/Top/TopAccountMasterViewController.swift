@@ -53,25 +53,35 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        switch section {
+        case 0:
+            return 3
+        case 1:
+            return 1
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        switch indexPath.row {
-        case 0:
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             cell.imageView?.image = UIImage(systemName: "house")
             cell.textLabel?.text = R.string.localizable.homeTimelineShort()
-        case 1:
+        case (0, 1):
             cell.imageView?.image = UIImage(systemName: "bell")
             cell.textLabel?.text = R.string.localizable.notifications()
-        case 2:
+        case (0, 2):
             cell.imageView?.image = UIImage(systemName: "person.and.person")
             cell.textLabel?.text = R.string.localizable.localTimelineShort()
+        case (1, 0):
+            cell.imageView?.image = UIImage(systemName: "bookmark")
+            cell.textLabel?.text = "Bookmarks"
         default:
             break
         }
@@ -80,13 +90,15 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc: UIViewController
-        switch indexPath.row {
-        case 0:
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0):
             vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
-        case 1:
+        case (0, 1):
             vc = NotificationTableViewController.instantiate(environment: environment)
-        case 2:
+        case (0, 2):
             vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
+        case (1, 0):
+            vc = BookmarksTimeLineTableViewController.instantiate(.plain, environment: environment)
         default:
             return
         }

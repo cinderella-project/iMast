@@ -276,6 +276,7 @@ public class MastodonTimelineType {
     
     static public let home = MastodonTimelineType(endpoint: "timelines/home")
     static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"])
+    static public let bookmark = MastodonTimelineType(endpoint: "bookmarks")
     static public func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
         var params: [String: Any] = [:]
         if pinned {

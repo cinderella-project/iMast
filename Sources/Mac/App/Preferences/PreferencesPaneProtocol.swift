@@ -1,9 +1,9 @@
 //
-//  AppDelegate.swift
+//  PreferencesPaneProtocol.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/11/10.
+//  Created by user on 2019/11/11.
 //
 //  ------------------------------------------------------------------------
 //
@@ -23,24 +23,6 @@
 
 import Cocoa
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-
-    lazy var preferencesWindowController = PreferencesWindowController()
-    
-    @IBAction func openPreferences(_ sender: Any) {
-        preferencesWindowController.showWindow(sender)
-    }
-    
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
+protocol PreferencesPaneProtocol {
+    func configureTabViewItem(item: NSTabViewItem)
 }
-
