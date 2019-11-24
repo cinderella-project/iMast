@@ -5,6 +5,12 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Title</key>
+			<string>Licenses</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/1PasswordExtension</string>
 			<key>Title</key>
@@ -16,7 +22,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Alamofire</string>
 			<key>Title</key>
-			<string>Alamofire (4.9.0)</string>
+			<string>Alamofire (4.9.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -24,7 +30,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Crossroad</string>
 			<key>Title</key>
-			<string>Crossroad (3.0.0)</string>
+			<string>Crossroad (3.0.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -56,7 +62,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/GRDB.swift</string>
 			<key>Title</key>
-			<string>GRDB.swift (4.4.0)</string>
+			<string>GRDB.swift (4.6.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -104,7 +110,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/LicensePlist</string>
 			<key>Title</key>
-			<string>LicensePlist (2.6.0)</string>
+			<string>LicensePlist (2.9.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -144,7 +150,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift</string>
 			<key>Title</key>
-			<string>R.swift (5.0.3)</string>
+			<string>R.swift (5.1.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -152,7 +158,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift.Library</string>
 			<key>Title</key>
-			<string>R.swift.Library (5.0.1)</string>
+			<string>R.swift.Library (5.1.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -168,7 +174,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImage</string>
 			<key>Title</key>
-			<string>SDWebImage (5.2.0)</string>
+			<string>SDWebImage (5.3.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -176,7 +182,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImageWebPCoder</string>
 			<key>Title</key>
-			<string>SDWebImageWebPCoder (0.2.4)</string>
+			<string>SDWebImageWebPCoder (0.2.5)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -192,7 +198,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Starscream</string>
 			<key>Title</key>
-			<string>Starscream (3.1.0)</string>
+			<string>Starscream (3.1.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -208,7 +214,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SwiftLint</string>
 			<key>Title</key>
-			<string>SwiftLint (0.35.0)</string>
+			<string>SwiftLint (0.37.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
