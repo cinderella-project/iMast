@@ -71,6 +71,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
 
         // Do any additional setup after loading the view.
         self.nowAccountLabel.text = userToken.acct
+        navigationItem.largeTitleDisplayMode = .never
         if let replyToPost = replyToPost {
             self.nowAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.pregReplace(pattern: "<.+?>", with: ""))"
             var replyAccounts = [replyToPost.account.acct]
@@ -98,7 +99,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
         self.textInput.text += appendBottomString
         exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
-        
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
     }
 

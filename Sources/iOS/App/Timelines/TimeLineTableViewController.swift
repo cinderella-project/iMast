@@ -131,6 +131,8 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             self.websocketConnect(auto: true)
         }
         
+        self.navigationItem.largeTitleDisplayMode = .never
+        
         self.navigationItem.leftItemsSupplementBackButton = true
         if self.websocketEndpoint() != nil {
             self.streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(self.streamingStatusTapped))

@@ -87,6 +87,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         tableView.refreshControl = refreshControl
 
         self.title = "投稿詳細"
+        navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain, target: self, action: #selector(openBunmyakuVC))
         self.input(input)
     }

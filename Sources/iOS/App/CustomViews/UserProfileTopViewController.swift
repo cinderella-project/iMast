@@ -65,6 +65,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
         
         self.title = R.string.userProfile.title()
+        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "ellipsis.circle.fill"), style: .plain,
             target: self, action: #selector(moreButtonTapped(_:))

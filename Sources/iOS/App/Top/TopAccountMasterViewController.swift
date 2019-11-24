@@ -47,6 +47,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         // Do any additional setup after loading the view.
         self.input(input)
         title = environment.acct
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     func input(_ input: Input) {
