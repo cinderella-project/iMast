@@ -63,33 +63,32 @@ class UserProfileInfoTableViewCell: UITableViewCell {
         self.userToken.getRelationship([user]).then({ (relationships) in
             let relationship = relationships[0]
             let relationshipOld: Bool = Defaults[.followRelationshipsOld]
-            if relationship.following && relationship.followed_by {
-                self.relationshipLabel.text = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
-            }
-            if relationship.following && !relationship.followed_by {
-                self.relationshipLabel.text = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
-            }
-            if !relationship.following && relationship.followed_by {
-                self.relationshipLabel.text = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
-            }
-            if !relationship.following && !relationship.followed_by {
-                self.relationshipLabel.text = "関係: 無関係"
-            }
-            if user.acct == self.userToken.screenName {
-                self.relationshipLabel.text = "関係: それはあなたです！"
+            var relationshipText: String
+            switch (relationship.following, relationship.followed_by, user.acct == self.userToken.screenName) {
+            case (_, _, true):
+                relationshipText = "関係: それはあなたです！"
+            case (true, true, false):
+                relationshipText = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
+            case (true, false, false):
+                relationshipText = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
+            case (false, true, false):
+                relationshipText = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
+            case (false, false, false):
+                relationshipText = "関係: 無関係"
             }
             if relationship.requested {
-                self.relationshipLabel.text! += " (フォローリクエスト中)"
+                relationshipText += " (フォローリクエスト中)"
             }
             if relationship.blocking {
-                self.relationshipLabel.text! += " (ブロック中)"
+                relationshipText += " (ブロック中)"
             }
             if relationship.muting {
-                self.relationshipLabel.text! += " (ミュート中)"
+                relationshipText += " (ミュート中)"
             }
             if relationship.domain_blocking {
-                self.relationshipLabel.text! += " (インスタンスミュート中)"
+                relationshipText += " (インスタンスミュート中)"
             }
+            self.relationshipLabel.text = relationshipText
         })
     }
 }
