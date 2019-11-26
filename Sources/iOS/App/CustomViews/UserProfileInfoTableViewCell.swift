@@ -64,17 +64,19 @@ class UserProfileInfoTableViewCell: UITableViewCell {
             let relationship = relationships[0]
             let relationshipOld: Bool = Defaults[.followRelationshipsOld]
             var relationshipText: String
-            switch (relationship.following, relationship.followed_by, user.acct == self.userToken.screenName) {
-            case (_, _, true):
+            if user.acct == self.userToken.screenName {
                 relationshipText = "関係: それはあなたです！"
-            case (true, true, false):
-                relationshipText = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
-            case (true, false, false):
-                relationshipText = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
-            case (false, true, false):
-                relationshipText = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
-            case (false, false, false):
-                relationshipText = "関係: 無関係"
+            } else {
+                switch (relationship.following, relationship.followed_by) {
+                case (true, true):
+                    relationshipText = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
+                case (true, false):
+                    relationshipText = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
+                case (false, true):
+                    relationshipText = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
+                case (false, false):
+                    relationshipText = "関係: 無関係"
+                }
             }
             if relationship.requested {
                 relationshipText += " (フォローリクエスト中)"
