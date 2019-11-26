@@ -56,6 +56,8 @@ class ProfileCardBarcodeReaderViewController: UIViewController, Instantiatable {
 
         // Do any additional setup after loading the view.
         
+        title = "バーコードリーダー"
+        
         do {
             let captureSession = AVCaptureSession()
             guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
