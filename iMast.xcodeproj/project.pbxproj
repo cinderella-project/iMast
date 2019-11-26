@@ -1343,6 +1343,34 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		CEA4CC12238CF56D001F962F /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */,
+				CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */,
+				CE471075238CE1FD00566BDC /* ProfileCard */,
+				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
+				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
+				CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */,
+				CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */,
+				CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		CEA4CC13238CF5A5001F962F /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
+				CEF6DCBD22EE987D0008B64D /* PostDetail */,
+				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
+				CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */,
+				CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */,
+				CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		CEABB1C42377AD8400018C35 /* JSONDecoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1521,24 +1549,12 @@
 		CEE3571E1FF51A3900675DFC /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */,
-				CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */,
-				CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */,
+				CEA4CC13238CF5A5001F962F /* Post */,
+				CEA4CC12238CF56D001F962F /* UserProfile */,
 				CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */,
-				CEF6DCBD22EE987D0008B64D /* MastodonPostDetail */,
-				CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */,
-				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
-				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
-				CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */,
 				CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */,
 				CE109713220631E5000A5101 /* EmojiListTableViewController.swift */,
-				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
-				CE54BC7620E041A50034B63E /* UserProfileInfoTableViewCell.xib */,
-				CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */,
-				CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */,
-				CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */,
 				CE54BC7320E033E20034B63E /* StableTableViewController.swift */,
-				CE471075238CE1FD00566BDC /* ProfileCard */,
 				CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */,
 				CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */,
 				CE2D2AF5210C81ED003B92B8 /* ReadmoreTableViewCell.swift */,
@@ -1651,7 +1667,7 @@
 			path = iMastMacCoreTests;
 			sourceTree = "<group>";
 		};
-		CEF6DCBD22EE987D0008B64D /* MastodonPostDetail */ = {
+		CEF6DCBD22EE987D0008B64D /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
 				CEF6DCB922EDEA6F0008B64D /* MastodonPostDetailViewController.swift */,
@@ -1664,7 +1680,7 @@
 				CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */,
 				CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */,
 			);
-			path = MastodonPostDetail;
+			path = PostDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
