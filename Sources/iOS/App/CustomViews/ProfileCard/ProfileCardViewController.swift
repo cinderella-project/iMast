@@ -34,6 +34,8 @@ class ProfileCardViewController: UIViewController {
     @IBOutlet weak var userScreenNameLabel: UILabel!
     @IBOutlet weak var barcodeImageView: UIImageView!
     var user: MastodonAccount!
+    var userToken: MastodonUserToken!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,6 +68,11 @@ class ProfileCardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func openBarcodeReader(_ sender: Any) {
+        let vc = ProfileCardBarcodeReaderViewController.instantiate(environment: userToken)
+        show(vc, sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

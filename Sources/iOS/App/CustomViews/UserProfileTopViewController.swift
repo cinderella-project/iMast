@@ -268,6 +268,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                         return
                     }
                     newVC.user = self.input
+                    newVC.userToken = self.environment
                     self.navigationController?.pushViewController(newVC, animated: true)
                 }))
                 if self.input.isLocked {

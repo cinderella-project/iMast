@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jr9-32-IM8">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jr9-32-IM8">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,17 +16,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o5Q-f8-tAA" userLabel="BackgroundImageView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Srf-Kb-6gw" userLabel="LeftView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="252"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="262"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOA-Yc-FI5" userLabel="IconViewWrapper">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="183.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLz-IM-Xr7">
-                                                <rect key="frame" x="89" y="18" width="142" height="141.5"/>
+                                                <rect key="frame" x="86.5" y="18.5" width="147" height="146.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="oLz-IM-Xr7" secondAttribute="height" multiplier="1:1" id="tFL-b9-iSi"/>
                                                 </constraints>
@@ -50,16 +45,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXf-Wr-kWm" userLabel="UserInfoView">
-                                        <rect key="frame" x="0.0" y="177" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="183.5" width="320" height="78.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="凛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBi-J9-WWx" userLabel="UserName">
-                                                <rect key="frame" x="151.5" y="7.5" width="17.5" height="21"/>
+                                                <rect key="frame" x="151.5" y="8.5" width="17.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@rin@mastodon.example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUv-g8-5Tp" userLabel="UserScreenName">
-                                                <rect key="frame" x="44" y="47.5" width="232.5" height="21"/>
+                                                <rect key="frame" x="44" y="48.5" width="232.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -88,10 +83,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yix-rs-xNe" userLabel="RightVIew">
-                                <rect key="frame" x="0.0" y="316" width="320" height="252"/>
+                                <rect key="frame" x="0.0" y="306" width="320" height="262"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XLC-ju-wrE" userLabel="BarcodeView">
-                                        <rect key="frame" x="70.5" y="36.5" width="179.5" height="179"/>
+                                        <rect key="frame" x="66" y="37" width="188" height="188"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XLC-ju-wrE" secondAttribute="height" multiplier="1:1" id="EhF-lj-19v"/>
                                         </constraints>
@@ -160,10 +155,10 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="名刺" id="ztw-Gq-PU4">
+                    <navigationItem key="navigationItem" title="名刺" largeTitleDisplayMode="never" id="ztw-Gq-PU4">
                         <barButtonItem key="rightBarButtonItem" title="バーコードリーダー" id="1D9-Qy-xgV">
                             <connections>
-                                <segue destination="8aQ-bt-n4o" kind="show" id="ywz-ap-kHJ"/>
+                                <action selector="openBarcodeReader:" destination="Jr9-32-IM8" id="Sy2-Mo-u1a"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -181,22 +176,6 @@
                 <tapGestureRecognizer id="M5F-wl-nIH"/>
             </objects>
             <point key="canvasLocation" x="73.913043478260875" y="176.08695652173915"/>
-        </scene>
-        <!--バーコードリーダー-->
-        <scene sceneID="jaD-8v-RM2">
-            <objects>
-                <viewController id="8aQ-bt-n4o" customClass="ProfileCardBarcodeReaderViewController" customModule="iMast" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OL6-Rv-cjD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="S81-9w-BHG"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="バーコードリーダー" id="QZq-B4-hgv"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="awK-Pp-lSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="810" y="176"/>
         </scene>
     </scenes>
 </document>

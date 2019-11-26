@@ -1233,6 +1233,16 @@
 			path = Array;
 			sourceTree = "<group>";
 		};
+		CE471075238CE1FD00566BDC /* ProfileCard */ = {
+			isa = PBXGroup;
+			children = (
+				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
+				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
+				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
+			);
+			path = ProfileCard;
+			sourceTree = "<group>";
+		};
 		CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -1528,9 +1538,7 @@
 				CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */,
 				CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */,
 				CE54BC7320E033E20034B63E /* StableTableViewController.swift */,
-				CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */,
-				CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */,
-				CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */,
+				CE471075238CE1FD00566BDC /* ProfileCard */,
 				CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */,
 				CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */,
 				CE2D2AF5210C81ED003B92B8 /* ReadmoreTableViewCell.swift */,
