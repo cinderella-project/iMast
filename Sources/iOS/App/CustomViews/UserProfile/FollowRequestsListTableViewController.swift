@@ -62,6 +62,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
     }
     
     @objc func refresh() {
+        self.refreshControl?.beginRefreshing()
         environment.followRequests().then { res in
             self.followRequests = res
             self.tableView.reloadData()

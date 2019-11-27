@@ -40,6 +40,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     
     enum Item: Hashable {
         case profile
+        case followRequests
         case home
         case notifications
         case local
@@ -79,7 +80,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     func update() {
         var snapshot = dataSource.plainSnapshot()
         snapshot.appendSections([.profile])
-        snapshot.appendItems([.profile])
+        snapshot.appendItems([.profile, .followRequests])
         snapshot.appendSections([.timelines])
         snapshot.appendItems([.home, .notifications, .local])
         snapshot.appendSections([.dependedByMastodonVersion])
@@ -115,6 +116,9 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
             }
+        case .followRequests:
+            cell = .init(style: .value1, reuseIdentifier: nil)
+            cell.textLabel?.text = R.string.userProfile.actionsFollowRequestsList()
         case .home:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = R.string.localizable.homeTimelineShort()
@@ -148,6 +152,10 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
                 let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
                 self.showDetailViewController(UINavigationController(rootViewController: newVC), sender: self)
             }
+        case .followRequests:
+            let vc = FollowRequestsListTableViewController.instantiate(environment: environment)
+            vc.refresh()
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .home:
             let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
