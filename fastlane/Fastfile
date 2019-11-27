@@ -24,6 +24,8 @@ platform :ios do
     increment_build_number(xcodeproj: "iMast.xcodeproj")
 
     git_commit(path: ["./**/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: "bump build number to " + get_build_number(xcodeproj: "iMast.xcodeproj"))
+    version = get_version_number(xcodeproj: "iMast.xcodeproj", target: "iMast") + "b" + get_build_number(xcodeproj: "iMast.xcodeproj")
+    add_git_tag(tag: version)
   end
 
   lane :beta do
