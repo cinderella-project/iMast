@@ -29,14 +29,18 @@ import iMastiOSCore
 
 class ListTimeLineTableViewController: TimeLineTableViewController {
     
-    var list: MastodonList!
+    var list: MastodonList! {
+        didSet {
+            self.title = list.title
+        }
+    }
     
     override func viewDidLoad() {
         self.timelineType = .list(self.list)
         self.isNewPostAvailable = true
         super.viewDidLoad()
     }
-    
+
     @objc func editList() {
         let vc = EditListInfoViewController.instantiate(list, environment: environment)
         self.present(ModalNavigationViewController(rootViewController: vc), animated: true, completion: nil)

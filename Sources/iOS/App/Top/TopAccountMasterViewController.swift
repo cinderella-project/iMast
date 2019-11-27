@@ -31,6 +31,22 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     let environment: Environment
     var input: Input
     
+    enum Section {
+        case profile
+        case timelines
+        case dependedByMastodonVersion
+        case lists
+    }
+    
+    enum Item: Hashable {
+        case profile
+        case home
+        case notifications
+        case local
+        case bookmarks
+        case list(MastodonList)
+    }
+    
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
@@ -41,6 +57,11 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(
+        tableView: self.tableView, cellProvider: self.cellProvider
+    )
+    var lists = [MastodonList]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,63 +69,100 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         self.input(input)
         title = environment.acct
         navigationItem.largeTitleDisplayMode = .never
+        
+        update()
+        loadLists()
+    }
+    
+    var isFirstUpdate = true
+    
+    func update() {
+        var snapshot = dataSource.plainSnapshot()
+        snapshot.appendSections([.profile])
+        snapshot.appendItems([.profile])
+        snapshot.appendSections([.timelines])
+        snapshot.appendItems([.home, .notifications, .local])
+        snapshot.appendSections([.dependedByMastodonVersion])
+        snapshot.appendItems([.bookmarks])
+        if lists.count > 0 {
+            snapshot.appendSections([.lists])
+            snapshot.appendItems(lists.map { .list($0) })
+        }
+        dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
+        isFirstUpdate = false
+    }
+    
+    func loadLists() {
+        environment.lists().then { [weak self] lists in
+            guard let strongSelf = self else { return }
+            strongSelf.lists = lists
+            strongSelf.update()
+        }
     }
     
     func input(_ input: Input) {
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3
-        case 1:
-            return 1
-        default:
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            cell.imageView?.image = UIImage(systemName: "house")
+    func cellProvider(_ tableView: UITableView, indexPath: IndexPath, itemIdentifier: Item) -> UITableViewCell? {
+        let cell: UITableViewCell
+        switch itemIdentifier {
+        case .profile:
+            cell = .init(style: .subtitle, reuseIdentifier: nil)
+            cell.textLabel?.text = environment.name ?? environment.screenName ?? ""
+            cell.detailTextLabel?.text = "@" + environment.acct
+            cell.imageView?.sd_setImage(with: URL(string: environment.avatarUrl ?? "")) { _, _, _, _ in
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            }
+        case .home:
+            cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = R.string.localizable.homeTimelineShort()
-        case (0, 1):
+            cell.imageView?.image = UIImage(systemName: "house")
+        case .notifications:
+            cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bell")
             cell.textLabel?.text = R.string.localizable.notifications()
-        case (0, 2):
+        case .local:
+            cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "person.and.person")
             cell.textLabel?.text = R.string.localizable.localTimelineShort()
-        case (1, 0):
+        case .bookmarks:
+            cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bookmark")
             cell.textLabel?.text = "Bookmarks"
-        default:
-            break
+        case .list(let list):
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.imageView?.image = UIImage(systemName: "list.bullet")
+            cell.textLabel?.text = list.title
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc: UIViewController
-        switch (indexPath.section, indexPath.row) {
-        case (0, 0):
-            vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
-        case (0, 1):
-            vc = NotificationTableViewController.instantiate(environment: environment)
-        case (0, 2):
-            vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
-        case (1, 0):
-            vc = BookmarksTimeLineTableViewController.instantiate(.plain, environment: environment)
-        default:
-            return
+        guard let itemIdentifier = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        switch itemIdentifier {
+        case .profile:
+            environment.verifyCredentials().then { account in
+                let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
+                self.showDetailViewController(UINavigationController(rootViewController: newVC), sender: self)
+            }
+        case .home:
+            let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+        case .notifications:
+            let vc = NotificationTableViewController.instantiate(environment: environment)
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+        case .local:
+            let vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+        case .bookmarks:
+            let vc = BookmarksTimeLineTableViewController.instantiate(.plain, environment: environment)
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+        case .list(let list):
+            let vc = ListTimeLineTableViewController.instantiate(.plain, environment: environment)
+            vc.list = list
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         }
-        showDetailViewController(UINavigationController(rootViewController:
-            vc
-        ), sender: self)
     }
 }

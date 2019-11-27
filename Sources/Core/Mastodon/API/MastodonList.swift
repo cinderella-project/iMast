@@ -29,6 +29,9 @@ public struct MastodonList: Codable {
     public let title: String
 }
 
+extension MastodonList: Hashable {
+}
+
 extension MastodonUserToken {
     public func lists() -> Promise<[MastodonList]> {
         return self.get("lists").then { res in
