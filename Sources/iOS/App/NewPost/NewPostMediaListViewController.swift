@@ -104,7 +104,7 @@ class NewPostMediaListViewController: UIViewController {
         pickerSelector.popoverPresentationController?.sourceRect = sender.frame
         pickerSelector.popoverPresentationController?.delegate = self
         pickerSelector.delegate = self
-        pickerSelector.addOption(withTitle: "フォトライブラリ", image: UIImage(named: "PhotosInline"), order: UIDocumentMenuOrder.first, handler: {
+        pickerSelector.addOption(withTitle: "フォトライブラリ", image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: {
             print("photo-library")
             let imgPickerC = UIImagePickerController()
             print(imgPickerC.modalPresentationStyle.rawValue)
@@ -118,7 +118,7 @@ class NewPostMediaListViewController: UIViewController {
             self.present(imgPickerC, animated: true, completion: nil)
         })
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            pickerSelector.addOption(withTitle: "写真を撮る", image: UIImage(named: "Camera"), order: UIDocumentMenuOrder.first, handler: {
+            pickerSelector.addOption(withTitle: "写真を撮る", image: UIImage(systemName: "camera.fill"), order: .first, handler: {
                 print("camera")
                 let imgPickerC = UIImagePickerController()
                 imgPickerC.sourceType = UIImagePickerController.SourceType.camera

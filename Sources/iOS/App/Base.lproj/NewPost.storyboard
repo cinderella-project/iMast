@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-JS-hiO">
                                         <rect key="frame" x="0.0" y="30" width="375" height="1"/>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="iui-gF-SNS"/>
                                         </constraints>
@@ -57,7 +57,7 @@
                                             <rect key="frame" x="16" y="0.0" width="80" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" title=" 0" image="Camera"/>
+                                            <state key="normal" title=" 0" image="camera.fill" catalog="system"/>
                                             <connections>
                                                 <action selector="imageSelectButtonTapped:" destination="6D6-or-cv4" eventType="touchUpInside" id="9Z1-wj-9dm"/>
                                             </connections>
@@ -73,7 +73,7 @@
                                             <action selector="scopeSelectButtonTapped:" destination="6D6-or-cv4" id="1P2-HL-Czs"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="NowPlaying" id="SJc-da-qK5">
+                                    <barButtonItem image="music.note" catalog="system" width="44" id="SJc-da-qK5">
                                         <connections>
                                             <action selector="nowPlayingTapped:" destination="6D6-or-cv4" id="ipd-KC-eiu"/>
                                         </connections>
@@ -91,7 +91,7 @@
                                 <string key="text">rin@mastodon.example.com
 返信先: @uzuki: 凛ちゃんとデートです♪</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -145,8 +145,8 @@
     </scenes>
     <resources>
         <image name="ArrowUp" width="25" height="25"/>
-        <image name="Camera" width="32" height="32"/>
-        <image name="NowPlaying" width="32" height="32"/>
+        <image name="camera.fill" catalog="system" width="64" height="48"/>
+        <image name="music.note" catalog="system" width="48" height="64"/>
         <image name="visibility-public" width="32" height="32"/>
     </resources>
 </document>

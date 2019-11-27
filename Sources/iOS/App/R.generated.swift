@@ -185,7 +185,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 14 images.
   struct image {
     /// Image `ArrowDown`.
     static let arrowDown = Rswift.ImageResource(bundle: R.hostingBundle, name: "ArrowDown")
@@ -193,18 +193,12 @@ struct R: Rswift.Validatable {
     static let arrowUp = Rswift.ImageResource(bundle: R.hostingBundle, name: "ArrowUp")
     /// Image `Boost`.
     static let boost = Rswift.ImageResource(bundle: R.hostingBundle, name: "Boost")
-    /// Image `Camera`.
-    static let camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "Camera")
     /// Image `Follow`.
     static let follow = Rswift.ImageResource(bundle: R.hostingBundle, name: "Follow")
     /// Image `MoreOutline`.
     static let moreOutline = Rswift.ImageResource(bundle: R.hostingBundle, name: "MoreOutline")
     /// Image `More`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "More")
-    /// Image `NowPlaying`.
-    static let nowPlaying = Rswift.ImageResource(bundle: R.hostingBundle, name: "NowPlaying")
-    /// Image `PhotosInline`.
-    static let photosInline = Rswift.ImageResource(bundle: R.hostingBundle, name: "PhotosInline")
     /// Image `Poll`.
     static let poll = Rswift.ImageResource(bundle: R.hostingBundle, name: "Poll")
     /// Image `Reply`.
@@ -244,13 +238,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Camera", bundle: ..., traitCollection: ...)`
-    static func camera(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.camera, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "Follow", bundle: ..., traitCollection: ...)`
     static func follow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.follow, compatibleWith: traitCollection)
@@ -268,20 +255,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "MoreOutline", bundle: ..., traitCollection: ...)`
     static func moreOutline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.moreOutline, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "NowPlaying", bundle: ..., traitCollection: ...)`
-    static func nowPlaying(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.nowPlaying, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "PhotosInline", bundle: ..., traitCollection: ...)`
-    static func photosInline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.photosInline, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1916,8 +1889,8 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "ArrowUp", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'ArrowUp' is used in storyboard 'NewPost', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Camera", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Camera' is used in storyboard 'NewPost', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "NowPlaying", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'NowPlaying' is used in storyboard 'NewPost', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "camera.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'camera.fill' is used in storyboard 'NewPost', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "music.note", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'music.note' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if UIKit.UIImage(named: "visibility-public", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'visibility-public' is used in storyboard 'NewPost', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
