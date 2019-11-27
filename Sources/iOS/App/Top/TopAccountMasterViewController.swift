@@ -88,6 +88,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             snapshot.appendSections([.lists])
             snapshot.appendItems(lists.map { .list($0) })
         }
+        dataSource.defaultRowAnimation = .fade
         dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
         isFirstUpdate = false
     }

@@ -63,7 +63,7 @@ class TopMasterViewController: UITableViewController {
             .settings,
             .helpAndFeedback
         ], toSection: .others)
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     func cellProvider(_ tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? {
