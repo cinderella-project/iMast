@@ -27,7 +27,6 @@ abstract_target 'iMastShared' do
     target 'iMast' do
       # Pods for iMast
       pod 'Crossroad', '~> 3.0.1'
-      pod 'Starscream', '~> 3.1.1'
       pod 'ReachabilitySwift', '~> 4.3.1'
       pod 'Eureka', '~> 5.1'
       pod 'EurekaFormBuilder', '~> 0.2.0'

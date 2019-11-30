@@ -422,10 +422,6 @@ name: SnapKit, nameSpecified:
 body: Copyright (c) 2011-P…
 version: 5.0.1
 
-name: Starscream, nameSpecified: 
-body:                     …
-version: 3.1.1
-
 name: SVProgressHUD, nameSpecified: 
 body: MIT License
 

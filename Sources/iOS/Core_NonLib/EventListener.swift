@@ -52,9 +52,11 @@ class Event<T> {
         }
     }
     func emit(_ content: T) {
-        listeners.forEach { (arg) in
-            let (_, listener) = arg
-            listener(content)
+        DispatchQueue.main.async { [weak self] in
+            self?.listeners.forEach { (arg) in
+                let (_, listener) = arg
+                listener(content)
+            }
         }
     }
     func unsubscribe(id: String) {
