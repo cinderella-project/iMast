@@ -592,7 +592,6 @@
 		CE43BF0A2377A97F00133C86 /* String+nsLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+nsLength.swift"; sourceTree = "<group>"; };
 		CE43BF0E2377AA1A00133C86 /* String+trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trim.swift"; sourceTree = "<group>"; };
 		CE43BF112377AA8100133C86 /* String+parseInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseInt.swift"; sourceTree = "<group>"; };
-		CE4F758923570DE800CBEB4D /* CHANGELOG_UNRELEASED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG_UNRELEASED.md; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABF91F40C06B00E43607 /* iMastTodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastTodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -943,7 +942,6 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
-				CE4F758923570DE800CBEB4D /* CHANGELOG_UNRELEASED.md */,
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
