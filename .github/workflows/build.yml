@@ -5,10 +5,16 @@ on: [push]
 jobs:
   build:
     runs-on: macOS-10.14
+    strategy:
+      matrix:
+        xcode:
+          - 11
+          - 11.1
+          - 11.2
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_11.app
+      run: sudo xcode-select --switch /Applications/Xcode_{{ matrix.xcode }}.app
     - name: bundle install
       run: bundle update --bundler && bundle install
     - name: Install CocoaPods dependencies

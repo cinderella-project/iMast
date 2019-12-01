@@ -3,7 +3,7 @@ PODS:
   - Alamofire (4.9.1)
   - Crossroad (3.0.1)
   - Eureka (5.1.0)
-  - EurekaFormBuilder (0.2.0):
+  - EurekaFormBuilder (0.2.1):
     - Eureka (~> 5.0)
   - Fuzi (3.1.1)
   - GRDB.swift (4.6.2):
@@ -52,7 +52,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.9.1)
   - Crossroad (~> 3.0.1)
   - Eureka (~> 5.1)
-  - EurekaFormBuilder (~> 0.2.0)
+  - EurekaFormBuilder (~> 0.2.1)
   - Fuzi (~> 3.1.1)
   - GRDB.swift (~> 4.6.2)
   - HydraAsync (~> 2.0.2)
@@ -115,7 +115,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Crossroad: 7956a252fe517d3f3e1d93886c0cc834d11b0145
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
-  EurekaFormBuilder: f34ff96197bad3e2e980f27886f061b1f100001b
+  EurekaFormBuilder: 0fbb81858c0a83c5de85b88733b44cf3d4008706
   Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
   HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
@@ -138,6 +138,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 046c4bdcca7f7928751b8b3f5ffa4f10d870b57c
+PODFILE CHECKSUM: b167ad990f2c681a1062aea8d1272edb3815e5fe
 
 COCOAPODS: 1.8.3

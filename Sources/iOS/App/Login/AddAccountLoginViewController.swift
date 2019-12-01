@@ -51,15 +51,16 @@ class AddAccountLoginViewController: FormViewController {
         }
         #endif
         
-        form.append {
-            Section {
-                TextRow("mail") { row in
-                    row.placeholder = "メールアドレス"
-                }
-                PasswordRow("password") { row in
-                    row.placeholder = "パスワード"
-                }
+        let mailAndPasswordSection = Section {
+            TextRow("mail") { row in
+                row.placeholder = "メールアドレス"
             }
+            PasswordRow("password") { row in
+                row.placeholder = "パスワード"
+            }
+        }
+        form.append {
+            mailAndPasswordSection
             Section {
                 ButtonRow { row in
                     row.title = "ログイン"
