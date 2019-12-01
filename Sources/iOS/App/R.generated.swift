@@ -155,20 +155,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 3 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
-    /// Resource file `Podfile`.
-    static let podfile = Rswift.FileResource(bundle: R.hostingBundle, name: "Podfile", pathExtension: "")
     /// Resource file `Settings.bundle`.
     static let settingsBundle = Rswift.FileResource(bundle: R.hostingBundle, name: "Settings", pathExtension: "bundle")
     /// Resource file `emoji.json`.
     static let emojiJson = Rswift.FileResource(bundle: R.hostingBundle, name: "emoji", pathExtension: "json")
-
-    /// `bundle.url(forResource: "Podfile", withExtension: "")`
-    static func podfile(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.podfile
-      return fileResource.bundle.url(forResource: fileResource)
-    }
 
     /// `bundle.url(forResource: "Settings", withExtension: "bundle")`
     static func settingsBundle(_: Void = ()) -> Foundation.URL? {
