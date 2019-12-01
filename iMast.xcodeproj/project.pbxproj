@@ -3134,7 +3134,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3188,7 +3188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3212,7 +3212,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3241,7 +3241,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3358,7 +3358,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3395,7 +3395,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3474,7 +3474,7 @@
 				CURRENT_PROJECT_VERSION = 185;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastTodayWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3498,7 +3498,7 @@
 				CURRENT_PROJECT_VERSION = 185;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastTodayWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3530,7 +3530,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3564,7 +3564,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3654,7 +3654,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastNotifyService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3685,7 +3685,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastNotifyService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3715,7 +3715,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastIntents/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3747,7 +3747,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastIntents/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

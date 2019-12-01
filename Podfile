@@ -19,7 +19,7 @@ abstract_target 'iMastShared' do
   pod 'KeychainAccess', '~> 4.1.0'
   
   abstract_target 'iOS' do
-    platform :ios, '13.0'
+    platform :ios, '13.2'
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
     pod 'R.swift', '~> 5.1.0'
