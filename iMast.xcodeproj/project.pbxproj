@@ -154,7 +154,6 @@
 		CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EC3022374F474002CA268 /* TopViewController.swift */; };
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE90855D21918751006769DC /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
-		CE90CCE92377FB00001C8E80 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE8DF1841FED41C4005278FE /* Podfile */; };
 		CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */; };
 		CE90CCEC2377FC01001C8E80 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
@@ -2145,7 +2144,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE90CCE92377FB00001C8E80 /* Podfile in Resources */,
 				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
 				CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */,
 				CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */,
