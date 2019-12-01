@@ -22,59 +22,107 @@
 //
 
 import Foundation
-import Starscream
 import Hydra
 import iMastiOSCore
 
 var webSockets: [WebSocketWrapper] = []
 
-class WebSocketWrapper {
-    let webSocket: WebSocket
+class WebSocketWrapper: NSObject {
+    private let request: URLRequest
+    private lazy var urlSession = URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)
+    private var task: URLSessionWebSocketTask!
     var reconnect: Bool = true
     var reconnectWait: Int8 = 0
+    var isConnected = false
+    var timer: Timer?
+    weak var delegate: WebSocketWrapperDelegate?
     
-    let event = WebSocketWrapperEvents()
-    class WebSocketWrapperEvents {
-        let connect = Event<Void>()
-        let disconnect = Event<Error?>()
-        let message = Event<String>()
+    init(request: URLRequest) {
+        self.request = request
+        super.init()
     }
     
-    init(webSocket: WebSocket) {
-        self.webSocket = webSocket
-        self.event.connect.on {
-            self.reconnectWait = 0
-        }
-        self.event.disconnect.onBackground {_ in
-            if !self.reconnect {
-                return
+    func receiveLoop() {
+        task.receive { result in
+            switch result {
+            case .success(let data):
+                switch data {
+                case .string(let str):
+                    DispatchQueue.main.async {
+                        self.delegate?.webSocket?(self, received: str)
+                    }
+                default:
+                    print("unknown \(data)")
+                }
+                self.receiveLoop()
+            case .failure(let error):
+                self.disconnect(error: error)
             }
-            sleep(UInt32(self.reconnectWait))
-            if self.reconnectWait < 10 {
-                self.reconnectWait += 1
-            }
-            self.webSocket.connect()
         }
-        self.webSocket.onConnect = {
-            self.event.connect.emit(Void())
-        }
-        self.webSocket.onDisconnect = { error in
-            self.event.disconnect.emit(error)
-        }
-        self.webSocket.onText = { content in
-            self.event.message.emit(content)
-        }
-    }
-    
-    func disconnect() {
-        self.reconnect = false
-        self.webSocket.disconnect()
     }
     
     func connect() {
-        self.reconnect = true
-        self.webSocket.connect()
+        reconnect = true
+        task = urlSession.webSocketTask(with: request)
+        receiveLoop()
+        task.resume()
     }
+
+    func disconnect(error: Error? = nil) {
+        print("WebSocket::Disconenct", error)
+        guard self.isConnected == true else {
+            print("いやisConnected==falseじゃねえか")
+            return
+        }
+        self.isConnected = false
+        print("")
+        task.cancel(with: .goingAway, reason: nil)
+        timer?.invalidate()
+        if reconnect {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(Int(reconnectWait))) {
+                if self.reconnectWait < 10 {
+                    self.reconnectWait += 1
+                }
+                self.connect()
+            }
+        }
+        DispatchQueue.main.async {
+            self.delegate?.webSocket?(self, disconnected: error)
+        }
+    }
+    
+    @objc func sendPing() {
+        print(task.closeCode.rawValue, task.closeReason, task.state.rawValue, task.error)
+    }
+}
+
+extension WebSocketWrapper: URLSessionWebSocketDelegate {
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        print("WebSocket::Connected")
+        self.reconnectWait = 0
+        self.isConnected = true
+        self.timer = .scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.sendPing), userInfo: nil, repeats: true)
+        self.timer?.fire()
+        DispatchQueue.main.async {
+            self.delegate?.webSocket?(self, connected: `protocol`)
+        }
+    }
+    
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+        print("urlSession(_:webSocketTask:didCloseWith:reason:)")
+        disconnect()
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        print("urlSession(_:task:didCompleteWithError:)", error)
+        print(error)
+    }
+}
+
+@objc protocol WebSocketWrapperDelegate {
+    @objc optional func webSocket(_ wrapper: WebSocketWrapper, connected protocol: String?)
+    @objc optional func webSocket(_ wrapper: WebSocketWrapper, disconnected error: Error?)
+    @objc optional func webSocket(_ wrapper: WebSocketWrapper, received text: String)
 }
 
 extension MastodonUserToken {
@@ -92,15 +140,10 @@ extension MastodonUserToken {
             }
             var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
             urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-            let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
-            let wrap = WebSocketWrapper(webSocket: webSocket)
-            _ = wrap.event.connect.on {
-                print("WebSocket::Connect", endpoint)
+            if let protocols = protocols {
+                urlRequest.addValue(protocols.joined(separator: ","), forHTTPHeaderField: "Sec-WebSocket-Protocol")
             }
-            _ = wrap.event.disconnect.on { error in
-                print("WebSocket::Disconnect", endpoint, error?.localizedDescription ?? "no desc")
-            }
-            wrap.connect()
+            let wrap = WebSocketWrapper(request: urlRequest)
             webSockets.append(wrap)
             return Promise(resolved: wrap)
         }
