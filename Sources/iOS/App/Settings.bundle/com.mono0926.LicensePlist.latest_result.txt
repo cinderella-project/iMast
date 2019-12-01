@@ -46,7 +46,7 @@ version: 5.1.0
 
 name: EurekaFormBuilder, nameSpecified: 
 body: Copyright (c) 2019 r…
-version: 0.2.0
+version: 0.2.1
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…

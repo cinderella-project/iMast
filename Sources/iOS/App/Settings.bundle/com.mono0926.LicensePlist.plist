@@ -46,7 +46,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/EurekaFormBuilder</string>
 			<key>Title</key>
-			<string>EurekaFormBuilder (0.2.0)</string>
+			<string>EurekaFormBuilder (0.2.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

@@ -51,21 +51,21 @@ class AddAccountLoginViewController: FormViewController {
         }
         #endif
         
-        let mailAndPasswordSection = Section {
-            TextRow("mail") { row in
-                row.placeholder = "メールアドレス"
-            }
-            PasswordRow("password") { row in
-                row.placeholder = "パスワード"
-            }
-        }
         form.append {
-            mailAndPasswordSection
+            Section {
+                TextRow("mail") { row in
+                    row.placeholder = "メールアドレス"
+                }
+                PasswordRow("password") { row in
+                    row.placeholder = "パスワード"
+                }
+            }
             Section {
                 ButtonRow { row in
                     row.title = "ログイン"
-                }.onCellSelection { [weak self] cell, row in
-                    self?.loginButtonTapped()
+                    row.onCellSelection { [weak self] cell, row in
+                        self?.loginButtonTapped()
+                    }
                 }
             }
         }
