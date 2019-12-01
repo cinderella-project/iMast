@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_{{ matrix.xcode }}.app
+      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
     - name: bundle install
       run: bundle update --bundler && bundle install
     - name: Install CocoaPods dependencies
