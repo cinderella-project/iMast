@@ -102,16 +102,6 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.notifyTabInfiniteScroll)
             }
             <<< SwitchRow { row in
-                row.title = "iOS 13.1(.1)のリンク感度問題のworkaround"
-                row.cellStyle = .subtitle
-                row.cellUpdate { cell, row in
-                    cell.textLabel?.numberOfLines = 0
-                    cell.detailTextLabel?.text = "iOS 13.1 及び iOS 13.1.1 ではデフォルトで有効です。\nリンク感度がおかしくない場合、この設定を有効にするとリンクが反応しなくなります。"
-                    cell.detailTextLabel?.numberOfLines = 0
-                }
-                row.userDefaultsConnect(.workaroundOfiOS13_1UITextView)
-            }
-            <<< SwitchRow { row in
                 row.title = "最初の画面を新しいものに (α)"
                 row.userDefaultsConnect(.newFirstScreen)
             }

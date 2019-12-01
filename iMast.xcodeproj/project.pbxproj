@@ -32,7 +32,6 @@
 		904584C585DF8DF528E745A9 /* Pods_iMastShared_Mac_iMast_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7047C0D267CAD6C8BEE3C724 /* Pods_iMastShared_Mac_iMast_Mac.framework */; };
 		91732F1F15D3B33F2BE0D33B /* Pods_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8E17F42A61B242493C5F81 /* Pods_iMastTests.framework */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
-		CE070646233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */; };
 		CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE1002D3200683610041B636 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
@@ -546,7 +545,6 @@
 		C73C84B4CE2284129D88B217 /* Pods-iMastShared-iOS-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastIntents/Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		CA974A17DD57ABC74CA8E6C9 /* Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastNotifyService/Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
 		CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableAVPlayerViewController.swift; sourceTree = "<group>"; };
-		CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinkBehaviourTextView.swift; sourceTree = "<group>"; };
 		CE099D022194315800A4BCCB /* UploadableMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableMedia.swift; sourceTree = "<group>"; };
 		CE1002C320065CC20041B636 /* MastodonAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonAttachment.swift; sourceTree = "<group>"; };
 		CE1002C720065DA30041B636 /* MastodonSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonSearchResult.swift; sourceTree = "<group>"; };
@@ -1302,7 +1300,6 @@
 				CE9BD65D2310ADD300763D3A /* TableViewDiffableDataSource.swift */,
 				CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */,
 				CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */,
-				CE070645233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift */,
 				CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */,
 			);
 			path = ExtendedClasses;
@@ -2668,7 +2665,6 @@
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
-				CE070646233F9A41007F9F69 /* CustomLinkBehaviourTextView.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* OtherMenuPushSettingsGroupNotifyTableViewController.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,

@@ -178,7 +178,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.input(input)
         
         // delegate
-        self.textView.linkDelegate = self
+        self.textView.delegate = self
     }
 
     func input(_ input: Input) {
@@ -325,33 +325,27 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
 }
 
-extension MastodonPostCellViewController: CustomLinkBehaviourTextViewDelegate {
-    func linkClickedCallback(textView: CustomLinkBehaviourTextView, url: URL, label: NSAttributedString) -> (() -> Void)? {
+extension MastodonPostCellViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         var urlString = url.absoluteString
-        let labelString = label.string
+        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
-            return { [weak self] in
-                self?.environment.getAccount(id: mention.id).then({ [weak self] user in
-                    guard let strongSelf = self else { return }
-                    let newVC = UserProfileTopViewController.instantiate(user, environment: strongSelf.environment)
-                    strongSelf.navigationController?.pushViewController(newVC, animated: true)
-                })
-            }
+            self.environment.getAccount(id: mention.id).then({ user in
+                let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
+                self.navigationController?.pushViewController(newVC, animated: true)
+            })
+            return false
         }
         if let media = input.post.attachments.first(where: { $0.textUrl == urlString }) {
             urlString = media.url
         }
-        if labelString.starts(with: "#") {
-            let tag = String(labelString[labelString.index(after: labelString.startIndex)...])
-            return { [weak self] in
-                guard let strongSelf = self else { return }
-                let newVC = HashtagTimeLineTableViewController.init(hashtag: tag, environment: strongSelf.environment)
-                strongSelf.navigationController?.pushViewController(newVC, animated: true)
-            }
+        if visibleString.starts(with: "#") {
+            let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+            let newVC = HashtagTimeLineTableViewController.init(hashtag: tag, environment: environment)
+            self.navigationController?.pushViewController(newVC, animated: true)
+            return false
         }
-        return { [weak self] in
-            self?.open(url: URL(string: urlString)!)
-        }
+        self.open(url: URL(string: urlString)!)
+        return false
     }
-    
 }
