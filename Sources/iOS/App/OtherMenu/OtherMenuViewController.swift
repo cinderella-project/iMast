@@ -25,7 +25,6 @@ import UIKit
 import Eureka
 import EurekaFormBuilder
 import SafariServices
-import SwiftUI
 import Mew
 import iMastiOSCore
 
@@ -99,7 +98,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
     
     private lazy var helpAndFeedbackRow = ButtonRow { row in
         row.title = R.string.localizable.helpAndFeedback()
-        row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: OtherMenuHelpAndFeedbackView()) }), onDismiss: nil)
+        row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
     }
     
     required init(with input: Input, environment: Environment) {
