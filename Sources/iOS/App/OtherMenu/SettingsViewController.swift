@@ -23,6 +23,7 @@
 
 import UIKit
 import Eureka
+import EurekaFormBuilder
 import SafariServices
 import SDWebImage
 import Alamofire
@@ -33,46 +34,235 @@ class SettingsViewController: FormViewController {
     // swiftlint:disable function_body_length
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.form +++ self.getGeneralSection()
-        if #available(iOS 10.0, *), let section = self.form.allSections.last {
-            section <<< ButtonRow { row in
+        form.append {
+            getGeneralSection()
+            getComposeSection()
+            getNowPlayingSection()
+            getPostInfoSection()
+            getTimelineAppearanceSection()
+            getTimelineSection()
+            getWidgetSection()
+            getShareSection()
+            getImageCacheSection()
+            getExperimentalSection()
+        }
+        self.title = "設定"
+        self.navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
+    }
+
+    func getGeneralSection() -> Section {
+        return Section {
+            PushStringRow { row in
+                row.title = "ストリーミング自動接続"
+                row.userDefaultsConnect(.streamingAutoConnect, map: [
+                    ("no", "しない"),
+                    ("wifi", "WiFi接続時のみ"),
+                    ("always", "常に接続"),
+                ])
+            }
+            TextRow { row in
+                row.title = "新規連携時のvia"
+                row.placeholder = "iMast"
+                row.userDefaultsConnect(.newAccountVia, ifEmptyUseDefaultValue: true)
+            }
+            SwitchRow { row in
+                row.title = "フォロー関係を以前の表記にする"
+                row.userDefaultsConnect(.followRelationshipsOld)
+            }
+            ButtonRow { row in
                 row.title = "プッシュ通知"
                 row.onCellSelection { cell, row in
                     OtherMenuPushSettingsTableViewController.openRequest(vc: self)
                 }
             }
         }
-        self.form +++ self.getComposeSection()
-        self.form +++ self.getNowPlayingSection()
-        self.form +++ self.getPostInfoSection()
-        self.form +++ self.getTimelineSection()
-        if #available(iOS 10.0, *) {
-            self.form +++ Section("ウィジェット")
-                <<< LabelRow { row in
-                    row.title = "投稿フォーマット"
-                }
-                <<< TextAreaRow { row in
-                    row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                    row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                    row.userDefaultsConnect(.widgetFormat)
-                }
-                <<< TextRow { row in
-                    row.title = "フィルタ"
-                    row.placeholder = "[0-9]{7}"
-                    row.userDefaultsConnect(.widgetFilter)
+    }
+    
+    func getComposeSection() -> Section {
+        return Section(header: "投稿設定") {
+            SwitchRow { row in
+                row.title = "投稿時にメディアURL追加"
+                row.userDefaultsConnect(.appendMediaUrl)
             }
-        } else {
-            self.form +++ Section("ウィジェット")
-                <<< LabelRow { row in
-                    row.title = "ウィジェットはiOS10以上でないと利用できません。"
+            PushStringRow { row in
+                row.title = "画像の自動リサイズ"
+                let sentakusi = [ // 自動リサイズの選択肢
+                    0,
+                    1920,
+                    1280,
+                    1000,
+                    750,
+                    500,
+                ]
+                let smap = sentakusi.map { px -> (Int, String) in
+                    let str = px == 0 ? "自動でリサイズしない" : "\(px)px以下にリサイズ"
+                    return (px, str)
+                }
+                row.userDefaultsConnect(.autoResizeSize, map: smap)
+            }
+            SwitchRow { row in
+                row.title = "デフォルト公開範囲を利用"
+                row.userDefaultsConnect(.usingDefaultVisibility)
             }
         }
-        self.form +++ Section("共有")
-            <<< SwitchRow { row in
+    }
+    
+    func getNowPlayingSection() -> Section {
+        return Section(header: "NowPlaying設定") {
+            LabelRow { row in
+                row.title = "フォーマット"
+            }
+            TextAreaRow { row in
+                row.placeholder = "#NowPlaying {title} - {artist} ({albumTitle})"
+                row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+                row.userDefaultsConnect(.nowplayingFormat)
+            }
+            SwitchRow { row in
+                row.title = "Apple MusicならURLを付ける (できれば)"
+                row.userDefaultsConnect(.nowplayingAddAppleMusicUrl)
+            }
+        }
+    }
+    
+    func getPostInfoSection() -> Section {
+        return Section(header: "投稿詳細") {
+            SwitchRow { row in
+                row.title = "トゥート削除をておくれにする"
+                row.userDefaultsConnect(.deleteTootTeokure)
+            }
+        }
+    }
+    
+    func getTimelineAppearanceSection() -> Section {
+        return Section(header: "タイムラインの外観") {
+            SliderRow { row in
+                row.title = "ユーザー名の文字の大きさ"
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 20
+                    cell.slider.minimumValue = 10
+                }
+                row.steps = 20
+                row.userDefaultsConnect(.timelineUsernameFontsize)
+            }
+            SliderRow { row in
+                row.title = "本文の文字の大きさ"
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 20
+                    cell.slider.minimumValue = 10
+                }
+                row.steps = 20
+                row.userDefaultsConnect(.timelineTextFontsize)
+            }
+            SwitchRow { row in
+                row.title = "本文を太字で表示"
+                row.userDefaultsConnect(.timelineTextBold)
+            }
+            SliderRow { row in
+                row.title = "アイコンの大きさ"
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 72
+                    cell.slider.minimumValue = 24
+                }
+                row.steps = (72-24)*2
+                row.userDefaultsConnect(.timelineIconSize)
+            }
+            SwitchRow { row in
+                row.title = "公開範囲を絵文字で表示"
+                row.userDefaultsConnect(.visibilityEmoji)
+            }
+            SwitchRow { row in
+                row.title = "inReplyToの有無を絵文字で表示"
+                row.userDefaultsConnect(.inReplyToEmoji)
+            }
+            SliderRow { row in
+                row.title = "サムネイルの高さ"
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 100
+                    cell.slider.minimumValue = 0
+                }
+                row.steps = 100/5
+                row.userDefaultsConnect(.thumbnailHeight)
+            }
+            SwitchRow { row in
+                row.title = "ぬるぬるモード(再起動後反映)"
+                row.userDefaultsConnect(.timelineNurunuruMode)
+            }
+            SliderRow { row in
+                row.title = "ピン留めトゥートの行数制限"
+                row.userDefaultsConnect(.pinnedTootLinesLimit)
+                row.steps = 10
+                row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
+                row.cellSetup { cell, row in
+                    cell.slider.maximumValue = 10
+                    cell.slider.minimumValue = 0
+                }
+            }
+            SwitchRow { row in
+                row.title = "でかい投稿ボタンを表示"
+                row.userDefaultsConnect(.postFabEnabled)
+            }
+            PushRow<PostFabLocation> { row in
+                row.title = "でかい投稿ボタンの場所"
+                row.options = PostFabLocation.allCases
+                row.userDefaultsConnect(.postFabLocation)
+            }
+            SwitchRow { row in
+                row.title = "acctのホスト名を略す"
+                row.userDefaultsConnect(.acctAbbr)
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.detailTextLabel?.text = "例: m6n.s4l"
+                }
+            }
+            SwitchRow { row in
+                row.title = "投稿の言語情報を表示時に考慮"
+                row.userDefaultsConnect(.usePostLanguageInfo)
+            }
+        }
+    }
+    
+    func getTimelineSection() -> Section {
+        return Section(header: "タイムライン") {
+            SwitchRow { row in
+                row.title = "WebMをVLCで開く"
+                row.userDefaultsConnect(.webmVlcOpen)
+            }
+            SwitchRow { row in
+                row.title = "動画再生にAVPlayerを利用"
+                row.userDefaultsConnect(.useAVPlayer)
+            }
+            SwitchRow { row in
+                row.title = "Universal Linksを優先"
+                row.userDefaultsConnect(.useUniversalLink)
+            }
+        }
+    }
+    
+    func getWidgetSection() -> Section {
+        return Section(header: "ウィジェット") {
+            LabelRow { row in
+                row.title = "投稿フォーマット"
+            }
+            TextAreaRow { row in
+                row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+                row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
+                row.userDefaultsConnect(.widgetFormat)
+            }
+            TextRow { row in
+                row.title = "フィルタ"
+                row.placeholder = "[0-9]{7}"
+                row.userDefaultsConnect(.widgetFilter)
+            }
+        }
+    }
+    
+    func getShareSection() -> Section {
+        return Section(header: "共有") {
+            SwitchRow { row in
                 row.title = "Twitterにトラッキングさせない"
                 row.userDefaultsConnect(.shareNoTwitterTracking)
             }
-            <<< SwitchRow { row in
+            SwitchRow { row in
                 row.title = "GPMを共有する時にNowPlayingフォーマットを使用"
                 row.userDefaultsConnect(.usingNowplayingFormatInShareGooglePlayMusicUrl)
                 row.cellStyle = .subtitle
@@ -82,7 +272,7 @@ class SettingsViewController: FormViewController {
                     cell.detailTextLabel?.numberOfLines = 0
                 }
             }
-            <<< SwitchRow { row in
+            SwitchRow { row in
                 row.title = "共有プレビューで独自実装を利用"
                 row.userDefaultsConnect(.useCustomizedSharePreview)
                 row.cellStyle = .subtitle
@@ -91,246 +281,70 @@ class SettingsViewController: FormViewController {
                     cell.detailTextLabel?.numberOfLines = 0
                 }
             }
-        self.form +++ self.getImageCacheSection()
-        self.form +++ Section("実験的な要素")
-            <<< SwitchRow { row in
-                row.title = "新しいHTMLパーサーを使う"
-                row.userDefaultsConnect(.newHtmlParser)
-            }
-            <<< SwitchRow { row in
-                row.title = "通知タブの無限スクロール"
-                row.userDefaultsConnect(.notifyTabInfiniteScroll)
-            }
-            <<< SwitchRow { row in
-                row.title = "最初の画面を新しいものに (α)"
-                row.userDefaultsConnect(.newFirstScreen)
-            }
-        self.title = "設定"
-        self.navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
-    }
-
-    func getGeneralSection() -> Section {
-        let section = Section()
-        section <<< PushStringRow { row in
-            row.title = "ストリーミング自動接続"
-            row.userDefaultsConnect(.streamingAutoConnect, map: [
-                ("no", "しない"),
-                ("wifi", "WiFi接続時のみ"),
-                ("always", "常に接続"),
-                ])
         }
-        section <<< TextRow { row in
-            row.title = "新規連携時のvia"
-            row.placeholder = "iMast"
-            row.userDefaultsConnect(.newAccountVia, ifEmptyUseDefaultValue: true)
-        }
-        section <<< SwitchRow { row in
-            row.title = "フォロー関係を以前の表記にする"
-            row.userDefaultsConnect(.followRelationshipsOld)
-        }
-        return section
-    }
-    
-    func getComposeSection() -> Section {
-        let section = Section("投稿設定")
-        section <<< SwitchRow { row in
-            row.title = "投稿時にメディアURL追加"
-            row.userDefaultsConnect(.appendMediaUrl)
-        }
-        section <<< PushStringRow { row in
-            row.title = "画像の自動リサイズ"
-            let sentakusi = [ // 自動リサイズの選択肢
-                0,
-                1920,
-                1280,
-                1000,
-                750,
-                500,
-                ]
-            let smap = sentakusi.map { px -> (Int, String) in
-                let str = px == 0 ? "自動でリサイズしない" : "\(px)px以下にリサイズ"
-                return (px, str)
-            }
-            row.userDefaultsConnect(.autoResizeSize, map: smap)
-        }
-        section <<< SwitchRow { row in
-            row.title = "デフォルト公開範囲を利用"
-            row.userDefaultsConnect(.usingDefaultVisibility)
-        }
-        return section
-    }
-    
-    func getNowPlayingSection() -> Section {
-        let section = Section("NowPlaying設定")
-        section <<< LabelRow { row in
-            row.title = "フォーマット"
-        }
-        section <<< TextAreaRow { row in
-            row.placeholder = "#NowPlaying {title} - {artist} ({albumTitle})"
-            row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-            row.userDefaultsConnect(.nowplayingFormat)
-        }
-        if #available(iOS 10.3, *) {
-            section <<< SwitchRow { row in
-                row.title = "Apple MusicならURLを付ける (できれば)"
-                row.userDefaultsConnect(.nowplayingAddAppleMusicUrl)
-            }
-        }
-        return section
-    }
-    
-    func getPostInfoSection() -> Section {
-        let section = Section("投稿詳細")
-        section <<< SwitchRow { row in
-            row.title = "トゥート削除をておくれにする"
-            row.userDefaultsConnect(.deleteTootTeokure)
-        }
-        
-        return section
-    }
-    
-    func getTimelineSection() -> Section {
-        let section = Section("タイムライン")
-        section <<< SliderRow { row in
-            row.title = "ユーザー名の文字の大きさ"
-            row.cellSetup { cell, row in
-                cell.slider.maximumValue = 20
-                cell.slider.minimumValue = 10
-            }
-            row.steps = 20
-            row.userDefaultsConnect(.timelineUsernameFontsize)
-        }
-        section <<< SliderRow { row in
-            row.title = "本文の文字の大きさ"
-            row.cellSetup { cell, row in
-                cell.slider.maximumValue = 20
-                cell.slider.minimumValue = 10
-            }
-            row.steps = 20
-            row.userDefaultsConnect(.timelineTextFontsize)
-        }
-        section <<< SwitchRow { row in
-            row.title = "本文を太字で表示"
-            row.userDefaultsConnect(.timelineTextBold)
-        }
-        section <<< SliderRow { row in
-            row.title = "アイコンの大きさ"
-            row.cellSetup { cell, row in
-                cell.slider.maximumValue = 72
-                cell.slider.minimumValue = 24
-            }
-            row.steps = (72-24)*2
-            row.userDefaultsConnect(.timelineIconSize)
-        }
-        section <<< SwitchRow { row in
-            row.title = "公開範囲を絵文字で表示"
-            row.userDefaultsConnect(.visibilityEmoji)
-        }
-        section <<< SwitchRow { row in
-            row.title = "inReplyToの有無を絵文字で表示"
-            row.userDefaultsConnect(.inReplyToEmoji)
-        }
-        section <<< SliderRow { row in
-            row.title = "サムネイルの高さ"
-            row.cellSetup { cell, row in
-                cell.slider.maximumValue = 100
-                cell.slider.minimumValue = 0
-            }
-            row.steps = 100/5
-            row.userDefaultsConnect(.thumbnailHeight)
-        }
-        section <<< SwitchRow { row in
-            row.title = "WebMをVLCで開く"
-            row.userDefaultsConnect(.webmVlcOpen)
-        }
-        section <<< SwitchRow { row in
-            row.title = "動画再生にAVPlayerを利用"
-            row.userDefaultsConnect(.useAVPlayer)
-        }
-        section <<< SwitchRow { row in
-            row.title = "Universal Linksを優先"
-            row.userDefaultsConnect(.useUniversalLink)
-        }
-        section <<< SwitchRow { row in
-            row.title = "ぬるぬるモード(再起動後反映)"
-            row.userDefaultsConnect(.timelineNurunuruMode)
-        }
-        section <<< SliderRow { row in
-            row.title = "ピン留めトゥートの行数制限"
-            row.userDefaultsConnect(.pinnedTootLinesLimit)
-            row.steps = 10
-            row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
-        }.cellSetup { cell, row in
-            cell.slider.maximumValue = 10
-            cell.slider.minimumValue = 0
-        }
-        section <<< SwitchRow { row in
-            row.title = "でかい投稿ボタンを表示"
-            row.userDefaultsConnect(.postFabEnabled)
-        }
-        section <<< PushRow<PostFabLocation> { row in
-            row.title = "でかい投稿ボタンの場所"
-            row.options = PostFabLocation.allCases
-            row.userDefaultsConnect(.postFabLocation)
-        }
-        section <<< SwitchRow { row in
-            row.title = "acctのホスト名を略す"
-            row.userDefaultsConnect(.acctAbbr)
-            row.cellStyle = .subtitle
-            row.cellUpdate { cell, row in
-                cell.detailTextLabel?.text = "例: m6n.s4l"
-            }
-        }
-        section <<< SwitchRow { row in
-            row.title = "投稿の言語情報を表示時に考慮"
-            row.userDefaultsConnect(.usePostLanguageInfo)
-        }
-        return section
     }
     
     func getImageCacheSection() -> Section {
-        let section = Section("画像キャッシュ")
-        section <<< TextRow { row in
-            row.title = "キャッシュの容量"
-            row.disabled = true
-            let size = SDImageCache.shared.totalDiskSize()
-            if size < 10_000 {
-                row.value = size.description + "B"
-            } else if size < 10_000_000 {
-                row.value = (size / 1000).description + "KB"
-            } else if size < 10_000_000_000 {
-                row.value = (size / 1000_000).description + "MB"
-            } else {
-                row.value = (size / 1000_000_000).description + "GB"
-            }
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.groupingSeparator = ","
-            formatter.groupingSize = 3
-            if size >= 10_000 {
-                row.value = (row.value ?? "") + " ("+formatter.string(from: size as NSNumber)!+"bytes)"
-            }
-        }
-        section <<< ButtonRow { row in
-            row.title = "ストレージ上のキャッシュを削除"
-        }.onCellSelection { (cell, row) in
-            let size = SDImageCache.shared.totalDiskSize()
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.groupingSeparator = ","
-            formatter.groupingSize = 3
-            let sizeStr = formatter.string(from: size as NSNumber) ?? "0"
-            let count = SDImageCache.shared.totalDiskCount()
-            self.confirm(title: "キャッシュ削除の確認", message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?", okButtonMessage: "OK").then { result in
-                if !result {
-                    return
+        return Section(header: "画像キャッシュ") {
+            TextRow { row in
+                row.title = "キャッシュの容量"
+                row.disabled = true
+                let size = SDImageCache.shared.totalDiskSize()
+                if size < 10_000 {
+                    row.value = size.description + "B"
+                } else if size < 10_000_000 {
+                    row.value = (size / 1000).description + "KB"
+                } else if size < 10_000_000_000 {
+                    row.value = (size / 1000_000).description + "MB"
+                } else {
+                    row.value = (size / 1000_000_000).description + "GB"
                 }
-                SDImageCache.shared.clearDisk {
-                    self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                formatter.groupingSeparator = ","
+                formatter.groupingSize = 3
+                if size >= 10_000 {
+                    row.value = "\(row.value ?? "") (\(formatter.string(from: NSNumber(value: size))!)bytes)"
                 }
             }
+            ButtonRow { row in
+                row.title = "ストレージ上のキャッシュを削除"
+                row.onCellSelection { (cell, row) in
+                    let size = SDImageCache.shared.totalDiskSize()
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .decimal
+                    formatter.groupingSeparator = ","
+                    formatter.groupingSize = 3
+                    let sizeStr = formatter.string(from: size as NSNumber) ?? "0"
+                    let count = SDImageCache.shared.totalDiskCount()
+                    self.confirm(title: "キャッシュ削除の確認", message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?", okButtonMessage: "OK").then { result in
+                        if !result {
+                            return
+                        }
+                        SDImageCache.shared.clearDisk {
+                            self.alert(title: "キャッシュ削除完了", message: "キャッシュの削除が終了しました。")
+                        }
+                    }
+                }
+            }
         }
-        return section
+    }
+    
+    func getExperimentalSection() -> Section {
+        return Section(header: "実験的な要素") {
+            SwitchRow { row in
+                row.title = "新しいHTMLパーサーを使う"
+                row.userDefaultsConnect(.newHtmlParser)
+            }
+            SwitchRow { row in
+                row.title = "通知タブの無限スクロール"
+                row.userDefaultsConnect(.notifyTabInfiniteScroll)
+            }
+            SwitchRow { row in
+                row.title = "最初の画面を新しいものに (α)"
+                row.userDefaultsConnect(.newFirstScreen)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
