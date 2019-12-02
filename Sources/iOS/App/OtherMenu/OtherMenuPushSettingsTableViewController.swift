@@ -159,58 +159,17 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
             }
             self.accountsSection.removeAll()
             self.accountsSection.append(contentsOf: rows)
-            self.accountsSection <<< ButtonRow { row in
+            self.accountsSection.append(ButtonRow { row in
                 row.title = "アカウントを追加"
-            }.onCellSelection { cell, row in
-                Promise<String?>(in: .main) { resolve, reject, _ in
-                    let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
-                    alert.addTextField { textField in
-                        textField.placeholder = "mstdn.example.com"
-                    }
-                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                        resolve(alert.textFields?.first?.text)
-                    })
-                    alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
-                        resolve(nil as String?)
-                    })
-                    self.present(alert, animated: true, completion: nil)
-                }.then { host -> Promise<String> in
-                    guard let host = host else {
-                        throw APIError.alreadyError
-                    }
-                    return PushService.getAuthorizeUrl(host: host)
-                }.then(in: .main) { res in
-                    self.loginSafari = getLoginSafari()
-                    self.loginSafari.open(url: URL(string: res)!, viewController: self)
-                }.catch { error in
-                    switch error {
-                    case APIError.alreadyError:
-                        break
-                    default:
-                        self.alert(title: "エラー", message: error.localizedDescription)
-                    }
+                row.onCellSelection { cell, row in
+                    self.addAccountDialog()
                 }
-            }
+            })
             self.tableView.reloadData()
         }.catch { error in
             switch error {
             case Alamofire.DataRequest.DecodableError.httpError(let message, _):
                 if message == "user not found in auth" {
-                    let navigationController = self.navigationController
-                    self.confirm(
-                        title: "エラー",
-                        message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をするために現在のプッシュ通知アカウントを削除しますか?",
-                        okButtonMessage: "削除",
-                        style: .destructive,
-                        cancelButtonMessage: "キャンセル"
-                    ).then { res in
-                        if res == false {
-                            return
-                        }
-                        PushService.deleteAuthInfo().then { _ in
-                            navigationController?.visibleViewController?.alert(title: "削除完了", message: "削除が完了しました。")
-                        }
-                    }
                 } else {
                     self.alert(title: "APIエラー", message: message)
                 }
@@ -229,6 +188,55 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addAccountDialog() {
+        Promise<String?>(in: .main) { resolve, reject, _ in
+            let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
+            alert.addTextField { textField in
+                textField.placeholder = "mstdn.example.com"
+            }
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                resolve(alert.textFields?.first?.text)
+            })
+            alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+                resolve(nil as String?)
+            })
+            self.present(alert, animated: true, completion: nil)
+        }.then { host -> Promise<String> in
+            guard let host = host else {
+                throw APIError.alreadyError
+            }
+            return PushService.getAuthorizeUrl(host: host)
+        }.then(in: .main) { res in
+            self.loginSafari = getLoginSafari()
+            self.loginSafari.open(url: URL(string: res)!, viewController: self)
+        }.catch { error in
+            switch error {
+            case APIError.alreadyError:
+                break
+            default:
+                self.alert(title: "エラー", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteAuthInfo() {
+        let navigationController = self.navigationController
+        confirm(
+            title: "エラー",
+            message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をするために現在のプッシュ通知アカウントを削除しますか?",
+            okButtonMessage: "削除",
+            style: .destructive,
+            cancelButtonMessage: "キャンセル"
+        ).then { res in
+            if res == false {
+                return
+            }
+            PushService.deleteAuthInfo().then { _ in
+                navigationController?.visibleViewController?.alert(title: "削除完了", message: "削除が完了しました。")
+            }
+        }
     }
     
     static func openRequest(vc: UIViewController) {

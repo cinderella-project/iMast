@@ -33,54 +33,40 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "認証"
+        title = "認証"
         
-        let methodsSection = Section()
-        methodsSection <<< ButtonRow { row in
-            row.title = "Safariでログインする (推奨)"
-            row.cellUpdate { cell, row in
-                cell.textLabel?.textAlignment = .left
-                cell.accessoryType = .disclosureIndicator
-                cell.textLabel?.textColor = nil
+        let authMethodSection = Section {
+            ButtonRow { row in
+                row.title = "Safariでログインする (推奨)"
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.textAlignment = .left
+                    cell.accessoryType = .disclosureIndicator
+                    cell.textLabel?.textColor = nil
+                }
+                row.onCellSelection { [weak self] cell, row in
+                    self?.safariLoginButton()
+                }
             }
-            row.onCellSelection { cell, row in
-                self.safariLoginButton()
+            ButtonRow { row in
+                row.title = "メールアドレスとパスワードでログインする"
+                row.presentationMode = .show(controllerProvider: .callback(builder: {
+                    let vc = AddAccountLoginViewController()
+                    vc.title = row.title
+                    vc.app = self.app
+                    return vc
+                }), onDismiss: nil)
             }
-        }
-        methodsSection <<< ButtonRow { row in
-            row.title = "メールアドレスとパスワードでログインする"
-            row.presentationMode = .show(controllerProvider: .callback(builder: {
-                let vc = AddAccountLoginViewController()
-                vc.title = row.title
-                vc.app = self.app
-                return vc
-            }), onDismiss: nil)
-        }
-        
-        let tosSection = Section("ログインすると、このインスタンスの以下の規約に同意したことになります。")
-        tosSection <<< ButtonRow { row in
-            row.title = "利用規約"
-            row.cellStyle = .subtitle
-            let url = "https://\(self.app.instance.hostName)/about/more"
-            row.cellUpdate { cell, row in
-                cell.detailTextLabel?.text = url
-            }
-            row.presentationMode = .presentModally(controllerProvider: .callback(builder: { SFSafariViewController(url: URL(string: url)!) }), onDismiss: nil)
-        }
-        tosSection <<< ButtonRow { row in
-            row.title = "プライバシーポリシー"
-            row.cellStyle = .subtitle
-            let url = "https://\(self.app.instance.hostName)/terms"
-            row.cellUpdate { cell, row in
-                cell.detailTextLabel?.text = url
-            }
-            row.presentationMode = .presentModally(controllerProvider: .callback(builder: { SFSafariViewController(url: URL(string: url)!) }), onDismiss: nil)
         }
         
-        self.form += [
-            methodsSection,
-            tosSection,
-        ]
+        let tosSection = Section(header: "ログインすると、このインスタンスの以下の規約に同意したことになります。") {
+            OpenSafariRow(title: "利用規約", url: URL(string: "https://\(app.instance.hostName)/about/more")!)
+            OpenSafariRow(title: "プライバシーポリシー", url: URL(string: "https://\(app.instance.hostName)/terms")!)
+        }
+        
+        form.append {
+            authMethodSection
+            tosSection
+        }
         
         // Do any additional setup after loading the view.
     }

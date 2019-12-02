@@ -37,70 +37,6 @@ class OtherMenuViewController: FormViewController, Instantiatable {
     private lazy var searchResultViewController = SearchViewController.instantiate(environment: self.environment)
     private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
     
-    private lazy var switchActiveAccountRow = ButtonRow { row in
-        row.title = R.string.localizable.switchActiveAccount()
-        row.cellStyle = .subtitle
-        row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
-        row.cellUpdate { (cell, row) in
-            cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.environment.acct)
-        }
-    }
-    
-    private lazy var myProfileRow = ButtonRow { row in
-        row.title = R.string.localizable.myProfile()
-        row.cellUpdate { cell, row in
-            cell.textLabel?.textAlignment = .left
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.textColor = nil
-        }
-        row.onCellSelection { cell, row in
-            self.environment.verifyCredentials().then { account in
-                let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
-                self.navigationController?.pushViewController(newVC, animated: true)
-            }.catch { error in
-                print(error)
-            }
-        }
-    }
-    
-    private lazy var listsRow = ButtonRow { row in
-        row.title = R.string.localizable.lists()
-        row.cellUpdate { cell, row in
-            cell.textLabel?.textAlignment = .left
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.textColor = nil
-        }
-        row.onCellSelection { cell, row in
-            // TODO: ここの下限バージョンの処理をあとで共通化する
-            self.environment.getIntVersion().then { version in
-                if version < MastodonVersionStringToInt("2.1.0rc1") {
-                    self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("2.1.0rc1"))
-                    return
-                }
-                self.environment.lists().then({ lists in
-                    let vc = ListsTableViewController.instantiate(environment: self.environment)
-                    vc.lists = lists
-                    self.navigationController?.pushViewController(vc, animated: true)
-                })
-            }
-        }
-    }
-    
-    private lazy var settingsRow = ButtonRow { row in
-        row.title = R.string.localizable.settings()
-        row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
-    }
-    
-    private lazy var siriShortcutsRow = ButtonRow { row in
-        row.title = "Siri Shortcuts"
-        row.presentationMode = .show(controllerProvider: .callback(builder: { CreateSiriShortcutsViewController() }), onDismiss: nil)
-    }
-    
-    private lazy var helpAndFeedbackRow = ButtonRow { row in
-        row.title = R.string.localizable.helpAndFeedback()
-        row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
-    }
-    
     required init(with input: Input, environment: Environment) {
         self.environment = environment
         super.init(style: .plain)
@@ -116,12 +52,66 @@ class OtherMenuViewController: FormViewController, Instantiatable {
 
         form.append {
             Section {
-                switchActiveAccountRow
-                myProfileRow
-                listsRow
-                settingsRow
-                siriShortcutsRow
-                helpAndFeedbackRow
+                ButtonRow { row in
+                    row.title = R.string.localizable.switchActiveAccount()
+                    row.cellStyle = .subtitle
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
+                    row.cellUpdate { (cell, row) in
+                        cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.environment.acct)
+                    }
+                }
+                ButtonRow { row in
+                    row.title = R.string.localizable.myProfile()
+                    row.cellUpdate { cell, row in
+                        cell.textLabel?.textAlignment = .left
+                        cell.accessoryType = .disclosureIndicator
+                        cell.textLabel?.textColor = nil
+                    }
+                    row.onCellSelection { cell, row in
+                        self.environment.verifyCredentials().then { account in
+                            let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
+                            self.navigationController?.pushViewController(newVC, animated: true)
+                        }.catch { error in
+                            print(error)
+                        }
+                    }
+                }
+                ButtonRow { row in
+                    row.title = R.string.localizable.lists()
+                    row.cellUpdate { cell, row in
+                        cell.textLabel?.textAlignment = .left
+                        cell.accessoryType = .disclosureIndicator
+                        cell.textLabel?.textColor = nil
+                    }
+                    row.onCellSelection { cell, row in
+                        // TODO: ここの下限バージョンの処理をあとで共通化する
+                        self.environment.getIntVersion().then { version in
+                            if version < MastodonVersionStringToInt("2.1.0rc1") {
+                                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("2.1.0rc1"))
+                                return
+                            }
+                            self.environment.lists().then({ lists in
+                                let vc = ListsTableViewController.instantiate(environment: self.environment)
+                                vc.lists = lists
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            })
+                        }
+                    }
+                }
+                ButtonRow { row in
+                    row.title = R.string.localizable.settings()
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
+                }
+                #if !targetEnvironment(macCatalyst)
+                ButtonRow { row in
+                    row.title = "Siri Shortcuts"
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { CreateSiriShortcutsViewController() }), onDismiss: nil)
+                }
+                #endif
+                ButtonRow { row in
+                    row.title = R.string.localizable.helpAndFeedback()
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
+                }
             }
         }
         

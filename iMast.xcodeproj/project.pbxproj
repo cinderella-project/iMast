@@ -177,6 +177,7 @@
 		CEA252BB1EE8A2E2002C60F3 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
+		CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
@@ -675,6 +676,7 @@
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
 		CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+forMastodonAPI.swift"; sourceTree = "<group>"; };
+		CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariRow.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
@@ -1055,6 +1057,7 @@
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
+				CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
 				CE87300D216884360038D964 /* Localizable.strings */,
@@ -2592,6 +2595,7 @@
 				CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */,
 				2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */,
 				CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */,
+				CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
 				CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */,
 				CEF6DCBB22EDEA6F0008B64D /* MastodonPostDetailViewController.swift in Sources */,

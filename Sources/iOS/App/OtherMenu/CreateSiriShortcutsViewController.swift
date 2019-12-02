@@ -26,7 +26,7 @@ import Eureka
 import IntentsUI
 import iMastiOSCore
 
-@available(iOS 12.0, *)
+#if !targetEnvironment(macCatalyst)
 class CreateSiriShortcutsViewController: FormViewController {
 
     override func viewDidLoad() {
@@ -34,74 +34,69 @@ class CreateSiriShortcutsViewController: FormViewController {
 
         // Do any additional setup after loading the view.
         
-        let mainSection = Section()
-        mainSection <<< PushRow<MastodonUserToken>("account") { row in
-            row.title = "投稿するアカウント"
-            row.options = MastodonUserToken.getAllUserTokens()
-            row.displayValueFor = { userToken in
-                guard let userToken = userToken else {
-                    return nil
+        form.append {
+            Section {
+                PushRow<MastodonUserToken>("account") { row in
+                    row.title = "投稿するアカウント"
+                    row.options = MastodonUserToken.getAllUserTokens()
+                    row.displayValueFor = { userToken in
+                        guard let userToken = userToken else {
+                            return nil
+                        }
+                        return "\(userToken.acct) (\(userToken.app.name))"
+                    }
+                    row.value = row.options?.first
+                    row.onPresent { (form, vc) in
+                        vc.selectableRowSetup = { row in
+                            row.tag = row.selectableValue!.id
+                            row.cellStyle = .subtitle
+                        }
+                        vc.selectableRowCellUpdate = { cell, row in
+                            guard let userToken = row.selectableValue else {
+                                return
+                            }
+                            cell.textLabel?.text = userToken.name
+                            cell.detailTextLabel?.text = "\(userToken.acct) (\(userToken.app.name))"
+                            if let url = URL(string: userToken.avatarUrl ?? "") {
+                                cell.imageView?.sd_setImage(with: url, completed: { (_, _, _, _) in
+                                    cell.setNeedsLayout()
+                                })
+                            }
+                        }
+                    }
                 }
-                return "\(userToken.acct) (\(userToken.app.name))"
-            }
-            row.value = row.options?.first
-        }.onPresent { (form, vc) in
-            vc.selectableRowSetup = { row in
-                row.tag = row.selectableValue!.id
-                row.cellStyle = .subtitle
-            }
-            vc.selectableRowCellUpdate = { cell, row in
-                guard let userToken = row.selectableValue else {
-                    return
+                TextAreaRow("text") { row in
+                    row.placeholder = "投稿内容を入力"
+                    row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
                 }
-                cell.textLabel?.text = userToken.name
-                cell.detailTextLabel?.text = "\(userToken.acct) (\(userToken.app.name))"
-                if let url = URL(string: userToken.avatarUrl ?? "") {
-                    cell.imageView?.sd_setImage(with: url, completed: { (_, _, _, _) in
-                        cell.setNeedsLayout()
-                    })
+            }
+            Section {
+                ButtonRow { row in
+                    row.title = "Add to Siri"
+                    row.onCellSelection { [weak self] cell, row in
+                        self?.addToSiri()
+                    }
                 }
             }
         }
-        mainSection <<< TextAreaRow("text") { row in
-            row.placeholder = "投稿内容を入力"
-            row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-        }
-
-        self.form +++ mainSection
-        
-        #if !targetEnvironment(macCatalyst)
-        self.form +++ Section() <<< ButtonRow { row in
-            row.title = "Add to Siri"
-        }.onCellSelection { cell, row in
-            let intent = TootIntent()
-            let userToken = (self.form.rowBy(tag: "account") as? PushRow<MastodonUserToken>)?.value
-            let text = (self.form.rowBy(tag: "text") as? TextAreaRow)?.value
-            intent.account = userToken?.toIntentAccount()
-            intent.text = text
-            if let shortcut = INShortcut(intent: intent) {
-                let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
-                viewController.modalPresentationStyle = .formSheet
-                viewController.delegate = self
-                self.present(viewController, animated: true, completion: nil)
-            }
-        }
-        #endif
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addToSiri() {
+        let values = form.values()
+        let intent = TootIntent()
+        let userToken = values["account"] as? MastodonUserToken
+        let text = values["text"] as? String
+        intent.account = userToken?.toIntentAccount()
+        intent.text = text
+        guard let shortcut = INShortcut(intent: intent) else { return }
+        let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+        viewController.modalPresentationStyle = .formSheet
+        viewController.delegate = self
+        self.present(viewController, animated: true, completion: nil)
     }
-    */
 
 }
 
-@available(iOS 12.0, *)
 extension CreateSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         controller.dismiss(animated: true, completion: nil)
@@ -111,3 +106,4 @@ extension CreateSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerD
         controller.dismiss(animated: true, completion: nil)
     }
 }
+#endif

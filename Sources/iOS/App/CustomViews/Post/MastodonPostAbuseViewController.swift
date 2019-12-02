@@ -60,11 +60,14 @@ class MastodonPostAbuseViewController: FormViewController, Instantiatable {
         }
         
         if let remoteInstance = input.account.acct.split(separator: "@").safe(1) {
-            self.form +++ Section(
-                footer: "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。"
-            ) {
-                SwitchRow("forward") { row in
-                    row.title = "リモートインスタンスに転送"
+            let message = "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。"
+            self.form.append {
+                Section(
+                    footer: message
+                ) {
+                    SwitchRow("forward") { row in
+                        row.title = "リモートインスタンスに転送"
+                    }
                 }
             }
         }
