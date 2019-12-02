@@ -28,53 +28,66 @@ import iMastiOSCore
 
 var webSockets: [WebSocketWrapper] = []
 
-class WebSocketWrapper {
+class WebSocketWrapper: WebSocketDelegate {
+    
     let webSocket: WebSocket
     var reconnect: Bool = true
     var reconnectWait: Int8 = 0
-    
-    let event = WebSocketWrapperEvents()
-    class WebSocketWrapperEvents {
-        let connect = Event<Void>()
-        let disconnect = Event<Error?>()
-        let message = Event<String>()
-    }
+    weak var delegate: WebSocketWrapperDelegate?
     
     init(webSocket: WebSocket) {
         self.webSocket = webSocket
-        self.event.connect.on {
-            self.reconnectWait = 0
-        }
-        self.event.disconnect.onBackground {_ in
-            if !self.reconnect {
-                return
-            }
-            sleep(UInt32(self.reconnectWait))
-            if self.reconnectWait < 10 {
-                self.reconnectWait += 1
-            }
-            self.webSocket.connect()
-        }
-        self.webSocket.onConnect = {
-            self.event.connect.emit(Void())
-        }
-        self.webSocket.onDisconnect = { error in
-            self.event.disconnect.emit(error)
-        }
-        self.webSocket.onText = { content in
-            self.event.message.emit(content)
-        }
+        self.webSocket.delegate = self
     }
     
     func disconnect() {
-        self.reconnect = false
-        self.webSocket.disconnect()
+        reconnect = false
+        webSocket.disconnect()
     }
     
     func connect() {
-        self.reconnect = true
-        self.webSocket.connect()
+        reconnect = true
+        webSocket.connect()
     }
+    
+    private func autoReconnect() {
+        if reconnectWait < 10 {
+            reconnectWait += 1
+        }
+        webSocket.connect()
+    }
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("WebSocket Connected")
+        reconnectWait = 0
+        delegate?.webSocketDidConnect(self)
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("WebSocket Disconnected", error)
+        delegate?.webSocketDidDisconnect(self, error: error)
+
+        // 再接続
+        guard reconnect else { return }
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + Double(reconnectWait)) { [weak self] in
+            self?.autoReconnect()
+        }
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("WebSocket Received Text")
+        delegate?.webSocketDidReceiveMessage(self, text: text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("WebSocket Received Data 🤔", data)
+    }
+}
+
+protocol WebSocketWrapperDelegate: class {
+    func webSocketDidConnect(_ wrapper: WebSocketWrapper)
+    func webSocketDidDisconnect(_ wrapper: WebSocketWrapper, error: Error?)
+    func webSocketDidReceiveMessage(_ wrapper: WebSocketWrapper, text: String)
 }
 
 extension MastodonUserToken {
@@ -94,13 +107,6 @@ extension MastodonUserToken {
             urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
             let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
             let wrap = WebSocketWrapper(webSocket: webSocket)
-            _ = wrap.event.connect.on {
-                print("WebSocket::Connect", endpoint)
-            }
-            _ = wrap.event.disconnect.on { error in
-                print("WebSocket::Disconnect", endpoint, error?.localizedDescription ?? "no desc")
-            }
-            wrap.connect()
             webSockets.append(wrap)
             return Promise(resolved: wrap)
         }

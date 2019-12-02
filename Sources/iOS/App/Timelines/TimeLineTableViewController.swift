@@ -356,39 +356,8 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             return
         }
         environment.getWebSocket(endpoint: webSocketEndpoint).then { socket in
-            socket.event.connect.on {
-                self.streamingNavigationItem?.tintColor = nil
-            }
-            socket.event.disconnect.on { _ in
-                self.streamingNavigationItem?.tintColor = UIColor(red: 1, green: 0.3, blue: 0.15, alpha: 1)
-            }
-            socket.event.message.on { text in
-                var object = JSON(parseJSON: text)
-                if object["event"].string == "update" {
-                    object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
-                    self.addNewPosts(posts: [try! MastodonPost.decode(json: object["payload"])])
-                } else if object["event"].string == "delete" {
-                    let deletedTootID = object["payload"].stringValue
-                    let snapshot = self.diffableDataSource.snapshot()
-                    var deletePosts: [TableBody] = []
-
-                    for body in snapshot.itemIdentifiers(inSection: .posts) {
-                        if case .post(let id, _) = body {
-                            if id.string == deletedTootID {
-                                deletePosts.append(body)
-                            } else if self.environment.memoryStore.post.container[id]?.repost?.value.id.string == deletedTootID {
-                                deletePosts.append(body)
-                            }
-                        }
-                    }
-
-                    if deletePosts.count > 0 {
-                        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
-                    }
-                } else {
-                    print(object)
-                }
-            }
+            socket.delegate = self
+            socket.connect()
             self.socket = socket
         }
     }
@@ -524,5 +493,50 @@ extension TimeLineTableViewController: UITableViewDelegate {
     
     func updatePost(from: MastodonPost, includeRepost: Bool) {
         MastodonMemoryStoreContainer[self.environment].post.change(obj: from)
+    }
+}
+
+extension TimeLineTableViewController: WebSocketWrapperDelegate {
+    func webSocketDidConnect(_ wrapper: WebSocketWrapper) {
+        DispatchQueue.mainSafeSync {
+            streamingNavigationItem?.tintColor = nil
+        }
+    }
+    
+    func webSocketDidDisconnect(_ wrapper: WebSocketWrapper, error: Error?) {
+        DispatchQueue.mainSafeSync {
+            streamingNavigationItem?.tintColor = .systemRed
+        }
+    }
+    
+    func webSocketDidReceiveMessage(_ wrapper: WebSocketWrapper, text: String) {
+        var object = JSON(parseJSON: text)
+        switch object["event"].stringValue {
+        case "update":
+            object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
+            addNewPosts(posts: [try! MastodonPost.decode(json: object["payload"])])
+        case "delete":
+            let deletedTootID = object["payload"].stringValue
+            var snapshot = diffableDataSource.snapshot()
+            var deletePosts: [TableBody] = []
+
+            for body in snapshot.itemIdentifiers(inSection: .posts) {
+                if case .post(let id, _) = body {
+                    if id.string == deletedTootID {
+                        deletePosts.append(body)
+                    } else if environment.memoryStore.post.container[id]?.repost?.value.id.string == deletedTootID {
+                        deletePosts.append(body)
+                    }
+                }
+            }
+            
+            snapshot.deleteItems(deletePosts)
+
+            if deletePosts.count > 0 {
+                diffableDataSource.apply(snapshot, animatingDifferences: true)
+            }
+        default:
+            print(object)
+        }
     }
 }
