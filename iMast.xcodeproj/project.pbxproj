@@ -40,7 +40,6 @@
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
-		CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* BookmarksTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -551,7 +550,6 @@
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
-		CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+fakeSafeAreaLayoutGuide.swift"; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTimeLineTableViewController.swift; sourceTree = "<group>"; };
@@ -1120,7 +1118,6 @@
 			isa = PBXGroup;
 			children = (
 				CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */,
-				CE10A1562229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift */,
 				CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */,
 				CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */,
 				CE43BEA2237778E800133C86 /* UIViewController+alerts.swift */,
@@ -2607,7 +2604,6 @@
 				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,
 				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
-				CE10A1572229BDCB00E93D5A /* UIViewController+fakeSafeAreaLayoutGuide.swift in Sources */,
 				CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,

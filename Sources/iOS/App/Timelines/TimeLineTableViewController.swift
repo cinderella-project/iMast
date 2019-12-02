@@ -181,19 +181,19 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                         // X
                         switch Defaults[.postFabLocation] {
                         case .leftCenter, .leftBottom:
-                            make.left.equalTo(self.fakeSafeAreaLayoutGuide).offset(offset)
+                            make.left.equalTo(view.safeAreaLayoutGuide).offset(offset)
                         case .rightCenter, .rightBottom:
-                            make.right.equalTo(self.fakeSafeAreaLayoutGuide).offset(-offset)
+                            make.right.equalTo(view.safeAreaLayoutGuide).offset(-offset)
                         case .centerBottom:
-                            make.centerX.equalTo(self.fakeSafeAreaLayoutGuide)
+                            make.centerX.equalTo(view.safeAreaLayoutGuide)
                         }
                         
                         // Y
                         switch Defaults[.postFabLocation] {
                         case .leftCenter, .rightCenter:
-                            make.centerY.equalTo(self.fakeSafeAreaLayoutGuide)
+                            make.centerY.equalTo(view.safeAreaLayoutGuide)
                         case .leftBottom, .centerBottom, .rightBottom:
-                            make.bottom.equalTo(self.fakeSafeAreaLayoutGuide).offset(-offset)
+                            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-offset)
                         }
                         make.width.height.equalTo(size)
                     }
