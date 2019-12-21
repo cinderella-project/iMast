@@ -23,6 +23,7 @@
 
 import UIKit
 import CoreImage
+import CoreImage.CIFilterBuiltins
 import SwiftyJSON
 import iMastiOSCore
 
@@ -44,23 +45,23 @@ class ProfileCardViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.backgroundImageView.sd_setImage(with: URL(string: user.headerUrl))
         self.iconView.sd_setImage(with: URL(string: user.avatarUrl))
+        
+        let qr = CIFilter.qrCodeGenerator()
+        qr.message = user.url.data(using: .utf8)!
+        qr.correctionLevel = "H"
+        
+        let invertQr = CIFilter.colorInvert()
+        invertQr.inputImage = qr.outputImage
 
-        let qr = CIFilter(name: "CIQRCodeGenerator", parameters: [
-            "inputMessage": user.url.data(using: .utf8),
-            "inputCorrectionLevel": "H",
-        ])
-        let invertQr = CIFilter(name: "CIColorInvert", parameters: [
-            "inputImage": qr!.outputImage!,
-            ])
-        let alphaInvertQr = CIFilter(name: "CIMaskToAlpha", parameters: [
-            "inputImage": invertQr!.outputImage!,
-        ])
-        let alphaQr = CIFilter(name: "CIColorInvert", parameters: [
-            "inputImage": alphaInvertQr!.outputImage!,
-        ])
+        let alphaInvertQr = CIFilter.maskToAlpha()
+        alphaInvertQr.inputImage = invertQr.outputImage
+
+        let alphaQr = CIFilter.colorInvert()
+        alphaQr.inputImage = alphaInvertQr.outputImage
+
         userNameLabel.text = user.name != "" ? user.name : user.screenName
         userScreenNameLabel.text = "@" + user.acct
-        barcodeImageView.image = UIImage(ciImage: alphaQr!.outputImage!.transformed(by: CGAffineTransform(scaleX: 10, y: 10)))
+        barcodeImageView.image = UIImage(ciImage: alphaQr.outputImage!.transformed(by: CGAffineTransform(scaleX: 10, y: 10)))
     }
 
     override func didReceiveMemoryWarning() {
