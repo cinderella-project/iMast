@@ -42,6 +42,7 @@ class AccountsPreferencesPaneView: NSView {
         c.segmentStyle = .smallSquare
         c.setEnabled(false, forSegment: 2)
         c.setWidth(100, forSegment: 2)
+        c.setContentHuggingPriority(.required, for: .horizontal)
     }
     
     init() {
@@ -52,6 +53,7 @@ class AccountsPreferencesPaneView: NSView {
         ]) ※ { v in
             v.orientation = .vertical
             v.spacing = -1
+            v.setHuggingPriority(.required, for: .horizontal)
         }
         accountsTableViewWrapperScrollView.snp.makeConstraints { make in
             make.width.equalTo(addOrRemoveSegmentedControl)
@@ -62,9 +64,11 @@ class AccountsPreferencesPaneView: NSView {
             NSBox() ※ { v in
                 v.translatesAutoresizingMaskIntoConstraints = false
                 v.titlePosition = .noTitle
+                v.snp.makeConstraints { make in make.width.equalTo(240) }
             },
         ]) ※ { v in
             v.orientation = .horizontal
+            v.setHuggingPriority(.required, for: .horizontal)
         }
         
         addSubview(topStackView)

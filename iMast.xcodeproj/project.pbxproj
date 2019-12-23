@@ -1234,6 +1234,15 @@
 			path = ProfileCard;
 			sourceTree = "<group>";
 		};
+		CE4AB77223AFD24600BE177B /* AccountsPreferencesPane */ = {
+			isa = PBXGroup;
+			children = (
+				CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */,
+				CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */,
+			);
+			path = AccountsPreferencesPane;
+			sourceTree = "<group>";
+		};
 		CE51ABFC1F40C06B00E43607 /* iMastTodayWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -1327,8 +1336,7 @@
 				CE90CD03237807A7001C8E80 /* PreferencesWindowController.swift */,
 				CEE043A923780C94007A915E /* PreferencesViewController.swift */,
 				CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */,
-				CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */,
-				CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */,
+				CE4AB77223AFD24600BE177B /* AccountsPreferencesPane */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
