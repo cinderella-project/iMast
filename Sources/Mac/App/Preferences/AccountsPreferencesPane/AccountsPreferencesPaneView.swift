@@ -47,20 +47,19 @@ class AccountsPreferencesPaneView: NSView {
     
     init() {
         super.init(frame: .zero)
-        let accountsSelectorStackView = NSStackView(views: [
-            accountsTableViewWrapperScrollView,
-            addOrRemoveSegmentedControl,
-        ]) ※ { v in
-            v.orientation = .vertical
-            v.spacing = -1
-            v.setHuggingPriority(.required, for: .horizontal)
-        }
-        accountsTableViewWrapperScrollView.snp.makeConstraints { make in
-            make.width.equalTo(addOrRemoveSegmentedControl)
-        }
-        
+
         let topStackView = NSStackView(views: [
-            accountsSelectorStackView,
+            NSStackView(views: [
+                accountsTableViewWrapperScrollView,
+                addOrRemoveSegmentedControl,
+            ]) ※ { v in
+                v.orientation = .vertical
+                v.spacing = -1
+                v.setHuggingPriority(.required, for: .horizontal)
+                v.snp.makeConstraints { make in
+                    make.width.equalTo(addOrRemoveSegmentedControl)
+                }
+            },
             NSBox() ※ { v in
                 v.translatesAutoresizingMaskIntoConstraints = false
                 v.titlePosition = .noTitle
