@@ -24,6 +24,7 @@
 import Cocoa
 import Ikemen
 import iMastMacCore
+import AuthenticationServices
 
 class AddMastodonAccountSheetView: NSView {
     let cancelButton = NSButton(title: "キャンセル", target: nil, action: nil) ※ { b in
@@ -34,17 +35,18 @@ class AddMastodonAccountSheetView: NSView {
     }
     
     let hostNameField = NSTextField(string: "") ※ { v in
-        v.placeholderString = "social.mikutter.hachune.net"
+        v.placeholderString = "mastodon.example.com"
     }
     
     let loginMethodSelect = NSPopUpButton() ※ { v in
         v.addItems(withTitles: [
-            "Safariで認証ページを開く",
-            "デフォルトブラウザで認証ページを開く",
-            "メールアドレスとパスワードで認証する",
-            "発行済みのアクセストークンを利用する",
+            "Safari",
+            "Safari（プライベートブラウズ）",
+            "デフォルトブラウザ",
         ])
     }
+    
+    let forceLoginCheckbox = NSButton(checkboxWithTitle: "ブラウザでのログイン状態を無視", target: nil, action: nil)
     
     let indicator = NSProgressIndicator() ※ { v in
         v.style = .spinning
@@ -61,13 +63,15 @@ class AddMastodonAccountSheetView: NSView {
             },
             NSGridView(views: [
                 [ NSTextField(labelWithString: "サーバアドレス:"), hostNameField ],
-                [ NSTextField(labelWithString: "ログイン方法:"), loginMethodSelect ],
+                [ NSTextField(labelWithString: "認証に使用するブラウザ:"), loginMethodSelect ],
+                [ SpacerView(), forceLoginCheckbox ],
             ]) ※ { v in
                 v.column(at: 0).xPlacement = .trailing
                 v.rowAlignment = .firstBaseline
                 for r in 1..<v.numberOfRows {
                     v.row(at: r).topPadding = 8
                 }
+                v.row(at: 2).topPadding = 2
             },
             NSStackView(views: [
                 SpacerView(),

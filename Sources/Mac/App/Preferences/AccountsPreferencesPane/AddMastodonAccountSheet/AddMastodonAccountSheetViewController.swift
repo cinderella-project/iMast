@@ -36,8 +36,7 @@ class AddMastodonAccountSheetViewController: NSViewController {
     }
     
     override func viewDidAppear() {
-        view.window?.showsResizeIndicator = false
+        view.window?.styleMask.remove(.resizable)
     }
-    
 }
 
