@@ -78,6 +78,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
     }
     
+    // swiftlint:disable cyclomatic_complexity
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
@@ -94,9 +95,15 @@ class NotificationService: UNNotificationServiceExtension {
                 if Defaults[.groupNotifyTypeBoost] {
                     self.bestAttemptContent?.threadIdentifier += "type=boost,"
                 }
+                if Defaults[.useCustomBoostSound] {
+                    self.bestAttemptContent?.sound = .init(named: .init("custom-boost.caf"))
+                }
             case "favourite":
                 if Defaults[.groupNotifyTypeFavourite] {
                     self.bestAttemptContent?.threadIdentifier += "type=favourite,"
+                }
+                if Defaults[.useCustomFavouriteSound] {
+                    self.bestAttemptContent?.sound = .init(named: .init("custom-favourite.caf"))
                 }
             case "mention":
                 if Defaults[.groupNotifyTypeMention] {

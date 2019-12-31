@@ -81,6 +81,11 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     self.navigationController?.pushViewController(OtherMenuPushSettingsGroupNotifyTableViewController(), animated: true)
                 }
                 ButtonRow { row in
+                    row.title = "通知音カスタム (α)"
+                    row.cellStyle = .default
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuPushSettingsChangeSoundViewController() }), onDismiss: nil)
+                }
+                ButtonRow { row in
                     row.title = "プッシュ通知の設定を削除"
                 }.cellUpdate { cell, row in
                     cell.textLabel?.textColor = UIColor.red
