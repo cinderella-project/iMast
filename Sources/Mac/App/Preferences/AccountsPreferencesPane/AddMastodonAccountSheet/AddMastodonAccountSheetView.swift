@@ -99,4 +99,8 @@ class AddMastodonAccountSheetView: NSView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func updateState(_ state: AddMastodonAccountSheetState) {
+        
+    }
 }
