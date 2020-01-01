@@ -23,6 +23,7 @@
 
 import UIKit
 import Eureka
+import AVKit
 
 class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
     var lastType: String = "boost"
@@ -48,6 +49,7 @@ class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
                 ButtonRow { row in
                     row.title = "再生してみる"
                     row.onCellSelection { cell, row in
+                        self.lastType = "boost"
                         self.playSound()
                     }
                 }
@@ -72,6 +74,7 @@ class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
                 ButtonRow { row in
                     row.title = "再生してみる"
                     row.onCellSelection { cell, row in
+                        self.lastType = "favourite"
                         self.playSound()
                     }
                 }
@@ -85,8 +88,23 @@ class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
         return vc
     }
     
+    let destDirUrl = appGroupFileUrl
+        .appendingPathComponent("Library", isDirectory: true)
+        .appendingPathComponent("Sounds", isDirectory: true)
+    
     func playSound() {
-        print("play sound")
+        let url = destDirUrl
+            .appendingPathComponent("custom-\(lastType).caf")
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            let alert = UIAlertController(title: "エラー", message: "通知音が登録されていません。先に登録してください", preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        let playerVC = AVPlayerViewController()
+        let player = AVPlayer(url: url)
+        playerVC.player = player
+        present(playerVC, animated: true, completion: nil)
     }
 }
 
@@ -95,9 +113,6 @@ extension OtherMenuPushSettingsChangeSoundViewController: UIDocumentPickerDelega
         guard let url = urls.first else {
             return
         }
-        let destDirUrl = appGroupFileUrl
-            .appendingPathComponent("Library", isDirectory: true)
-            .appendingPathComponent("Sounds", isDirectory: true)
         try! FileManager.default.createDirectory(at: destDirUrl, withIntermediateDirectories: true)
         let destUrl = destDirUrl
             .appendingPathComponent("custom-\(lastType).caf")
