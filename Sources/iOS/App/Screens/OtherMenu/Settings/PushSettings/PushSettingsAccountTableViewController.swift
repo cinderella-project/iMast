@@ -1,5 +1,5 @@
 //
-//  OtherMenuPushSettingsAccountTableViewController.swift
+//  PushSettingsAccountTableViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/07/28.
@@ -28,7 +28,7 @@ import SVProgressHUD
 import Notifwift
 
 @available(iOS 10.0, *)
-class OtherMenuPushSettingsAccountTableViewController: FormViewController {
+class PushSettingsAccountTableViewController: FormViewController {
     let accountOriginal: PushServiceToken!
     let account: PushServiceToken!
 

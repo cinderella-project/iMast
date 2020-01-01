@@ -72,7 +72,7 @@ class SettingsViewController: FormViewController {
             ButtonRow { row in
                 row.title = "プッシュ通知"
                 row.onCellSelection { cell, row in
-                    OtherMenuPushSettingsTableViewController.openRequest(vc: self)
+                    PushSettingsTableViewController.openRequest(vc: self)
                 }
             }
         }

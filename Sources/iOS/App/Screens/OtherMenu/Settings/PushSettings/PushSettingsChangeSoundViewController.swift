@@ -1,5 +1,5 @@
 //
-//  OtherMenuPushSettingsChangeSoundViewController.swift
+//  PushSettingsChangeSoundViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -25,7 +25,7 @@ import UIKit
 import Eureka
 import AVKit
 
-class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
+class PushSettingsChangeSoundViewController: FormViewController {
     var lastType: String = "boost"
     
     override func viewDidLoad() {
@@ -108,7 +108,7 @@ class OtherMenuPushSettingsChangeSoundViewController: FormViewController {
     }
 }
 
-extension OtherMenuPushSettingsChangeSoundViewController: UIDocumentPickerDelegate {
+extension PushSettingsChangeSoundViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let url = urls.first else {
             return

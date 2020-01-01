@@ -1,5 +1,5 @@
 //
-//  OtherMenuPushSettingsGroupNotifyTableViewController.swift
+//  PushSettingsGroupNotifyTableViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/09/18.
@@ -24,7 +24,7 @@
 import UIKit
 import Eureka
 
-class OtherMenuPushSettingsGroupNotifyTableViewController: FormViewController {
+class PushSettingsGroupNotifyTableViewController: FormViewController {
 
     init() {
         super.init(style: .grouped)

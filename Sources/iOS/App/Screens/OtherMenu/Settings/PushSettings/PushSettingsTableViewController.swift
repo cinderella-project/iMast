@@ -1,5 +1,5 @@
 //
-//  OtherMenuPushSettingsTableViewController.swift
+//  PushSettingsTableViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/07/17.
@@ -34,7 +34,7 @@ import Ikemen
 import iMastiOSCore
 
 @available(iOS 10.0, *)
-class OtherMenuPushSettingsTableViewController: FormViewController {
+class PushSettingsTableViewController: FormViewController {
     var loginSafari: LoginSafari!
     let notifwift = Notifwift()
     
@@ -78,12 +78,12 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
                 }.onCellSelection { (cell, row) in
-                    self.navigationController?.pushViewController(OtherMenuPushSettingsGroupNotifyTableViewController(), animated: true)
+                    self.navigationController?.pushViewController(PushSettingsGroupNotifyTableViewController(), animated: true)
                 }
                 ButtonRow { row in
                     row.title = "通知音カスタム (α)"
                     row.cellStyle = .default
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { OtherMenuPushSettingsChangeSoundViewController() }), onDismiss: nil)
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { PushSettingsChangeSoundViewController() }), onDismiss: nil)
                 }
                 ButtonRow { row in
                     row.title = "プッシュ通知の設定を削除"
@@ -157,7 +157,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 }.onCellSelection { cell, row in
-                    let vc = OtherMenuPushSettingsAccountTableViewController(account: account)
+                    let vc = PushSettingsAccountTableViewController(account: account)
                     let wrapVC = UINavigationController(rootViewController: vc)
                     self.present(wrapVC, animated: true, completion: nil)
                 }
@@ -246,7 +246,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
     
     static func openRequest(vc: UIViewController) {
         if try! PushService.isRegistered() {
-            vc.navigationController?.pushViewController(OtherMenuPushSettingsTableViewController(), animated: true)
+            vc.navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
         } else {
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]).then { res -> Promise<Bool> in
                 if res == false {
@@ -269,7 +269,7 @@ class OtherMenuPushSettingsTableViewController: FormViewController {
                 } else {
                     return PushService.register().then { _ in
                         UIApplication.shared.registerForRemoteNotifications()
-                        vc.navigationController?.pushViewController(OtherMenuPushSettingsTableViewController(), animated: true)
+                        vc.navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
                     }
                 }
             }.catch { e in
