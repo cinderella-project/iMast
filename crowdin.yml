@@ -1,3 +1,3 @@
 files:
   - source: /Sources/iOS/App/Strings/ja.lproj/*.strings
-    translation: /Sources/iOS/App/Strings/%two_letters_code%.lproj/%original_file_name%
+    translation: /Sources/iOS/App/Strings/%osx_code%/%original_file_name%
