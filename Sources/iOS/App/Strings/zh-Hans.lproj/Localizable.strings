@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  iMast
+
+  Created by rinsuki on 2018/10/06.
+  
+  ------------------------------------------------------------------------
+
+  Copyright 2017-2019 rinsuki and other contributors.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+"readmore" = "加载更多";
+"nothingMore" = "神马都没有了！";
+"fetchFailed" = "获取失败";
+
+"homeTimeline" = "主页";
+"homeTimeline.short" = "主页";
+
+"notifications" = "通知";
+
+"localTimeline" = "本站时间轴";
+"localTimeline.short" = "本站时间轴";
+
+"post" = "发布";
+"streaming" = "Streaming";
+"streamingStatus" = "状态：%@";
+
+"connected" = "已连接";
+"notConnected" = "未连接";
+
+"connect" = "链接";
+"disconnect" = "切断";
+"refetch" = "重新连接";
+"cancel" = "取消";
+
+"other" = "其他";
+"switchActiveAccount" = "账号管理";
+"currentAccount" = "已选择的账号：@%@";
+"myProfile" = "个人主页";
+"lists" = "列表";
+"settings" = "设置";
+"helpAndFeedback" = "帮助 / 意见反馈";
+"bookmarks" = "ブックマーク";
+
+"error.title" = "错误";
+"error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
+"error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
+"error.pleaseInputInstance" = "请输入实例";
+
+"error.unknown.title" = "謎のエラー";
+"error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";

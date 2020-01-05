@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  iMast
+
+  Created by rinsuki on 2018/10/06.
+  
+  ------------------------------------------------------------------------
+
+  Copyright 2017-2019 rinsuki and other contributors.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+"readmore" = "もっと";
+"nothingMore" = "ここまで";
+"fetchFailed" = "取得失敗";
+
+"homeTimeline" = "ホームタイムライン";
+"homeTimeline.short" = "ホーム";
+
+"notifications" = "通知";
+
+"localTimeline" = "ローカルタイムライン";
+"localTimeline.short" = "LTL";
+
+"post" = "投稿";
+"streaming" = "Streaming";
+"streamingStatus" = "状態: %@";
+
+"connected" = "接続中";
+"notConnected" = "接続していません";
+
+"connect" = "接続";
+"disconnect" = "切断";
+"refetch" = "再取得";
+"cancel" = "キャンセル";
+
+"other" = "その他";
+"switchActiveAccount" = "アカウントを変更";
+"currentAccount" = "現在のアカウント: @%@";
+"myProfile" = "自分のプロフィール";
+"lists" = "リスト";
+"settings" = "設定";
+"helpAndFeedback" = "ヘルプ / Feedback";
+"bookmarks" = "ブックマーク";
+
+"error.title" = "エラー";
+"error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
+"error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
+"error.pleaseInputInstance" = "インスタンスを入力してください。";
+
+"error.unknown.title" = "謎のエラー";
+"error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";

@@ -21,29 +21,29 @@
   limitations under the License.
 */
 
-"title" = "Profile";
+"title" = "主页";
 
-"cells.toots.title" = "Toots";
-"cells.following.title" = "Following";
-"cells.followers.title" = "Followers";
-"cells.createdAt.title" = "Created At";
+"cells.toots.title" = "嘟文";
+"cells.following.title" = "正在关注";
+"cells.followers.title" = "关注者";
+"cells.createdAt.title" = "注册时间";
 
-"actions.title" = "Actions";
-"actions.share" = "Share";
-"actions.profileCard" = "Profile Card";
+"actions.title" = "更多";
+"actions.share" = "分享";
+"actions.profileCard" = "名片";
 
-"actions.follow" = "Follow";
-"actions.followRequestCancel" = "Cancel follow request";
-"actions.unfollow" = "Unfollow";
+"actions.follow" = "关注";
+"actions.followRequestCancel" = "撤回关注申请";
+"actions.unfollow" = "取消关注";
 
-"actions.mute" = "Mute";
-"actions.unmute" = "Unmute";
+"actions.mute" = "隐藏";
+"actions.unmute" = "取消隐藏";
 
-"actions.block" = "Block";
-"actions.unblock" = "Unblock";
+"actions.block" = "屏蔽";
+"actions.unblock" = "取消屏蔽";
 
-"actions.followRequestsList" = "Pending follow requests";
+"actions.followRequestsList" = "关注申请一览";
 
-"actions.cancel" = "Cancel";
+"actions.cancel" = "取消";
 
-"federatedUserWarning" = "Since this user is belonged to another instance, some informations may not be accurate.";
+"federatedUserWarning" = "此用户来自于其他实例，所以数据可能并不完整";
