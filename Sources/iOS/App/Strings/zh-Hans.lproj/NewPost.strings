@@ -6,16 +6,16 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "CW説明文 (省略可能)";
-"infoText.inReplyTo" = "返信先: %@";
-"send" = "送信";
+"placeholders.cwWarningText" = "折叠部分的警告信息（可省略）";
+"infoText.inReplyTo" = "回复给：%@";
+"send" = "发布";
 
 // Safariのファイル選択時の表記に合わせてほしい
-"media.picker.takePhoto" = "写真を撮る";
+"media.picker.takePhoto" = "拍照";
 // Safariのファイル選択時の表記に合わせてほしい
-"media.picker.photoLibrary" = "フォトライブラリ";
-"media.preview" = "プレビュー";
-"media.delete" = "削除";
+"media.picker.photoLibrary" = "相册";
+"media.preview" = "预览";
+"media.delete" = "删除";
 
 "keyCommand.send.title" = "投稿";
 "keyCommand.send.description" = "投稿を送信";
