@@ -17,12 +17,12 @@
 "media.preview" = "预览";
 "media.delete" = "删除";
 
-"keyCommand.send.title" = "投稿";
-"keyCommand.send.description" = "投稿を送信";
+"keyCommand.send.title" = "发布";
+"keyCommand.send.description" = "发布嘟文";
 
 "alerts.sending.title" = "正在发布";
 "alerts.sending.steps.mediaUpload" = "正在上传图片 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "正在发送数据";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
-"errors.declineAppleMusicPermission" = "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。";
+"errors.declineAppleMusicPermission" = "无法读取音乐库，请在设置APP中开启iMast的「媒体与Apple Music」权限";
