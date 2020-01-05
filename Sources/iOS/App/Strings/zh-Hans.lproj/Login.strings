@@ -6,18 +6,18 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"title" = "ログイン";
-"pleaseInputMastodonInstance" = "Mastodonのインスタンスを入力してください";
-"loginButton" = "ログイン";
+"title" = "登录";
+"pleaseInputMastodonInstance" = "请输入Mastodon实例链接";
+"loginButton" = "登录";
 
-"progressDialog.title" = "ログイン中";
-"progressDialog.fetchingServerInfo" = "サーバーの情報を取得中…";
-"progressDialog.registeringApplication" = "アプリをサーバーに登録中…";
-"progressDialog.pleaseAuthorize" = "認証してください";
+"progressDialog.title" = "正在登录";
+"progressDialog.fetchingServerInfo" = "正在从服务器取得信息…";
+"progressDialog.registeringApplication" = "正在将app注册在服务器上…";
+"progressDialog.pleaseAuthorize" = "请您认证";
 
-"authorize.title" = "認証";
-"authorize.method.safari" = "Safariでログイン (推奨)";
-"authorize.method.mailAndPassword" = "メールアドレスとパスワードでログイン";
+"authorize.title" = "认证";
+"authorize.method.safari" = "使用Safari登录（推荐）";
+"authorize.method.mailAndPassword" = "使用邮箱和密码登录";
 
 "authorize.tos.header" = "ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。";
 "authorize.tos.rules" = "このサーバーのルール";
