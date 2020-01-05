@@ -41,10 +41,9 @@
 "localTimeline.short" = "LTL";
 
 "post" = "Post";
-
 "streaming" = "Streaming";
-
 "streamingStatus" = "Status: %@";
+
 "connected" = "Connected";
 "notConnected" = "Not connected";
 
@@ -63,7 +62,6 @@
 
 "login" = "ログイン";
 "pleaseInputMastodonInstance" = "Please input mastodon instance";
-
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
