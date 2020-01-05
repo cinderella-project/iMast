@@ -25,8 +25,8 @@
 "nothingMore" = "ここまで";
 "fetchFailed" = "取得失敗";
 
-"homeTimeline" = "ホームタイムライン";
-"homeTimeline.short" = "ホーム";
+"homeTimeline" = "主页";
+"homeTimeline.short" = "主页";
 
 "notifications" = "通知";
 
@@ -46,14 +46,14 @@
 "cancel" = "キャンセル";
 
 "other" = "その他";
-"switchActiveAccount" = "アカウントを変更";
+"switchActiveAccount" = "账号管理";
 "currentAccount" = "現在のアカウント: @%@";
-"myProfile" = "自分のプロフィール";
-"lists" = "リスト";
-"settings" = "設定";
-"helpAndFeedback" = "ヘルプ / Feedback";
+"myProfile" = "个人主页";
+"lists" = "列表";
+"settings" = "设置";
+"helpAndFeedback" = "帮助 / 意见反馈";
 
-"error.title" = "エラー";
+"error.title" = "错误";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
 "error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
 "error.pleaseInputInstance" = "インスタンスを入力してください。";
