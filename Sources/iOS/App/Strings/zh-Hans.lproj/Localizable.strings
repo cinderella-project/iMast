@@ -52,8 +52,12 @@
 "lists" = "列表";
 "settings" = "设置";
 "helpAndFeedback" = "帮助 / 意见反馈";
+"bookmarks" = "ブックマーク";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
 "error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
 "error.pleaseInputInstance" = "请输入实例";
+
+"error.unknown.title" = "謎のエラー";
+"error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";
