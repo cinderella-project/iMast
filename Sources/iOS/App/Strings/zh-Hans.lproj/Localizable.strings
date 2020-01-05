@@ -21,8 +21,8 @@
   limitations under the License.
 */
 
-"readmore" = "もっと";
-"nothingMore" = "ここまで";
+"readmore" = "加载更多";
+"nothingMore" = "神马都没有了！";
 "fetchFailed" = "获取失败";
 
 "homeTimeline" = "主页";
@@ -31,7 +31,7 @@
 "notifications" = "通知";
 
 "localTimeline" = "本站时间轴";
-"localTimeline.short" = "LTL";
+"localTimeline.short" = "本站时间轴";
 
 "post" = "发布";
 "streaming" = "Streaming";
@@ -56,4 +56,4 @@
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
 "error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
-"error.pleaseInputInstance" = "インスタンスを入力してください。";
+"error.pleaseInputInstance" = "请输入实例";
