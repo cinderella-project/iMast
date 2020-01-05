@@ -120,14 +120,18 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func sendPost(_ sender: Any) {
         print(isNSFW)
         let baseMessage = "しばらくお待ちください\n"
-        let alert = UIAlertController(title: "投稿中", message: baseMessage + "準備中", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(
+            title: L10n.NewPost.Alerts.Sending.title,
+            message: baseMessage + "準備中",
+            preferredStyle: UIAlertController.Style.alert
+        )
         present(alert, animated: true, completion: nil)
         
         let uploadPromise = async { _ -> [JSON] in
             var imageJSONs: [JSON] = []
             for (index, medium) in self.media.enumerated() {
                 DispatchQueue.main.async {
-                    alert.message = baseMessage + "画像アップロード中(\(index+1)/\(self.media.count))"
+                    alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
                 let response = try await(self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if response["_response_code"].intValue >= 400 {
@@ -144,7 +148,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         
         uploadPromise.then { (medias) -> Promise<JSON> in
             DispatchQueue.main.async {
-                alert.message = baseMessage + "送信中"
+                alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
             }
             print(medias)
             var text = self.textInput.text ?? ""
@@ -191,7 +195,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }.catch { err in
             DispatchQueue.main.async {
                 alert.dismiss(animated: false, completion: {
-                    self.alert(title: "エラー", message: "エラーが発生しました。\(err)")
+                    self.alert(title: L10n.Localizable.Error.title, message: "エラーが発生しました。\(err)")
                 })
             }
         }
@@ -233,7 +237,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func nowPlayingTapped(_ sender: Any) {
         switch MPMediaLibrary.authorizationStatus() {
         case .denied:
-            self.alert(title: "エラー", message: "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。")
+            self.alert(
+                title: L10n.Localizable.Error.title,
+                message: L10n.NewPost.Errors.declineAppleMusicPermission
+            )
             return
         case .notDetermined:
             MPMediaLibrary.requestAuthorization { [weak self, sender] status in

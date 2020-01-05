@@ -129,6 +129,7 @@
 		CE6554D523C25DDC0084FE1D /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CD23C25DDC0084FE1D /* Search.strings */; };
 		CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CF23C25DDC0084FE1D /* UserProfile.strings */; };
 		CE6554D723C25DDC0084FE1D /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554D123C25DDC0084FE1D /* Login.strings */; };
+		CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554E123C26C250084FE1D /* NewPost.strings */; };
 		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66A94C23B9D87600FEBC93 /* AddMastodonAccountSheetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4302E023B49C640031C2FF /* AddMastodonAccountSheetState.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
@@ -627,6 +628,7 @@
 		CE6554DA23C25DE30084FE1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
 		CE6554DB23C25DE30084FE1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE6554DC23C25DE30084FE1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CE6554E023C26C250084FE1D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE65772B21560BE300670F0A /* String+toPlainText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toPlainText.swift"; sourceTree = "<group>"; };
 		CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccountSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CE66CE131EEA2AF9006D5B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -655,8 +657,6 @@
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
 		CE845D272172504A00AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewPost.storyboard; sourceTree = "<group>"; };
-		CE845D2A2172504D00AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewPost.strings; sourceTree = "<group>"; };
-		CE845D2C2172505000AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
@@ -1498,6 +1498,7 @@
 				CE6554CB23C25DDC0084FE1D /* Notification.strings */,
 				CE6554CD23C25DDC0084FE1D /* Search.strings */,
 				CE6554CF23C25DDC0084FE1D /* UserProfile.strings */,
+				CE6554E123C26C250084FE1D /* NewPost.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2252,6 +2253,7 @@
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 				CE6554D723C25DDC0084FE1D /* Login.strings in Resources */,
+				CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */,
 				CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3174,6 +3176,14 @@
 			name = Login.strings;
 			sourceTree = "<group>";
 		};
+		CE6554E123C26C250084FE1D /* NewPost.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE6554E023C26C250084FE1D /* ja */,
+			);
+			name = NewPost.strings;
+			sourceTree = "<group>";
+		};
 		CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3196,8 +3206,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE845D272172504A00AF35B4 /* Base */,
-				CE845D2A2172504D00AF35B4 /* en */,
-				CE845D2C2172505000AF35B4 /* ja */,
 			);
 			name = NewPost.storyboard;
 			sourceTree = "<group>";

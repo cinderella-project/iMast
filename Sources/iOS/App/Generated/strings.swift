@@ -12,6 +12,8 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
   internal enum Localizable {
+    /// ブックマーク
+    internal static let bookmarks = L10n.tr("Localizable", "bookmarks")
     /// キャンセル
     internal static let cancel = L10n.tr("Localizable", "cancel")
     /// 接続
@@ -73,6 +75,12 @@ internal enum L10n {
       }
       /// エラー
       internal static let title = L10n.tr("Localizable", "error.title")
+      internal enum Unknown {
+        /// もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。
+        internal static let text = L10n.tr("Localizable", "error.unknown.text")
+        /// 謎のエラー
+        internal static let title = L10n.tr("Localizable", "error.unknown.title")
+      }
     }
     internal enum HomeTimeline {
       /// ホーム
@@ -129,6 +137,58 @@ internal enum L10n {
       internal static func message(_ p1: String) -> String {
         return L10n.tr("Login", "welcome.message", p1)
       }
+    }
+  }
+  internal enum NewPost {
+    /// 送信
+    internal static let send = L10n.tr("NewPost", "send")
+    internal enum Alerts {
+      internal enum Sending {
+        /// 投稿中
+        internal static let title = L10n.tr("NewPost", "alerts.sending.title")
+        internal enum Steps {
+          /// 画像アップロード中 (%1$d/%2$d)
+          internal static func mediaUpload(_ p1: Int, _ p2: Int) -> String {
+            return L10n.tr("NewPost", "alerts.sending.steps.mediaUpload", p1, p2)
+          }
+          /// 送信中
+          internal static let send = L10n.tr("NewPost", "alerts.sending.steps.send")
+        }
+      }
+    }
+    internal enum Errors {
+      /// 楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。
+      internal static let declineAppleMusicPermission = L10n.tr("NewPost", "errors.declineAppleMusicPermission")
+    }
+    internal enum InfoText {
+      /// 返信先: %@
+      internal static func inReplyTo(_ p1: String) -> String {
+        return L10n.tr("NewPost", "infoText.inReplyTo", p1)
+      }
+    }
+    internal enum KeyCommand {
+      internal enum Send {
+        /// 投稿を送信
+        internal static let description = L10n.tr("NewPost", "keyCommand.send.description")
+        /// 投稿
+        internal static let title = L10n.tr("NewPost", "keyCommand.send.title")
+      }
+    }
+    internal enum Media {
+      /// 削除
+      internal static let delete = L10n.tr("NewPost", "media.delete")
+      /// プレビュー
+      internal static let preview = L10n.tr("NewPost", "media.preview")
+      internal enum Picker {
+        /// フォトライブラリ
+        internal static let photoLibrary = L10n.tr("NewPost", "media.picker.photoLibrary")
+        /// 写真を撮る
+        internal static let takePhoto = L10n.tr("NewPost", "media.picker.takePhoto")
+      }
+    }
+    internal enum Placeholders {
+      /// CW説明分 (省略可能)
+      internal static let cwWarningText = L10n.tr("NewPost", "placeholders.cwWarningText")
     }
   }
   internal enum Notification {

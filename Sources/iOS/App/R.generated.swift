@@ -419,7 +419,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 6 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 31 localization keys.
     struct localizable {
       /// ja translation: LTL
       ///
@@ -445,6 +445,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en
       static let other = Rswift.StringResource(key: "other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。
+      ///
+      /// Locales: ja
+      static let errorUnknownText = Rswift.StringResource(key: "error.unknown.text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: もっと
       ///
       /// Locales: ja, en
@@ -465,6 +469,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en
       static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ブックマーク
+      ///
+      /// Locales: ja
+      static let bookmarks = Rswift.StringResource(key: "bookmarks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: ヘルプ / Feedback
       ///
       /// Locales: ja, en
@@ -529,6 +537,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en
       static let settings = Rswift.StringResource(key: "settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 謎のエラー
+      ///
+      /// Locales: ja
+      static let errorUnknownTitle = Rswift.StringResource(key: "error.unknown.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: 通知
       ///
       /// Locales: ja, en
@@ -628,6 +640,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("other", bundle: bundle, comment: "")
       }
 
+      /// ja translation: もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。
+      ///
+      /// Locales: ja
+      static func errorUnknownText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error.unknown.text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error.unknown.text"
+        }
+
+        return NSLocalizedString("error.unknown.text", bundle: bundle, comment: "")
+      }
+
       /// ja translation: もっと
       ///
       /// Locales: ja, en
@@ -701,6 +728,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("cancel", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ブックマーク
+      ///
+      /// Locales: ja
+      static func bookmarks(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("bookmarks", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "bookmarks"
+        }
+
+        return NSLocalizedString("bookmarks", bundle: bundle, comment: "")
       }
 
       /// ja translation: ヘルプ / Feedback
@@ -945,6 +987,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("settings", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 謎のエラー
+      ///
+      /// Locales: ja
+      static func errorUnknownTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error.unknown.title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error.unknown.title"
+        }
+
+        return NSLocalizedString("error.unknown.title", bundle: bundle, comment: "")
       }
 
       /// ja translation: 通知
@@ -1277,159 +1334,258 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.newPost` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.newPost` struct is generated, and contains static references to 13 localization keys.
     struct newPost {
-      /// ja translation:  0
+      /// ja translation: CW説明分 (省略可能)
       ///
-      /// Locales: en, ja
-      static let zg4V9GJNormalTitle = Rswift.StringResource(key: "9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: CW
+      /// Locales: ja
+      static let placeholdersCwWarningText = Rswift.StringResource(key: "placeholders.cwWarningText", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: フォトライブラリ
       ///
-      /// Locales: en, ja
-      static let paxYe0d9Title = Rswift.StringResource(key: "pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: CW説明文 (省略可能)
+      /// Locales: ja
+      static let mediaPickerPhotoLibrary = Rswift.StringResource(key: "media.picker.photoLibrary", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: プレビュー
       ///
-      /// Locales: en, ja
-      static let ncKaJwdPlaceholder = Rswift.StringResource(key: "8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: NSFW
+      /// Locales: ja
+      static let mediaPreview = Rswift.StringResource(key: "media.preview", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 写真を撮る
       ///
-      /// Locales: en, ja
-      static let pddnqDhaTitle = Rswift.StringResource(key: "PDD-NQ-dha.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: Siri
+      /// Locales: ja
+      static let mediaPickerTakePhoto = Rswift.StringResource(key: "media.picker.takePhoto", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 削除
       ///
-      /// Locales: en, ja
-      static let nxvAb3PETitle = Rswift.StringResource(key: "NXV-Ab-3PE.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: rin@mastodon.example.com 返信先: @uzuki: 凛ちゃんとデートです♪
+      /// Locales: ja
+      static let mediaDelete = Rswift.StringResource(key: "media.delete", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 投稿
       ///
-      /// Locales: en, ja
-      static let jxIaK2aText = Rswift.StringResource(key: "3JX-ia-k2a.text", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// ja translation: 新規投稿
+      /// Locales: ja
+      static let keyCommandSendTitle = Rswift.StringResource(key: "keyCommand.send.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 投稿を送信
       ///
-      /// Locales: en, ja
-      static let lfAApGmeTitle = Rswift.StringResource(key: "LfA-Ap-gme.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// Locales: ja
+      static let keyCommandSendDescription = Rswift.StringResource(key: "keyCommand.send.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 投稿中
+      ///
+      /// Locales: ja
+      static let alertsSendingTitle = Rswift.StringResource(key: "alerts.sending.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。
+      ///
+      /// Locales: ja
+      static let errorsDeclineAppleMusicPermission = Rswift.StringResource(key: "errors.declineAppleMusicPermission", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 画像アップロード中 (%1$d/%2$d)
+      ///
+      /// Locales: ja
+      static let alertsSendingStepsMediaUpload = Rswift.StringResource(key: "alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 返信先: %@
+      ///
+      /// Locales: ja
+      static let infoTextInReplyTo = Rswift.StringResource(key: "infoText.inReplyTo", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: 送信
       ///
-      /// Locales: en, ja
-      static let vdu9C5JKTitle = Rswift.StringResource(key: "vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-
-      /// ja translation:  0
+      /// Locales: ja
+      static let send = Rswift.StringResource(key: "send", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 送信中
       ///
-      /// Locales: en, ja
-      static func zg4V9GJNormalTitle(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static let alertsSendingStepsSend = Rswift.StringResource(key: "alerts.sending.steps.send", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+
+      /// ja translation: CW説明分 (省略可能)
+      ///
+      /// Locales: ja
+      static func placeholdersCwWarningText(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("placeholders.cwWarningText", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "9zg-4V-9GJ.normalTitle"
+          return "placeholders.cwWarningText"
         }
 
-        return NSLocalizedString("9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("placeholders.cwWarningText", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: CW
+      /// ja translation: フォトライブラリ
       ///
-      /// Locales: en, ja
-      static func paxYe0d9Title(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func mediaPickerPhotoLibrary(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("pax-Ye-0d9.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("media.picker.photoLibrary", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "pax-Ye-0d9.title"
+          return "media.picker.photoLibrary"
         }
 
-        return NSLocalizedString("pax-Ye-0d9.title", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("media.picker.photoLibrary", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: CW説明文 (省略可能)
+      /// ja translation: プレビュー
       ///
-      /// Locales: en, ja
-      static func ncKaJwdPlaceholder(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func mediaPreview(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("media.preview", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "8NC-Ka-Jwd.placeholder"
+          return "media.preview"
         }
 
-        return NSLocalizedString("8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("media.preview", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: NSFW
+      /// ja translation: 写真を撮る
       ///
-      /// Locales: en, ja
-      static func pddnqDhaTitle(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func mediaPickerTakePhoto(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("PDD-NQ-dha.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("media.picker.takePhoto", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "PDD-NQ-dha.title"
+          return "media.picker.takePhoto"
         }
 
-        return NSLocalizedString("PDD-NQ-dha.title", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("media.picker.takePhoto", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: Siri
+      /// ja translation: 削除
       ///
-      /// Locales: en, ja
-      static func nxvAb3PETitle(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func mediaDelete(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("NXV-Ab-3PE.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("media.delete", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "NXV-Ab-3PE.title"
+          return "media.delete"
         }
 
-        return NSLocalizedString("NXV-Ab-3PE.title", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("media.delete", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: rin@mastodon.example.com 返信先: @uzuki: 凛ちゃんとデートです♪
+      /// ja translation: 投稿
       ///
-      /// Locales: en, ja
-      static func jxIaK2aText(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func keyCommandSendTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("3JX-ia-k2a.text", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("keyCommand.send.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "3JX-ia-k2a.text"
+          return "keyCommand.send.title"
         }
 
-        return NSLocalizedString("3JX-ia-k2a.text", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("keyCommand.send.title", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// ja translation: 新規投稿
+      /// ja translation: 投稿を送信
       ///
-      /// Locales: en, ja
-      static func lfAApGmeTitle(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func keyCommandSendDescription(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("keyCommand.send.description", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "LfA-Ap-gme.title"
+          return "keyCommand.send.description"
         }
 
-        return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("keyCommand.send.description", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 投稿中
+      ///
+      /// Locales: ja
+      static func alertsSendingTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alerts.sending.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "alerts.sending.title"
+        }
+
+        return NSLocalizedString("alerts.sending.title", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。
+      ///
+      /// Locales: ja
+      static func errorsDeclineAppleMusicPermission(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("errors.declineAppleMusicPermission", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "errors.declineAppleMusicPermission"
+        }
+
+        return NSLocalizedString("errors.declineAppleMusicPermission", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 画像アップロード中 (%1$d/%2$d)
+      ///
+      /// Locales: ja
+      static func alertsSendingStepsMediaUpload(_ value1: Int, _ value2: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "alerts.sending.steps.mediaUpload"
+        }
+
+        let format = NSLocalizedString("alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// ja translation: 返信先: %@
+      ///
+      /// Locales: ja
+      static func infoTextInReplyTo(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("infoText.inReplyTo", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "infoText.inReplyTo"
+        }
+
+        let format = NSLocalizedString("infoText.inReplyTo", tableName: "NewPost", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// ja translation: 送信
       ///
-      /// Locales: en, ja
-      static func vdu9C5JKTitle(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja
+      static func send(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("send", tableName: "NewPost", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "vdu-9C-5JK.title"
+          return "send"
         }
 
-        return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: bundle, comment: "")
+        return NSLocalizedString("send", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 送信中
+      ///
+      /// Locales: ja
+      static func alertsSendingStepsSend(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("alerts.sending.steps.send", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "alerts.sending.steps.send"
+        }
+
+        return NSLocalizedString("alerts.sending.steps.send", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

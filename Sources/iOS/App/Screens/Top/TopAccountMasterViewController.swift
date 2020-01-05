@@ -134,7 +134,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         case .bookmarks:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bookmark")
-            cell.textLabel?.text = "Bookmarks"
+            cell.textLabel?.text = L10n.Localizable.bookmarks
         case .list(let list):
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "list.bullet")

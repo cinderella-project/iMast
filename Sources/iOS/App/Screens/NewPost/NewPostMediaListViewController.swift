@@ -104,7 +104,7 @@ class NewPostMediaListViewController: UIViewController {
         pickerSelector.popoverPresentationController?.sourceRect = sender.frame
         pickerSelector.popoverPresentationController?.delegate = self
         pickerSelector.delegate = self
-        pickerSelector.addOption(withTitle: "フォトライブラリ", image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: {
+        pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.photoLibrary, image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: {
             print("photo-library")
             let imgPickerC = UIImagePickerController()
             print(imgPickerC.modalPresentationStyle.rawValue)
@@ -118,7 +118,7 @@ class NewPostMediaListViewController: UIViewController {
             self.present(imgPickerC, animated: true, completion: nil)
         })
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            pickerSelector.addOption(withTitle: "写真を撮る", image: UIImage(systemName: "camera.fill"), order: .first, handler: {
+            pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.takePhoto, image: UIImage(systemName: "camera.fill"), order: .first, handler: {
                 print("camera")
                 let imgPickerC = UIImagePickerController()
                 imgPickerC.sourceType = UIImagePickerController.SourceType.camera
@@ -141,7 +141,7 @@ class NewPostMediaListViewController: UIViewController {
         let media = newPostVC.media[index]
 
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "プレビュー", style: .default, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: L10n.NewPost.Media.preview, style: .default, handler: { _ in
             switch media.format {
             case .png, .jpeg:
                 let viewController = UIViewController()
@@ -164,11 +164,11 @@ class NewPostMediaListViewController: UIViewController {
                 self.present(viewController, animated: true, completion: nil)
             }
         }))
-        alertVC.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: L10n.NewPost.Media.delete, style: .destructive, handler: { _ in
             self.newPostVC.media.remove(at: index)
             self.refresh()
         }))
-        alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }
