@@ -26,4 +26,4 @@
 "passwordLogin.mailAddress" = "邮箱";
 "passwordLogin.password" = "密码";
 
-"welcome.message" = "ようこそ、\n%@\nさん。";
+"welcome.message" = "%@\n欢迎使用";
