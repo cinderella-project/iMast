@@ -6,7 +6,7 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "CW説明分 (省略可能)";
+"placeholders.cwWarningText" = "CW説明文 (省略可能)";
 "infoText.inReplyTo" = "返信先: %@";
 "send" = "送信";
 
