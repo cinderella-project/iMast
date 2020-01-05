@@ -54,15 +54,16 @@ class AddAccountLoginViewController: FormViewController {
         form.append {
             Section {
                 TextRow("mail") { row in
-                    row.placeholder = "メールアドレス"
+                    row.placeholder = L10n.Login.PasswordLogin.mailAddress
                 }
                 PasswordRow("password") { row in
-                    row.placeholder = "パスワード"
+                    row.placeholder = L10n.Login.PasswordLogin.password
                 }
             }
             Section {
                 ButtonRow { row in
-                    row.title = "ログイン"
+                    row.title = L10n.Login.loginButton
+                    row.disabled = "$mail == nil || $password == nil"
                     row.onCellSelection { [weak self] cell, row in
                         self?.loginButtonTapped()
                     }
@@ -79,12 +80,10 @@ class AddAccountLoginViewController: FormViewController {
     func loginButtonTapped() {
         let formValues = form.values()
         guard let mailAddress = formValues["mail"] as? String else {
-            self.alert(title: "エラー", message: "メールアドレスを入力してください")
             return
         }
         
         guard let password = formValues["password"] as? String else {
-            self.alert(title: "エラー", message: "パスワードを入力してください")
             return
         }
         

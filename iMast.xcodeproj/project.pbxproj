@@ -125,6 +125,8 @@
 		CE5DE87B21F4FF9D0008D437 /* UIViewController+presentPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */; };
 		CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */; };
 		CE5DE8B921F5CB6D0008D437 /* UIViewController+dismissPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */; };
+		CE65547923C22FEA0084FE1D /* Notification.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE65547B23C22FEA0084FE1D /* Notification.strings */; };
+		CE6554AB23C23DD70084FE1D /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554A923C23DD70084FE1D /* Login.strings */; };
 		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66A94C23B9D87600FEBC93 /* AddMastodonAccountSheetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4302E023B49C640031C2FF /* AddMastodonAccountSheetState.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
@@ -195,6 +197,7 @@
 		CEC6BC0D21076D84003ECE10 /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */; };
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
+		CEC8365F23C2126100E4A957 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC8365E23C2126000E4A957 /* strings.swift */; };
 		CECB175821ACABE800D57F65 /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CECB175A21ACABE800D57F65 /* UserProfile.strings */; };
 		CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
 		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
@@ -571,7 +574,6 @@
 		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE367DFB2186F97F0068EBE7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Search.strings; sourceTree = "<group>"; };
-		CE367DFD2186F9800068EBE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Search.strings; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
@@ -616,6 +618,10 @@
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
 		CE5F7CB523112D12005E819E /* MastodonInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonInstance.swift; sourceTree = "<group>"; };
+		CE6554AA23C23DD70084FE1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Login.strings; sourceTree = "<group>"; };
+		CE6554AC23C23DDB0084FE1D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Login.strings; sourceTree = "<group>"; };
+		CE6554AE23C2414F0084FE1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Notification.strings; sourceTree = "<group>"; };
+		CE6554AF23C241580084FE1D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Notification.strings; sourceTree = "<group>"; };
 		CE65772B21560BE300670F0A /* String+toPlainText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toPlainText.swift"; sourceTree = "<group>"; };
 		CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccountSelectorTableViewController.swift; sourceTree = "<group>"; };
 		CE66CE131EEA2AF9006D5B18 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -647,7 +653,6 @@
 		CE845D2A2172504D00AF35B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE845D2C2172505000AF35B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
-		CE87300C216884360038D964 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE87300F2168843F0038D964 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
@@ -698,8 +703,12 @@
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojify.swift"; sourceTree = "<group>"; };
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
+		CEC8365C23C1FA6100E4A957 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		CEC8365E23C2126000E4A957 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		CEC8366023C212AA00E4A957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CEC8366223C2267100E4A957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Search.strings; sourceTree = "<group>"; };
+		CEC8366623C2273100E4A957 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CECB175921ACABE800D57F65 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UserProfile.strings; sourceTree = "<group>"; };
-		CECB175B21ACABEA00D57F65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UserProfile.strings; sourceTree = "<group>"; };
 		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollSelectorViewController.swift; sourceTree = "<group>"; };
@@ -1046,6 +1055,9 @@
 		CE3D453523766DE5006F1198 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CEC8365C23C1FA6100E4A957 /* swiftgen.yml */,
+				CEC8366723C22AAC00E4A957 /* Strings */,
+				CEC8365B23C1F9B800E4A957 /* Generated */,
 				CE90855C21918750006769DC /* R.generated.swift */,
 				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
@@ -1053,9 +1065,7 @@
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
 				CE4D388023BD17E000543E72 /* Screens */,
 				CEE3571E1FF51A3900675DFC /* CustomViews */,
-				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
 				CE845D282172504A00AF35B4 /* NewPost.storyboard */,
-				CE367DFC2186F97F0068EBE7 /* Search.strings */,
 				2AF352211EAB9C5600777C2E /* Assets.xcassets */,
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
@@ -1065,7 +1075,6 @@
 				CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
-				CE87300D216884360038D964 /* Localizable.strings */,
 				CEE213121EF13EE600393C67 /* emoji.json */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
 			);
@@ -1473,6 +1482,26 @@
 			path = iMastNotifyService;
 			sourceTree = "<group>";
 		};
+		CEC8365B23C1F9B800E4A957 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CEC8365E23C2126000E4A957 /* strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		CEC8366723C22AAC00E4A957 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				CECB175A21ACABE800D57F65 /* UserProfile.strings */,
+				CE367DFC2186F97F0068EBE7 /* Search.strings */,
+				CE87300D216884360038D964 /* Localizable.strings */,
+				CE65547B23C22FEA0084FE1D /* Notification.strings */,
+				CE6554A923C23DD70084FE1D /* Login.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		CED6077821B3658F00F6232E /* iMastIntents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1761,6 +1790,7 @@
 			buildConfigurationList = 2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast" */;
 			buildPhases = (
 				4B77653ACFD6F075F5A4B543 /* [CP] Check Pods Manifest.lock */,
+				CEC8365D23C1FA6900E4A957 /* SwiftGen */,
 				CEE343F9225287910040EB48 /* R.swift Generate */,
 				CE099D0521943C1E00A4BCCB /* SwiftLint */,
 				CE9B75C822079C3600EBAB1B /* Generate LicensePlist */,
@@ -2171,11 +2201,11 @@
 			};
 			buildConfigurationList = 2AF352121EAB9C5500777C2E /* Build configuration list for PBXProject "iMast" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = ja;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 				ja,
 			);
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
@@ -2219,7 +2249,9 @@
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CE367DFA2186F97F0068EBE7 /* Search.strings in Resources */,
+				CE65547923C22FEA0084FE1D /* Notification.strings in Resources */,
 				CE87300B216884360038D964 /* Localizable.strings in Resources */,
+				CE6554AB23C23DD70084FE1D /* Login.strings in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2574,6 +2606,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path Sources/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
 		};
+		CEC8365D23C1FA6900E4A957 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/iOS/App/swiftgen.yml\n";
+		};
 		CEE343F9225287910040EB48 /* R.swift Generate */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2686,6 +2736,7 @@
 				CE43BEA92377792B00133C86 /* UIViewController+alerts.swift in Sources */,
 				CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */,
 				CE90855D21918751006769DC /* R.generated.swift in Sources */,
+				CEC8365F23C2126100E4A957 /* strings.swift in Sources */,
 				CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */,
 				CE5357632375CEC9006340E7 /* TopMasterViewController.swift in Sources */,
 				2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */,
@@ -3073,8 +3124,8 @@
 		CE367DFC2186F97F0068EBE7 /* Search.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				CEC8366223C2267100E4A957 /* Base */,
 				CE367DFB2186F97F0068EBE7 /* ja */,
-				CE367DFD2186F9800068EBE7 /* en */,
 			);
 			name = Search.strings;
 			sourceTree = "<group>";
@@ -3085,6 +3136,24 @@
 				CE51AC001F40C06B00E43607 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		CE65547B23C22FEA0084FE1D /* Notification.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE6554AE23C2414F0084FE1D /* Base */,
+				CE6554AF23C241580084FE1D /* ja */,
+			);
+			name = Notification.strings;
+			sourceTree = "<group>";
+		};
+		CE6554A923C23DD70084FE1D /* Login.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE6554AA23C23DD70084FE1D /* Base */,
+				CE6554AC23C23DDB0084FE1D /* ja */,
+			);
+			name = Login.strings;
 			sourceTree = "<group>";
 		};
 		CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */ = {
@@ -3118,7 +3187,7 @@
 		CE87300D216884360038D964 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE87300C216884360038D964 /* en */,
+				CEC8366623C2273100E4A957 /* Base */,
 				CE87300F2168843F0038D964 /* ja */,
 			);
 			name = Localizable.strings;
@@ -3127,8 +3196,8 @@
 		CECB175A21ACABE800D57F65 /* UserProfile.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				CEC8366023C212AA00E4A957 /* Base */,
 				CECB175921ACABE800D57F65 /* ja */,
-				CECB175B21ACABEA00D57F65 /* en */,
 			);
 			name = UserProfile.strings;
 			sourceTree = "<group>";

@@ -21,21 +21,14 @@
   limitations under the License.
 */
 
-"notifications" = "通知";
-"followedYou" = "@%@さんにフォローされました";
-"favouritedYourToot" = "@%@さんにふぁぼられました";
-"mentionedYou" = "@%@さんからのメンション";
-"boostedYourToot" = "@%@さんにブーストされました";
-"myPollEnded" = "あなたが作成した投票が終了しました";
-"votedPollEnded" = "あなたが参加した投票が終了しました";
-"unknownNotificationType" = "不明な通知: %@";
-
 "readmore" = "もっと";
 "nothingMore" = "ここまで";
 "fetchFailed" = "取得失敗";
 
 "homeTimeline" = "ホームタイムライン";
 "homeTimeline.short" = "ホーム";
+
+"notifications" = "通知";
 
 "localTimeline" = "ローカルタイムライン";
 "localTimeline.short" = "LTL";
@@ -59,9 +52,6 @@
 "lists" = "リスト";
 "settings" = "設定";
 "helpAndFeedback" = "ヘルプ / Feedback";
-
-"login" = "ログイン";
-"pleaseInputMastodonInstance" = "Mastodonのインスタンスを入力してください";
 
 "error.title" = "エラー";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";

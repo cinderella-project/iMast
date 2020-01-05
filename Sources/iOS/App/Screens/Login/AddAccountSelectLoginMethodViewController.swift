@@ -33,11 +33,11 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "認証"
+        title = L10n.Login.Authorize.title
         
         let authMethodSection = Section {
             ButtonRow { row in
-                row.title = "Safariでログインする (推奨)"
+                row.title = L10n.Login.Authorize.Method.safari
                 row.cellUpdate { cell, row in
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
@@ -48,7 +48,7 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
                 }
             }
             ButtonRow { row in
-                row.title = "メールアドレスとパスワードでログインする"
+                row.title = L10n.Login.Authorize.Method.mailAndPassword
                 row.presentationMode = .show(controllerProvider: .callback(builder: {
                     let vc = AddAccountLoginViewController()
                     vc.title = row.title
@@ -58,9 +58,9 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
             }
         }
         
-        let tosSection = Section(header: "ログインすると、このインスタンスの以下の規約に同意したことになります。") {
-            OpenSafariRow(title: "利用規約", url: URL(string: "https://\(app.instance.hostName)/about/more")!)
-            OpenSafariRow(title: "プライバシーポリシー", url: URL(string: "https://\(app.instance.hostName)/terms")!)
+        let tosSection = Section(header: L10n.Login.Authorize.Tos.header) {
+            OpenSafariRow(title: L10n.Login.Authorize.Tos.rules, url: URL(string: "https://\(app.instance.hostName)/about/more")!)
+            OpenSafariRow(title: L10n.Login.Authorize.Tos.termsOfService, url: URL(string: "https://\(app.instance.hostName)/terms")!)
         }
         
         form.append {

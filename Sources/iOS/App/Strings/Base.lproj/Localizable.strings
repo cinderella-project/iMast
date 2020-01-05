@@ -21,21 +21,14 @@
   limitations under the License.
 */
 
-"notifications" = "Notifications";
-"followedYou" = "@%@ followed you";
-"favouritedYourToot" = "@%@ favorited your toot";
-"mentionedYou" = "@%@ mentioned you";
-"boostedYourToot" = "@%@ boosted your toot";
-"myPollEnded" = "Your poll has ended";
-"votedPollEnded" = "A poll you voted has ended";
-"unknownNotificationType" = "Unknown Notification: %@";
-
 "readmore" = "Read more";
 "nothingMore" = "Nothing more";
 "fetchFailed" = "Fetch failed";
 
 "homeTimeline" = "Home Timeline";
 "homeTimeline.short" = "Home";
+
+"notifications" = "Notifications";
 
 "localTimeline" = "Local Timeline";
 "localTimeline.short" = "LTL";
@@ -60,10 +53,6 @@
 "lists" = "Lists";
 "settings" = "Settings";
 "helpAndFeedback" = "Help / Feedback";
-
-"login" = "ログイン";
-"pleaseInputMastodonInstance" = "Please input mastodon instance";
-
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";

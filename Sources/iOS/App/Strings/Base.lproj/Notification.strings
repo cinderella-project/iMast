@@ -1,0 +1,15 @@
+/* 
+  Notification.strings
+  iMast
+
+  Created by user on 2020/01/05.
+  Copyright © 2020 rinsuki. All rights reserved.
+*/
+
+"types.follow" = "@%@ followed you";
+"types.favourite" = "@%@ favorited your toot";
+"types.mention" = "@%@ mentioned you";
+"types.boost" = "@%@ boosted your toot";
+"types.poll.owner" = "Your poll has ended";
+"types.poll.notowner" = "A poll you voted has ended";
+"types.unknown" = "Unknown Notification: %@";

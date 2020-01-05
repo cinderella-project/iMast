@@ -39,6 +39,7 @@ PODS:
   - SnapKit (5.0.1)
   - Starscream (3.1.1)
   - SVProgressHUD (2.2.5)
+  - SwiftGen (6.1.0)
   - SwiftLint (0.37.0)
   - SwiftyJSON (5.0.0)
   - XCGLogger (7.0.0):
@@ -67,6 +68,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.1)
   - Starscream (~> 3.1.1)
   - SVProgressHUD
+  - SwiftGen (~> 6.1.0)
   - SwiftLint (~> 0.37.0)
   - SwiftyJSON (~> 5.0.0)
   - XCGLogger (~> 7.0.0)
@@ -95,6 +97,7 @@ SPEC REPOS:
     - SnapKit
     - Starscream
     - SVProgressHUD
+    - SwiftGen
     - SwiftLint
     - SwiftyJSON
     - XCGLogger
@@ -133,11 +136,12 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: c256e8447624429b58546658f1d242db9180c882
+PODFILE CHECKSUM: 87eb812da44c3965064e246697a36599c015be0e
 
 COCOAPODS: 1.8.3

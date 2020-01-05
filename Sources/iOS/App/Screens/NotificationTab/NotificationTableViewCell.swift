@@ -61,21 +61,21 @@ class NotificationTableViewCell: UITableViewCell {
         let acct = notification.account?.acct ?? ""
         switch notification.type {
         case "reblog":
-            return R.string.localizable.boostedYourToot(acct)
+            return L10n.Notification.Types.boost(acct)
         case "favourite":
-            return R.string.localizable.favouritedYourToot(acct)
+            return L10n.Notification.Types.favourite(acct)
         case "mention":
-            return R.string.localizable.mentionedYou(acct)
+            return L10n.Notification.Types.mention(acct)
         case "follow":
-            return R.string.localizable.followedYou(acct)
+            return L10n.Notification.Types.follow(acct)
         case "poll":
             if MastodonUserToken.getLatestUsed()?.screenName == notification.account?.acct {
-                return R.string.localizable.myPollEnded()
+                return L10n.Notification.Types.Poll.owner
             } else {
-                return R.string.localizable.votedPollEnded()
+                return L10n.Notification.Types.Poll.notowner
             }
         default:
-            return R.string.localizable.unknownNotificationType(notification.type)
+            return L10n.Notification.Types.unknown(notification.type)
         }
     }
     

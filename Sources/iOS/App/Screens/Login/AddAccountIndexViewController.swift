@@ -33,7 +33,7 @@ class AddAccountIndexViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = R.string.localizable.login()
+        self.title = L10n.Login.title
         if latestToken == nil {
             latestToken = MastodonUserToken.getLatestUsed()
         }
@@ -44,7 +44,7 @@ class AddAccountIndexViewController: FormViewController {
             )
         }
         self.form.append {
-            Section(header: R.string.localizable.pleaseInputMastodonInstance()) {
+            Section(header: L10n.Login.pleaseInputMastodonInstance) {
                 TextRow("instance") { row in
                     row.placeholder = "mastodon.example"
                     row.cellUpdate { cell, row in
@@ -56,7 +56,7 @@ class AddAccountIndexViewController: FormViewController {
             }
             Section {
                 ButtonRow { row in
-                    row.title = "ログイン"
+                    row.title = L10n.Login.loginButton
                     row.disabled = "$instance == nil"
                     row.onCellSelection { [weak self] cell, row in
                         self?.onLoginTapped()
@@ -80,22 +80,22 @@ class AddAccountIndexViewController: FormViewController {
         guard let hostName = values["instance"] as? String else {
             return
         }
-        let alert = UIAlertController(title: "ログイン中...", message: "ログインしています", preferredStyle: .alert)
+        let alert = UIAlertController(title: L10n.Login.ProgressDialog.title, message: "...", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         let promise = async { status -> MastodonApp in
             DispatchQueue.mainSafeSync {
-                alert.message = "ログインしています\nインスタンス情報を取得中... (1/4)"
+                alert.message = "\(L10n.Login.ProgressDialog.fetchingServerInfo) (1/4)"
             }
             let instance = MastodonInstance(hostName: hostName)
             _ = try await(instance.getInfo())
             DispatchQueue.mainSafeSync {
-                alert.message = "ログインしています\nアプリ情報を登録中... (2/4)"
+                alert.message = "\(L10n.Login.ProgressDialog.registeringApplication) (2/4)"
             }
             let appName = Defaults[.newAccountVia]
             let app = try await(instance.createApp(name: appName))
             app.save()
             DispatchQueue.mainSafeSync {
-                alert.message = "ログインしています\n認証してください (3/4)"
+                alert.message = "\(L10n.Login.ProgressDialog.pleaseAuthorize) (3/4)"
             }
             return app
         }

@@ -1,0 +1,8 @@
+output_dir: ./Generated/
+
+strings:
+  inputs: ./Strings/Base.lproj/
+  filter: .+\.strings$
+  outputs:
+  - templateName: structured-swift4
+    output: strings.swift
