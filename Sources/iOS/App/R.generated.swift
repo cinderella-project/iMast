@@ -421,519 +421,170 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
     struct localizable {
-      /// Base translation: Cancel
+      /// ja translation: LTL
       ///
-      /// Locales: Base, ja
-      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Connect
+      /// Locales: ja, en
+      static let localTimelineShort = Rswift.StringResource(key: "localTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: Streaming
       ///
-      /// Locales: Base, ja
-      static let connect = Rswift.StringResource(key: "connect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Connected
+      /// Locales: ja, en
+      static let streaming = Rswift.StringResource(key: "streaming", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ここまで
       ///
-      /// Locales: Base, ja
-      static let connected = Rswift.StringResource(key: "connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Current: @%@
+      /// Locales: ja, en
+      static let nothingMore = Rswift.StringResource(key: "nothingMore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。 (iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります) Mastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
       ///
-      /// Locales: Base, ja
-      static let currentAccount = Rswift.StringResource(key: "currentAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Disconnect
+      /// Locales: ja, en
+      static let errorRequiredNewerMastodon = Rswift.StringResource(key: "error.requiredNewerMastodon", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: この機能を利用するためには iOS %.1f 以上が必要です。
       ///
-      /// Locales: Base, ja
-      static let disconnect = Rswift.StringResource(key: "disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Error
+      /// Locales: ja, en
+      static let errorRequiredNewerOS = Rswift.StringResource(key: "error.requiredNewerOS", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: その他
       ///
-      /// Locales: Base, ja
-      static let errorTitle = Rswift.StringResource(key: "error.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Fetch failed
+      /// Locales: ja, en
+      static let other = Rswift.StringResource(key: "other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: もっと
       ///
-      /// Locales: Base, ja
-      static let fetchFailed = Rswift.StringResource(key: "fetchFailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Help / Feedback
+      /// Locales: ja, en
+      static let readmore = Rswift.StringResource(key: "readmore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: アカウントを変更
       ///
-      /// Locales: Base, ja
-      static let helpAndFeedback = Rswift.StringResource(key: "helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Home
+      /// Locales: ja, en
+      static let switchActiveAccount = Rswift.StringResource(key: "switchActiveAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: インスタンスを入力してください。
       ///
-      /// Locales: Base, ja
-      static let homeTimelineShort = Rswift.StringResource(key: "homeTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Home Timeline
+      /// Locales: ja, en
+      static let errorPleaseInputInstance = Rswift.StringResource(key: "error.pleaseInputInstance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: エラー
       ///
-      /// Locales: Base, ja
-      static let homeTimeline = Rswift.StringResource(key: "homeTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: LTL
+      /// Locales: ja, en
+      static let errorTitle = Rswift.StringResource(key: "error.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: キャンセル
       ///
-      /// Locales: Base, ja
-      static let localTimelineShort = Rswift.StringResource(key: "localTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Lists
+      /// Locales: ja, en
+      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ヘルプ / Feedback
       ///
-      /// Locales: Base, ja
-      static let lists = Rswift.StringResource(key: "lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Local Timeline
+      /// Locales: ja, en
+      static let helpAndFeedback = Rswift.StringResource(key: "helpAndFeedback", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ホーム
       ///
-      /// Locales: Base, ja
-      static let localTimeline = Rswift.StringResource(key: "localTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: My Profile
+      /// Locales: ja, en
+      static let homeTimelineShort = Rswift.StringResource(key: "homeTimeline.short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ホームタイムライン
       ///
-      /// Locales: Base, ja
-      static let myProfile = Rswift.StringResource(key: "myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Not connected
+      /// Locales: ja, en
+      static let homeTimeline = Rswift.StringResource(key: "homeTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: リスト
       ///
-      /// Locales: Base, ja
-      static let notConnected = Rswift.StringResource(key: "notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Nothing more
+      /// Locales: ja, en
+      static let lists = Rswift.StringResource(key: "lists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ローカルタイムライン
       ///
-      /// Locales: Base, ja
-      static let nothingMore = Rswift.StringResource(key: "nothingMore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Notifications
+      /// Locales: ja, en
+      static let localTimeline = Rswift.StringResource(key: "localTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 再取得
       ///
-      /// Locales: Base, ja
-      static let notifications = Rswift.StringResource(key: "notifications", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Others
+      /// Locales: ja, en
+      static let refetch = Rswift.StringResource(key: "refetch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 切断
       ///
-      /// Locales: Base, ja
-      static let other = Rswift.StringResource(key: "other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Please input instance.
+      /// Locales: ja, en
+      static let disconnect = Rswift.StringResource(key: "disconnect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 取得失敗
       ///
-      /// Locales: Base, ja
-      static let errorPleaseInputInstance = Rswift.StringResource(key: "error.pleaseInputInstance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Post
+      /// Locales: ja, en
+      static let fetchFailed = Rswift.StringResource(key: "fetchFailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 投稿
       ///
-      /// Locales: Base, ja
-      static let post = Rswift.StringResource(key: "post", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Read more
+      /// Locales: ja, en
+      static let post = Rswift.StringResource(key: "post", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 接続
       ///
-      /// Locales: Base, ja
-      static let readmore = Rswift.StringResource(key: "readmore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Refresh
+      /// Locales: ja, en
+      static let connect = Rswift.StringResource(key: "connect", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 接続していません
       ///
-      /// Locales: Base, ja
-      static let refetch = Rswift.StringResource(key: "refetch", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Settings
+      /// Locales: ja, en
+      static let notConnected = Rswift.StringResource(key: "notConnected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 接続中
       ///
-      /// Locales: Base, ja
-      static let settings = Rswift.StringResource(key: "settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Status: %@
+      /// Locales: ja, en
+      static let connected = Rswift.StringResource(key: "connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 状態: %@
       ///
-      /// Locales: Base, ja
-      static let streamingStatus = Rswift.StringResource(key: "streamingStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Streaming
+      /// Locales: ja, en
+      static let streamingStatus = Rswift.StringResource(key: "streamingStatus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 現在のアカウント: @%@
       ///
-      /// Locales: Base, ja
-      static let streaming = Rswift.StringResource(key: "streaming", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Switch active account
+      /// Locales: ja, en
+      static let currentAccount = Rswift.StringResource(key: "currentAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 自分のプロフィール
       ///
-      /// Locales: Base, ja
-      static let switchActiveAccount = Rswift.StringResource(key: "switchActiveAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: This feature requires Mastodon %@ or higher.
+      /// Locales: ja, en
+      static let myProfile = Rswift.StringResource(key: "myProfile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 設定
       ///
-      /// Locales: Base, ja
-      static let errorRequiredNewerMastodon = Rswift.StringResource(key: "error.requiredNewerMastodon", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: This feature requires iOS %.1f or higher.
+      /// Locales: ja, en
+      static let settings = Rswift.StringResource(key: "settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 通知
       ///
-      /// Locales: Base, ja
-      static let errorRequiredNewerOS = Rswift.StringResource(key: "error.requiredNewerOS", tableName: "Localizable", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
+      /// Locales: ja, en
+      static let notifications = Rswift.StringResource(key: "notifications", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
 
-      /// Base translation: Cancel
+      /// ja translation: LTL
       ///
-      /// Locales: Base, ja
-      static func cancel(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cancel", bundle: hostingBundle, value: "Cancel", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "cancel"
-        }
-
-        return NSLocalizedString("cancel", bundle: bundle, value: "Cancel", comment: "")
-      }
-
-      /// Base translation: Connect
-      ///
-      /// Locales: Base, ja
-      static func connect(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("connect", bundle: hostingBundle, value: "Connect", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "connect"
-        }
-
-        return NSLocalizedString("connect", bundle: bundle, value: "Connect", comment: "")
-      }
-
-      /// Base translation: Connected
-      ///
-      /// Locales: Base, ja
-      static func connected(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("connected", bundle: hostingBundle, value: "Connected", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "connected"
-        }
-
-        return NSLocalizedString("connected", bundle: bundle, value: "Connected", comment: "")
-      }
-
-      /// Base translation: Current: @%@
-      ///
-      /// Locales: Base, ja
-      static func currentAccount(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("currentAccount", bundle: hostingBundle, value: "Current: @%@", comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "currentAccount"
-        }
-
-        let format = NSLocalizedString("currentAccount", bundle: bundle, value: "Current: @%@", comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: Disconnect
-      ///
-      /// Locales: Base, ja
-      static func disconnect(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("disconnect", bundle: hostingBundle, value: "Disconnect", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "disconnect"
-        }
-
-        return NSLocalizedString("disconnect", bundle: bundle, value: "Disconnect", comment: "")
-      }
-
-      /// Base translation: Error
-      ///
-      /// Locales: Base, ja
-      static func errorTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("error.title", bundle: hostingBundle, value: "Error", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "error.title"
-        }
-
-        return NSLocalizedString("error.title", bundle: bundle, value: "Error", comment: "")
-      }
-
-      /// Base translation: Fetch failed
-      ///
-      /// Locales: Base, ja
-      static func fetchFailed(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("fetchFailed", bundle: hostingBundle, value: "Fetch failed", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "fetchFailed"
-        }
-
-        return NSLocalizedString("fetchFailed", bundle: bundle, value: "Fetch failed", comment: "")
-      }
-
-      /// Base translation: Help / Feedback
-      ///
-      /// Locales: Base, ja
-      static func helpAndFeedback(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("helpAndFeedback", bundle: hostingBundle, value: "Help / Feedback", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "helpAndFeedback"
-        }
-
-        return NSLocalizedString("helpAndFeedback", bundle: bundle, value: "Help / Feedback", comment: "")
-      }
-
-      /// Base translation: Home
-      ///
-      /// Locales: Base, ja
-      static func homeTimelineShort(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("homeTimeline.short", bundle: hostingBundle, value: "Home", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "homeTimeline.short"
-        }
-
-        return NSLocalizedString("homeTimeline.short", bundle: bundle, value: "Home", comment: "")
-      }
-
-      /// Base translation: Home Timeline
-      ///
-      /// Locales: Base, ja
-      static func homeTimeline(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("homeTimeline", bundle: hostingBundle, value: "Home Timeline", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "homeTimeline"
-        }
-
-        return NSLocalizedString("homeTimeline", bundle: bundle, value: "Home Timeline", comment: "")
-      }
-
-      /// Base translation: LTL
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func localTimelineShort(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("localTimeline.short", bundle: hostingBundle, value: "LTL", comment: "")
+          return NSLocalizedString("localTimeline.short", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
           return "localTimeline.short"
         }
 
-        return NSLocalizedString("localTimeline.short", bundle: bundle, value: "LTL", comment: "")
+        return NSLocalizedString("localTimeline.short", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Lists
+      /// ja translation: Streaming
       ///
-      /// Locales: Base, ja
-      static func lists(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("lists", bundle: hostingBundle, value: "Lists", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "lists"
-        }
-
-        return NSLocalizedString("lists", bundle: bundle, value: "Lists", comment: "")
-      }
-
-      /// Base translation: Local Timeline
-      ///
-      /// Locales: Base, ja
-      static func localTimeline(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("localTimeline", bundle: hostingBundle, value: "Local Timeline", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "localTimeline"
-        }
-
-        return NSLocalizedString("localTimeline", bundle: bundle, value: "Local Timeline", comment: "")
-      }
-
-      /// Base translation: My Profile
-      ///
-      /// Locales: Base, ja
-      static func myProfile(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("myProfile", bundle: hostingBundle, value: "My Profile", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "myProfile"
-        }
-
-        return NSLocalizedString("myProfile", bundle: bundle, value: "My Profile", comment: "")
-      }
-
-      /// Base translation: Not connected
-      ///
-      /// Locales: Base, ja
-      static func notConnected(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("notConnected", bundle: hostingBundle, value: "Not connected", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "notConnected"
-        }
-
-        return NSLocalizedString("notConnected", bundle: bundle, value: "Not connected", comment: "")
-      }
-
-      /// Base translation: Nothing more
-      ///
-      /// Locales: Base, ja
-      static func nothingMore(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("nothingMore", bundle: hostingBundle, value: "Nothing more", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "nothingMore"
-        }
-
-        return NSLocalizedString("nothingMore", bundle: bundle, value: "Nothing more", comment: "")
-      }
-
-      /// Base translation: Notifications
-      ///
-      /// Locales: Base, ja
-      static func notifications(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("notifications", bundle: hostingBundle, value: "Notifications", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "notifications"
-        }
-
-        return NSLocalizedString("notifications", bundle: bundle, value: "Notifications", comment: "")
-      }
-
-      /// Base translation: Others
-      ///
-      /// Locales: Base, ja
-      static func other(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("other", bundle: hostingBundle, value: "Others", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "other"
-        }
-
-        return NSLocalizedString("other", bundle: bundle, value: "Others", comment: "")
-      }
-
-      /// Base translation: Please input instance.
-      ///
-      /// Locales: Base, ja
-      static func errorPleaseInputInstance(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("error.pleaseInputInstance", bundle: hostingBundle, value: "Please input instance.", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "error.pleaseInputInstance"
-        }
-
-        return NSLocalizedString("error.pleaseInputInstance", bundle: bundle, value: "Please input instance.", comment: "")
-      }
-
-      /// Base translation: Post
-      ///
-      /// Locales: Base, ja
-      static func post(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("post", bundle: hostingBundle, value: "Post", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "post"
-        }
-
-        return NSLocalizedString("post", bundle: bundle, value: "Post", comment: "")
-      }
-
-      /// Base translation: Read more
-      ///
-      /// Locales: Base, ja
-      static func readmore(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("readmore", bundle: hostingBundle, value: "Read more", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "readmore"
-        }
-
-        return NSLocalizedString("readmore", bundle: bundle, value: "Read more", comment: "")
-      }
-
-      /// Base translation: Refresh
-      ///
-      /// Locales: Base, ja
-      static func refetch(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("refetch", bundle: hostingBundle, value: "Refresh", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "refetch"
-        }
-
-        return NSLocalizedString("refetch", bundle: bundle, value: "Refresh", comment: "")
-      }
-
-      /// Base translation: Settings
-      ///
-      /// Locales: Base, ja
-      static func settings(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("settings", bundle: hostingBundle, value: "Settings", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "settings"
-        }
-
-        return NSLocalizedString("settings", bundle: bundle, value: "Settings", comment: "")
-      }
-
-      /// Base translation: Status: %@
-      ///
-      /// Locales: Base, ja
-      static func streamingStatus(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("streamingStatus", bundle: hostingBundle, value: "Status: %@", comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "streamingStatus"
-        }
-
-        let format = NSLocalizedString("streamingStatus", bundle: bundle, value: "Status: %@", comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: Streaming
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func streaming(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("streaming", bundle: hostingBundle, value: "Streaming", comment: "")
+          return NSLocalizedString("streaming", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
           return "streaming"
         }
 
-        return NSLocalizedString("streaming", bundle: bundle, value: "Streaming", comment: "")
+        return NSLocalizedString("streaming", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Switch active account
+      /// ja translation: ここまで
       ///
-      /// Locales: Base, ja
-      static func switchActiveAccount(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja, en
+      static func nothingMore(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("switchActiveAccount", bundle: hostingBundle, value: "Switch active account", comment: "")
+          return NSLocalizedString("nothingMore", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "switchActiveAccount"
+          return "nothingMore"
         }
 
-        return NSLocalizedString("switchActiveAccount", bundle: bundle, value: "Switch active account", comment: "")
+        return NSLocalizedString("nothingMore", bundle: bundle, comment: "")
       }
 
-      /// Base translation: This feature requires Mastodon %@ or higher.
+      /// ja translation: この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。 (iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります) Mastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func errorRequiredNewerMastodon(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("error.requiredNewerMastodon", bundle: hostingBundle, value: "This feature requires Mastodon %@ or higher.", comment: "")
+          let format = NSLocalizedString("error.requiredNewerMastodon", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -941,16 +592,16 @@ struct R: Rswift.Validatable {
           return "error.requiredNewerMastodon"
         }
 
-        let format = NSLocalizedString("error.requiredNewerMastodon", bundle: bundle, value: "This feature requires Mastodon %@ or higher.", comment: "")
+        let format = NSLocalizedString("error.requiredNewerMastodon", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
       }
 
-      /// Base translation: This feature requires iOS %.1f or higher.
+      /// ja translation: この機能を利用するためには iOS %.1f 以上が必要です。
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func errorRequiredNewerOS(_ value1: Double, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("error.requiredNewerOS", bundle: hostingBundle, value: "This feature requires iOS %.1f or higher.", comment: "")
+          let format = NSLocalizedString("error.requiredNewerOS", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -958,8 +609,357 @@ struct R: Rswift.Validatable {
           return "error.requiredNewerOS"
         }
 
-        let format = NSLocalizedString("error.requiredNewerOS", bundle: bundle, value: "This feature requires iOS %.1f or higher.", comment: "")
+        let format = NSLocalizedString("error.requiredNewerOS", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: その他
+      ///
+      /// Locales: ja, en
+      static func other(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("other", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "other"
+        }
+
+        return NSLocalizedString("other", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: もっと
+      ///
+      /// Locales: ja, en
+      static func readmore(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("readmore", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "readmore"
+        }
+
+        return NSLocalizedString("readmore", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: アカウントを変更
+      ///
+      /// Locales: ja, en
+      static func switchActiveAccount(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("switchActiveAccount", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "switchActiveAccount"
+        }
+
+        return NSLocalizedString("switchActiveAccount", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: インスタンスを入力してください。
+      ///
+      /// Locales: ja, en
+      static func errorPleaseInputInstance(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error.pleaseInputInstance", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error.pleaseInputInstance"
+        }
+
+        return NSLocalizedString("error.pleaseInputInstance", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: エラー
+      ///
+      /// Locales: ja, en
+      static func errorTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error.title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error.title"
+        }
+
+        return NSLocalizedString("error.title", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: キャンセル
+      ///
+      /// Locales: ja, en
+      static func cancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cancel", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cancel"
+        }
+
+        return NSLocalizedString("cancel", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ヘルプ / Feedback
+      ///
+      /// Locales: ja, en
+      static func helpAndFeedback(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helpAndFeedback", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helpAndFeedback"
+        }
+
+        return NSLocalizedString("helpAndFeedback", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ホーム
+      ///
+      /// Locales: ja, en
+      static func homeTimelineShort(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("homeTimeline.short", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "homeTimeline.short"
+        }
+
+        return NSLocalizedString("homeTimeline.short", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ホームタイムライン
+      ///
+      /// Locales: ja, en
+      static func homeTimeline(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("homeTimeline", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "homeTimeline"
+        }
+
+        return NSLocalizedString("homeTimeline", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: リスト
+      ///
+      /// Locales: ja, en
+      static func lists(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("lists", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "lists"
+        }
+
+        return NSLocalizedString("lists", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ローカルタイムライン
+      ///
+      /// Locales: ja, en
+      static func localTimeline(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("localTimeline", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "localTimeline"
+        }
+
+        return NSLocalizedString("localTimeline", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 再取得
+      ///
+      /// Locales: ja, en
+      static func refetch(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("refetch", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "refetch"
+        }
+
+        return NSLocalizedString("refetch", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 切断
+      ///
+      /// Locales: ja, en
+      static func disconnect(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("disconnect", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "disconnect"
+        }
+
+        return NSLocalizedString("disconnect", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 取得失敗
+      ///
+      /// Locales: ja, en
+      static func fetchFailed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("fetchFailed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "fetchFailed"
+        }
+
+        return NSLocalizedString("fetchFailed", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 投稿
+      ///
+      /// Locales: ja, en
+      static func post(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("post", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "post"
+        }
+
+        return NSLocalizedString("post", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 接続
+      ///
+      /// Locales: ja, en
+      static func connect(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("connect", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "connect"
+        }
+
+        return NSLocalizedString("connect", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 接続していません
+      ///
+      /// Locales: ja, en
+      static func notConnected(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("notConnected", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "notConnected"
+        }
+
+        return NSLocalizedString("notConnected", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 接続中
+      ///
+      /// Locales: ja, en
+      static func connected(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("connected", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "connected"
+        }
+
+        return NSLocalizedString("connected", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 状態: %@
+      ///
+      /// Locales: ja, en
+      static func streamingStatus(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("streamingStatus", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "streamingStatus"
+        }
+
+        let format = NSLocalizedString("streamingStatus", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: 現在のアカウント: @%@
+      ///
+      /// Locales: ja, en
+      static func currentAccount(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("currentAccount", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "currentAccount"
+        }
+
+        let format = NSLocalizedString("currentAccount", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: 自分のプロフィール
+      ///
+      /// Locales: ja, en
+      static func myProfile(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("myProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "myProfile"
+        }
+
+        return NSLocalizedString("myProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 設定
+      ///
+      /// Locales: ja, en
+      static func settings(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "settings"
+        }
+
+        return NSLocalizedString("settings", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 通知
+      ///
+      /// Locales: ja, en
+      static func notifications(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("notifications", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "notifications"
+        }
+
+        return NSLocalizedString("notifications", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
@@ -967,302 +967,137 @@ struct R: Rswift.Validatable {
 
     /// This `R.string.login` struct is generated, and contains static references to 16 localization keys.
     struct login {
-      /// Base translation: Authorize
+      /// ja translation: Mastodonのインスタンスを入力してください
       ///
-      /// Locales: Base, ja
-      static let authorizeTitle = Rswift.StringResource(key: "authorize.title", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: By login, you agree to follow the rules and privacy policies.
+      /// Locales: ja, en
+      static let pleaseInputMastodonInstance = Rswift.StringResource(key: "pleaseInputMastodonInstance", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: Safariでログイン (推奨)
       ///
-      /// Locales: Base, ja
-      static let authorizeTosHeader = Rswift.StringResource(key: "authorize.tos.header", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Fetching server information...
+      /// Locales: ja, en
+      static let authorizeMethodSafari = Rswift.StringResource(key: "authorize.method.safari", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: このサーバーのルール
       ///
-      /// Locales: Base, ja
-      static let progressDialogFetchingServerInfo = Rswift.StringResource(key: "progressDialog.fetchingServerInfo", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Logging in...
+      /// Locales: ja, en
+      static let authorizeTosRules = Rswift.StringResource(key: "authorize.tos.rules", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: このサーバーの利用規約
       ///
-      /// Locales: Base, ja
-      static let progressDialogTitle = Rswift.StringResource(key: "progressDialog.title", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Login
+      /// Locales: ja, en
+      static let authorizeTosTermsOfService = Rswift.StringResource(key: "authorize.tos.termsOfService", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ようこそ、 %@ さん。
       ///
-      /// Locales: Base, ja
-      static let loginButton = Rswift.StringResource(key: "loginButton", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Login
+      /// Locales: ja, en
+      static let welcomeMessage = Rswift.StringResource(key: "welcome.message", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: アプリをサーバーに登録中…
       ///
-      /// Locales: Base, ja
-      static let title = Rswift.StringResource(key: "title", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Login with Safari (Recommended)
+      /// Locales: ja, en
+      static let progressDialogRegisteringApplication = Rswift.StringResource(key: "progressDialog.registeringApplication", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: サーバーの情報を取得中…
       ///
-      /// Locales: Base, ja
-      static let authorizeMethodSafari = Rswift.StringResource(key: "authorize.method.safari", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Login with mail address and password
+      /// Locales: ja, en
+      static let progressDialogFetchingServerInfo = Rswift.StringResource(key: "progressDialog.fetchingServerInfo", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: パスワード
       ///
-      /// Locales: Base, ja
-      static let authorizeMethodMailAndPassword = Rswift.StringResource(key: "authorize.method.mailAndPassword", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Mail address
+      /// Locales: ja, en
+      static let passwordLoginPassword = Rswift.StringResource(key: "passwordLogin.password", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: メールアドレス
       ///
-      /// Locales: Base, ja
-      static let passwordLoginMailAddress = Rswift.StringResource(key: "passwordLogin.mailAddress", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Password
+      /// Locales: ja, en
+      static let passwordLoginMailAddress = Rswift.StringResource(key: "passwordLogin.mailAddress", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: メールアドレスとパスワードでログイン
       ///
-      /// Locales: Base, ja
-      static let passwordLoginPassword = Rswift.StringResource(key: "passwordLogin.password", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Please authorize
+      /// Locales: ja, en
+      static let authorizeMethodMailAndPassword = Rswift.StringResource(key: "authorize.method.mailAndPassword", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ログイン
       ///
-      /// Locales: Base, ja
-      static let progressDialogPleaseAuthorize = Rswift.StringResource(key: "progressDialog.pleaseAuthorize", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Please input mastodon instance
+      /// Locales: ja, en
+      static let loginButton = Rswift.StringResource(key: "loginButton", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ログイン
       ///
-      /// Locales: Base, ja
-      static let pleaseInputMastodonInstance = Rswift.StringResource(key: "pleaseInputMastodonInstance", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Registering app to server...
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。
       ///
-      /// Locales: Base, ja
-      static let progressDialogRegisteringApplication = Rswift.StringResource(key: "progressDialog.registeringApplication", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Rules of this server
+      /// Locales: ja, en
+      static let authorizeTosHeader = Rswift.StringResource(key: "authorize.tos.header", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ログイン中
       ///
-      /// Locales: Base, ja
-      static let authorizeTosRules = Rswift.StringResource(key: "authorize.tos.rules", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Terms of Service of this server
+      /// Locales: ja, en
+      static let progressDialogTitle = Rswift.StringResource(key: "progressDialog.title", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 認証
       ///
-      /// Locales: Base, ja
-      static let authorizeTosTermsOfService = Rswift.StringResource(key: "authorize.tos.termsOfService", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Welcome, %@
+      /// Locales: ja, en
+      static let authorizeTitle = Rswift.StringResource(key: "authorize.title", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 認証してください
       ///
-      /// Locales: Base, ja
-      static let welcomeMessage = Rswift.StringResource(key: "welcome.message", tableName: "Login", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
+      /// Locales: ja, en
+      static let progressDialogPleaseAuthorize = Rswift.StringResource(key: "progressDialog.pleaseAuthorize", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
 
-      /// Base translation: Authorize
+      /// ja translation: Mastodonのインスタンスを入力してください
       ///
-      /// Locales: Base, ja
-      static func authorizeTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.title", tableName: "Login", bundle: hostingBundle, value: "Authorize", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "authorize.title"
-        }
-
-        return NSLocalizedString("authorize.title", tableName: "Login", bundle: bundle, value: "Authorize", comment: "")
-      }
-
-      /// Base translation: By login, you agree to follow the rules and privacy policies.
-      ///
-      /// Locales: Base, ja
-      static func authorizeTosHeader(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.tos.header", tableName: "Login", bundle: hostingBundle, value: "By login, you agree to follow the rules and privacy policies.", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "authorize.tos.header"
-        }
-
-        return NSLocalizedString("authorize.tos.header", tableName: "Login", bundle: bundle, value: "By login, you agree to follow the rules and privacy policies.", comment: "")
-      }
-
-      /// Base translation: Fetching server information...
-      ///
-      /// Locales: Base, ja
-      static func progressDialogFetchingServerInfo(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("progressDialog.fetchingServerInfo", tableName: "Login", bundle: hostingBundle, value: "Fetching server information...", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "progressDialog.fetchingServerInfo"
-        }
-
-        return NSLocalizedString("progressDialog.fetchingServerInfo", tableName: "Login", bundle: bundle, value: "Fetching server information...", comment: "")
-      }
-
-      /// Base translation: Logging in...
-      ///
-      /// Locales: Base, ja
-      static func progressDialogTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("progressDialog.title", tableName: "Login", bundle: hostingBundle, value: "Logging in...", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "progressDialog.title"
-        }
-
-        return NSLocalizedString("progressDialog.title", tableName: "Login", bundle: bundle, value: "Logging in...", comment: "")
-      }
-
-      /// Base translation: Login
-      ///
-      /// Locales: Base, ja
-      static func loginButton(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("loginButton", tableName: "Login", bundle: hostingBundle, value: "Login", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "loginButton"
-        }
-
-        return NSLocalizedString("loginButton", tableName: "Login", bundle: bundle, value: "Login", comment: "")
-      }
-
-      /// Base translation: Login
-      ///
-      /// Locales: Base, ja
-      static func title(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title", tableName: "Login", bundle: hostingBundle, value: "Login", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "title"
-        }
-
-        return NSLocalizedString("title", tableName: "Login", bundle: bundle, value: "Login", comment: "")
-      }
-
-      /// Base translation: Login with Safari (Recommended)
-      ///
-      /// Locales: Base, ja
-      static func authorizeMethodSafari(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.method.safari", tableName: "Login", bundle: hostingBundle, value: "Login with Safari (Recommended)", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "authorize.method.safari"
-        }
-
-        return NSLocalizedString("authorize.method.safari", tableName: "Login", bundle: bundle, value: "Login with Safari (Recommended)", comment: "")
-      }
-
-      /// Base translation: Login with mail address and password
-      ///
-      /// Locales: Base, ja
-      static func authorizeMethodMailAndPassword(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: hostingBundle, value: "Login with mail address and password", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "authorize.method.mailAndPassword"
-        }
-
-        return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: bundle, value: "Login with mail address and password", comment: "")
-      }
-
-      /// Base translation: Mail address
-      ///
-      /// Locales: Base, ja
-      static func passwordLoginMailAddress(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("passwordLogin.mailAddress", tableName: "Login", bundle: hostingBundle, value: "Mail address", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "passwordLogin.mailAddress"
-        }
-
-        return NSLocalizedString("passwordLogin.mailAddress", tableName: "Login", bundle: bundle, value: "Mail address", comment: "")
-      }
-
-      /// Base translation: Password
-      ///
-      /// Locales: Base, ja
-      static func passwordLoginPassword(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("passwordLogin.password", tableName: "Login", bundle: hostingBundle, value: "Password", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "passwordLogin.password"
-        }
-
-        return NSLocalizedString("passwordLogin.password", tableName: "Login", bundle: bundle, value: "Password", comment: "")
-      }
-
-      /// Base translation: Please authorize
-      ///
-      /// Locales: Base, ja
-      static func progressDialogPleaseAuthorize(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("progressDialog.pleaseAuthorize", tableName: "Login", bundle: hostingBundle, value: "Please authorize", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "progressDialog.pleaseAuthorize"
-        }
-
-        return NSLocalizedString("progressDialog.pleaseAuthorize", tableName: "Login", bundle: bundle, value: "Please authorize", comment: "")
-      }
-
-      /// Base translation: Please input mastodon instance
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func pleaseInputMastodonInstance(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("pleaseInputMastodonInstance", tableName: "Login", bundle: hostingBundle, value: "Please input mastodon instance", comment: "")
+          return NSLocalizedString("pleaseInputMastodonInstance", tableName: "Login", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
           return "pleaseInputMastodonInstance"
         }
 
-        return NSLocalizedString("pleaseInputMastodonInstance", tableName: "Login", bundle: bundle, value: "Please input mastodon instance", comment: "")
+        return NSLocalizedString("pleaseInputMastodonInstance", tableName: "Login", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Registering app to server...
+      /// ja translation: Safariでログイン (推奨)
       ///
-      /// Locales: Base, ja
-      static func progressDialogRegisteringApplication(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja, en
+      static func authorizeMethodSafari(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("progressDialog.registeringApplication", tableName: "Login", bundle: hostingBundle, value: "Registering app to server...", comment: "")
+          return NSLocalizedString("authorize.method.safari", tableName: "Login", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "progressDialog.registeringApplication"
+          return "authorize.method.safari"
         }
 
-        return NSLocalizedString("progressDialog.registeringApplication", tableName: "Login", bundle: bundle, value: "Registering app to server...", comment: "")
+        return NSLocalizedString("authorize.method.safari", tableName: "Login", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Rules of this server
+      /// ja translation: このサーバーのルール
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func authorizeTosRules(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.tos.rules", tableName: "Login", bundle: hostingBundle, value: "Rules of this server", comment: "")
+          return NSLocalizedString("authorize.tos.rules", tableName: "Login", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
           return "authorize.tos.rules"
         }
 
-        return NSLocalizedString("authorize.tos.rules", tableName: "Login", bundle: bundle, value: "Rules of this server", comment: "")
+        return NSLocalizedString("authorize.tos.rules", tableName: "Login", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Terms of Service of this server
+      /// ja translation: このサーバーの利用規約
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func authorizeTosTermsOfService(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.tos.termsOfService", tableName: "Login", bundle: hostingBundle, value: "Terms of Service of this server", comment: "")
+          return NSLocalizedString("authorize.tos.termsOfService", tableName: "Login", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
           return "authorize.tos.termsOfService"
         }
 
-        return NSLocalizedString("authorize.tos.termsOfService", tableName: "Login", bundle: bundle, value: "Terms of Service of this server", comment: "")
+        return NSLocalizedString("authorize.tos.termsOfService", tableName: "Login", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Welcome, %@
+      /// ja translation: ようこそ、 %@ さん。
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func welcomeMessage(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("welcome.message", tableName: "Login", bundle: hostingBundle, value: "Welcome,\n%@", comment: "")
+          let format = NSLocalizedString("welcome.message", tableName: "Login", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -1270,8 +1105,173 @@ struct R: Rswift.Validatable {
           return "welcome.message"
         }
 
-        let format = NSLocalizedString("welcome.message", tableName: "Login", bundle: bundle, value: "Welcome,\n%@", comment: "")
+        let format = NSLocalizedString("welcome.message", tableName: "Login", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: アプリをサーバーに登録中…
+      ///
+      /// Locales: ja, en
+      static func progressDialogRegisteringApplication(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("progressDialog.registeringApplication", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "progressDialog.registeringApplication"
+        }
+
+        return NSLocalizedString("progressDialog.registeringApplication", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: サーバーの情報を取得中…
+      ///
+      /// Locales: ja, en
+      static func progressDialogFetchingServerInfo(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("progressDialog.fetchingServerInfo", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "progressDialog.fetchingServerInfo"
+        }
+
+        return NSLocalizedString("progressDialog.fetchingServerInfo", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: パスワード
+      ///
+      /// Locales: ja, en
+      static func passwordLoginPassword(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("passwordLogin.password", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "passwordLogin.password"
+        }
+
+        return NSLocalizedString("passwordLogin.password", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: メールアドレス
+      ///
+      /// Locales: ja, en
+      static func passwordLoginMailAddress(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("passwordLogin.mailAddress", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "passwordLogin.mailAddress"
+        }
+
+        return NSLocalizedString("passwordLogin.mailAddress", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: メールアドレスとパスワードでログイン
+      ///
+      /// Locales: ja, en
+      static func authorizeMethodMailAndPassword(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "authorize.method.mailAndPassword"
+        }
+
+        return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ログイン
+      ///
+      /// Locales: ja, en
+      static func loginButton(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("loginButton", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "loginButton"
+        }
+
+        return NSLocalizedString("loginButton", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ログイン
+      ///
+      /// Locales: ja, en
+      static func title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "title"
+        }
+
+        return NSLocalizedString("title", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。
+      ///
+      /// Locales: ja, en
+      static func authorizeTosHeader(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authorize.tos.header", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "authorize.tos.header"
+        }
+
+        return NSLocalizedString("authorize.tos.header", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ログイン中
+      ///
+      /// Locales: ja, en
+      static func progressDialogTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("progressDialog.title", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "progressDialog.title"
+        }
+
+        return NSLocalizedString("progressDialog.title", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 認証
+      ///
+      /// Locales: ja, en
+      static func authorizeTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authorize.title", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "authorize.title"
+        }
+
+        return NSLocalizedString("authorize.title", tableName: "Login", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 認証してください
+      ///
+      /// Locales: ja, en
+      static func progressDialogPleaseAuthorize(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("progressDialog.pleaseAuthorize", tableName: "Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
+          return "progressDialog.pleaseAuthorize"
+        }
+
+        return NSLocalizedString("progressDialog.pleaseAuthorize", tableName: "Login", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
@@ -1279,40 +1279,40 @@ struct R: Rswift.Validatable {
 
     /// This `R.string.newPost` struct is generated, and contains static references to 8 localization keys.
     struct newPost {
-      /// en translation:  0
+      /// ja translation:  0
       ///
       /// Locales: en, ja
       static let zg4V9GJNormalTitle = Rswift.StringResource(key: "9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: CW
+      /// ja translation: CW
       ///
       /// Locales: en, ja
       static let paxYe0d9Title = Rswift.StringResource(key: "pax-Ye-0d9.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: CW Warning text (Optional)
+      /// ja translation: CW説明文 (省略可能)
       ///
       /// Locales: en, ja
       static let ncKaJwdPlaceholder = Rswift.StringResource(key: "8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Compose Post
-      ///
-      /// Locales: en, ja
-      static let lfAApGmeTitle = Rswift.StringResource(key: "LfA-Ap-gme.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: NSFW
+      /// ja translation: NSFW
       ///
       /// Locales: en, ja
       static let pddnqDhaTitle = Rswift.StringResource(key: "PDD-NQ-dha.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Send
-      ///
-      /// Locales: en, ja
-      static let vdu9C5JKTitle = Rswift.StringResource(key: "vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Siri
+      /// ja translation: Siri
       ///
       /// Locales: en, ja
       static let nxvAb3PETitle = Rswift.StringResource(key: "NXV-Ab-3PE.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
+      /// ja translation: rin@mastodon.example.com 返信先: @uzuki: 凛ちゃんとデートです♪
       ///
       /// Locales: en, ja
       static let jxIaK2aText = Rswift.StringResource(key: "3JX-ia-k2a.text", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// ja translation: 新規投稿
+      ///
+      /// Locales: en, ja
+      static let lfAApGmeTitle = Rswift.StringResource(key: "LfA-Ap-gme.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// ja translation: 送信
+      ///
+      /// Locales: en, ja
+      static let vdu9C5JKTitle = Rswift.StringResource(key: "vdu-9C-5JK.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
 
-      /// en translation:  0
+      /// ja translation:  0
       ///
       /// Locales: en, ja
       static func zg4V9GJNormalTitle(preferredLanguages: [String]? = nil) -> String {
@@ -1327,7 +1327,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("9zg-4V-9GJ.normalTitle", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// en translation: CW
+      /// ja translation: CW
       ///
       /// Locales: en, ja
       static func paxYe0d9Title(preferredLanguages: [String]? = nil) -> String {
@@ -1342,7 +1342,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("pax-Ye-0d9.title", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// en translation: CW Warning text (Optional)
+      /// ja translation: CW説明文 (省略可能)
       ///
       /// Locales: en, ja
       static func ncKaJwdPlaceholder(preferredLanguages: [String]? = nil) -> String {
@@ -1357,22 +1357,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("8NC-Ka-Jwd.placeholder", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// en translation: Compose Post
-      ///
-      /// Locales: en, ja
-      static func lfAApGmeTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "LfA-Ap-gme.title"
-        }
-
-        return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: bundle, comment: "")
-      }
-
-      /// en translation: NSFW
+      /// ja translation: NSFW
       ///
       /// Locales: en, ja
       static func pddnqDhaTitle(preferredLanguages: [String]? = nil) -> String {
@@ -1387,22 +1372,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("PDD-NQ-dha.title", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// en translation: Send
-      ///
-      /// Locales: en, ja
-      static func vdu9C5JKTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
-          return "vdu-9C-5JK.title"
-        }
-
-        return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Siri
+      /// ja translation: Siri
       ///
       /// Locales: en, ja
       static func nxvAb3PETitle(preferredLanguages: [String]? = nil) -> String {
@@ -1417,7 +1387,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("NXV-Ab-3PE.title", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
-      /// en translation: rin@mastodon.example.com Reply to: @uzuki: 凛ちゃんとデートです♪
+      /// ja translation: rin@mastodon.example.com 返信先: @uzuki: 凛ちゃんとデートです♪
       ///
       /// Locales: en, ja
       static func jxIaK2aText(preferredLanguages: [String]? = nil) -> String {
@@ -1432,97 +1402,76 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("3JX-ia-k2a.text", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
+      /// ja translation: 新規投稿
+      ///
+      /// Locales: en, ja
+      static func lfAApGmeTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "LfA-Ap-gme.title"
+        }
+
+        return NSLocalizedString("LfA-Ap-gme.title", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 送信
+      ///
+      /// Locales: en, ja
+      static func vdu9C5JKTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "vdu-9C-5JK.title"
+        }
+
+        return NSLocalizedString("vdu-9C-5JK.title", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
       fileprivate init() {}
     }
 
     /// This `R.string.notification` struct is generated, and contains static references to 7 localization keys.
     struct notification {
-      /// Base translation: @%@ boosted your toot
+      /// ja translation: @%@さんからのメンション
       ///
-      /// Locales: Base, ja
-      static let typesBoost = Rswift.StringResource(key: "types.boost", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: @%@ favorited your toot
+      /// Locales: ja, en
+      static let typesMention = Rswift.StringResource(key: "types.mention", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: @%@さんにふぁぼられました
       ///
-      /// Locales: Base, ja
-      static let typesFavourite = Rswift.StringResource(key: "types.favourite", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: @%@ followed you
+      /// Locales: ja, en
+      static let typesFavourite = Rswift.StringResource(key: "types.favourite", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: @%@さんにフォローされました
       ///
-      /// Locales: Base, ja
-      static let typesFollow = Rswift.StringResource(key: "types.follow", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: @%@ mentioned you
+      /// Locales: ja, en
+      static let typesFollow = Rswift.StringResource(key: "types.follow", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: @%@さんにブーストされました
       ///
-      /// Locales: Base, ja
-      static let typesMention = Rswift.StringResource(key: "types.mention", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: A poll you voted has ended
+      /// Locales: ja, en
+      static let typesBoost = Rswift.StringResource(key: "types.boost", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: あなたが作成した投票が終了しました
       ///
-      /// Locales: Base, ja
-      static let typesPollNotowner = Rswift.StringResource(key: "types.poll.notowner", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Unknown Notification: %@
+      /// Locales: ja, en
+      static let typesPollOwner = Rswift.StringResource(key: "types.poll.owner", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: あなたが参加した投票が終了しました
       ///
-      /// Locales: Base, ja
-      static let typesUnknown = Rswift.StringResource(key: "types.unknown", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Your poll has ended
+      /// Locales: ja, en
+      static let typesPollNotowner = Rswift.StringResource(key: "types.poll.notowner", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 不明な通知: %@
       ///
-      /// Locales: Base, ja
-      static let typesPollOwner = Rswift.StringResource(key: "types.poll.owner", tableName: "Notification", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
+      /// Locales: ja, en
+      static let typesUnknown = Rswift.StringResource(key: "types.unknown", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
 
-      /// Base translation: @%@ boosted your toot
+      /// ja translation: @%@さんからのメンション
       ///
-      /// Locales: Base, ja
-      static func typesBoost(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("types.boost", tableName: "Notification", bundle: hostingBundle, value: "@%@ boosted your toot", comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
-          return "types.boost"
-        }
-
-        let format = NSLocalizedString("types.boost", tableName: "Notification", bundle: bundle, value: "@%@ boosted your toot", comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: @%@ favorited your toot
-      ///
-      /// Locales: Base, ja
-      static func typesFavourite(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("types.favourite", tableName: "Notification", bundle: hostingBundle, value: "@%@ favorited your toot", comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
-          return "types.favourite"
-        }
-
-        let format = NSLocalizedString("types.favourite", tableName: "Notification", bundle: bundle, value: "@%@ favorited your toot", comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: @%@ followed you
-      ///
-      /// Locales: Base, ja
-      static func typesFollow(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("types.follow", tableName: "Notification", bundle: hostingBundle, value: "@%@ followed you", comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
-          return "types.follow"
-        }
-
-        let format = NSLocalizedString("types.follow", tableName: "Notification", bundle: bundle, value: "@%@ followed you", comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: @%@ mentioned you
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func typesMention(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("types.mention", tableName: "Notification", bundle: hostingBundle, value: "@%@ mentioned you", comment: "")
+          let format = NSLocalizedString("types.mention", tableName: "Notification", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -1530,31 +1479,97 @@ struct R: Rswift.Validatable {
           return "types.mention"
         }
 
-        let format = NSLocalizedString("types.mention", tableName: "Notification", bundle: bundle, value: "@%@ mentioned you", comment: "")
+        let format = NSLocalizedString("types.mention", tableName: "Notification", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
       }
 
-      /// Base translation: A poll you voted has ended
+      /// ja translation: @%@さんにふぁぼられました
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
+      static func typesFavourite(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("types.favourite", tableName: "Notification", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
+          return "types.favourite"
+        }
+
+        let format = NSLocalizedString("types.favourite", tableName: "Notification", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: @%@さんにフォローされました
+      ///
+      /// Locales: ja, en
+      static func typesFollow(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("types.follow", tableName: "Notification", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
+          return "types.follow"
+        }
+
+        let format = NSLocalizedString("types.follow", tableName: "Notification", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: @%@さんにブーストされました
+      ///
+      /// Locales: ja, en
+      static func typesBoost(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("types.boost", tableName: "Notification", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
+          return "types.boost"
+        }
+
+        let format = NSLocalizedString("types.boost", tableName: "Notification", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: あなたが作成した投票が終了しました
+      ///
+      /// Locales: ja, en
+      static func typesPollOwner(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("types.poll.owner", tableName: "Notification", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
+          return "types.poll.owner"
+        }
+
+        return NSLocalizedString("types.poll.owner", tableName: "Notification", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: あなたが参加した投票が終了しました
+      ///
+      /// Locales: ja, en
       static func typesPollNotowner(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("types.poll.notowner", tableName: "Notification", bundle: hostingBundle, value: "A poll you voted has ended", comment: "")
+          return NSLocalizedString("types.poll.notowner", tableName: "Notification", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
           return "types.poll.notowner"
         }
 
-        return NSLocalizedString("types.poll.notowner", tableName: "Notification", bundle: bundle, value: "A poll you voted has ended", comment: "")
+        return NSLocalizedString("types.poll.notowner", tableName: "Notification", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Unknown Notification: %@
+      /// ja translation: 不明な通知: %@
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func typesUnknown(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("types.unknown", tableName: "Notification", bundle: hostingBundle, value: "Unknown Notification: %@", comment: "")
+          let format = NSLocalizedString("types.unknown", tableName: "Notification", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -1562,23 +1577,8 @@ struct R: Rswift.Validatable {
           return "types.unknown"
         }
 
-        let format = NSLocalizedString("types.unknown", tableName: "Notification", bundle: bundle, value: "Unknown Notification: %@", comment: "")
+        let format = NSLocalizedString("types.unknown", tableName: "Notification", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
-      }
-
-      /// Base translation: Your poll has ended
-      ///
-      /// Locales: Base, ja
-      static func typesPollOwner(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("types.poll.owner", tableName: "Notification", bundle: hostingBundle, value: "Your poll has ended", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
-          return "types.poll.owner"
-        }
-
-        return NSLocalizedString("types.poll.owner", tableName: "Notification", bundle: bundle, value: "Your poll has ended", comment: "")
       }
 
       fileprivate init() {}
@@ -1586,93 +1586,48 @@ struct R: Rswift.Validatable {
 
     /// This `R.string.search` struct is generated, and contains static references to 5 localization keys.
     struct search {
-      /// Base translation: Accounts
+      /// ja translation: アカウント
       ///
-      /// Locales: Base, ja
-      static let sectionsAccountsTitle = Rswift.StringResource(key: "sections.accounts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Hashtags
+      /// Locales: ja, en
+      static let sectionsAccountsTitle = Rswift.StringResource(key: "sections.accounts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: トレンドタグ (更新: %@)
       ///
-      /// Locales: Base, ja
-      static let sectionsHashtagsTitle = Rswift.StringResource(key: "sections.hashtags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Posts
+      /// Locales: ja, en
+      static let sectionsTrendTagsTitle = Rswift.StringResource(key: "sections.trendTags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ハッシュタグ
       ///
-      /// Locales: Base, ja
-      static let sectionsPostsTitle = Rswift.StringResource(key: "sections.posts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Search
+      /// Locales: ja, en
+      static let sectionsHashtagsTitle = Rswift.StringResource(key: "sections.hashtags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 投稿
       ///
-      /// Locales: Base, ja
-      static let title = Rswift.StringResource(key: "title", tableName: "Search", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Trend tags (Updated: %@)
+      /// Locales: ja, en
+      static let sectionsPostsTitle = Rswift.StringResource(key: "sections.posts.title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 検索
       ///
-      /// Locales: Base, ja
-      static let sectionsTrendTagsTitle = Rswift.StringResource(key: "sections.trendTags.title", tableName: "Search", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "Search", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
 
-      /// Base translation: Accounts
+      /// ja translation: アカウント
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func sectionsAccountsTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("sections.accounts.title", tableName: "Search", bundle: hostingBundle, value: "Accounts", comment: "")
+          return NSLocalizedString("sections.accounts.title", tableName: "Search", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
           return "sections.accounts.title"
         }
 
-        return NSLocalizedString("sections.accounts.title", tableName: "Search", bundle: bundle, value: "Accounts", comment: "")
+        return NSLocalizedString("sections.accounts.title", tableName: "Search", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Hashtags
+      /// ja translation: トレンドタグ (更新: %@)
       ///
-      /// Locales: Base, ja
-      static func sectionsHashtagsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("sections.hashtags.title", tableName: "Search", bundle: hostingBundle, value: "Hashtags", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
-          return "sections.hashtags.title"
-        }
-
-        return NSLocalizedString("sections.hashtags.title", tableName: "Search", bundle: bundle, value: "Hashtags", comment: "")
-      }
-
-      /// Base translation: Posts
-      ///
-      /// Locales: Base, ja
-      static func sectionsPostsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: hostingBundle, value: "Posts", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
-          return "sections.posts.title"
-        }
-
-        return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: bundle, value: "Posts", comment: "")
-      }
-
-      /// Base translation: Search
-      ///
-      /// Locales: Base, ja
-      static func title(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title", tableName: "Search", bundle: hostingBundle, value: "Search", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
-          return "title"
-        }
-
-        return NSLocalizedString("title", tableName: "Search", bundle: bundle, value: "Search", comment: "")
-      }
-
-      /// Base translation: Trend tags (Updated: %@)
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func sectionsTrendTagsTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("sections.trendTags.title", tableName: "Search", bundle: hostingBundle, value: "Trend tags (Updated: %@)", comment: "")
+          let format = NSLocalizedString("sections.trendTags.title", tableName: "Search", bundle: hostingBundle, comment: "")
           return String(format: format, locale: applicationLocale, value1)
         }
 
@@ -1680,8 +1635,53 @@ struct R: Rswift.Validatable {
           return "sections.trendTags.title"
         }
 
-        let format = NSLocalizedString("sections.trendTags.title", tableName: "Search", bundle: bundle, value: "Trend tags (Updated: %@)", comment: "")
+        let format = NSLocalizedString("sections.trendTags.title", tableName: "Search", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: ハッシュタグ
+      ///
+      /// Locales: ja, en
+      static func sectionsHashtagsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sections.hashtags.title", tableName: "Search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
+          return "sections.hashtags.title"
+        }
+
+        return NSLocalizedString("sections.hashtags.title", tableName: "Search", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 投稿
+      ///
+      /// Locales: ja, en
+      static func sectionsPostsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
+          return "sections.posts.title"
+        }
+
+        return NSLocalizedString("sections.posts.title", tableName: "Search", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 検索
+      ///
+      /// Locales: ja, en
+      static func title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title", tableName: "Search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Search", preferredLanguages: preferredLanguages) else {
+          return "title"
+        }
+
+        return NSLocalizedString("title", tableName: "Search", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
@@ -1689,347 +1689,347 @@ struct R: Rswift.Validatable {
 
     /// This `R.string.userProfile` struct is generated, and contains static references to 18 localization keys.
     struct userProfile {
-      /// Base translation: Actions
+      /// ja translation: このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
       ///
-      /// Locales: Base, ja
-      static let actionsTitle = Rswift.StringResource(key: "actions.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Block
+      /// Locales: ja, en
+      static let federatedUserWarning = Rswift.StringResource(key: "federatedUserWarning", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: アクション
       ///
-      /// Locales: Base, ja
-      static let actionsBlock = Rswift.StringResource(key: "actions.block", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Cancel
+      /// Locales: ja, en
+      static let actionsTitle = Rswift.StringResource(key: "actions.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: キャンセル
       ///
-      /// Locales: Base, ja
-      static let actionsCancel = Rswift.StringResource(key: "actions.cancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Cancel follow request
+      /// Locales: ja, en
+      static let actionsCancel = Rswift.StringResource(key: "actions.cancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: トゥート
       ///
-      /// Locales: Base, ja
-      static let actionsFollowRequestCancel = Rswift.StringResource(key: "actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Card
+      /// Locales: ja, en
+      static let cellsTootsTitle = Rswift.StringResource(key: "cells.toots.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロワー
       ///
-      /// Locales: Base, ja
-      static let actionsProfileCard = Rswift.StringResource(key: "actions.profileCard", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Created At
+      /// Locales: ja, en
+      static let cellsFollowersTitle = Rswift.StringResource(key: "cells.followers.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー
       ///
-      /// Locales: Base, ja
-      static let cellsCreatedAtTitle = Rswift.StringResource(key: "cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Follow
+      /// Locales: ja, en
+      static let actionsFollow = Rswift.StringResource(key: "actions.follow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー
       ///
-      /// Locales: Base, ja
-      static let actionsFollow = Rswift.StringResource(key: "actions.follow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Followers
+      /// Locales: ja, en
+      static let cellsFollowingTitle = Rswift.StringResource(key: "cells.following.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォローリクエストを撤回
       ///
-      /// Locales: Base, ja
-      static let cellsFollowersTitle = Rswift.StringResource(key: "cells.followers.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Following
+      /// Locales: ja, en
+      static let actionsFollowRequestCancel = Rswift.StringResource(key: "actions.followRequestCancel", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォローリクエスト一覧
       ///
-      /// Locales: Base, ja
-      static let cellsFollowingTitle = Rswift.StringResource(key: "cells.following.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Mute
+      /// Locales: ja, en
+      static let actionsFollowRequestsList = Rswift.StringResource(key: "actions.followRequestsList", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: フォロー解除
       ///
-      /// Locales: Base, ja
-      static let actionsMute = Rswift.StringResource(key: "actions.mute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Pending follow requests
+      /// Locales: ja, en
+      static let actionsUnfollow = Rswift.StringResource(key: "actions.unfollow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ブロック
       ///
-      /// Locales: Base, ja
-      static let actionsFollowRequestsList = Rswift.StringResource(key: "actions.followRequestsList", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Profile
+      /// Locales: ja, en
+      static let actionsBlock = Rswift.StringResource(key: "actions.block", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ブロック解除
       ///
-      /// Locales: Base, ja
-      static let title = Rswift.StringResource(key: "title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Share
+      /// Locales: ja, en
+      static let actionsUnblock = Rswift.StringResource(key: "actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: プロフィール
       ///
-      /// Locales: Base, ja
-      static let actionsShare = Rswift.StringResource(key: "actions.share", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Since this user is belonged to another instance, some informations may not be accurate.
+      /// Locales: ja, en
+      static let title = Rswift.StringResource(key: "title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ミュート
       ///
-      /// Locales: Base, ja
-      static let federatedUserWarning = Rswift.StringResource(key: "federatedUserWarning", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Toots
+      /// Locales: ja, en
+      static let actionsMute = Rswift.StringResource(key: "actions.mute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: ミュート解除
       ///
-      /// Locales: Base, ja
-      static let cellsTootsTitle = Rswift.StringResource(key: "cells.toots.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Unblock
+      /// Locales: ja, en
+      static let actionsUnmute = Rswift.StringResource(key: "actions.unmute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 共有
       ///
-      /// Locales: Base, ja
-      static let actionsUnblock = Rswift.StringResource(key: "actions.unblock", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Unfollow
+      /// Locales: ja, en
+      static let actionsShare = Rswift.StringResource(key: "actions.share", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 名刺
       ///
-      /// Locales: Base, ja
-      static let actionsUnfollow = Rswift.StringResource(key: "actions.unfollow", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
-      /// Base translation: Unmute
+      /// Locales: ja, en
+      static let actionsProfileCard = Rswift.StringResource(key: "actions.profileCard", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// ja translation: 登録日
       ///
-      /// Locales: Base, ja
-      static let actionsUnmute = Rswift.StringResource(key: "actions.unmute", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["Base", "ja"], comment: nil)
+      /// Locales: ja, en
+      static let cellsCreatedAtTitle = Rswift.StringResource(key: "cells.createdAt.title", tableName: "UserProfile", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
 
-      /// Base translation: Actions
+      /// ja translation: このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
       ///
-      /// Locales: Base, ja
-      static func actionsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.title", tableName: "UserProfile", bundle: hostingBundle, value: "Actions", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.title"
-        }
-
-        return NSLocalizedString("actions.title", tableName: "UserProfile", bundle: bundle, value: "Actions", comment: "")
-      }
-
-      /// Base translation: Block
-      ///
-      /// Locales: Base, ja
-      static func actionsBlock(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.block", tableName: "UserProfile", bundle: hostingBundle, value: "Block", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.block"
-        }
-
-        return NSLocalizedString("actions.block", tableName: "UserProfile", bundle: bundle, value: "Block", comment: "")
-      }
-
-      /// Base translation: Cancel
-      ///
-      /// Locales: Base, ja
-      static func actionsCancel(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.cancel", tableName: "UserProfile", bundle: hostingBundle, value: "Cancel", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.cancel"
-        }
-
-        return NSLocalizedString("actions.cancel", tableName: "UserProfile", bundle: bundle, value: "Cancel", comment: "")
-      }
-
-      /// Base translation: Cancel follow request
-      ///
-      /// Locales: Base, ja
-      static func actionsFollowRequestCancel(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: hostingBundle, value: "Cancel follow request", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.followRequestCancel"
-        }
-
-        return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: bundle, value: "Cancel follow request", comment: "")
-      }
-
-      /// Base translation: Card
-      ///
-      /// Locales: Base, ja
-      static func actionsProfileCard(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.profileCard", tableName: "UserProfile", bundle: hostingBundle, value: "Card", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.profileCard"
-        }
-
-        return NSLocalizedString("actions.profileCard", tableName: "UserProfile", bundle: bundle, value: "Card", comment: "")
-      }
-
-      /// Base translation: Created At
-      ///
-      /// Locales: Base, ja
-      static func cellsCreatedAtTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cells.createdAt.title", tableName: "UserProfile", bundle: hostingBundle, value: "Created At", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "cells.createdAt.title"
-        }
-
-        return NSLocalizedString("cells.createdAt.title", tableName: "UserProfile", bundle: bundle, value: "Created At", comment: "")
-      }
-
-      /// Base translation: Follow
-      ///
-      /// Locales: Base, ja
-      static func actionsFollow(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.follow", tableName: "UserProfile", bundle: hostingBundle, value: "Follow", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.follow"
-        }
-
-        return NSLocalizedString("actions.follow", tableName: "UserProfile", bundle: bundle, value: "Follow", comment: "")
-      }
-
-      /// Base translation: Followers
-      ///
-      /// Locales: Base, ja
-      static func cellsFollowersTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cells.followers.title", tableName: "UserProfile", bundle: hostingBundle, value: "Followers", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "cells.followers.title"
-        }
-
-        return NSLocalizedString("cells.followers.title", tableName: "UserProfile", bundle: bundle, value: "Followers", comment: "")
-      }
-
-      /// Base translation: Following
-      ///
-      /// Locales: Base, ja
-      static func cellsFollowingTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cells.following.title", tableName: "UserProfile", bundle: hostingBundle, value: "Following", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "cells.following.title"
-        }
-
-        return NSLocalizedString("cells.following.title", tableName: "UserProfile", bundle: bundle, value: "Following", comment: "")
-      }
-
-      /// Base translation: Mute
-      ///
-      /// Locales: Base, ja
-      static func actionsMute(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.mute", tableName: "UserProfile", bundle: hostingBundle, value: "Mute", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.mute"
-        }
-
-        return NSLocalizedString("actions.mute", tableName: "UserProfile", bundle: bundle, value: "Mute", comment: "")
-      }
-
-      /// Base translation: Pending follow requests
-      ///
-      /// Locales: Base, ja
-      static func actionsFollowRequestsList(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.followRequestsList", tableName: "UserProfile", bundle: hostingBundle, value: "Pending follow requests", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.followRequestsList"
-        }
-
-        return NSLocalizedString("actions.followRequestsList", tableName: "UserProfile", bundle: bundle, value: "Pending follow requests", comment: "")
-      }
-
-      /// Base translation: Profile
-      ///
-      /// Locales: Base, ja
-      static func title(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title", tableName: "UserProfile", bundle: hostingBundle, value: "Profile", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "title"
-        }
-
-        return NSLocalizedString("title", tableName: "UserProfile", bundle: bundle, value: "Profile", comment: "")
-      }
-
-      /// Base translation: Share
-      ///
-      /// Locales: Base, ja
-      static func actionsShare(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.share", tableName: "UserProfile", bundle: hostingBundle, value: "Share", comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.share"
-        }
-
-        return NSLocalizedString("actions.share", tableName: "UserProfile", bundle: bundle, value: "Share", comment: "")
-      }
-
-      /// Base translation: Since this user is belonged to another instance, some informations may not be accurate.
-      ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
       static func federatedUserWarning(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("federatedUserWarning", tableName: "UserProfile", bundle: hostingBundle, value: "Since this user is belonged to another instance, some informations may not be accurate.", comment: "")
+          return NSLocalizedString("federatedUserWarning", tableName: "UserProfile", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
           return "federatedUserWarning"
         }
 
-        return NSLocalizedString("federatedUserWarning", tableName: "UserProfile", bundle: bundle, value: "Since this user is belonged to another instance, some informations may not be accurate.", comment: "")
+        return NSLocalizedString("federatedUserWarning", tableName: "UserProfile", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Toots
+      /// ja translation: アクション
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
+      static func actionsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.title"
+        }
+
+        return NSLocalizedString("actions.title", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: キャンセル
+      ///
+      /// Locales: ja, en
+      static func actionsCancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.cancel", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.cancel"
+        }
+
+        return NSLocalizedString("actions.cancel", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: トゥート
+      ///
+      /// Locales: ja, en
       static func cellsTootsTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("cells.toots.title", tableName: "UserProfile", bundle: hostingBundle, value: "Toots", comment: "")
+          return NSLocalizedString("cells.toots.title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
           return "cells.toots.title"
         }
 
-        return NSLocalizedString("cells.toots.title", tableName: "UserProfile", bundle: bundle, value: "Toots", comment: "")
+        return NSLocalizedString("cells.toots.title", tableName: "UserProfile", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Unblock
+      /// ja translation: フォロワー
       ///
-      /// Locales: Base, ja
-      static func actionsUnblock(preferredLanguages: [String]? = nil) -> String {
+      /// Locales: ja, en
+      static func cellsFollowersTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: hostingBundle, value: "Unblock", comment: "")
+          return NSLocalizedString("cells.followers.title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
-          return "actions.unblock"
+          return "cells.followers.title"
         }
 
-        return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: bundle, value: "Unblock", comment: "")
+        return NSLocalizedString("cells.followers.title", tableName: "UserProfile", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Unfollow
+      /// ja translation: フォロー
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
+      static func actionsFollow(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.follow", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.follow"
+        }
+
+        return NSLocalizedString("actions.follow", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: フォロー
+      ///
+      /// Locales: ja, en
+      static func cellsFollowingTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cells.following.title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "cells.following.title"
+        }
+
+        return NSLocalizedString("cells.following.title", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: フォローリクエストを撤回
+      ///
+      /// Locales: ja, en
+      static func actionsFollowRequestCancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.followRequestCancel"
+        }
+
+        return NSLocalizedString("actions.followRequestCancel", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: フォローリクエスト一覧
+      ///
+      /// Locales: ja, en
+      static func actionsFollowRequestsList(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.followRequestsList", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.followRequestsList"
+        }
+
+        return NSLocalizedString("actions.followRequestsList", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: フォロー解除
+      ///
+      /// Locales: ja, en
       static func actionsUnfollow(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.unfollow", tableName: "UserProfile", bundle: hostingBundle, value: "Unfollow", comment: "")
+          return NSLocalizedString("actions.unfollow", tableName: "UserProfile", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
           return "actions.unfollow"
         }
 
-        return NSLocalizedString("actions.unfollow", tableName: "UserProfile", bundle: bundle, value: "Unfollow", comment: "")
+        return NSLocalizedString("actions.unfollow", tableName: "UserProfile", bundle: bundle, comment: "")
       }
 
-      /// Base translation: Unmute
+      /// ja translation: ブロック
       ///
-      /// Locales: Base, ja
+      /// Locales: ja, en
+      static func actionsBlock(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.block", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.block"
+        }
+
+        return NSLocalizedString("actions.block", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ブロック解除
+      ///
+      /// Locales: ja, en
+      static func actionsUnblock(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.unblock"
+        }
+
+        return NSLocalizedString("actions.unblock", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: プロフィール
+      ///
+      /// Locales: ja, en
+      static func title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "title"
+        }
+
+        return NSLocalizedString("title", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ミュート
+      ///
+      /// Locales: ja, en
+      static func actionsMute(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.mute", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.mute"
+        }
+
+        return NSLocalizedString("actions.mute", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: ミュート解除
+      ///
+      /// Locales: ja, en
       static func actionsUnmute(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("actions.unmute", tableName: "UserProfile", bundle: hostingBundle, value: "Unmute", comment: "")
+          return NSLocalizedString("actions.unmute", tableName: "UserProfile", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
           return "actions.unmute"
         }
 
-        return NSLocalizedString("actions.unmute", tableName: "UserProfile", bundle: bundle, value: "Unmute", comment: "")
+        return NSLocalizedString("actions.unmute", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 共有
+      ///
+      /// Locales: ja, en
+      static func actionsShare(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.share", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.share"
+        }
+
+        return NSLocalizedString("actions.share", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 名刺
+      ///
+      /// Locales: ja, en
+      static func actionsProfileCard(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("actions.profileCard", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "actions.profileCard"
+        }
+
+        return NSLocalizedString("actions.profileCard", tableName: "UserProfile", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 登録日
+      ///
+      /// Locales: ja, en
+      static func cellsCreatedAtTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cells.createdAt.title", tableName: "UserProfile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "UserProfile", preferredLanguages: preferredLanguages) else {
+          return "cells.createdAt.title"
+        }
+
+        return NSLocalizedString("cells.createdAt.title", tableName: "UserProfile", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

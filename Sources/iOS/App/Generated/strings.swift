@@ -12,70 +12,70 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
   internal enum Localizable {
-    /// Cancel
+    /// キャンセル
     internal static let cancel = L10n.tr("Localizable", "cancel")
-    /// Connect
+    /// 接続
     internal static let connect = L10n.tr("Localizable", "connect")
-    /// Connected
+    /// 接続中
     internal static let connected = L10n.tr("Localizable", "connected")
-    /// Current: @%@
+    /// 現在のアカウント: @%@
     internal static func currentAccount(_ p1: String) -> String {
       return L10n.tr("Localizable", "currentAccount", p1)
     }
-    /// Disconnect
+    /// 切断
     internal static let disconnect = L10n.tr("Localizable", "disconnect")
-    /// Fetch failed
+    /// 取得失敗
     internal static let fetchFailed = L10n.tr("Localizable", "fetchFailed")
-    /// Help / Feedback
+    /// ヘルプ / Feedback
     internal static let helpAndFeedback = L10n.tr("Localizable", "helpAndFeedback")
-    /// Home Timeline
+    /// ホームタイムライン
     internal static let homeTimeline = L10n.tr("Localizable", "homeTimeline")
-    /// Lists
+    /// リスト
     internal static let lists = L10n.tr("Localizable", "lists")
-    /// Local Timeline
+    /// ローカルタイムライン
     internal static let localTimeline = L10n.tr("Localizable", "localTimeline")
-    /// My Profile
+    /// 自分のプロフィール
     internal static let myProfile = L10n.tr("Localizable", "myProfile")
-    /// Not connected
+    /// 接続していません
     internal static let notConnected = L10n.tr("Localizable", "notConnected")
-    /// Nothing more
+    /// ここまで
     internal static let nothingMore = L10n.tr("Localizable", "nothingMore")
-    /// Notifications
+    /// 通知
     internal static let notifications = L10n.tr("Localizable", "notifications")
-    /// Others
+    /// その他
     internal static let other = L10n.tr("Localizable", "other")
-    /// Post
+    /// 投稿
     internal static let post = L10n.tr("Localizable", "post")
-    /// Read more
+    /// もっと
     internal static let readmore = L10n.tr("Localizable", "readmore")
-    /// Refresh
+    /// 再取得
     internal static let refetch = L10n.tr("Localizable", "refetch")
-    /// Settings
+    /// 設定
     internal static let settings = L10n.tr("Localizable", "settings")
     /// Streaming
     internal static let streaming = L10n.tr("Localizable", "streaming")
-    /// Status: %@
+    /// 状態: %@
     internal static func streamingStatus(_ p1: String) -> String {
       return L10n.tr("Localizable", "streamingStatus", p1)
     }
-    /// Switch active account
+    /// アカウントを変更
     internal static let switchActiveAccount = L10n.tr("Localizable", "switchActiveAccount")
     internal enum Error {
-      /// Please input instance.
+      /// インスタンスを入力してください。
       internal static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")
-      /// This feature requires Mastodon %@ or higher.
+      /// この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
       internal static func requiredNewerMastodon(_ p1: String) -> String {
         return L10n.tr("Localizable", "error.requiredNewerMastodon", p1)
       }
-      /// This feature requires iOS %.1f or higher.
+      /// この機能を利用するためには iOS %.1f 以上が必要です。
       internal static func requiredNewerOS(_ p1: Float) -> String {
         return L10n.tr("Localizable", "error.requiredNewerOS", p1)
       }
-      /// Error
+      /// エラー
       internal static let title = L10n.tr("Localizable", "error.title")
     }
     internal enum HomeTimeline {
-      /// Home
+      /// ホーム
       internal static let short = L10n.tr("Localizable", "homeTimeline.short")
     }
     internal enum LocalTimeline {
@@ -84,48 +84,48 @@ internal enum L10n {
     }
   }
   internal enum Login {
-    /// Login
+    /// ログイン
     internal static let loginButton = L10n.tr("Login", "loginButton")
-    /// Please input mastodon instance
+    /// Mastodonのインスタンスを入力してください
     internal static let pleaseInputMastodonInstance = L10n.tr("Login", "pleaseInputMastodonInstance")
-    /// Login
+    /// ログイン
     internal static let title = L10n.tr("Login", "title")
     internal enum Authorize {
-      /// Authorize
+      /// 認証
       internal static let title = L10n.tr("Login", "authorize.title")
       internal enum Method {
-        /// Login with mail address and password
+        /// メールアドレスとパスワードでログイン
         internal static let mailAndPassword = L10n.tr("Login", "authorize.method.mailAndPassword")
-        /// Login with Safari (Recommended)
+        /// Safariでログイン (推奨)
         internal static let safari = L10n.tr("Login", "authorize.method.safari")
       }
       internal enum Tos {
-        /// By login, you agree to follow the rules and privacy policies.
+        /// ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。
         internal static let header = L10n.tr("Login", "authorize.tos.header")
-        /// Rules of this server
+        /// このサーバーのルール
         internal static let rules = L10n.tr("Login", "authorize.tos.rules")
-        /// Terms of Service of this server
+        /// このサーバーの利用規約
         internal static let termsOfService = L10n.tr("Login", "authorize.tos.termsOfService")
       }
     }
     internal enum PasswordLogin {
-      /// Mail address
+      /// メールアドレス
       internal static let mailAddress = L10n.tr("Login", "passwordLogin.mailAddress")
-      /// Password
+      /// パスワード
       internal static let password = L10n.tr("Login", "passwordLogin.password")
     }
     internal enum ProgressDialog {
-      /// Fetching server information...
+      /// サーバーの情報を取得中…
       internal static let fetchingServerInfo = L10n.tr("Login", "progressDialog.fetchingServerInfo")
-      /// Please authorize
+      /// 認証してください
       internal static let pleaseAuthorize = L10n.tr("Login", "progressDialog.pleaseAuthorize")
-      /// Registering app to server...
+      /// アプリをサーバーに登録中…
       internal static let registeringApplication = L10n.tr("Login", "progressDialog.registeringApplication")
-      /// Logging in...
+      /// ログイン中
       internal static let title = L10n.tr("Login", "progressDialog.title")
     }
     internal enum Welcome {
-      /// Welcome,\n%@
+      /// ようこそ、\n%@\nさん。
       internal static func message(_ p1: String) -> String {
         return L10n.tr("Login", "welcome.message", p1)
       }
@@ -133,52 +133,52 @@ internal enum L10n {
   }
   internal enum Notification {
     internal enum Types {
-      /// @%@ boosted your toot
+      /// @%@さんにブーストされました
       internal static func boost(_ p1: String) -> String {
         return L10n.tr("Notification", "types.boost", p1)
       }
-      /// @%@ favorited your toot
+      /// @%@さんにふぁぼられました
       internal static func favourite(_ p1: String) -> String {
         return L10n.tr("Notification", "types.favourite", p1)
       }
-      /// @%@ followed you
+      /// @%@さんにフォローされました
       internal static func follow(_ p1: String) -> String {
         return L10n.tr("Notification", "types.follow", p1)
       }
-      /// @%@ mentioned you
+      /// @%@さんからのメンション
       internal static func mention(_ p1: String) -> String {
         return L10n.tr("Notification", "types.mention", p1)
       }
-      /// Unknown Notification: %@
+      /// 不明な通知: %@
       internal static func unknown(_ p1: String) -> String {
         return L10n.tr("Notification", "types.unknown", p1)
       }
       internal enum Poll {
-        /// A poll you voted has ended
+        /// あなたが参加した投票が終了しました
         internal static let notowner = L10n.tr("Notification", "types.poll.notowner")
-        /// Your poll has ended
+        /// あなたが作成した投票が終了しました
         internal static let owner = L10n.tr("Notification", "types.poll.owner")
       }
     }
   }
   internal enum Search {
-    /// Search
+    /// 検索
     internal static let title = L10n.tr("Search", "title")
     internal enum Sections {
       internal enum Accounts {
-        /// Accounts
+        /// アカウント
         internal static let title = L10n.tr("Search", "sections.accounts.title")
       }
       internal enum Hashtags {
-        /// Hashtags
+        /// ハッシュタグ
         internal static let title = L10n.tr("Search", "sections.hashtags.title")
       }
       internal enum Posts {
-        /// Posts
+        /// 投稿
         internal static let title = L10n.tr("Search", "sections.posts.title")
       }
       internal enum TrendTags {
-        /// Trend tags (Updated: %@)
+        /// トレンドタグ (更新: %@)
         internal static func title(_ p1: String) -> String {
           return L10n.tr("Search", "sections.trendTags.title", p1)
         }
@@ -186,51 +186,51 @@ internal enum L10n {
     }
   }
   internal enum UserProfile {
-    /// Since this user is belonged to another instance, some informations may not be accurate.
+    /// このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
     internal static let federatedUserWarning = L10n.tr("UserProfile", "federatedUserWarning")
-    /// Profile
+    /// プロフィール
     internal static let title = L10n.tr("UserProfile", "title")
     internal enum Actions {
-      /// Block
+      /// ブロック
       internal static let block = L10n.tr("UserProfile", "actions.block")
-      /// Cancel
+      /// キャンセル
       internal static let cancel = L10n.tr("UserProfile", "actions.cancel")
-      /// Follow
+      /// フォロー
       internal static let follow = L10n.tr("UserProfile", "actions.follow")
-      /// Cancel follow request
+      /// フォローリクエストを撤回
       internal static let followRequestCancel = L10n.tr("UserProfile", "actions.followRequestCancel")
-      /// Pending follow requests
+      /// フォローリクエスト一覧
       internal static let followRequestsList = L10n.tr("UserProfile", "actions.followRequestsList")
-      /// Mute
+      /// ミュート
       internal static let mute = L10n.tr("UserProfile", "actions.mute")
-      /// Card
+      /// 名刺
       internal static let profileCard = L10n.tr("UserProfile", "actions.profileCard")
-      /// Share
+      /// 共有
       internal static let share = L10n.tr("UserProfile", "actions.share")
-      /// Actions
+      /// アクション
       internal static let title = L10n.tr("UserProfile", "actions.title")
-      /// Unblock
+      /// ブロック解除
       internal static let unblock = L10n.tr("UserProfile", "actions.unblock")
-      /// Unfollow
+      /// フォロー解除
       internal static let unfollow = L10n.tr("UserProfile", "actions.unfollow")
-      /// Unmute
+      /// ミュート解除
       internal static let unmute = L10n.tr("UserProfile", "actions.unmute")
     }
     internal enum Cells {
       internal enum CreatedAt {
-        /// Created At
+        /// 登録日
         internal static let title = L10n.tr("UserProfile", "cells.createdAt.title")
       }
       internal enum Followers {
-        /// Followers
+        /// フォロワー
         internal static let title = L10n.tr("UserProfile", "cells.followers.title")
       }
       internal enum Following {
-        /// Following
+        /// フォロー
         internal static let title = L10n.tr("UserProfile", "cells.following.title")
       }
       internal enum Toots {
-        /// Toots
+        /// トゥート
         internal static let title = L10n.tr("UserProfile", "cells.toots.title")
       }
     }
