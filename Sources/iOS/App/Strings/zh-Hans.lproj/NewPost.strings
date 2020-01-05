@@ -6,7 +6,7 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "折叠部分的警告信息（可省略）";
+"placeholders.cwWarningText" = "折叠部分的警告信息（可选）";
 "infoText.inReplyTo" = "回复给：%@";
 "send" = "发布";
 
