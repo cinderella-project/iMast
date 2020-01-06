@@ -52,7 +52,7 @@
 "lists" = "Lists";
 "settings" = "Settings";
 "helpAndFeedback" = "Help / Feedback";
-"bookmarks" = "ブックマーク";
+"bookmarks" = "Bookmarks";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
