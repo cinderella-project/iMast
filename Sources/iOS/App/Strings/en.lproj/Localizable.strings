@@ -52,12 +52,12 @@
 "lists" = "Lists";
 "settings" = "Settings";
 "helpAndFeedback" = "Help / Feedback";
-"bookmarks" = "ブックマーク";
+"bookmarks" = "Bookmarks";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";
 "error.pleaseInputInstance" = "Please input instance.";
 
-"error.unknown.title" = "謎のエラー";
-"error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";
+"error.unknown.title" = "Unknown error";
+"error.unknown.text" = "If you'd like, please send a message describing how this alert displayed with the code below to @imast_ios@mstdn.rinsuki.net.";

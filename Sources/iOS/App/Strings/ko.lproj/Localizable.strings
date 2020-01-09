@@ -28,9 +28,9 @@
 "homeTimeline" = "ホームタイムライン";
 "homeTimeline.short" = "ホーム";
 
-"notifications" = "通知";
+"notifications" = "알림";
 
-"localTimeline" = "ローカルタイムライン";
+"localTimeline" = "로컬 타임라인";
 "localTimeline.short" = "LTL";
 
 "post" = "投稿";

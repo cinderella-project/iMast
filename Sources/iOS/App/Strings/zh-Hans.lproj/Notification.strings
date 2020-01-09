@@ -7,7 +7,7 @@
 */
 
 "types.follow" = "@%@关注了你";
-"types.favourite" = "@%@给你点了个赞";
+"types.favourite" = "@%@收藏了你的嘟文";
 "types.mention" = "@%@提及了你";
 "types.boost" = "@%@转嘟了嘟文";
 "types.poll.owner" = "您发起的投票已结束";

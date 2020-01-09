@@ -6,8 +6,8 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "CW説明文 (省略可能)";
-"infoText.inReplyTo" = "返信先: %@";
+"placeholders.cwWarningText" = "CW Warning text (Optional)";
+"infoText.inReplyTo" = "Reply to: %@";
 "send" = "Send";
 
 // Safariのファイル選択時の表記に合わせてほしい
@@ -18,11 +18,11 @@
 "media.delete" = "Delete";
 
 "keyCommand.send.title" = "Post";
-"keyCommand.send.description" = "投稿を送信";
+"keyCommand.send.description" = "Send post";
 
-"alerts.sending.title" = "投稿中";
-"alerts.sending.steps.mediaUpload" = "画像アップロード中 (%1$d/%2$d)";
-"alerts.sending.steps.send" = "送信中";
+"alerts.sending.title" = "Sending post";
+"alerts.sending.steps.mediaUpload" = "Uploading image (%1$d/%2$d)";
+"alerts.sending.steps.send" = "Sending";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
 "errors.declineAppleMusicPermission" = "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。";
