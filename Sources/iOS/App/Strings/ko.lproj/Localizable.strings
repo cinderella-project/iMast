@@ -55,9 +55,9 @@
 "bookmarks" = "북마크";
 
 "error.title" = "오류";
-"error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
-"error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
-"error.pleaseInputInstance" = "インスタンスを入力してください。";
+"error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
+"error.requiredNewerMastodon" = "이 기능은 Mastodon 인스턴스의 버전이 %@ 이상이 아닌 경우 이용할 수 없습니다.\n(iMast 이용 중 인스턴스가 업데이트된 경우, 앱을 다시 실행하면 이용할 수 있게 됩니다)\nMastodon 인스턴스의 업데이트 예정에 대해서는 각 인스턴스의 관리자에게 문의해 주세요.";
+"error.pleaseInputInstance" = "인스턴스를 입력해 주세요.";
 
-"error.unknown.title" = "謎のエラー";
+"error.unknown.title" = "알 수 없는 오류";
 "error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";
