@@ -6,7 +6,7 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "CW Warning text (Optional)";
+"placeholders.cwWarningText" = "Content Warning (Optional)";
 "infoText.inReplyTo" = "Reply to: %@";
 "send" = "Send";
 
