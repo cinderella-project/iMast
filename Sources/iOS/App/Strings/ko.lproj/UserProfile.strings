@@ -28,22 +28,22 @@
 "cells.followers.title" = "팔로워";
 "cells.createdAt.title" = "登録日";
 
-"actions.title" = "アクション";
-"actions.share" = "共有";
-"actions.profileCard" = "名刺";
+"actions.title" = "액션";
+"actions.share" = "공유";
+"actions.profileCard" = "명함";
 
-"actions.follow" = "フォロー";
-"actions.followRequestCancel" = "フォローリクエストを撤回";
-"actions.unfollow" = "フォロー解除";
+"actions.follow" = "팔로우";
+"actions.followRequestCancel" = "팔로우 요청을 철회";
+"actions.unfollow" = "팔로우 해제";
 
-"actions.mute" = "ミュート";
-"actions.unmute" = "ミュート解除";
+"actions.mute" = "뮤트";
+"actions.unmute" = "뮤트 해제";
 
-"actions.block" = "ブロック";
-"actions.unblock" = "ブロック解除";
+"actions.block" = "차단";
+"actions.unblock" = "차단 해제";
 
-"actions.followRequestsList" = "フォローリクエスト一覧";
+"actions.followRequestsList" = "팔로우 리퀘스트 목록";
 
-"actions.cancel" = "キャンセル";
+"actions.cancel" = "취소";
 
-"federatedUserWarning" = "このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。";
+"federatedUserWarning" = "이 사용자는 외부 인스턴스에 소속되어 있기 때문에, 일부 수치가 정확하지 않을 수 있습니다.";
