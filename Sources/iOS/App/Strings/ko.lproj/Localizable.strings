@@ -21,12 +21,12 @@
   limitations under the License.
 */
 
-"readmore" = "もっと";
-"nothingMore" = "ここまで";
-"fetchFailed" = "取得失敗";
+"readmore" = "더 보기";
+"nothingMore" = "여기까지";
+"fetchFailed" = "획득 실패";
 
-"homeTimeline" = "ホームタイムライン";
-"homeTimeline.short" = "ホーム";
+"homeTimeline" = "홈 타임라인";
+"homeTimeline.short" = "홈";
 
 "notifications" = "알림";
 
@@ -34,27 +34,27 @@
 "localTimeline.short" = "LTL";
 
 "post" = "投稿";
-"streaming" = "Streaming";
-"streamingStatus" = "状態: %@";
+"streaming" = "스트리밍";
+"streamingStatus" = "상태: %@";
 
-"connected" = "接続中";
-"notConnected" = "接続していません";
+"connected" = "연결 중";
+"notConnected" = "연결되어 있지 않습니다";
 
-"connect" = "接続";
+"connect" = "연결";
 "disconnect" = "切断";
 "refetch" = "再取得";
-"cancel" = "キャンセル";
+"cancel" = "취소";
 
-"other" = "その他";
-"switchActiveAccount" = "アカウントを変更";
+"other" = "기타";
+"switchActiveAccount" = "계정 변경";
 "currentAccount" = "現在のアカウント: @%@";
-"myProfile" = "自分のプロフィール";
-"lists" = "リスト";
-"settings" = "設定";
-"helpAndFeedback" = "ヘルプ / Feedback";
-"bookmarks" = "ブックマーク";
+"myProfile" = "내 프로필";
+"lists" = "리스트";
+"settings" = "설정";
+"helpAndFeedback" = "도움말 / 피드백";
+"bookmarks" = "북마크";
 
-"error.title" = "エラー";
+"error.title" = "오류";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
 "error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
 "error.pleaseInputInstance" = "インスタンスを入力してください。";
