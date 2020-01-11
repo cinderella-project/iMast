@@ -7,9 +7,9 @@
 */
 
 "types.follow" = "@%@ followed you";
-"types.favourite" = "@%@ favorited your toot";
+"types.favourite" = "@%@ favorited your post";
 "types.mention" = "@%@ mentioned you";
-"types.boost" = "@%@ boosted your toot";
+"types.boost" = "@%@ boosted your post";
 "types.poll.owner" = "Your poll has ended";
-"types.poll.notowner" = "A poll you voted has ended";
+"types.poll.notowner" = "A poll you voted on has ended";
 "types.unknown" = "Unknown Notification: %@";
