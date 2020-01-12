@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>wv5rhj</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18F132</string>
+	<string>19C57</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11M337n</string>
+	<string>11C29</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>11.0</string>
+	<string>11.3</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -32,7 +32,7 @@
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Toot ${text} in ${account}</string>
+					<string>Post ${text} in ${account}</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>QvjTtH</string>
 				</dict>
@@ -48,7 +48,7 @@
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>${text}を${account}でトゥート</string>
+					<string>${text}を${account}で投稿</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>ULKkKs</string>
 				</dict>

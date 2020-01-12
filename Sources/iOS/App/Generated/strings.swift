@@ -187,7 +187,7 @@ internal enum L10n {
       }
     }
     internal enum Placeholders {
-      /// CW説明分 (省略可能)
+      /// CW説明文 (省略可能)
       internal static let cwWarningText = L10n.tr("NewPost", "placeholders.cwWarningText")
     }
   }
@@ -290,7 +290,7 @@ internal enum L10n {
         internal static let title = L10n.tr("UserProfile", "cells.following.title")
       }
       internal enum Toots {
-        /// トゥート
+        /// 投稿
         internal static let title = L10n.tr("UserProfile", "cells.toots.title")
       }
     }

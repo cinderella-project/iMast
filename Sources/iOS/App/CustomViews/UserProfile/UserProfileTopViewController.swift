@@ -119,7 +119,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         createdAtSabunCell.detailTextLabel?.text = numToCommaString(-Int(createdAt.timeIntervalSinceNow/60/60/24)) + "日"
         
         let tootDaysCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        tootDaysCell.textLabel?.text = "平均トゥート/日"
+        tootDaysCell.textLabel?.text = "平均投稿/日"
         tootDaysCell.detailTextLabel?.text = numToCommaString(-(input.postsCount/Int(min(-1, createdAt.timeIntervalSinceNow/60/60/24))))
         self.externalServiceLinks = []
 
@@ -295,7 +295,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             if indexPath.row == 0 {
                 let newVC = UserTimeLineTableViewController.instantiate(.plain, environment: self.environment)
                 newVC.user = self.input
-                newVC.title = "トゥート一覧"
+                newVC.title = "投稿一覧"
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return
             } else if indexPath.row == 1 || indexPath.row == 2 {

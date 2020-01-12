@@ -127,7 +127,7 @@ class SettingsViewController: FormViewController {
     func getPostInfoSection() -> Section {
         return Section(header: "投稿詳細") {
             SwitchRow { row in
-                row.title = "トゥート削除をておくれにする"
+                row.title = "投稿削除をておくれにする"
                 row.userDefaultsConnect(.deleteTootTeokure)
             }
         }
@@ -188,7 +188,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.timelineNurunuruMode)
             }
             SliderRow { row in
-                row.title = "ピン留めトゥートの行数制限"
+                row.title = "ピン留め投稿の行数制限"
                 row.userDefaultsConnect(.pinnedTootLinesLimit)
                 row.steps = 10
                 row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
