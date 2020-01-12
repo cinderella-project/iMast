@@ -26,4 +26,4 @@
 "sections.posts.title" = "Posts";
 "sections.accounts.title" = "Accounts";
 "sections.hashtags.title" = "Hashtags";
-"sections.trendTags.title" = "Trend tags (Updated: %@)";
+"sections.trendTags.title" = "Trending tags (Updated: %@)";

@@ -8,14 +8,14 @@
 
 "placeholders.cwWarningText" = "CW説明文 (省略可能)";
 "infoText.inReplyTo" = "返信先: %@";
-"send" = "送信";
+"send" = "보내기";
 
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "写真を撮る";
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.photoLibrary" = "フォトライブラリ";
-"media.preview" = "プレビュー";
-"media.delete" = "削除";
+"media.preview" = "프리뷰";
+"media.delete" = "삭제";
 
 "keyCommand.send.title" = "投稿";
 "keyCommand.send.description" = "投稿を送信";

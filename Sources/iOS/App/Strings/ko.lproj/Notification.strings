@@ -6,10 +6,10 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"types.follow" = "@%@さんにフォローされました";
+"types.follow" = "@%@님이 팔로우하셨습니다";
 "types.favourite" = "@%@さんにふぁぼられました";
 "types.mention" = "@%@さんからのメンション";
 "types.boost" = "@%@さんにブーストされました";
 "types.poll.owner" = "あなたが作成した投票が終了しました";
 "types.poll.notowner" = "あなたが参加した投票が終了しました";
-"types.unknown" = "不明な通知: %@";
+"types.unknown" = "알 수 없는 알림: %@";

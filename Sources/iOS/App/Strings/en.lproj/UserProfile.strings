@@ -23,7 +23,7 @@
 
 "title" = "Profile";
 
-"cells.toots.title" = "Toots";
+"cells.toots.title" = "Posts";
 "cells.following.title" = "Following";
 "cells.followers.title" = "Followers";
 "cells.createdAt.title" = "Created At";
