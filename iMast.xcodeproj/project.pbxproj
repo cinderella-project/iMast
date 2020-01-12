@@ -560,6 +560,12 @@
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
+		CE23ABCD23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Search.strings; sourceTree = "<group>"; };
+		CE23ABCE23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE23ABCF23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Notification.strings; sourceTree = "<group>"; };
+		CE23ABD023CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Login.strings; sourceTree = "<group>"; };
+		CE23ABD123CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/UserProfile.strings; sourceTree = "<group>"; };
+		CE23ABD223CAEA3A00E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTimeLineTableViewController.swift; sourceTree = "<group>"; };
@@ -2216,6 +2222,7 @@
 				en,
 				ja,
 				"zh-Hans",
+				ko,
 			);
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
 			productRefGroup = 2AF352181EAB9C5500777C2E /* Products */;
@@ -3145,6 +3152,7 @@
 				CE6554CA23C25DDC0084FE1D /* ja */,
 				CE6554DB23C25DE30084FE1D /* en */,
 				CE6554E323C27A040084FE1D /* zh-Hans */,
+				CE23ABCE23CAEA3900E799E7 /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3155,6 +3163,7 @@
 				CE6554CC23C25DDC0084FE1D /* ja */,
 				CE6554D823C25DE20084FE1D /* en */,
 				CE6554E423C27A040084FE1D /* zh-Hans */,
+				CE23ABCF23CAEA3900E799E7 /* ko */,
 			);
 			name = Notification.strings;
 			sourceTree = "<group>";
@@ -3165,6 +3174,7 @@
 				CE6554CE23C25DDC0084FE1D /* ja */,
 				CE6554DA23C25DE30084FE1D /* en */,
 				CE6554E723C27A040084FE1D /* zh-Hans */,
+				CE23ABCD23CAEA3900E799E7 /* ko */,
 			);
 			name = Search.strings;
 			sourceTree = "<group>";
@@ -3175,6 +3185,7 @@
 				CE6554D023C25DDC0084FE1D /* ja */,
 				CE6554DC23C25DE30084FE1D /* en */,
 				CE6554E823C27A040084FE1D /* zh-Hans */,
+				CE23ABD123CAEA3900E799E7 /* ko */,
 			);
 			name = UserProfile.strings;
 			sourceTree = "<group>";
@@ -3185,6 +3196,7 @@
 				CE6554D223C25DDC0084FE1D /* ja */,
 				CE6554D923C25DE20084FE1D /* en */,
 				CE6554E523C27A040084FE1D /* zh-Hans */,
+				CE23ABD023CAEA3900E799E7 /* ko */,
 			);
 			name = Login.strings;
 			sourceTree = "<group>";
@@ -3195,6 +3207,7 @@
 				CE6554E023C26C250084FE1D /* ja */,
 				CE6554E223C2769B0084FE1D /* en */,
 				CE6554E623C27A040084FE1D /* zh-Hans */,
+				CE23ABD223CAEA3A00E799E7 /* ko */,
 			);
 			name = NewPost.strings;
 			sourceTree = "<group>";
