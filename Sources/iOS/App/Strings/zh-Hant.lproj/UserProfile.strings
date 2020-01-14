@@ -23,7 +23,7 @@
 
 "title" = "プロフィール";
 
-"cells.toots.title" = "トゥート";
+"cells.toots.title" = "投稿";
 "cells.following.title" = "フォロー";
 "cells.followers.title" = "フォロワー";
 "cells.createdAt.title" = "登録日";
