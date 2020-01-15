@@ -221,6 +221,28 @@ internal enum L10n {
       }
     }
   }
+  internal enum OtherMenu {
+    internal enum Lists {
+      /// リスト
+      internal static let title = L10n.tr("OtherMenu", "lists.title")
+      internal enum Create {
+        /// リストの名前を決めてください
+        internal static let message = L10n.tr("OtherMenu", "lists.create.message")
+        /// リスト作成
+        internal static let title = L10n.tr("OtherMenu", "lists.create.title")
+        internal enum Actions {
+          /// 作成
+          internal static let primary = L10n.tr("OtherMenu", "lists.create.actions.primary")
+        }
+        internal enum TextField {
+          internal enum Name {
+            /// リストの名前
+            internal static let placeholder = L10n.tr("OtherMenu", "lists.create.textField.name.placeholder")
+          }
+        }
+      }
+    }
+  }
   internal enum Search {
     /// 検索
     internal static let title = L10n.tr("Search", "title")

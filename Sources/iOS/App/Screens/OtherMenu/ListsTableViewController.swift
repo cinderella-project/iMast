@@ -67,11 +67,15 @@ class ListsTableViewController: UITableViewController, Instantiatable {
     }
     
     @objc func addList() {
-        let alert = UIAlertController(title: "リストの作成", message: "リスト名を決めてください", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: L10n.OtherMenu.Lists.Create.title,
+            message: L10n.OtherMenu.Lists.Create.message,
+            preferredStyle: .alert
+        )
         alert.addTextField { textField in
-            textField.placeholder = "リスト名"
+            textField.placeholder = L10n.OtherMenu.Lists.Create.TextField.Name.placeholder
         }
-        alert.addAction(UIAlertAction(title: "作成", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: L10n.OtherMenu.Lists.Create.Actions.primary, style: .default, handler: { _ in
             self.environment.list(title: alert.textFields![0].text ?? "").then { list in
                 let vc = ListTimeLineTableViewController.instantiate(.plain, environment: self.environment)
                 vc.list = list
@@ -80,7 +84,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
                 self.refreshList()
             }
         }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     

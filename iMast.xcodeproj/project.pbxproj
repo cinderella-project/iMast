@@ -207,6 +207,7 @@
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
 		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEDEC6D3226BC7FA00B581A9 /* UIViewController+openURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */; };
+		CEDF86F823CF011100C8A69A /* OtherMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDF86FA23CF011100C8A69A /* OtherMenu.strings */; };
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
@@ -734,6 +735,7 @@
 		CEDEDC992007C36400CD2784 /* MastodonID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonID.swift; sourceTree = "<group>"; };
 		CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccountRelationship.swift; sourceTree = "<group>"; };
 		CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonList.swift; sourceTree = "<group>"; };
+		CEDF86F923CF011100C8A69A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OtherMenu.strings; sourceTree = "<group>"; };
 		CEE043A923780C94007A915E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneView.swift; sourceTree = "<group>"; };
 		CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPaneProtocol.swift; sourceTree = "<group>"; };
@@ -1512,6 +1514,7 @@
 				CE6554CD23C25DDC0084FE1D /* Search.strings */,
 				CE6554CF23C25DDC0084FE1D /* UserProfile.strings */,
 				CE6554E123C26C250084FE1D /* NewPost.strings */,
+				CEDF86FA23CF011100C8A69A /* OtherMenu.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2253,6 +2256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDF86F823CF011100C8A69A /* OtherMenu.strings in Resources */,
 				CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */,
 				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
 				CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */,
@@ -3236,6 +3240,14 @@
 				CE845D272172504A00AF35B4 /* Base */,
 			);
 			name = NewPost.storyboard;
+			sourceTree = "<group>";
+		};
+		CEDF86FA23CF011100C8A69A /* OtherMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEDF86F923CF011100C8A69A /* ja */,
+			);
+			name = OtherMenu.strings;
 			sourceTree = "<group>";
 		};
 		CEE4E2F32377EAF700406371 /* Main.storyboard */ = {
