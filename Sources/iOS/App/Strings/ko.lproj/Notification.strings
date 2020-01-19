@@ -7,9 +7,9 @@
 */
 
 "types.follow" = "@%@님이 팔로우하셨습니다";
-"types.favourite" = "@%@さんにふぁぼられました";
-"types.mention" = "@%@さんからのメンション";
-"types.boost" = "@%@さんにブーストされました";
-"types.poll.owner" = "あなたが作成した投票が終了しました";
-"types.poll.notowner" = "あなたが参加した投票が終了しました";
+"types.favourite" = "@%@님이 좋아합니다";
+"types.mention" = "@%@ 님으로부터";
+"types.boost" = "@%@ 님이 부스트했습니다";
+"types.poll.owner" = "개설한 투표가 종료되었습니다";
+"types.poll.notowner" = "참여한 투표가 종료되었습니다";
 "types.unknown" = "알 수 없는 알림: %@";
