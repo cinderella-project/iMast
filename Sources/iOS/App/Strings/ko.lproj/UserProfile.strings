@@ -23,7 +23,7 @@
 
 "title" = "프로필";
 
-"cells.toots.title" = "툿";
+"cells.toots.title" = "投稿";
 "cells.following.title" = "팔로우";
 "cells.followers.title" = "팔로워";
 "cells.createdAt.title" = "가입한 날짜";
