@@ -33,7 +33,7 @@
 "localTimeline" = "로컬 타임라인";
 "localTimeline.short" = "LTL";
 
-"post" = "작성";
+"post" = "投稿";
 "streaming" = "스트리밍";
 "streamingStatus" = "상태: %@";
 
