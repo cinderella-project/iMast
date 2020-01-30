@@ -4,11 +4,11 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macOS-10.14
+    runs-on: macOS-latest
     strategy:
       matrix:
         xcode:
-          - 11.2
+          - 11.3
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
