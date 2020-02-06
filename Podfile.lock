@@ -75,7 +75,7 @@ DEPENDENCIES:
   - "※ikemen (~> 0.6.0)"
 
 SPEC REPOS:
-  https://cdn.cocoapods.org/:
+  trunk:
     - 1PasswordExtension
     - Alamofire
     - Crossroad
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   LicensePlist: 94c2f54bb9cc5427797addaeb716cfaba3544e89
-  Mew: 0b5fb383e0cdd2ff6ff3098c48b0b2ac37fe78a2
+  Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
