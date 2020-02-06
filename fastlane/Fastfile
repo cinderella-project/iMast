@@ -40,7 +40,7 @@ platform :ios do
     changelog = changelog.gsub("→", "->")
 
     git_commit(path: ["./*/Info.plist", "./iMast.xcodeproj/project.pbxproj"], message: ":rocket: " + version)
-    push_to_git_remote
+    push_to_git_remote(tags: false)
     add_git_tag(tag: version, message: changelog)
 
     get_provisioning_profile
