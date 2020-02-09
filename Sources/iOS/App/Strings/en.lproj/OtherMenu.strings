@@ -1,0 +1,13 @@
+/* 
+  OtherMenu.strings
+  iMast
+
+  Created by user on 2020/01/15.
+  Copyright © 2020 rinsuki. All rights reserved.
+*/
+
+"lists.title" = "Lists";
+"lists.create.title" = "Create List";
+"lists.create.message" = "リストの名前を決めてください";
+"lists.create.textField.name.placeholder" = "Name of new list";
+"lists.create.actions.primary" = "Create";

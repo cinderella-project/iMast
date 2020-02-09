@@ -23,7 +23,7 @@
 
 "title" = "검색";
 
-"sections.posts.title" = "게시물";
+"sections.posts.title" = "投稿";
 "sections.accounts.title" = "계정";
 "sections.hashtags.title" = "해시태그";
 "sections.trendTags.title" = "트랜드 태그 (%@ 갱신)";
