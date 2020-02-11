@@ -95,6 +95,9 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
             self.paging.override(with: paging.prev)
             self.refreshControl?.endRefreshing()
             self.update()
+        }.catch { e in
+            self.readmoreCell.lastError = e
+            self.readmoreCell.state = .withError
         }
     }
     
@@ -106,6 +109,9 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
             self.postIds.append(contentsOf: res.map { $0.id })
             self.paging.next = paging.next
             self.update()
+        }.catch { e in
+            self.readmoreCell.lastError = e
+            self.readmoreCell.state = .withError
         }
     }
     
