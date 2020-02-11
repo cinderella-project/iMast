@@ -99,6 +99,24 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                     }
                 }
                 ButtonRow { row in
+                    row.title = L10n.Localizable.bookmarks
+                    row.cellUpdate { cell, row in
+                        cell.textLabel?.textAlignment = .left
+                        cell.accessoryType = .disclosureIndicator
+                        cell.textLabel?.textColor = nil
+                    }
+                    row.onCellSelection { cell, row in
+                        // TODO: ここの下限バージョンの処理をあとで共通化する
+                        self.environment.getIntVersion().then { version in
+                            if version < MastodonVersionStringToInt("3.1.0") {
+                                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("3.1.0"))
+                                return
+                            }
+                            self.navigationController?.pushViewController(BookmarksTimeLineTableViewController.instantiate(environment: self.environment), animated: true)
+                        }
+                    }
+                }
+                ButtonRow { row in
                     row.title = R.string.localizable.settings()
                     row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
                 }
