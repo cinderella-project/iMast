@@ -212,6 +212,70 @@ public class MastodonUserToken: Equatable {
         }
     }
     
+    public func request<E: MastodonEndpointProtocol>(ep: E) -> Promise<E.Response> where E.Response: Decodable {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = app.instance.hostName
+        urlBuilder.path = ep.endpoint
+        urlBuilder.queryItems = ep.query.map { URLQueryItem(name: $0, value: $1) }
+        let headers = getHeader()
+        return Promise<E.Response> { resolve, reject, _ in
+            var request = URLRequest(url: try urlBuilder.asURL())
+            request.httpMethod = ep.method
+            request.httpBody = ep.body
+            for (name, value) in headers {
+                request.setValue(value, forHTTPHeaderField: name)
+            }
+            Alamofire.request(request).responseData { res in
+                do {
+                    switch res.result {
+                    case .success(let data):
+                        resolve(try JSONDecoder.forMastodonAPI.decode(E.Response.self, from: data))
+                        return
+                    case .failure(let error):
+                        reject(error)
+                        return
+                    }
+                } catch {
+                    reject(error)
+                    return
+                }
+            }
+        }
+    }
+    
+    public func requestWithPagingInfo<E: MastodonEndpointProtocol>(ep: E) -> Promise<(E.Response, MastodonPaging)> where E.Response: Decodable {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = app.instance.hostName
+        urlBuilder.path = ep.endpoint
+        urlBuilder.queryItems = ep.query.map { URLQueryItem(name: $0, value: $1) }
+        let headers = getHeader()
+        return Promise { resolve, reject, _ in
+            var request = URLRequest(url: try urlBuilder.asURL())
+            request.httpMethod = ep.method
+            request.httpBody = ep.body
+            for (name, value) in headers {
+                request.setValue(value, forHTTPHeaderField: name)
+            }
+            Alamofire.request(request).responseData { res in
+                do {
+                    switch res.result {
+                    case .success(let data):
+                        resolve((try JSONDecoder.forMastodonAPI.decode(E.Response.self, from: data), MastodonPaging(headerString: res.response!.value(forHTTPHeaderField: "Link") ?? "")))
+                        return
+                    case .failure(let error):
+                        reject(error)
+                        return
+                    }
+                } catch {
+                    reject(error)
+                    return
+                }
+            }
+        }
+    }
+    
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
