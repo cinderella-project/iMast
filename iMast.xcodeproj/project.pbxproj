@@ -1472,6 +1472,15 @@
 			path = DataRequest;
 			sourceTree = "<group>";
 		};
+		CEB97028240012060028AD2A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
+				CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		CEC6BBF82104F9E6003ECE10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1601,14 +1610,13 @@
 		CEE357191FF519E000675DFC /* OtherMenu */ = {
 			isa = PBXGroup;
 			children = (
+				CEB97028240012060028AD2A /* Support */,
 				CE4D387E23BD03D600543E72 /* Settings */,
 				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
 				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */,
 				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
-				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
-				CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */,
 			);
 			path = OtherMenu;
 			sourceTree = "<group>";
