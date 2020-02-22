@@ -54,6 +54,16 @@
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
+"aboutThisApp.title" = "このAppについて";
+"aboutThisApp.author" = "作者";
+"aboutThisApp.translators" = "翻訳してくれた人たち";
+"aboutThisApp.praise" = "ほめる";
+"aboutThisApp.starInGitHub" = "GitHub で Star する";
+"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
+"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+
+"chooseAccount" = "使用するアカウントを選択";
+
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";
