@@ -54,6 +54,16 @@
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
+"aboutThisApp.title" = "About This App";
+"aboutThisApp.author" = "Author";
+"aboutThisApp.translators" = "Translators";
+"aboutThisApp.praise" = "Praise";
+"aboutThisApp.starInGitHub" = "Star in GitHub";
+"aboutThisApp.reviewInAppStore" = "Review in App Store";
+"aboutThisApp.tootWithHashtag" = "Post with #imast_ios";
+
+"chooseAccount" = "Choose Account";
+
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";

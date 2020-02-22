@@ -37,6 +37,7 @@ class TopMasterViewController: UITableViewController {
         case account(accountId: String)
         case settings
         case helpAndFeedback
+        case aboutThisApp
     }
     
     lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: self.tableView, cellProvider: self.cellProvider)
@@ -61,7 +62,8 @@ class TopMasterViewController: UITableViewController {
         snapshot.appendItems(userTokens.map { .account(accountId: $0.id!) }, toSection: .accounts)
         snapshot.appendItems([
             .settings,
-            .helpAndFeedback
+            .helpAndFeedback,
+            .aboutThisApp,
         ], toSection: .others)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
@@ -85,6 +87,10 @@ class TopMasterViewController: UITableViewController {
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = R.string.localizable.helpAndFeedback()
             cell.accessoryType = .disclosureIndicator
+        case .aboutThisApp:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = R.string.localizable.aboutThisAppTitle()
+            cell.accessoryType = .disclosureIndicator
         }
         return cell
     }
@@ -102,6 +108,8 @@ class TopMasterViewController: UITableViewController {
             showDetailViewController(UINavigationController(rootViewController: SettingsViewController()), sender: self)
         case .helpAndFeedback:
             showDetailViewController(UINavigationController(rootViewController: HelpAndFeedbackTableViewController()), sender: self)
+        case .aboutThisApp:
+            showDetailViewController(UINavigationController(rootViewController: AboutThisAppViewController()), sender: self)
         }
     }
 }

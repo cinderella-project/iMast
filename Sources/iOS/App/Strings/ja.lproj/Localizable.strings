@@ -54,6 +54,16 @@
 "helpAndFeedback" = "ヘルプ / Feedback";
 "bookmarks" = "ブックマーク";
 
+"aboutThisApp.title" = "このAppについて";
+"aboutThisApp.author" = "作者";
+"aboutThisApp.translators" = "翻訳してくれた人たち";
+"aboutThisApp.praise" = "ほめる";
+"aboutThisApp.starInGitHub" = "GitHub で Star する";
+"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
+"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+
+"chooseAccount" = "使用するアカウントを選択";
+
 "error.title" = "エラー";
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
 "error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";

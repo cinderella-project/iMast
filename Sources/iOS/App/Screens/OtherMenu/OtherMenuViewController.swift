@@ -130,6 +130,10 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                     row.title = R.string.localizable.helpAndFeedback()
                     row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
                 }
+                ButtonRow { row in
+                    row.title = R.string.localizable.aboutThisAppTitle()
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { AboutThisAppViewController() }), onDismiss: nil)
+                }
             }
         }
         

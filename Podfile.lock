@@ -2,7 +2,7 @@ PODS:
   - 1PasswordExtension (1.8.5)
   - Alamofire (4.9.1)
   - Crossroad (3.0.1)
-  - Eureka (5.1.0)
+  - Eureka (5.2.0)
   - EurekaFormBuilder (0.2.1):
     - Eureka (~> 5.0)
   - Fuzi (3.1.1)
@@ -53,7 +53,7 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
   - Alamofire (~> 4.9.1)
   - Crossroad (~> 3.0.1)
-  - Eureka (~> 5.1)
+  - Eureka (~> 5.2.0)
   - EurekaFormBuilder (~> 0.2.1)
   - Fuzi (~> 3.1.1)
   - GRDB.swift (~> 4.6.2)
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Crossroad: 7956a252fe517d3f3e1d93886c0cc834d11b0145
-  Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
+  Eureka: 820a761c700f6eaab3b60758f138e0d9b99072b3
   EurekaFormBuilder: 0fbb81858c0a83c5de85b88733b44cf3d4008706
   Fuzi: bcc5694488dd6e672e126cbf3c5471d7a79506d1
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
@@ -146,6 +146,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 2e633273ed9b97b109126a56844516167951e133
+PODFILE CHECKSUM: 3c8aa40f326e3420b16a0441df3dc858432c8478
 
 COCOAPODS: 1.8.4

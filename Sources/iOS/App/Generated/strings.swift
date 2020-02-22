@@ -16,6 +16,8 @@ internal enum L10n {
     internal static let bookmarks = L10n.tr("Localizable", "bookmarks")
     /// キャンセル
     internal static let cancel = L10n.tr("Localizable", "cancel")
+    /// 使用するアカウントを選択
+    internal static let chooseAccount = L10n.tr("Localizable", "chooseAccount")
     /// 接続
     internal static let connect = L10n.tr("Localizable", "connect")
     /// 接続中
@@ -62,6 +64,22 @@ internal enum L10n {
     }
     /// アカウントを変更
     internal static let switchActiveAccount = L10n.tr("Localizable", "switchActiveAccount")
+    internal enum AboutThisApp {
+      /// 作者
+      internal static let author = L10n.tr("Localizable", "aboutThisApp.author")
+      /// ほめる
+      internal static let praise = L10n.tr("Localizable", "aboutThisApp.praise")
+      /// App Store でレビューする
+      internal static let reviewInAppStore = L10n.tr("Localizable", "aboutThisApp.reviewInAppStore")
+      /// GitHub で Star する
+      internal static let starInGitHub = L10n.tr("Localizable", "aboutThisApp.starInGitHub")
+      /// このAppについて
+      internal static let title = L10n.tr("Localizable", "aboutThisApp.title")
+      /// #imast_ios を付けて投稿する
+      internal static let tootWithHashtag = L10n.tr("Localizable", "aboutThisApp.tootWithHashtag")
+      /// 翻訳してくれた人たち
+      internal static let translators = L10n.tr("Localizable", "aboutThisApp.translators")
+    }
     internal enum Error {
       /// インスタンスを入力してください。
       internal static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")
