@@ -7,7 +7,7 @@
 */
 
 "placeholders.cwWarningText" = "CW설명문 (생략 가능)";
-"infoText.inReplyTo" = "返信先: %@";
+"infoText.inReplyTo" = "%@ 님에게";
 "send" = "보내기";
 
 // Safariのファイル選択時の表記に合わせてほしい
@@ -17,7 +17,7 @@
 "media.preview" = "프리뷰";
 "media.delete" = "삭제";
 
-"keyCommand.send.title" = "投稿";
+"keyCommand.send.title" = "글";
 "keyCommand.send.description" = "投稿を送信";
 
 "alerts.sending.title" = "投稿中";
