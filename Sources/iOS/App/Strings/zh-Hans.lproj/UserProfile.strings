@@ -23,7 +23,7 @@
 
 "title" = "主页";
 
-"cells.toots.title" = "投稿";
+"cells.toots.title" = "嘟文";
 "cells.following.title" = "正在关注";
 "cells.followers.title" = "关注者";
 "cells.createdAt.title" = "注册时间";
