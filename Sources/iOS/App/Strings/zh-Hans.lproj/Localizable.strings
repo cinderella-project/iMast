@@ -54,6 +54,16 @@
 "helpAndFeedback" = "帮助 / 意见反馈";
 "bookmarks" = "书签";
 
+"aboutThisApp.title" = "このAppについて";
+"aboutThisApp.author" = "作者";
+"aboutThisApp.translators" = "翻訳してくれた人たち";
+"aboutThisApp.praise" = "ほめる";
+"aboutThisApp.starInGitHub" = "GitHub で Star する";
+"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
+"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+
+"chooseAccount" = "使用するアカウントを選択";
+
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
 "error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
