@@ -57,9 +57,9 @@
 "aboutThisApp.title" = "关于iMast";
 "aboutThisApp.author" = "开发者";
 "aboutThisApp.translators" = "翻译者";
-"aboutThisApp.praise" = "ほめる";
-"aboutThisApp.starInGitHub" = "GitHub で Star する";
-"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
+"aboutThisApp.praise" = "赞赏一下";
+"aboutThisApp.starInGitHub" = "在 GitHub 上点 Star";
+"aboutThisApp.reviewInAppStore" = "在 App Store 上点评";
 "aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
 
 "chooseAccount" = "使用するアカウントを選択";
