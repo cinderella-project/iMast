@@ -54,9 +54,9 @@
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
-"aboutThisApp.title" = "このAppについて";
-"aboutThisApp.author" = "作者";
-"aboutThisApp.translators" = "翻訳してくれた人たち";
+"aboutThisApp.title" = "About this App";
+"aboutThisApp.author" = "Author";
+"aboutThisApp.translators" = "Translators";
 "aboutThisApp.praise" = "ほめる";
 "aboutThisApp.starInGitHub" = "GitHub で Star する";
 "aboutThisApp.reviewInAppStore" = "App Store でレビューする";
