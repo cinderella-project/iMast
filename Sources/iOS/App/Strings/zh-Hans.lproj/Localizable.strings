@@ -54,9 +54,9 @@
 "helpAndFeedback" = "帮助 / 意见反馈";
 "bookmarks" = "书签";
 
-"aboutThisApp.title" = "このAppについて";
-"aboutThisApp.author" = "作者";
-"aboutThisApp.translators" = "翻訳してくれた人たち";
+"aboutThisApp.title" = "关于iMast";
+"aboutThisApp.author" = "开发者";
+"aboutThisApp.translators" = "翻译者";
 "aboutThisApp.praise" = "ほめる";
 "aboutThisApp.starInGitHub" = "GitHub で Star する";
 "aboutThisApp.reviewInAppStore" = "App Store でレビューする";
