@@ -57,12 +57,12 @@
 "aboutThisApp.title" = "About this App";
 "aboutThisApp.author" = "Author";
 "aboutThisApp.translators" = "Translators";
-"aboutThisApp.praise" = "ほめる";
-"aboutThisApp.starInGitHub" = "GitHub で Star する";
-"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
-"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+"aboutThisApp.praise" = "Praise them";
+"aboutThisApp.starInGitHub" = "Give a star on GitHub";
+"aboutThisApp.reviewInAppStore" = "Write a review in App Store";
+"aboutThisApp.tootWithHashtag" = "Post with #imast_ios";
 
-"chooseAccount" = "使用するアカウントを選択";
+"chooseAccount" = "Choose account";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
