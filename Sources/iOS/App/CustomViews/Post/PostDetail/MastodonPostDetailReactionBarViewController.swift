@@ -87,8 +87,8 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     func input(_ input: Input) {
         self.input = input
-        boostButton.setTitleColor(input.reposted ? ColorSet.boostedBar : .gray, for: .normal)
-        favouriteButton.setTitleColor(input.favourited ? ColorSet.favouriteBar : .gray, for: .normal)
+        boostButton.setTitleColor(input.reposted ? R.color.barBoost() : .gray, for: .normal)
+        favouriteButton.setTitleColor(input.favourited ? R.color.barFavourite() : .gray, for: .normal)
     }
     
     @objc func openReplyVC() {

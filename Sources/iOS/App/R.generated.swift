@@ -123,6 +123,34 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.color` struct is generated, and contains static references to 2 colors.
+  struct color {
+    /// Color `BarBoost`.
+    static let barBoost = Rswift.ColorResource(bundle: R.hostingBundle, name: "BarBoost")
+    /// Color `BarFavourite`.
+    static let barFavourite = Rswift.ColorResource(bundle: R.hostingBundle, name: "BarFavourite")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "BarBoost", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func barBoost(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.barBoost, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "BarFavourite", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func barFavourite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.barFavourite, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.entitlements` struct is generated, and contains static references to 10 properties.
   struct entitlements {
     static let apsEnvironment = infoPlistString(path: [], key: "aps-environment") ?? "production"
