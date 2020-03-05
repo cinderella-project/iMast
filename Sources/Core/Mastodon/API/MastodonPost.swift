@@ -306,9 +306,9 @@ extension MastodonEndpoint {
         public let endpoint = "/api/v1/bookmarks"
         public let method = "GET"
 
-        public var query: [String: String] {
-            var q = [String: String]()
-            q["limit"] = limit?.description
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            if let limit = limit { q.append(.init(name: "limit", value: limit.description)) }
             paging?.addToQuery(&q)
             return q
         }

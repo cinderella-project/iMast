@@ -217,7 +217,7 @@ public class MastodonUserToken: Equatable {
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName
         urlBuilder.path = ep.endpoint
-        urlBuilder.queryItems = ep.query.map { URLQueryItem(name: $0, value: $1) }
+        urlBuilder.queryItems = ep.query
         let headers = getHeader()
         return Promise<E.Response> { resolve, reject, _ in
             var request = URLRequest(url: try urlBuilder.asURL())
@@ -249,7 +249,7 @@ public class MastodonUserToken: Equatable {
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName
         urlBuilder.path = ep.endpoint
-        urlBuilder.queryItems = ep.query.map { URLQueryItem(name: $0, value: $1) }
+        urlBuilder.queryItems = ep.query
         let headers = getHeader()
         return Promise { resolve, reject, _ in
             var request = URLRequest(url: try urlBuilder.asURL())

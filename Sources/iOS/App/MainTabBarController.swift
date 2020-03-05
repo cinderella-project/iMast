@@ -50,7 +50,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
         homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
         homeVC.tabBarItem.accessibilityIdentifier = "home"
 
-        let notifyVC = UINavigationController(rootViewController: NotificationTableViewController.instantiate(environment: self.environment))
+        let notifyVC = UINavigationController(rootViewController: NotificationTableWrapperViewController.instantiate(environment: self.environment))
         notifyVC.tabBarItem.image = UIImage(systemName: "bell")
         notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
         notifyVC.tabBarItem.title = R.string.localizable.notifications()

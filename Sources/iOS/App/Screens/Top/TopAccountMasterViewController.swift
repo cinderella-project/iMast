@@ -168,7 +168,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .notifications:
-            let vc = NotificationTableViewController.instantiate(environment: environment)
+            let vc = NotificationTableWrapperViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .local:
             let vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)

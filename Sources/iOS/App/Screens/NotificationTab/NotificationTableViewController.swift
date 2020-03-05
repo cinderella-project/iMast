@@ -27,7 +27,19 @@ import Mew
 import iMastiOSCore
 
 class NotificationTableViewController: UITableViewController, Instantiatable {
-    typealias Input = Void
+    typealias ExcludeTypes = [NotificationType]
+    typealias Input = ExcludeTypes
+    enum NotificationType: String, CaseIterable {
+        case follow
+        case favourite
+        case reblog
+        case mention
+        case poll
+        
+        static func reverse(types: [Self]) -> [Self] {
+            return Self.allCases.filter { !types.contains($0) }
+        }
+    }
     typealias Environment = MastodonUserToken
     
     internal let environment: Environment
@@ -37,12 +49,15 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
+        request = .init(excludedTypes: input.map { $0.rawValue })
         super.init(style: .plain)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    let request: MastodonEndpoint.GetNotifications
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +74,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         
         self.readmoreCell.state = .loading
-        environment.getNoficitaions().then { notifications in
+        environment.request(ep: request).then { notifications in
             self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
             self.notifications = notifications
             self.tableView.reloadData()
@@ -91,7 +106,11 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     }
     
     @objc func refreshNotification() {
-        environment.getNoficitaions(sinceId: notifications.first?.id).then({ new_notifications in
+        var req = request
+        if let prevId = notifications.first?.id {
+            req.paging = .prev(prevId.string, isSinceId: true)
+        }
+        environment.request(ep: req).then({ new_notifications in
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
@@ -176,7 +195,12 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         }
         
         self.readmoreCell.state = .loading
-        environment.getNoficitaions(limit: 40, maxId: self.notifications.last?.id).then { notifications in
+        var req = request
+        req.limit = 40
+        if let lastId = self.notifications.last?.id {
+            req.paging = .next(lastId.string)
+        }
+        environment.request(ep: req).then { notifications in
             let oldCount = self.notifications.count
             self.notifications.append(contentsOf: notifications)
             self.tableView.beginUpdates()

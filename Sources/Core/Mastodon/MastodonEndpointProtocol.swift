@@ -35,7 +35,7 @@ public protocol MastodonEndpointProtocol {
     var endpoint: String { get }
     var method: String { get }
 
-    var query: [String: String] { get }
+    var query: [URLQueryItem] { get }
     var body: Data? { get }
 }
 
@@ -43,13 +43,18 @@ public enum MastodonPagingOption {
     case prev(String, isSinceId: Bool)
     case next(String)
     
-    func addToQuery(_ to: inout [String: String]) {
+    func addToQuery(_ to: inout [URLQueryItem]) {
+        let name: String
+        let val: String
         switch self {
         case .prev(let value, let isSinceId):
-            to[isSinceId ? "since_id" : "min_id"] = value
+            name = isSinceId ? "since_id" : "min_id"
+            val = value
         case .next(let value):
-            to["max_id"] = value
+            name = "max_id"
+            val = value
         }
+        to.append(.init(name: name, value: val))
     }
 }
 
