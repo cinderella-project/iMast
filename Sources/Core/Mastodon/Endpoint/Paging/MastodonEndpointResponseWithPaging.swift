@@ -27,7 +27,7 @@ public struct MastodonEndpointResponseWithPaging<Content: MastodonEndpointRespon
     public var content: Content
     public var paging: MastodonPaging
     
-    public static func decode(data: Data, httpHeaders: [String : String]) throws -> Self {
+    public static func decode(data: Data, httpHeaders: [String: String]) throws -> Self {
         Self.init(
             content: try Content.decode(data: data, httpHeaders: httpHeaders),
             paging: .init(headerString: httpHeaders["Link"] ?? "")
