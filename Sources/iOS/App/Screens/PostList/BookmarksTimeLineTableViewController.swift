@@ -86,13 +86,13 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     
     @objc func refresh() {
         refreshControl?.beginRefreshing()
-        environment.requestWithPagingInfo(ep: MastodonEndpoint.GetBookmarks(paging: paging.prev)).then { (res, paging) in
-            res.forEach { self.environment.memoryStore.post.change(obj: $0) }
+        environment.request(ep: MastodonEndpoint.GetBookmarks(paging: paging.prev)).then { res in
+            res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             if self.postIds.count == 0 {
-                self.paging.next = paging.next
+                self.paging.next = res.paging.next
             }
-            self.postIds.insert(contentsOf: res.map { $0.id }, at: 0)
-            self.paging.override(with: paging.prev)
+            self.postIds.insert(contentsOf: res.content.map { $0.id }, at: 0)
+            self.paging.override(with: res.paging.prev)
             self.refreshControl?.endRefreshing()
             self.update()
         }.catch { e in
@@ -104,10 +104,10 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     func readmore() {
         guard let next = paging.next else { return }
         readmoreCell.state = .loading
-        environment.requestWithPagingInfo(ep: MastodonEndpoint.GetBookmarks(paging: next)).then { (res, paging) in
-            res.forEach { self.environment.memoryStore.post.change(obj: $0) }
-            self.postIds.append(contentsOf: res.map { $0.id })
-            self.paging.next = paging.next
+        environment.request(ep: MastodonEndpoint.GetBookmarks(paging: next)).then { res in
+            res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
+            self.postIds.append(contentsOf: res.content.map { $0.id })
+            self.paging.next = res.paging.next
             self.update()
         }.catch { e in
             self.readmoreCell.lastError = e

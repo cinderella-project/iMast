@@ -1,9 +1,9 @@
 //
-//  MastodonEndpointProtocol.swift
+//  MastodonPaging.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2020/02/11.
+//  Created by user on 2020/03/09.
 //
 //  ------------------------------------------------------------------------
 //
@@ -23,40 +23,6 @@
 
 import Foundation
 import Regex
-
-public class MastodonEndpoint {
-    
-}
-
-public protocol MastodonEndpointProtocol {
-    associatedtype Response
-    
-    /// e.g. "/api/v1/account"
-    var endpoint: String { get }
-    var method: String { get }
-
-    var query: [URLQueryItem] { get }
-    var body: Data? { get }
-}
-
-public enum MastodonPagingOption {
-    case prev(String, isSinceId: Bool)
-    case next(String)
-    
-    func addToQuery(_ to: inout [URLQueryItem]) {
-        let name: String
-        let val: String
-        switch self {
-        case .prev(let value, let isSinceId):
-            name = isSinceId ? "since_id" : "min_id"
-            val = value
-        case .next(let value):
-            name = "max_id"
-            val = value
-        }
-        to.append(.init(name: name, value: val))
-    }
-}
 
 public struct MastodonPaging {
     static let nextIdExpression = Regex("max_id=([0-9a-zA-Z_-]+)")
@@ -110,10 +76,4 @@ public struct MastodonPaging {
             self.prevId = captures[1]
         }
     }
-}
-
-struct MastodonEndpointResponseWithPaging {
-    typealias Response = Codable
-    var response: Response
-    var paging: MastodonPaging
 }

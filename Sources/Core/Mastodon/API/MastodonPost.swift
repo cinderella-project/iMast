@@ -301,7 +301,7 @@ public class MastodonTimelineType {
 
 extension MastodonEndpoint {
     public struct GetBookmarks: MastodonEndpointProtocol {
-        public typealias Response = [MastodonPost]
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
 
         public let endpoint = "/api/v1/bookmarks"
         public let method = "GET"

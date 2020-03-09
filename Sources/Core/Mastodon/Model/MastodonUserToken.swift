@@ -212,7 +212,7 @@ public class MastodonUserToken: Equatable {
         }
     }
     
-    public func request<E: MastodonEndpointProtocol>(ep: E) -> Promise<E.Response> where E.Response: Decodable {
+    public func request<E: MastodonEndpointProtocol>(ep: E) -> Promise<E.Response> {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName
@@ -230,39 +230,11 @@ public class MastodonUserToken: Equatable {
                 do {
                     switch res.result {
                     case .success(let data):
-                        resolve(try JSONDecoder.forMastodonAPI.decode(E.Response.self, from: data))
-                        return
-                    case .failure(let error):
-                        reject(error)
-                        return
-                    }
-                } catch {
-                    reject(error)
-                    return
-                }
-            }
-        }
-    }
-    
-    public func requestWithPagingInfo<E: MastodonEndpointProtocol>(ep: E) -> Promise<(E.Response, MastodonPaging)> where E.Response: Decodable {
-        var urlBuilder = URLComponents()
-        urlBuilder.scheme = "https"
-        urlBuilder.host = app.instance.hostName
-        urlBuilder.path = ep.endpoint
-        urlBuilder.queryItems = ep.query
-        let headers = getHeader()
-        return Promise { resolve, reject, _ in
-            var request = URLRequest(url: try urlBuilder.asURL())
-            request.httpMethod = ep.method
-            request.httpBody = ep.body
-            for (name, value) in headers {
-                request.setValue(value, forHTTPHeaderField: name)
-            }
-            Alamofire.request(request).responseData { res in
-                do {
-                    switch res.result {
-                    case .success(let data):
-                        resolve((try JSONDecoder.forMastodonAPI.decode(E.Response.self, from: data), MastodonPaging(headerString: res.response!.value(forHTTPHeaderField: "Link") ?? "")))
+                        let res = try E.Response.decode(
+                            data: data,
+                            httpHeaders: res.response!.allHeaderFields as! [String: String]
+                        )
+                        resolve(res)
                         return
                     case .failure(let error):
                         reject(error)
