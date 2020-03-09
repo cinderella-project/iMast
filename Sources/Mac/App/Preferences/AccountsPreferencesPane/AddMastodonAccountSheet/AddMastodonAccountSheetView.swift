@@ -82,7 +82,7 @@ class AddMastodonAccountSheetView: NSView {
                 v.orientation = .horizontal
                 v.setHuggingPriority(.required, for: .horizontal)
                 v.setHuggingPriority(.required, for: .vertical)
-            }
+            },
         ]) ※ { v in
             v.spacing = 16
             v.orientation = .vertical

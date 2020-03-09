@@ -39,4 +39,3 @@ class AddMastodonAccountSheetViewController: NSViewController {
         view.window?.styleMask.remove(.resizable)
     }
 }
-

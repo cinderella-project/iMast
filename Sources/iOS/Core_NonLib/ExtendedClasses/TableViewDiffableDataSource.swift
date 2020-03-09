@@ -23,9 +23,7 @@
 
 import UIKit
 
-class TableViewDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentifierType: Hashable>
-    : UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
-{
+class TableViewDiffableDataSource<SectionIdentifierType: Hashable, ItemIdentifierType: Hashable>: UITableViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType> {
     var canEditRowAt: Bool = false
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return canEditRowAt

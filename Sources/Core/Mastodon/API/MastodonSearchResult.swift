@@ -53,7 +53,7 @@ public struct MastodonSearchResult: Codable {
 
 extension MastodonUserToken {
     public func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> {
-        let params = ["q": q, "resolve": resolve] as [String : Any]
+        let params = ["q": q, "resolve": resolve] as [String: Any]
         return getIntVersion().then { ver in
             return self.get(ver < MastodonVersionStringToInt("2.4.1") ? "search" : "../v2/search", params: params).then { res -> MastodonSearchResult in
                 return try MastodonSearchResult.decode(json: res)
