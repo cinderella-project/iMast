@@ -226,6 +226,7 @@ public class MastodonUserToken: Equatable {
             for (name, value) in headers {
                 request.setValue(value, forHTTPHeaderField: name)
             }
+            print(request.httpMethod!, request.url!)
             Alamofire.request(request).responseData { res in
                 do {
                     switch res.result {
