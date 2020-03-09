@@ -6,8 +6,8 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"lists.title" = "リスト";
-"lists.create.title" = "リスト作成";
-"lists.create.message" = "リストの名前を決めてください";
-"lists.create.textField.name.placeholder" = "リストの名前";
-"lists.create.actions.primary" = "作成";
+"lists.title" = "리스트";
+"lists.create.title" = "리스트 만들기";
+"lists.create.message" = "리스트의 이름을 정해 주세요";
+"lists.create.textField.name.placeholder" = "리스트 이름";
+"lists.create.actions.primary" = "만들기";

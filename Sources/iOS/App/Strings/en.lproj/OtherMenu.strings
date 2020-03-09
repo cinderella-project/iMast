@@ -8,6 +8,6 @@
 
 "lists.title" = "Lists";
 "lists.create.title" = "Create List";
-"lists.create.message" = "リストの名前を決めてください";
+"lists.create.message" = "Please decide the name of the list";
 "lists.create.textField.name.placeholder" = "Name of new list";
 "lists.create.actions.primary" = "Create";

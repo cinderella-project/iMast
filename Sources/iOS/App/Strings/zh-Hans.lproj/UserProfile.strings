@@ -23,7 +23,7 @@
 
 "title" = "主页";
 
-"cells.toots.title" = "投稿";
+"cells.toots.title" = "嘟文";
 "cells.following.title" = "正在关注";
 "cells.followers.title" = "关注者";
 "cells.createdAt.title" = "注册时间";
@@ -46,4 +46,4 @@
 
 "actions.cancel" = "取消";
 
-"federatedUserWarning" = "此用户来自于其他实例，所以数据可能并不完整";
+"federatedUserWarning" = "此用户来自其他实例，所以数据可能并不完整";

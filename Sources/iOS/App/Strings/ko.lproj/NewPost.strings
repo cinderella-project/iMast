@@ -6,8 +6,8 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "CW説明文 (省略可能)";
-"infoText.inReplyTo" = "返信先: %@";
+"placeholders.cwWarningText" = "CW설명문 (생략 가능)";
+"infoText.inReplyTo" = "%@ 님에게";
 "send" = "보내기";
 
 // Safariのファイル選択時の表記に合わせてほしい
@@ -17,11 +17,11 @@
 "media.preview" = "프리뷰";
 "media.delete" = "삭제";
 
-"keyCommand.send.title" = "投稿";
+"keyCommand.send.title" = "글";
 "keyCommand.send.description" = "投稿を送信";
 
 "alerts.sending.title" = "投稿中";
-"alerts.sending.steps.mediaUpload" = "画像アップロード中 (%1$d/%2$d)";
+"alerts.sending.steps.mediaUpload" = "미디어 업로드 중 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "送信中";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください

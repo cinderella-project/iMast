@@ -40,7 +40,7 @@
 "connected" = "已连接";
 "notConnected" = "未连接";
 
-"connect" = "链接";
+"connect" = "连接";
 "disconnect" = "切断";
 "refetch" = "重新连接";
 "cancel" = "取消";
@@ -52,7 +52,17 @@
 "lists" = "列表";
 "settings" = "设置";
 "helpAndFeedback" = "帮助 / 意见反馈";
-"bookmarks" = "ブックマーク";
+"bookmarks" = "书签";
+
+"aboutThisApp.title" = "关于iMast";
+"aboutThisApp.author" = "开发者";
+"aboutThisApp.translators" = "翻译者";
+"aboutThisApp.praise" = "赞赏一下";
+"aboutThisApp.starInGitHub" = "在 GitHub 上点 Star";
+"aboutThisApp.reviewInAppStore" = "在 App Store 上点评";
+"aboutThisApp.tootWithHashtag" = "在话题 #imast_ios 中发布";
+
+"chooseAccount" = "请选择要使用的账号";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";

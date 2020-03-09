@@ -54,15 +54,15 @@
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
-"aboutThisApp.title" = "About This App";
+"aboutThisApp.title" = "About this App";
 "aboutThisApp.author" = "Author";
 "aboutThisApp.translators" = "Translators";
-"aboutThisApp.praise" = "Praise";
-"aboutThisApp.starInGitHub" = "Star in GitHub";
-"aboutThisApp.reviewInAppStore" = "Review in App Store";
+"aboutThisApp.praise" = "Praise them";
+"aboutThisApp.starInGitHub" = "Give a star on GitHub";
+"aboutThisApp.reviewInAppStore" = "Write a review in App Store";
 "aboutThisApp.tootWithHashtag" = "Post with #imast_ios";
 
-"chooseAccount" = "Choose Account";
+"chooseAccount" = "Choose account";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
