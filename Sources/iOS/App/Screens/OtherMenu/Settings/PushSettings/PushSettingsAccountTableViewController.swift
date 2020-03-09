@@ -29,12 +29,10 @@ import Notifwift
 
 @available(iOS 10.0, *)
 class PushSettingsAccountTableViewController: FormViewController {
-    let accountOriginal: PushServiceToken!
-    let account: PushServiceToken!
+    var account: PushServiceToken
 
     init(account: PushServiceToken) {
-        self.accountOriginal = account
-        self.account = CodableDeepCopy(account)
+        self.account = account
         super.init(style: .grouped)
         self.navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
         self.navigationItem.rightBarButtonItem = .init(title: "保存", style: .done, target: self, action: #selector(onSave))

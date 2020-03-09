@@ -37,7 +37,7 @@ class MastodonPostDetailPollVoteButtonViewController: UIViewController, Instanti
     let voteButton = UIButton() ※ { v in
         v.setTitle("投票", for: .normal)
     }
-    let votingIndicator = UIActivityIndicatorView(style: .gray)
+    let votingIndicator = UIActivityIndicatorView(style: .medium)
     var isFirst = true
     
     required init(with input: Input, environment: Environment) {
