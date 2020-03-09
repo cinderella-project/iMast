@@ -40,7 +40,7 @@ struct PushServiceWrapper<T: Codable>: Codable {
     var result: T
 }
 
-class PushServiceToken: Codable {
+struct PushServiceToken: Codable {
     class PushServiceTokenNotifyFlags: Codable {
         var follow: Bool
         var followRequest: Bool

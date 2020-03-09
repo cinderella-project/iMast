@@ -137,14 +137,31 @@ extension MastodonUserToken {
             return Void()
         }
     }
-    
-    public func getFollows(target: MastodonID, type: MastodonFollowFetchType, maxId: MastodonID?) -> Promise<MastodonCursorWrapper<[MastodonAccount]>> {
-        var params: [String: Any] = [:]
-        if let maxId = maxId {
-            params["max_id"] = maxId.string
+}
+
+extension MastodonEndpoint {
+    public struct GetFollows: MastodonEndpointProtocol {
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonAccount]>
+        
+        public var endpoint: String {
+            return "/api/v1/accounts/\(target.string)/\(type.rawValue)"
         }
-        return self.getWithCursorWrapper("accounts/\(target.string)/\(type)", params: params).then { res -> MastodonCursorWrapper<[MastodonAccount]> in
-            return MastodonCursorWrapper(result: try [MastodonAccount].decode(json: res.result), max: res.max, since: res.since)
+        public let method = "GET"
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            paging?.addToQuery(&q)
+            return q
+        }
+        public let body: Data? = nil
+        
+        public var target: MastodonID
+        public var type: MastodonFollowFetchType
+        public var paging: MastodonPagingOption?
+        
+        public init(target: MastodonID, type: MastodonFollowFetchType, paging: MastodonPagingOption? = nil) {
+            self.target = target
+            self.type = type
+            self.paging = paging
         }
     }
 }

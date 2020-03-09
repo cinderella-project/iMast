@@ -212,6 +212,43 @@ public class MastodonUserToken: Equatable {
         }
     }
     
+    public func request<E: MastodonEndpointProtocol>(ep: E) -> Promise<E.Response> {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = app.instance.hostName
+        urlBuilder.path = ep.endpoint
+        urlBuilder.queryItems = ep.query
+        let headers = getHeader()
+        return Promise<E.Response> { resolve, reject, _ in
+            var request = URLRequest(url: try urlBuilder.asURL())
+            request.httpMethod = ep.method
+            request.httpBody = ep.body
+            for (name, value) in headers {
+                request.setValue(value, forHTTPHeaderField: name)
+            }
+            print(request.httpMethod!, request.url!)
+            Alamofire.request(request).responseData { res in
+                do {
+                    switch res.result {
+                    case .success(let data):
+                        let res = try E.Response.decode(
+                            data: data,
+                            httpHeaders: res.response!.allHeaderFields as! [String: String]
+                        )
+                        resolve(res)
+                        return
+                    case .failure(let error):
+                        reject(error)
+                        return
+                    }
+                } catch {
+                    reject(error)
+                    return
+                }
+            }
+        }
+    }
+    
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             print("GET", endpoint)
@@ -227,34 +264,6 @@ public class MastodonUserToken: Equatable {
                     reject(error)
                     return
                 }
-            }
-        }
-    }
-    
-    func getWithCursorWrapper(_ endpoint: String, params: [String: Any]? = nil) -> Promise<MastodonCursorWrapper<JSON>> {
-        return Promise<MastodonCursorWrapper<JSON>> { resolve, reject, _ in
-            print("GET", endpoint)
-            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, parameters: params, headers: self.getHeader()).responseJSON { response in
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                var maxId: MastodonID?
-                var sinceId: MastodonID?
-                if let linkHeader = (response.response?.allHeaderFields["Link"] as? String) {
-                    if let maxIdStr = linkHeader.pregMatch(pattern: "max_id=(\\d+)").safe(1) {
-                        maxId = MastodonID(string: maxIdStr)
-                    }
-                    if let sinceIdStr = linkHeader.pregMatch(pattern: "since_id=(\\d+)").safe(1) {
-                        sinceId = MastodonID(string: sinceIdStr)
-                    }
-                }
-                resolve(MastodonCursorWrapper(result: json,
-                                              max: maxId,
-                                              since: sinceId
-                ))
             }
         }
     }
@@ -333,7 +342,6 @@ public class MastodonUserToken: Equatable {
                     case .failure(let encodingError):
                         print("UploadError", encodingError)
                         reject(encodingError)
-                        break
                     }
                 }
             )

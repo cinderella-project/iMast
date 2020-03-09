@@ -4,6 +4,7 @@ disabled_rules:
   - identifier_name
   - trailing_whitespace
   - unused_closure_parameter
+  - nesting
 
 excluded:
   - Pods

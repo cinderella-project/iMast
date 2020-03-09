@@ -276,7 +276,6 @@ public class MastodonTimelineType {
     
     static public let home = MastodonTimelineType(endpoint: "timelines/home")
     static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"])
-    static public let bookmark = MastodonTimelineType(endpoint: "bookmarks")
     static public func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
         var params: [String: Any] = [:]
         if pinned {
@@ -297,5 +296,30 @@ public class MastodonTimelineType {
     init(endpoint: String, params: [String: Any] = [:]) {
         self.endpoint = endpoint
         self.params = params
+    }
+}
+
+extension MastodonEndpoint {
+    public struct GetBookmarks: MastodonEndpointProtocol {
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
+
+        public let endpoint = "/api/v1/bookmarks"
+        public let method = "GET"
+
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            if let limit = limit { q.append(.init(name: "limit", value: limit.description)) }
+            paging?.addToQuery(&q)
+            return q
+        }
+        public let body: Data? = nil
+        
+        public var limit: Int?
+        public var paging: MastodonPagingOption?
+        
+        public init(limit: Int? = nil, paging: MastodonPagingOption? = nil) {
+            self.limit = limit
+            self.paging = paging
+        }
     }
 }

@@ -260,7 +260,7 @@ func openVLC(_ url: String) -> Bool {
     }
     let vlcOpenUrl = URL(string: "vlc-x-callback://x-callback-url/stream?url=\(url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
     if UIApplication.shared.canOpenURL(vlcOpenUrl) {
-        UIApplication.shared.openURL(vlcOpenUrl)
+        UIApplication.shared.open(vlcOpenUrl)
         return true
     }
     return false
@@ -270,7 +270,6 @@ extension UIViewController {
     func changeRootVC(_ viewController: UIViewController, animated: Bool) {
         guard let window = self.view.window else {
             fatalError("windowないが")
-            return
         }
         if animated {
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {

@@ -35,7 +35,11 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     let readmoreCell = ReadmoreTableViewCell()
     
     var users: [MastodonAccount] = []
-    var maxId: MastodonID?
+    var paging: MastodonPagingOption? {
+        didSet {
+            readmoreCell.state = paging == nil ? .allLoaded : .moreLoadable
+        }
+    }
     
     required init(with input: Input, environment: Environment) {
         self.input = input
@@ -61,10 +65,14 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     
     func load() {
         self.readmoreCell.state = .loading
-        self.environment.getFollows(target: self.input.userId, type: self.input.type, maxId: self.maxId).then { res in
-            self.users.append(contentsOf: res.result)
-            self.maxId = res.max
-            self.readmoreCell.state = res.max == nil ? .allLoaded : .moreLoadable
+        environment.request(ep: MastodonEndpoint.GetFollows(
+            target: input.userId,
+            type: input.type,
+            paging: paging
+        )).then { res in
+            self.users.append(contentsOf: res.content)
+            self.paging = res.paging.next
+            self.readmoreCell.state = res.paging.next == nil ? .allLoaded : .moreLoadable
             self.tableView.reloadData()
         }
     }

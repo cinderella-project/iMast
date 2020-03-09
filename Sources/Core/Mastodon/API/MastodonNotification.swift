@@ -37,25 +37,39 @@ public struct MastodonNotification: Codable {
 }
 
 extension MastodonUserToken {
-    public func getNoficitaions(limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonNotification]> {
-        var params: [String: Any] = [:]
-        if let limit = limit {
-            params["limit"] = limit
-        }
-        if let sinceId = sinceId {
-            params["since_id"] = sinceId.raw
-        }
-        if let maxId = maxId {
-            params["max_id"] = maxId.raw
-        }
-        return self.get("notifications", params: params).then { res in
-            return try res.arrayValue.map { try MastodonNotification.decode(json: $0) }
-        }
-    }
-    
     public func getNotification(id: MastodonID) -> Promise<MastodonNotification> {
         return self.get("notifications/"+id.string).then { res in
             return try MastodonNotification.decode(json: res)
         }
+    }
+}
+
+extension MastodonEndpoint {
+    public struct GetNotifications: MastodonEndpointProtocol {
+        public typealias Response = [MastodonNotification]
+        
+        public let endpoint = "/api/v1/notifications"
+        public let method = "GET"
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            if let limit = limit { q.append(.init(name: "limit", value: limit.description)) }
+            for excludedType in excludedTypes {
+                q.append(.init(name: "exclude_types[]", value: excludedType))
+            }
+            paging?.addToQuery(&q)
+            return q
+        }
+        public let body: Data? = nil
+        
+        public var excludedTypes: [String]
+        public var limit: Int?
+        public var paging: MastodonPagingOption?
+        
+        public init(limit: Int? = nil, paging: MastodonPagingOption? = nil, excludedTypes: [String] = []) {
+            self.limit = limit
+            self.paging = paging
+            self.excludedTypes = excludedTypes
+        }
+
     }
 }

@@ -61,6 +61,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(
         tableView: self.tableView, cellProvider: self.cellProvider
     )
+    var version: Int = 0
     var lists = [MastodonList]()
     
     override func viewDidLoad() {
@@ -84,7 +85,9 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         snapshot.appendSections([.timelines])
         snapshot.appendItems([.home, .notifications, .local])
         snapshot.appendSections([.dependedByMastodonVersion])
-        snapshot.appendItems([.bookmarks])
+        if version >= MastodonVersionStringToInt("3.1.0") {
+            snapshot.appendItems([.bookmarks])
+        }
         if lists.count > 0 {
             snapshot.appendSections([.lists])
             snapshot.appendItems(lists.map { .list($0) })
@@ -95,6 +98,11 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     func loadLists() {
+        environment.getIntVersion().then { [weak self] version in
+            guard let strongSelf = self else { return }
+            strongSelf.version = version
+            strongSelf.update()
+        }
         environment.lists().then { [weak self] lists in
             guard let strongSelf = self else { return }
             strongSelf.lists = lists
@@ -160,13 +168,13 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .notifications:
-            let vc = NotificationTableViewController.instantiate(environment: environment)
+            let vc = NotificationTableWrapperViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .local:
             let vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .bookmarks:
-            let vc = BookmarksTimeLineTableViewController.instantiate(.plain, environment: environment)
+            let vc = BookmarksTimeLineTableViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .list(let list):
             let vc = ListTimeLineTableViewController.instantiate(.plain, environment: environment)

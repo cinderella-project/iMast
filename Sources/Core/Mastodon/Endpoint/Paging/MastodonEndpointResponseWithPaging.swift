@@ -1,9 +1,10 @@
 //
-//  MastodonCursorWrapper.swift
-//  iMast
+//  MastodonEndpointResponseWithPaging.swift
 //
-//  Created by rinsuki on 2018/07/31.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2020/03/09.
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
@@ -19,13 +20,17 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 import Foundation
 
-public struct MastodonCursorWrapper<T> {
-    public var result: T
-
-    public var max: MastodonID?
-    public var since: MastodonID?
+public struct MastodonEndpointResponseWithPaging<Content: MastodonEndpointResponse>: MastodonEndpointResponse {
+    public var content: Content
+    public var paging: MastodonPaging
+    
+    public static func decode(data: Data, httpHeaders: [String: String]) throws -> Self {
+        Self.init(
+            content: try Content.decode(data: data, httpHeaders: httpHeaders),
+            paging: .init(headerString: httpHeaders["Link"] ?? "")
+        )
+    }
 }

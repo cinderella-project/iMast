@@ -1,9 +1,10 @@
 //
-//  ColorSet.swift
-//  iMast
+//  MastodonEndpoint.swift
 //
-//  Created by rinsuki on 2019/03/19.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2020/03/09.
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
@@ -19,19 +20,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 import Foundation
-import UIKit
 
-// iOS 10.x対応のため
-// iOS 10.xを切ったらとっととColor Assetsに移行する
-struct ColorSet {
-    static let boostedBar = UIColor(red: 0.1, green: 0.7, blue: 0.1, alpha: 1)
-    static let favouriteBar = UIColor(hue: 52 / 360.0, saturation: 0.9, brightness: 0.9, alpha: 1)
-    
-    @available(*, unavailable)
-    init() {
-        fatalError("これはinitするものじゃないです")
-    }
+public enum MastodonEndpoint {
 }
