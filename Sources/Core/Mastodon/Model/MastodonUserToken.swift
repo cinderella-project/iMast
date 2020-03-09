@@ -341,7 +341,6 @@ public class MastodonUserToken: Equatable {
                     case .failure(let encodingError):
                         print("UploadError", encodingError)
                         reject(encodingError)
-                        break
                     }
                 }
             )

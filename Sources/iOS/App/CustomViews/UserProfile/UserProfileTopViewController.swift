@@ -314,7 +314,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 if url.scheme?.starts(with: "http") ?? false {
                     self.open(url: url)
                 } else {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }
             

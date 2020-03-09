@@ -270,7 +270,6 @@ extension UIViewController {
     func changeRootVC(_ viewController: UIViewController, animated: Bool) {
         guard let window = self.view.window else {
             fatalError("windowないが")
-            return
         }
         if animated {
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {

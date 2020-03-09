@@ -253,7 +253,7 @@ class PushSettingsTableViewController: FormViewController {
                     return Promise<Bool> { resolve, reject, _ in
                         let alert = UIAlertController(title: "通知が許可されていません", message: "iOSの設定で、iMastからの通知を許可してください。", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "設定へ", style: UIAlertAction.Style.default) { _ in
-                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                             resolve(false)
                         })
                         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in

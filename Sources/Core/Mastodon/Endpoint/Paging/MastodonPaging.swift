@@ -47,7 +47,7 @@ public struct MastodonPaging {
                 nextId = nil
             case .some(.next(let id)):
                 nextId = id
-            case .some(.prev(_, let isSinceId)):
+            case .some(.prev):
                 fatalError()
             }
         }
