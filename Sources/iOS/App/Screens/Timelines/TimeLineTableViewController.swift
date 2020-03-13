@@ -420,58 +420,46 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
 }
 
 extension TimeLineTableViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard case .post(let id, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
-            return []
+            return nil
         }
-        guard let post = environment.memoryStore.post.container[id] else {
-            return []
+        guard let post = environment.memoryStore.post.container[id]?.originalPost else {
+            return nil
         }
-        var actions: [UITableViewRowAction] = []
-        if false {
-            // Reply
-            let replyAction = UITableViewRowAction(style: .normal, title: "返信") { (action, index) -> Void in
-                tableView.isEditing = false
-                print("reply")
-            }
-            replyAction.backgroundColor = UIColor.init(red: 0.95, green: 0.4, blue: 0.4, alpha: 1)
-        }
+        
+        var actions = [UIContextualAction]()
+        
         if environment.canBoost(post: post) {
-            // ブースト
-            let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
-                self.environment.repost(post: post).then { post_ in
-                    let post = post_.repost!
-                    self.updatePost(from: post.value, includeRepost: true)
-                    action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-                    tableView.isEditing = false
+            actions.append(.init(style: .normal, title: "ブースト") { (action, view, callback) in
+                self.environment.repost(post: post).then { result in
+                    self.updatePost(from: result.originalPost, includeRepost: true)
+                    action.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                    callback(true)
                 }
-            }
-            if post.reposted {
-                boostAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-            } else {
-                boostAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
-            }
-            actions.append(boostAction)
+            } ※ { v in
+                if post.reposted {
+                    v.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                } else {
+                    v.backgroundColor = .init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
+                }
+            })
         }
-        // like
-        do {
-            let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ") { (action, index) -> Void in
-                self.environment.favourite(post: post).then { post in
-                    self.updatePost(from: post, includeRepost: true)
-                    action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-                    tableView.isEditing = false
-                }
-                print("like")
+        actions.append(.init(style: .normal, title: "ふぁぼ") { (action, view, callback) in
+            self.environment.favourite(post: post).then { result in
+                self.updatePost(from: result.originalPost, includeRepost: true)
+                action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                callback(true)
             }
+        } ※ { v in
             if post.favourited {
-                likeAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                v.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
             } else {
-                likeAction.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
+                v.backgroundColor = .init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
             }
-            actions.append(likeAction)
-        }
-        return actions.reversed()
+        })
+        return .init(actions: actions.reversed())
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
