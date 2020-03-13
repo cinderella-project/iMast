@@ -451,16 +451,16 @@ struct R: Rswift.Validatable {
     struct localizable {
       /// ja translation: #imast_ios を付けて投稿する
       ///
-      /// Locales: ja, en
-      static let aboutThisAppTootWithHashtag = Rswift.StringResource(key: "aboutThisApp.tootWithHashtag", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppTootWithHashtag = Rswift.StringResource(key: "aboutThisApp.tootWithHashtag", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: App Store でレビューする
       ///
-      /// Locales: ja, en
-      static let aboutThisAppReviewInAppStore = Rswift.StringResource(key: "aboutThisApp.reviewInAppStore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppReviewInAppStore = Rswift.StringResource(key: "aboutThisApp.reviewInAppStore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: GitHub で Star する
       ///
-      /// Locales: ja, en
-      static let aboutThisAppStarInGitHub = Rswift.StringResource(key: "aboutThisApp.starInGitHub", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppStarInGitHub = Rswift.StringResource(key: "aboutThisApp.starInGitHub", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: LTL
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -475,8 +475,8 @@ struct R: Rswift.Validatable {
       static let nothingMore = Rswift.StringResource(key: "nothingMore", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: このAppについて
       ///
-      /// Locales: ja, en
-      static let aboutThisAppTitle = Rswift.StringResource(key: "aboutThisApp.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppTitle = Rswift.StringResource(key: "aboutThisApp.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。 (iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります) Mastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -491,8 +491,8 @@ struct R: Rswift.Validatable {
       static let other = Rswift.StringResource(key: "other", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: ほめる
       ///
-      /// Locales: ja, en
-      static let aboutThisAppPraise = Rswift.StringResource(key: "aboutThisApp.praise", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppPraise = Rswift.StringResource(key: "aboutThisApp.praise", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -543,12 +543,12 @@ struct R: Rswift.Validatable {
       static let localTimeline = Rswift.StringResource(key: "localTimeline", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 作者
       ///
-      /// Locales: ja, en
-      static let aboutThisAppAuthor = Rswift.StringResource(key: "aboutThisApp.author", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppAuthor = Rswift.StringResource(key: "aboutThisApp.author", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 使用するアカウントを選択
       ///
-      /// Locales: ja, en
-      static let chooseAccount = Rswift.StringResource(key: "chooseAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let chooseAccount = Rswift.StringResource(key: "chooseAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 再取得
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -587,8 +587,8 @@ struct R: Rswift.Validatable {
       static let currentAccount = Rswift.StringResource(key: "currentAccount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 翻訳してくれた人たち
       ///
-      /// Locales: ja, en
-      static let aboutThisAppTranslators = Rswift.StringResource(key: "aboutThisApp.translators", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let aboutThisAppTranslators = Rswift.StringResource(key: "aboutThisApp.translators", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 自分のプロフィール
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -608,7 +608,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: #imast_ios を付けて投稿する
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppTootWithHashtag(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.tootWithHashtag", bundle: hostingBundle, comment: "")
@@ -623,7 +623,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: App Store でレビューする
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppReviewInAppStore(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.reviewInAppStore", bundle: hostingBundle, comment: "")
@@ -638,7 +638,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: GitHub で Star する
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppStarInGitHub(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.starInGitHub", bundle: hostingBundle, comment: "")
@@ -698,7 +698,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: このAppについて
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.title", bundle: hostingBundle, comment: "")
@@ -762,7 +762,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ほめる
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppPraise(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.praise", bundle: hostingBundle, comment: "")
@@ -957,7 +957,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 作者
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppAuthor(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.author", bundle: hostingBundle, comment: "")
@@ -972,7 +972,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 使用するアカウントを選択
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func chooseAccount(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("chooseAccount", bundle: hostingBundle, comment: "")
@@ -1126,7 +1126,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 翻訳してくれた人たち
       ///
-      /// Locales: ja, en
+      /// Locales: ja, en, zh-Hans, ko
       static func aboutThisAppTranslators(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("aboutThisApp.translators", bundle: hostingBundle, comment: "")
