@@ -64,6 +64,8 @@
 
 "chooseAccount" = "请选择要使用的账号";
 
+"favouritesList" = "ふぁぼ一覧";
+
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
 "error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
