@@ -64,6 +64,8 @@
 
 "chooseAccount" = "Choose account";
 
+"favouritesList" = "Favorites";
+
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";

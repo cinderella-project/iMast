@@ -28,6 +28,8 @@ internal enum L10n {
     }
     /// 切断
     internal static let disconnect = L10n.tr("Localizable", "disconnect")
+    /// ふぁぼ一覧
+    internal static let favouritesList = L10n.tr("Localizable", "favouritesList")
     /// 取得失敗
     internal static let fetchFailed = L10n.tr("Localizable", "fetchFailed")
     /// ヘルプ / Feedback

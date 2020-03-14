@@ -1,5 +1,5 @@
 //
-//  BookmarksTimeLineTableViewController.swift
+//  PostListTableViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -26,9 +26,11 @@ import iMastiOSCore
 import Mew
 import Ikemen
 
-class BookmarksTimeLineTableViewController: UITableViewController, Instantiatable {
-    typealias Input = Void
+class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UITableViewController, Instantiatable
+    where Input.Response == MastodonEndpointResponseWithPaging<[MastodonPost]>
+{
     typealias Environment = MastodonUserToken
+    var input: Input
     var environment: MastodonUserToken
 
     enum Section {
@@ -60,7 +62,8 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     
     private var readmoreCell = ReadmoreTableViewCell()
     
-    required init(with input: Void, environment: MastodonUserToken) {
+    required init(with input: Input, environment: MastodonUserToken) {
+        self.input = input
         self.environment = environment
         super.init(style: .plain)
     }
@@ -71,7 +74,6 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = L10n.Localizable.bookmarks
 //        refreshControl = UIRefreshControl() ※ { c in
 //            c.addTarget(self, action: #selector(refresh), for: .valueChanged)
 //        }
@@ -86,7 +88,9 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     
     @objc func refresh() {
         refreshControl?.beginRefreshing()
-        environment.request(ep: MastodonEndpoint.GetBookmarks(paging: paging.prev)).then { res in
+        var request = input
+        request.paging = paging.prev
+        environment.request(ep: request).then { res in
             res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             if self.postIds.count == 0 {
                 self.paging.next = res.paging.next
@@ -104,7 +108,9 @@ class BookmarksTimeLineTableViewController: UITableViewController, Instantiatabl
     func readmore() {
         guard let next = paging.next else { return }
         readmoreCell.state = .loading
-        environment.request(ep: MastodonEndpoint.GetBookmarks(paging: next)).then { res in
+        var request = input
+        request.paging = next
+        environment.request(ep: request).then { res in
             res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             self.postIds.append(contentsOf: res.content.map { $0.id })
             self.paging.next = res.paging.next

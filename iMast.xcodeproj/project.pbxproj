@@ -41,7 +41,7 @@
 		CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
-		CE2A8667237CF752005F4077 /* BookmarksTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */; };
+		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9806210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -188,6 +188,10 @@
 		CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */; };
 		CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */; };
 		CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */; };
+		CE9BB38C241C4E7A004B6421 /* BookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BB38B241C4E7A004B6421 /* BookmarksTableViewController.swift */; };
+		CE9BB38F241C4F02004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */; };
+		CE9BB390241C4F03004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */; };
+		CE9BB392241C5057004B6421 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */; };
 		CE9BD65E2310ADD300763D3A /* TableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD65D2310ADD300763D3A /* TableViewDiffableDataSource.swift */; };
 		CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */; };
 		CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */; };
@@ -582,7 +586,7 @@
 		CE23ABD223CAEA3A00E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/NewPost.strings; sourceTree = "<group>"; };
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
-		CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTimeLineTableViewController.swift; sourceTree = "<group>"; };
+		CE2A8666237CF752005F4077 /* PostListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
 		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
 		CE2D2AED210C5668003B92B8 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
 		CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsAccountTableViewController.swift; sourceTree = "<group>"; };
@@ -716,6 +720,9 @@
 		CE9B1AA01F9C5B4D0044341A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CE9B1AA11F9DA74D0044341A /* ProfileCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileCard.storyboard; sourceTree = "<group>"; };
 		CE9B1AA31F9DEDB50044341A /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
+		CE9BB38B241C4E7A004B6421 /* BookmarksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableViewController.swift; sourceTree = "<group>"; };
+		CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpointWithPagingProtocol.swift; sourceTree = "<group>"; };
+		CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		CE9BD65D2310ADD300763D3A /* TableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsChangeSoundViewController.swift; sourceTree = "<group>"; };
@@ -1333,7 +1340,9 @@
 			children = (
 				CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */,
 				CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */,
-				CE2A8666237CF752005F4077 /* BookmarksTimeLineTableViewController.swift */,
+				CE2A8666237CF752005F4077 /* PostListTableViewController.swift */,
+				CE9BB38B241C4E7A004B6421 /* BookmarksTableViewController.swift */,
+				CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */,
 			);
 			path = PostList;
 			sourceTree = "<group>";
@@ -1354,6 +1363,7 @@
 			children = (
 				CE522BED24159C710048E334 /* Paging */,
 				CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */,
+				CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */,
 				CE522BE924159C520048E334 /* MastodonEndpoint.swift */,
 			);
 			path = Endpoint;
@@ -2784,9 +2794,11 @@
 				CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */,
 				CE9C344E218473DF002C6E80 /* HashtagTimeLineTableViewController.swift in Sources */,
 				CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */,
+				CE9BB38C241C4E7A004B6421 /* BookmarksTableViewController.swift in Sources */,
 				CEF6DCBB22EDEA6F0008B64D /* MastodonPostDetailViewController.swift in Sources */,
 				CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */,
 				CEEBC3CA23548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift in Sources */,
+				CE9BB392241C5057004B6421 /* FavouritesTableViewController.swift in Sources */,
 				CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */,
 				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
 				CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */,
@@ -2855,7 +2867,7 @@
 				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
-				CE2A8667237CF752005F4077 /* BookmarksTimeLineTableViewController.swift in Sources */,
+				CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */,
 				CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2893,6 +2905,7 @@
 				CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */,
 				CE522BF624159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
 				CE43BEE923779EB500133C86 /* MastodonAccount.swift in Sources */,
+				CE9BB38F241C4F02004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
 				CE43BEF423779EB500133C86 /* MastodonVersionStringToInt.swift in Sources */,
 				CE43BEE523779E2600133C86 /* MastodonApp.swift in Sources */,
 				CE522BF324159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
@@ -3060,6 +3073,7 @@
 				CEE4E3602377F83C00406371 /* MastodonAccount.swift in Sources */,
 				CE522BE824159C380048E334 /* MastodonEndpointProtocol.swift in Sources */,
 				CEE4E36A2377F83C00406371 /* MastodonIDAvailable.swift in Sources */,
+				CE9BB390241C4F03004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
 				CEE4E36E2377F84200406371 /* MastodonApp.swift in Sources */,
 				CEE4E3452377F83000406371 /* Decodable+decode.swift in Sources */,
 				CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */,

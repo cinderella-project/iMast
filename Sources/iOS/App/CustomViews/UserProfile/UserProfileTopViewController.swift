@@ -271,6 +271,9 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     newVC.userToken = self.environment
                     self.navigationController?.pushViewController(newVC, animated: true)
                 }))
+                actionSheet.addAction(UIAlertAction(title: L10n.Localizable.favouritesList, style: .default, handler: { action in
+                    self.navigationController?.pushViewController(FavouritesTableViewController.instantiate(.init(), environment: self.environment), animated: true)
+                }))
                 if self.input.isLocked {
                     actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestsList(), style: .default) { _ in
                         self.environment.followRequests().then { res in

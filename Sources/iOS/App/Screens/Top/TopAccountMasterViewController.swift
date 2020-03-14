@@ -174,7 +174,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             let vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .bookmarks:
-            let vc = BookmarksTimeLineTableViewController.instantiate(environment: environment)
+            let vc = BookmarksTableViewController.instantiate(.init(), environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .list(let list):
             let vc = ListTimeLineTableViewController.instantiate(.plain, environment: environment)
