@@ -63,6 +63,8 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var timelineType: MastodonTimelineType?
     var postFabButton = UIButton()
     
+    let updateDataSourceQueue = DispatchQueue(label: "jp.pronama.imast.timeline.update-data-source", qos: .userInteractive)
+    
     var isRefreshEnabled = true
     var isReadmoreEnabled = true
     var isNewPostAvailable = false
@@ -118,12 +120,14 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         self.diffableDataSource.canEditRowAt = true
         self.tableView.dataSource = self.diffableDataSource
         
-        _ = self.diffableDataSource.snapshot() ※ {
-            $0.appendSections([.pinned, .posts, .readMore])
+        _ = self.diffableDataSource.snapshot() ※ { snapshot in
+            snapshot.appendSections([.pinned, .posts, .readMore])
             if self.isReadmoreEnabled {
-                $0.appendItems([.readMore], toSection: .readMore)
+                snapshot.appendItems([.readMore], toSection: .readMore)
             }
-            self.diffableDataSource.apply($0, animatingDifferences: false)
+            self.updateDataSourceQueue.sync {
+                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            }
         }
         
         loadTimeline().then {
@@ -334,7 +338,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             let items = snapshot.itemIdentifiers(inSection: .posts)
             snapshot.deleteItems(Array(items.dropFirst(maxPostCount)))
         }
-        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        self.updateDataSourceQueue.sync {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
     
     func websocketEndpoint() -> String? {
@@ -391,7 +397,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             }
             var snapshot = self.diffableDataSource.snapshot()
             snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
-            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            self.updateDataSourceQueue.sync {
+                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            }
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
                 if isStreamingConnectingNow {
@@ -414,7 +422,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             environment.memoryStore.post.change(obj: post)
         }
         snapshot.appendItems(posts.map { .post(id: $0.id, pinned: false) }, toSection: .posts)
-        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        updateDataSourceQueue.sync {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        }
         self.maxPostCount += posts.count
     }
 }
@@ -521,7 +531,9 @@ extension TimeLineTableViewController: WebSocketWrapperDelegate {
             snapshot.deleteItems(deletePosts)
 
             if deletePosts.count > 0 {
-                diffableDataSource.apply(snapshot, animatingDifferences: true)
+                updateDataSourceQueue.sync {
+                    diffableDataSource.apply(snapshot, animatingDifferences: true)
+                }
             }
         default:
             print(object)
