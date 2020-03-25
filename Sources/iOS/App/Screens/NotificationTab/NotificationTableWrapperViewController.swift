@@ -89,6 +89,7 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         toolBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.height.equalTo(44)
         }
     }
     
