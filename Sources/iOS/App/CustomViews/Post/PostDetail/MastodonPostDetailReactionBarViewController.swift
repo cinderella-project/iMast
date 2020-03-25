@@ -63,12 +63,32 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let stackView = UIStackView(arrangedSubviews: [
+        let buttons = [
             replyButton,
             boostButton,
             favouriteButton,
             othersButton,
-        ]) ※ { v in
+        ]
+        if #available(iOS 13.4, *) {
+            for button in buttons {
+                button.isPointerInteractionEnabled = true
+                button.snp.makeConstraints { make in
+                    make.width.lessThanOrEqualTo(300)
+                }
+            }
+        }
+        let stackView = UIStackView(arrangedSubviews: buttons.map { button in
+            let view = UIView()
+            view.addSubview(button)
+            button.contentEdgeInsets = .init(top: 0, left: 24, bottom: 0, right: 24)
+            button.titleEdgeInsets = .init(top: 0, left: -24, bottom: 0, right: -24)
+            button.snp.makeConstraints { make in
+                make.height.equalToSuperview()
+                make.center.equalToSuperview()
+                make.width.lessThanOrEqualToSuperview()
+            }
+            return view
+        }) ※ { v in
             v.distribution = .fillEqually
         }
         self.view.addSubview(stackView)
