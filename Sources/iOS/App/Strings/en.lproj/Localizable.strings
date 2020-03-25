@@ -64,7 +64,7 @@
 
 "chooseAccount" = "Choose account";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "Favorites";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";

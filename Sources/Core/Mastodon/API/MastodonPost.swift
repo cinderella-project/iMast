@@ -300,7 +300,7 @@ public class MastodonTimelineType {
 }
 
 extension MastodonEndpoint {
-    public struct GetBookmarks: MastodonEndpointProtocol {
+    public struct GetBookmarks: MastodonEndpointWithPagingProtocol {
         public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
 
         public let endpoint = "/api/v1/bookmarks"
@@ -309,6 +309,28 @@ extension MastodonEndpoint {
         public var query: [URLQueryItem] {
             var q = [URLQueryItem]()
             if let limit = limit { q.append(.init(name: "limit", value: limit.description)) }
+            paging?.addToQuery(&q)
+            return q
+        }
+        public let body: Data? = nil
+        
+        public var limit: Int?
+        public var paging: MastodonPagingOption?
+        
+        public init(limit: Int? = nil, paging: MastodonPagingOption? = nil) {
+            self.limit = limit
+            self.paging = paging
+        }
+    }
+    
+    public struct GetFavourites: MastodonEndpointWithPagingProtocol {
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
+        
+        public let endpoint = "/api/v1/favourites"
+        public let method = "GET"
+        
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
             paging?.addToQuery(&q)
             return q
         }

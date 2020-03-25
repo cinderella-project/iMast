@@ -112,7 +112,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                                 self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("3.1.0"))
                                 return
                             }
-                            self.navigationController?.pushViewController(BookmarksTimeLineTableViewController.instantiate(environment: self.environment), animated: true)
+                            self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
                         }
                     }
                 }

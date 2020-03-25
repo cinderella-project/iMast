@@ -61,7 +61,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType?
-    var postFabButton = UIButton()
+    var postFabButton = PostFabButton()
+    
+    let updateDataSourceQueue = DispatchQueue(label: "jp.pronama.imast.timeline.update-data-source", qos: .userInteractive)
     
     var isRefreshEnabled = true
     var isReadmoreEnabled = true
@@ -118,12 +120,14 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         self.diffableDataSource.canEditRowAt = true
         self.tableView.dataSource = self.diffableDataSource
         
-        _ = self.diffableDataSource.snapshot() ※ {
-            $0.appendSections([.pinned, .posts, .readMore])
+        _ = self.diffableDataSource.snapshot() ※ { snapshot in
+            snapshot.appendSections([.pinned, .posts, .readMore])
             if self.isReadmoreEnabled {
-                $0.appendItems([.readMore], toSection: .readMore)
+                snapshot.appendItems([.readMore], toSection: .readMore)
             }
-            self.diffableDataSource.apply($0, animatingDifferences: false)
+            self.updateDataSourceQueue.sync {
+                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            }
         }
         
         loadTimeline().then {
@@ -170,12 +174,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             
             if Defaults[.postFabEnabled] {
                 _ = self.postFabButton ※ {
-                    $0.setTitle("投稿", for: .normal)
-                    $0.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-                    $0.backgroundColor = self.view.tintColor
-                    
                     self.view.addSubview(self.postFabButton)
-                    let size = 56
                     $0.snp.makeConstraints { make in
                         let offset = 16
                         // X
@@ -195,14 +194,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                         case .leftBottom, .centerBottom, .rightBottom:
                             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-offset)
                         }
-                        make.width.height.equalTo(size)
                     }
-                    $0.layer.cornerRadius = CGFloat(size / 2)
-                    
-                    $0.layer.shadowOpacity = 0.25
-                    $0.layer.shadowRadius = 2
-                    $0.layer.shadowColor = UIColor.black.cgColor
-                    $0.layer.shadowOffset = CGSize(width: 0, height: 2)
                     
                     $0.addTarget(self, action: #selector(self.postFabTapped(sender:)), for: .touchUpInside)
                 }
@@ -334,7 +326,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             let items = snapshot.itemIdentifiers(inSection: .posts)
             snapshot.deleteItems(Array(items.dropFirst(maxPostCount)))
         }
-        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        self.updateDataSourceQueue.sync {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
     
     func websocketEndpoint() -> String? {
@@ -391,7 +385,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             }
             var snapshot = self.diffableDataSource.snapshot()
             snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
-            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            self.updateDataSourceQueue.sync {
+                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            }
             self.isAlreadyAdded = [:]
             self.loadTimeline().then {
                 if isStreamingConnectingNow {
@@ -414,64 +410,54 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             environment.memoryStore.post.change(obj: post)
         }
         snapshot.appendItems(posts.map { .post(id: $0.id, pinned: false) }, toSection: .posts)
-        self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        updateDataSourceQueue.sync {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+        }
         self.maxPostCount += posts.count
     }
 }
 
 extension TimeLineTableViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard case .post(let id, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
-            return []
+            return nil
         }
-        guard let post = environment.memoryStore.post.container[id] else {
-            return []
+        guard let post = environment.memoryStore.post.container[id]?.originalPost else {
+            return nil
         }
-        var actions: [UITableViewRowAction] = []
-        if false {
-            // Reply
-            let replyAction = UITableViewRowAction(style: .normal, title: "返信") { (action, index) -> Void in
-                tableView.isEditing = false
-                print("reply")
-            }
-            replyAction.backgroundColor = UIColor.init(red: 0.95, green: 0.4, blue: 0.4, alpha: 1)
-        }
+        
+        var actions = [UIContextualAction]()
+        
         if environment.canBoost(post: post) {
-            // ブースト
-            let boostAction = UITableViewRowAction(style: .normal, title: "ブースト") { (action, index) -> Void in
-                self.environment.repost(post: post).then { post_ in
-                    let post = post_.repost!
-                    self.updatePost(from: post.value, includeRepost: true)
-                    action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-                    tableView.isEditing = false
+            actions.append(.init(style: .normal, title: "ブースト") { (action, view, callback) in
+                self.environment.repost(post: post).then { result in
+                    self.updatePost(from: result.originalPost, includeRepost: true)
+                    action.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                    callback(true)
                 }
-            }
-            if post.reposted {
-                boostAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-            } else {
-                boostAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
-            }
-            actions.append(boostAction)
+            } ※ { v in
+                if post.reposted {
+                    v.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                } else {
+                    v.backgroundColor = .init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
+                }
+            })
         }
-        // like
-        do {
-            let likeAction = UITableViewRowAction(style: .normal, title: "ふぁぼ") { (action, index) -> Void in
-                self.environment.favourite(post: post).then { post in
-                    self.updatePost(from: post, includeRepost: true)
-                    action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-                    tableView.isEditing = false
-                }
-                print("like")
+        actions.append(.init(style: .normal, title: "ふぁぼ") { (action, view, callback) in
+            self.environment.favourite(post: post).then { result in
+                self.updatePost(from: result.originalPost, includeRepost: true)
+                action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                callback(true)
             }
+        } ※ { v in
             if post.favourited {
-                likeAction.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+                v.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
             } else {
-                likeAction.backgroundColor = UIColor.init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
+                v.backgroundColor = .init(red: 0.9, green: 0.9, blue: 0.3, alpha: 1)
             }
-            actions.append(likeAction)
-        }
-        return actions.reversed()
+        })
+        return .init(actions: actions.reversed())
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -533,7 +519,9 @@ extension TimeLineTableViewController: WebSocketWrapperDelegate {
             snapshot.deleteItems(deletePosts)
 
             if deletePosts.count > 0 {
-                diffableDataSource.apply(snapshot, animatingDifferences: true)
+                updateDataSourceQueue.sync {
+                    diffableDataSource.apply(snapshot, animatingDifferences: true)
+                }
             }
         default:
             print(object)
