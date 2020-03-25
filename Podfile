@@ -31,7 +31,7 @@ abstract_target 'iMastShared' do
       pod 'Crossroad', '~> 3.0.1'
       pod 'Starscream', '~> 3.1.1'
       pod 'ReachabilitySwift', '~> 4.3.1'
-      pod 'Eureka', '~> 5.2.0'
+      pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka', :commit => '41bbb0ace994dcbbb706228baa850cd678f69fb3'
       pod 'EurekaFormBuilder', '~> 0.2.1'
       pod 'SVProgressHUD'
       pod 'Notifwift', '~> 1.1.1'

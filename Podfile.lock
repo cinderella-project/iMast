@@ -53,7 +53,7 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.5)
   - Alamofire (~> 4.9.1)
   - Crossroad (~> 3.0.1)
-  - Eureka (~> 5.2.0)
+  - Eureka (from `https://github.com/xmartlabs/Eureka`, commit `41bbb0ace994dcbbb706228baa850cd678f69fb3`)
   - EurekaFormBuilder (~> 0.2.1)
   - Fuzi (~> 3.1.1)
   - GRDB.swift (~> 4.6.2)
@@ -81,7 +81,6 @@ SPEC REPOS:
     - 1PasswordExtension
     - Alamofire
     - Crossroad
-    - Eureka
     - EurekaFormBuilder
     - Fuzi
     - GRDB.swift
@@ -107,11 +106,17 @@ SPEC REPOS:
     - "※ikemen"
 
 EXTERNAL SOURCES:
+  Eureka:
+    :commit: 41bbb0ace994dcbbb706228baa850cd678f69fb3
+    :git: https://github.com/xmartlabs/Eureka
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
 
 CHECKOUT OPTIONS:
+  Eureka:
+    :commit: 41bbb0ace994dcbbb706228baa850cd678f69fb3
+    :git: https://github.com/xmartlabs/Eureka
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -146,6 +151,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 3c8aa40f326e3420b16a0441df3dc858432c8478
+PODFILE CHECKSUM: d54672d62746e500a8148f4d76007dd3cdefe3d0
 
 COCOAPODS: 1.8.4
