@@ -64,6 +64,8 @@
 
 "chooseAccount" = "使用するアカウントを選択";
 
+"favouritesList" = "ふぁぼ一覧";
+
 "error.title" = "오류";
 "error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
 "error.requiredNewerMastodon" = "이 기능은 Mastodon 인스턴스의 버전이 %@ 이상이 아닌 경우 이용할 수 없습니다.\n(iMast 이용 중 인스턴스가 업데이트된 경우, 앱을 다시 실행하면 이용할 수 있게 됩니다)\nMastodon 인스턴스의 업데이트 예정에 대해서는 각 인스턴스의 관리자에게 문의해 주세요.";
