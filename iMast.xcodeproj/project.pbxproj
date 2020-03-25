@@ -162,6 +162,7 @@
 		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */; };
 		CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE845D282172504A00AF35B4 /* NewPost.storyboard */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
+		CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */; };
 		CE8C713B2153323D00D53BCF /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
 		CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */; };
 		CE8CFC7A24004D3E0079611B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
@@ -693,6 +694,7 @@
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
 		CE845D272172504A00AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewPost.storyboard; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
+		CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFabButton.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
 		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1424,6 +1426,14 @@
 			path = iMastShare;
 			sourceTree = "<group>";
 		};
+		CE8C1C3E242B1F1700FC8B46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CE8FD55B22D06D6F00331F15 /* ExtendedClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1669,6 +1679,7 @@
 		CEE3571C1FF51A0700675DFC /* Timelines */ = {
 			isa = PBXGroup;
 			children = (
+				CE8C1C3E242B1F1700FC8B46 /* Views */,
 				2A108F8E1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift */,
 				2A108F921ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift */,
 				CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */,
@@ -2813,6 +2824,7 @@
 				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */,
+				CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */,
 				CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				CE8CFC7A24004D3E0079611B /* ShareViewController.swift in Sources */,

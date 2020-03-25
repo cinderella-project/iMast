@@ -61,7 +61,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var socket: WebSocketWrapper?
     let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType?
-    var postFabButton = UIButton()
+    var postFabButton = PostFabButton()
     
     let updateDataSourceQueue = DispatchQueue(label: "jp.pronama.imast.timeline.update-data-source", qos: .userInteractive)
     
@@ -174,12 +174,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             
             if Defaults[.postFabEnabled] {
                 _ = self.postFabButton ※ {
-                    $0.setTitle("投稿", for: .normal)
-                    $0.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-                    $0.backgroundColor = self.view.tintColor
-                    
                     self.view.addSubview(self.postFabButton)
-                    let size = 56
                     $0.snp.makeConstraints { make in
                         let offset = 16
                         // X
@@ -199,14 +194,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                         case .leftBottom, .centerBottom, .rightBottom:
                             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-offset)
                         }
-                        make.width.height.equalTo(size)
                     }
-                    $0.layer.cornerRadius = CGFloat(size / 2)
-                    
-                    $0.layer.shadowOpacity = 0.25
-                    $0.layer.shadowRadius = 2
-                    $0.layer.shadowColor = UIColor.black.cgColor
-                    $0.layer.shadowOffset = CGSize(width: 0, height: 2)
                     
                     $0.addTarget(self, action: #selector(self.postFabTapped(sender:)), for: .touchUpInside)
                 }
