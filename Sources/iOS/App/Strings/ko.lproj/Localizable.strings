@@ -64,7 +64,7 @@
 
 "chooseAccount" = "사용할 계정 선택";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "마음함";
 
 "error.title" = "오류";
 "error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
