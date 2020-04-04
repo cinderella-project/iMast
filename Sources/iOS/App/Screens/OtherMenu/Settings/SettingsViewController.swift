@@ -273,6 +273,20 @@ class SettingsViewController: FormViewController {
                 }
             }
             SwitchRow { row in
+                row.title = "Spotifyを共有する時にNowPlayingフォーマットを使用"
+                row.userDefaultsConnect(.usingNowplayingFormatInShareSpotifyUrl)
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.detailTextLabel?.text = "SpotifyのURLを共有しようとする際に https://open.spotify.com との通信が発生します。また、この機能は非公式であり、問題が発生しても開発者は責任を負いません。自己責任でお使いください。"
+                    cell.detailTextLabel?.numberOfLines = 0
+                }
+            }
+            SwitchRow { row in
+                row.title = "Spotifyのsiパラメータを削除"
+                row.userDefaultsConnect(.shareNoSpotifySIParameter)
+            }
+            SwitchRow { row in
                 row.title = "共有プレビューで独自実装を利用"
                 row.userDefaultsConnect(.useCustomizedSharePreview)
                 row.cellStyle = .subtitle

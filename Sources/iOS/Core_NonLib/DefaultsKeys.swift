@@ -66,9 +66,11 @@ extension DefaultsKeys {
     static let usingDefaultVisibility = DefaultsKey<Bool>("using_default_visibility", default: false)
 
     static let shareNoTwitterTracking = DefaultsKey<Bool>("share_no_twitter_tracking", default: true)
+    static let shareNoSpotifySIParameter = DefaultsKey<Bool>("share_no_spotify_si_parameter", default: false)
     static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
 
     static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
+    static let usingNowplayingFormatInShareSpotifyUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_spotify_url", default: false)
     static let useCustomizedSharePreview = DefaultsKey<Bool>("use_customized_share_preview", default: true)
 
     static let showPushServiceError = DefaultsKey<Bool>("show_push_service_error", default: false)

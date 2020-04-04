@@ -112,9 +112,18 @@ class ShareViewController: SLComposeServiceViewController {
         let query = urlComponentsToDict(url: url as URL)
         
         // Twitterトラッキングを蹴る
-        if Defaults[.shareNoTwitterTracking] && url.host?.hasSuffix("twitter.com") ?? false {
+        if Defaults[.shareNoTwitterTracking], url.host?.hasSuffix("twitter.com") ?? false {
             var urlComponents = URLComponents(string: url.absoluteString!)!
             urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
+            if (urlComponents.queryItems ?? []).count == 0 {
+                urlComponents.query = nil
+            }
+            let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+            url = NSURL(string: urlString)!
+        }
+        if Defaults[.shareNoSpotifySIParameter], url.host == "open.spotify.com" {
+            var urlComponents = URLComponents(string: url.absoluteString!)!
+            urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "si"})
             if (urlComponents.queryItems ?? []).count == 0 {
                 urlComponents.query = nil
             }
@@ -147,6 +156,12 @@ class ShareViewController: SLComposeServiceViewController {
         }
         
         // GPMなうぷれ対応
+        processGPMURL(url: url)
+        processSpotifyURL(url: url)
+        
+    }
+    
+    func processGPMURL(url: NSURL) {
         if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
             url.scheme == "https", url.host == "play.google.com",
             let path = url.path, path.starts(with: "/music/m/"),
@@ -191,6 +206,62 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
 
+    func processSpotifyURL(url: NSURL) {
+        if Defaults[.usingNowplayingFormatInShareSpotifyUrl],
+            url.scheme == "https", url.host == "open.spotify.com",
+            let path = url.path, path.starts(with: "/track/"),
+            let objectId = path.pregMatch(pattern: "^/track/(.+)$").safe(1) {
+            let previewUrl = "https://open.spotify.com/embed/track/\(objectId)"
+            Alamofire.request(previewUrl).responseData { res in
+                switch res.result {
+                case .success(let data):
+                    guard let doc = try? Fuzi.HTMLDocument(data: data) else {
+                        print("SpotifyNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
+                        return
+                    }
+                    guard let trackElement = doc.xpath("//*[@id='resource']").first else {
+                        print("SpotifyNowPlayingError: script#resourceがなかった")
+                        return
+                    }
+                    
+                    struct SpotifyArtist: Codable {
+                        var name: String
+                    }
+                    
+                    struct SpotifyAlbum: Codable {
+                        var name: String
+                        var artists: [SpotifyArtist]
+                    }
+                    
+                    struct SpotifyTrack: Codable {
+                        var name: String
+                        var album: SpotifyAlbum
+                        var artists: [SpotifyArtist]
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    let result = Result { try decoder.decode(SpotifyTrack.self, from: trackElement.stringValue.data(using: .utf8)!) }
+                    guard case .success(let track) = result else {
+                        print("SpotifyNowPlayingError: Failed to decode script#resource", result)
+                        return
+                    }
+                    
+                    let nowPlayingText = Defaults[.nowplayingFormat]
+                        .replacingOccurrences(of: "{title}", with: track.name)
+                        .replacingOccurrences(of: "{artist}", with: track.artists.map { $0.name }.joined(separator: ", "))
+                        .replacingOccurrences(of: "{albumTitle}", with: track.album.name)
+                        .replacingOccurrences(of: "{albumArtist}", with: track.album.artists.map { $0.name }.joined(separator: ", "))
+                    print(Thread.isMainThread)
+                    DispatchQueue.mainSafeSync {
+                        self.textView.text = nowPlayingText
+                    }
+                case .failure(let error):
+                    print("GPMNowPlayingError: Failed fetch Information", error)
+                }
+            }
+        }
+    }
+    
     func processImage(item: NSSecureCoding?, error: Error?) {
         if let error = error {
             self.extensionContext!.cancelRequest(withError: error)
