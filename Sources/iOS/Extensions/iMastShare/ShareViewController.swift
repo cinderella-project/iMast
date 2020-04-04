@@ -114,7 +114,7 @@ class ShareViewController: SLComposeServiceViewController {
         // Twitterトラッキングを蹴る
         if Defaults[.shareNoTwitterTracking], url.host?.hasSuffix("twitter.com") ?? false {
             var urlComponents = URLComponents(string: url.absoluteString!)!
-            urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src"})
+            urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src" && $0.name != "s"})
             if (urlComponents.queryItems ?? []).count == 0 {
                 urlComponents.query = nil
             }
