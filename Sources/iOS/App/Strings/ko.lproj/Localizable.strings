@@ -54,17 +54,17 @@
 "helpAndFeedback" = "도움말 / 피드백";
 "bookmarks" = "북마크";
 
-"aboutThisApp.title" = "このAppについて";
-"aboutThisApp.author" = "作者";
-"aboutThisApp.translators" = "翻訳してくれた人たち";
-"aboutThisApp.praise" = "ほめる";
-"aboutThisApp.starInGitHub" = "GitHub で Star する";
-"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
-"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+"aboutThisApp.title" = "이 App에 대해서";
+"aboutThisApp.author" = "만든이";
+"aboutThisApp.translators" = "번역에 참여해주신 분들";
+"aboutThisApp.praise" = "칭찬하기";
+"aboutThisApp.starInGitHub" = "GitHub 에서 Star 하기";
+"aboutThisApp.reviewInAppStore" = "App Store 에서 리뷰하기";
+"aboutThisApp.tootWithHashtag" = "#imast_ios 를 달고 글 쓰기";
 
-"chooseAccount" = "使用するアカウントを選択";
+"chooseAccount" = "사용할 계정 선택";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "마음함";
 
 "error.title" = "오류";
 "error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
