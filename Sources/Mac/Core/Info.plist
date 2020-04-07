@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.2.5</string>
+	<string>4.2.8</string>
 	<key>CFBundleVersion</key>
 	<string>213</string>
 	<key>NSHumanReadableCopyright</key>
