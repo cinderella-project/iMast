@@ -1106,6 +1106,7 @@
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
 				CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */,
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
+				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CE4D388023BD17E000543E72 /* Screens */,
 				CEE3571E1FF51A3900675DFC /* CustomViews */,
 				CE845D282172504A00AF35B4 /* NewPost.storyboard */,
@@ -1443,7 +1444,8 @@
 				CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */,
 				CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */,
 			);
-			path = ExtendedClasses;
+			name = ExtendedClasses;
+			path = ../Core_NonLib/ExtendedClasses;
 			sourceTree = "<group>";
 		};
 		CE90CCEE23780496001C8E80 /* Extensions */ = {
@@ -1624,7 +1626,6 @@
 		CEE357161FF5165700675DFC /* Core_NonLib */ = {
 			isa = PBXGroup;
 			children = (
-				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CE43BEB823777B4200133C86 /* Classes */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,

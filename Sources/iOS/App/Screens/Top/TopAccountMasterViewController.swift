@@ -71,6 +71,11 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         self.input(input)
         title = environment.acct
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.rightBarButtonItem = .init(
+            title: L10n.Localizable.post,
+            style: .plain,
+            target: self, action: #selector(openNewPost)
+        )
         
         update()
         loadLists()
@@ -111,6 +116,12 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     func input(_ input: Input) {
+    }
+    
+    @objc func openNewPost() {
+        let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        vc.userToken = environment
+        present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
     
     func cellProvider(_ tableView: UITableView, indexPath: IndexPath, itemIdentifier: Item) -> UITableViewCell? {

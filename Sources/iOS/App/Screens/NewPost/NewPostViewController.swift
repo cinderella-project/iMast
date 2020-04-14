@@ -184,7 +184,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 })
                 return
             }
-            self.textInput.text = ""
+            self.clearContent()
             alert.dismiss(animated: false, completion: {
                 if self.navigationController is ModalNavigationViewController {
                     self.navigationController?.dismiss(animated: true, completion: nil)
@@ -325,6 +325,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentVC.popoverPresentationController?.permittedArrowDirections = .down
         contentVC.popoverPresentationController?.delegate = self
         self.present(contentVC, animated: true, completion: nil)
+    }
+    
+    func clearContent() {
+        cwInput.text = ""
+        textInput.text = ""
+        media = []
+        imageSelectButton.setTitle(" 0", for: .normal)
+        isNSFW = false
+        if Defaults[.usingDefaultVisibility] && replyToPost == nil {
+            userToken.getUserInfo(cache: true).then { res in
+                let myScope = res["source"]["privacy"].string ?? "public"
+                self.scope = myScope
+            }
+        } else {
+            scope = "public"
+        }
     }
 }
 
