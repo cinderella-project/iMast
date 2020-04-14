@@ -163,6 +163,8 @@ class ChangeActiveAccountViewController: UITableViewController {
             tableView.isEditing = false
             let userToken = self.userTokens[indexPath[1]]
             let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n@\(userToken.acct)", preferredStyle: .actionSheet)
+            alertVC.popoverPresentationController?.sourceView = self.tableView.cellForRow(at: indexPath)
+            alertVC.popoverPresentationController?.permittedArrowDirections = [.up, .down]
             alertVC.addAction(UIAlertAction(title: "削除", style: .destructive) { _ in
                 if userToken.delete() {
                     self.userTokens = MastodonUserToken.getAllUserTokens()
