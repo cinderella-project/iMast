@@ -74,6 +74,8 @@ class NotificationTableViewCell: UITableViewCell {
             } else {
                 return L10n.Notification.Types.Poll.notowner
             }
+        case "follow_request":
+            return L10n.Notification.Types.followRequest(acct)
         default:
             return L10n.Notification.Types.unknown(notification.type)
         }

@@ -173,7 +173,6 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             }
         case .followRequests:
             let vc = FollowRequestsListTableViewController.instantiate(environment: environment)
-            vc.refresh()
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .home:
             let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)

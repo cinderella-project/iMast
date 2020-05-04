@@ -223,6 +223,9 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         guard let account = notification.account else {
             return nil
         }
+        if notification.type == "follow_request" {
+            return FollowRequestsListTableViewController.instantiate(environment: environment)
+        }
         if let status = notification.status { // 投稿つき
             switch notification.type {
             case "mention", "poll":

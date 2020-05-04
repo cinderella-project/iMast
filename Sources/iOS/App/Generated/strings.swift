@@ -225,6 +225,10 @@ internal enum L10n {
       internal static func follow(_ p1: String) -> String {
         return L10n.tr("Notification", "types.follow", p1)
       }
+      /// @%@さんがあなたをフォローしたいようです
+      internal static func followRequest(_ p1: String) -> String {
+        return L10n.tr("Notification", "types.followRequest", p1)
+      }
       /// @%@さんからのメンション
       internal static func mention(_ p1: String) -> String {
         return L10n.tr("Notification", "types.mention", p1)

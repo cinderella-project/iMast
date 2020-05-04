@@ -1790,12 +1790,16 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.notification` struct is generated, and contains static references to 7 localization keys.
+    /// This `R.string.notification` struct is generated, and contains static references to 8 localization keys.
     struct notification {
       /// ja translation: @%@さんからのメンション
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let typesMention = Rswift.StringResource(key: "types.mention", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
+      /// ja translation: @%@さんがあなたをフォローしたいようです
+      ///
+      /// Locales: ja
+      static let typesFollowRequest = Rswift.StringResource(key: "types.followRequest", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: @%@さんにふぁぼられました
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1835,6 +1839,23 @@ struct R: Rswift.Validatable {
         }
 
         let format = NSLocalizedString("types.mention", tableName: "Notification", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// ja translation: @%@さんがあなたをフォローしたいようです
+      ///
+      /// Locales: ja
+      static func typesFollowRequest(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("types.followRequest", tableName: "Notification", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Notification", preferredLanguages: preferredLanguages) else {
+          return "types.followRequest"
+        }
+
+        let format = NSLocalizedString("types.followRequest", tableName: "Notification", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
       }
 

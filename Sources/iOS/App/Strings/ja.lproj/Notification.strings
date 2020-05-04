@@ -12,4 +12,5 @@
 "types.boost" = "@%@さんにブーストされました";
 "types.poll.owner" = "あなたが作成した投票が終了しました";
 "types.poll.notowner" = "あなたが参加した投票が終了しました";
+"types.followRequest" = "@%@さんがあなたをフォローしたいようです";
 "types.unknown" = "不明な通知: %@";

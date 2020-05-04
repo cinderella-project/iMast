@@ -54,6 +54,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
         self.title = "フォローリクエスト一覧"
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.refresh()
     }
 
     override func didReceiveMemoryWarning() {

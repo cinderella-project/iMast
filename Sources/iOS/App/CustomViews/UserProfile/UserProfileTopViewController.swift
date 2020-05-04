@@ -276,11 +276,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 }))
                 if self.input.isLocked {
                     actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestsList(), style: .default) { _ in
-                        self.environment.followRequests().then { res in
-                            let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
-                            newVC.followRequests = res
-                            self.navigationController?.pushViewController(newVC, animated: true)
-                        }
+                        let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
+                        self.navigationController?.pushViewController(newVC, animated: true)
                     })
                 }
             }
