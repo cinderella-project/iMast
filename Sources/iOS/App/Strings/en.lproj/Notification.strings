@@ -12,5 +12,5 @@
 "types.boost" = "@%@ boosted your post";
 "types.poll.owner" = "Your poll has ended";
 "types.poll.notowner" = "A poll you voted on has ended";
-"types.followRequest" = "@%@さんがあなたをフォローしたいようです";
+"types.followRequest" = "@%@ wants to follow you";
 "types.unknown" = "Unknown Notification: %@";
