@@ -21,29 +21,29 @@
   limitations under the License.
 */
 
-"title" = "プロフィール";
+"title" = "資料";
 
-"cells.toots.title" = "投稿";
-"cells.following.title" = "フォロー";
-"cells.followers.title" = "フォロワー";
-"cells.createdAt.title" = "登録日";
+"cells.toots.title" = "嘟文";
+"cells.following.title" = "正在關注";
+"cells.followers.title" = "關注著";
+"cells.createdAt.title" = "加入日";
 
-"actions.title" = "アクション";
-"actions.share" = "共有";
-"actions.profileCard" = "名刺";
+"actions.title" = "更多";
+"actions.share" = "分享";
+"actions.profileCard" = "名片";
 
-"actions.follow" = "フォロー";
-"actions.followRequestCancel" = "フォローリクエストを撤回";
-"actions.unfollow" = "フォロー解除";
+"actions.follow" = "關注";
+"actions.followRequestCancel" = "撤回關注申請";
+"actions.unfollow" = "取消關注";
 
-"actions.mute" = "ミュート";
-"actions.unmute" = "ミュート解除";
+"actions.mute" = "靜音";
+"actions.unmute" = "解除靜音";
 
-"actions.block" = "ブロック";
-"actions.unblock" = "ブロック解除";
+"actions.block" = "封鎖";
+"actions.unblock" = "解除封鎖";
 
-"actions.followRequestsList" = "フォローリクエスト一覧";
+"actions.followRequestsList" = "關注申請列表";
 
-"actions.cancel" = "キャンセル";
+"actions.cancel" = "取消";
 
-"federatedUserWarning" = "このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。";
+"federatedUserWarning" = "此用戶來自其他實例，所以數據可能並不完整";
