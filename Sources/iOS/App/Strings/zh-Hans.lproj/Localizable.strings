@@ -64,7 +64,7 @@
 
 "chooseAccount" = "请选择要使用的账号";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "喜欢一览";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
