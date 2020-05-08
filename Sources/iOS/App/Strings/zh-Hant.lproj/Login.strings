@@ -6,13 +6,13 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"title" = "ログイン";
-"pleaseInputMastodonInstance" = "Mastodonのインスタンスを入力してください";
-"loginButton" = "ログイン";
+"title" = "登錄";
+"pleaseInputMastodonInstance" = "請輸入Mastodon實例鏈接";
+"loginButton" = "登錄";
 
-"progressDialog.title" = "ログイン中";
-"progressDialog.fetchingServerInfo" = "サーバーの情報を取得中…";
-"progressDialog.registeringApplication" = "アプリをサーバーに登録中…";
+"progressDialog.title" = "正在登錄";
+"progressDialog.fetchingServerInfo" = "正在將app註冊在伺服器上…";
+"progressDialog.registeringApplication" = "正在將app註冊在伺服器上…";
 "progressDialog.pleaseAuthorize" = "認証してください";
 
 "authorize.title" = "認証";
