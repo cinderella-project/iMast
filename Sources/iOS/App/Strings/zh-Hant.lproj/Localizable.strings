@@ -21,40 +21,40 @@
   limitations under the License.
 */
 
-"readmore" = "もっと";
-"nothingMore" = "ここまで";
-"fetchFailed" = "取得失敗";
+"readmore" = "載入更多";
+"nothingMore" = "什麼都沒有了哦";
+"fetchFailed" = "獲取失敗";
 
-"homeTimeline" = "ホームタイムライン";
-"homeTimeline.short" = "ホーム";
+"homeTimeline" = "主頁";
+"homeTimeline.short" = "主頁";
 
 "notifications" = "通知";
 
-"localTimeline" = "ローカルタイムライン";
-"localTimeline.short" = "LTL";
+"localTimeline" = "本機時間軸";
+"localTimeline.short" = "本機時間軸";
 
-"post" = "投稿";
+"post" = "發嘟";
 "streaming" = "Streaming";
-"streamingStatus" = "状態: %@";
+"streamingStatus" = "狀態: %@";
 
-"connected" = "接続中";
-"notConnected" = "接続していません";
+"connected" = "已連接";
+"notConnected" = "未連接";
 
-"connect" = "接続";
-"disconnect" = "切断";
-"refetch" = "再取得";
-"cancel" = "キャンセル";
+"connect" = "連接";
+"disconnect" = "切斷";
+"refetch" = "重新連接";
+"cancel" = "取消";
 
-"other" = "その他";
-"switchActiveAccount" = "アカウントを変更";
-"currentAccount" = "現在のアカウント: @%@";
-"myProfile" = "自分のプロフィール";
-"lists" = "リスト";
-"settings" = "設定";
-"helpAndFeedback" = "ヘルプ / Feedback";
-"bookmarks" = "ブックマーク";
+"other" = "其他";
+"switchActiveAccount" = "賬號管理";
+"currentAccount" = "已選擇的賬號：@%@";
+"myProfile" = "個人資料";
+"lists" = "名單";
+"settings" = "偏好設定";
+"helpAndFeedback" = "幫助 / 意見反饋";
+"bookmarks" = "書籤";
 
-"aboutThisApp.title" = "このAppについて";
+"aboutThisApp.title" = "關於iMast";
 "aboutThisApp.author" = "作者";
 "aboutThisApp.translators" = "翻訳してくれた人たち";
 "aboutThisApp.praise" = "ほめる";
