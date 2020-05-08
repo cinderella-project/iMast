@@ -55,21 +55,21 @@
 "bookmarks" = "書籤";
 
 "aboutThisApp.title" = "關於iMast";
-"aboutThisApp.author" = "作者";
-"aboutThisApp.translators" = "翻訳してくれた人たち";
-"aboutThisApp.praise" = "ほめる";
-"aboutThisApp.starInGitHub" = "GitHub で Star する";
-"aboutThisApp.reviewInAppStore" = "App Store でレビューする";
-"aboutThisApp.tootWithHashtag" = "#imast_ios を付けて投稿する";
+"aboutThisApp.author" = "開發者";
+"aboutThisApp.translators" = "翻譯者";
+"aboutThisApp.praise" = "讚賞";
+"aboutThisApp.starInGitHub" = "在 GitHub 上點 Star";
+"aboutThisApp.reviewInAppStore" = "在 App Store 上評論";
+"aboutThisApp.tootWithHashtag" = "在話題 #imast_ios 中發布";
 
-"chooseAccount" = "使用するアカウントを選択";
+"chooseAccount" = "請選擇要使用的賬號";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "收藏一覽";
 
-"error.title" = "エラー";
-"error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
-"error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
-"error.pleaseInputInstance" = "インスタンスを入力してください。";
+"error.title" = "錯誤";
+"error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
+"error.requiredNewerMastodon" = "實例版本%@及以上才能使用此功能\n（如果在iMast運行時實例升級了，重啟即可使用此功能）\n請向各自的管理員詢問Mastodon實例的升級計劃";
+"error.pleaseInputInstance" = "請輸入實例";
 
-"error.unknown.title" = "謎のエラー";
-"error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";
+"error.unknown.title" = "未知錯誤";
+"error.unknown.text" = "如果可以，請將此提示出現時的情況告訴給 @imast_ios@mstdn.rinsuki.net，並附上以下代碼。";
