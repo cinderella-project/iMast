@@ -12,5 +12,5 @@
 "types.boost" = "@%@轉嘟了你的嘟文";
 "types.poll.owner" = "あなたが作成した投票が終了しました";
 "types.poll.notowner" = "你投過的投票已經結束";
-"types.followRequest" = "@%@向你發出了關注請求";
-"types.unknown" = "不明な通知: %@";
+"types.followRequest" = "@%@想要關注你";
+"types.unknown" = "未知的通知：%@";
