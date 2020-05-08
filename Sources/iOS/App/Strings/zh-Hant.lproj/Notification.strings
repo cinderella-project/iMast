@@ -6,11 +6,11 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"types.follow" = "@%@さんにフォローされました";
-"types.favourite" = "@%@さんにふぁぼられました";
-"types.mention" = "@%@さんからのメンション";
-"types.boost" = "@%@さんにブーストされました";
+"types.follow" = "@%@關注了你";
+"types.favourite" = "@%@把你的嘟文加入了最愛";
+"types.mention" = "@%@提及了你";
+"types.boost" = "@%@轉嘟了你的嘟文";
 "types.poll.owner" = "あなたが作成した投票が終了しました";
-"types.poll.notowner" = "あなたが参加した投票が終了しました";
-"types.followRequest" = "@%@さんがあなたをフォローしたいようです";
+"types.poll.notowner" = "你投過的投票已經結束";
+"types.followRequest" = "@%@向你發出了關注請求";
 "types.unknown" = "不明な通知: %@";
