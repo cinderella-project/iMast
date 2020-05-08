@@ -11,19 +11,19 @@
 "loginButton" = "登錄";
 
 "progressDialog.title" = "正在登錄";
-"progressDialog.fetchingServerInfo" = "正在將app註冊在伺服器上…";
+"progressDialog.fetchingServerInfo" = "正在從伺服器取得信息…";
 "progressDialog.registeringApplication" = "正在將app註冊在伺服器上…";
-"progressDialog.pleaseAuthorize" = "認証してください";
+"progressDialog.pleaseAuthorize" = "請您認證";
 
-"authorize.title" = "認証";
-"authorize.method.safari" = "Safariでログイン (推奨)";
-"authorize.method.mailAndPassword" = "メールアドレスとパスワードでログイン";
+"authorize.title" = "認證";
+"authorize.method.safari" = "使用Safari登錄（推薦）";
+"authorize.method.mailAndPassword" = "使用郵箱和密碼登錄";
 
-"authorize.tos.header" = "ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。";
-"authorize.tos.rules" = "このサーバーのルール";
-"authorize.tos.termsOfService" = "このサーバーの利用規約";
+"authorize.tos.header" = "登錄後就代表您已同意以下的守則和隱私權政策";
+"authorize.tos.rules" = "此實例的守則";
+"authorize.tos.termsOfService" = "此實例的服務條款";
 
-"passwordLogin.mailAddress" = "メールアドレス";
-"passwordLogin.password" = "パスワード";
+"passwordLogin.mailAddress" = "郵箱";
+"passwordLogin.password" = "密碼";
 
-"welcome.message" = "ようこそ、\n%@\nさん。";
+"welcome.message" = "%@\n歡迎使用";
