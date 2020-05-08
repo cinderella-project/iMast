@@ -72,4 +72,4 @@
 "error.pleaseInputInstance" = "请输入实例";
 
 "error.unknown.title" = "未知错误";
-"error.unknown.text" = "如果可以，请将此提示出现时情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";
+"error.unknown.text" = "如果可以，请将此提示出现时的情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";
