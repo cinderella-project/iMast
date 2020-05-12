@@ -12,4 +12,5 @@
 "types.boost" = "@%@转嘟了嘟文";
 "types.poll.owner" = "您发起的投票已结束";
 "types.poll.notowner" = "您参加的投票已结束";
+"types.followRequest" = "@%@向你发出了关注请求";
 "types.unknown" = "未知的通知：%@";

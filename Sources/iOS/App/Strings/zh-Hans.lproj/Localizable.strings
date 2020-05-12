@@ -64,7 +64,7 @@
 
 "chooseAccount" = "请选择要使用的账号";
 
-"favouritesList" = "ふぁぼ一覧";
+"favouritesList" = "喜欢一览";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
@@ -72,4 +72,4 @@
 "error.pleaseInputInstance" = "请输入实例";
 
 "error.unknown.title" = "未知错误";
-"error.unknown.text" = "如果可以，请将此提示出现时情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";
+"error.unknown.text" = "如果可以，请将此提示出现时的情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";
