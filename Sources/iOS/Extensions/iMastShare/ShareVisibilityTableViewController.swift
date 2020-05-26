@@ -22,9 +22,9 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class ShareVisibilityTableViewController: UITableViewController {
-
     var parentVC: ShareViewController!
     
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class ShareVisibilityTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return MastodonPostVisibility.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,62 +61,17 @@ class ShareVisibilityTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.textLabel?.text = VisibilityLocalizedString[indexPath[1]]
-        cell.detailTextLabel?.text = VisibilityDescriptionString[indexPath[1]]
+        let visibility = MastodonPostVisibility.allCases[indexPath.row]
+        cell.textLabel?.text = visibility.localizedName
+        cell.detailTextLabel?.text = visibility.localizedDescription
         cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        if VisibilityString[indexPath[1]] == parentVC.visibility {
+        if visibility == parentVC.visibility {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        parentVC.visibility = VisibilityString[indexPath[1]]
+        parentVC.visibility = MastodonPostVisibility.allCases[indexPath.row]
         tableView.reloadData()
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

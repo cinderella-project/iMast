@@ -87,7 +87,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         if let profileEmojis = profileEmojis, profileEmojis.count > 0 { return true }
         return false
     }
-    public let visibility: String
+    public let visibility: MastodonPostVisibility
     public private(set) var mentions: [MastodonPostMention] = []
     let tags: [MastodonPostHashtag]?
     public var poll: MastodonPoll?
@@ -176,9 +176,9 @@ public struct MastodonPollOption: Codable {
 extension MastodonUserToken {
     public func canBoost(post: MastodonPost) -> Bool {
         switch post.visibility {
-        case "direct":
+        case .direct:
             return false
-        case "private":
+        case .private:
             return post.account.acct == self.screenName
         default:
             return true

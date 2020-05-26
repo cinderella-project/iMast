@@ -245,20 +245,12 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         // 右上のいろいろ
         self.isReplyTreeLabel.isHidden = !(Defaults[.inReplyToEmoji] && post.inReplyToId != nil)
         self.isReplyTreeLabel.font = userNameFont
-        self.visibilityLabel.isHidden = post.visibility == "public" || Defaults[.visibilityEmoji] == false
-        if Defaults[.visibilityEmoji] {
-            if post.visibility == "public" {
-                self.visibilityLabel.isHidden = true
-            } else {
-                self.visibilityLabel.isHidden = false
-                self.visibilityLabel.alpha = post.visibility == "unlisted" ? 0.5 : 1.0
-                self.visibilityLabel.text = [
-                    "unlisted": "🔓",
-                    "private": "🔒",
-                    "direct": "✉️",
-                ][post.visibility]
-                self.visibilityLabel.font = userNameFont
-            }
+        self.visibilityLabel.isHidden = post.visibility == .public || Defaults[.visibilityEmoji] == false
+        if Defaults[.visibilityEmoji], let emoji = post.visibility.emoji {
+            self.visibilityLabel.isHidden = false
+            self.visibilityLabel.alpha = post.visibility == .unlisted ? 0.5 : 1.0
+            self.visibilityLabel.text = emoji
+            self.visibilityLabel.font = userNameFont
         } else {
             self.visibilityLabel.isHidden = true
         }

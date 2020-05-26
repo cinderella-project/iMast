@@ -41,9 +41,9 @@ class ShareViewController: SLComposeServiceViewController {
     var accountConfig = SLComposeSheetConfigurationItem()!
     var visibilityConfig = SLComposeSheetConfigurationItem()!
     var postUrl = ""
-    var visibility = "public" {
+    var visibility: MastodonPostVisibility = .public {
         didSet {
-            visibilityConfig.value = VisibilityLocalizedString[VisibilityString.firstIndex(of: visibility) ?? 0]
+            visibilityConfig.value = visibility.localizedName
         }
     }
     var postMedia: [UploadableMedia] = []
