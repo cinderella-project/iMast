@@ -1798,8 +1798,8 @@ struct R: Rswift.Validatable {
       static let typesMention = Rswift.StringResource(key: "types.mention", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: @%@さんがあなたをフォローしたいようです
       ///
-      /// Locales: ja
-      static let typesFollowRequest = Rswift.StringResource(key: "types.followRequest", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let typesFollowRequest = Rswift.StringResource(key: "types.followRequest", tableName: "Notification", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: @%@さんにふぁぼられました
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1844,7 +1844,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: @%@さんがあなたをフォローしたいようです
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func typesFollowRequest(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           let format = NSLocalizedString("types.followRequest", tableName: "Notification", bundle: hostingBundle, comment: "")
