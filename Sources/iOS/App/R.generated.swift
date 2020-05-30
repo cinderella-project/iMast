@@ -1221,7 +1221,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.login` struct is generated, and contains static references to 16 localization keys.
+    /// This `R.string.login` struct is generated, and contains static references to 15 localization keys.
     struct login {
       /// ja translation: Mastodonのインスタンスを入力してください
       ///
@@ -1259,10 +1259,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let passwordLoginMailAddress = Rswift.StringResource(key: "passwordLogin.mailAddress", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
-      /// ja translation: メールアドレスとパスワードでログイン
-      ///
-      /// Locales: ja, en, zh-Hans, ko
-      static let authorizeMethodMailAndPassword = Rswift.StringResource(key: "authorize.method.mailAndPassword", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: ログイン
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1423,21 +1419,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("passwordLogin.mailAddress", tableName: "Login", bundle: bundle, comment: "")
-      }
-
-      /// ja translation: メールアドレスとパスワードでログイン
-      ///
-      /// Locales: ja, en, zh-Hans, ko
-      static func authorizeMethodMailAndPassword(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Login", preferredLanguages: preferredLanguages) else {
-          return "authorize.method.mailAndPassword"
-        }
-
-        return NSLocalizedString("authorize.method.mailAndPassword", tableName: "Login", bundle: bundle, comment: "")
       }
 
       /// ja translation: ログイン

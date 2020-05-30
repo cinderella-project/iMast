@@ -122,8 +122,6 @@ internal enum L10n {
       /// 認証
       internal static let title = L10n.tr("Login", "authorize.title")
       internal enum Method {
-        /// メールアドレスとパスワードでログイン
-        internal static let mailAndPassword = L10n.tr("Login", "authorize.method.mailAndPassword")
         /// Safariでログイン (推奨)
         internal static let safari = L10n.tr("Login", "authorize.method.safari")
       }

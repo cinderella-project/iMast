@@ -17,7 +17,6 @@
 
 "authorize.title" = "認証";
 "authorize.method.safari" = "Safariでログイン (推奨)";
-"authorize.method.mailAndPassword" = "メールアドレスとパスワードでログイン";
 
 "authorize.tos.header" = "ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。";
 "authorize.tos.rules" = "このサーバーのルール";

@@ -119,43 +119,4 @@ public class MastodonApp {
             }
         }
     }
-    
-    public func authorizeWithPassword(email: String, password: String) -> Promise<MastodonUserToken> {
-        return Promise { resolve, reject, _ in
-            Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
-                "grant_type": "password",
-                "username": email,
-                "password": password,
-                "client_id": self.clientId,
-                "client_secret": self.clientSecret,
-                "scope": "read write follow",
-            ]).responseJSON { response in
-                if ((response.response?.url?.absoluteString) ?? "").contains("/auth/sign_in") { // MastodonのAPIはクソ!w
-                    reject(APIError.errorReturned(errorMessage: "Emailかパスワードが誤っています", errorHttpCode: -1))
-                    return
-                }
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                print(json)
-                if json["_response_code"].intValue >= 400 {
-                    if let error = json["error"].string {
-                        reject(APIError.errorReturned(errorMessage: error, errorHttpCode: json["_response_code"].intValue))
-                        return
-                    } else {
-                        reject(APIError.unknownResponse(errorHttpCode: json["_response_code"].intValue))
-                        return
-                    }
-                }
-                if json["access_token"].string == nil {
-                    reject(APIError.nil("access_token"))
-                    return
-                }
-                resolve(MastodonUserToken(app: self, token: json["access_token"].stringValue))
-            }
-        }
-    }
 }

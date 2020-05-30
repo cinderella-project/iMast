@@ -18,7 +18,6 @@
 		2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */; };
 		2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuViewController.swift */; };
 		2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */; };
-		2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */; };
 		2A66E7FA1EAEB0DD00735081 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */; };
 		2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */; };
@@ -516,7 +515,6 @@
 		2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseMisc.swift; sourceTree = "<group>"; };
 		2A533F791ECD08130062630F /* OtherMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuViewController.swift; sourceTree = "<group>"; };
 		2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeActiveAccountViewController.swift; sourceTree = "<group>"; };
-		2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountLoginViewController.swift; sourceTree = "<group>"; };
 		2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodUtils.swift; sourceTree = "<group>"; };
 		2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMast.entitlements; sourceTree = "<group>"; };
@@ -1646,7 +1644,6 @@
 			children = (
 				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
-				2A66E7F71EAE27A000735081 /* AddAccountLoginViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
 				CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */,
 			);
@@ -2815,7 +2812,6 @@
 				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
 				CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
-				2A66E7F81EAE27A000735081 /* AddAccountLoginViewController.swift in Sources */,
 				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,
 				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,

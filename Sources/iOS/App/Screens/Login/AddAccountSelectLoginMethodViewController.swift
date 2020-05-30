@@ -47,15 +47,6 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
                     self?.safariLoginButton()
                 }
             }
-            ButtonRow { row in
-                row.title = L10n.Login.Authorize.Method.mailAndPassword
-                row.presentationMode = .show(controllerProvider: .callback(builder: {
-                    let vc = AddAccountLoginViewController()
-                    vc.title = row.title
-                    vc.app = self.app
-                    return vc
-                }), onDismiss: nil)
-            }
         }
         
         let tosSection = Section(header: L10n.Login.Authorize.Tos.header) {
