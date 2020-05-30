@@ -17,7 +17,6 @@
 
 "authorize.title" = "认证";
 "authorize.method.safari" = "使用Safari登录（推荐）";
-"authorize.method.mailAndPassword" = "使用邮箱和密码登录";
 
 "authorize.tos.header" = "登录后就代表您已同意以下的守则和隐私权政策";
 "authorize.tos.rules" = "此实例的守则";
