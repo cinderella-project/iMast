@@ -17,7 +17,6 @@
 
 "authorize.title" = "Authorize";
 "authorize.method.safari" = "Login with Safari (Recommended)";
-"authorize.method.mailAndPassword" = "Login with mail address and password";
 
 "authorize.tos.header" = "By login, you agree to follow the rules and privacy policies.";
 "authorize.tos.rules" = "Rules of this server";
