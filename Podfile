@@ -35,8 +35,6 @@ abstract_target 'iMastShared' do
       pod 'EurekaFormBuilder', '~> 0.2.1'
       pod 'SVProgressHUD'
       pod 'Notifwift', '~> 1.1.1'
-      # If you want to build Catalyst version of iMast, please comment out next one line
-      pod '1PasswordExtension', '~> 1.8.5'
       pod 'LicensePlist', '~> 2.9.0'
       
       target 'iMastTests' do

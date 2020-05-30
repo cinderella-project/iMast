@@ -1,5 +1,4 @@
 PODS:
-  - 1PasswordExtension (1.8.5)
   - Alamofire (4.9.1)
   - Crossroad (3.0.1)
   - Eureka (5.2.0)
@@ -50,7 +49,6 @@ PODS:
   - "※ikemen (0.6.0)"
 
 DEPENDENCIES:
-  - 1PasswordExtension (~> 1.8.5)
   - Alamofire (~> 4.9.1)
   - Crossroad (~> 3.0.1)
   - Eureka (from `https://github.com/xmartlabs/Eureka`, commit `41bbb0ace994dcbbb706228baa850cd678f69fb3`)
@@ -78,7 +76,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - 1PasswordExtension
     - Alamofire
     - Crossroad
     - EurekaFormBuilder
@@ -122,7 +119,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/rinsuki/Mew.git
 
 SPEC CHECKSUMS:
-  1PasswordExtension: 0e95bdea64ec8ff2f4f693be5467a09fac42a83d
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Crossroad: 7956a252fe517d3f3e1d93886c0cc834d11b0145
   Eureka: 820a761c700f6eaab3b60758f138e0d9b99072b3
@@ -151,6 +147,6 @@ SPEC CHECKSUMS:
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: d54672d62746e500a8148f4d76007dd3cdefe3d0
+PODFILE CHECKSUM: 77bc8f31bb704427dbdafb0b636255149d1a0019
 
 COCOAPODS: 1.8.4
