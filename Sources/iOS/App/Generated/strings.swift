@@ -3,8 +3,7 @@
 
 import Foundation
 
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// swiftlint:disable superfluous_disable_command file_length implicit_return
 
 // MARK: - Strings
 
@@ -23,8 +22,8 @@ internal enum L10n {
     /// 接続中
     internal static let connected = L10n.tr("Localizable", "connected")
     /// 現在のアカウント: @%@
-    internal static func currentAccount(_ p1: String) -> String {
-      return L10n.tr("Localizable", "currentAccount", p1)
+    internal static func currentAccount(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "currentAccount", String(describing: p1))
     }
     /// 切断
     internal static let disconnect = L10n.tr("Localizable", "disconnect")
@@ -61,8 +60,8 @@ internal enum L10n {
     /// Streaming
     internal static let streaming = L10n.tr("Localizable", "streaming")
     /// 状態: %@
-    internal static func streamingStatus(_ p1: String) -> String {
-      return L10n.tr("Localizable", "streamingStatus", p1)
+    internal static func streamingStatus(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "streamingStatus", String(describing: p1))
     }
     /// アカウントを変更
     internal static let switchActiveAccount = L10n.tr("Localizable", "switchActiveAccount")
@@ -86,8 +85,8 @@ internal enum L10n {
       /// インスタンスを入力してください。
       internal static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")
       /// この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
-      internal static func requiredNewerMastodon(_ p1: String) -> String {
-        return L10n.tr("Localizable", "error.requiredNewerMastodon", p1)
+      internal static func requiredNewerMastodon(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "error.requiredNewerMastodon", String(describing: p1))
       }
       /// この機能を利用するためには iOS %.1f 以上が必要です。
       internal static func requiredNewerOS(_ p1: Float) -> String {
@@ -152,8 +151,8 @@ internal enum L10n {
     }
     internal enum Welcome {
       /// ようこそ、\n%@\nさん。
-      internal static func message(_ p1: String) -> String {
-        return L10n.tr("Login", "welcome.message", p1)
+      internal static func message(_ p1: Any) -> String {
+        return L10n.tr("Login", "welcome.message", String(describing: p1))
       }
     }
   }
@@ -180,8 +179,8 @@ internal enum L10n {
     }
     internal enum InfoText {
       /// 返信先: %@
-      internal static func inReplyTo(_ p1: String) -> String {
-        return L10n.tr("NewPost", "infoText.inReplyTo", p1)
+      internal static func inReplyTo(_ p1: Any) -> String {
+        return L10n.tr("NewPost", "infoText.inReplyTo", String(describing: p1))
       }
     }
     internal enum KeyCommand {
@@ -212,28 +211,28 @@ internal enum L10n {
   internal enum Notification {
     internal enum Types {
       /// @%@さんにブーストされました
-      internal static func boost(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.boost", p1)
+      internal static func boost(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.boost", String(describing: p1))
       }
       /// @%@さんにふぁぼられました
-      internal static func favourite(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.favourite", p1)
+      internal static func favourite(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.favourite", String(describing: p1))
       }
       /// @%@さんにフォローされました
-      internal static func follow(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.follow", p1)
+      internal static func follow(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.follow", String(describing: p1))
       }
       /// @%@さんがあなたをフォローしたいようです
-      internal static func followRequest(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.followRequest", p1)
+      internal static func followRequest(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.followRequest", String(describing: p1))
       }
       /// @%@さんからのメンション
-      internal static func mention(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.mention", p1)
+      internal static func mention(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.mention", String(describing: p1))
       }
       /// 不明な通知: %@
-      internal static func unknown(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.unknown", p1)
+      internal static func unknown(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.unknown", String(describing: p1))
       }
       internal enum Poll {
         /// あなたが参加した投票が終了しました
@@ -283,8 +282,8 @@ internal enum L10n {
       }
       internal enum TrendTags {
         /// トレンドタグ (更新: %@)
-        internal static func title(_ p1: String) -> String {
-          return L10n.tr("Search", "sections.trendTags.title", p1)
+        internal static func title(_ p1: Any) -> String {
+          return L10n.tr("Search", "sections.trendTags.title", String(describing: p1))
         }
       }
     }
@@ -347,10 +346,15 @@ internal enum L10n {
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
-    // swiftlint:disable:next nslocalizedstring_key
-    let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
+    let format = BundleToken.bundle.localizedString(forKey: key, value: nil, table: table)
     return String(format: format, locale: Locale.current, arguments: args)
   }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    Bundle(for: BundleToken.self)
+  }()
+}
+// swiftlint:enable convenience_type
