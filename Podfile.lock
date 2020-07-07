@@ -22,9 +22,6 @@ PODS:
   - LicensePlist (2.9.0)
   - Mew (0.1.0)
   - Notifwift (1.1.1)
-  - ObjcExceptionBridging (1.0.1):
-    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
-  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
@@ -42,10 +39,6 @@ PODS:
   - SwiftGen (6.1.0)
   - SwiftLint (0.37.0)
   - SwiftyJSON (5.0.0)
-  - XCGLogger (7.0.0):
-    - XCGLogger/Core (= 7.0.0)
-  - XCGLogger/Core (7.0.0):
-    - ObjcExceptionBridging
   - "※ikemen (0.6.0)"
 
 DEPENDENCIES:
@@ -71,7 +64,6 @@ DEPENDENCIES:
   - SwiftGen (~> 6.1.0)
   - SwiftLint (~> 0.37.0)
   - SwiftyJSON (~> 5.0.0)
-  - XCGLogger (~> 7.0.0)
   - "※ikemen (~> 0.6.0)"
 
 SPEC REPOS:
@@ -86,7 +78,6 @@ SPEC REPOS:
     - libwebp
     - LicensePlist
     - Notifwift
-    - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
     - ReachabilitySwift
@@ -99,7 +90,6 @@ SPEC REPOS:
     - SwiftGen
     - SwiftLint
     - SwiftyJSON
-    - XCGLogger
     - "※ikemen"
 
 EXTERNAL SOURCES:
@@ -131,7 +121,6 @@ SPEC CHECKSUMS:
   LicensePlist: 94c2f54bb9cc5427797addaeb716cfaba3544e89
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
-  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
@@ -144,9 +133,8 @@ SPEC CHECKSUMS:
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
-  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 77bc8f31bb704427dbdafb0b636255149d1a0019
+PODFILE CHECKSUM: 5911a67852c585f425ae8ba859ddb883199c2b7c
 
 COCOAPODS: 1.9.3

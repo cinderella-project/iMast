@@ -10,7 +10,6 @@ abstract_target 'iMastShared' do
   pod 'GRDB.swift', '~> 4.6.2'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'HydraAsync', '~> 2.0.2'
-  pod 'XCGLogger', '~> 7.0.0'
   pod 'SDWebImage', '~> 5.3.2'
   pod 'SDWebImageWebPCoder', '~> 0.2.5'
   pod 'Fuzi', '~> 3.1.1'

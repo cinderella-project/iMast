@@ -26,16 +26,9 @@ import UIKit
 import Hydra
 import Alamofire
 import SwiftyJSON
-import XCGLogger
 import Ikemen
 
 let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
-
-let log = XCGLogger.default
-
-func WARN(_ message: String) {
-    log.warning(message)
-}
 
 var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
