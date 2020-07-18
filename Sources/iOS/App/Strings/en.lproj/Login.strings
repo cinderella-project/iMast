@@ -26,4 +26,4 @@
 "passwordLogin.password" = "Password";
 
 "welcome.message" = "Welcome,\n%@";
-"welcome.toTimeline" = "タイムラインへ";
+"welcome.toTimeline" = "Continue";
