@@ -17,7 +17,6 @@
 
 "authorize.title" = "認證";
 "authorize.method.safari" = "使用Safari登錄（推薦）";
-"authorize.method.mailAndPassword" = "使用郵箱和密碼登錄";
 
 "authorize.tos.header" = "登錄後就代表您已同意以下的守則和隱私權政策";
 "authorize.tos.rules" = "此實例的守則";
@@ -27,3 +26,4 @@
 "passwordLogin.password" = "密碼";
 
 "welcome.message" = "%@\n歡迎使用";
+"welcome.toTimeline" = "タイムラインへ";

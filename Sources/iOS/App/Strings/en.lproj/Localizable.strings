@@ -46,11 +46,13 @@
 "cancel" = "Cancel";
 
 "other" = "Others";
+"switchTab" = "%@ に切り替え";
 "switchActiveAccount" = "Switch active account";
 "currentAccount" = "Current: @%@";
 "myProfile" = "My Profile";
 "lists" = "Lists";
 "settings" = "Settings";
+"help.title" = "ヘルプ";
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
@@ -65,6 +67,7 @@
 "chooseAccount" = "Choose account";
 
 "favouritesList" = "Favorites";
+"bunmyaku.title" = "文脈";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";

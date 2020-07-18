@@ -46,11 +46,13 @@
 "cancel" = "취소";
 
 "other" = "기타";
+"switchTab" = "%@ に切り替え";
 "switchActiveAccount" = "계정 변경";
 "currentAccount" = "현재 사용자: @%@";
 "myProfile" = "내 프로필";
 "lists" = "리스트";
 "settings" = "설정";
+"help.title" = "ヘルプ";
 "helpAndFeedback" = "도움말 / 피드백";
 "bookmarks" = "북마크";
 
@@ -65,6 +67,7 @@
 "chooseAccount" = "사용할 계정 선택";
 
 "favouritesList" = "마음함";
+"bunmyaku.title" = "文脈";
 
 "error.title" = "오류";
 "error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
