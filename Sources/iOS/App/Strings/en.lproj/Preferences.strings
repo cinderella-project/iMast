@@ -9,7 +9,7 @@
 "general.streamingAutoConnect.title" = "ストリーミング自動接続";
 "general.streamingAutoConnect.no" = "常にしない";
 "general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
-"general.streamingAutoConnect.always" = "常にする";
+"general.streamingAutoConnect.always" = "Always";
 "general.newAccountVia.title" = "新規連携時のvia";
 
 "post.title" = "投稿";
@@ -20,7 +20,7 @@
 "post.useDefaultVisibility" = "デフォルト公開範囲を利用";
 
 "nowPlaying.title" = "NowPlaying";
-"nowPlaying.format.title" = "フォーマット";
+"nowPlaying.format.title" = "Format";
 "nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
 
 "timelineAppearance.title" = "タイムラインの外観";
@@ -36,27 +36,27 @@
 "timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
 
 "timeline.title" = "タイムライン";
-"timeline.openWebMInVLC" = "WebMをVLCで開く";
-"timeline.useSystemVideoPlayer" = "OSの動画プレーヤーを使う";
-"timeline.useUniversalLinks" = "Universal Links を優先";
+"timeline.openWebMInVLC" = "Open WebM in VLC";
+"timeline.useSystemVideoPlayer" = "Use System Video Player";
+"timeline.useUniversalLinks" = "Use Universal Links if possible";
 
-"push.link" = "プッシュ通知";
+"push.link" = "Push Notifications";
 "push.title" = "プッシュ通知設定";
-"push.accounts.title" = "アカウント一覧";
-"push.addAccount.title" = "アカウントを追加";
-"push.addAccount.alertTitle" = "アカウント追加";
+"push.accounts.title" = "Accounts";
+"push.addAccount.title" = "Add Account";
+"push.addAccount.alertTitle" = "Add Account";
 "push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
 "push.shared.title" = "共通設定";
-"push.shared.displayErrorIfOccured" = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する";
+"push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
 "push.shared.groupRules.title" = "グループ化のルール設定 (β)";
 "push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
 "push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
 "push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
-"push.shared.customSounds.title" = "通知音カスタム (α)";
-"push.shared.deleteAccount.title" = "プッシュ通知の設定を削除";
+"push.shared.customSounds.title" = "Custom Notification Sound (α)";
+"push.shared.deleteAccount.title" = "Delete Push Notifications Account";
 
-"push.support.title" = "サポート用";
-"push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
-"push.support.showUserID.alertTitle" = "ユーザーID";
-"push.support.showUserID.copyAction" = "コピー";
-"push.support.showUserID.failedToCheckUserID" = "ユーザーIDがわかりませんでした";
+"push.support.title" = "for Support";
+"push.support.showUserID.title" = "Show Push Notifications User ID";
+"push.support.showUserID.alertTitle" = "User ID";
+"push.support.showUserID.copyAction" = "Copy";
+"push.support.showUserID.failedToCheckUserID" = "failed to check user id.";
