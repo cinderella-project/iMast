@@ -170,7 +170,12 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                 target: self, action: #selector(openNewPostVC)
             )
             
-            addKeyCommand(.init(title: "新規投稿", action: #selector(openNewPostVC), input: "n", modifierFlags: .command, discoverabilityTitle: "新規投稿画面を開く"))
+            addKeyCommand(.init(
+                title: L10n.NewPost.KeyCommand.Open.title,
+                action: #selector(openNewPostVC),
+                input: "n", modifierFlags: .command,
+                discoverabilityTitle: L10n.NewPost.KeyCommand.Open.description
+            ))
             
             if Defaults[.postFabEnabled] {
                 _ = self.postFabButton ※ {

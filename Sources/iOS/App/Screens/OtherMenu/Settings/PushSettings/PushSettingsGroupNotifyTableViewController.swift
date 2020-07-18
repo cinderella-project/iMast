@@ -39,16 +39,19 @@ class PushSettingsGroupNotifyTableViewController: FormViewController {
 
         // Do any additional setup after loading the view.
         
-        self.title = "グループ化のルール設定 (β)"
+        self.title = L10n.Preferences.Push.Shared.GroupRules.title
         
         self.form.append {
             Section {
                 SwitchRow { row in
-                    row.title = "アカウント毎にグループを分ける"
+                    row.title = L10n.Preferences.Push.Shared.GroupRules.byAccount
                     row.userDefaultsConnect(.groupNotifyAccounts)
                 }
             }
-            Section(header: "通知タイプ毎にグループを分ける", footer: "ONにしたタイプはすべて個別のグループになります。") {
+            Section(
+                header: L10n.Preferences.Push.Shared.GroupRules.ByType.title,
+                footer: L10n.Preferences.Push.Shared.GroupRules.ByType.description
+            ) {
                 SwitchRow { row in
                     row.title = "ブースト"
                     row.userDefaultsConnect(.groupNotifyTypeBoost)

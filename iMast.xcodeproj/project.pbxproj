@@ -295,6 +295,7 @@
 		CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */; };
 		CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */; };
 		CEF6DCC322EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */; };
+		CEF8388E24C289AA00C6919A /* Preferences.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF8389024C289AA00C6919A /* Preferences.strings */; };
 		CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */; };
 		CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
@@ -809,6 +810,13 @@
 		CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailContentViewController.swift; sourceTree = "<group>"; };
 		CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailBoostedUserViewController.swift; sourceTree = "<group>"; };
 		CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactionBarViewController.swift; sourceTree = "<group>"; };
+		CEF8388324C2898100C6919A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OtherMenu.strings"; sourceTree = "<group>"; };
+		CEF8388424C2898200C6919A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OtherMenu.strings; sourceTree = "<group>"; };
+		CEF8388524C2898400C6919A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OtherMenu.strings; sourceTree = "<group>"; };
+		CEF8388F24C289AA00C6919A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Preferences.strings; sourceTree = "<group>"; };
+		CEF8389124C289AD00C6919A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Preferences.strings"; sourceTree = "<group>"; };
+		CEF8389224C289AE00C6919A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
+		CEF8389324C289AF00C6919A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Preferences.strings; sourceTree = "<group>"; };
 		CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emptyAsNil.swift"; sourceTree = "<group>"; };
 		CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootIntentHandler.swift; sourceTree = "<group>"; };
 		CEFE6B1021B508A600AF5E40 /* iMastIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastIntents.entitlements; sourceTree = "<group>"; };
@@ -1585,6 +1593,7 @@
 				CE6554CF23C25DDC0084FE1D /* UserProfile.strings */,
 				CE6554E123C26C250084FE1D /* NewPost.strings */,
 				CEDF86FA23CF011100C8A69A /* OtherMenu.strings */,
+				CEF8389024C289AA00C6919A /* Preferences.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2343,6 +2352,7 @@
 				CE6554D723C25DDC0084FE1D /* Login.strings in Resources */,
 				CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */,
 				CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */,
+				CEF8388E24C289AA00C6919A /* Preferences.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3331,6 +3341,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				CEDF86F923CF011100C8A69A /* ja */,
+				CEF8388324C2898100C6919A /* zh-Hans */,
+				CEF8388424C2898200C6919A /* en */,
+				CEF8388524C2898400C6919A /* ko */,
 			);
 			name = OtherMenu.strings;
 			sourceTree = "<group>";
@@ -3341,6 +3354,17 @@
 				CEE4E2F42377EAF700406371 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CEF8389024C289AA00C6919A /* Preferences.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEF8388F24C289AA00C6919A /* ja */,
+				CEF8389124C289AD00C6919A /* zh-Hans */,
+				CEF8389224C289AE00C6919A /* en */,
+				CEF8389324C289AF00C6919A /* ko */,
+			);
+			name = Preferences.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

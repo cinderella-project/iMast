@@ -40,7 +40,7 @@ class PushSettingsTableViewController: FormViewController {
     
     var accounts: [PushServiceToken] = []
     
-    let accountsSection = Section("アカウント一覧")
+    let accountsSection = Section(L10n.Preferences.Push.Accounts.title)
     
     init() {
         super.init(style: .grouped)
@@ -63,15 +63,15 @@ class PushSettingsTableViewController: FormViewController {
         }
         self.form.append(self.accountsSection)
         self.form.append {
-            Section(header: "共通設定") {
+            Section(header: L10n.Preferences.Push.Shared.title) {
                 SwitchRow { row in
-                    row.title = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する"
+                    row.title = L10n.Preferences.Push.Shared.displayErrorIfOccured
                     row.userDefaultsConnect(.showPushServiceError)
                 }.cellUpdate { cell, row in
                     cell.textLabel?.numberOfLines = 0
                 }
                 ButtonRow { row in
-                    row.title = "グループ化のルール設定 (β)"
+                    row.title = L10n.Preferences.Push.Shared.GroupRules.title
                     row.cellStyle = .default
                 }.cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = .label
@@ -81,12 +81,12 @@ class PushSettingsTableViewController: FormViewController {
                     self.navigationController?.pushViewController(PushSettingsGroupNotifyTableViewController(), animated: true)
                 }
                 ButtonRow { row in
-                    row.title = "通知音カスタム (α)"
+                    row.title = L10n.Preferences.Push.Shared.CustomSounds.title
                     row.cellStyle = .default
                     row.presentationMode = .show(controllerProvider: .callback(builder: { PushSettingsChangeSoundViewController() }), onDismiss: nil)
                 }
                 ButtonRow { row in
-                    row.title = "プッシュ通知の設定を削除"
+                    row.title = L10n.Preferences.Push.Shared.DeleteAccount.title
                 }.cellUpdate { cell, row in
                     cell.textLabel?.textColor = UIColor.red
                 }.onCellSelection { cell, row in
@@ -94,7 +94,7 @@ class PushSettingsTableViewController: FormViewController {
                         title: "確認",
                         message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
                         okButtonMessage: "削除する", style: UIAlertAction.Style.destructive,
-                        cancelButtonMessage: "キャンセル"
+                        cancelButtonMessage: L10n.Localizable.cancel
                     ).then { res -> Promise<Void> in
                         if res {
                             return PushService.unRegister().then { _ in
@@ -108,20 +108,20 @@ class PushSettingsTableViewController: FormViewController {
                     }
                 }
             }
-            Section(header: "サポート用") {
+            Section(header: L10n.Preferences.Push.Support.title) {
                 ButtonRow { row in
-                    row.title = "プッシュ通知ユーザーIDを確認"
+                    row.title = L10n.Preferences.Push.Support.ShowUserID.title
                 }.onCellSelection { cell, row in
                     guard let userId = try? PushService.keyChain.getString("userId") else {
-                        self.alert(title: "エラー", message: "ユーザーIDがわかりませんでした")
+                        self.alert(title: L10n.Localizable.Error.title, message: L10n.Preferences.Push.Support.ShowUserID.failedToCheckUserID)
                         return
                     }
                     let alert = UIAlertController(
-                        title: "ユーザーID",
+                        title: L10n.Preferences.Push.Support.ShowUserID.alertTitle,
                         message: "\(userId)",
                         preferredStyle: .alert
                     )
-                    alert.addAction(.init(title: "コピー", style: .default) { _ in
+                    alert.addAction(.init(title: L10n.Preferences.Push.Support.ShowUserID.copyAction, style: .default) { _ in
                         UIPasteboard.general.string = userId
                     })
                     alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
@@ -129,7 +129,7 @@ class PushSettingsTableViewController: FormViewController {
                 }
             }
         }
-        self.title = "プッシュ通知設定"
+        self.title = L10n.Preferences.Push.title
         self.notifwift.observe(.pushSettingsAccountReload) { _ in
             self.reload(true)
         }
@@ -165,7 +165,7 @@ class PushSettingsTableViewController: FormViewController {
             self.accountsSection.removeAll()
             self.accountsSection.append(contentsOf: rows)
             self.accountsSection.append(ButtonRow { row in
-                row.title = "アカウントを追加"
+                row.title = L10n.Preferences.Push.AddAccount.title
                 row.onCellSelection { cell, row in
                     self.addAccountDialog()
                 }
@@ -197,14 +197,18 @@ class PushSettingsTableViewController: FormViewController {
     
     func addAccountDialog() {
         Promise<String?>(in: .main) { resolve, reject, _ in
-            let alert = UIAlertController(title: "アカウント追加", message: "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: L10n.Preferences.Push.AddAccount.alertTitle,
+                message: L10n.Preferences.Push.AddAccount.alertText,
+                preferredStyle: .alert
+            )
             alert.addTextField { textField in
                 textField.placeholder = "mstdn.example.com"
             }
             alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                 resolve(alert.textFields?.first?.text)
             })
-            alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+            alert.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel) { _ in
                 resolve(nil as String?)
             })
             self.present(alert, animated: true, completion: nil)
@@ -221,7 +225,7 @@ class PushSettingsTableViewController: FormViewController {
             case APIError.alreadyError:
                 break
             default:
-                self.alert(title: "エラー", message: error.localizedDescription)
+                self.alert(title: L10n.Localizable.Error.title, message: error.localizedDescription)
             }
         }
     }

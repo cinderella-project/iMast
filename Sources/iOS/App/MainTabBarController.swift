@@ -93,7 +93,12 @@ class MainTabBarController: UITabBarController, Instantiatable {
                 if cmd == lazyLoadVCs.count {
                     cmd = 9
                 }
-                addKeyCommand(.init(title: "\(vc.tabBarItem.title ?? "(unknown)") に切り替え", action: #selector(changeActiveTab(_:)), input: cmd.description, modifierFlags: .command, propertyList: i))
+                addKeyCommand(.init(
+                    title: L10n.Localizable.switchTab(vc.tabBarItem.title ?? "(unknown)"),
+                    action: #selector(changeActiveTab(_:)),
+                    input: cmd.description, modifierFlags: .command,
+                    propertyList: i
+                ))
             }
         }
         super.viewDidAppear(animated)

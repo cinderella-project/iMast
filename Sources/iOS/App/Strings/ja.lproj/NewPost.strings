@@ -10,6 +10,7 @@
 "infoText.inReplyTo" = "返信先: %@";
 "send" = "送信";
 
+"addImageFromButton" = "← から画像を追加";
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "写真を撮る";
 // Safariのファイル選択時の表記に合わせてほしい
@@ -17,6 +18,8 @@
 "media.preview" = "プレビュー";
 "media.delete" = "削除";
 
+"keyCommand.open.title" = "新規投稿";
+"keyCommand.open.description" = "新規投稿画面を開く";
 "keyCommand.send.title" = "投稿";
 "keyCommand.send.description" = "投稿を送信";
 

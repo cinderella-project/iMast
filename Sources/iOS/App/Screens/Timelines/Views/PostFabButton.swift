@@ -26,9 +26,9 @@ import UIKit
 class PostFabButton: UIButton {
     init() {
         super.init(frame: .zero)
-        setTitle("投稿", for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        setImage(UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24)), for: .normal)
         backgroundColor = tintColor
+        tintColor = .white
         
         let size = 56
         snp.makeConstraints { make in make.size.equalTo(size) }

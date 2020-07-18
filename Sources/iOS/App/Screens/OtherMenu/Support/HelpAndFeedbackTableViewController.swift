@@ -56,7 +56,7 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         var snapshot = dataSource.plainSnapshot()
         snapshot.appendSections([.one])
         snapshot.appendItems([
-            .web(title: "ヘルプ", url: URL(string: "https://cinderella-project.github.io/iMast/help/")!),
+            .web(title: L10n.Localizable.Help.title, url: URL(string: "https://cinderella-project.github.io/iMast/help/")!),
             .feedback,
             .web(title: "GitHub Issues", url: URL(string: "https://github.com/cinderella-project/iMast/issues")!),
         ], toSection: .one)
