@@ -480,8 +480,8 @@ struct R: Rswift.Validatable {
       static let aboutThisAppTootWithHashtag = Rswift.StringResource(key: "aboutThisApp.tootWithHashtag", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: %@ に切り替え
       ///
-      /// Locales: ja
-      static let switchTab = Rswift.StringResource(key: "switchTab", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let switchTab = Rswift.StringResource(key: "switchTab", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: App Store でレビューする
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -556,8 +556,8 @@ struct R: Rswift.Validatable {
       static let bookmarks = Rswift.StringResource(key: "bookmarks", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: ヘルプ
       ///
-      /// Locales: ja
-      static let helpTitle = Rswift.StringResource(key: "help.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let helpTitle = Rswift.StringResource(key: "help.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: ヘルプ / Feedback
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -616,8 +616,8 @@ struct R: Rswift.Validatable {
       static let connected = Rswift.StringResource(key: "connected", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 文脈
       ///
-      /// Locales: ja
-      static let bunmyakuTitle = Rswift.StringResource(key: "bunmyaku.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let bunmyakuTitle = Rswift.StringResource(key: "bunmyaku.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 状態: %@
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -664,7 +664,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: %@ に切り替え
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func switchTab(_ value1: String, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           let format = NSLocalizedString("switchTab", bundle: hostingBundle, comment: "")
@@ -955,7 +955,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ヘルプ
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func helpTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("help.title", bundle: hostingBundle, comment: "")
@@ -1180,7 +1180,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 文脈
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func bunmyakuTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("bunmyaku.title", bundle: hostingBundle, comment: "")
@@ -1337,8 +1337,8 @@ struct R: Rswift.Validatable {
       static let progressDialogFetchingServerInfo = Rswift.StringResource(key: "progressDialog.fetchingServerInfo", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: タイムラインへ
       ///
-      /// Locales: ja
-      static let welcomeToTimeline = Rswift.StringResource(key: "welcome.toTimeline", tableName: "Login", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let welcomeToTimeline = Rswift.StringResource(key: "welcome.toTimeline", tableName: "Login", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: パスワード
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1481,7 +1481,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: タイムラインへ
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func welcomeToTimeline(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("welcome.toTimeline", tableName: "Login", bundle: hostingBundle, comment: "")
@@ -1617,16 +1617,20 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.newPost` struct is generated, and contains static references to 16 localization keys.
+    /// This `R.string.newPost` struct is generated, and contains static references to 20 localization keys.
     struct newPost {
+      /// ja translation: CW説明文 (省略可能)
+      ///
+      /// Locales: ja
+      static let cwPlaceholder = Rswift.StringResource(key: "cwPlaceholder", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: CW説明文 (省略可能)
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let placeholdersCwWarningText = Rswift.StringResource(key: "placeholders.cwWarningText", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: ← から画像を追加
       ///
-      /// Locales: ja
-      static let addImageFromButton = Rswift.StringResource(key: "addImageFromButton", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let addImageFromButton = Rswift.StringResource(key: "addImageFromButton", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: フォトライブラリ
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1635,6 +1639,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let mediaPreview = Rswift.StringResource(key: "media.preview", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
+      /// ja translation: 公開範囲
+      ///
+      /// Locales: ja
+      static let selectVisibilityTitle = Rswift.StringResource(key: "selectVisibility.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// ja translation: 公開範囲を選択してください
+      ///
+      /// Locales: ja
+      static let selectVisibilityDescription = Rswift.StringResource(key: "selectVisibility.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: 写真を撮る
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1657,12 +1669,12 @@ struct R: Rswift.Validatable {
       static let alertsSendingTitle = Rswift.StringResource(key: "alerts.sending.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 新規投稿
       ///
-      /// Locales: ja
-      static let keyCommandOpenTitle = Rswift.StringResource(key: "keyCommand.open.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let keyCommandOpenTitle = Rswift.StringResource(key: "keyCommand.open.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 新規投稿画面を開く
       ///
-      /// Locales: ja
-      static let keyCommandOpenDescription = Rswift.StringResource(key: "keyCommand.open.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko
+      static let keyCommandOpenDescription = Rswift.StringResource(key: "keyCommand.open.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
       /// ja translation: 楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1671,6 +1683,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let alertsSendingStepsMediaUpload = Rswift.StringResource(key: "alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
+      /// ja translation: 返信
+      ///
+      /// Locales: ja
+      static let reply = Rswift.StringResource(key: "reply", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
       /// ja translation: 返信先: %@
       ///
       /// Locales: ja, en, zh-Hans, ko
@@ -1683,6 +1699,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ja, en, zh-Hans, ko
       static let alertsSendingStepsSend = Rswift.StringResource(key: "alerts.sending.steps.send", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko"], comment: nil)
+
+      /// ja translation: CW説明文 (省略可能)
+      ///
+      /// Locales: ja
+      static func cwPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cwPlaceholder", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "cwPlaceholder"
+        }
+
+        return NSLocalizedString("cwPlaceholder", tableName: "NewPost", bundle: bundle, comment: "")
+      }
 
       /// ja translation: CW説明文 (省略可能)
       ///
@@ -1701,7 +1732,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ← から画像を追加
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func addImageFromButton(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("addImageFromButton", tableName: "NewPost", bundle: hostingBundle, comment: "")
@@ -1742,6 +1773,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("media.preview", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 公開範囲
+      ///
+      /// Locales: ja
+      static func selectVisibilityTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("selectVisibility.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "selectVisibility.title"
+        }
+
+        return NSLocalizedString("selectVisibility.title", tableName: "NewPost", bundle: bundle, comment: "")
+      }
+
+      /// ja translation: 公開範囲を選択してください
+      ///
+      /// Locales: ja
+      static func selectVisibilityDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("selectVisibility.description", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "selectVisibility.description"
+        }
+
+        return NSLocalizedString("selectVisibility.description", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
       /// ja translation: 写真を撮る
@@ -1821,7 +1882,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 新規投稿
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func keyCommandOpenTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("keyCommand.open.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
@@ -1836,7 +1897,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 新規投稿画面を開く
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko
       static func keyCommandOpenDescription(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("keyCommand.open.description", tableName: "NewPost", bundle: hostingBundle, comment: "")
@@ -1879,6 +1940,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// ja translation: 返信
+      ///
+      /// Locales: ja
+      static func reply(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("reply", tableName: "NewPost", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "NewPost", preferredLanguages: preferredLanguages) else {
+          return "reply"
+        }
+
+        return NSLocalizedString("reply", tableName: "NewPost", bundle: bundle, comment: "")
       }
 
       /// ja translation: 返信先: %@
@@ -2206,200 +2282,200 @@ struct R: Rswift.Validatable {
     struct preferences {
       /// ja translation: %dpx以下にリサイズ
       ///
-      /// Locales: ja
-      static let postAutoResizePixel = Rswift.StringResource(key: "post.autoResize.pixel", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postAutoResizePixel = Rswift.StringResource(key: "post.autoResize.pixel", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: Apple MusicならURLを付ける (できれば)
       ///
-      /// Locales: ja
-      static let nowPlayingAddURLIfAppleMusicAndAvailable = Rswift.StringResource(key: "nowPlaying.addURLIfAppleMusicAndAvailable", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let nowPlayingAddURLIfAppleMusicAndAvailable = Rswift.StringResource(key: "nowPlaying.addURLIfAppleMusicAndAvailable", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: NowPlaying
       ///
-      /// Locales: ja
-      static let nowPlayingTitle = Rswift.StringResource(key: "nowPlaying.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let nowPlayingTitle = Rswift.StringResource(key: "nowPlaying.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ONにしたタイプはすべて個別のグループになります。
       ///
-      /// Locales: ja
-      static let pushSharedGroupRulesByTypeDescription = Rswift.StringResource(key: "push.shared.groupRules.byType.description", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedGroupRulesByTypeDescription = Rswift.StringResource(key: "push.shared.groupRules.byType.description", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: OSの動画プレーヤーを使う
       ///
-      /// Locales: ja
-      static let timelineUseSystemVideoPlayer = Rswift.StringResource(key: "timeline.useSystemVideoPlayer", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineUseSystemVideoPlayer = Rswift.StringResource(key: "timeline.useSystemVideoPlayer", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: Universal Links を優先
       ///
-      /// Locales: ja
-      static let timelineUseUniversalLinks = Rswift.StringResource(key: "timeline.useUniversalLinks", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineUseUniversalLinks = Rswift.StringResource(key: "timeline.useUniversalLinks", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: WebMをVLCで開く
       ///
-      /// Locales: ja
-      static let timelineOpenWebMInVLC = Rswift.StringResource(key: "timeline.openWebMInVLC", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineOpenWebMInVLC = Rswift.StringResource(key: "timeline.openWebMInVLC", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: WiFi接続時のみ
       ///
-      /// Locales: ja
-      static let generalStreamingAutoConnectWifi = Rswift.StringResource(key: "general.streamingAutoConnect.wifi", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let generalStreamingAutoConnectWifi = Rswift.StringResource(key: "general.streamingAutoConnect.wifi", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: inReplyToの有無を絵文字で表示
       ///
-      /// Locales: ja
-      static let timelineAppearanceInReplyToAsEmoji = Rswift.StringResource(key: "timelineAppearance.inReplyToAsEmoji", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceInReplyToAsEmoji = Rswift.StringResource(key: "timelineAppearance.inReplyToAsEmoji", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: しない
       ///
-      /// Locales: ja
-      static let postAutoResizeNo = Rswift.StringResource(key: "post.autoResize.no", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postAutoResizeNo = Rswift.StringResource(key: "post.autoResize.no", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: でかい投稿ボタンの場所
       ///
-      /// Locales: ja
-      static let timelineAppearanceBigNewPostButtonLocationTitle = Rswift.StringResource(key: "timelineAppearance.bigNewPostButton.location.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceBigNewPostButtonLocationTitle = Rswift.StringResource(key: "timelineAppearance.bigNewPostButton.location.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: でかい投稿ボタンを表示
       ///
-      /// Locales: ja
-      static let timelineAppearanceBigNewPostButtonShow = Rswift.StringResource(key: "timelineAppearance.bigNewPostButton.show", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceBigNewPostButtonShow = Rswift.StringResource(key: "timelineAppearance.bigNewPostButton.show", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ぬるぬるモード(再起動後反映)
       ///
-      /// Locales: ja
-      static let timelineAppearanceNurunuru = Rswift.StringResource(key: "timelineAppearance.nurunuru", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceNurunuru = Rswift.StringResource(key: "timelineAppearance.nurunuru", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: アイコンの大きさ
       ///
-      /// Locales: ja
-      static let timelineAppearanceIconSize = Rswift.StringResource(key: "timelineAppearance.iconSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceIconSize = Rswift.StringResource(key: "timelineAppearance.iconSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: アカウントを追加
       ///
-      /// Locales: ja
-      static let pushAddAccountTitle = Rswift.StringResource(key: "push.addAccount.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushAddAccountTitle = Rswift.StringResource(key: "push.addAccount.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: アカウント一覧
       ///
-      /// Locales: ja
-      static let pushAccountsTitle = Rswift.StringResource(key: "push.accounts.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushAccountsTitle = Rswift.StringResource(key: "push.accounts.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: アカウント毎にグループを分ける
       ///
-      /// Locales: ja
-      static let pushSharedGroupRulesByAccount = Rswift.StringResource(key: "push.shared.groupRules.byAccount", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedGroupRulesByAccount = Rswift.StringResource(key: "push.shared.groupRules.byAccount", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: アカウント追加
       ///
-      /// Locales: ja
-      static let pushAddAccountAlertTitle = Rswift.StringResource(key: "push.addAccount.alertTitle", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushAddAccountAlertTitle = Rswift.StringResource(key: "push.addAccount.alertTitle", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: インスタンスのホスト名を入力してください (https://などは含めず入力してください)
       ///
-      /// Locales: ja
-      static let pushAddAccountAlertText = Rswift.StringResource(key: "push.addAccount.alertText", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushAddAccountAlertText = Rswift.StringResource(key: "push.addAccount.alertText", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: グループ化のルール設定 (β)
       ///
-      /// Locales: ja
-      static let pushSharedGroupRulesTitle = Rswift.StringResource(key: "push.shared.groupRules.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedGroupRulesTitle = Rswift.StringResource(key: "push.shared.groupRules.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: コピー
       ///
-      /// Locales: ja
-      static let pushSupportShowUserIDCopyAction = Rswift.StringResource(key: "push.support.showUserID.copyAction", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSupportShowUserIDCopyAction = Rswift.StringResource(key: "push.support.showUserID.copyAction", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: サポート用
       ///
-      /// Locales: ja
-      static let pushSupportTitle = Rswift.StringResource(key: "push.support.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSupportTitle = Rswift.StringResource(key: "push.support.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: サムネイルの高さ
       ///
-      /// Locales: ja
-      static let timelineAppearanceThumbnailHeight = Rswift.StringResource(key: "timelineAppearance.thumbnailHeight", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceThumbnailHeight = Rswift.StringResource(key: "timelineAppearance.thumbnailHeight", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ストリーミング自動接続
       ///
-      /// Locales: ja
-      static let generalStreamingAutoConnectTitle = Rswift.StringResource(key: "general.streamingAutoConnect.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let generalStreamingAutoConnectTitle = Rswift.StringResource(key: "general.streamingAutoConnect.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: タイムライン
       ///
-      /// Locales: ja
-      static let timelineTitle = Rswift.StringResource(key: "timeline.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineTitle = Rswift.StringResource(key: "timeline.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: タイムラインの外観
       ///
-      /// Locales: ja
-      static let timelineAppearanceTitle = Rswift.StringResource(key: "timelineAppearance.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceTitle = Rswift.StringResource(key: "timelineAppearance.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: デフォルト公開範囲を利用
       ///
-      /// Locales: ja
-      static let postUseDefaultVisibility = Rswift.StringResource(key: "post.useDefaultVisibility", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postUseDefaultVisibility = Rswift.StringResource(key: "post.useDefaultVisibility", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: フォーマット
       ///
-      /// Locales: ja
-      static let nowPlayingFormatTitle = Rswift.StringResource(key: "nowPlaying.format.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let nowPlayingFormatTitle = Rswift.StringResource(key: "nowPlaying.format.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: プッシュ通知
       ///
-      /// Locales: ja
-      static let pushLink = Rswift.StringResource(key: "push.link", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushLink = Rswift.StringResource(key: "push.link", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: プッシュ通知の設定を削除
       ///
-      /// Locales: ja
-      static let pushSharedDeleteAccountTitle = Rswift.StringResource(key: "push.shared.deleteAccount.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedDeleteAccountTitle = Rswift.StringResource(key: "push.shared.deleteAccount.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: プッシュ通知ユーザーIDを表示
       ///
-      /// Locales: ja
-      static let pushSupportShowUserIDTitle = Rswift.StringResource(key: "push.support.showUserID.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSupportShowUserIDTitle = Rswift.StringResource(key: "push.support.showUserID.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: プッシュ通知設定
       ///
-      /// Locales: ja
-      static let pushTitle = Rswift.StringResource(key: "push.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushTitle = Rswift.StringResource(key: "push.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ユーザーID
       ///
-      /// Locales: ja
-      static let pushSupportShowUserIDAlertTitle = Rswift.StringResource(key: "push.support.showUserID.alertTitle", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSupportShowUserIDAlertTitle = Rswift.StringResource(key: "push.support.showUserID.alertTitle", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ユーザーIDがわかりませんでした
       ///
-      /// Locales: ja
-      static let pushSupportShowUserIDFailedToCheckUserID = Rswift.StringResource(key: "push.support.showUserID.failedToCheckUserID", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSupportShowUserIDFailedToCheckUserID = Rswift.StringResource(key: "push.support.showUserID.failedToCheckUserID", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: ユーザー名の文字の大きさ
       ///
-      /// Locales: ja
-      static let timelineAppearanceUserNameSize = Rswift.StringResource(key: "timelineAppearance.userNameSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceUserNameSize = Rswift.StringResource(key: "timelineAppearance.userNameSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 公開範囲を絵文字で表示
       ///
-      /// Locales: ja
-      static let timelineAppearanceVisibilityAsEmoji = Rswift.StringResource(key: "timelineAppearance.visibilityAsEmoji", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceVisibilityAsEmoji = Rswift.StringResource(key: "timelineAppearance.visibilityAsEmoji", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 共通設定
       ///
-      /// Locales: ja
-      static let pushSharedTitle = Rswift.StringResource(key: "push.shared.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedTitle = Rswift.StringResource(key: "push.shared.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 常にしない
       ///
-      /// Locales: ja
-      static let generalStreamingAutoConnectNo = Rswift.StringResource(key: "general.streamingAutoConnect.no", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let generalStreamingAutoConnectNo = Rswift.StringResource(key: "general.streamingAutoConnect.no", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 常にする
       ///
-      /// Locales: ja
-      static let generalStreamingAutoConnectAlways = Rswift.StringResource(key: "general.streamingAutoConnect.always", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let generalStreamingAutoConnectAlways = Rswift.StringResource(key: "general.streamingAutoConnect.always", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 投稿
       ///
-      /// Locales: ja
-      static let postTitle = Rswift.StringResource(key: "post.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postTitle = Rswift.StringResource(key: "post.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 投稿時にメディアURL追加
       ///
-      /// Locales: ja
-      static let postAddMediaURL = Rswift.StringResource(key: "post.addMediaURL", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postAddMediaURL = Rswift.StringResource(key: "post.addMediaURL", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 新規連携時のvia
       ///
-      /// Locales: ja
-      static let generalNewAccountViaTitle = Rswift.StringResource(key: "general.newAccountVia.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let generalNewAccountViaTitle = Rswift.StringResource(key: "general.newAccountVia.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 本文の文字の大きさ
       ///
-      /// Locales: ja
-      static let timelineAppearanceContentSize = Rswift.StringResource(key: "timelineAppearance.contentSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceContentSize = Rswift.StringResource(key: "timelineAppearance.contentSize", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 本文を太字で表示
       ///
-      /// Locales: ja
-      static let timelineAppearanceContentBold = Rswift.StringResource(key: "timelineAppearance.contentBold", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let timelineAppearanceContentBold = Rswift.StringResource(key: "timelineAppearance.contentBold", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 画像の自動リサイズ
       ///
-      /// Locales: ja
-      static let postAutoResizeTitle = Rswift.StringResource(key: "post.autoResize.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let postAutoResizeTitle = Rswift.StringResource(key: "post.autoResize.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 通知タイプ毎にグループを分ける
       ///
-      /// Locales: ja
-      static let pushSharedGroupRulesByTypeTitle = Rswift.StringResource(key: "push.shared.groupRules.byType.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedGroupRulesByTypeTitle = Rswift.StringResource(key: "push.shared.groupRules.byType.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する
       ///
-      /// Locales: ja
-      static let pushSharedDisplayErrorIfOccured = Rswift.StringResource(key: "push.shared.displayErrorIfOccured", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedDisplayErrorIfOccured = Rswift.StringResource(key: "push.shared.displayErrorIfOccured", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
       /// ja translation: 通知音カスタム (α)
       ///
-      /// Locales: ja
-      static let pushSharedCustomSoundsTitle = Rswift.StringResource(key: "push.shared.customSounds.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, zh-Hans, en, ko
+      static let pushSharedCustomSoundsTitle = Rswift.StringResource(key: "push.shared.customSounds.title", tableName: "Preferences", bundle: R.hostingBundle, locales: ["ja", "zh-Hans", "en", "ko"], comment: nil)
 
       /// ja translation: %dpx以下にリサイズ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postAutoResizePixel(_ value1: Int, preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           let format = NSLocalizedString("post.autoResize.pixel", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2416,7 +2492,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: Apple MusicならURLを付ける (できれば)
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func nowPlayingAddURLIfAppleMusicAndAvailable(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("nowPlaying.addURLIfAppleMusicAndAvailable", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2431,7 +2507,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: NowPlaying
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func nowPlayingTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("nowPlaying.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2446,7 +2522,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ONにしたタイプはすべて個別のグループになります。
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedGroupRulesByTypeDescription(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.groupRules.byType.description", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2461,7 +2537,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: OSの動画プレーヤーを使う
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineUseSystemVideoPlayer(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timeline.useSystemVideoPlayer", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2476,7 +2552,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: Universal Links を優先
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineUseUniversalLinks(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timeline.useUniversalLinks", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2491,7 +2567,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: WebMをVLCで開く
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineOpenWebMInVLC(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timeline.openWebMInVLC", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2506,7 +2582,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: WiFi接続時のみ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func generalStreamingAutoConnectWifi(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("general.streamingAutoConnect.wifi", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2521,7 +2597,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: inReplyToの有無を絵文字で表示
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceInReplyToAsEmoji(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.inReplyToAsEmoji", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2536,7 +2612,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: しない
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postAutoResizeNo(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("post.autoResize.no", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2551,7 +2627,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: でかい投稿ボタンの場所
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceBigNewPostButtonLocationTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.bigNewPostButton.location.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2566,7 +2642,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: でかい投稿ボタンを表示
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceBigNewPostButtonShow(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.bigNewPostButton.show", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2581,7 +2657,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ぬるぬるモード(再起動後反映)
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceNurunuru(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.nurunuru", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2596,7 +2672,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: アイコンの大きさ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceIconSize(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.iconSize", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2611,7 +2687,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: アカウントを追加
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushAddAccountTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.addAccount.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2626,7 +2702,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: アカウント一覧
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushAccountsTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.accounts.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2641,7 +2717,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: アカウント毎にグループを分ける
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedGroupRulesByAccount(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.groupRules.byAccount", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2656,7 +2732,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: アカウント追加
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushAddAccountAlertTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.addAccount.alertTitle", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2671,7 +2747,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: インスタンスのホスト名を入力してください (https://などは含めず入力してください)
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushAddAccountAlertText(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.addAccount.alertText", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2686,7 +2762,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: グループ化のルール設定 (β)
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedGroupRulesTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.groupRules.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2701,7 +2777,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: コピー
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSupportShowUserIDCopyAction(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.support.showUserID.copyAction", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2716,7 +2792,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: サポート用
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSupportTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.support.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2731,7 +2807,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: サムネイルの高さ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceThumbnailHeight(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.thumbnailHeight", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2746,7 +2822,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ストリーミング自動接続
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func generalStreamingAutoConnectTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("general.streamingAutoConnect.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2761,7 +2837,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: タイムライン
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timeline.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2776,7 +2852,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: タイムラインの外観
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2791,7 +2867,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: デフォルト公開範囲を利用
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postUseDefaultVisibility(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("post.useDefaultVisibility", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2806,7 +2882,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: フォーマット
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func nowPlayingFormatTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("nowPlaying.format.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2821,7 +2897,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: プッシュ通知
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushLink(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.link", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2836,7 +2912,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: プッシュ通知の設定を削除
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedDeleteAccountTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.deleteAccount.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2851,7 +2927,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: プッシュ通知ユーザーIDを表示
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSupportShowUserIDTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.support.showUserID.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2866,7 +2942,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: プッシュ通知設定
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2881,7 +2957,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ユーザーID
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSupportShowUserIDAlertTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.support.showUserID.alertTitle", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2896,7 +2972,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ユーザーIDがわかりませんでした
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSupportShowUserIDFailedToCheckUserID(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.support.showUserID.failedToCheckUserID", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2911,7 +2987,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: ユーザー名の文字の大きさ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceUserNameSize(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.userNameSize", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2926,7 +3002,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 公開範囲を絵文字で表示
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceVisibilityAsEmoji(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.visibilityAsEmoji", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2941,7 +3017,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 共通設定
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2956,7 +3032,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 常にしない
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func generalStreamingAutoConnectNo(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("general.streamingAutoConnect.no", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2971,7 +3047,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 常にする
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func generalStreamingAutoConnectAlways(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("general.streamingAutoConnect.always", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -2986,7 +3062,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 投稿
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("post.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3001,7 +3077,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 投稿時にメディアURL追加
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postAddMediaURL(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("post.addMediaURL", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3016,7 +3092,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 新規連携時のvia
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func generalNewAccountViaTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("general.newAccountVia.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3031,7 +3107,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 本文の文字の大きさ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceContentSize(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.contentSize", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3046,7 +3122,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 本文を太字で表示
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func timelineAppearanceContentBold(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("timelineAppearance.contentBold", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3061,7 +3137,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 画像の自動リサイズ
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func postAutoResizeTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("post.autoResize.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3076,7 +3152,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 通知タイプ毎にグループを分ける
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedGroupRulesByTypeTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.groupRules.byType.title", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3091,7 +3167,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedDisplayErrorIfOccured(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.displayErrorIfOccured", tableName: "Preferences", bundle: hostingBundle, comment: "")
@@ -3106,7 +3182,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 通知音カスタム (α)
       ///
-      /// Locales: ja
+      /// Locales: ja, zh-Hans, en, ko
       static func pushSharedCustomSoundsTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("push.shared.customSounds.title", tableName: "Preferences", bundle: hostingBundle, comment: "")

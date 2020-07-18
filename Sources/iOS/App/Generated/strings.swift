@@ -173,6 +173,10 @@ internal enum L10n {
   internal enum NewPost {
     /// ← から画像を追加
     internal static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
+    /// CW説明文 (省略可能)
+    internal static let cwPlaceholder = L10n.tr("NewPost", "cwPlaceholder")
+    /// 返信
+    internal static let reply = L10n.tr("NewPost", "reply")
     /// 送信
     internal static let send = L10n.tr("NewPost", "send")
     internal enum Alerts {
@@ -228,6 +232,12 @@ internal enum L10n {
     internal enum Placeholders {
       /// CW説明文 (省略可能)
       internal static let cwWarningText = L10n.tr("NewPost", "placeholders.cwWarningText")
+    }
+    internal enum SelectVisibility {
+      /// 公開範囲を選択してください
+      internal static let description = L10n.tr("NewPost", "selectVisibility.description")
+      /// 公開範囲
+      internal static let title = L10n.tr("NewPost", "selectVisibility.title")
     }
   }
   internal enum Notification {

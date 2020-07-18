@@ -100,6 +100,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         self.textInput.text += appendBottomString
         exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
+        // localize
+        cwInput.placeholder = L10n.NewPost.cwPlaceholder
     }
 
     override func didReceiveMemoryWarning() {
@@ -304,7 +306,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func scopeSelectButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "公開範囲", message: "公開範囲を選択してください。", preferredStyle: .actionSheet)
+        let alert = UIAlertController(
+            title: L10n.NewPost.SelectVisibility.title,
+            message: L10n.NewPost.SelectVisibility.description,
+            preferredStyle: .actionSheet
+        )
         alert.popoverPresentationController?.barButtonItem = self.scopeSelectButton
         for visibility in MastodonPostVisibility.allCases {
             alert.addAction(UIAlertAction(title: visibility.localizedName, style: .default) { _ in
