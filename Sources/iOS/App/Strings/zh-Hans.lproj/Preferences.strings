@@ -5,6 +5,7 @@
   Created by user on 2020/07/18.
   Copyright © 2020 rinsuki. All rights reserved.
 */
+
 "general.streamingAutoConnect.title" = "ストリーミング自動接続";
 "general.streamingAutoConnect.no" = "常にしない";
 "general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
