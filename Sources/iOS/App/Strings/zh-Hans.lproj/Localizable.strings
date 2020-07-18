@@ -46,11 +46,13 @@
 "cancel" = "取消";
 
 "other" = "其他";
+"switchTab" = "%@ に切り替え";
 "switchActiveAccount" = "账号管理";
 "currentAccount" = "已选择的账号：@%@";
 "myProfile" = "个人主页";
 "lists" = "列表";
 "settings" = "设置";
+"help.title" = "ヘルプ";
 "helpAndFeedback" = "帮助 / 意见反馈";
 "bookmarks" = "书签";
 
@@ -65,6 +67,7 @@
 "chooseAccount" = "请选择要使用的账号";
 
 "favouritesList" = "喜欢一览";
+"bunmyaku.title" = "文脈";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
