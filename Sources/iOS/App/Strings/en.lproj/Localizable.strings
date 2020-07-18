@@ -46,13 +46,13 @@
 "cancel" = "Cancel";
 
 "other" = "Others";
-"switchTab" = "%@ に切り替え";
+"switchTab" = "Switch to %@";
 "switchActiveAccount" = "Switch active account";
 "currentAccount" = "Current: @%@";
 "myProfile" = "My Profile";
 "lists" = "Lists";
 "settings" = "Settings";
-"help.title" = "ヘルプ";
+"help.title" = "Help";
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
@@ -67,7 +67,7 @@
 "chooseAccount" = "Choose account";
 
 "favouritesList" = "Favorites";
-"bunmyaku.title" = "文脈";
+"bunmyaku.title" = "Context";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
