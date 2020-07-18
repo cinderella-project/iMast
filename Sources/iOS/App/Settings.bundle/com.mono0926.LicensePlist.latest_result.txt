@@ -1,7 +1,3 @@
-name: 1PasswordExtension, nameSpecified: 
-body: Copyright (c) 2014 A…
-version: 1.8.5
-
 name: Alamofire, nameSpecified: 
 body: Copyright (c) 2014 A…
 version: 4.9.1
@@ -38,11 +34,11 @@ name: Crossroad, nameSpecified:
 body: MIT License
 
 Copyrig…
-version: 3.0.1
+version: 3.2.0
 
 name: Eureka, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.2.0
+version: 5.2.1
 
 name: EurekaFormBuilder, nameSpecified: 
 body: Copyright (c) 2019 r…
@@ -50,35 +46,35 @@ version: 0.2.1
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
-version: 3.1.1
+version: 3.1.2
 
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
@@ -146,73 +142,73 @@ version: 2.0.2
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
-version: 4.1.0
+version: 4.2.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
-version: 1.0.3
+version: 1.1.0
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 2.9.0
+version: 2.16.0
 
 name: Mew, nameSpecified: 
 body: Copyright (c) 2018 M…
@@ -242,85 +238,53 @@ name: Notifwift, nameSpecified:
 body: Copyright (c) 2016 t…
 version: 1.1.1
 
-name: ObjcExceptionBridging, nameSpecified: 
+name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
-
-name: ObjcExceptionBridging, nameSpecified: 
-body: The MIT License (MIT…
-version: 1.0.1
+version: 5.2.2
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.2
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.2
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.2
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.2
 
 name: R.swift, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.2
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: R.swift.Library, nameSpecified: 
 body: The MIT License (MIT…
-version: 5.1.0
+version: 5.2.0
 
 name: ReachabilitySwift, nameSpecified: 
 body: Copyright (c) 2016 A…
@@ -328,67 +292,67 @@ version: 4.3.1
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.3.2
+version: 5.8.3
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
-version: 0.2.5
+version: 0.6.1
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
@@ -428,35 +392,35 @@ version: 3.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
-version: 2.1.0
+version: 2.1.1
 
 name: SVProgressHUD, nameSpecified: 
 body: MIT License
@@ -468,81 +432,81 @@ name: SwiftGen, nameSpecified:
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 
 Copyrig…
-version: 6.1.0
+version: 6.2.1
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.37.0
+version: 0.39.2
 
 name: SwiftyJSON, nameSpecified: 
 body: The MIT License (MIT…
@@ -576,38 +540,6 @@ name: SwiftyJSON, nameSpecified:
 body: The MIT License (MIT…
 version: 5.0.0
 
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
-name: XCGLogger, nameSpecified: 
-body: The MIT License (MIT…
-version: 7.0.0
-
 name: ※ikemen, nameSpecified: 
 body: Copyright (c) 2015 b…
 version: 
@@ -639,6 +571,8 @@ version:
 name: ※ikemen, nameSpecified: 
 body: Copyright (c) 2015 b…
 version: 
+
+name: mikutter, nameSpecified: , owner: mikutter, version: 
 
 name: mikutter, nameSpecified: , owner: mikutter, version: 
 
@@ -653,4 +587,4 @@ Copyright 2017…
 
 add-version-numbers: true
 
-LicensePlist Version: 2.9.0
+LicensePlist Version: 2.16.0

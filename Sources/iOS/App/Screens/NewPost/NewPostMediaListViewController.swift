@@ -80,7 +80,7 @@ class NewPostMediaListViewController: UIViewController {
         } else {
             let label = UILabel()
             label.textColor = .secondaryLabel
-            label.text = "← から画像を追加"
+            label.text = L10n.NewPost.addImageFromButton
             self.imagesStackView.addArrangedSubview(label)
         }
         self.imagesStackView.setNeedsLayout()

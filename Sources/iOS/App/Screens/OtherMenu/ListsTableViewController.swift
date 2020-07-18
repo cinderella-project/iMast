@@ -112,7 +112,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
         let cell = UITableViewCell()
 
         // Configure the cell...
-        let list = self.lists[indexPath[1]]
+        let list = self.lists[indexPath.row]
         cell.textLabel?.text = list.title
         cell.accessoryType = .disclosureIndicator
 

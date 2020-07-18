@@ -12,14 +12,6 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/1PasswordExtension</string>
-			<key>Title</key>
-			<string>1PasswordExtension (1.8.5)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/Alamofire</string>
 			<key>Title</key>
 			<string>Alamofire (4.9.1)</string>
@@ -30,7 +22,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Crossroad</string>
 			<key>Title</key>
-			<string>Crossroad (3.0.1)</string>
+			<string>Crossroad (3.2.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -38,7 +30,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Eureka</string>
 			<key>Title</key>
-			<string>Eureka (5.2.0)</string>
+			<string>Eureka (5.2.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -54,7 +46,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Fuzi</string>
 			<key>Title</key>
-			<string>Fuzi (3.1.1)</string>
+			<string>Fuzi (3.1.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -94,7 +86,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/KeychainAccess</string>
 			<key>Title</key>
-			<string>KeychainAccess (4.1.0)</string>
+			<string>KeychainAccess (4.2.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -102,7 +94,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/libwebp</string>
 			<key>Title</key>
-			<string>libwebp (1.0.3)</string>
+			<string>libwebp (1.1.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -110,7 +102,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/LicensePlist</string>
 			<key>Title</key>
-			<string>LicensePlist (2.9.0)</string>
+			<string>LicensePlist (2.16.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -140,17 +132,9 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/ObjcExceptionBridging</string>
-			<key>Title</key>
-			<string>ObjcExceptionBridging (1.0.1)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift</string>
 			<key>Title</key>
-			<string>R.swift (5.1.0)</string>
+			<string>R.swift (5.2.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -158,7 +142,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/R.swift.Library</string>
 			<key>Title</key>
-			<string>R.swift.Library (5.1.0)</string>
+			<string>R.swift.Library (5.2.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -174,7 +158,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImage</string>
 			<key>Title</key>
-			<string>SDWebImage (5.3.2)</string>
+			<string>SDWebImage (5.8.3)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -182,7 +166,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImageWebPCoder</string>
 			<key>Title</key>
-			<string>SDWebImageWebPCoder (0.2.5)</string>
+			<string>SDWebImageWebPCoder (0.6.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -206,7 +190,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/STRegex</string>
 			<key>Title</key>
-			<string>STRegex (2.1.0)</string>
+			<string>STRegex (2.1.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -222,7 +206,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SwiftGen</string>
 			<key>Title</key>
-			<string>SwiftGen (6.1.0)</string>
+			<string>SwiftGen (6.2.1)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -230,7 +214,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SwiftLint</string>
 			<key>Title</key>
-			<string>SwiftLint (0.37.0)</string>
+			<string>SwiftLint (0.39.2)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -239,14 +223,6 @@
 			<string>com.mono0926.LicensePlist/SwiftyJSON</string>
 			<key>Title</key>
 			<string>SwiftyJSON (5.0.0)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
-			<string>com.mono0926.LicensePlist/XCGLogger</string>
-			<key>Title</key>
-			<string>XCGLogger (7.0.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

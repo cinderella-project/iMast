@@ -3,8 +3,7 @@
 
 import Foundation
 
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// swiftlint:disable superfluous_disable_command file_length implicit_return
 
 // MARK: - Strings
 
@@ -23,8 +22,8 @@ internal enum L10n {
     /// 接続中
     internal static let connected = L10n.tr("Localizable", "connected")
     /// 現在のアカウント: @%@
-    internal static func currentAccount(_ p1: String) -> String {
-      return L10n.tr("Localizable", "currentAccount", p1)
+    internal static func currentAccount(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "currentAccount", String(describing: p1))
     }
     /// 切断
     internal static let disconnect = L10n.tr("Localizable", "disconnect")
@@ -61,11 +60,15 @@ internal enum L10n {
     /// Streaming
     internal static let streaming = L10n.tr("Localizable", "streaming")
     /// 状態: %@
-    internal static func streamingStatus(_ p1: String) -> String {
-      return L10n.tr("Localizable", "streamingStatus", p1)
+    internal static func streamingStatus(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "streamingStatus", String(describing: p1))
     }
     /// アカウントを変更
     internal static let switchActiveAccount = L10n.tr("Localizable", "switchActiveAccount")
+    /// %@ に切り替え
+    internal static func switchTab(_ p1: Any) -> String {
+      return L10n.tr("Localizable", "switchTab", String(describing: p1))
+    }
     internal enum AboutThisApp {
       /// 作者
       internal static let author = L10n.tr("Localizable", "aboutThisApp.author")
@@ -82,12 +85,16 @@ internal enum L10n {
       /// 翻訳してくれた人たち
       internal static let translators = L10n.tr("Localizable", "aboutThisApp.translators")
     }
+    internal enum Bunmyaku {
+      /// 文脈
+      internal static let title = L10n.tr("Localizable", "bunmyaku.title")
+    }
     internal enum Error {
       /// インスタンスを入力してください。
       internal static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")
       /// この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
-      internal static func requiredNewerMastodon(_ p1: String) -> String {
-        return L10n.tr("Localizable", "error.requiredNewerMastodon", p1)
+      internal static func requiredNewerMastodon(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "error.requiredNewerMastodon", String(describing: p1))
       }
       /// この機能を利用するためには iOS %.1f 以上が必要です。
       internal static func requiredNewerOS(_ p1: Float) -> String {
@@ -101,6 +108,10 @@ internal enum L10n {
         /// 謎のエラー
         internal static let title = L10n.tr("Localizable", "error.unknown.title")
       }
+    }
+    internal enum Help {
+      /// ヘルプ
+      internal static let title = L10n.tr("Localizable", "help.title")
     }
     internal enum HomeTimeline {
       /// ホーム
@@ -122,8 +133,6 @@ internal enum L10n {
       /// 認証
       internal static let title = L10n.tr("Login", "authorize.title")
       internal enum Method {
-        /// メールアドレスとパスワードでログイン
-        internal static let mailAndPassword = L10n.tr("Login", "authorize.method.mailAndPassword")
         /// Safariでログイン (推奨)
         internal static let safari = L10n.tr("Login", "authorize.method.safari")
       }
@@ -154,12 +163,16 @@ internal enum L10n {
     }
     internal enum Welcome {
       /// ようこそ、\n%@\nさん。
-      internal static func message(_ p1: String) -> String {
-        return L10n.tr("Login", "welcome.message", p1)
+      internal static func message(_ p1: Any) -> String {
+        return L10n.tr("Login", "welcome.message", String(describing: p1))
       }
+      /// タイムラインへ
+      internal static let toTimeline = L10n.tr("Login", "welcome.toTimeline")
     }
   }
   internal enum NewPost {
+    /// ← から画像を追加
+    internal static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
     /// 送信
     internal static let send = L10n.tr("NewPost", "send")
     internal enum Alerts {
@@ -182,11 +195,17 @@ internal enum L10n {
     }
     internal enum InfoText {
       /// 返信先: %@
-      internal static func inReplyTo(_ p1: String) -> String {
-        return L10n.tr("NewPost", "infoText.inReplyTo", p1)
+      internal static func inReplyTo(_ p1: Any) -> String {
+        return L10n.tr("NewPost", "infoText.inReplyTo", String(describing: p1))
       }
     }
     internal enum KeyCommand {
+      internal enum Open {
+        /// 新規投稿画面を開く
+        internal static let description = L10n.tr("NewPost", "keyCommand.open.description")
+        /// 新規投稿
+        internal static let title = L10n.tr("NewPost", "keyCommand.open.title")
+      }
       internal enum Send {
         /// 投稿を送信
         internal static let description = L10n.tr("NewPost", "keyCommand.send.description")
@@ -214,28 +233,28 @@ internal enum L10n {
   internal enum Notification {
     internal enum Types {
       /// @%@さんにブーストされました
-      internal static func boost(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.boost", p1)
+      internal static func boost(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.boost", String(describing: p1))
       }
       /// @%@さんにふぁぼられました
-      internal static func favourite(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.favourite", p1)
+      internal static func favourite(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.favourite", String(describing: p1))
       }
       /// @%@さんにフォローされました
-      internal static func follow(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.follow", p1)
+      internal static func follow(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.follow", String(describing: p1))
       }
       /// @%@さんがあなたをフォローしたいようです
-      internal static func followRequest(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.followRequest", p1)
+      internal static func followRequest(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.followRequest", String(describing: p1))
       }
       /// @%@さんからのメンション
-      internal static func mention(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.mention", p1)
+      internal static func mention(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.mention", String(describing: p1))
       }
       /// 不明な通知: %@
-      internal static func unknown(_ p1: String) -> String {
-        return L10n.tr("Notification", "types.unknown", p1)
+      internal static func unknown(_ p1: Any) -> String {
+        return L10n.tr("Notification", "types.unknown", String(describing: p1))
       }
       internal enum Poll {
         /// あなたが参加した投票が終了しました
@@ -267,6 +286,148 @@ internal enum L10n {
       }
     }
   }
+  internal enum Preferences {
+    internal enum General {
+      internal enum NewAccountVia {
+        /// 新規連携時のvia
+        internal static let title = L10n.tr("Preferences", "general.newAccountVia.title")
+      }
+      internal enum StreamingAutoConnect {
+        /// 常にする
+        internal static let always = L10n.tr("Preferences", "general.streamingAutoConnect.always")
+        /// 常にしない
+        internal static let no = L10n.tr("Preferences", "general.streamingAutoConnect.no")
+        /// ストリーミング自動接続
+        internal static let title = L10n.tr("Preferences", "general.streamingAutoConnect.title")
+        /// WiFi接続時のみ
+        internal static let wifi = L10n.tr("Preferences", "general.streamingAutoConnect.wifi")
+      }
+    }
+    internal enum NowPlaying {
+      /// Apple MusicならURLを付ける (できれば)
+      internal static let addURLIfAppleMusicAndAvailable = L10n.tr("Preferences", "nowPlaying.addURLIfAppleMusicAndAvailable")
+      /// NowPlaying
+      internal static let title = L10n.tr("Preferences", "nowPlaying.title")
+      internal enum Format {
+        /// フォーマット
+        internal static let title = L10n.tr("Preferences", "nowPlaying.format.title")
+      }
+    }
+    internal enum Post {
+      /// 投稿時にメディアURL追加
+      internal static let addMediaURL = L10n.tr("Preferences", "post.addMediaURL")
+      /// 投稿
+      internal static let title = L10n.tr("Preferences", "post.title")
+      /// デフォルト公開範囲を利用
+      internal static let useDefaultVisibility = L10n.tr("Preferences", "post.useDefaultVisibility")
+      internal enum AutoResize {
+        /// しない
+        internal static let no = L10n.tr("Preferences", "post.autoResize.no")
+        /// %dpx以下にリサイズ
+        internal static func pixel(_ p1: Int) -> String {
+          return L10n.tr("Preferences", "post.autoResize.pixel", p1)
+        }
+        /// 画像の自動リサイズ
+        internal static let title = L10n.tr("Preferences", "post.autoResize.title")
+      }
+    }
+    internal enum Push {
+      /// プッシュ通知
+      internal static let link = L10n.tr("Preferences", "push.link")
+      /// プッシュ通知設定
+      internal static let title = L10n.tr("Preferences", "push.title")
+      internal enum Accounts {
+        /// アカウント一覧
+        internal static let title = L10n.tr("Preferences", "push.accounts.title")
+      }
+      internal enum AddAccount {
+        /// インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)
+        internal static let alertText = L10n.tr("Preferences", "push.addAccount.alertText")
+        /// アカウント追加
+        internal static let alertTitle = L10n.tr("Preferences", "push.addAccount.alertTitle")
+        /// アカウントを追加
+        internal static let title = L10n.tr("Preferences", "push.addAccount.title")
+      }
+      internal enum Shared {
+        /// 通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する
+        internal static let displayErrorIfOccured = L10n.tr("Preferences", "push.shared.displayErrorIfOccured")
+        /// 共通設定
+        internal static let title = L10n.tr("Preferences", "push.shared.title")
+        internal enum CustomSounds {
+          /// 通知音カスタム (α)
+          internal static let title = L10n.tr("Preferences", "push.shared.customSounds.title")
+        }
+        internal enum DeleteAccount {
+          /// プッシュ通知の設定を削除
+          internal static let title = L10n.tr("Preferences", "push.shared.deleteAccount.title")
+        }
+        internal enum GroupRules {
+          /// アカウント毎にグループを分ける
+          internal static let byAccount = L10n.tr("Preferences", "push.shared.groupRules.byAccount")
+          /// グループ化のルール設定 (β)
+          internal static let title = L10n.tr("Preferences", "push.shared.groupRules.title")
+          internal enum ByType {
+            /// ONにしたタイプはすべて個別のグループになります。
+            internal static let description = L10n.tr("Preferences", "push.shared.groupRules.byType.description")
+            /// 通知タイプ毎にグループを分ける
+            internal static let title = L10n.tr("Preferences", "push.shared.groupRules.byType.title")
+          }
+        }
+      }
+      internal enum Support {
+        /// サポート用
+        internal static let title = L10n.tr("Preferences", "push.support.title")
+        internal enum ShowUserID {
+          /// ユーザーID
+          internal static let alertTitle = L10n.tr("Preferences", "push.support.showUserID.alertTitle")
+          /// コピー
+          internal static let copyAction = L10n.tr("Preferences", "push.support.showUserID.copyAction")
+          /// ユーザーIDがわかりませんでした
+          internal static let failedToCheckUserID = L10n.tr("Preferences", "push.support.showUserID.failedToCheckUserID")
+          /// プッシュ通知ユーザーIDを表示
+          internal static let title = L10n.tr("Preferences", "push.support.showUserID.title")
+        }
+      }
+    }
+    internal enum Timeline {
+      /// WebMをVLCで開く
+      internal static let openWebMInVLC = L10n.tr("Preferences", "timeline.openWebMInVLC")
+      /// タイムライン
+      internal static let title = L10n.tr("Preferences", "timeline.title")
+      /// OSの動画プレーヤーを使う
+      internal static let useSystemVideoPlayer = L10n.tr("Preferences", "timeline.useSystemVideoPlayer")
+      /// Universal Links を優先
+      internal static let useUniversalLinks = L10n.tr("Preferences", "timeline.useUniversalLinks")
+    }
+    internal enum TimelineAppearance {
+      /// 本文を太字で表示
+      internal static let contentBold = L10n.tr("Preferences", "timelineAppearance.contentBold")
+      /// 本文の文字の大きさ
+      internal static let contentSize = L10n.tr("Preferences", "timelineAppearance.contentSize")
+      /// アイコンの大きさ
+      internal static let iconSize = L10n.tr("Preferences", "timelineAppearance.iconSize")
+      /// inReplyToの有無を絵文字で表示
+      internal static let inReplyToAsEmoji = L10n.tr("Preferences", "timelineAppearance.inReplyToAsEmoji")
+      /// ぬるぬるモード(再起動後反映)
+      internal static let nurunuru = L10n.tr("Preferences", "timelineAppearance.nurunuru")
+      /// サムネイルの高さ
+      internal static let thumbnailHeight = L10n.tr("Preferences", "timelineAppearance.thumbnailHeight")
+      /// タイムラインの外観
+      internal static let title = L10n.tr("Preferences", "timelineAppearance.title")
+      /// ユーザー名の文字の大きさ
+      internal static let userNameSize = L10n.tr("Preferences", "timelineAppearance.userNameSize")
+      /// 公開範囲を絵文字で表示
+      internal static let visibilityAsEmoji = L10n.tr("Preferences", "timelineAppearance.visibilityAsEmoji")
+      internal enum BigNewPostButton {
+        /// でかい投稿ボタンを表示
+        internal static let show = L10n.tr("Preferences", "timelineAppearance.bigNewPostButton.show")
+        internal enum Location {
+          /// でかい投稿ボタンの場所
+          internal static let title = L10n.tr("Preferences", "timelineAppearance.bigNewPostButton.location.title")
+        }
+      }
+    }
+  }
   internal enum Search {
     /// 検索
     internal static let title = L10n.tr("Search", "title")
@@ -285,8 +446,8 @@ internal enum L10n {
       }
       internal enum TrendTags {
         /// トレンドタグ (更新: %@)
-        internal static func title(_ p1: String) -> String {
-          return L10n.tr("Search", "sections.trendTags.title", p1)
+        internal static func title(_ p1: Any) -> String {
+          return L10n.tr("Search", "sections.trendTags.title", String(describing: p1))
         }
       }
     }
@@ -349,10 +510,15 @@ internal enum L10n {
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
-    // swiftlint:disable:next nslocalizedstring_key
-    let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
+    let format = BundleToken.bundle.localizedString(forKey: key, value: nil, table: table)
     return String(format: format, locale: Locale.current, arguments: args)
   }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    Bundle(for: BundleToken.self)
+  }()
+}
+// swiftlint:enable convenience_type

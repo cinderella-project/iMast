@@ -46,22 +46,22 @@ class SettingsViewController: FormViewController {
             getImageCacheSection()
             getExperimentalSection()
         }
-        self.title = "設定"
+        self.title = L10n.Localizable.settings
         self.navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
     }
 
     func getGeneralSection() -> Section {
         return Section {
             PushStringRow { row in
-                row.title = "ストリーミング自動接続"
+                row.title = L10n.Preferences.General.StreamingAutoConnect.title
                 row.userDefaultsConnect(.streamingAutoConnect, map: [
-                    ("no", "しない"),
-                    ("wifi", "WiFi接続時のみ"),
-                    ("always", "常に接続"),
+                    ("no", L10n.Preferences.General.StreamingAutoConnect.no),
+                    ("wifi", L10n.Preferences.General.StreamingAutoConnect.wifi),
+                    ("always", L10n.Preferences.General.StreamingAutoConnect.always),
                 ])
             }
             TextRow { row in
-                row.title = "新規連携時のvia"
+                row.title = L10n.Preferences.General.NewAccountVia.title
                 row.placeholder = "iMast"
                 row.userDefaultsConnect(.newAccountVia, ifEmptyUseDefaultValue: true)
             }
@@ -70,7 +70,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.followRelationshipsOld)
             }
             ButtonRow { row in
-                row.title = "プッシュ通知"
+                row.title = L10n.Preferences.Push.title
                 row.onCellSelection { cell, row in
                     PushSettingsTableViewController.openRequest(vc: self)
                 }
@@ -79,13 +79,13 @@ class SettingsViewController: FormViewController {
     }
     
     func getComposeSection() -> Section {
-        return Section(header: "投稿設定") {
+        return Section(header: L10n.Preferences.Post.title) {
             SwitchRow { row in
-                row.title = "投稿時にメディアURL追加"
+                row.title = L10n.Preferences.Post.addMediaURL
                 row.userDefaultsConnect(.appendMediaUrl)
             }
             PushStringRow { row in
-                row.title = "画像の自動リサイズ"
+                row.title = L10n.Preferences.Post.AutoResize.title
                 let sentakusi = [ // 自動リサイズの選択肢
                     0,
                     1920,
@@ -95,22 +95,22 @@ class SettingsViewController: FormViewController {
                     500,
                 ]
                 let smap = sentakusi.map { px -> (Int, String) in
-                    let str = px == 0 ? "自動でリサイズしない" : "\(px)px以下にリサイズ"
+                    let str = px == 0 ? L10n.Preferences.Post.AutoResize.no : L10n.Preferences.Post.AutoResize.pixel(px)
                     return (px, str)
                 }
                 row.userDefaultsConnect(.autoResizeSize, map: smap)
             }
             SwitchRow { row in
-                row.title = "デフォルト公開範囲を利用"
+                row.title = L10n.Preferences.Post.useDefaultVisibility
                 row.userDefaultsConnect(.usingDefaultVisibility)
             }
         }
     }
     
     func getNowPlayingSection() -> Section {
-        return Section(header: "NowPlaying設定") {
+        return Section(header: L10n.Preferences.NowPlaying.title) {
             LabelRow { row in
-                row.title = "フォーマット"
+                row.title = L10n.Preferences.NowPlaying.Format.title
             }
             TextAreaRow { row in
                 row.placeholder = "#NowPlaying {title} - {artist} ({albumTitle})"
@@ -118,7 +118,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.nowplayingFormat)
             }
             SwitchRow { row in
-                row.title = "Apple MusicならURLを付ける (できれば)"
+                row.title = L10n.Preferences.NowPlaying.addURLIfAppleMusicAndAvailable
                 row.userDefaultsConnect(.nowplayingAddAppleMusicUrl)
             }
         }
@@ -134,9 +134,9 @@ class SettingsViewController: FormViewController {
     }
     
     func getTimelineAppearanceSection() -> Section {
-        return Section(header: "タイムラインの外観") {
+        return Section(header: L10n.Preferences.TimelineAppearance.title) {
             SliderRow { row in
-                row.title = "ユーザー名の文字の大きさ"
+                row.title = L10n.Preferences.TimelineAppearance.userNameSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
                     cell.slider.minimumValue = 10
@@ -145,7 +145,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.timelineUsernameFontsize)
             }
             SliderRow { row in
-                row.title = "本文の文字の大きさ"
+                row.title = L10n.Preferences.TimelineAppearance.contentSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
                     cell.slider.minimumValue = 10
@@ -154,11 +154,11 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.timelineTextFontsize)
             }
             SwitchRow { row in
-                row.title = "本文を太字で表示"
+                row.title = L10n.Preferences.TimelineAppearance.contentBold
                 row.userDefaultsConnect(.timelineTextBold)
             }
             SliderRow { row in
-                row.title = "アイコンの大きさ"
+                row.title = L10n.Preferences.TimelineAppearance.iconSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 72
                     cell.slider.minimumValue = 24
@@ -167,15 +167,15 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.timelineIconSize)
             }
             SwitchRow { row in
-                row.title = "公開範囲を絵文字で表示"
+                row.title = L10n.Preferences.TimelineAppearance.visibilityAsEmoji
                 row.userDefaultsConnect(.visibilityEmoji)
             }
             SwitchRow { row in
-                row.title = "inReplyToの有無を絵文字で表示"
+                row.title = L10n.Preferences.TimelineAppearance.inReplyToAsEmoji
                 row.userDefaultsConnect(.inReplyToEmoji)
             }
             SliderRow { row in
-                row.title = "サムネイルの高さ"
+                row.title = L10n.Preferences.TimelineAppearance.thumbnailHeight
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 100
                     cell.slider.minimumValue = 0
@@ -184,7 +184,7 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.thumbnailHeight)
             }
             SwitchRow { row in
-                row.title = "ぬるぬるモード(再起動後反映)"
+                row.title = L10n.Preferences.TimelineAppearance.nurunuru
                 row.userDefaultsConnect(.timelineNurunuruMode)
             }
             SliderRow { row in
@@ -198,11 +198,11 @@ class SettingsViewController: FormViewController {
                 }
             }
             SwitchRow { row in
-                row.title = "でかい投稿ボタンを表示"
+                row.title = L10n.Preferences.TimelineAppearance.BigNewPostButton.show
                 row.userDefaultsConnect(.postFabEnabled)
             }
             PushRow<PostFabLocation> { row in
-                row.title = "でかい投稿ボタンの場所"
+                row.title = L10n.Preferences.TimelineAppearance.BigNewPostButton.Location.title
                 row.options = PostFabLocation.allCases
                 row.userDefaultsConnect(.postFabLocation)
             }
@@ -222,17 +222,17 @@ class SettingsViewController: FormViewController {
     }
     
     func getTimelineSection() -> Section {
-        return Section(header: "タイムライン") {
+        return Section(header: L10n.Preferences.Timeline.title) {
             SwitchRow { row in
-                row.title = "WebMをVLCで開く"
+                row.title = L10n.Preferences.Timeline.openWebMInVLC
                 row.userDefaultsConnect(.webmVlcOpen)
             }
             SwitchRow { row in
-                row.title = "動画再生にAVPlayerを利用"
+                row.title = L10n.Preferences.Timeline.useSystemVideoPlayer
                 row.userDefaultsConnect(.useAVPlayer)
             }
             SwitchRow { row in
-                row.title = "Universal Linksを優先"
+                row.title = L10n.Preferences.Timeline.useUniversalLinks
                 row.userDefaultsConnect(.useUniversalLink)
             }
         }

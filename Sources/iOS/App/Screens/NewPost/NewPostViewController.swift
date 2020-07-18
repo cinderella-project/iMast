@@ -50,10 +50,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.NSFWButton.style = isNSFW ? UIBarButtonItem.Style.done : UIBarButtonItem.Style.plain
         }
     }
-    var scope = "public" {
+    var scope = MastodonPostVisibility.public {
         didSet {
-            _ = VisibilityString.firstIndex(of: scope)! // 意図しないものが指定されたらクラッシュさせる
-            scopeSelectButton.image = UIImage(named: "visibility-"+scope)
+            scopeSelectButton.image = UIImage(named: "visibility-"+scope.rawValue)
         }
     }
     var replyToPost: MastodonPost?
@@ -88,8 +87,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
             userToken.getUserInfo(cache: true).then { res in
-                let myScope = res["source"]["privacy"].string ?? "public"
-                self.scope = myScope
+                if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
+                    self.scope = myScope
+                }
             }
         }
         self.textInput.becomeFirstResponder()
@@ -306,10 +306,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @IBAction func scopeSelectButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "公開範囲", message: "公開範囲を選択してください。", preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = self.scopeSelectButton
-        for i in 0..<VisibilityString.count {
-            alert.addAction(UIAlertAction(title: VisibilityLocalizedString[i], style: .default, handler: { (action) in
-                self.scope = VisibilityString[i]
-            }))
+        for visibility in MastodonPostVisibility.allCases {
+            alert.addAction(UIAlertAction(title: visibility.localizedName, style: .default) { _ in
+                self.scope = visibility
+            })
         }
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
@@ -335,11 +335,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         isNSFW = false
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
             userToken.getUserInfo(cache: true).then { res in
-                let myScope = res["source"]["privacy"].string ?? "public"
-                self.scope = myScope
+                if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
+                    self.scope = myScope
+                }
             }
         } else {
-            scope = "public"
+            scope = .public
         }
     }
 }

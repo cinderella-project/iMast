@@ -30,6 +30,7 @@ class PushSettingsChangeSoundViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = L10n.Preferences.Push.Shared.CustomSounds.title
         form.append {
             Section(header: "ブースト") {
                 SwitchRow { row in

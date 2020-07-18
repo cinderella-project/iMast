@@ -33,7 +33,7 @@ class BunmyakuTableViewController: TimeLineTableViewController {
         self.isReadmoreEnabled = false
         self.isRefreshEnabled = false
         super.viewDidLoad()
-        self.title = "文脈"
+        self.title = L10n.Localizable.Bunmyaku.title
     }
     
     override func loadTimeline() -> Promise<()> {

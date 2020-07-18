@@ -26,16 +26,9 @@ import UIKit
 import Hydra
 import Alamofire
 import SwiftyJSON
-import XCGLogger
 import Ikemen
 
 let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
-
-let log = XCGLogger.default
-
-func WARN(_ message: String) {
-    log.warning(message)
-}
 
 var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
@@ -133,8 +126,5 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
     case rightBottom
 }
 
-let VisibilityString = ["public", "unlisted", "private", "direct"]
-let VisibilityLocalizedString = ["公開", "未収載", "フォロワー限定", "ダイレクト"]
-let VisibilityDescriptionString = ["LTLやフォロワーのHTL等に流れます", "LTLやハッシュタグ検索には出ません", "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます", "メンションを飛ばした対象の人にのみ見れます"]
 let UserDefaultsAppGroup = UserDefaults.init(suiteName: "group.jp.pronama.imast")!
 var Defaults = UserDefaultsAppGroup

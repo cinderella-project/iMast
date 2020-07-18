@@ -115,11 +115,11 @@ class ChangeActiveAccountViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
 
-        let userToken = userTokens[indexPath[1]]
+        let userToken = userTokens[indexPath.row]
                 
         cell.textLabel!.text = userToken.name   
         cell.detailTextLabel!.text = "@\(userToken.acct) (\(userToken.app.name))"
-        if indexPath[1] == 0 {
+        if indexPath.row == 0 {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         
@@ -161,7 +161,7 @@ class ChangeActiveAccountViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
             tableView.isEditing = false
-            let userToken = self.userTokens[indexPath[1]]
+            let userToken = self.userTokens[indexPath.row]
             let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n@\(userToken.acct)", preferredStyle: .actionSheet)
             alertVC.popoverPresentationController?.sourceView = self.tableView.cellForRow(at: indexPath)
             alertVC.popoverPresentationController?.permittedArrowDirections = [.up, .down]
