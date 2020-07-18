@@ -10,6 +10,7 @@
 "infoText.inReplyTo" = "回復給：%@";
 "send" = "發嘟";
 
+"addImageFromButton" = "← から画像を追加";
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "拍照";
 // Safariのファイル選択時の表記に合わせてほしい
@@ -17,6 +18,8 @@
 "media.preview" = "預覽";
 "media.delete" = "刪除";
 
+"keyCommand.open.title" = "新規投稿";
+"keyCommand.open.description" = "新規投稿画面を開く";
 "keyCommand.send.title" = "發嘟";
 "keyCommand.send.description" = "發布嘟文";
 
