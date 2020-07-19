@@ -173,8 +173,6 @@ internal enum L10n {
   internal enum NewPost {
     /// ← から画像を追加
     internal static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
-    /// CW説明文 (省略可能)
-    internal static let cwPlaceholder = L10n.tr("NewPost", "cwPlaceholder")
     /// 返信
     internal static let reply = L10n.tr("NewPost", "reply")
     /// 送信

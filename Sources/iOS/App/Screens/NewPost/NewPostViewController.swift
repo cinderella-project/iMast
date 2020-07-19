@@ -101,7 +101,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         exactOnepixelConstraint.constant = 1 /  UIScreen.main.scale
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         // localize
-        cwInput.placeholder = L10n.NewPost.cwPlaceholder
+        cwInput.placeholder = L10n.NewPost.Placeholders.cwWarningText
     }
 
     override func didReceiveMemoryWarning() {
