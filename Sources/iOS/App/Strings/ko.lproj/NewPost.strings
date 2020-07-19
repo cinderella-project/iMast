@@ -11,7 +11,6 @@
 "send" = "보내기";
 "reply" = "返信";
 
-"cwPlaceholder" = "CW説明文 (省略可能)";
 "selectVisibility.title" = "公開範囲";
 "selectVisibility.description" = "公開範囲を選択してください";
 
