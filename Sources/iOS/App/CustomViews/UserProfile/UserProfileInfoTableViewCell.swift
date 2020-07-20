@@ -23,27 +23,50 @@
 
 import UIKit
 import iMastiOSCore
+import Ikemen
 
 class UserProfileInfoTableViewCell: UITableViewCell {
-    var loadAfter = false
-    var isLoaded = false
     var user: MastodonAccount?
     var userToken: MastodonUserToken!
 
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var screenNameLabel: UILabel!
-    @IBOutlet weak var relationshipLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.isLoaded = true
-        if let user = self.user, self.loadAfter {
-            self.load(user: user)
+    let iconView = UIImageView() ※ { v in
+        v.snp.makeConstraints { make in
+            make.size.equalTo(64)
         }
     }
+    let nameLabel = UILabel() ※ { v in
+        v.font = .systemFont(ofSize: 17)
+    }
+    let screenNameLabel = UILabel() ※ { v in
+        v.font = .systemFont(ofSize: 14)
+    }
+    let relationshipLabel = UILabel() ※ { v in
+        v.text = "関係: 読み込み中…"
+        v.font = .systemFont(ofSize: 14)
+    }
 
+    init() {
+        super.init(style: .default, reuseIdentifier: nil)
+        let stackView = UIStackView(arrangedSubviews: [
+            iconView,
+            nameLabel,
+            screenNameLabel,
+            relationshipLabel,
+        ])
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalToSuperview().inset(12)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -52,10 +75,6 @@ class UserProfileInfoTableViewCell: UITableViewCell {
     
     func load(user: MastodonAccount) {
         self.user = user
-        if !isLoaded {
-            loadAfter = true
-            return
-        }
         self.iconView.sd_setImage(with: URL(string: user.avatarUrl), completed: nil)
         self.iconView.ignoreSmartInvert()
         self.nameLabel.text = user.name == "" ? user.screenName : user.name

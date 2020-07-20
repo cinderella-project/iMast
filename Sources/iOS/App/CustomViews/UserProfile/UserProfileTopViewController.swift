@@ -49,7 +49,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     var isLoaded = false
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
-    let infoCell = R.nib.userProfileInfoTableViewCell.firstView(owner: self as AnyObject)!
+    let infoCell = UserProfileInfoTableViewCell()
     let bioCell = R.nib.userProfileBioTableViewCell.firstView(owner: self as AnyObject)!
     
     override func viewDidLoad() {

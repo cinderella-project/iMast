@@ -386,12 +386,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
-    /// Nib `UserProfileInfoTableViewCell`.
-    static let userProfileInfoTableViewCell = _R.nib._UserProfileInfoTableViewCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
@@ -401,20 +399,8 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "UserProfileInfoTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.userProfileInfoTableViewCell) instead")
-    static func userProfileInfoTableViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.userProfileInfoTableViewCell)
-    }
-    #endif
-
     static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
       return R.nib.userProfileBioTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
-    }
-
-    static func userProfileInfoTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileInfoTableViewCell? {
-      return R.nib.userProfileInfoTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileInfoTableViewCell
     }
 
     fileprivate init() {}
@@ -3611,17 +3597,6 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _UserProfileInfoTableViewCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "UserProfileInfoTableViewCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileInfoTableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileInfoTableViewCell
       }
 
       fileprivate init() {}
