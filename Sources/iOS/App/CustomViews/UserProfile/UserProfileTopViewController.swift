@@ -75,11 +75,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     }
     
     @objc func reload(sender: UIRefreshControl) {
-        self.environment.getAccount(id: self.input.id).then { res in
-            print(res)
-            self.input(res)
-            self.refreshControl?.endRefreshing()
-        }
+        MastodonEndpoint.GetAccount(target: input.id)
+            .request(with: environment)
+            .then { res in
+                print(res)
+                self.input(res)
+                self.refreshControl?.endRefreshing()
+            }
     }
     
     func input(_ input: Input) {

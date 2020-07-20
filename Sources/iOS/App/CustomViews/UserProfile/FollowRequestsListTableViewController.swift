@@ -64,11 +64,13 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
     
     @objc func refresh() {
         self.refreshControl?.beginRefreshing()
-        environment.request(MastodonEndpoint.FollowRequests.List()).then { res in
-            self.followRequests = res.content
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-        }
+        MastodonEndpoint.FollowRequests.List()
+            .request(with: environment)
+            .then { res in
+                self.followRequests = res.content
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
     }
 
     // MARK: - Table view data source
@@ -104,16 +106,16 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = self.followRequests[indexPath.row]
         let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
-            self.environment
-                .request(MastodonEndpoint.FollowRequests.Judge(target: user, judge: .authorize))
+            MastodonEndpoint.FollowRequests.Judge(target: user, judge: .authorize)
+                .request(with: self.environment)
                 .then { res in
                     self.refresh()
                 }
         }
         authorizeAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
         let rejectAction = UITableViewRowAction(style: .destructive, title: "拒否") { _, _ in
-            self.environment
-                .request(MastodonEndpoint.FollowRequests.Judge(target: user, judge: .reject))
+            MastodonEndpoint.FollowRequests.Judge(target: user, judge: .reject)
+                .request(with: self.environment)
                 .then { res in
                     self.refresh()
                 }

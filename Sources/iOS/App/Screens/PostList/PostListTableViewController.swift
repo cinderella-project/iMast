@@ -90,19 +90,22 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         refreshControl?.beginRefreshing()
         var request = input
         request.paging = paging.prev
-        environment.request(request).then { res in
-            res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
-            if self.postIds.count == 0 {
-                self.paging.next = res.paging.next
+        request
+            .request(with: environment)
+            .then { res in
+                res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
+                if self.postIds.count == 0 {
+                    self.paging.next = res.paging.next
+                }
+                self.postIds.insert(contentsOf: res.content.map { $0.id }, at: 0)
+                self.paging.override(with: res.paging.prev)
+                self.update()
+            }.catch { e in
+                self.readmoreCell.lastError = e
+                self.readmoreCell.state = .withError
+            }.always {
+                self.refreshControl?.endRefreshing()
             }
-            self.postIds.insert(contentsOf: res.content.map { $0.id }, at: 0)
-            self.paging.override(with: res.paging.prev)
-            self.refreshControl?.endRefreshing()
-            self.update()
-        }.catch { e in
-            self.readmoreCell.lastError = e
-            self.readmoreCell.state = .withError
-        }
     }
     
     func readmore() {
@@ -110,7 +113,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         readmoreCell.state = .loading
         var request = input
         request.paging = next
-        environment.request(request).then { res in
+        request.request(with: environment).then { res in
             res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             self.postIds.append(contentsOf: res.content.map { $0.id })
             self.paging.next = res.paging.next

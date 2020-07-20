@@ -213,11 +213,13 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.mentions.first(where: { $0.url == urlString }) {
-            environment.getAccount(id: mention.id).then({ [weak self] user in
-                guard let strongSelf = self else { return }
-                let newVC = UserProfileTopViewController.instantiate(user, environment: strongSelf.environment)
-                strongSelf.navigationController?.pushViewController(newVC, animated: true)
-            })
+            MastodonEndpoint.GetAccount(target: mention.id)
+                .request(with: environment)
+                .then { [weak self] user in
+                    guard let strongSelf = self else { return }
+                    let newVC = UserProfileTopViewController.instantiate(user, environment: strongSelf.environment)
+                    strongSelf.navigationController?.pushViewController(newVC, animated: true)
+                }
             return false
         }
         if let media = input.attachments.first(where: { $0.textUrl == urlString }) {

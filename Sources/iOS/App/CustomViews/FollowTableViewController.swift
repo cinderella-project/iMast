@@ -65,16 +65,18 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     
     func load() {
         self.readmoreCell.state = .loading
-        environment.request(MastodonEndpoint.GetFollows(
+        MastodonEndpoint.GetFollows(
             target: input.userId,
             type: input.type,
             paging: paging
-        )).then { res in
-            self.users.append(contentsOf: res.content)
-            self.paging = res.paging.next
-            self.readmoreCell.state = res.paging.next == nil ? .allLoaded : .moreLoadable
-            self.tableView.reloadData()
-        }
+        )
+            .request(with: environment)
+            .then { res in
+                self.users.append(contentsOf: res.content)
+                self.paging = res.paging.next
+                self.readmoreCell.state = res.paging.next == nil ? .allLoaded : .moreLoadable
+                self.tableView.reloadData()
+            }
     }
 
     override func didReceiveMemoryWarning() {

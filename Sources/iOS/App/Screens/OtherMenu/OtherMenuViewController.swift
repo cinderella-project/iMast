@@ -68,12 +68,14 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         cell.textLabel?.textColor = nil
                     }
                     row.onCellSelection { cell, row in
-                        self.environment.verifyCredentials().then { account in
-                            let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
-                            self.navigationController?.pushViewController(newVC, animated: true)
-                        }.catch { error in
-                            print(error)
-                        }
+                        MastodonEndpoint.GetMyProfile()
+                            .request(with: self.environment)
+                            .then { account in
+                                let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
+                                self.navigationController?.pushViewController(newVC, animated: true)
+                            }.catch { error in
+                                print(error)
+                            }
                     }
                 }
                 ButtonRow { row in

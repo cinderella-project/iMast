@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct MastodonAccount: Codable, EmojifyProtocol {
+public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointResponse {
     public let id: MastodonID
     public let name: String
     public let screenName: String
@@ -101,26 +101,32 @@ struct MastodonFollowList {
     
 }
 
-extension MastodonUserToken {
-    public func verifyCredentials() -> Promise<MastodonAccount> {
-        return self.get("accounts/verify_credentials").then { res -> MastodonAccount in
-            return try MastodonAccount.decode(json: res)
-        }
-    }
-    public func getAccount(id: MastodonID) -> Promise<MastodonAccount> {
-        return self.get("accounts/"+id.string).then { res -> MastodonAccount in
-            return try MastodonAccount.decode(json: res)
-        }
-    }
-}
-
 extension MastodonEndpoint {
+    public struct GetMyProfile: MastodonEndpointProtocol {
+        public typealias Response = MastodonAccount
+        public let endpoint = "/api/v1/accounts/verify_credentials"
+        public let method = "GET"
+        
+        public init() {}
+    }
+    
+    public struct GetAccount: MastodonEndpointProtocol {
+        public typealias Response = MastodonAccount
+        
+        public var endpoint: String { "/api/v1/accounts/\(target.string)" }
+        public let method = "GET"
+        
+        public var target: MastodonID
+        
+        public init(target: MastodonID) {
+            self.target = target
+        }
+    }
+    
     public struct GetFollows: MastodonEndpointProtocol {
         public typealias Response = MastodonEndpointResponseWithPaging<[MastodonAccount]>
         
-        public var endpoint: String {
-            return "/api/v1/accounts/\(target.string)/\(type.rawValue)"
-        }
+        public var endpoint: String { "/api/v1/accounts/\(target.string)/\(type.rawValue)" }
         public let method = "GET"
         public var query: [URLQueryItem] {
             var q = [URLQueryItem]()

@@ -167,7 +167,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         
         switch itemIdentifier {
         case .profile:
-            environment.verifyCredentials().then { account in
+            MastodonEndpoint.GetMyProfile().request(with: environment).then { account in
                 let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
                 self.showDetailViewController(UINavigationController(rootViewController: newVC), sender: self)
             }

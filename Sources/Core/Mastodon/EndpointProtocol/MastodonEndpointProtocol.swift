@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import Foundation
+import Hydra
 
 public protocol MastodonEndpointProtocol {
     associatedtype Response: MastodonEndpointResponse
@@ -37,6 +38,10 @@ public protocol MastodonEndpointProtocol {
 extension MastodonEndpointProtocol {
     public var query: [URLQueryItem] { return [] }
     public var body: Data? { return nil }
+    
+    public func request(with token: MastodonUserToken) -> Promise<Self.Response> {
+        return token.request(self)
+    }
 }
 
 public protocol MastodonEndpointResponse {

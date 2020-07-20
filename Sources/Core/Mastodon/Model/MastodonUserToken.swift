@@ -212,7 +212,7 @@ public class MastodonUserToken: Equatable {
         }
     }
     
-    public func request<E: MastodonEndpointProtocol>(_ ep: E) -> Promise<E.Response> {
+    internal func request<E: MastodonEndpointProtocol>(_ ep: E) -> Promise<E.Response> {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName

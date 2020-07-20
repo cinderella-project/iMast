@@ -322,10 +322,12 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
         if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
-            self.environment.getAccount(id: mention.id).then({ user in
-                let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
-                self.navigationController?.pushViewController(newVC, animated: true)
-            })
+            MastodonEndpoint.GetAccount(target: mention.id)
+                .request(with: environment)
+                .then { user in
+                    let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
+                    self.navigationController?.pushViewController(newVC, animated: true)
+                }
             return false
         }
         if let media = input.post.attachments.first(where: { $0.textUrl == urlString }) {
