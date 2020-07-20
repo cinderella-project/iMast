@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct MastodonAccountRelationship: Codable {
+public struct MastodonAccountRelationship: Codable, MastodonEndpointResponse {
     let id: MastodonID
     public let following: Bool
     public var showing_reblogs: Bool {

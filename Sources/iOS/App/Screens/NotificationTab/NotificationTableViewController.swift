@@ -74,7 +74,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         
         self.readmoreCell.state = .loading
-        environment.request(ep: request).then { notifications in
+        environment.request(request).then { notifications in
             self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
             self.notifications = notifications
             self.tableView.reloadData()
@@ -109,7 +109,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         if let prevId = notifications.first?.id {
             req.paging = .prev(prevId.string, isSinceId: true)
         }
-        environment.request(ep: req).then({ new_notifications in
+        environment.request(req).then({ new_notifications in
             new_notifications.reversed().forEach({ (notify) in
                 self.notifications.insert(notify, at: 0)
             })
@@ -202,7 +202,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         if let lastId = self.notifications.last?.id {
             req.paging = .next(lastId.string)
         }
-        environment.request(ep: req).then { notifications in
+        environment.request(req).then { notifications in
             let oldCount = self.notifications.count
             self.notifications.append(contentsOf: notifications)
             self.tableView.beginUpdates()

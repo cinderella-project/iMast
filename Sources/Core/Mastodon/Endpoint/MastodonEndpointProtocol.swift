@@ -34,6 +34,11 @@ public protocol MastodonEndpointProtocol {
     var body: Data? { get }
 }
 
+extension MastodonEndpointProtocol {
+    public var query: [URLQueryItem] { return [] }
+    public var body: Data? { return nil }
+}
+
 public protocol MastodonEndpointResponse {
     static func decode(data: Data, httpHeaders: [String: String]) throws -> Self
 }

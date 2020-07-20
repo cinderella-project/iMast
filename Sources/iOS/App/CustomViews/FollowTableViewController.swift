@@ -65,7 +65,7 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     
     func load() {
         self.readmoreCell.state = .loading
-        environment.request(ep: MastodonEndpoint.GetFollows(
+        environment.request(MastodonEndpoint.GetFollows(
             target: input.userId,
             type: input.type,
             paging: paging

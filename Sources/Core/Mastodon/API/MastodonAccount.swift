@@ -121,22 +121,6 @@ extension MastodonUserToken {
             return try MastodonAccount.decode(json: res)
         }
     }
-    public func followRequests() -> Promise<[MastodonAccount]> {
-        return self.get("follow_requests").then { res -> [MastodonAccount] in
-            return try res.arrayValue.map({try MastodonAccount.decode(json: $0)})
-        }
-    }
-    
-    public func followRequestAuthorize(target: MastodonAccount) -> Promise<Void> {
-        return self.post("follow_requests/\(target.id.string)/authorize").then { res -> Void in
-            return Void()
-        }
-    }
-    public func followRequestReject(target: MastodonAccount) -> Promise<Void> {
-        return self.post("follow_requests/\(target.id.string)/reject").then { res -> Void in
-            return Void()
-        }
-    }
 }
 
 extension MastodonEndpoint {
@@ -162,6 +146,46 @@ extension MastodonEndpoint {
             self.target = target
             self.type = type
             self.paging = paging
+        }
+    }
+    
+    public enum FollowRequests {
+        public struct List: MastodonEndpointProtocol {
+            public typealias Response = MastodonEndpointResponseWithPaging<[MastodonAccount]>
+            
+            public let endpoint = "/api/v1/follow_requests"
+            public let method = "GET"
+            public var query: [URLQueryItem] {
+                var q = [URLQueryItem]()
+                paging?.addToQuery(&q)
+                return q
+            }
+            
+            public var paging: MastodonPagingOption?
+            
+            public init(paging: MastodonPagingOption? = nil) {
+                self.paging = paging
+            }
+        }
+        
+        public struct Judge: MastodonEndpointProtocol {
+            public typealias Response = MastodonAccountRelationship
+            
+            public enum JudgeType: String {
+                case authorize
+                case reject
+            }
+            
+            public var endpoint: String { "/api/v1/follow_requests/\(target.id.string)/\(judge.rawValue)" }
+            public let method = "POST"
+            
+            public var target: MastodonAccount
+            public var judge: JudgeType
+            
+            public init(target: MastodonAccount, judge: JudgeType) {
+                self.target = target
+                self.judge = judge
+            }
         }
     }
 }

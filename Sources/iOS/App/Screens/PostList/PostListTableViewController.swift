@@ -90,7 +90,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         refreshControl?.beginRefreshing()
         var request = input
         request.paging = paging.prev
-        environment.request(ep: request).then { res in
+        environment.request(request).then { res in
             res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             if self.postIds.count == 0 {
                 self.paging.next = res.paging.next
@@ -110,7 +110,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         readmoreCell.state = .loading
         var request = input
         request.paging = next
-        environment.request(ep: request).then { res in
+        environment.request(request).then { res in
             res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
             self.postIds.append(contentsOf: res.content.map { $0.id })
             self.paging.next = res.paging.next
