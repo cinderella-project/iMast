@@ -6,10 +6,10 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"general.streamingAutoConnect.title" = "ストリーミング自動接続";
-"general.streamingAutoConnect.no" = "常にしない";
-"general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
-"general.streamingAutoConnect.always" = "常にする";
+"general.streamingAutoConnect.title" = "自动连接到自动滚动更新";
+"general.streamingAutoConnect.no" = "永不";
+"general.streamingAutoConnect.wifi" = "仅WiFi";
+"general.streamingAutoConnect.always" = "开启";
 "general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
 
 "post.title" = "嘟文发布";
