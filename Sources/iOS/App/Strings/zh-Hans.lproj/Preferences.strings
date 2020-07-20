@@ -10,25 +10,25 @@
 "general.streamingAutoConnect.no" = "常にしない";
 "general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
 "general.streamingAutoConnect.always" = "常にする";
-"general.newAccountVia.title" = "新規連携時のvia";
+"general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
 
-"post.title" = "投稿";
-"post.addMediaURL" = "投稿時にメディアURL追加";
-"post.autoResize.title" = "画像の自動リサイズ";
-"post.autoResize.no" = "しない";
-"post.autoResize.pixel" = "%dpx以下にリサイズ";
-"post.useDefaultVisibility" = "デフォルト公開範囲を利用";
+"post.title" = "嘟文发布";
+"post.addMediaURL" = "发布嘟文时添加图片链接";
+"post.autoResize.title" = "自动缩小图片";
+"post.autoResize.no" = "永不";
+"post.autoResize.pixel" = "缩小到%dpx以下";
+"post.useDefaultVisibility" = "使用默认的嘟文可见范围";
 
 "nowPlaying.title" = "NowPlaying";
-"nowPlaying.format.title" = "フォーマット";
-"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
+"nowPlaying.format.title" = "格式";
+"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple Music自动添加链接（可用时）";
 
-"timelineAppearance.title" = "タイムラインの外観";
-"timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
-"timelineAppearance.contentSize" = "本文の文字の大きさ";
-"timelineAppearance.contentBold" = "本文を太字で表示";
-"timelineAppearance.iconSize" = "アイコンの大きさ";
-"timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
+"timelineAppearance.title" = "时间轴外观";
+"timelineAppearance.userNameSize" = "用户名的字体大小";
+"timelineAppearance.contentSize" = "正文的字体大小";
+"timelineAppearance.contentBold" = "加粗正文字体";
+"timelineAppearance.iconSize" = "头像大小";
+"timelineAppearance.visibilityAsEmoji" = "用emoji显示嘟文可见范围";
 "timelineAppearance.inReplyToAsEmoji" = "inReplyToの有無を絵文字で表示";
 "timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
 "timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
