@@ -9,12 +9,12 @@
 "placeholders.cwWarningText" = "折叠部分的警告信息（可选）";
 "infoText.inReplyTo" = "回复给：%@";
 "send" = "发布";
-"reply" = "返信";
+"reply" = "回复";
 
-"selectVisibility.title" = "公開範囲";
-"selectVisibility.description" = "公開範囲を選択してください";
+"selectVisibility.title" = "嘟文可见范围";
+"selectVisibility.description" = "请选择嘟文可见范围";
 
-"addImageFromButton" = "← から画像を追加";
+"addImageFromButton" = "←点此处添加图片";
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "拍照";
 // Safariのファイル選択時の表記に合わせてほしい
@@ -22,7 +22,7 @@
 "media.preview" = "预览";
 "media.delete" = "删除";
 
-"keyCommand.open.title" = "新規投稿";
+"keyCommand.open.title" = "发布嘟文";
 "keyCommand.open.description" = "新規投稿画面を開く";
 "keyCommand.send.title" = "发布";
 "keyCommand.send.description" = "发布嘟文";
