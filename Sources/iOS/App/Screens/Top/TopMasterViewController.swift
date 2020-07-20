@@ -81,15 +81,15 @@ class TopMasterViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
         case .settings:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = R.string.localizable.settings()
+            cell.textLabel?.text = L10n.Localizable.settings
             cell.accessoryType = .disclosureIndicator
         case .helpAndFeedback:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = R.string.localizable.helpAndFeedback()
+            cell.textLabel?.text = L10n.Localizable.helpAndFeedback
             cell.accessoryType = .disclosureIndicator
         case .aboutThisApp:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = R.string.localizable.aboutThisAppTitle()
+            cell.textLabel?.text = L10n.Localizable.AboutThisApp.title
             cell.accessoryType = .disclosureIndicator
         }
         return cell

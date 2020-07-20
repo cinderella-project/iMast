@@ -43,15 +43,15 @@ class NotificationTableViewCell: UITableViewCell {
     static func getIcon(type: String) -> UIImage? {
         switch type {
         case "reblog":
-            return R.image.boost()
+            return Asset.boost.image
         case "favourite":
-            return R.image.star()
+            return Asset.star.image
         case "mention":
-            return R.image.reply()
+            return Asset.reply.image
         case "follow":
-            return R.image.follow()
+            return Asset.follow.image
         case "poll":
-            return R.image.poll()
+            return Asset.poll.image
         default:
             return nil
         }

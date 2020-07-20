@@ -47,21 +47,21 @@ class OtherMenuViewController: FormViewController, Instantiatable {
     }
     
     override func viewDidLoad() {
-        self.title = R.string.localizable.other()
+        self.title = L10n.Localizable.other
         super.viewDidLoad()
 
         form.append {
             Section {
                 ButtonRow { row in
-                    row.title = R.string.localizable.switchActiveAccount()
+                    row.title = L10n.Localizable.switchActiveAccount
                     row.cellStyle = .subtitle
                     row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
                     row.cellUpdate { (cell, row) in
-                        cell.detailTextLabel?.text = R.string.localizable.currentAccount(self.environment.acct)
+                        cell.detailTextLabel?.text = L10n.Localizable.currentAccount(self.environment.acct)
                     }
                 }
                 ButtonRow { row in
-                    row.title = R.string.localizable.myProfile()
+                    row.title = L10n.Localizable.myProfile
                     row.cellUpdate { cell, row in
                         cell.textLabel?.textAlignment = .left
                         cell.accessoryType = .disclosureIndicator
@@ -77,7 +77,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                     }
                 }
                 ButtonRow { row in
-                    row.title = R.string.localizable.lists()
+                    row.title = L10n.Localizable.lists
                     row.cellUpdate { cell, row in
                         cell.textLabel?.textAlignment = .left
                         cell.accessoryType = .disclosureIndicator
@@ -87,7 +87,10 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         // TODO: ここの下限バージョンの処理をあとで共通化する
                         self.environment.getIntVersion().then { version in
                             if version < MastodonVersionStringToInt("2.1.0rc1") {
-                                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("2.1.0rc1"))
+                                self.alert(
+                                    title: L10n.Localizable.Error.title,
+                                    message: L10n.Localizable.Error.requiredNewerMastodon("2.1.0rc1")
+                                )
                                 return
                             }
                             self.environment.lists().then({ lists in
@@ -109,7 +112,10 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         // TODO: ここの下限バージョンの処理をあとで共通化する
                         self.environment.getIntVersion().then { version in
                             if version < MastodonVersionStringToInt("3.1.0") {
-                                self.alert(title: R.string.localizable.errorTitle(), message: R.string.localizable.errorRequiredNewerMastodon("3.1.0"))
+                                self.alert(
+                                    title: L10n.Localizable.Error.title,
+                                    message: L10n.Localizable.Error.requiredNewerMastodon("3.1.0")
+                                )
                                 return
                             }
                             self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
@@ -117,7 +123,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                     }
                 }
                 ButtonRow { row in
-                    row.title = R.string.localizable.settings()
+                    row.title = L10n.Localizable.settings
                     row.presentationMode = .show(controllerProvider: .callback(builder: { SettingsViewController() }), onDismiss: nil)
                 }
                 #if !targetEnvironment(macCatalyst)
@@ -127,11 +133,11 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                 }
                 #endif
                 ButtonRow { row in
-                    row.title = R.string.localizable.helpAndFeedback()
+                    row.title = L10n.Localizable.helpAndFeedback
                     row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
                 }
                 ButtonRow { row in
-                    row.title = R.string.localizable.aboutThisAppTitle()
+                    row.title = L10n.Localizable.AboutThisApp.title
                     row.presentationMode = .show(controllerProvider: .callback(builder: { AboutThisAppViewController() }), onDismiss: nil)
                 }
             }

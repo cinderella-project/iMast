@@ -119,7 +119,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     @objc func openNewPost() {
-        let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        let vc = StoryboardScene.NewPost.initialScene.instantiate()
         vc.userToken = environment
         present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
@@ -137,19 +137,19 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             }
         case .followRequests:
             cell = .init(style: .value1, reuseIdentifier: nil)
-            cell.textLabel?.text = R.string.userProfile.actionsFollowRequestsList()
+            cell.textLabel?.text = L10n.UserProfile.Actions.followRequestsList
         case .home:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = R.string.localizable.homeTimelineShort()
+            cell.textLabel?.text = L10n.Localizable.HomeTimeline.short
             cell.imageView?.image = UIImage(systemName: "house")
         case .notifications:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bell")
-            cell.textLabel?.text = R.string.localizable.notifications()
+            cell.textLabel?.text = L10n.Localizable.notifications
         case .local:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "person.and.person")
-            cell.textLabel?.text = R.string.localizable.localTimelineShort()
+            cell.textLabel?.text = L10n.Localizable.LocalTimeline.short
         case .bookmarks:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bookmark")

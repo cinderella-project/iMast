@@ -166,7 +166,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         
         if isNewPostAvailable {
             self.navigationItem.rightBarButtonItem = .init(
-                title: R.string.localizable.post(), style: .plain,
+                title: L10n.Localizable.post, style: .plain,
                 target: self, action: #selector(openNewPostVC)
             )
             
@@ -287,7 +287,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     }
     
     @objc func openNewPostVC() {
-        let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        let vc = StoryboardScene.NewPost.initialScene.instantiate()
         vc.userToken = self.environment
         self.processNewPostVC(newPostVC: vc)
         self.navigationController?.pushViewController(vc, animated: true)
@@ -365,25 +365,25 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         print("called")
         let nowStreamConnected = (socket?.webSocket.isConnected ?? false)
         let alertVC = UIAlertController(
-            title: R.string.localizable.streaming(),
-            message: R.string.localizable.streamingStatus(
+            title:  L10n.Localizable.streaming,
+            message:  L10n.Localizable.streamingStatus(
                 nowStreamConnected
-                ? R.string.localizable.connected()
-                : R.string.localizable.notConnected()
+                ? L10n.Localizable.connected
+                : L10n.Localizable.notConnected
             ),
             preferredStyle: .actionSheet
         )
         alertVC.popoverPresentationController?.barButtonItem = self.streamingNavigationItem
         if nowStreamConnected {
-            alertVC.addAction(UIAlertAction(title: R.string.localizable.disconnect(), style: .default, handler: { (action) in
+            alertVC.addAction(UIAlertAction(title: L10n.Localizable.disconnect, style: .default, handler: { (action) in
                 self.socket?.disconnect()
             }))
         } else {
-            alertVC.addAction(UIAlertAction(title: R.string.localizable.connect(), style: .default, handler: { (action) in
+            alertVC.addAction(UIAlertAction(title: L10n.Localizable.connect, style: .default, handler: { (action) in
                 self.websocketConnect(auto: false)
             }))
         }
-        alertVC.addAction(UIAlertAction(title: R.string.localizable.refetch(), style: .default, handler: { (action) in
+        alertVC.addAction(UIAlertAction(title: L10n.Localizable.refetch, style: .default, handler: { (action) in
             let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
             if isStreamingConnectingNow {
                 self.socket?.disconnect()
@@ -400,7 +400,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                 }
             }
         }))
-        alertVC.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     

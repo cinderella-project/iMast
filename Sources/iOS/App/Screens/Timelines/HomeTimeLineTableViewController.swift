@@ -28,7 +28,7 @@ import Hydra
 class HomeTimeLineTableViewController: TimeLineTableViewController {
     override func viewDidLoad() {
         self.timelineType = .home
-        self.navigationItem.title = R.string.localizable.homeTimeline()
+        self.navigationItem.title = L10n.Localizable.homeTimeline
         self.isNewPostAvailable = true
         super.viewDidLoad()
     }

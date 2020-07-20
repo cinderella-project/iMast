@@ -74,7 +74,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.textContainer.lineFragmentPadding = 0
     }
     let tootInfoView = UIView() ※ { v in
-        v.backgroundColor = R.color.barBoost()
+        v.backgroundColor = Asset.barBoost.color
         v.ignoreSmartInvert()
         v.snp.makeConstraints { make in
             make.width.equalTo(3)
@@ -84,11 +84,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     let attachedMediaListViewContrller: AttachedMediaListViewController
     
     let isBoostedView = UIView() ※ { v in
-        v.backgroundColor = R.color.barBoost()
+        v.backgroundColor = Asset.barBoost.color
         v.ignoreSmartInvert()
     }
     let isFavouritedView = UIView() ※ { v in
-        v.backgroundColor = R.color.barFavourite()
+        v.backgroundColor = Asset.barFavourite.color
         v.ignoreSmartInvert()
     }
     

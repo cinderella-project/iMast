@@ -62,7 +62,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = R.string.localizable.notifications()
+        self.title = L10n.Localizable.notifications
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

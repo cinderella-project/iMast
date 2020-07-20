@@ -47,25 +47,25 @@ class MainTabBarController: UITabBarController, Instantiatable {
         let homeVC = UINavigationController(rootViewController: HomeTimeLineTableViewController.instantiate(.plain, environment: self.environment))
         homeVC.tabBarItem.image = UIImage(systemName: "house")
         homeVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
-        homeVC.tabBarItem.title = R.string.localizable.homeTimelineShort()
+        homeVC.tabBarItem.title = L10n.Localizable.HomeTimeline.short
         homeVC.tabBarItem.accessibilityIdentifier = "home"
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableWrapperViewController.instantiate(environment: self.environment))
         notifyVC.tabBarItem.image = UIImage(systemName: "bell")
         notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
-        notifyVC.tabBarItem.title = R.string.localizable.notifications()
+        notifyVC.tabBarItem.title = L10n.Localizable.notifications
         notifyVC.tabBarItem.accessibilityIdentifier = "notifications"
 
         let ltlVC = UINavigationController(rootViewController: LocalTimeLineTableViewController.instantiate(.plain, environment: self.environment))
         ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person")
         ltlVC.tabBarItem.selectedImage = UIImage(systemName: "person.and.person.fill")
-        ltlVC.tabBarItem.title = R.string.localizable.localTimelineShort()
+        ltlVC.tabBarItem.title = L10n.Localizable.LocalTimeline.short
         ltlVC.tabBarItem.accessibilityIdentifier = "ltl"
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
-        otherVC.tabBarItem.image = R.image.moreOutline()
-        otherVC.tabBarItem.selectedImage = R.image.more()
-        otherVC.tabBarItem.title = R.string.localizable.other()
+        otherVC.tabBarItem.image = Asset.moreOutline.image
+        otherVC.tabBarItem.selectedImage = Asset.more.image
+        otherVC.tabBarItem.title = L10n.Localizable.other
         otherVC.tabBarItem.accessibilityIdentifier = "others"
         
         lazyLoadVCs = [
@@ -114,7 +114,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
             return
         }
         let vc = ChangeActiveAccountViewController()
-        vc.title = R.string.localizable.switchActiveAccount()
+        vc.title = L10n.Localizable.switchActiveAccount
         let navC = UINavigationController(rootViewController: vc)
         vc.navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: navC, action: #selector(navC.close))
         present(navC, animated: true, completion: nil)

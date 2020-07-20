@@ -1637,12 +1637,12 @@ struct R: Rswift.Validatable {
       static let mediaPreview = Rswift.StringResource(key: "media.preview", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko", "zh-Hant"], comment: nil)
       /// ja translation: 公開範囲
       ///
-      /// Locales: ja
-      static let selectVisibilityTitle = Rswift.StringResource(key: "selectVisibility.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
+      static let selectVisibilityTitle = Rswift.StringResource(key: "selectVisibility.title", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko", "zh-Hant"], comment: nil)
       /// ja translation: 公開範囲を選択してください
       ///
-      /// Locales: ja
-      static let selectVisibilityDescription = Rswift.StringResource(key: "selectVisibility.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
+      static let selectVisibilityDescription = Rswift.StringResource(key: "selectVisibility.description", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko", "zh-Hant"], comment: nil)
       /// ja translation: 写真を撮る
       ///
       /// Locales: ja, en, zh-Hans, ko, zh-Hant
@@ -1681,8 +1681,8 @@ struct R: Rswift.Validatable {
       static let alertsSendingStepsMediaUpload = Rswift.StringResource(key: "alerts.sending.steps.mediaUpload", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko", "zh-Hant"], comment: nil)
       /// ja translation: 返信
       ///
-      /// Locales: ja
-      static let reply = Rswift.StringResource(key: "reply", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja"], comment: nil)
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
+      static let reply = Rswift.StringResource(key: "reply", tableName: "NewPost", bundle: R.hostingBundle, locales: ["ja", "en", "zh-Hans", "ko", "zh-Hant"], comment: nil)
       /// ja translation: 返信先: %@
       ///
       /// Locales: ja, en, zh-Hans, ko, zh-Hant
@@ -1758,7 +1758,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 公開範囲
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
       static func selectVisibilityTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("selectVisibility.title", tableName: "NewPost", bundle: hostingBundle, comment: "")
@@ -1773,7 +1773,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 公開範囲を選択してください
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
       static func selectVisibilityDescription(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("selectVisibility.description", tableName: "NewPost", bundle: hostingBundle, comment: "")
@@ -1925,7 +1925,7 @@ struct R: Rswift.Validatable {
 
       /// ja translation: 返信
       ///
-      /// Locales: ja
+      /// Locales: ja, en, zh-Hans, ko, zh-Hant
       static func reply(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("reply", tableName: "NewPost", bundle: hostingBundle, comment: "")
