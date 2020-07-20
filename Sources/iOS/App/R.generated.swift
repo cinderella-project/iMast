@@ -386,14 +386,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `AddAccountSuccessViewController`.
     static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
     /// Nib `NewPostMediaListViewController`.
     static let newPostMediaListViewController = _R.nib._NewPostMediaListViewController()
-    /// Nib `NotificationTableViewCell`.
-    static let notificationTableViewCell = _R.nib._NotificationTableViewCell()
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
@@ -412,14 +410,6 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.newPostMediaListViewController) instead")
     static func newPostMediaListViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.newPostMediaListViewController)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "NotificationTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.notificationTableViewCell) instead")
-    static func notificationTableViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.notificationTableViewCell)
     }
     #endif
 
@@ -447,10 +437,6 @@ struct R: Rswift.Validatable {
       return R.nib.newPostMediaListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func notificationTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
-      return R.nib.notificationTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
-    }
-
     static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
       return R.nib.userProfileBioTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
     }
@@ -458,14 +444,6 @@ struct R: Rswift.Validatable {
     static func userProfileInfoTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileInfoTableViewCell? {
       return R.nib.userProfileInfoTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileInfoTableViewCell
     }
-
-    fileprivate init() {}
-  }
-
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
-  struct reuseIdentifier {
-    /// Reuse identifier `notificationTableViewCell`.
-    static let notificationTableViewCell: Rswift.ReuseIdentifier<NotificationTableViewCell> = Rswift.ReuseIdentifier(identifier: "notificationTableViewCell")
 
     fileprivate init() {}
   }
@@ -3672,20 +3650,6 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _NotificationTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = NotificationTableViewCell
-
-      let bundle = R.hostingBundle
-      let identifier = "notificationTableViewCell"
-      let name = "NotificationTableViewCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> NotificationTableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? NotificationTableViewCell
       }
 
       fileprivate init() {}

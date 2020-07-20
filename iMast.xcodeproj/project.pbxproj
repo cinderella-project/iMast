@@ -147,8 +147,7 @@
 		CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */; };
 		CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */; };
 		CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */; };
-		CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */; };
-		CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */; };
+		CE6AB7F821CB66EB0052FA36 /* NotificationCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AB7F621CB66EB0052FA36 /* NotificationCellViewController.swift */; };
 		CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */; };
 		CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */; };
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
@@ -208,6 +207,7 @@
 		CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */; };
 		CEC617FB24C5279200E2FF97 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC617FA24C5279100E2FF97 /* assets.swift */; };
 		CEC617FD24C5361300E2FF97 /* storyboard-scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC617FC24C5361300E2FF97 /* storyboard-scenes.swift */; };
+		CEC617FE24C53E6900E2FF97 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90855C21918750006769DC /* R.generated.swift */; };
 		CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */; };
 		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */; };
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
@@ -671,8 +671,7 @@
 		CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTopViewController.swift; sourceTree = "<group>"; };
 		CE6977881F0F086E00C1B234 /* UserTimeLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurekaExtension.swift; sourceTree = "<group>"; };
-		CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
-		CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		CE6AB7F621CB66EB0052FA36 /* NotificationCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellViewController.swift; sourceTree = "<group>"; };
 		CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostCellViewController.swift; sourceTree = "<group>"; };
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
 		CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+emojify.swift"; sourceTree = "<group>"; };
@@ -1716,8 +1715,7 @@
 			children = (
 				CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */,
 				CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */,
-				CE6AB7F621CB66EB0052FA36 /* NotificationTableViewCell.swift */,
-				CE6AB7F721CB66EB0052FA36 /* NotificationTableViewCell.xib */,
+				CE6AB7F621CB66EB0052FA36 /* NotificationCellViewController.swift */,
 			);
 			path = NotificationTab;
 			sourceTree = "<group>";
@@ -2359,7 +2357,6 @@
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
 				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
-				CE6AB7F921CB66EB0052FA36 /* NotificationTableViewCell.xib in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
@@ -2799,6 +2796,7 @@
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
 				CEC617FB24C5279200E2FF97 /* assets.swift in Sources */,
 				CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */,
+				CEC617FE24C53E6900E2FF97 /* R.generated.swift in Sources */,
 				CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */,
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
@@ -2839,7 +2837,7 @@
 				CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,
-				CE6AB7F821CB66EB0052FA36 /* NotificationTableViewCell.swift in Sources */,
+				CE6AB7F821CB66EB0052FA36 /* NotificationCellViewController.swift in Sources */,
 				CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */,
 				CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimeLineTableViewController.swift in Sources */,

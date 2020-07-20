@@ -82,8 +82,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
             self.readmoreCell.lastError = error
             self.readmoreCell.state = .withError
         }
-        
-        self.tableView.register(R.nib.notificationTableViewCell)
+        TableViewCell<NotificationCellViewController>.register(to: tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,9 +123,12 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.nib.notificationTableViewCell, for: indexPath)!
-            cell.load(notification: self.notifications[indexPath.row])
-            return cell
+            return TableViewCell<NotificationCellViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: notifications[indexPath.row],
+                parentViewController: self
+            )
         } else {
             return self.readmoreCell
         }
