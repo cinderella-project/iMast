@@ -232,7 +232,6 @@
 		CEE043B0237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */; };
 		CEE213131EF13EE600393C67 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = CEE213121EF13EE600393C67 /* emoji.json */; };
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
-		CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */; };
 		CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
 		CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
@@ -783,7 +782,6 @@
 		CEE254292004B802005FEB6F /* MastodonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApplication.swift; sourceTree = "<group>"; };
 		CEE2542D2004FA76005FEB6F /* MastodonNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonNotification.swift; sourceTree = "<group>"; };
 		CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostMediaListViewController.swift; sourceTree = "<group>"; };
-		CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostMediaListViewController.xib; sourceTree = "<group>"; };
 		CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSelectableTextView.swift; sourceTree = "<group>"; };
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
 		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
@@ -1676,7 +1674,6 @@
 			children = (
 				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
 				CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */,
-				CEE2E7A0208B48E60020F86F /* NewPostMediaListViewController.xib */,
 			);
 			path = NewPost;
 			sourceTree = "<group>";
@@ -2356,7 +2353,6 @@
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
 				CE9B1AA21F9DA74D0044341A /* ProfileCard.storyboard in Resources */,
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
-				CEE2E7A2208B48E60020F86F /* NewPostMediaListViewController.xib in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
