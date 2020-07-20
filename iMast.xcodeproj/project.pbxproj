@@ -204,6 +204,8 @@
 		CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */; };
 		CEC617FB24C5279200E2FF97 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC617FA24C5279100E2FF97 /* assets.swift */; };
 		CEC617FD24C5361300E2FF97 /* storyboard-scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC617FC24C5361300E2FF97 /* storyboard-scenes.swift */; };
+		CEC6180224C5C56800E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */; };
+		CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */; };
 		CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */; };
 		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */; };
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
@@ -741,6 +743,7 @@
 		CEC617F924C4550C00E2FF97 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Preferences.strings"; sourceTree = "<group>"; };
 		CEC617FA24C5279100E2FF97 /* assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		CEC617FC24C5361300E2FF97 /* storyboard-scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "storyboard-scenes.swift"; sourceTree = "<group>"; };
+		CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.FollowRequests.swift; sourceTree = "<group>"; };
 		CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+toString.swift"; sourceTree = "<group>"; };
 		CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Hydra.swift"; sourceTree = "<group>"; };
 		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSafari.swift; sourceTree = "<group>"; };
@@ -1224,6 +1227,8 @@
 		CE43BEF923779F4F00133C86 /* Mastodon */ = {
 			isa = PBXGroup;
 			children = (
+				CE522BED24159C710048E334 /* Paging */,
+				CEC617FF24C5C48500E2FF97 /* EndpointProtocol */,
 				CE522BE4241595BC0048E334 /* Endpoint */,
 				CEE254262004B593005FEB6F /* API */,
 				CE5F7CB423112D01005E819E /* Model */,
@@ -1369,10 +1374,8 @@
 		CE522BE4241595BC0048E334 /* Endpoint */ = {
 			isa = PBXGroup;
 			children = (
-				CE522BED24159C710048E334 /* Paging */,
-				CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */,
-				CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */,
 				CE522BE924159C520048E334 /* MastodonEndpoint.swift */,
+				CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -1540,6 +1543,15 @@
 				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		CEC617FF24C5C48500E2FF97 /* EndpointProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */,
+				CE9BB38D241C4EFE004B6421 /* MastodonEndpointWithPagingProtocol.swift */,
+			);
+			path = EndpointProtocol;
 			sourceTree = "<group>";
 		};
 		CEC6BBF82104F9E6003ECE10 /* Extensions */ = {
@@ -2908,6 +2920,7 @@
 				CE43BEED23779EB500133C86 /* MastodonNotification.swift in Sources */,
 				CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */,
 				CE43BEEE23779EB500133C86 /* MastodonAttachment.swift in Sources */,
+				CEC6180224C5C56800E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CE43BEEF23779EB500133C86 /* MastodonList.swift in Sources */,
 				CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */,
 				CE43BF092377A92100133C86 /* Array+safe.swift in Sources */,
@@ -3077,6 +3090,7 @@
 				CEE4E3642377F83C00406371 /* MastodonNotification.swift in Sources */,
 				CEE4E35E2377F83900406371 /* String+parseInt.swift in Sources */,
 				CEE4E33D2377F80C00406371 /* EmojifyProtocol.swift in Sources */,
+				CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */,
 				CEE4E35B2377F83900406371 /* String+preg.swift in Sources */,
 				CEE4E36F2377F84200406371 /* MastodonInstance.swift in Sources */,

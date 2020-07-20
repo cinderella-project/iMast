@@ -120,11 +120,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case poll
         case language
     }
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }
 
 public struct MastodonCustomEmoji: Codable {
@@ -134,11 +130,7 @@ public struct MastodonCustomEmoji: Codable {
         case shortcode
         case url
     }
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }
 
 public struct MastodonPostContext: Codable {
@@ -151,11 +143,7 @@ public struct MastodonPostMention: Codable {
     let username: String
     public let acct: String
     public let id: MastodonID
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }
 
 public struct MastodonPoll: Codable {

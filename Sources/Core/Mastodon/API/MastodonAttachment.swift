@@ -47,9 +47,5 @@ public struct MastodonAttachment: Codable {
         case remoteUrl = "remote_url"
         case textUrl = "text_url"
     }
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }

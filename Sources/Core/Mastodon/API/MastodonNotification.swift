@@ -29,11 +29,7 @@ public struct MastodonNotification: Codable {
     public let type: String
     public let status: MastodonPost?
     public let account: MastodonAccount?
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }
 
 extension MastodonUserToken {

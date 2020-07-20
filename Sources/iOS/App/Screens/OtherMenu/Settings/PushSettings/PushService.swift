@@ -58,11 +58,7 @@ struct PushServiceToken: Codable {
     var instance: String
     var userName: String
     var _id: String
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
     
     func update() -> Promise<PushServiceToken> {
         return Alamofire.request(

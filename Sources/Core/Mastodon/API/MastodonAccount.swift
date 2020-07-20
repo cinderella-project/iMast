@@ -71,11 +71,6 @@ public struct MastodonAccount: Codable, EmojifyProtocol {
         case emojis
         case profileEmojis = "profile_emojis"
     }
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
 }
 
 extension MastodonAccount: Hashable {
@@ -91,11 +86,7 @@ extension MastodonAccount: Hashable {
 public struct MastodonAccountOAuthAuthenticate: Codable {
     public let provider: String
     public let uid: String
-    
-    @available(*, deprecated, message: "Do not use.")
-    init() {
-        fatalError("Swift 4.1 work around")
-    }
+
 }
 
 public enum MastodonFollowFetchType: String {
@@ -146,46 +137,6 @@ extension MastodonEndpoint {
             self.target = target
             self.type = type
             self.paging = paging
-        }
-    }
-    
-    public enum FollowRequests {
-        public struct List: MastodonEndpointProtocol {
-            public typealias Response = MastodonEndpointResponseWithPaging<[MastodonAccount]>
-            
-            public let endpoint = "/api/v1/follow_requests"
-            public let method = "GET"
-            public var query: [URLQueryItem] {
-                var q = [URLQueryItem]()
-                paging?.addToQuery(&q)
-                return q
-            }
-            
-            public var paging: MastodonPagingOption?
-            
-            public init(paging: MastodonPagingOption? = nil) {
-                self.paging = paging
-            }
-        }
-        
-        public struct Judge: MastodonEndpointProtocol {
-            public typealias Response = MastodonAccountRelationship
-            
-            public enum JudgeType: String {
-                case authorize
-                case reject
-            }
-            
-            public var endpoint: String { "/api/v1/follow_requests/\(target.id.string)/\(judge.rawValue)" }
-            public let method = "POST"
-            
-            public var target: MastodonAccount
-            public var judge: JudgeType
-            
-            public init(target: MastodonAccount, judge: JudgeType) {
-                self.target = target
-                self.judge = judge
-            }
         }
     }
 }
