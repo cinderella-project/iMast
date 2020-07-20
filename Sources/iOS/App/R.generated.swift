@@ -386,32 +386,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
-    /// Nib `AddAccountSuccessViewController`.
-    static let addAccountSuccessViewController = _R.nib._AddAccountSuccessViewController()
-    /// Nib `NewPostMediaListViewController_`.
-    static let newPostMediaListViewController_ = _R.nib._NewPostMediaListViewController_()
     /// Nib `UserProfileBioTableViewCell`.
     static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
     /// Nib `UserProfileInfoTableViewCell`.
     static let userProfileInfoTableViewCell = _R.nib._UserProfileInfoTableViewCell()
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "AddAccountSuccessViewController", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.addAccountSuccessViewController) instead")
-    static func addAccountSuccessViewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.addAccountSuccessViewController)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "NewPostMediaListViewController_", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.newPostMediaListViewController_) instead")
-    static func newPostMediaListViewController_(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.newPostMediaListViewController_)
-    }
-    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
@@ -428,14 +408,6 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.userProfileInfoTableViewCell)
     }
     #endif
-
-    static func addAccountSuccessViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.addAccountSuccessViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-
-    static func newPostMediaListViewController_(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.newPostMediaListViewController_.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
 
     static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
       return R.nib.userProfileBioTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
@@ -3633,28 +3605,6 @@ struct _R: Rswift.Validatable {
 
   #if os(iOS) || os(tvOS)
   struct nib {
-    struct _AddAccountSuccessViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "AddAccountSuccessViewController"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _NewPostMediaListViewController_: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "NewPostMediaListViewController_"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      fileprivate init() {}
-    }
-
     struct _UserProfileBioTableViewCell: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "UserProfileBioTableViewCell"

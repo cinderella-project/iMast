@@ -63,7 +63,6 @@
 		CE3DFEE01FEE4C51005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE11FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
 		CE3DFEE21FEE5ACD005A480D /* UserDefaultsDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */; };
-		CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */; };
 		CE43BE89237775F100133C86 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
 		CE43BE90237775F100133C86 /* iMastiOSCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BE8F237775F100133C86 /* iMastiOSCoreTests.swift */; };
 		CE43BE92237775F100133C86 /* iMastiOSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = CE43BE82237775F000133C86 /* iMastiOSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -600,7 +599,6 @@
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
-		CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAccountSuccessViewController.xib; sourceTree = "<group>"; };
 		CE4302E023B49C640031C2FF /* AddMastodonAccountSheetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetState.swift; sourceTree = "<group>"; };
 		CE43BE80237775F000133C86 /* iMastiOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iMastiOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE43BE82237775F000133C86 /* iMastiOSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iMastiOSCore.h; sourceTree = "<group>"; };
@@ -1664,7 +1662,6 @@
 				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
-				CE415F5521D6E41300DA9A33 /* AddAccountSuccessViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2347,7 +2344,6 @@
 				CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */,
 				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
 				CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */,
-				CE415F5621D6E41300DA9A33 /* AddAccountSuccessViewController.xib in Resources */,
 				CE54BC7820E041A50034B63E /* UserProfileInfoTableViewCell.xib in Resources */,
 				CE6554D523C25DDC0084FE1D /* Search.strings in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
