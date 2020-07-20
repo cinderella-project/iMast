@@ -23,7 +23,7 @@
 "media.delete" = "删除";
 
 "keyCommand.open.title" = "发布嘟文";
-"keyCommand.open.description" = "新規投稿画面を開く";
+"keyCommand.open.description" = "打开发布新嘟文页面";
 "keyCommand.send.title" = "发布";
 "keyCommand.send.description" = "发布嘟文";
 
