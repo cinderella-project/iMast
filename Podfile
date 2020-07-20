@@ -23,7 +23,6 @@ abstract_target 'iMastShared' do
     platform :ios, '13.2'
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
-    pod 'R.swift', '~> 5.2.2'
     
     target 'iMast' do
       # Pods for iMast

@@ -62,7 +62,7 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         ], toSection: .one)
         dataSource.apply(snapshot, animatingDifferences: false)
         
-        title = R.string.localizable.helpAndFeedback()
+        title = L10n.Localizable.helpAndFeedback
     }
 
     // MARK: - Table view data source

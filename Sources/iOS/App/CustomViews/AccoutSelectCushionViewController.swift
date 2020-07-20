@@ -96,7 +96,7 @@ class NewPostAccountSelectCushionViewController: AccoutSelectCushionBaseViewCont
     var appendBottomString = ""
     
     override func showVC(userToken: MastodonUserToken) {
-        let newPost = R.storyboard.newPost.instantiateInitialViewController()!
+        let newPost = StoryboardScene.NewPost.initialScene.instantiate()
         newPost.userToken = userToken
         newPost.appendBottomString = appendBottomString
         show(newPost, sender: self)

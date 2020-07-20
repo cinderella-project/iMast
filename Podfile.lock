@@ -22,9 +22,6 @@ PODS:
   - LicensePlist (2.16.0)
   - Mew (0.1.0)
   - Notifwift (1.1.1)
-  - R.swift (5.2.2):
-    - R.swift.Library (~> 5.2.0)
-  - R.swift.Library (5.2.0)
   - ReachabilitySwift (4.3.1)
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
@@ -53,7 +50,6 @@ DEPENDENCIES:
   - LicensePlist (~> 2.16.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - Notifwift (~> 1.1.1)
-  - R.swift (~> 5.2.2)
   - ReachabilitySwift (~> 4.3.1)
   - SDWebImage (~> 5.8.3)
   - SDWebImageWebPCoder (~> 0.6.1)
@@ -79,8 +75,6 @@ SPEC REPOS:
     - libwebp
     - LicensePlist
     - Notifwift
-    - R.swift
-    - R.swift.Library
     - ReachabilitySwift
     - SDWebImage
     - SDWebImageWebPCoder
@@ -116,8 +110,6 @@ SPEC CHECKSUMS:
   LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
-  R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
-  R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
@@ -130,6 +122,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 778456a276f1843099954b7917b7570b63082ff7
+PODFILE CHECKSUM: ed67c015a5b8b35c0df2816e40edd8662e2f8c3d
 
 COCOAPODS: 1.9.3

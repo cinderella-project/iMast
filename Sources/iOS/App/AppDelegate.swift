@@ -212,7 +212,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         guard let receivedUserToken = try? MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
             viewController?.alert(
-                title: R.string.localizable.errorTitle(),
+                title: L10n.Localizable.Error.title,
                 message: "選択した通知のアカウント「\(receiveUser.joined(separator: "@"))」が見つかりませんでした。"
             )
             completionHandler()

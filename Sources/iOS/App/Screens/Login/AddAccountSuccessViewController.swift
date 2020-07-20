@@ -25,14 +25,57 @@ import UIKit
 import SwiftyJSON
 import SDWebImage
 import iMastiOSCore
+import Ikemen
 
 class AddAccountSuccessViewController: UIViewController {
 
-    @IBOutlet weak var myIconImageView: UIImageView!
-    @IBOutlet weak var welcomeMessageLabel: UILabel!
-    @IBOutlet weak var toTimelineButton: UIButton!
+    let myIconImageView = UIImageView() ※ { v in
+        v.ignoreSmartInvert()
+        v.snp.makeConstraints { make in
+            make.size.equalTo(120)
+        }
+    }
+    let welcomeMessageLabel = UILabel() ※ { v in
+        v.font = .systemFont(ofSize: 21)
+        v.numberOfLines = 0
+        v.textAlignment = .center
+    }
+    let toTimelineButton = UIButton() ※ { v in
+        v.backgroundColor = v.tintColor
+        v.titleLabel?.textColor = .white
+        v.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        v.contentEdgeInsets = .init(top: 16, left: 0, bottom: 16, right: 0)
+        v.layer.cornerRadius = 10
+        v.layer.cornerCurve = .continuous
+        v.layer.masksToBounds = true
+    }
     
     var userToken: MastodonUserToken!
+    
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .systemBackground
+
+        view.addSubview(myIconImageView)
+        myIconImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.centerY.equalTo(view.safeAreaLayoutGuide).dividedBy(2)
+        }
+        
+        view.addSubview(toTimelineButton)
+        toTimelineButton.addTarget(self, action: #selector(goTimelineTapped), for: .touchUpInside)
+        toTimelineButton.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(32)
+            make.width.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.8)
+        }
+        
+        view.addSubview(welcomeMessageLabel)
+        welcomeMessageLabel.snp.makeConstraints { make in
+            make.center.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,10 +85,9 @@ class AddAccountSuccessViewController: UIViewController {
         if let avatarUrl = self.userToken.avatarUrl {
             myIconImageView.sd_setImage(with: URL(string: avatarUrl))
         }
-        myIconImageView.ignoreSmartInvert()
     }
     
-    @IBAction func goTimelineTapped(_ sender: Any) {
+    @objc func goTimelineTapped() {
         changeRootVC(MainTabBarController(with: (), environment: self.userToken), animated: true)
     }
 }

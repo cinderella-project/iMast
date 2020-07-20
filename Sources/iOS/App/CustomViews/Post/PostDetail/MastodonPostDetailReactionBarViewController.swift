@@ -107,13 +107,13 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     func input(_ input: Input) {
         self.input = input
-        boostButton.setTitleColor(input.reposted ? R.color.barBoost() : .gray, for: .normal)
-        favouriteButton.setTitleColor(input.favourited ? R.color.barFavourite() : .gray, for: .normal)
+        boostButton.setTitleColor(input.reposted ? Asset.barBoost.color : .gray, for: .normal)
+        favouriteButton.setTitleColor(input.favourited ? Asset.barFavourite.color : .gray, for: .normal)
     }
     
     @objc func openReplyVC() {
         let post = self.input.originalPost
-        let vc = R.storyboard.newPost.instantiateInitialViewController()!
+        let vc = StoryboardScene.NewPost.initialScene.instantiate()
         vc.userToken = environment
         vc.replyToPost = post
         vc.title = "返信"

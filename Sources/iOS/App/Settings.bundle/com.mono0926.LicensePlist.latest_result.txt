@@ -238,54 +238,6 @@ name: Notifwift, nameSpecified:
 body: Copyright (c) 2016 t…
 version: 1.1.1
 
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.2
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
-name: R.swift.Library, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.2.0
-
 name: ReachabilitySwift, nameSpecified: 
 body: Copyright (c) 2016 A…
 version: 4.3.1

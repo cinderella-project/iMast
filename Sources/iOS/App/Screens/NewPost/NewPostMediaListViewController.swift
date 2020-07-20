@@ -27,13 +27,19 @@ import AVFoundation
 import AVKit
 import Photos
 import Hydra
+import Ikemen
 
 class NewPostMediaListViewController: UIViewController {
 
     let newPostVC: NewPostViewController
     var transparentVC: UIViewController = TransparentViewController()
     
-    @IBOutlet weak var imagesStackView: UIStackView!
+    // TODO: contact じゃないのに使っていいの? アクセシビリティ周りマズそう
+    let addButton = UIButton(type: .contactAdd)
+    let imagesStackView = UIStackView() ※ { v in
+        v.distribution = .fillEqually
+    }
+
     init(newPostVC: NewPostViewController) {
         self.newPostVC = newPostVC
         super.init(nibName: nil, bundle: nil)
@@ -47,6 +53,21 @@ class NewPostMediaListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let stackView = UIStackView(arrangedSubviews: [
+            addButton,
+            imagesStackView,
+        ])
+        stackView.spacing = 8
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.center.equalTo(view.safeAreaLayoutGuide)
+            make.size.equalTo(view.safeAreaLayoutGuide).inset(8)
+        }
+        addButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(1/5.0).inset(4)
+        }
+        
+        addButton.addTarget(self, action: #selector(tapAddImage(_:)), for: .touchUpInside)
         self.refresh()
     }
 
@@ -93,7 +114,7 @@ class NewPostMediaListViewController: UIViewController {
         self.refresh()
     }
     
-    @IBAction func tapAddImage(_ sender: UIButton) {
+    @objc func tapAddImage(_ sender: UIButton) {
         let pickerSelector = CustomDocumentMenuViewController(
             documentTypes: [
                 "public.image",

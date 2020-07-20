@@ -145,7 +145,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let vc = windowScene.windows.first?.rootViewController else {
             return completionHandler(false)
         }
-        let newVC = R.storyboard.newPost.instantiateInitialViewController()!
+        let newVC = StoryboardScene.NewPost.initialScene.instantiate()
         newVC.userToken = token
         vc.present(ModalNavigationViewController(rootViewController: newVC), animated: true, completion: nil)
         print("animated")

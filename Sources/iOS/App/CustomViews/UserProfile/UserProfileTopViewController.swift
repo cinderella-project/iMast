@@ -49,8 +49,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     var isLoaded = false
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
-    let infoCell = R.nib.userProfileInfoTableViewCell.firstView(owner: self as AnyObject)!
-    let bioCell = R.nib.userProfileBioTableViewCell.firstView(owner: self as AnyObject)!
+    let infoCell = UserProfileInfoTableViewCell()
+    let bioCell = UserProfileBioTableViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
         
-        self.title = R.string.userProfile.title()
+        self.title = L10n.UserProfile.title
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "ellipsis.circle.fill"), style: .plain,
@@ -92,23 +92,23 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.bioCell.load(user: input)
         
         let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        tootCell.textLabel?.text = R.string.userProfile.cellsTootsTitle()
+        tootCell.textLabel?.text = L10n.UserProfile.Cells.Toots.title
         tootCell.accessoryType = .disclosureIndicator
         tootCell.detailTextLabel?.text = numToCommaString(input.postsCount)
 
         let followingCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        followingCell.textLabel?.text = R.string.userProfile.cellsFollowingTitle()
+        followingCell.textLabel?.text = L10n.UserProfile.Cells.Following.title
         followingCell.accessoryType = .disclosureIndicator
         followingCell.detailTextLabel?.text = numToCommaString(input.followingCount)
 
         let followersCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        followersCell.textLabel?.text = R.string.userProfile.cellsFollowersTitle()
+        followersCell.textLabel?.text = L10n.UserProfile.Cells.Followers.title
         followersCell.accessoryType = .disclosureIndicator
         followersCell.detailTextLabel?.text = numToCommaString(input.followersCount)
 
         let createdAt = input.createdAt
         let createdAtCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        createdAtCell.textLabel?.text = R.string.userProfile.cellsCreatedAtTitle()
+        createdAtCell.textLabel?.text = L10n.UserProfile.Cells.CreatedAt.title
         createdAtCell.detailTextLabel?.text = DateUtils.stringFromDate(
             createdAt,
             format: "yyyy/MM/dd HH:mm:ss"
@@ -168,9 +168,9 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.environment.getRelationship([input]).then({ (relationships) in
             let relationship = relationships[0]
             let screenName = "@"+self.input.acct
-            let actionSheet = UIAlertController(title: R.string.userProfile.actionsTitle(), message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
+            let actionSheet = UIAlertController(title: L10n.UserProfile.Actions.title, message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
             actionSheet.popoverPresentationController?.barButtonItem = sender
-            actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsShare(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+            actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.share, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                 let activityItems: [Any] = [
                     (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
                     NSURL(string: self.input.url)!,
@@ -182,13 +182,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             if myScreenName != screenName { // 自分じゃない
                 if !relationship.following { // 未フォロー
                     if !relationship.requested { // リクエストもしてない
-                        actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollow(), style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+                        actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.follow, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
                             self.environment.follow(account: self.input).then({ (res) in
                                 self.reload(sender: self.refreshControl!)
                             })
                         }))
                     } else { // フォローリクエスト中
-                        actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestCancel(), style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
+                        actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.followRequestCancel, style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
                             self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
                                 if !result {
                                     return
@@ -200,7 +200,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                         }))
                     }
                 } else { // フォロー済み
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsUnfollow(), style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unfollow, style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
                         self.confirm(title: "確認", message: screenName+"のフォローを解除しますか?", okButtonMessage: "解除", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -216,7 +216,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     }))
                 }
                 if !relationship.muting { // 未ミュート
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsMute(), style: UIAlertAction.Style.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.mute, style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をミュートしますか?", okButtonMessage: "ミュート", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -227,7 +227,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                         })
                     }))
                 } else {
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsUnmute(), style: UIAlertAction.Style.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unmute, style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"のミュートを解除しますか?", okButtonMessage: "ミュート解除", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -239,7 +239,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     }))
                 }
                 if !relationship.blocking { // 未ブロック
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsBlock(), style: UIAlertAction.Style.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.block, style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"をブロックしますか?", okButtonMessage: "ブロック", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -250,7 +250,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                         })
                     }))
                 } else {
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsUnblock(), style: UIAlertAction.Style.destructive, handler: { (action) in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unblock, style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.confirm(title: "確認", message: screenName+"のブロックを解除しますか?", okButtonMessage: "ブロック解除", style: .destructive).then({ (result) in
                             if !result {
                                 return
@@ -263,10 +263,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     }))
                 }
             } else { // 自分なら
-                actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsProfileCard(), style: .default, handler: { action in
-                    guard let newVC = R.storyboard.profileCard.instantiateInitialViewController() else {
-                        return
-                    }
+                actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.profileCard, style: .default, handler: { action in
+                    let newVC = StoryboardScene.ProfileCard.initialScene.instantiate()
                     newVC.user = self.input
                     newVC.userToken = self.environment
                     self.navigationController?.pushViewController(newVC, animated: true)
@@ -275,13 +273,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     self.navigationController?.pushViewController(FavouritesTableViewController.instantiate(.init(), environment: self.environment), animated: true)
                 }))
                 if self.input.isLocked {
-                    actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsFollowRequestsList(), style: .default) { _ in
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.followRequestsList, style: .default) { _ in
                         let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
                         self.navigationController?.pushViewController(newVC, animated: true)
                     })
                 }
             }
-            actionSheet.addAction(UIAlertAction(title: R.string.userProfile.actionsCancel(), style: UIAlertAction.Style.cancel))
+            actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.cancel, style: UIAlertAction.Style.cancel))
             self.present(actionSheet, animated: true, completion: nil)
         })
     }
@@ -355,7 +353,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0, self.input.acct.contains("@") {
-            return R.string.userProfile.federatedUserWarning()
+            return L10n.UserProfile.federatedUserWarning
         }
         return nil
     }

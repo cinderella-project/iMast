@@ -97,13 +97,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             }
         })
         dataSource.sectionTitle = [
-            .accounts: R.string.search.sectionsAccountsTitle(),
-            .toots: R.string.search.sectionsPostsTitle(),
-            .hashtags: R.string.search.sectionsHashtagsTitle(),
+            .accounts: L10n.Search.Sections.Accounts.title,
+            .toots: L10n.Search.Sections.Posts.title,
+            .hashtags: L10n.Search.Sections.Hashtags.title,
         ]
         dataSource.defaultRowAnimation = .top
         
-        title = R.string.search.title()
+        title = L10n.Search.title
         tableView.delegate = self
         tableView.dataSource = dataSource
         self.searchBar.delegate = self
@@ -153,7 +153,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             let f = DateFormatter()
             f.dateStyle = .short
             f.timeStyle = .short
-            self.dataSource.sectionTitle[.trendTags] = R.string.search.sectionsTrendTagsTitle(f.string(from: res.updatedAt))
+            self.dataSource.sectionTitle[.trendTags] = L10n.Search.Sections.TrendTags.title(f.string(from: res.updatedAt))
 
             self.trendTagsSnapshot = .init()
             let sortedArray = res.score.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}

@@ -4,5 +4,17 @@ strings:
   inputs: ./Strings/ja.lproj/
   filter: .+\.strings$
   outputs:
-  - templateName: structured-swift4
+  - templateName: structured-swift5
     output: strings.swift
+xcassets:
+  inputs: ./Assets.xcassets
+  outputs:
+  - templateName: swift5
+    output: assets.swift
+ib:
+  inputs:
+  - ./Base.lproj
+  - ./CustomViews/UserProfile/ProfileCard
+  outputs:
+  - templateName: scenes-swift5
+    output: storyboard-scenes.swift

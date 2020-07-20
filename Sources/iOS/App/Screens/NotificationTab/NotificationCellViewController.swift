@@ -24,32 +24,71 @@
 import UIKit
 import iMastiOSCore
 import Ikemen
+import Mew
 
-class NotificationCellViewController: UITableViewCell {
+class NotificationCellViewController: UIViewController, Instantiatable, Injectable {
+    typealias Environment = MastodonUserToken
+    typealias Input = MastodonNotification
+    var environment: Environment
+    var input: Input
+    
     let notifyTypeImageView = UIImageView() ※ { v in
+        v.tintColor = .label
         v.snp.makeConstraints { make in
             make.size.equalTo(16)
         }
     }
-    let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
-    @IBOutlet weak var notifyTypeImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    init() {
-        super.init()
+    let titleLabel = UILabel() ※ { v in
+        v.font = .systemFont(ofSize: 14)
+    }
+    let descriptionLabel = UILabel() ※ { v in
+        v.font = .systemFont(ofSize: 17)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    required init(with input: MastodonNotification, environment: MastodonUserToken) {
+        self.input = input
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        let view = UIView()
+        let mainStackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            descriptionLabel,
+        ])
+        mainStackView.axis = .vertical
+        mainStackView.spacing = 4
+        let topStackView = UIStackView(arrangedSubviews: [
+            notifyTypeImageView,
+            mainStackView
+        ])
+        topStackView.axis = .horizontal
+        topStackView.spacing = 8
+        topStackView.alignment = .top
+        view.addSubview(topStackView)
+        topStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(8)
+        }
+        self.view = view
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        input(input)
+    }
+    
+    func input(_ input: MastodonNotification) {
+        self.input = input
+        notifyTypeImageView.image = Self.getIcon(type: input.type)
+        titleLabel.text = Self.getTitle(notification: input)
+        descriptionLabel.text = (input.status?.status.toPlainText() ?? input.account?.name ?? " ")
+            .replacingOccurrences(of: "\n", with: " ")
     }
     
     static func getIcon(type: String) -> UIImage? {
@@ -69,7 +108,7 @@ class NotificationCellViewController: UITableViewCell {
         }
     }
     
-    func getTitle(notification: MastodonNotification) -> String {
+    static func getTitle(notification: MastodonNotification) -> String {
         let acct = notification.account?.acct ?? ""
         switch notification.type {
         case "reblog":
@@ -92,11 +131,4 @@ class NotificationCellViewController: UITableViewCell {
             return L10n.Notification.Types.unknown(notification.type)
         }
     }
-    
-    func load(notification: MastodonNotification) {
-        self.notifyTypeImageView.image = NotificationCellViewController.getIcon(type: notification.type)
-        self.titleLabel.text = self.getTitle(notification: notification)
-        self.descriptionLabel.text = (notification.status?.status.toPlainText() ?? notification.account?.name ?? " ").replacingOccurrences(of: "\n", with: " ")
-    }
-    
 }
