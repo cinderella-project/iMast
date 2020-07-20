@@ -386,26 +386,6 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
-  struct nib {
-    /// Nib `UserProfileBioTableViewCell`.
-    static let userProfileBioTableViewCell = _R.nib._UserProfileBioTableViewCell()
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "UserProfileBioTableViewCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.userProfileBioTableViewCell) instead")
-    static func userProfileBioTableViewCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.userProfileBioTableViewCell)
-    }
-    #endif
-
-    static func userProfileBioTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
-      return R.nib.userProfileBioTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
-    }
-
-    fileprivate init() {}
-  }
-
   /// This `R.string` struct is generated, and contains static references to 8 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 43 localization keys.
@@ -3588,23 +3568,6 @@ struct _R: Rswift.Validatable {
     try storyboard.validate()
     #endif
   }
-
-  #if os(iOS) || os(tvOS)
-  struct nib {
-    struct _UserProfileBioTableViewCell: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "UserProfileBioTableViewCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UserProfileBioTableViewCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UserProfileBioTableViewCell
-      }
-
-      fileprivate init() {}
-    }
-
-    fileprivate init() {}
-  }
-  #endif
 
   #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {

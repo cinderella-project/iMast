@@ -126,7 +126,6 @@
 		CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7320E033E20034B63E /* StableTableViewController.swift */; };
 		CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */; };
 		CE54BC7B20E0546E0034B63E /* UserProfileBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */; };
-		CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */; };
 		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5DE87B21F4FF9D0008D437 /* UIViewController+presentPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */; };
@@ -635,7 +634,6 @@
 		CE54BC7320E033E20034B63E /* StableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableTableViewController.swift; sourceTree = "<group>"; };
 		CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioTableViewCell.swift; sourceTree = "<group>"; };
-		CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileBioTableViewCell.xib; sourceTree = "<group>"; };
 		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentPromise.swift"; sourceTree = "<group>"; };
@@ -1497,7 +1495,6 @@
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
 				CE54BC7920E0546E0034B63E /* UserProfileBioTableViewCell.swift */,
-				CE54BC7A20E0546E0034B63E /* UserProfileBioTableViewCell.xib */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -2339,7 +2336,6 @@
 			files = (
 				CEDF86F823CF011100C8A69A /* OtherMenu.strings in Resources */,
 				CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */,
-				CE54BC7C20E0546E0034B63E /* UserProfileBioTableViewCell.xib in Resources */,
 				CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */,
 				CE6554D523C25DDC0084FE1D /* Search.strings in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,

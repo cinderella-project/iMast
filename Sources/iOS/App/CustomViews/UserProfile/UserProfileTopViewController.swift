@@ -50,7 +50,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
     let infoCell = UserProfileInfoTableViewCell()
-    let bioCell = R.nib.userProfileBioTableViewCell.firstView(owner: self as AnyObject)!
+    let bioCell = UserProfileBioTableViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()

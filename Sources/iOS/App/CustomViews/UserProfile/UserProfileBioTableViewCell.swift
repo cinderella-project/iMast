@@ -24,37 +24,34 @@
 import UIKit
 import SafariServices
 import iMastiOSCore
+import Ikemen
 
 class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
-    var loadAfter = false
-    var isLoaded = false
     var user: MastodonAccount?
     var userToken: MastodonUserToken?
     
-    @IBOutlet weak var profileTextView: UITextView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.isLoaded = true
-        if let user = self.user, self.loadAfter {
-            self.load(user: user)
-        }
-        self.profileTextView.delegate = self
+    let profileTextView = UITextView() ※ { v in
+        v.isScrollEnabled = false
+        v.isEditable = false
+        v.isSelectable = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    init() {
+        super.init(style: .default, reuseIdentifier: nil)
+        addSubview(profileTextView)
+        profileTextView.snp.makeConstraints { make in
+            make.center.equalTo(safeAreaLayoutGuide)
+            make.size.equalTo(safeAreaLayoutGuide).inset(12)
+        }
+        profileTextView.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func load(user: MastodonAccount) {
         self.user = user
-        if !isLoaded {
-            loadAfter = true
-            return
-        }
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         if let attrStr = user.bio.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").parseText2HTML(attributes: [
