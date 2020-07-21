@@ -35,13 +35,13 @@
 "timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
 "timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
 
-"timeline.title" = "タイムライン";
+"timeline.title" = "Timeline";
 "timeline.openWebMInVLC" = "Open WebM in VLC";
 "timeline.useSystemVideoPlayer" = "Use System Video Player";
 "timeline.useUniversalLinks" = "Use Universal Links if possible";
 
 "push.link" = "Push Notifications";
-"push.title" = "プッシュ通知設定";
+"push.title" = "Push Notifications";
 "push.accounts.title" = "Accounts";
 "push.addAccount.title" = "Add Account";
 "push.addAccount.alertTitle" = "Add Account";
