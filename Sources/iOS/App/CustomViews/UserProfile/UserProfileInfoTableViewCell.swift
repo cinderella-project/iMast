@@ -79,37 +79,39 @@ class UserProfileInfoTableViewCell: UITableViewCell {
         self.iconView.ignoreSmartInvert()
         self.nameLabel.text = user.name == "" ? user.screenName : user.name
         self.screenNameLabel.text = "@" + user.acct
-        self.userToken.getRelationship([user]).then({ (relationships) in
-            let relationship = relationships[0]
-            let relationshipOld: Bool = Defaults[.followRelationshipsOld]
-            var relationshipText: String
-            if user.acct == self.userToken.screenName {
-                relationshipText = "関係: それはあなたです！"
-            } else {
-                switch (relationship.following, relationship.followed_by) {
-                case (true, true):
-                    relationshipText = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
-                case (true, false):
-                    relationshipText = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
-                case (false, true):
-                    relationshipText = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
-                case (false, false):
-                    relationshipText = "関係: 無関係"
+        MastodonEndpoint.Relationship.Get(accounts: [user])
+            .request(with: userToken)
+            .then { (relationships) in
+                let relationship = relationships[0]
+                let relationshipOld: Bool = Defaults[.followRelationshipsOld]
+                var relationshipText: String
+                if user.acct == self.userToken.screenName {
+                    relationshipText = "関係: それはあなたです！"
+                } else {
+                    switch (relationship.following, relationship.followed_by) {
+                    case (true, true):
+                        relationshipText = "関係: " + (relationshipOld ? "両思い" : "相互フォロー")
+                    case (true, false):
+                        relationshipText = "関係: " + (relationshipOld ? "片思い" : "フォローしています")
+                    case (false, true):
+                        relationshipText = "関係: " + (relationshipOld ? "片思われ" : "フォローされています")
+                    case (false, false):
+                        relationshipText = "関係: 無関係"
+                    }
                 }
+                if relationship.requested {
+                    relationshipText += " (フォローリクエスト中)"
+                }
+                if relationship.blocking {
+                    relationshipText += " (ブロック中)"
+                }
+                if relationship.muting {
+                    relationshipText += " (ミュート中)"
+                }
+                if relationship.domain_blocking {
+                    relationshipText += " (インスタンスミュート中)"
+                }
+                self.relationshipLabel.text = relationshipText
             }
-            if relationship.requested {
-                relationshipText += " (フォローリクエスト中)"
-            }
-            if relationship.blocking {
-                relationshipText += " (ブロック中)"
-            }
-            if relationship.muting {
-                relationshipText += " (ミュート中)"
-            }
-            if relationship.domain_blocking {
-                relationshipText += " (インスタンスミュート中)"
-            }
-            self.relationshipLabel.text = relationshipText
-        })
     }
 }

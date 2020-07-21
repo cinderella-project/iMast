@@ -164,126 +164,117 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         ]
         self.tableView.reloadData()
     }
+    
+    func createAlertAction<T: MastodonEndpointProtocol>(endpoint: T, title: String, confirm: String?) -> UIAlertAction {
+        let callAPI = { [environment] in
+            endpoint
+                .request(with: environment)
+                .always(in: .main) {
+                    self.reload(sender: self.refreshControl!)
+                }
+        }
+        if let confirm = confirm {
+            return .init(title: title, style: .destructive) { _ in
+                self.confirm(
+                    title: "確認", message: confirm,
+                    okButtonMessage: "はい", style: .destructive,
+                    cancelButtonMessage: L10n.Localizable.cancel
+                ).then { result in
+                    if result {
+                        callAPI()
+                    }
+                }
+            }
+        } else {
+            return .init(title: title, style: .default) { _ in callAPI() }
+        }
+    }
 
     @IBAction func moreButtonTapped(_ sender: UIBarButtonItem) {
         let myScreenName = "@"+self.environment.screenName!
-        self.environment.getRelationship([input]).then({ (relationships) in
-            let relationship = relationships[0]
-            let screenName = "@"+self.input.acct
-            let actionSheet = UIAlertController(title: L10n.UserProfile.Actions.title, message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
-            actionSheet.popoverPresentationController?.barButtonItem = sender
-            actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.share, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
-                let activityItems: [Any] = [
-                    (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
-                    NSURL(string: self.input.url)!,
-                ]
-                let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                activityVC.popoverPresentationController?.barButtonItem = sender
-                self.present(activityVC, animated: true, completion: nil)
-            }))
-            if myScreenName != screenName { // 自分じゃない
-                if !relationship.following { // 未フォロー
-                    if !relationship.requested { // リクエストもしてない
-                        actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.follow, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
-                            self.environment.follow(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
-                        }))
-                    } else { // フォローリクエスト中
-                        actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.followRequestCancel, style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
-                            self.confirm(title: "確認", message: screenName+"へのフォローリクエストを撤回しますか?", okButtonMessage: "撤回", style: .destructive).then({ (result) in
-                                if !result {
-                                    return
-                                }
-                                self.environment.unfollow(account: self.input).then({ (res) in
-                                    self.reload(sender: self.refreshControl!)
-                                })
-                            })
+        MastodonEndpoint.Relationship
+            .Get(accounts: [input])
+            .request(with: environment)
+            .then { (relationships) in
+                let relationship = relationships[0]
+                let screenName = "@"+self.input.acct
+                let actionSheet = UIAlertController(title: L10n.UserProfile.Actions.title, message: screenName, preferredStyle: UIAlertController.Style.actionSheet)
+                actionSheet.popoverPresentationController?.barButtonItem = sender
+                actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.share, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction!) in
+                    let activityItems: [Any] = [
+                        (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
+                        NSURL(string: self.input.url)!,
+                    ]
+                    let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+                    activityVC.popoverPresentationController?.barButtonItem = sender
+                    self.present(activityVC, animated: true, completion: nil)
+                }))
+                if myScreenName != screenName { // 自分じゃない
+                    if !relationship.following { // 未フォロー
+                        if !relationship.requested { // リクエストもしてない
+                            actionSheet.addAction(self.createAlertAction(
+                                endpoint: MastodonEndpoint.Relationship.Follow(target: self.input),
+                                title: L10n.UserProfile.Actions.follow, confirm: nil
+                            ))
+                        } else { // フォローリクエスト中
+                            actionSheet.addAction(self.createAlertAction(
+                                endpoint: MastodonEndpoint.Relationship.Unfollow(target: self.input),
+                                title: L10n.UserProfile.Actions.followRequestCancel, confirm: screenName+"へのフォローリクエストを撤回しますか?"
+                            ))
+                        }
+                    } else { // フォロー済み
+
+                        actionSheet.addAction(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Unfollow(target: self.input),
+                            title: L10n.UserProfile.Actions.unfollow, confirm: screenName+"のフォローを解除しますか?"
+                        ))
+                        actionSheet.addAction(UIAlertAction(title: "リストへ追加/削除", style: .default, handler: { _ in
+                            let newVC = ListAdderTableViewController(with: self.input, environment: self.environment)
+                            self.navigationController?.pushViewController(newVC, animated: true)
                         }))
                     }
-                } else { // フォロー済み
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unfollow, style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction!) in
-                        self.confirm(title: "確認", message: screenName+"のフォローを解除しますか?", okButtonMessage: "解除", style: .destructive).then({ (result) in
-                            if !result {
-                                return
-                            }
-                            self.environment.unfollow(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
-                        })
-                    }))
-                    actionSheet.addAction(UIAlertAction(title: "リストへ追加/削除", style: .default, handler: { _ in
-                        let newVC = ListAdderTableViewController(with: self.input, environment: self.environment)
+                    if !relationship.muting { // 未ミュート
+                        actionSheet.addAction(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Mute(target: self.input),
+                            title: L10n.UserProfile.Actions.mute, confirm: screenName+"をミュートしますか?"
+                        ))
+                    } else {
+                        actionSheet.addAction(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Unmute(target: self.input),
+                            title: L10n.UserProfile.Actions.unmute, confirm: screenName+"のミュートを解除しますか?"
+                        ))
+                    }
+                    if !relationship.blocking { // 未ブロック
+                        actionSheet.addAction(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Block(target: self.input),
+                            title: L10n.UserProfile.Actions.block, confirm: screenName+"をブロックしますか?"
+                        ))
+                    } else {
+                        actionSheet.addAction(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Unblock(target: self.input),
+                            title: L10n.UserProfile.Actions.unblock, confirm: screenName+"のブロックを解除しますか?"
+                        ))
+                    }
+                } else { // 自分なら
+                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.profileCard, style: .default, handler: { action in
+                        let newVC = StoryboardScene.ProfileCard.initialScene.instantiate()
+                        newVC.user = self.input
+                        newVC.userToken = self.environment
                         self.navigationController?.pushViewController(newVC, animated: true)
                     }))
-                }
-                if !relationship.muting { // 未ミュート
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.mute, style: UIAlertAction.Style.destructive, handler: { (action) in
-                        self.confirm(title: "確認", message: screenName+"をミュートしますか?", okButtonMessage: "ミュート", style: .destructive).then({ (result) in
-                            if !result {
-                                return
-                            }
-                            self.environment.mute(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
-                        })
+                    actionSheet.addAction(UIAlertAction(title: L10n.Localizable.favouritesList, style: .default, handler: { action in
+                        self.navigationController?.pushViewController(FavouritesTableViewController.instantiate(.init(), environment: self.environment), animated: true)
                     }))
-                } else {
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unmute, style: UIAlertAction.Style.destructive, handler: { (action) in
-                        self.confirm(title: "確認", message: screenName+"のミュートを解除しますか?", okButtonMessage: "ミュート解除", style: .destructive).then({ (result) in
-                            if !result {
-                                return
-                            }
-                            self.environment.unmute(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
+                    if self.input.isLocked {
+                        actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.followRequestsList, style: .default) { _ in
+                            let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
+                            self.navigationController?.pushViewController(newVC, animated: true)
                         })
-                    }))
+                    }
                 }
-                if !relationship.blocking { // 未ブロック
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.block, style: UIAlertAction.Style.destructive, handler: { (action) in
-                        self.confirm(title: "確認", message: screenName+"をブロックしますか?", okButtonMessage: "ブロック", style: .destructive).then({ (result) in
-                            if !result {
-                                return
-                            }
-                            self.environment.block(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
-                        })
-                    }))
-                } else {
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.unblock, style: UIAlertAction.Style.destructive, handler: { (action) in
-                        self.confirm(title: "確認", message: screenName+"のブロックを解除しますか?", okButtonMessage: "ブロック解除", style: .destructive).then({ (result) in
-                            if !result {
-                                return
-                            }
-                            self.environment.unblock(account: self.input).then({ (res) in
-                                self.reload(sender: self.refreshControl!)
-                            })
-                        })
-                        
-                    }))
-                }
-            } else { // 自分なら
-                actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.profileCard, style: .default, handler: { action in
-                    let newVC = StoryboardScene.ProfileCard.initialScene.instantiate()
-                    newVC.user = self.input
-                    newVC.userToken = self.environment
-                    self.navigationController?.pushViewController(newVC, animated: true)
-                }))
-                actionSheet.addAction(UIAlertAction(title: L10n.Localizable.favouritesList, style: .default, handler: { action in
-                    self.navigationController?.pushViewController(FavouritesTableViewController.instantiate(.init(), environment: self.environment), animated: true)
-                }))
-                if self.input.isLocked {
-                    actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.followRequestsList, style: .default) { _ in
-                        let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
-                        self.navigationController?.pushViewController(newVC, animated: true)
-                    })
-                }
+                actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.cancel, style: UIAlertAction.Style.cancel))
+                self.present(actionSheet, animated: true, completion: nil)
             }
-            actionSheet.addAction(UIAlertAction(title: L10n.UserProfile.Actions.cancel, style: UIAlertAction.Style.cancel))
-            self.present(actionSheet, animated: true, completion: nil)
-        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

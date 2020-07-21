@@ -162,6 +162,8 @@
 		CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */; };
 		CE8C713B2153323D00D53BCF /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
 		CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */; };
+		CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift */; };
+		CE8D2A2424C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift */; };
 		CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EC3022374F474002CA268 /* TopViewController.swift */; };
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */; };
@@ -690,6 +692,7 @@
 		CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFabButton.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
+		CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.Relationships.swift; sourceTree = "<group>"; };
 		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8EC3022374F474002CA268 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
@@ -1376,6 +1379,7 @@
 			children = (
 				CE522BE924159C520048E334 /* MastodonEndpoint.swift */,
 				CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */,
+				CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -2932,6 +2936,7 @@
 				CE43BF0C2377A9A000133C86 /* String+nsLength.swift in Sources */,
 				CE43BEE723779E2600133C86 /* MastodonUserToken.swift in Sources */,
 				CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */,
+				CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift in Sources */,
 				CE43BF032377A05C00133C86 /* String+preg.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3092,6 +3097,7 @@
 				CEE4E33D2377F80C00406371 /* EmojifyProtocol.swift in Sources */,
 				CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */,
+				CE8D2A2424C67A3B003C65B5 /* MastodonEndpoint.Relationships.swift in Sources */,
 				CEE4E35B2377F83900406371 /* String+preg.swift in Sources */,
 				CEE4E36F2377F84200406371 /* MastodonInstance.swift in Sources */,
 				CEE4E3662377F83C00406371 /* MastodonList.swift in Sources */,
