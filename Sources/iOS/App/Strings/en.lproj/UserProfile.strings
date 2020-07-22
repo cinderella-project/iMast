@@ -47,4 +47,4 @@
 "actions.cancel" = "Cancel";
 
 "federatedUserWarning" = "Since this user is belonged to another instance, some informations may not be accurate.";
-"checkLatestProfileInWeb" = "Webで最新のプロフィールを見る";
+"checkLatestProfileInWeb" = "View Up-to-date Profile in Browser";
