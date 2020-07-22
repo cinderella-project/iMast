@@ -34,14 +34,15 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
         v.isScrollEnabled = false
         v.isEditable = false
         v.isSelectable = true
+        v.backgroundColor = .clear
     }
     
     init() {
         super.init(style: .default, reuseIdentifier: nil)
         addSubview(profileTextView)
         profileTextView.snp.makeConstraints { make in
-            make.center.equalTo(safeAreaLayoutGuide)
-            make.size.equalTo(safeAreaLayoutGuide).inset(12)
+            make.leading.trailing.equalTo(layoutMarginsGuide)
+            make.top.bottom.equalTo(layoutMarginsGuide)
         }
         profileTextView.delegate = self
     }
