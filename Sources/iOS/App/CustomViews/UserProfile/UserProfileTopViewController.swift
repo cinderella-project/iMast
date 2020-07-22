@@ -142,7 +142,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             }
         }
         self.cells = [
-            [
+            input.bio == "<p></p>" ? [self.infoCell] : [
                 self.infoCell,
                 self.bioCell,
             ],
