@@ -92,6 +92,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.infoCell.separatorInset = .zero
         self.bioCell.userToken = environment
         self.bioCell.load(user: input)
+        self.bioCell.separatorInset = .zero
+        
+        let checkLatestProfileCell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        checkLatestProfileCell.textLabel?.text = L10n.UserProfile.checkLatestProfileInWeb
+        checkLatestProfileCell.detailTextLabel?.text = self.input.url
+        checkLatestProfileCell.accessoryType = .disclosureIndicator
+        checkLatestProfileCell.accessibilityIdentifier = "checkLatestProfileCell"
         
         let tootCell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         tootCell.textLabel?.text = L10n.UserProfile.Cells.Toots.title
@@ -142,9 +149,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             }
         }
         self.cells = [
-            input.bio == "<p></p>" ? [self.infoCell] : [
-                self.infoCell,
-                self.bioCell,
+            [
+                self.infoCell
             ],
             [
                 tootCell,
@@ -162,6 +168,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 return cell
             }),
         ]
+        
+        if input.bio != "<p></p>" {
+            cells[0].append(bioCell)
+        }
+        if input.acct.contains("@") {
+            cells[0].append(checkLatestProfileCell)
+        }
         self.tableView.reloadData()
     }
     
@@ -282,6 +295,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let cell = cells[0][indexPath.row]
+            if cell.accessibilityIdentifier == "checkLatestProfileCell", let url = URL(string: input.url) {
+                open(url: url)
+            }
+        }
+        
         if indexPath.section == 1 {
             if indexPath.row == 0 {
                 let newVC = UserTimeLineTableViewController.instantiate(.plain, environment: self.environment)
@@ -331,10 +351,8 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     }
 
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return false
-        }
-        return true
+        let cell = cells[indexPath.section][indexPath.row]
+        return cell.accessoryType == .disclosureIndicator
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

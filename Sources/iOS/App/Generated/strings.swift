@@ -461,6 +461,8 @@ internal enum L10n {
     }
   }
   internal enum UserProfile {
+    /// Webで最新のプロフィールを見る
+    internal static let checkLatestProfileInWeb = L10n.tr("UserProfile", "checkLatestProfileInWeb")
     /// このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。
     internal static let federatedUserWarning = L10n.tr("UserProfile", "federatedUserWarning")
     /// プロフィール

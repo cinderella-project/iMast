@@ -47,3 +47,4 @@
 "actions.cancel" = "キャンセル";
 
 "federatedUserWarning" = "このユーザーは外部インスタンスに所属しているため、一部の数値が正確でない場合があります。";
+"checkLatestProfileInWeb" = "Webで最新のプロフィールを見る";
