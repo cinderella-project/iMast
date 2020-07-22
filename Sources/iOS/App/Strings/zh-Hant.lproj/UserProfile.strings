@@ -47,3 +47,4 @@
 "actions.cancel" = "取消";
 
 "federatedUserWarning" = "此用戶來自其他實例，所以數據可能並不完整";
+"checkLatestProfileInWeb" = "Webで最新のプロフィールを見る";
