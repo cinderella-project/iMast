@@ -10,7 +10,7 @@
 "general.streamingAutoConnect.no" = "永不";
 "general.streamingAutoConnect.wifi" = "仅WiFi";
 "general.streamingAutoConnect.always" = "开启";
-"general.newAccountVia.title" = "绑定新账户时显示嘟文小尾巴";
+"general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
 
 "post.title" = "嘟文发布";
 "post.addMediaURL" = "发布嘟文时添加图片链接";
@@ -48,15 +48,15 @@
 "push.addAccount.alertText" = "请输入实例链接\n（请不要输入https://等元素）";
 "push.shared.title" = "通用设置";
 "push.shared.displayErrorIfOccured" = "如果客户端在接收通知时的过程中失败，将推送错误信息，而不是原始通知内容";
-"push.shared.groupRules.title" = "グループ化のルール設定 (β)";
-"push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
-"push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
-"push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
+"push.shared.groupRules.title" = "分组规则设置（测试）";
+"push.shared.groupRules.byAccount" = "账户分组";
+"push.shared.groupRules.byType.title" = "通知种类分组";
+"push.shared.groupRules.byType.description" = "开启的类型将在单独的分组中";
 "push.shared.customSounds.title" = "自定义通知铃声（早期测试）";
 "push.shared.deleteAccount.title" = "删除通知推送设置";
 
-"push.support.title" = "サポート用";
-"push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
-"push.support.showUserID.alertTitle" = "ユーザーID";
-"push.support.showUserID.copyAction" = "コピー";
-"push.support.showUserID.failedToCheckUserID" = "ユーザーIDがわかりませんでした";
+"push.support.title" = "支持";
+"push.support.showUserID.title" = "显示通知推送用户ID";
+"push.support.showUserID.alertTitle" = "用户ID";
+"push.support.showUserID.copyAction" = "复制";
+"push.support.showUserID.failedToCheckUserID" = "无法获取用户ID";
