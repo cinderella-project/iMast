@@ -46,14 +46,14 @@
 "push.addAccount.title" = "添加账户";
 "push.addAccount.alertTitle" = "添加账户";
 "push.addAccount.alertText" = "请输入实例链接\n（请不要输入https://等元素）";
-"push.shared.title" = "共通設定";
-"push.shared.displayErrorIfOccured" = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する";
+"push.shared.title" = "通用设置";
+"push.shared.displayErrorIfOccured" = "如果客户端在接收通知时的过程中失败，将推送错误信息，而不是原始通知内容";
 "push.shared.groupRules.title" = "グループ化のルール設定 (β)";
 "push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
 "push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
 "push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
-"push.shared.customSounds.title" = "通知音カスタム (α)";
-"push.shared.deleteAccount.title" = "プッシュ通知の設定を削除";
+"push.shared.customSounds.title" = "自定义通知铃声（早期测试）";
+"push.shared.deleteAccount.title" = "删除通知推送设置";
 
 "push.support.title" = "サポート用";
 "push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
