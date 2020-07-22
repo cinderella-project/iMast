@@ -10,7 +10,7 @@
 "general.streamingAutoConnect.no" = "永不";
 "general.streamingAutoConnect.wifi" = "仅WiFi";
 "general.streamingAutoConnect.always" = "开启";
-"general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
+"general.newAccountVia.title" = "绑定新账户时显示嘟文小尾巴";
 
 "post.title" = "嘟文发布";
 "post.addMediaURL" = "发布嘟文时添加图片链接";
@@ -24,13 +24,13 @@
 "nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple Music自动添加链接（可用时）";
 
 "timelineAppearance.title" = "时间轴外观";
-"timelineAppearance.userNameSize" = "用户名的字体大小";
-"timelineAppearance.contentSize" = "正文的字体大小";
+"timelineAppearance.userNameSize" = "用户名字体大小";
+"timelineAppearance.contentSize" = "正文字体大小";
 "timelineAppearance.contentBold" = "加粗正文字体";
 "timelineAppearance.iconSize" = "头像大小";
 "timelineAppearance.visibilityAsEmoji" = "用emoji显示嘟文可见范围";
 "timelineAppearance.inReplyToAsEmoji" = "用emoji显示是否为回复嘟文";
-"timelineAppearance.thumbnailHeight" = "缩略图的大小";
+"timelineAppearance.thumbnailHeight" = "缩略图大小";
 "timelineAppearance.nurunuru" = "高刷模式（需重启）";
 "timelineAppearance.bigNewPostButton.show" = "显示发布按钮";
 "timelineAppearance.bigNewPostButton.location.title" = "发布按钮的位置";
