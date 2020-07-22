@@ -158,7 +158,9 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             // swiftlint:disable:next force_cast
             let imageView = mediaStackView.arrangedSubviews[i] as! UIImageView
             imageView.image = nil
-            imageView.sd_setImage(with: URL(string: media.previewUrl), completed: nil)
+            if let previewURL = media.previewUrl {
+                imageView.sd_setImage(with: URL(string: previewURL), completed: nil)
+            }
             imageView.isHidden = false
         }
         

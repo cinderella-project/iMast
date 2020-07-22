@@ -27,7 +27,7 @@ public struct MastodonAttachment: Codable {
     let id: MastodonID
     public let type: MediaType
     public let url: String
-    public let previewUrl: String
+    public let previewUrl: String?
     let remoteUrl: String?
     public let textUrl: String?
     
