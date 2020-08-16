@@ -88,6 +88,6 @@ class AddAccountSuccessViewController: UIViewController {
     }
     
     @objc func goTimelineTapped() {
-        changeRootVC(MainTabBarController(with: (), environment: self.userToken), animated: true)
+        changeRootVC(MainTabBarController(with: (), environment: self.userToken))
     }
 }

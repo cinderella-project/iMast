@@ -26,7 +26,7 @@ import Starscream
 import Hydra
 import iMastiOSCore
 
-var webSockets: [WebSocketWrapper] = []
+var webSockets = [WeakRef<WebSocketWrapper>]()
 
 class WebSocketWrapper: WebSocketDelegate {
     
@@ -107,15 +107,16 @@ extension MastodonUserToken {
             urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
             let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
             let wrap = WebSocketWrapper(webSocket: webSocket)
-            webSockets.append(wrap)
+            webSockets.append(.init(value: wrap))
             return Promise(resolved: wrap)
         }
     }
 }
 
 func allWebSocketDisconnect() {
-    webSockets.forEach { value in
-        value.disconnect()
+    for websocket in webSockets {
+        if websocket.value != nil {
+            print(websocket.value)
+        }
     }
-    webSockets = []
 }

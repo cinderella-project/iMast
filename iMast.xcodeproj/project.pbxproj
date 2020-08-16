@@ -197,6 +197,8 @@
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
 		CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */; };
+		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
+		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB97029240012420028AD2A /* AboutThisAppViewController.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
@@ -729,6 +731,7 @@
 		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
 		CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+forMastodonAPI.swift"; sourceTree = "<group>"; };
 		CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariRow.swift; sourceTree = "<group>"; };
+		CEAE471A24E8C21500645946 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
 		CEB97029240012420028AD2A /* AboutThisAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisAppViewController.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
@@ -1221,6 +1224,7 @@
 				CE43BEFA23779F6700133C86 /* Extensions */,
 				CE43BEF923779F4F00133C86 /* Mastodon */,
 				CE43BEF523779EE800133C86 /* genRandomString.swift */,
+				CEAE471A24E8C21500645946 /* WeakRef.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 			);
@@ -2932,6 +2936,7 @@
 				CE522BF024159C9F0048E334 /* MastodonPaging.swift in Sources */,
 				CE0E4C59247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */,
 				CE43BEE623779E2600133C86 /* MastodonInstance.swift in Sources */,
+				CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */,
 				CE43BEF323779EB500133C86 /* MastodonIDAvailable.swift in Sources */,
 				CE43BF0C2377A9A000133C86 /* String+nsLength.swift in Sources */,
 				CE43BEE723779E2600133C86 /* MastodonUserToken.swift in Sources */,
@@ -3095,6 +3100,7 @@
 				CEE4E3642377F83C00406371 /* MastodonNotification.swift in Sources */,
 				CEE4E35E2377F83900406371 /* String+parseInt.swift in Sources */,
 				CEE4E33D2377F80C00406371 /* EmojifyProtocol.swift in Sources */,
+				CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */,
 				CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */,
 				CE8D2A2424C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */,

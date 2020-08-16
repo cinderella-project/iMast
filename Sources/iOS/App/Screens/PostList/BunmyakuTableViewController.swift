@@ -40,7 +40,7 @@ class BunmyakuTableViewController: TimeLineTableViewController {
         self.readmoreCell.state = .loading
         return environment.context(post: self.basePost).then { res in
             self.readmoreCell.state = .moreLoadable
-            self._addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
+            self.addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
         }.catch { e in
             self.readmoreCell.state = .withError
             self.readmoreCell.lastError = e

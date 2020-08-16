@@ -116,6 +116,6 @@ class AddAccountIndexViewController: FormViewController {
         guard let latestToken = latestToken else {
             return
         }
-        changeRootVC(MainTabBarController.instantiate((), environment: latestToken), animated: true)
+        changeRootVC(MainTabBarController.instantiate((), environment: latestToken))
     }
 }

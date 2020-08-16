@@ -183,10 +183,6 @@ class SettingsViewController: FormViewController {
                 row.steps = 100/5
                 row.userDefaultsConnect(.thumbnailHeight)
             }
-            SwitchRow { row in
-                row.title = L10n.Preferences.TimelineAppearance.nurunuru
-                row.userDefaultsConnect(.timelineNurunuruMode)
-            }
             SliderRow { row in
                 row.title = "ピン留め投稿の行数制限"
                 row.userDefaultsConnect(.pinnedTootLinesLimit)

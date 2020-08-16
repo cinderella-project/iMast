@@ -228,7 +228,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             receivedUserToken.use()
             let vc = MainTabBarController.instantiate(environment: receivedUserToken)
             viewController = vc
-            currentScene.windows.first!.rootViewController?.changeRootVC(vc, animated: true)
+            currentScene.windows.first!.rootViewController?.changeRootVC(vc)
         }
 
         guard let notificationJson = userInfo["upstreamObject"] as? String else {
@@ -267,18 +267,16 @@ func openVLC(_ url: String) -> Bool {
 }
 
 extension UIViewController {
-    func changeRootVC(_ viewController: UIViewController, animated: Bool) {
+    func changeRootVC(_ viewController: UIViewController) {
         guard let window = self.view.window else {
             fatalError("windowないが")
         }
-        if animated {
-            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                self.changeRootVC(viewController, animated: false)
-            }, completion: nil)
-        } else {
-            // TODO: あとでちゃんとやる
-            allWebSocketDisconnect()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = viewController
-        }
+        }, completion: { _ in
+            DispatchQueue.main.async {
+                allWebSocketDisconnect()
+            }
+        })
     }
 }

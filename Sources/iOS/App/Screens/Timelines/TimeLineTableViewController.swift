@@ -59,7 +59,6 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var readmoreCell = ReadmoreTableViewCell()
     var maxPostCount = 100
     var socket: WebSocketWrapper?
-    let isNurunuru = Defaults[.timelineNurunuruMode]
     var timelineType: MastodonTimelineType?
     var postFabButton = PostFabButton()
     
@@ -84,9 +83,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         
         _ = tableView ※ {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview($0)
+            view.addSubview($0)
             $0.snp.makeConstraints { make in
-                make.center.width.height.equalTo(self.view)
+                make.center.width.height.equalTo(view)
             }
             
             $0.estimatedRowHeight = 100
@@ -95,7 +94,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             // 引っ張って更新
             if isRefreshEnabled {
                 $0.refreshControl = refreshControl ※ {
-                    $0.addTarget(self, action: #selector(self.refreshTimeline), for: .valueChanged)
+                    $0.addTarget(self, action: #selector(refreshTimeline), for: .valueChanged)
                 }
             }
             
@@ -104,29 +103,32 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
 
         TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.register(to: tableView)
         
-        self.diffableDataSource = .init(tableView: tableView) { (tableView, indexPath, target) -> UITableViewCell? in
+        diffableDataSource = .init(tableView: tableView) { [weak self] (tableView, indexPath, target) -> UITableViewCell? in
+            guard let strongSelf = self else {
+                return nil
+            }
             switch target {
             case .post(let id, let pinned):
                 return TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(
                     from: tableView,
                     for: indexPath,
                     input: (id: id, pinned: pinned),
-                    parentViewController: self
+                    parentViewController: strongSelf
                 )
             case .readMore:
-                return self.readmoreCell
+                return strongSelf.readmoreCell
             }
         }
-        self.diffableDataSource.canEditRowAt = true
-        self.tableView.dataSource = self.diffableDataSource
+        diffableDataSource.canEditRowAt = true
+        tableView.dataSource = diffableDataSource
         
-        _ = self.diffableDataSource.snapshot() ※ { snapshot in
+        _ = diffableDataSource.snapshot() ※ { snapshot in
             snapshot.appendSections([.pinned, .posts, .readMore])
-            if self.isReadmoreEnabled {
+            if isReadmoreEnabled {
                 snapshot.appendItems([.readMore], toSection: .readMore)
             }
-            self.updateDataSourceQueue.sync {
-                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+            updateDataSourceQueue.sync {
+                diffableDataSource.apply(snapshot, animatingDifferences: false)
             }
         }
         
@@ -135,37 +137,19 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             self.websocketConnect(auto: true)
         }
         
-        self.navigationItem.largeTitleDisplayMode = .never
+        navigationItem.largeTitleDisplayMode = .never
         
-        self.navigationItem.leftItemsSupplementBackButton = true
-        if self.websocketEndpoint() != nil {
-            self.streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(self.streamingStatusTapped))
-            self.streamingNavigationItem?.tintColor = UIColor.gray
-            self.navigationItem.leftBarButtonItems = [
-                self.streamingNavigationItem!,
+        navigationItem.leftItemsSupplementBackButton = true
+        if websocketEndpoint() != nil {
+            streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(streamingStatusTapped))
+            streamingNavigationItem?.tintColor = UIColor.gray
+            navigationItem.leftBarButtonItems = [
+                streamingNavigationItem!,
             ]
-        }
-        if !isNurunuru {
-            DispatchQueue(label: "jp.pronama.imast.timelinequeue").async {
-                while true {
-                    while self.postsQueue.count == 0 {
-                        usleep(500)
-                    }
-                    let posts = self.postsQueue.sorted(by: { (a, b) -> Bool in
-                        return a.id.compare(b.id) == .orderedDescending
-                    })
-                    print(posts.map { $0.id.raw })
-                    self.postsQueue = []
-                    DispatchQueue.main.async {
-                        self._addNewPosts(posts: posts)
-                    }
-                    sleep(1)
-                }
-            }
         }
         
         if isNewPostAvailable {
-            self.navigationItem.rightBarButtonItem = .init(
+            navigationItem.rightBarButtonItem = .init(
                 title: L10n.Localizable.post, style: .plain,
                 target: self, action: #selector(openNewPostVC)
             )
@@ -178,8 +162,8 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             ))
             
             if Defaults[.postFabEnabled] {
-                _ = self.postFabButton ※ {
-                    self.view.addSubview(self.postFabButton)
+                _ = postFabButton ※ {
+                    view.addSubview(postFabButton)
                     $0.snp.makeConstraints { make in
                         let offset = 16
                         // X
@@ -201,7 +185,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                         }
                     }
                     
-                    $0.addTarget(self, action: #selector(self.postFabTapped(sender:)), for: .touchUpInside)
+                    $0.addTarget(self, action: #selector(postFabTapped(sender:)), for: .touchUpInside)
                 }
             }
         }
@@ -222,7 +206,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         self.readmoreCell.state = .loading
         return self.environment.timeline(timelineType).then { (posts) -> Void in
             self.readmoreCell.state = .moreLoadable
-            self._addNewPosts(posts: posts)
+            self.addNewPosts(posts: posts)
             return Void()
         }.catch { e in
             self.readmoreCell.state = .withError
@@ -298,20 +282,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     }
     
     func addNewPosts(posts: [MastodonPost]) {
-        if isNurunuru {
-            self._addNewPosts(posts: posts)
-        } else {
-            posts.forEach { (post) in
-                postsQueue.append(post)
-            }
-        }
-    }
-    
-    func _addNewPosts(posts posts_: [MastodonPost]) {
-        if posts_.count == 0 {
+        if posts.count == 0 {
             return
         }
-        let posts: [MastodonPost] = posts_.sorted(by: { (a, b) -> Bool in
+        let posts: [MastodonPost] = posts.sorted(by: { (a, b) -> Bool in
             return a.id.compare(b.id) == .orderedDescending
         }).filter({ (post) -> Bool in
             self.environment.memoryStore.post.change(obj: post)

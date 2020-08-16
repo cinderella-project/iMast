@@ -97,7 +97,7 @@ class ChangeActiveAccountViewController: UITableViewController {
     
     @objc func onTapAddAccountButton() {
         let vc = AddAccountIndexViewController()
-        self.changeRootVC(UINavigationController(rootViewController: vc), animated: true)
+        self.changeRootVC(UINavigationController(rootViewController: vc))
     }
     
     // MARK: - Table view data source
@@ -138,7 +138,7 @@ class ChangeActiveAccountViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let token = userTokens[indexPath.row]
         token.use()
-        changeRootVC(MainTabBarController.instantiate(environment: token), animated: true)
+        changeRootVC(MainTabBarController.instantiate(environment: token))
     }
     
     /*
@@ -171,9 +171,9 @@ class ChangeActiveAccountViewController: UITableViewController {
                     self.tableView.reloadData()
                     if indexPath.row == 0 {
                         if let token = MastodonUserToken.getLatestUsed() {
-                            self.changeRootVC(MainTabBarController.instantiate(environment: token), animated: true)
+                            self.changeRootVC(MainTabBarController.instantiate(environment: token))
                         } else {
-                            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()), animated: true)
+                            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()))
                         }
                     }
                 }

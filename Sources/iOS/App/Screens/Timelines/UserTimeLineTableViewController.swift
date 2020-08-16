@@ -52,7 +52,7 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                 return .post(id: $0.id, pinned: true)
             }, toSection: .pinned)
             self.diffableDataSource.apply(snapshot, animatingDifferences: false)
-            self._addNewPosts(posts: res[1])
+            self.addNewPosts(posts: res[1])
             return Void()
         }.catch { e in
             self.readmoreCell.state = .withError

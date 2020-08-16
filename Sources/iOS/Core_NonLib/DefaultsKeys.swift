@@ -44,7 +44,6 @@ extension DefaultsKeys {
     static let timelineIconSize = DefaultsKey<Double>("timeline_icon_size", default: 48)
     static let visibilityEmoji = DefaultsKey<Bool>("visibility_emoji", default: true)
     static let thumbnailHeight = DefaultsKey<Double>("thumbnail_height", default: 50)
-    static let timelineNurunuruMode = DefaultsKey<Bool>("timeline_nurunuru_mode", default: false)
     static let timelineTextBold = DefaultsKey<Bool>("timeline_text_bold", default: false)
     static let pinnedTootLinesLimit = DefaultsKey<Double>("pinned_toot_lines_limit", default: 0)
     static let inReplyToEmoji = DefaultsKey<Bool>("in_reply_to_emoji", default: true)
