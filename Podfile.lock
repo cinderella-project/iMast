@@ -2,13 +2,13 @@ PODS:
   - Alamofire (4.9.1)
   - Crossroad (3.2.0)
   - Eureka (5.2.1)
-  - EurekaFormBuilder (0.2.1):
-    - Eureka (~> 5.0)
+  - EurekaFormBuilder (0.2.2):
+    - Eureka (~> 5.2)
   - Fuzi (3.1.2)
   - GRDB.swift (4.6.2):
     - GRDB.swift/standard (= 4.6.2)
   - GRDB.swift/standard (4.6.2)
-  - HydraAsync (2.0.2)
+  - HydraAsync (2.0.3)
   - KeychainAccess (4.2.0)
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
@@ -41,11 +41,11 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.9.1)
   - Crossroad (~> 3.2.0)
-  - Eureka (~> 5.2.1)
-  - EurekaFormBuilder (~> 0.2.1)
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, branch `xcode12`)
+  - EurekaFormBuilder (~> 0.2.2)
   - Fuzi (~> 3.1.2)
   - GRDB.swift (~> 4.6.2)
-  - HydraAsync (~> 2.0.2)
+  - HydraAsync (~> 2.0.3)
   - KeychainAccess (~> 4.2.0)
   - LicensePlist (~> 2.16.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
@@ -66,7 +66,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Crossroad
-    - Eureka
     - EurekaFormBuilder
     - Fuzi
     - GRDB.swift
@@ -88,11 +87,17 @@ SPEC REPOS:
     - "※ikemen"
 
 EXTERNAL SOURCES:
+  Eureka:
+    :branch: xcode12
+    :git: https://github.com/xmartlabs/Eureka.git
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
 
 CHECKOUT OPTIONS:
+  Eureka:
+    :commit: f5651e328e099393e51b63f1abe78153cbacf90f
+    :git: https://github.com/xmartlabs/Eureka.git
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -101,10 +106,10 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Crossroad: 12534912c7d2934cc24bfb85f20322c91de5ed78
   Eureka: c883105488e05bc65539f583246ecf9657cabbfe
-  EurekaFormBuilder: 0fbb81858c0a83c5de85b88733b44cf3d4008706
+  EurekaFormBuilder: 9411111c6a9b7562ccefc1f8bf5ad0bf5ff4f900
   Fuzi: dba7215e52fb39dd7b1a62f69ede1e30edff0ae1
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
-  HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
+  HydraAsync: e931acbcd0733d157fe50561a98d3140ba4ba2df
   KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
@@ -122,6 +127,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: ed67c015a5b8b35c0df2816e40edd8662e2f8c3d
+PODFILE CHECKSUM: 84eabe39214cc3e4b9b9ae2857ab16f698884f44
 
 COCOAPODS: 1.9.3

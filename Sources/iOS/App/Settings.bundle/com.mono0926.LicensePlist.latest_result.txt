@@ -42,7 +42,7 @@ version: 5.2.1
 
 name: EurekaFormBuilder, nameSpecified: 
 body: Copyright (c) 2019 r…
-version: 0.2.1
+version: 0.2.2
 
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
@@ -110,35 +110,35 @@ version: 4.6.2
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
-version: 2.0.2
+version: 2.0.3
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
