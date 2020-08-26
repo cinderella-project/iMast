@@ -1349,7 +1349,7 @@
 				CEE357181FF519C600675DFC /* NewPost */,
 				CE4D388123BD1E7200543E72 /* PostList */,
 				CEE3571C1FF51A0700675DFC /* Timelines */,
-				CEE3571D1FF51A2800675DFC /* NotificationTab */,
+				CEE3571D1FF51A2800675DFC /* Notification */,
 				CEE357191FF519E000675DFC /* OtherMenu */,
 			);
 			path = Screens;
@@ -1715,14 +1715,14 @@
 			path = Timelines;
 			sourceTree = "<group>";
 		};
-		CEE3571D1FF51A2800675DFC /* NotificationTab */ = {
+		CEE3571D1FF51A2800675DFC /* Notification */ = {
 			isa = PBXGroup;
 			children = (
 				CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */,
 				CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */,
 				CE6AB7F621CB66EB0052FA36 /* NotificationCellViewController.swift */,
 			);
-			path = NotificationTab;
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		CEE3571E1FF51A3900675DFC /* CustomViews */ = {
