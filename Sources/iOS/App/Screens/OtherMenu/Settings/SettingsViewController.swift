@@ -41,7 +41,6 @@ class SettingsViewController: FormViewController {
             getPostInfoSection()
             getTimelineAppearanceSection()
             getTimelineSection()
-            getWidgetSection()
             getShareSection()
             getImageCacheSection()
             getExperimentalSection()
@@ -230,24 +229,6 @@ class SettingsViewController: FormViewController {
             SwitchRow { row in
                 row.title = L10n.Preferences.Timeline.useUniversalLinks
                 row.userDefaultsConnect(.useUniversalLink)
-            }
-        }
-    }
-    
-    func getWidgetSection() -> Section {
-        return Section(header: "ウィジェット") {
-            LabelRow { row in
-                row.title = "投稿フォーマット"
-            }
-            TextAreaRow { row in
-                row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                row.placeholder = "ID: {clipboard}\n#何らかのハッシュタグとか"
-                row.userDefaultsConnect(.widgetFormat)
-            }
-            TextRow { row in
-                row.title = "フィルタ"
-                row.placeholder = "[0-9]{7}"
-                row.userDefaultsConnect(.widgetFilter)
             }
         }
     }

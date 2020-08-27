@@ -56,9 +56,6 @@ extension DefaultsKeys {
     static let useAVPlayer = DefaultsKey<Bool>("use_avplayer", default: true)
     static let useUniversalLink = DefaultsKey<Bool>("use_universal_link", default: true)
 
-    static let widgetFormat = DefaultsKey<String>("widget_format", default: "{clipboard}")
-    static let widgetFilter = DefaultsKey<String>("widget_filter")
-
     static let nowplayingFormat = DefaultsKey<String>("nowplaying_format", default: "#nowplaying {title} - {artist} ({albumTitle})")
     static let nowplayingAddAppleMusicUrl = DefaultsKey<Bool>("nowplaying_add_apple_music_url", default: true)
     static let autoResizeSize = DefaultsKey<Int>("autoResizeSize", default: 0)

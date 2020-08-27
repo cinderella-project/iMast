@@ -34,10 +34,6 @@ name: Alamofire, nameSpecified:
 body: Copyright (c) 2014 A…
 version: 4.9.1
 
-name: Alamofire, nameSpecified: 
-body: Copyright (c) 2014 A…
-version: 4.9.1
-
 name: Crossroad, nameSpecified: 
 body: MIT License
 
@@ -116,14 +112,6 @@ name: Fuzi, nameSpecified:
 body: Copyright (c) 2015 C…
 version: 3.1.2
 
-name: Fuzi, nameSpecified: 
-body: Copyright (c) 2015 C…
-version: 3.1.2
-
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2019 G…
-version: 4.6.2
-
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
 version: 4.6.2
@@ -196,10 +184,6 @@ name: HydraAsync, nameSpecified:
 body: Copyright (c) 2015 d…
 version: 2.0.3
 
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.3
-
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
 version: 4.2.0
@@ -235,14 +219,6 @@ version: 4.2.0
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
 version: 4.2.0
-
-name: KeychainAccess, nameSpecified: 
-body: The MIT License (MIT…
-version: 4.2.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
 
 name: libwebp, nameSpecified: 
 body: Copyright (c) 2010, …
@@ -297,10 +273,6 @@ body: MIT License
 
 Copyrig…
 version: 2.16.0
-
-name: Mew, nameSpecified: 
-body: Copyright (c) 2018 M…
-version: 0.1.0
 
 name: Mew, nameSpecified: 
 body: Copyright (c) 2018 M…
@@ -390,10 +362,6 @@ name: SDWebImage, nameSpecified:
 body: Copyright (c) 2009-2…
 version: 5.8.3
 
-name: SDWebImage, nameSpecified: 
-body: Copyright (c) 2009-2…
-version: 5.8.3
-
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
 version: 0.6.1
@@ -429,14 +397,6 @@ version: 0.6.1
 name: SDWebImageWebPCoder, nameSpecified: 
 body: Copyright (c) 2018 B…
 version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.0.1
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
@@ -485,10 +445,6 @@ version: 3.1.1
 name: Starscream, nameSpecified: 
 body:                     …
 version: 3.1.1
-
-name: STRegex, nameSpecified: 
-body: The MIT License (MIT…
-version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
@@ -598,16 +554,6 @@ body: MIT Licence
 Copyrig…
 version: 6.2.1
 
-name: SwiftGen, nameSpecified: 
-body: MIT Licence
-
-Copyrig…
-version: 6.2.1
-
-name: SwiftLint, nameSpecified: 
-body: The MIT License (MIT…
-version: 0.39.2
-
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
 version: 0.39.2
@@ -679,14 +625,6 @@ version: 5.0.0
 name: SwiftyJSON, nameSpecified: 
 body: The MIT License (MIT…
 version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
 
 name: ※ikemen, nameSpecified: 
 body: Copyright (c) 2015 b…

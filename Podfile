@@ -48,9 +48,6 @@ abstract_target 'iMastShared' do
     target 'iMastShare' do
     end
 
-    target 'iMastTodayWidget' do
-    end
-
     target 'iMastNotifyService' do
     end
 
