@@ -67,7 +67,42 @@ class NewPostMediaListViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(1/5.0).inset(4)
         }
         
+        #if compiler(>=5.3)
+        if #available(iOS 14.0, *) {
+            let menu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: [
+                UIAction(
+                    title: L10n.NewPost.Media.Picker.photoLibrary,
+                    image: UIImage(systemName: "rectangle.on.rectangle"),
+                    handler: { [weak self] _ in
+                        self?.addFromPhotoLibrary()
+                    }
+                ),
+                UIAction(
+                    title: L10n.NewPost.Media.Picker.takePhoto,
+                    image: UIImage(systemName: "camera.fill"),
+                    handler: { [weak self] _ in
+                        self?.addFromCamera()
+                    }
+                ),
+                UIAction(
+                    title: "ブラウズ",
+                    image: UIImage(systemName: "ellipsis"),
+                    handler: { [weak self] _ in
+                        guard let strongSelf = self else { return }
+                        let pickerVC = UIDocumentPickerViewController(forOpeningContentTypes: [.image], asCopy: true)
+                        pickerVC.delegate = strongSelf
+                        strongSelf.present(pickerVC, animated: true, completion: nil)
+                    }
+                ),
+            ])
+            addButton.menu = menu
+            addButton.showsMenuAsPrimaryAction = true
+        } else {
+            addButton.addTarget(self, action: #selector(tapAddImage(_:)), for: .touchUpInside)
+        }
+        #else
         addButton.addTarget(self, action: #selector(tapAddImage(_:)), for: .touchUpInside)
+        #endif
         self.refresh()
     }
 
@@ -125,27 +160,13 @@ class NewPostMediaListViewController: UIViewController {
         pickerSelector.popoverPresentationController?.sourceRect = sender.frame
         pickerSelector.popoverPresentationController?.delegate = self
         pickerSelector.delegate = self
-        pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.photoLibrary, image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: {
+        pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.photoLibrary, image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: { [weak self] in
             print("photo-library")
-            let imgPickerC = UIImagePickerController()
-            print(imgPickerC.modalPresentationStyle.rawValue)
-            imgPickerC.sourceType = UIImagePickerController.SourceType.photoLibrary
-            if #available(iOS 11.0, *) {
-                imgPickerC.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
-                imgPickerC.videoExportPreset = AVAssetExportPresetPassthrough
-            }
-            imgPickerC.delegate = self
-            self.transparentVC.dismiss(animated: false, completion: nil)
-            self.present(imgPickerC, animated: true, completion: nil)
+            self?.addFromPhotoLibrary()
         })
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.takePhoto, image: UIImage(systemName: "camera.fill"), order: .first, handler: {
-                print("camera")
-                let imgPickerC = UIImagePickerController()
-                imgPickerC.sourceType = UIImagePickerController.SourceType.camera
-                imgPickerC.delegate = self
-                self.transparentVC.dismiss(animated: false, completion: nil)
-                self.present(imgPickerC, animated: true, completion: nil)
+            pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.takePhoto, image: UIImage(systemName: "camera.fill"), order: .first, handler: { [weak self] in
+                self?.addFromCamera()
             })
         }
         pickerSelector.delegate = self
@@ -155,6 +176,29 @@ class NewPostMediaListViewController: UIViewController {
         self.present(self.transparentVC, animated: true) {
             self.transparentVC.present(pickerSelector, animated: true, completion: nil)
         }
+    }
+    
+    func addFromPhotoLibrary() {
+        let imgPickerC = UIImagePickerController()
+        imgPickerC.sourceType = .photoLibrary
+        imgPickerC.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+        imgPickerC.videoExportPreset = AVAssetExportPresetPassthrough
+        showImagePickerController(imgPickerC)
+    }
+    
+    func addFromCamera() {
+        let imgPickerC = UIImagePickerController()
+        imgPickerC.sourceType = .camera
+        showImagePickerController(imgPickerC)
+    }
+    
+    func showImagePickerController(_ imgPickerC: UIImagePickerController) {
+        imgPickerC.delegate = self
+        if transparentVC.isBeingPresented {
+            transparentVC.dismiss(animated: false, completion: nil)
+        }
+        transparentVC.dismiss(animated: false, completion: nil)
+        present(imgPickerC, animated: true, completion: nil)
     }
     
     @objc func tapCurrentMedia(sender: UITapGestureRecognizer) {
