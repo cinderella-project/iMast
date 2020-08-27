@@ -36,12 +36,10 @@ abstract_target 'iMastShared' do
       pod 'LicensePlist', '~> 2.16.0'
       
       target 'iMastTests' do
-        inherit! :search_paths
         # Pods for testing
       end
 
       target 'iMastUITests' do
-        inherit! :search_paths
         # Pods for testing
       end
     end

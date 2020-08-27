@@ -39,6 +39,7 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
             ButtonRow { row in
                 row.title = L10n.Login.Authorize.Method.safari
                 row.cellUpdate { cell, row in
+                    cell.accessibilityIdentifier = "loginWithSafari"
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
                     cell.textLabel?.textColor = nil

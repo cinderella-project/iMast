@@ -1,0 +1,59 @@
+{
+  "configurations" : [
+    {
+      "id" : "ED059196-7CF0-4F93-A41F-9EEADDDD3491",
+      "name" : "Japanese (Japan)",
+      "options" : {
+        "language" : "ja",
+        "region" : "JP"
+      }
+    },
+    {
+      "id" : "390F5B05-03D0-4877-B991-02B14EE36AA0",
+      "name" : "English (United States)",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "2B069D5E-9B12-4341-8827-B4A0370A339C",
+      "name" : "Chinese, Simplified (China mainland)",
+      "options" : {
+        "language" : "zh-Hans",
+        "region" : "CN"
+      }
+    },
+    {
+      "id" : "5B3D587F-A5E8-4629-9D90-89775F085C1E",
+      "name" : "Chinese, Traditional (Taiwan)",
+      "options" : {
+        "language" : "zh-Hant",
+        "region" : "TW"
+      }
+    },
+    {
+      "id" : "4318AF70-8E3A-472C-A34E-99CCD757F09A",
+      "name" : "Korean (South Korea)",
+      "options" : {
+        "language" : "ko",
+        "region" : "KR"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "areLocalizationScreenshotsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:iMast.xcodeproj",
+        "identifier" : "2AF352351EAB9C5600777C2E",
+        "name" : "iMastUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

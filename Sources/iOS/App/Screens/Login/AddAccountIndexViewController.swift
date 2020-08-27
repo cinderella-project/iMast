@@ -58,6 +58,9 @@ class AddAccountIndexViewController: FormViewController {
                 ButtonRow { row in
                     row.title = L10n.Login.loginButton
                     row.disabled = "$instance == nil"
+                    row.cellSetup { cell, _ in
+                        cell.accessibilityIdentifier = "loginButton"
+                    }
                     row.onCellSelection { [weak self] cell, row in
                         self?.onLoginTapped()
                     }
