@@ -69,7 +69,7 @@ class NewPostMediaListViewController: UIViewController {
         
         #if compiler(>=5.3)
         if #available(iOS 14.0, *) {
-            let menu = UIMenu(title: "", image: nil, identifier: nil, options: [], children: [
+            let menu = UIMenu(children: [
                 UIAction(
                     title: L10n.NewPost.Media.Picker.photoLibrary,
                     image: UIImage(systemName: "rectangle.on.rectangle"),
