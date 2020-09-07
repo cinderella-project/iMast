@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - 11.4
+          - 12_beta
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
