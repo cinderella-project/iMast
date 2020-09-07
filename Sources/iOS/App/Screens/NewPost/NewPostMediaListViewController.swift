@@ -68,44 +68,36 @@ class NewPostMediaListViewController: UIViewController {
             make.width.equalToSuperview().multipliedBy(1/5.0).inset(4)
         }
         
-        #if compiler(>=5.3)
-        if #available(iOS 14.0, *) {
-            let menu = UIMenu(children: [
-                UIAction(
-                    title: L10n.NewPost.Media.Picker.photoLibrary,
-                    image: UIImage(systemName: "rectangle.on.rectangle"),
-                    handler: { [weak self] _ in
-                        let picker = PHPickerViewController(configuration: .init())
-                        picker.delegate = self
-                        self?.present(picker, animated: true, completion: nil)
-                    }
-                ),
-                UIAction(
-                    title: L10n.NewPost.Media.Picker.takePhoto,
-                    image: UIImage(systemName: "camera.fill"),
-                    handler: { [weak self] _ in
-                        self?.addFromCamera()
-                    }
-                ),
-                UIAction(
-                    title: "ブラウズ",
-                    image: UIImage(systemName: "ellipsis"),
-                    handler: { [weak self] _ in
-                        guard let strongSelf = self else { return }
-                        let pickerVC = UIDocumentPickerViewController(forOpeningContentTypes: [.image], asCopy: true)
-                        pickerVC.delegate = strongSelf
-                        strongSelf.present(pickerVC, animated: true, completion: nil)
-                    }
-                ),
-            ])
-            addButton.menu = menu
-            addButton.showsMenuAsPrimaryAction = true
-        } else {
-            addButton.addTarget(self, action: #selector(tapAddImage(_:)), for: .touchUpInside)
-        }
-        #else
-        addButton.addTarget(self, action: #selector(tapAddImage(_:)), for: .touchUpInside)
-        #endif
+        let menu = UIMenu(children: [
+            UIAction(
+                title: L10n.NewPost.Media.Picker.photoLibrary,
+                image: UIImage(systemName: "rectangle.on.rectangle"),
+                handler: { [weak self] _ in
+                    let picker = PHPickerViewController(configuration: .init())
+                    picker.delegate = self
+                    self?.present(picker, animated: true, completion: nil)
+                }
+            ),
+            UIAction(
+                title: L10n.NewPost.Media.Picker.takePhoto,
+                image: UIImage(systemName: "camera.fill"),
+                handler: { [weak self] _ in
+                    self?.addFromCamera()
+                }
+            ),
+            UIAction(
+                title: "ブラウズ",
+                image: UIImage(systemName: "ellipsis"),
+                handler: { [weak self] _ in
+                    guard let strongSelf = self else { return }
+                    let pickerVC = UIDocumentPickerViewController(forOpeningContentTypes: [.image], asCopy: true)
+                    pickerVC.delegate = strongSelf
+                    strongSelf.present(pickerVC, animated: true, completion: nil)
+                }
+            ),
+        ])
+        addButton.menu = menu
+        addButton.showsMenuAsPrimaryAction = true
         self.refresh()
     }
 
@@ -383,8 +375,6 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
 extension NewPostMediaListViewController: UINavigationControllerDelegate {
 }
 
-#if compiler(>=5.3)
-@available(iOS 14, *)
 extension NewPostMediaListViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
@@ -428,4 +418,3 @@ extension NewPostMediaListViewController: PHPickerViewControllerDelegate {
         }
     }
 }
-#endif

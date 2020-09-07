@@ -33,7 +33,6 @@ import Hydra
 import Ikemen
 import iMastiOSCore
 
-@available(iOS 10.0, *)
 class PushSettingsTableViewController: FormViewController {
     var loginSafari: LoginSafari!
     let notifwift = Notifwift()

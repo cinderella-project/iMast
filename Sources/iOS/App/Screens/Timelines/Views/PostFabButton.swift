@@ -39,11 +39,9 @@ class PostFabButton: UIButton {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         
-        if #available(iOS 13.4, *) {
-            isPointerInteractionEnabled = true
-            pointerStyleProvider = { button, effect, shape in
-                return .init(effect: effect, shape: .roundedRect(self.frame, radius: self.layer.cornerRadius))
-            }
+        isPointerInteractionEnabled = true
+        pointerStyleProvider = { button, effect, shape in
+            return .init(effect: effect, shape: .roundedRect(self.frame, radius: self.layer.cornerRadius))
         }
     }
     

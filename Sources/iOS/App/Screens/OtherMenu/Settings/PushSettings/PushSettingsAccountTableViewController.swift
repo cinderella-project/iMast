@@ -27,7 +27,6 @@ import Hydra
 import SVProgressHUD
 import Notifwift
 
-@available(iOS 10.0, *)
 class PushSettingsAccountTableViewController: FormViewController {
     var account: PushServiceToken
 

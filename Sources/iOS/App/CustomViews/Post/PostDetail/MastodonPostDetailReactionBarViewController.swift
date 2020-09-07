@@ -69,12 +69,10 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
             favouriteButton,
             othersButton,
         ]
-        if #available(iOS 13.4, *) {
-            for button in buttons {
-                button.isPointerInteractionEnabled = true
-                button.snp.makeConstraints { make in
-                    make.width.lessThanOrEqualTo(300)
-                }
+        for button in buttons {
+            button.isPointerInteractionEnabled = true
+            button.snp.makeConstraints { make in
+                make.width.lessThanOrEqualTo(300)
             }
         }
         let stackView = UIStackView(arrangedSubviews: buttons.map { button in

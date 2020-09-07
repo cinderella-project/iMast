@@ -275,7 +275,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
 
         func checkAppleMusic() -> Bool {
-            guard #available(iOS 10.3, *), Defaults[.nowplayingAddAppleMusicUrl] else { return false }
+            guard Defaults[.nowplayingAddAppleMusicUrl] else { return false }
             let storeId = nowPlayingMusic.playbackStoreID
             guard storeId != "0" else { return false }
             let region = Locale.current.regionCode ?? "jp"

@@ -25,8 +25,6 @@ import UIKit
 
 extension UIView {
     func ignoreSmartInvert(_ state: Bool = true) {
-        if #available(iOS 11.0, *) {
-            self.accessibilityIgnoresInvertColors = state
-        }
+        self.accessibilityIgnoresInvertColors = state
     }
 }

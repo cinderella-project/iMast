@@ -25,7 +25,6 @@ import Foundation
 import UserNotifications
 import Hydra
 
-@available(iOS 10.0, *)
 extension UNUserNotificationCenter {
     func requestAuthorization(options: UNAuthorizationOptions) -> Promise<Bool> {
         return Promise<Bool> { resolve, reject, _ in

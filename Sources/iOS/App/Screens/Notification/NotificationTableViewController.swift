@@ -157,10 +157,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         let currentOffset = scrollView.contentOffset.y
         let maxOffset = scrollView.contentSize.height - scrollView.frame.height
         let diff = maxOffset - currentOffset
-        var bottomHeight = scrollView.contentInset.bottom
-        if #available(iOS 11.0, *) {
-            bottomHeight = scrollView.adjustedContentInset.bottom
-        }
+        let bottomHeight = scrollView.adjustedContentInset.bottom
 
         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
             let diffTrue = Int(diff + bottomHeight)
