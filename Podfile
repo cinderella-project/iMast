@@ -11,7 +11,6 @@ abstract_target 'iMastShared' do
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'HydraAsync', '~> 2.0.3'
   pod 'SDWebImage', '~> 5.8.3'
-  pod 'SDWebImageWebPCoder', '~> 0.6.1'
   pod 'Fuzi', '~> 3.1.2'
   pod 'SnapKit', '~> 5.0.1'
   pod '※ikemen', '~> 0.6.0'
@@ -20,7 +19,7 @@ abstract_target 'iMastShared' do
   pod "STRegex", "~> 2.1.1"
   
   abstract_target 'iOS' do
-    platform :ios, '13.2'
+    platform :ios, '14.0'
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
     

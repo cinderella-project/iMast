@@ -10,15 +10,6 @@ PODS:
   - GRDB.swift/standard (4.6.2)
   - HydraAsync (2.0.3)
   - KeychainAccess (4.2.0)
-  - libwebp (1.1.0):
-    - libwebp/demux (= 1.1.0)
-    - libwebp/mux (= 1.1.0)
-    - libwebp/webp (= 1.1.0)
-  - libwebp/demux (1.1.0):
-    - libwebp/webp
-  - libwebp/mux (1.1.0):
-    - libwebp/demux
-  - libwebp/webp (1.1.0)
   - LicensePlist (2.16.0)
   - Mew (0.1.0)
   - Notifwift (1.1.1)
@@ -26,9 +17,6 @@ PODS:
   - SDWebImage (5.8.3):
     - SDWebImage/Core (= 5.8.3)
   - SDWebImage/Core (5.8.3)
-  - SDWebImageWebPCoder (0.6.1):
-    - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.7)
   - SnapKit (5.0.1)
   - Starscream (3.1.1)
   - STRegex (2.1.1)
@@ -52,7 +40,6 @@ DEPENDENCIES:
   - Notifwift (~> 1.1.1)
   - ReachabilitySwift (~> 4.3.1)
   - SDWebImage (~> 5.8.3)
-  - SDWebImageWebPCoder (~> 0.6.1)
   - SnapKit (~> 5.0.1)
   - Starscream (~> 3.1.1)
   - STRegex (~> 2.1.1)
@@ -71,12 +58,10 @@ SPEC REPOS:
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
-    - libwebp
     - LicensePlist
     - Notifwift
     - ReachabilitySwift
     - SDWebImage
-    - SDWebImageWebPCoder
     - SnapKit
     - Starscream
     - STRegex
@@ -111,13 +96,11 @@ SPEC CHECKSUMS:
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
   HydraAsync: e931acbcd0733d157fe50561a98d3140ba4ba2df
   KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
-  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   Notifwift: bf60ed2fa8e866aab4e74b7eb0e2a580c99e0baa
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
-  SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   STRegex: d49e88d0fe58538d3175fdd989bc1243b9be2a07
@@ -127,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: de41341b5a498b4188e271f4e948a246f22dd6e5
+PODFILE CHECKSUM: 58e52c3e0cbfb2819f65c4624ad0e37807ee7528
 
 COCOAPODS: 1.9.3

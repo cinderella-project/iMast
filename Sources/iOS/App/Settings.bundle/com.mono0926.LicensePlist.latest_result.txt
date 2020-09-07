@@ -220,42 +220,6 @@ name: KeychainAccess, nameSpecified:
 body: The MIT License (MIT…
 version: 4.2.0
 
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
-name: libwebp, nameSpecified: 
-body: Copyright (c) 2010, …
-version: 1.1.0
-
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
@@ -361,42 +325,6 @@ version: 5.8.3
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
 version: 5.8.3
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
-
-name: SDWebImageWebPCoder, nameSpecified: 
-body: Copyright (c) 2018 B…
-version: 0.6.1
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
