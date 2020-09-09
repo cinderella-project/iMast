@@ -32,7 +32,6 @@ import Ikemen
 class NewPostMediaListViewController: UIViewController {
 
     let newPostVC: NewPostViewController
-    var transparentVC: UIViewController = TransparentViewController()
     
     // TODO: contact じゃないのに使っていいの? アクセシビリティ周りマズそう
     let addButton = UIButton(type: .contactAdd)
@@ -136,37 +135,8 @@ class NewPostMediaListViewController: UIViewController {
     }
     
     func addMedia(media: UploadableMedia) {
-        // TODO
         self.newPostVC.media.append(media)
         self.refresh()
-    }
-    
-    @objc func tapAddImage(_ sender: UIButton) {
-        let pickerSelector = CustomDocumentMenuViewController(
-            documentTypes: [
-                "public.image",
-            ],
-            in: UIDocumentPickerMode.import
-        )
-        pickerSelector.popoverPresentationController?.sourceView = sender
-        pickerSelector.popoverPresentationController?.sourceRect = sender.frame
-        pickerSelector.popoverPresentationController?.delegate = self
-        pickerSelector.delegate = self
-        pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.photoLibrary, image: UIImage(systemName: "photo.on.rectangle"), order: .first, handler: { [weak self] in
-            print("photo-library")
-        })
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            pickerSelector.addOption(withTitle: L10n.NewPost.Media.Picker.takePhoto, image: UIImage(systemName: "camera.fill"), order: .first, handler: { [weak self] in
-                self?.addFromCamera()
-            })
-        }
-        pickerSelector.delegate = self
-        self.transparentVC.modalPresentationStyle = .overFullScreen
-        pickerSelector.parentVC = self.transparentVC
-        pickerSelector.popoverPresentationController?.permittedArrowDirections = .down
-        self.present(self.transparentVC, animated: true) {
-            self.transparentVC.present(pickerSelector, animated: true, completion: nil)
-        }
     }
     
     func addFromPhotoLibrary() {
@@ -185,10 +155,6 @@ class NewPostMediaListViewController: UIViewController {
     
     func showImagePickerController(_ imgPickerC: UIImagePickerController) {
         imgPickerC.delegate = self
-        if transparentVC.isBeingPresented {
-            transparentVC.dismiss(animated: false, completion: nil)
-        }
-        transparentVC.dismiss(animated: false, completion: nil)
         present(imgPickerC, animated: true, completion: nil)
     }
     
@@ -230,50 +196,7 @@ class NewPostMediaListViewController: UIViewController {
     }
 }
 
-private class TransparentViewController: UIViewController {
-    override func viewDidLoad() {
-        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(onTapped))
-        touchGesture.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(touchGesture)
-    }
-    
-    @objc func onTapped() {
-        alertWithPromise(title: "内部エラー", message: "このダイアログはでないはずだよ\n(loc: TransparentViewController.viewDidLoad.touchGesture)").then {
-            self.dismiss(animated: false, completion: nil)
-        }
-    }
-}
-
-private class CustomDocumentMenuViewController: UIDocumentMenuViewController {
-    var parentVC: UIViewController?
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: {
-            if let parentVC = self.parentVC {
-                if parentVC.modalPresentationStyle == .overFullScreen {
-                    parentVC.dismiss(animated: false, completion: completion)
-                }
-            } else {
-                completion?()
-            }
-        })
-    }
-}
-
-extension NewPostMediaListViewController: UIPopoverPresentationControllerDelegate {
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        self.transparentVC.dismiss(animated: false, completion: nil)
-    }
-}
-
 extension NewPostMediaListViewController: UIDocumentPickerDelegate {
-    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        documentPicker.delegate = self
-        self.transparentVC.dismiss(animated: true, completion: nil)
-        self.present(documentPicker, animated: true, completion: nil)
-    }
-}
-
-extension NewPostMediaListViewController: UIDocumentMenuDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
         self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
