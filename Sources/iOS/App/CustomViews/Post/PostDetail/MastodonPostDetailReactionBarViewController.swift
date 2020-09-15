@@ -55,8 +55,8 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         v.setTitleColor(.gray, for: .normal)
     }
     let othersButton = UIButton() ※ { v in
-        v.setTitle("⋯", for: .normal)
-        v.setTitleColor(.gray, for: .normal)
+        v.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        v.tintColor = .gray
     }
     
     override func viewDidLoad() {
@@ -98,7 +98,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         replyButton.addTarget(self, action: #selector(self.openReplyVC), for: .touchUpInside)
         boostButton.addTarget(self, action: #selector(self.boostButtonTapped), for: .touchUpInside)
         favouriteButton.addTarget(self, action: #selector(self.favouriteButtonTapped), for: .touchUpInside)
-        othersButton.addTarget(self, action: #selector(self.othersButtonTapped), for: .touchUpInside)
+        othersButton.showsMenuAsPrimaryAction = true
         
         self.input(input)
     }
@@ -107,6 +107,19 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         self.input = input
         boostButton.setTitleColor(input.reposted ? Asset.barBoost.color : .gray, for: .normal)
         favouriteButton.setTitleColor(input.favourited ? Asset.barFavourite.color : .gray, for: .normal)
+
+        // build
+        var othersMenuChildrens = [UICommand]()
+        othersMenuChildrens.append(.init(title: "共有", image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
+        othersMenuChildrens.append(.init(title: "文脈", image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
+        if input.hasCustomEmoji {
+            othersMenuChildrens.append(.init(title: "カスタム絵文字一覧", action: #selector(openEmojiListVC)))
+        }
+        if environment.screenName == input.account.acct {
+            othersMenuChildrens.append(.init(title: "削除", image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
+        }
+        othersMenuChildrens.append(.init(title: "通報", image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
+        othersButton.menu = UIMenu(children: othersMenuChildrens)
     }
     
     @objc func openReplyVC() {
@@ -142,66 +155,44 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         }
     }
     
-    @objc func othersButtonTapped() {
-        let actionSheet = UIAlertController(title: "アクション", message: "", preferredStyle: UIAlertController.Style.actionSheet)
-        actionSheet.popoverPresentationController?.sourceView = self.othersButton
-        actionSheet.popoverPresentationController?.sourceRect = self.othersButton.bounds
-        actionSheet.popoverPresentationController?.permittedArrowDirections = [.up]
-        // ---
-        actionSheet.addAction(.init(title: "文脈", style: .default) { [weak self] _ in
-            self?.openBunmyakuVC()
-        })
-        if input.hasCustomEmoji { // カスタム絵文字がある
-            actionSheet.addAction(.init(title: "カスタム絵文字一覧", style: .default) { [weak self] _ in
-                self?.openEmojiListVC()
-            })
-        }
-        if environment.screenName == input.account.acct {
-            actionSheet.addAction(.init(title: "削除", style: .destructive) { [weak self] _ in
-                let message = Defaults[.deleteTootTeokure]
-                    ? "失った信頼はもう戻ってきませんが、本当にこの投稿を削除しますか?"
-                    : "この投稿を削除しますか?"
-                self?.confirm(title: "投稿の削除", message: message, okButtonMessage: "削除", style: .destructive).then { [weak self] res in
-                    guard res else { return }
-                    guard let strongSelf = self else { return }
-                    strongSelf.environment.delete(post: strongSelf.input).then { [weak self] res in
-                        self?.navigationController?.popViewController(animated: true)
-                        self?.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
-                    }
-                }
-            })
-        }
-        actionSheet.addAction(.init(title: "通報", style: .destructive) { [weak self] _ in
-            self?.openAbuseVC()
-        })
-        actionSheet.addAction(.init(title: "共有", style: .default) { [weak self] _ in
-            guard let strongSelf = self else { return }
-            guard let url = strongSelf.input.originalPost.parsedUrl else { return }
-            let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-            vc.popoverPresentationController?.sourceView = strongSelf.othersButton
-            vc.popoverPresentationController?.sourceRect = strongSelf.othersButton.bounds
-            strongSelf.present(vc, animated: true, completion: nil)
-        })
-        actionSheet.addAction(.init(title: "キャンセル", style: UIAlertAction.Style.cancel))
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    func openBunmyakuVC() {
+    @objc func openBunmyakuVC() {
         let bunmyakuVC = BunmyakuTableViewController.instantiate(.plain, environment: environment)
         bunmyakuVC.basePost = input.originalPost
         navigationController?.pushViewController(bunmyakuVC, animated: true)
     }
     
-    func openEmojiListVC() {
+    @objc func openEmojiListVC() {
         let newVC = EmojiListTableViewController()
         newVC.emojis = (input.emojis ?? []) + (input.profileEmojis ?? [])
         newVC.account = input.account
         navigationController?.pushViewController(newVC, animated: true)
     }
     
-    func openAbuseVC() {
+    @objc func confirmDeletePost() {
+        let message = Defaults[.deleteTootTeokure]
+            ? "失った信頼はもう戻ってきませんが、本当にこの投稿を削除しますか?"
+            : "この投稿を削除しますか?"
+        confirm(title: "投稿の削除", message: message, okButtonMessage: "削除", style: .destructive).then { [weak self] res in
+            guard res else { return }
+            guard let strongSelf = self else { return }
+            strongSelf.environment.delete(post: strongSelf.input).then { [weak self] res in
+                self?.navigationController?.popViewController(animated: true)
+                self?.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
+            }
+        }
+    }
+    
+    @objc func openAbuseVC() {
         let newVC = MastodonPostAbuseViewController.instantiate(input, environment: environment)
         newVC.placeholder = "『\(input.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
         navigationController?.pushViewController(newVC, animated: true)
+    }
+    
+    @objc func openShareSheet() {
+        guard let url = input.originalPost.parsedUrl else { return }
+        let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        vc.popoverPresentationController?.sourceView = othersButton
+        vc.popoverPresentationController?.sourceRect = othersButton.bounds
+        present(vc, animated: true, completion: nil)
     }
 }
