@@ -50,7 +50,6 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     var externalServiceLinks: [(name: String, userId: String?, urls: [(appName: String, url: URL)])] = []
     
     let infoCell = UserProfileInfoTableViewCell()
-    let bioCell = UserProfileBioTableViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +71,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         )
        
         self.input(input)
+        TableViewCell<UserProfileBioViewController>.register(to: tableView)
     }
     
     @objc func reload(sender: UIRefreshControl) {
@@ -90,9 +90,6 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         self.infoCell.userToken = environment
         self.infoCell.load(user: input)
         self.infoCell.separatorInset = .zero
-        self.bioCell.userToken = environment
-        self.bioCell.load(user: input)
-        self.bioCell.separatorInset = .zero
         
         let checkLatestProfileCell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         checkLatestProfileCell.textLabel?.text = L10n.UserProfile.checkLatestProfileInWeb
@@ -170,7 +167,9 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         ]
         
         if input.bio != "<p></p>" {
-            cells[0].append(bioCell)
+            let cell = UITableViewCell()
+            cell.accessibilityIdentifier = "bioCell"
+            cells[0].append(cell)
         }
         if input.acct.contains("@") {
             cells[0].append(checkLatestProfileCell)
@@ -292,6 +291,21 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        if cell.accessibilityIdentifier == "bioCell" {
+            let cell = TableViewCell<UserProfileBioViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: input,
+                parentViewController: self
+            )
+            cell.separatorInset = .zero
+            return cell
+        }
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

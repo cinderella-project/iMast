@@ -1,5 +1,5 @@
 //
-//  UserProfileBioTableViewCell.swift
+//  UserProfileBioViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/06/25.
@@ -25,10 +25,20 @@ import UIKit
 import SafariServices
 import iMastiOSCore
 import Ikemen
+import Mew
 
-class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
-    var user: MastodonAccount?
-    var userToken: MastodonUserToken?
+class UserProfileBioViewController: UIViewController, Instantiatable, Injectable, UITextViewDelegate {
+    typealias Input = MastodonAccount
+    typealias Environment = MastodonUserToken
+
+    internal let environment: Environment
+    private var input: Input
+    
+    required init(with input: Input, environment: Environment) {
+        self.input = input
+        self.environment = environment
+        super.init(nibName: nil, bundle: nil)
+    }
     
     let profileTextView = UITextView() ※ { v in
         v.isScrollEnabled = false
@@ -37,38 +47,35 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
         v.backgroundColor = .clear
     }
     
-    init() {
-        super.init(style: .default, reuseIdentifier: nil)
-        addSubview(profileTextView)
-        profileTextView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(layoutMarginsGuide)
-            make.top.bottom.equalTo(layoutMarginsGuide)
-        }
-        profileTextView.delegate = self
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func load(user: MastodonAccount) {
-        self.user = user
+    override func viewDidLoad() {
+        view.addSubview(profileTextView)
+        profileTextView.snp.makeConstraints { make in
+            make.center.size.equalTo(view.readableContentGuide)
+        }
+        profileTextView.delegate = self
+        self.input(input)
+    }
+    
+    func input(_ input: Input) {
+        self.input = input
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
-        if let attrStr = user.bio.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").parseText2HTML(attributes: [
+        if let attrStr = input.bio.parseText2HTML(attributes: [
             .paragraphStyle: paragraph,
-            .font: UIFont.systemFont(ofSize: 14),
+            .font: UIFont.systemFont(ofSize: UIFont.systemFontSize),
             .foregroundColor: UIColor.label,
         ]) {
             self.profileTextView.attributedText = attrStr
         }
-        self.profileTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
-        self.profileTextView.textContainer.lineFragmentPadding = 0
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let string = (textView.attributedText.string as NSString).substring(with: characterRange)
-        if string.hasPrefix("@"), let userToken = self.userToken {
+        if string.hasPrefix("@") {
             let alert = UIAlertController(title: "ユーザー検索中", message: "\(URL.absoluteString)\n\nしばらくお待ちください", preferredStyle: .alert)
             var canceled = false
             alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { _ in
@@ -79,26 +86,26 @@ class UserProfileBioTableViewCell: UITableViewCell, UITextViewDelegate {
                 canceled = true
                 alert.dismiss(animated: true, completion: nil)
                 let safari = SFSafariViewController(url: URL)
-                self.viewController?.present(safari, animated: true, completion: nil)
+                self.present(safari, animated: true, completion: nil)
             }))
-            userToken.search(q: URL.absoluteString, resolve: true).then { result in
+            environment.search(q: URL.absoluteString, resolve: true).then { result in
                 if canceled { return }
                 alert.dismiss(animated: true, completion: nil)
                 if let account = result.accounts.first {
-                    let newVC = UserProfileTopViewController.instantiate(account, environment: userToken)
-                    self.viewController?.navigationController?.pushViewController(newVC, animated: true)
+                    let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
+                    self.navigationController?.pushViewController(newVC, animated: true)
                 } else {
                     let safari = SFSafariViewController(url: URL)
-                    self.viewController?.present(safari, animated: true, completion: nil)
+                    self.present(safari, animated: true, completion: nil)
                 }
             }.catch { error in
                 alert.dismiss(animated: true, completion: nil)
             }
-            self.viewController?.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             return false
         }
         let safari = SFSafariViewController(url: URL)
-        self.viewController?.present(safari, animated: true, completion: nil)
+        self.present(safari, animated: true, completion: nil)
         return false
     }
 }
