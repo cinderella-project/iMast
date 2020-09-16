@@ -32,7 +32,6 @@ internal enum Asset {
   internal static let poll = ImageAsset(name: "Poll")
   internal static let reply = ImageAsset(name: "Reply")
   internal static let star = ImageAsset(name: "Star")
-  internal static let streamingStatus = ImageAsset(name: "StreamingStatus")
   internal static let visibilityDirect = ImageAsset(name: "visibility-direct")
   internal static let visibilityPrivate = ImageAsset(name: "visibility-private")
   internal static let visibilityPublic = ImageAsset(name: "visibility-public")

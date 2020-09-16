@@ -141,8 +141,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         
         navigationItem.leftItemsSupplementBackButton = true
         if websocketEndpoint() != nil {
-            streamingNavigationItem = UIBarButtonItem(image: UIImage(named: "StreamingStatus")!, style: .plain, target: self, action: #selector(streamingStatusTapped))
+            streamingNavigationItem = UIBarButtonItem(image: UIImage(systemName: "bolt"), style: .plain, target: nil, action: nil)
             streamingNavigationItem?.tintColor = UIColor.gray
+            setStreamingMenu(connected: false)
             navigationItem.leftBarButtonItems = [
                 streamingNavigationItem!,
             ]
@@ -335,49 +336,6 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         }
     }
     
-    @objc func streamingStatusTapped() {
-        print("called")
-        let nowStreamConnected = (socket?.webSocket.isConnected ?? false)
-        let alertVC = UIAlertController(
-            title:  L10n.Localizable.streaming,
-            message:  L10n.Localizable.streamingStatus(
-                nowStreamConnected
-                ? L10n.Localizable.connected
-                : L10n.Localizable.notConnected
-            ),
-            preferredStyle: .actionSheet
-        )
-        alertVC.popoverPresentationController?.barButtonItem = self.streamingNavigationItem
-        if nowStreamConnected {
-            alertVC.addAction(UIAlertAction(title: L10n.Localizable.disconnect, style: .default, handler: { (action) in
-                self.socket?.disconnect()
-            }))
-        } else {
-            alertVC.addAction(UIAlertAction(title: L10n.Localizable.connect, style: .default, handler: { (action) in
-                self.websocketConnect(auto: false)
-            }))
-        }
-        alertVC.addAction(UIAlertAction(title: L10n.Localizable.refetch, style: .default, handler: { (action) in
-            let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
-            if isStreamingConnectingNow {
-                self.socket?.disconnect()
-            }
-            var snapshot = self.diffableDataSource.snapshot()
-            snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
-            self.updateDataSourceQueue.sync {
-                self.diffableDataSource.apply(snapshot, animatingDifferences: false)
-            }
-            self.isAlreadyAdded = [:]
-            self.loadTimeline().then {
-                if isStreamingConnectingNow {
-                    self.socket?.connect()
-                }
-            }
-        }))
-        alertVC.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -393,6 +351,41 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             self.diffableDataSource.apply(snapshot, animatingDifferences: true)
         }
         self.maxPostCount += posts.count
+    }
+    
+    func setStreamingMenu(connected: Bool) {
+        var items = [UIMenuElement]()
+        if connected {
+            items.append(UIAction(title: L10n.Localizable.disconnect) { [weak self] _ in
+                self?.socket?.disconnect()
+            })
+        } else {
+            items.append(UIAction(title: L10n.Localizable.connect) { [weak self] _ in
+                self?.websocketConnect(auto: false)
+            })
+        }
+        items.append(UIAction(title: L10n.Localizable.refetch, image: UIImage(systemName: "arrow.clockwise")) { [weak self] _ in
+            self?.refetchTimeline()
+        })
+        streamingNavigationItem?.menu = UIMenu(title: L10n.Localizable.streaming + "\n" + L10n.Localizable.streamingStatus(connected ? L10n.Localizable.connected : L10n.Localizable.notConnected), children: items)
+    }
+    
+    @objc func refetchTimeline() {
+        let isStreamingConnectingNow = self.socket?.webSocket.isConnected ?? false
+        if isStreamingConnectingNow {
+            self.socket?.disconnect()
+        }
+        var snapshot = self.diffableDataSource.snapshot()
+        snapshot.deleteItems(snapshot.itemIdentifiers(inSection: .posts))
+        self.updateDataSourceQueue.sync {
+            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
+        }
+        self.isAlreadyAdded = [:]
+        self.loadTimeline().then {
+            if isStreamingConnectingNow {
+                self.socket?.connect()
+            }
+        }
     }
 }
 
@@ -464,13 +457,17 @@ extension TimeLineTableViewController: UITableViewDelegate {
 extension TimeLineTableViewController: WebSocketWrapperDelegate {
     func webSocketDidConnect(_ wrapper: WebSocketWrapper) {
         DispatchQueue.mainSafeSync {
+            streamingNavigationItem?.image = UIImage(systemName: "bolt.fill")
             streamingNavigationItem?.tintColor = nil
+            setStreamingMenu(connected: true)
         }
     }
     
     func webSocketDidDisconnect(_ wrapper: WebSocketWrapper, error: Error?) {
         DispatchQueue.mainSafeSync {
+            streamingNavigationItem?.image = UIImage(systemName: "bolt.slash.fill")
             streamingNavigationItem?.tintColor = .systemRed
+            setStreamingMenu(connected: false)
         }
     }
     
