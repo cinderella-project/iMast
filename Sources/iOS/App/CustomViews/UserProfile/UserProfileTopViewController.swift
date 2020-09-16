@@ -65,7 +65,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(self.reload(sender:)), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(reload), for: .valueChanged)
         
         self.title = L10n.UserProfile.title
         self.navigationItem.largeTitleDisplayMode = .always
@@ -75,7 +75,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         TableViewCell<UserProfileBioViewController>.register(to: tableView)
     }
     
-    @objc func reload(sender: UIRefreshControl) {
+    @objc func reload() {
         MastodonEndpoint.GetAccount(target: input.id)
             .request(with: environment)
             .then { res in
@@ -192,13 +192,13 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         let callAPI = { [environment] in
             endpoint
                 .request(with: environment)
-                .always(in: .main) {
-                    self.reload(sender: self.refreshControl!)
+                .always(in: .main) { [weak self] in
+                    self?.reload()
                 }
         }
         if let confirm = confirm {
-            return .init(title: title, image: image, attributes: .destructive) { _ in
-                self.confirm(
+            return .init(title: title, image: image, attributes: .destructive) { [weak self] _ in
+                self?.confirm(
                     title: "確認", message: confirm,
                     okButtonMessage: "はい", style: .destructive,
                     cancelButtonMessage: L10n.Localizable.cancel
