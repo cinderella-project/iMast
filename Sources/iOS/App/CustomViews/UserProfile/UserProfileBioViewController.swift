@@ -82,21 +82,23 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
                 canceled = true
                 alert.dismiss(animated: true, completion: nil)
             }))
-            alert.addAction(UIAlertAction(title: "強制的にSafariで開く", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: "強制的にSafariで開く", style: .default, handler: { [weak self] _ in
                 canceled = true
                 alert.dismiss(animated: true, completion: nil)
                 let safari = SFSafariViewController(url: URL)
-                self.present(safari, animated: true, completion: nil)
+                self?.present(safari, animated: true, completion: nil)
             }))
-            environment.search(q: URL.absoluteString, resolve: true).then { result in
+            environment.search(q: URL.absoluteString, resolve: true).then { [weak self] result in
+                guard let strongSelf = self else { return }
                 if canceled { return }
-                alert.dismiss(animated: true, completion: nil)
-                if let account = result.accounts.first {
-                    let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
-                    self.navigationController?.pushViewController(newVC, animated: true)
-                } else {
-                    let safari = SFSafariViewController(url: URL)
-                    self.present(safari, animated: true, completion: nil)
+                alert.dismiss(animated: true) {
+                    if let account = result.accounts.first {
+                        let newVC = UserProfileTopViewController.instantiate(account, environment: strongSelf.environment)
+                        strongSelf.navigationController?.pushViewController(newVC, animated: true)
+                    } else {
+                        let safari = SFSafariViewController(url: URL)
+                        strongSelf.present(safari, animated: true, completion: nil)
+                    }
                 }
             }.catch { error in
                 alert.dismiss(animated: true, completion: nil)
