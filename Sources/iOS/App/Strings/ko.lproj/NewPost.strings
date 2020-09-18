@@ -9,27 +9,27 @@
 "placeholders.cwWarningText" = "CW설명문 (생략 가능)";
 "infoText.inReplyTo" = "%@ 님에게";
 "send" = "보내기";
-"reply" = "返信";
+"reply" = "답글";
 
-"selectVisibility.title" = "公開範囲";
-"selectVisibility.description" = "公開範囲を選択してください";
+"selectVisibility.title" = "공개범위";
+"selectVisibility.description" = "공개범위를 설정해주세요";
 
-"addImageFromButton" = "← から画像を追加";
+"addImageFromButton" = "← 에 이미지 추가";
 // Safariのファイル選択時の表記に合わせてほしい
-"media.picker.takePhoto" = "写真を撮る";
+"media.picker.takePhoto" = "사진촬영";
 // Safariのファイル選択時の表記に合わせてほしい
-"media.picker.photoLibrary" = "フォトライブラリ";
+"media.picker.photoLibrary" = "사진앨범";
 "media.preview" = "프리뷰";
 "media.delete" = "삭제";
 
-"keyCommand.open.title" = "新規投稿";
-"keyCommand.open.description" = "新規投稿画面を開く";
+"keyCommand.open.title" = "새 글";
+"keyCommand.open.description" = "새 글 열기";
 "keyCommand.send.title" = "글";
-"keyCommand.send.description" = "投稿を送信";
+"keyCommand.send.description" = "글 게시";
 
-"alerts.sending.title" = "投稿中";
+"alerts.sending.title" = "게시 중";
 "alerts.sending.steps.mediaUpload" = "미디어 업로드 중 (%1$d/%2$d)";
-"alerts.sending.steps.send" = "送信中";
+"alerts.sending.steps.send" = "전송중";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
-"errors.declineAppleMusicPermission" = "楽曲ライブラリにアクセスできません。設定アプリでiMastに「メディアとApple Music」の権限を付与してください。";
+"errors.declineAppleMusicPermission" = "음악 라이브러리에 접근 권한이 없습니다. 설정 앱에서 iMast 앱에 Apple Music 권한을 허용해주세요.";
