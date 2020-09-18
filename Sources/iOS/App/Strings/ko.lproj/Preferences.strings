@@ -6,15 +6,15 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"general.streamingAutoConnect.title" = "ストリーミング自動接続";
-"general.streamingAutoConnect.no" = "常にしない";
-"general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
-"general.streamingAutoConnect.always" = "常にする";
+"general.streamingAutoConnect.title" = "스트리밍 자동 접속";
+"general.streamingAutoConnect.no" = "항상안함";
+"general.streamingAutoConnect.wifi" = "WiFi 일때";
+"general.streamingAutoConnect.always" = "항상접속";
 "general.newAccountVia.title" = "新規連携時のvia";
 
-"post.title" = "投稿";
-"post.addMediaURL" = "投稿時にメディアURL追加";
-"post.autoResize.title" = "画像の自動リサイズ";
+"post.title" = "글";
+"post.addMediaURL" = "글 작성시 미디어 URL 추가";
+"post.autoResize.title" = "이미지 크기 자동조절";
 "post.autoResize.no" = "しない";
 "post.autoResize.pixel" = "%dpx以下にリサイズ";
 "post.useDefaultVisibility" = "デフォルト公開範囲を利用";
