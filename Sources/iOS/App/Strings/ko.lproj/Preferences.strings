@@ -15,22 +15,22 @@
 "post.title" = "글";
 "post.addMediaURL" = "글 작성시 미디어 URL 추가";
 "post.autoResize.title" = "이미지 크기 자동조절";
-"post.autoResize.no" = "しない";
-"post.autoResize.pixel" = "%dpx以下にリサイズ";
-"post.useDefaultVisibility" = "デフォルト公開範囲を利用";
+"post.autoResize.no" = "안함";
+"post.autoResize.pixel" = "%dpx 이하로 조절";
+"post.useDefaultVisibility" = "기본 공개범위";
 
-"nowPlaying.title" = "NowPlaying";
-"nowPlaying.format.title" = "フォーマット";
-"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
+"nowPlaying.title" = "지금 재생중";
+"nowPlaying.format.title" = "형식";
+"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple Music 이라면 URL 붙이기 (최대한)";
 
-"timelineAppearance.title" = "タイムラインの外観";
-"timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
-"timelineAppearance.contentSize" = "本文の文字の大きさ";
-"timelineAppearance.contentBold" = "本文を太字で表示";
-"timelineAppearance.iconSize" = "アイコンの大きさ";
-"timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
-"timelineAppearance.inReplyToAsEmoji" = "inReplyToの有無を絵文字で表示";
-"timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
+"timelineAppearance.title" = "타임라인 모습";
+"timelineAppearance.userNameSize" = "사용자 이름 크기";
+"timelineAppearance.contentSize" = "본문 글자 크기";
+"timelineAppearance.contentBold" = "본문 굵게 표시";
+"timelineAppearance.iconSize" = "아이콘 크기";
+"timelineAppearance.visibilityAsEmoji" = "공개범위를 아이콘으로 표시";
+"timelineAppearance.inReplyToAsEmoji" = "답글의 여부를 아이콘으로 표시";
+"timelineAppearance.thumbnailHeight" = "썸네일 높이";
 "timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
 "timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
 "timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
@@ -56,7 +56,7 @@
 "push.shared.deleteAccount.title" = "プッシュ通知の設定を削除";
 
 "push.support.title" = "サポート用";
-"push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
-"push.support.showUserID.alertTitle" = "ユーザーID";
-"push.support.showUserID.copyAction" = "コピー";
-"push.support.showUserID.failedToCheckUserID" = "ユーザーIDがわかりませんでした";
+"push.support.showUserID.title" = "푸시 알림 사용자 유저 표시";
+"push.support.showUserID.alertTitle" = "유저 아이디";
+"push.support.showUserID.copyAction" = "복사";
+"push.support.showUserID.failedToCheckUserID" = "유저 아이디를 분실했습니다";
