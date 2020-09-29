@@ -24,6 +24,7 @@
 import UIKit
 import Eureka
 import EurekaFormBuilder
+import EurekaTwolineSliderRow
 import SafariServices
 import SDWebImage
 import Alamofire
@@ -134,7 +135,7 @@ class SettingsViewController: FormViewController {
     
     func getTimelineAppearanceSection() -> Section {
         return Section(header: L10n.Preferences.TimelineAppearance.title) {
-            SliderRow { row in
+            TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.userNameSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
@@ -143,7 +144,7 @@ class SettingsViewController: FormViewController {
                 row.steps = 20
                 row.userDefaultsConnect(.timelineUsernameFontsize)
             }
-            SliderRow { row in
+            TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.contentSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 20
@@ -156,7 +157,7 @@ class SettingsViewController: FormViewController {
                 row.title = L10n.Preferences.TimelineAppearance.contentBold
                 row.userDefaultsConnect(.timelineTextBold)
             }
-            SliderRow { row in
+            TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.iconSize
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 72
@@ -173,7 +174,7 @@ class SettingsViewController: FormViewController {
                 row.title = L10n.Preferences.TimelineAppearance.inReplyToAsEmoji
                 row.userDefaultsConnect(.inReplyToEmoji)
             }
-            SliderRow { row in
+            TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.thumbnailHeight
                 row.cellSetup { cell, row in
                     cell.slider.maximumValue = 100
@@ -182,7 +183,7 @@ class SettingsViewController: FormViewController {
                 row.steps = 100/5
                 row.userDefaultsConnect(.thumbnailHeight)
             }
-            SliderRow { row in
+            TwolineSliderRow { row in
                 row.title = "ピン留め投稿の行数制限"
                 row.userDefaultsConnect(.pinnedTootLinesLimit)
                 row.steps = 10

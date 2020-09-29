@@ -22,6 +22,7 @@
 //
 
 import Eureka
+import EurekaTwolineSliderRow
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     func userDefaultsConnect<T: Equatable>(_ key: DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {
@@ -82,7 +83,7 @@ extension SwitchRow {
     }
 }
 
-extension SliderRow {
+extension TwolineSliderRow {
     func userDefaultsConnect(_ key: DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Float(Defaults[key])
         var oldValue = self.value
