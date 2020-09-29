@@ -161,10 +161,14 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         cwWarningLabel.text = post.spoilerText
         updateCWHiddenFlag()
         
-        textView.attributedText = post.status.parseText2HTMLNew(attributes: [
+        var attrs: [NSAttributedString.Key : Any] = [
             .font: UIFont.preferredFont(forTextStyle: .body),
             .foregroundColor: UIColor.label,
-        ])?.emojify(asyncLoadProgressHandler: { [weak textView] in
+        ]
+        if Defaults[.usePostLanguageInfo], let lang = post.language {
+            attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
+        }
+        textView.attributedText = post.status.parseText2HTMLNew(attributes: attrs)?.emojify(asyncLoadProgressHandler: { [weak textView] in
             textView?.setNeedsDisplay()
         }, emojifyProtocol: input)
         
