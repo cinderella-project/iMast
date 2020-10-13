@@ -65,13 +65,14 @@ class EditListInfoViewController: FormViewController, Instantiatable, Interactab
         
         // Do any additional setup after loading the view.
 
-        title = "編集"
+        title = "リストを編集"
         isSaving = false
 
         form.append {
             Section {
                 TextRow("title") { row in
                     row.title = "名前"
+                    row.value = input.title
                 }
             }
             Section {
@@ -105,7 +106,7 @@ class EditListInfoViewController: FormViewController, Instantiatable, Interactab
     func onDeleteButtonTapped(cell: BaseCell) {
         let alert = UIAlertController(
             title: "確認",
-            message: "リスト「\(self.input)」を削除してもよろしいですか?",
+            message: "リスト「\(self.input.title)」を削除してもよろしいですか?",
             preferredStyle: .actionSheet
         )
         alert.popoverPresentationController?.sourceView = cell

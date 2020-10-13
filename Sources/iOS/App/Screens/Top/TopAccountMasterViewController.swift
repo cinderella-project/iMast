@@ -192,4 +192,28 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return nil
+        }
+        switch item {
+        case .list(let list):
+            print(list)
+            return .init(identifier: nil, previewProvider: nil) { (elements) -> UIMenu? in
+                print(elements)
+                return .init(children: [
+                    UIAction(title: "リストを編集", image: UIImage(systemName: "pencil")) { [weak self] _ in
+                        guard let strongSelf = self else { return }
+                        strongSelf.present(
+                            ModalNavigationViewController(rootViewController: EditListInfoViewController.instantiate(list, environment: strongSelf.environment)),
+                            animated: true, completion: nil
+                        )
+                    }
+                ])
+            }
+        default:
+            return nil
+        }
+    }
 }
