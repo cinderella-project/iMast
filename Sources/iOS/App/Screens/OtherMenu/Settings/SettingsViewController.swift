@@ -70,6 +70,10 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.followRelationshipsOld)
             }
             ButtonRow { row in
+                row.title = L10n.Preferences.General.AppIcons.title
+                row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeAppIconViewController() }), onDismiss: nil)
+            }
+            ButtonRow { row in
                 row.title = L10n.Preferences.Push.title
                 row.onCellSelection { cell, row in
                     PushSettingsTableViewController.openRequest(vc: self)

@@ -11,6 +11,14 @@
 "general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
 "general.streamingAutoConnect.always" = "常にする";
 "general.newAccountVia.title" = "新規連携時のvia";
+"general.appIcons.title" = "App アイコン";
+"general.appIcons.default.title" = "ライト (デフォルト)";
+"general.appIcons.default.description" = "デフォルトのアイコンです。";
+"general.appIcons.old.title" = "ライト (旧)";
+"general.appIcons.old.description" = "iMast 5.2 までのアイコンです。どこが違うんでしょうね？";
+"general.appIcons.trueDark.title" = "ダーク";
+"general.appIcons.trueDark.description" = "ダークモードにぴったり？なアイコンです。";
+
 
 "post.title" = "投稿";
 "post.addMediaURL" = "投稿時にメディアURL追加";

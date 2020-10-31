@@ -189,6 +189,7 @@
 		CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB97029240012420028AD2A /* AboutThisAppViewController.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
+		CEBD6446254CFB7800A12015 /* ChangeAppIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBD6445254CFB7800A12015 /* ChangeAppIconViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
 		CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */; };
@@ -706,6 +707,7 @@
 		CEB97029240012420028AD2A /* AboutThisAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisAppViewController.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
+		CEBD6445254CFB7800A12015 /* ChangeAppIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
 		CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactionsViewController.swift; sourceTree = "<group>"; };
@@ -1290,6 +1292,7 @@
 			children = (
 				CE4D387F23BD03E100543E72 /* PushSettings */,
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
+				CEBD6445254CFB7800A12015 /* ChangeAppIconViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2707,6 +2710,7 @@
 				CE43BEBD23777BBD00133C86 /* DefaultsKeys.swift in Sources */,
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
 				CEC617FB24C5279200E2FF97 /* assets.swift in Sources */,
+				CEBD6446254CFB7800A12015 /* ChangeAppIconViewController.swift in Sources */,
 				CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */,
 				CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */,
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,

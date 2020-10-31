@@ -296,6 +296,28 @@ internal enum L10n {
   }
   internal enum Preferences {
     internal enum General {
+      internal enum AppIcons {
+        /// App アイコン
+        internal static let title = L10n.tr("Preferences", "general.appIcons.title")
+        internal enum Default {
+          /// デフォルトのアイコンです。
+          internal static let description = L10n.tr("Preferences", "general.appIcons.default.description")
+          /// ライト (デフォルト)
+          internal static let title = L10n.tr("Preferences", "general.appIcons.default.title")
+        }
+        internal enum Old {
+          /// iMast 5.2 までのアイコンです。どこが違うんでしょうね？
+          internal static let description = L10n.tr("Preferences", "general.appIcons.old.description")
+          /// ライト (旧)
+          internal static let title = L10n.tr("Preferences", "general.appIcons.old.title")
+        }
+        internal enum TrueDark {
+          /// ダークモードにぴったり？なアイコンです。
+          internal static let description = L10n.tr("Preferences", "general.appIcons.trueDark.description")
+          /// ダーク
+          internal static let title = L10n.tr("Preferences", "general.appIcons.trueDark.title")
+        }
+      }
       internal enum NewAccountVia {
         /// 新規連携時のvia
         internal static let title = L10n.tr("Preferences", "general.newAccountVia.title")
