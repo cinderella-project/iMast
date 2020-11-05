@@ -201,7 +201,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             let viewController = LoopableAVPlayerViewController()
             viewController.player = player
             player.play()
-            viewController.isLoop = media.type == .gifv
+            viewController.loopEnabled = media.type == .gifv
             self.present(viewController, animated: true, completion: nil)
             return
         }

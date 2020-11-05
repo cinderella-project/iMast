@@ -24,49 +24,24 @@
 import AVKit
 
 class LoopableAVPlayerViewController: AVPlayerViewController {
-    var observer: NSObjectProtocol?
-    var isLoop: Bool = false {
-        didSet {
-            if self.isViewLoaded {
-                if isLoop {
-                    self.loopEnable()
-                } else {
-                    self.loopDisable()
-                }
-            }
-        }
-    }
+    var loopEnabled: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.isLoop {
-            self.loopEnable()
+        if let playerItem = player?.currentItem {
+            NotificationCenter.default.addObserver(self, selector: #selector(loop), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.loopDisable()
     }
     
-    func loopEnable() {
-        guard let playerItem = self.player?.currentItem else {
-            print("item not found")
+    @objc func loop() {
+        guard loopEnabled else {
             return
         }
-        if self.observer != nil {
-            print("already enabled...")
-        }
-        self.observer = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { notification in
-            self.player?.seek(to: .zero)
-            self.player?.play()
-        }
-    }
-    
-    func loopDisable() {
-        if let observer = self.observer {
-            NotificationCenter.default.removeObserver(observer)
-            self.observer = nil
-        }
+        player?.seek(to: .zero)
+        player?.play()
     }
 }
