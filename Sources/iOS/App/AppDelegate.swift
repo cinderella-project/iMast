@@ -218,7 +218,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         
-        if receivedUserToken.id != currentUserToken.id {
+        if receivedUserToken.id != currentUserToken.id && type(of: viewController!) != TopViewController.self {
             receivedUserToken.use()
             let vc = MainTabBarController.instantiate(environment: receivedUserToken)
             viewController = vc
