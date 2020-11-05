@@ -88,7 +88,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     guard let newVC = NotificationTableViewController.getNotifyVC(notification, environment: myAccount) else {
                         break notificationModal
                     }
-                    window.rootViewController?.present(newVC, animated: true, completion: nil)
+                    window.rootViewController?.present(ModalNavigationViewController(rootViewController: newVC), animated: true, completion: nil)
                 }
             }
         } else {
