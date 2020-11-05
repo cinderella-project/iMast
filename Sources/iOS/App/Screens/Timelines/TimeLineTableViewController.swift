@@ -476,7 +476,13 @@ extension TimeLineTableViewController: WebSocketWrapperDelegate {
         switch object["event"].stringValue {
         case "update":
             object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
-            addNewPosts(posts: [try! MastodonPost.decode(json: object["payload"])])
+            do {
+                addNewPosts(posts: [try MastodonPost.decode(json: object["payload"])])
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    reportError(error: error)
+                }
+            }
         case "delete":
             let deletedTootID = object["payload"].stringValue
             var snapshot = diffableDataSource.snapshot()
