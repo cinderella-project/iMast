@@ -170,7 +170,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         }
         textView.attributedText = post.status.parseText2HTMLNew(attributes: attrs)?.emojify(asyncLoadProgressHandler: { [weak textView] in
             textView?.setNeedsDisplay()
-        }, emojifyProtocol: input)
+        }, emojifyProtocol: post)
         
         attachedMediaListViewController.input(post)
     }
