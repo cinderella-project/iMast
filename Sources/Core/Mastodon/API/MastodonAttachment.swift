@@ -37,6 +37,15 @@ public struct MastodonAttachment: Codable {
         case image
         case audio
         case unknown
+        
+        public var shouldUseMediaPlayer: Bool {
+            switch self {
+            case .video, .gifv, .audio:
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     enum CodingKeys: String, CodingKey {
