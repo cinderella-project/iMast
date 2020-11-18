@@ -39,7 +39,6 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
     
     enum Item: Hashable {
         case post(id: MastodonID)
-        case readMore
     }
     
     private var paging = MastodonPaging()
@@ -53,14 +52,12 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
                 input: (id: id, pinned: false),
                 parentViewController: self
             )
-        case .readMore:
-            return self.readmoreCell
         }
     } ※ { d in
         d.defaultRowAnimation = .top
     }
     
-    private var readmoreCell = ReadmoreTableViewCell()
+    private var readmoreView = ReadmoreView()
     
     required init(with input: Input, environment: MastodonUserToken) {
         self.input = input
@@ -82,7 +79,9 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         
         tableView.dataSource = dataSource
         update()
-        readmoreCell.state = .loading
+        readmoreView.state = .loading
+        readmoreView.target = self
+        readmoreView.action = #selector(readmore)
         refresh()
     }
     
@@ -101,16 +100,16 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
                 self.paging.override(with: res.paging.prev)
                 self.update()
             }.catch { e in
-                self.readmoreCell.lastError = e
-                self.readmoreCell.state = .withError
+                self.readmoreView.lastError = e
+                self.readmoreView.state = .withError
             }.always {
                 self.refreshControl?.endRefreshing()
             }
     }
     
-    func readmore() {
+    @objc func readmore() {
         guard let next = paging.next else { return }
-        readmoreCell.state = .loading
+        readmoreView.state = .loading
         var request = input
         request.paging = next
         request.request(with: environment).then { res in
@@ -119,8 +118,8 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
             self.paging.next = res.paging.next
             self.update()
         }.catch { e in
-            self.readmoreCell.lastError = e
-            self.readmoreCell.state = .withError
+            self.readmoreView.lastError = e
+            self.readmoreView.state = .withError
         }
     }
     
@@ -128,8 +127,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         var snapshot = dataSource.plainSnapshot()
         snapshot.appendSections([.onlyOne])
         snapshot.appendItems(postIds.map { .post(id: $0) })
-        snapshot.appendItems([.readMore])
-        self.readmoreCell.state = self.paging.next == nil ? .allLoaded : .moreLoadable
+        readmoreView.state = self.paging.next == nil ? .allLoaded : .moreLoadable
         dataSource.apply(snapshot)
     }
     
@@ -140,10 +138,6 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
             guard let post = environment.memoryStore.post.container[id] else { return }
             let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
-        case .readMore:
-            readmoreCell.readMoreTapped(viewController: self) {
-                readmore()
-            }
         }
     }
 }

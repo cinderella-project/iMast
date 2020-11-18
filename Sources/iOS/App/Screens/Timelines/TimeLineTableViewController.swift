@@ -35,12 +35,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     enum TableSection: String, Hashable {
         case pinned
         case posts
-        case readMore
     }
     
     enum TableBody: Hashable {
         case post(id: MastodonID, pinned: Bool)
-        case readMore
     }
     
     let environment: Environment
@@ -56,7 +54,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     var streamingNavigationItem: UIBarButtonItem?
     var postsQueue: [MastodonPost] = []
     var isAlreadyAdded: [String: Bool] = [:]
-    var readmoreCell = ReadmoreTableViewCell()
+    let readmoreView = ReadmoreView()
     var maxPostCount = 100
     var socket: WebSocketWrapper?
     var timelineType: MastodonTimelineType?
@@ -109,24 +107,26 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             }
             switch target {
             case .post(let id, let pinned):
-                return TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(
+                let cell = TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(
                     from: tableView,
                     for: indexPath,
                     input: (id: id, pinned: pinned),
                     parentViewController: strongSelf
                 )
-            case .readMore:
-                return strongSelf.readmoreCell
+                cell.separatorInset = .zero
+                return cell
             }
         }
         diffableDataSource.canEditRowAt = true
         tableView.dataSource = diffableDataSource
+        if isReadmoreEnabled {
+            readmoreView.target = self
+            readmoreView.action = #selector(readmoreTapped)
+            readmoreView.setTableView(tableView)
+        }
         
         _ = diffableDataSource.snapshot() ※ { snapshot in
-            snapshot.appendSections([.pinned, .posts, .readMore])
-            if isReadmoreEnabled {
-                snapshot.appendItems([.readMore], toSection: .readMore)
-            }
+            snapshot.appendSections([.pinned, .posts])
             updateDataSourceQueue.sync {
                 diffableDataSource.apply(snapshot, animatingDifferences: false)
             }
@@ -198,20 +198,25 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        readmoreView.layoutIfNeeded()
+    }
+    
     func loadTimeline() -> Promise<()> {
         guard let timelineType = self.timelineType else {
             print("loadTimelineを実装するか、self.timelineTypeを定義してください。")
             return Promise.init(resolved: Void())
         }
         
-        self.readmoreCell.state = .loading
+        self.readmoreView.state = .loading
         return self.environment.timeline(timelineType).then { (posts) -> Void in
-            self.readmoreCell.state = .moreLoadable
+            self.readmoreView.state = .moreLoadable
             self.addNewPosts(posts: posts)
             return Void()
         }.catch { e in
-            self.readmoreCell.state = .withError
-            self.readmoreCell.lastError = e
+            self.readmoreView.state = .withError
+            self.readmoreView.lastError = e
         }
     }
     
@@ -239,10 +244,15 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         }
     }
     
+    @objc func readmoreTapped() {
+        readmoreView.state = .loading
+        readMoreTimeline()
+    }
+    
     func readMoreTimeline() {
         guard let timelineType = self.timelineType else {
             print("readMoreTimelineを実装してください!!!!!!")
-            readmoreCell.state = .allLoaded
+            readmoreView.state = .allLoaded
             return
         }
         let snapshot = self.diffableDataSource.snapshot()
@@ -260,10 +270,10 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
             maxId: pointer
         ).then { posts in
             self.appendNewPosts(posts: posts)
-            self.readmoreCell.state = posts.count == 0 ? .allLoaded : .moreLoadable
+            self.readmoreView.state = posts.count == 0 ? .allLoaded : .moreLoadable
         }.catch { e in
-            self.readmoreCell.state = .withError
-            self.readmoreCell.lastError = e
+            self.readmoreView.state = .withError
+            self.readmoreView.lastError = e
         }
     }
     
@@ -441,11 +451,6 @@ extension TimeLineTableViewController: UITableViewDelegate {
             guard let post = environment.memoryStore.post.container[id] else { break }
             let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             self.navigationController?.pushViewController(postDetailVC, animated: true)
-        case .readMore:
-            self.readmoreCell.readMoreTapped(viewController: self) {
-                self.readmoreCell.state = .loading
-                self.readMoreTimeline()
-            }
         }
     }
     

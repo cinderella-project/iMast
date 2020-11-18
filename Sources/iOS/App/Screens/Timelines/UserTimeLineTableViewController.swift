@@ -35,7 +35,7 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
     var user: MastodonAccount!
     
     override func loadTimeline() -> Promise<Void> {
-        self.readmoreCell.state = .loading
+        self.readmoreView.state = .loading
         return environment.getIntVersion().then { version -> Promise<[[MastodonPost]]> in
             let pinnedPostPromise = version >= MastodonVersionStringToInt("1.6.0rc1")
                 ? self.environment.timeline(.user(self.user, pinned: true))
@@ -45,7 +45,7 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
                 self.environment.timeline(.user(self.user)),
             ])
         }.then { res -> Void in
-            self.readmoreCell.state = .moreLoadable
+            self.readmoreView.state = .moreLoadable
             var snapshot = self.diffableDataSource.snapshot()
             snapshot.appendItems(res[0].map {
                 self.environment.memoryStore.post.change(obj: $0)
@@ -55,8 +55,8 @@ class UserTimeLineTableViewController: TimeLineTableViewController {
             self.addNewPosts(posts: res[1])
             return Void()
         }.catch { e in
-            self.readmoreCell.state = .withError
-            self.readmoreCell.lastError = e
+            self.readmoreView.state = .withError
+            self.readmoreView.lastError = e
         }
     }
 }

@@ -45,7 +45,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     internal let environment: Environment
     
     var notifications: [MastodonNotification] = []
-    let readmoreCell = ReadmoreTableViewCell()
+    let readmoreView = ReadmoreView()
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
@@ -73,14 +73,17 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         
-        self.readmoreCell.state = .loading
+        readmoreView.state = .loading
+        readmoreView.target = self
+        readmoreView.action = #selector(readMore)
+        readmoreView.setTableView(tableView)
         request.request(with: environment).then { notifications in
-            self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
+            self.readmoreView.state = notifications.count > 0 ? .moreLoadable : .allLoaded
             self.notifications = notifications
             self.tableView.reloadData()
         }.catch { error in
-            self.readmoreCell.lastError = error
-            self.readmoreCell.state = .withError
+            self.readmoreView.lastError = error
+            self.readmoreView.state = .withError
         }
         TableViewCell<NotificationCellViewController>.register(to: tableView)
     }
@@ -93,15 +96,11 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return notifications.count
-        } else {
-            return 1
-        }
+        return notifications.count
     }
     
     @objc func refreshNotification() {
@@ -123,28 +122,17 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            return TableViewCell<NotificationCellViewController>.dequeued(
-                from: tableView,
-                for: indexPath,
-                input: notifications[indexPath.row],
-                parentViewController: self
-            )
-        } else {
-            return self.readmoreCell
-        }
+        return TableViewCell<NotificationCellViewController>.dequeued(
+            from: tableView,
+            for: indexPath,
+            input: notifications[indexPath.row],
+            parentViewController: self
+        )
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let notification = self.notifications[indexPath.row]
-            self.openNotify(notification)
-        } else {
-            // read more
-            self.readmoreCell.readMoreTapped(viewController: self) {
-                self.readMore()
-            }
-        }
+        let notification = self.notifications[indexPath.row]
+        self.openNotify(notification)
     }
     
     var oldFetchedTime = Date.timeIntervalSinceReferenceDate
@@ -189,12 +177,12 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         }
     }
     
-    func readMore() {
-        guard self.readmoreCell.state == .moreLoadable else {
+    @objc func readMore() {
+        guard self.readmoreView.state == .moreLoadable else {
             return
         }
         
-        self.readmoreCell.state = .loading
+        self.readmoreView.state = .loading
         var req = request
         req.limit = 40
         if let lastId = self.notifications.last?.id {
@@ -206,10 +194,10 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: (oldCount..<oldCount + notifications.count).map { IndexPath(row: $0, section: 0)}, with: .automatic)
             self.tableView.endUpdates()
-            self.readmoreCell.state = notifications.count > 0 ? .moreLoadable : .allLoaded
+            self.readmoreView.state = notifications.count > 0 ? .moreLoadable : .allLoaded
         }.catch { error in
-            self.readmoreCell.lastError = error
-            self.readmoreCell.state = .withError
+            self.readmoreView.lastError = error
+            self.readmoreView.state = .withError
         }
     }
     
@@ -241,13 +229,5 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         } else { // ユーザーつき
             return UserProfileTopViewController.instantiate(account, environment: environment)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }

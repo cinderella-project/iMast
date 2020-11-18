@@ -37,13 +37,13 @@ class BunmyakuTableViewController: TimeLineTableViewController {
     }
     
     override func loadTimeline() -> Promise<()> {
-        self.readmoreCell.state = .loading
+        self.readmoreView.state = .loading
         return environment.context(post: self.basePost).then { res in
-            self.readmoreCell.state = .moreLoadable
+            self.readmoreView.state = .moreLoadable
             self.addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
         }.catch { e in
-            self.readmoreCell.state = .withError
-            self.readmoreCell.lastError = e
+            self.readmoreView.state = .withError
+            self.readmoreView.lastError = e
         }
     }
 }

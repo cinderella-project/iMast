@@ -32,12 +32,12 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     private var input: Input
     internal let environment: Environment
 
-    let readmoreCell = ReadmoreTableViewCell()
+    let readmoreView = ReadmoreView()
     
     var users: [MastodonAccount] = []
     var paging: MastodonPagingOption? {
         didSet {
-            readmoreCell.state = paging == nil ? .allLoaded : .moreLoadable
+            readmoreView.state = paging == nil ? .allLoaded : .moreLoadable
         }
     }
     
@@ -64,7 +64,7 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     }
     
     func load() {
-        self.readmoreCell.state = .loading
+        self.readmoreView.state = .loading
         MastodonEndpoint.GetFollows(
             target: input.userId,
             type: input.type,
@@ -74,7 +74,7 @@ class FollowTableViewController: UITableViewController, Instantiatable {
             .then { res in
                 self.users.append(contentsOf: res.content)
                 self.paging = res.paging.next
-                self.readmoreCell.state = res.paging.next == nil ? .allLoaded : .moreLoadable
+                self.readmoreView.state = res.paging.next == nil ? .allLoaded : .moreLoadable
                 self.tableView.reloadData()
             }
     }
@@ -87,28 +87,18 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return section == 0 ? self.users.count : 1
+        return users.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        if indexPath.section == 0 {
-            let user = self.users[indexPath.row]
-            let cell = MastodonUserCell.getInstance()
-            cell.load(user: user)
-            return cell
-        } else {
-            return self.readmoreCell
-        }
-        
-        // Configure the cell...
-
+        let user = self.users[indexPath.row]
+        let cell = MastodonUserCell.getInstance()
+        cell.load(user: user)
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -116,7 +106,7 @@ class FollowTableViewController: UITableViewController, Instantiatable {
         if indexPath.section == 0 {
             let newVC = UserProfileTopViewController.instantiate(self.users[indexPath.row], environment: self.environment)
             self.navigationController?.pushViewController(newVC, animated: true)
-        } else if self.readmoreCell.state == .moreLoadable {
+        } else if readmoreView.state == .moreLoadable {
             self.load()
         }
         print(indexPath)
