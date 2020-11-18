@@ -113,12 +113,12 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
                     input: (id: id, pinned: pinned),
                     parentViewController: strongSelf
                 )
-                cell.separatorInset = .zero
                 return cell
             }
         }
         diffableDataSource.canEditRowAt = true
         tableView.dataSource = diffableDataSource
+        tableView.separatorInset = .zero
         if isReadmoreEnabled {
             readmoreView.target = self
             readmoreView.action = #selector(readmoreTapped)

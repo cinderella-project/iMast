@@ -78,10 +78,12 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.register(to: tableView)
         
         tableView.dataSource = dataSource
+        tableView.separatorInset = .zero
         update()
         readmoreView.state = .loading
         readmoreView.target = self
         readmoreView.action = #selector(readmore)
+        readmoreView.setTableView(tableView)
         refresh()
     }
     
@@ -102,7 +104,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
             }.catch { e in
                 self.readmoreView.lastError = e
                 self.readmoreView.state = .withError
-            }.always {
+            }.always(in: .main) {
                 self.refreshControl?.endRefreshing()
             }
     }

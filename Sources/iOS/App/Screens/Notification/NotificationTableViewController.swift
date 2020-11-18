@@ -72,6 +72,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         // init refreshControl
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
+        tableView.separatorInset = .zero
         
         readmoreView.state = .loading
         readmoreView.target = self
