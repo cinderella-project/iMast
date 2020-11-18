@@ -6,57 +6,57 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"general.streamingAutoConnect.title" = "ストリーミング自動接続";
-"general.streamingAutoConnect.no" = "常にしない";
-"general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
-"general.streamingAutoConnect.always" = "常にする";
+"general.streamingAutoConnect.title" = "스트리밍 자동 접속";
+"general.streamingAutoConnect.no" = "항상안함";
+"general.streamingAutoConnect.wifi" = "WiFi 일때";
+"general.streamingAutoConnect.always" = "항상접속";
 "general.newAccountVia.title" = "新規連携時のvia";
 
-"post.title" = "投稿";
-"post.addMediaURL" = "投稿時にメディアURL追加";
-"post.autoResize.title" = "画像の自動リサイズ";
-"post.autoResize.no" = "しない";
-"post.autoResize.pixel" = "%dpx以下にリサイズ";
-"post.useDefaultVisibility" = "デフォルト公開範囲を利用";
+"post.title" = "글";
+"post.addMediaURL" = "글 작성시 미디어 URL 추가";
+"post.autoResize.title" = "이미지 크기 자동조절";
+"post.autoResize.no" = "안함";
+"post.autoResize.pixel" = "%dpx 이하로 조절";
+"post.useDefaultVisibility" = "기본 공개범위";
 
-"nowPlaying.title" = "NowPlaying";
-"nowPlaying.format.title" = "フォーマット";
-"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
+"nowPlaying.title" = "지금 재생중";
+"nowPlaying.format.title" = "형식";
+"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple Music 이라면 URL 붙이기 (최대한)";
 
-"timelineAppearance.title" = "タイムラインの外観";
-"timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
-"timelineAppearance.contentSize" = "本文の文字の大きさ";
-"timelineAppearance.contentBold" = "本文を太字で表示";
-"timelineAppearance.iconSize" = "アイコンの大きさ";
-"timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
-"timelineAppearance.inReplyToAsEmoji" = "inReplyToの有無を絵文字で表示";
-"timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
+"timelineAppearance.title" = "타임라인 모습";
+"timelineAppearance.userNameSize" = "사용자 이름 크기";
+"timelineAppearance.contentSize" = "본문 글자 크기";
+"timelineAppearance.contentBold" = "본문 굵게 표시";
+"timelineAppearance.iconSize" = "아이콘 크기";
+"timelineAppearance.visibilityAsEmoji" = "공개범위를 아이콘으로 표시";
+"timelineAppearance.inReplyToAsEmoji" = "답글의 여부를 아이콘으로 표시";
+"timelineAppearance.thumbnailHeight" = "썸네일 높이";
 "timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
 "timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
 "timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
 
-"timeline.title" = "タイムライン";
-"timeline.openWebMInVLC" = "WebMをVLCで開く";
-"timeline.useSystemVideoPlayer" = "OSの動画プレーヤーを使う";
+"timeline.title" = "타임라인";
+"timeline.openWebMInVLC" = "WebM을 VLC에서 열기";
+"timeline.useSystemVideoPlayer" = "OS의 동영상 플레이어 사용";
 "timeline.useUniversalLinks" = "Universal Links を優先";
 
-"push.link" = "プッシュ通知";
-"push.title" = "プッシュ通知設定";
-"push.accounts.title" = "アカウント一覧";
-"push.addAccount.title" = "アカウントを追加";
-"push.addAccount.alertTitle" = "アカウント追加";
-"push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
-"push.shared.title" = "共通設定";
+"push.link" = "푸시알림";
+"push.title" = "푸시알림설정";
+"push.accounts.title" = "계정목록";
+"push.addAccount.title" = "계정을 추가";
+"push.addAccount.alertTitle" = "계정추가";
+"push.addAccount.alertText" = "인스턴스의 도메인을 입력해주세요.\n(입력할때 https:// 등을 제외해주세요)";
+"push.shared.title" = "공통설정";
 "push.shared.displayErrorIfOccured" = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する";
 "push.shared.groupRules.title" = "グループ化のルール設定 (β)";
 "push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
 "push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
 "push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
-"push.shared.customSounds.title" = "通知音カスタム (α)";
-"push.shared.deleteAccount.title" = "プッシュ通知の設定を削除";
+"push.shared.customSounds.title" = "알림음 커스텀";
+"push.shared.deleteAccount.title" = "푸시 알림 설정 삭제";
 
-"push.support.title" = "サポート用";
-"push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
-"push.support.showUserID.alertTitle" = "ユーザーID";
-"push.support.showUserID.copyAction" = "コピー";
-"push.support.showUserID.failedToCheckUserID" = "ユーザーIDがわかりませんでした";
+"push.support.title" = "지원용";
+"push.support.showUserID.title" = "푸시 알림 사용자 유저 표시";
+"push.support.showUserID.alertTitle" = "유저 아이디";
+"push.support.showUserID.copyAction" = "복사";
+"push.support.showUserID.failedToCheckUserID" = "유저 아이디를 분실했습니다";
