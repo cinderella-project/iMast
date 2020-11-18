@@ -70,6 +70,7 @@ class ReadmoreView: UIView {
             make.height.equalTo(44).priority(.low)
         }
         button.setTitle("ここまで", for: .disabled)
+        button.setTitleColor(.systemGray, for: .disabled)
         button.setTitle("もっと", for: .normal)
         button.setTitleColor(tintColor, for: .normal)
         button.addTarget(self, action: #selector(readMoreTapped), for: .touchUpInside)
@@ -101,7 +102,7 @@ class ReadmoreView: UIView {
             state = .moreLoadable
         } else {
             if let action = action {
-                target?.perform(action)
+                _ = target?.perform(action)
             }
         }
     }
