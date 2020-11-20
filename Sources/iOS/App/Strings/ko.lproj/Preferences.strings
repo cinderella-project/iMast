@@ -10,7 +10,7 @@
 "general.streamingAutoConnect.no" = "항상안함";
 "general.streamingAutoConnect.wifi" = "WiFi 일때";
 "general.streamingAutoConnect.always" = "항상접속";
-"general.newAccountVia.title" = "新規連携時のvia";
+"general.newAccountVia.title" = "신규연계시 via";
 
 "post.title" = "글";
 "post.addMediaURL" = "글 작성시 미디어 URL 추가";
