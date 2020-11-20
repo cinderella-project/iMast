@@ -31,9 +31,9 @@
 "timelineAppearance.visibilityAsEmoji" = "공개범위를 아이콘으로 표시";
 "timelineAppearance.inReplyToAsEmoji" = "답글의 여부를 아이콘으로 표시";
 "timelineAppearance.thumbnailHeight" = "썸네일 높이";
-"timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
-"timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
-"timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
+"timelineAppearance.nurunuru" = "미끈미끈한 모드(재시작 후 반영)";
+"timelineAppearance.bigNewPostButton.show" = "큰 툿 작성 버튼을 표시하기";
+"timelineAppearance.bigNewPostButton.location.title" = "큰 툿 작성 버튼 위치";
 
 "timeline.title" = "타임라인";
 "timeline.openWebMInVLC" = "WebM을 VLC에서 열기";
@@ -47,7 +47,7 @@
 "push.addAccount.alertTitle" = "계정추가";
 "push.addAccount.alertText" = "인스턴스의 도메인을 입력해주세요.\n(입력할때 https:// 등을 제외해주세요)";
 "push.shared.title" = "공통설정";
-"push.shared.displayErrorIfOccured" = "通知受信時のクライアント側の処理に失敗した場合に、本来の通知内容の代わりにエラーを通知する";
+"push.shared.displayErrorIfOccured" = "푸시메시지 수신시 클라이언트에서 처리가 실패했을 경우, 원래 발송 될 푸시 원문 대신 오류를 출력합니다.";
 "push.shared.groupRules.title" = "グループ化のルール設定 (β)";
 "push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
 "push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
