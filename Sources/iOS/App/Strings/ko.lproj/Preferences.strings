@@ -38,7 +38,7 @@
 "timeline.title" = "타임라인";
 "timeline.openWebMInVLC" = "WebM을 VLC에서 열기";
 "timeline.useSystemVideoPlayer" = "OS의 동영상 플레이어 사용";
-"timeline.useUniversalLinks" = "Universal Links を優先";
+"timeline.useUniversalLinks" = "Universal Links를 우선하기";
 
 "push.link" = "푸시알림";
 "push.title" = "푸시알림설정";
