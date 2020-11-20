@@ -48,11 +48,11 @@
 "push.addAccount.alertText" = "인스턴스의 도메인을 입력해주세요.\n(입력할때 https:// 등을 제외해주세요)";
 "push.shared.title" = "공통설정";
 "push.shared.displayErrorIfOccured" = "푸시메시지 수신시 클라이언트에서 처리가 실패했을 경우, 원래 발송 될 푸시 원문 대신 오류를 출력합니다.";
-"push.shared.groupRules.title" = "グループ化のルール設定 (β)";
-"push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
-"push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
-"push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
-"push.shared.customSounds.title" = "알림음 커스텀";
+"push.shared.groupRules.title" = "그룹화 규칙 설정 (β)";
+"push.shared.groupRules.byAccount" = "계정 별로 그룹 분리하기";
+"push.shared.groupRules.byType.title" = "푸시 유형 별로 그룹 나누기";
+"push.shared.groupRules.byType.description" = "ON으로 설정한 타입은 모두 별도의 그룹이 됩니다.";
+"push.shared.customSounds.title" = "알림음 커스텀 (α)";
 "push.shared.deleteAccount.title" = "푸시 알림 설정 삭제";
 
 "push.support.title" = "지원용";
