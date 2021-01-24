@@ -81,6 +81,7 @@ extension DefaultsKeys {
     static let newHtmlParser = DefaultsKey<Bool>("new_html_parser", default: true)
     static let notifyTabInfiniteScroll = DefaultsKey<Bool>("notify_tab_infinite_scroll", default: false)
     static let newFirstScreen = DefaultsKey<Bool>("new_first_screen", default: false)
+    static let skipUniversalLinksCussionPage = DefaultsKey<Bool>("skip_universal_links_cussion_page", default: true)
     
     static let useCustomBoostSound = DefaultsKey<Bool>("use_custom_boost_sound", default: false)
     static let useCustomFavouriteSound = DefaultsKey<Bool>("use_custom_favourite_sound", default: false)

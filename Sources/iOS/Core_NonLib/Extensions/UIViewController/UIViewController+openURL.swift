@@ -31,6 +31,28 @@ extension UIViewController {
                 .universalLinksOnly: true,
             ]) { result in
                 if result == false {
+                    // Universal Links クッションページスキップ処理
+                    // TODO: 設定ファイルとして分離したい
+                    // TODO: もしもの時のためにリモートでのキルスイッチを用意したほうがいいかもしれない
+                    if Defaults[.skipUniversalLinksCussionPage] {
+                        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+                        var cussionPageSkipInfoFounds = false
+                        if url.host == "poplinks.idolmaster-official.jp", url.path == "/snspost/launchpage.html" {
+                            urlComponents.host = "imas-poplinks.jp"
+                            urlComponents.path = "/snspost/launchapp.html"
+                            cussionPageSkipInfoFounds = true
+                        }
+                        if cussionPageSkipInfoFounds {
+                            UIApplication.shared.open(urlComponents.url!, options: [
+                                .universalLinksOnly: true,
+                            ]) { result in
+                                if result == false {
+                                    self.open(url: url, forceDisableUniversalLink: true)
+                                }
+                            }
+                            return
+                        }
+                    }
                     self.open(url: url, forceDisableUniversalLink: true)
                 }
             }

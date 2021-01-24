@@ -336,6 +336,13 @@ class SettingsViewController: FormViewController {
                 row.title = "最初の画面を新しいものに (α)"
                 row.userDefaultsConnect(.newFirstScreen)
             }
+            SwitchRow { row in
+                row.title = "可能なら Universal Links の一部クッションページを省略"
+                row.cellUpdate { (cell, _) in
+                    cell.textLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.skipUniversalLinksCussionPage)
+            }
         }
     }
     
