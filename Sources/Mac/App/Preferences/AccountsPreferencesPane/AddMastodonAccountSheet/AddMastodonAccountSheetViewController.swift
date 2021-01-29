@@ -72,7 +72,7 @@ class AddMastodonAccountSheetViewController: NSViewController {
     
     @objc func startLogin() {
         nowLoading = true
-        MastodonInstance(hostName: serverDomain).createApp().then { app in
+        MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob").then { app in
             app.save()
             NSWorkspace.shared.open(app.getAuthorizeUrl())
         }.always(in: .main) { [weak self] in
