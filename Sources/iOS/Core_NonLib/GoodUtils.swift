@@ -28,7 +28,7 @@ import Alamofire
 import SwiftyJSON
 import Ikemen
 
-let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!
+let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!
 
 var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
@@ -126,5 +126,5 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
     case rightBottom
 }
 
-let UserDefaultsAppGroup = UserDefaults.init(suiteName: "group.jp.pronama.imast")!
+let UserDefaultsAppGroup = UserDefaults.init(suiteName: appGroupIdentifier)!
 var Defaults = UserDefaultsAppGroup

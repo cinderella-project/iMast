@@ -27,11 +27,17 @@ import SwiftyJSON
 import GRDB
 import Hydra
 
+#if os(macOS)
+public let appGroupIdentifier = "4XKKKM86RN.jp.pronama.imast"
+#else
+public let appGroupIdentifier = "group.jp.pronama.imast"
+#endif
+
 let fileURL = getFileURL()
 public let dbQueue = try! DatabaseQueue(path: fileURL.path)
 func getFileURL() -> URL {
-    let oldFileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!.appendingPathComponent("imast.sqlite")
-    let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.jp.pronama.imast")!.appendingPathComponent("Library/imast.sqlite")
+    let oldFileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!.appendingPathComponent("imast.sqlite")
+    let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!.appendingPathComponent("Library/imast.sqlite")
     if !FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: oldFileURL.path) {
         print("migrate: AppGroup -> AppGroup Library")
         try! FileManager.default.moveItem(atPath: oldFileURL.path, toPath: fileURL.path)

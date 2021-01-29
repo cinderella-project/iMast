@@ -71,8 +71,7 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
     private var loginSafari: LoginSafari?
     
     func safariLoginButton() {
-        let url = URL(string: self.app!.getAuthorizeUrl())!
         loginSafari = getLoginSafari()
-        loginSafari?.open(url: url, viewController: self)
+        loginSafari?.open(url: self.app!.getAuthorizeUrl(), viewController: self)
     }
 }

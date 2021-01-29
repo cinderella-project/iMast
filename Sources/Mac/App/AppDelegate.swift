@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import Cocoa
+import iMastMacCore
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -34,6 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
+        initDatabase()
+        if MastodonUserToken.getAllUserTokens().count < 1 {
+            openPreferences(self)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
