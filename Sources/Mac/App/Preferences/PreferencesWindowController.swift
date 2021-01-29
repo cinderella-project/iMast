@@ -27,7 +27,7 @@ import Ikemen
 class PreferencesWindowController: NSWindowController {
     init() {
         let window = NSWindow(contentViewController: PreferencesViewController())
-        window.styleMask = [.titled, .closable, .resizable]
+        window.styleMask = [.titled, .closable]
         super.init(window: window)
     }
     

@@ -91,8 +91,23 @@ public class MastodonApp {
         }
     }
     
-    public func getAuthorizeUrl() -> String {
-        return "https://\(instance.hostName)/oauth/authorize?client_id=\(clientId)&redirect_uri=\(self.redirectUri)&scope=read+write+follow&response_type=code&state="+self.id
+    public func getAuthorizeUrl(forceLogin: Bool = false) -> URL {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = instance.hostName
+        components.path = "/oauth/authorize"
+        var queryItems: [URLQueryItem] = [
+            .init(name: "client_id", value: clientId),
+            .init(name: "redirect_uri", value: redirectUri),
+            .init(name: "scope", value: "read write follow"),
+            .init(name: "response_type", value: "code"),
+            .init(name: "state", value: id),
+        ]
+        if forceLogin {
+            queryItems.append(.init(name: "force_login", value: "true"))
+        }
+        components.queryItems = queryItems
+        return components.url!
     }
     
     public func authorizeWithCode(code: String) -> Promise<MastodonUserToken> {

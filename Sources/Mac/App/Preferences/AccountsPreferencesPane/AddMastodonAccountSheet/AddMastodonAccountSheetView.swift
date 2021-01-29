@@ -35,7 +35,7 @@ class AddMastodonAccountSheetView: NSView {
     }
     
     let hostNameField = NSTextField(string: "") ※ { v in
-        v.placeholderString = "mastodon.example.com"
+        v.placeholderString = "mstdn.example.com"
     }
     
     let loginMethodSelect = NSPopUpButton() ※ { v in
@@ -59,7 +59,8 @@ class AddMastodonAccountSheetView: NSView {
         
         let stackView = NSStackView(views: [
             NSTextField(labelWithString: "Mastodonアカウントにサインイン") ※ { v in
-                v.alignment = .center
+                v.font = .boldSystemFont(ofSize: NSFont.systemFontSize)
+                v.alignment = .natural
             },
             NSGridView(views: [
                 [ NSTextField(labelWithString: "サーバアドレス:"), hostNameField ],
@@ -98,9 +99,5 @@ class AddMastodonAccountSheetView: NSView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updateState(_ state: AddMastodonAccountSheetState) {
-        
     }
 }

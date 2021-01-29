@@ -47,7 +47,7 @@ class AccountsPreferencesPaneViewController: NSViewController, PreferencesPanePr
     
     func configureTabViewItem(item: NSTabViewItem) {
         item.label = "アカウント"
-        item.image = NSImage(named: NSImage.userAccountsName)
+        item.image = NSImage(systemSymbolName: "at", accessibilityDescription: nil)
     }
     
     @objc func openAddAccountSheet(_ sender: NSSegmentedControl) {

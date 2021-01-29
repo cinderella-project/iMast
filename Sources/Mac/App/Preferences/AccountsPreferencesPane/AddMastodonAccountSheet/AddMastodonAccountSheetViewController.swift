@@ -22,20 +22,61 @@
 //  limitations under the License.
 
 import Cocoa
+import iMastMacCore
 
 class AddMastodonAccountSheetViewController: NSViewController {
-    private lazy var content = AddMastodonAccountSheetView()
+    private lazy var v = AddMastodonAccountSheetView()
+    @objc var serverDomain = "" {
+        didSet {
+            recalcCanLogin()
+        }
+    }
+    @objc var forceLogin = false
+    @objc dynamic var nowLoading = false {
+        didSet {
+            recalcCanLogin()
+        }
+    }
+    @objc dynamic var canLogin = false
     
     override func loadView() {
-        view = content
+        view = v
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        v.cancelButton.target = self
+        v.cancelButton.action = #selector(dismissSheet)
+        v.nextButton.target = self
+        v.nextButton.action = #selector(startLogin)
+        v.nextButton.bind(.enabled, to: self, withKeyPath: "canLogin", options: nil)
+        v.hostNameField.bind(.value, to: self, withKeyPath: "serverDomain", options: [.continuouslyUpdatesValue: true])
+        v.hostNameField.bind(.enabled, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        v.forceLoginCheckbox.bind(.value, to: self, withKeyPath: "forceLogin", options: nil)
+        v.indicator.bind(.hidden, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
     }
     
     override func viewDidAppear() {
         view.window?.styleMask.remove(.resizable)
+    }
+    
+    func recalcCanLogin() {
+        canLogin = !nowLoading && serverDomain.count > 0
+        print(canLogin)
+    }
+    
+    @objc func dismissSheet() {
+        dismiss(nil)
+    }
+    
+    @objc func startLogin() {
+        nowLoading = true
+        MastodonInstance(hostName: serverDomain).createApp().then { app in
+            let url = app.getAuthorizeUrl()
+            NSWorkspace.shared.open(url)
+        }.always(in: .main) { [weak self] in
+            self?.nowLoading = false
+        }
     }
 }
