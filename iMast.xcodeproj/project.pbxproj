@@ -760,7 +760,7 @@
 		CEE357251FF6410600675DFC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CEE35D952375D94F00AFEBA0 /* TopAccountMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAccountMasterViewController.swift; sourceTree = "<group>"; };
 		CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceholderDetailViewController.swift; sourceTree = "<group>"; };
-		CEE4E2EB2377EAF500406371 /* iMast-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iMast-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE4E2EB2377EAF500406371 /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4E2ED2377EAF500406371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE4E2EF2377EAF500406371 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEE4E2F12377EAF700406371 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1007,7 +1007,7 @@
 				CED6077721B3658F00F6232E /* iMastIntents.appex */,
 				CE43BE80237775F000133C86 /* iMastiOSCore.framework */,
 				CE43BE88237775F100133C86 /* iMastiOSCoreTests.xctest */,
-				CEE4E2EB2377EAF500406371 /* iMast-Mac.app */,
+				CEE4E2EB2377EAF500406371 /* iMast.app */,
 				CEE4E2FC2377EAF700406371 /* iMast-MacTests.xctest */,
 				CEE4E3072377EAF700406371 /* iMast-MacUITests.xctest */,
 				CEE4E31E2377F7D800406371 /* iMastMacCore.framework */,
@@ -1850,9 +1850,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2AF352161EAB9C5500777C2E /* iMast */ = {
+		2AF352161EAB9C5500777C2E /* iMast iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast" */;
+			buildConfigurationList = 2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast iOS" */;
 			buildPhases = (
 				4B77653ACFD6F075F5A4B543 /* [CP] Check Pods Manifest.lock */,
 				CEC8365D23C1FA6900E4A957 /* SwiftGen */,
@@ -1873,7 +1873,7 @@
 				CED6077D21B3658F00F6232E /* PBXTargetDependency */,
 				CE43BE94237775F100133C86 /* PBXTargetDependency */,
 			);
-			name = iMast;
+			name = "iMast iOS";
 			productName = iMast;
 			productReference = 2AF352171EAB9C5500777C2E /* iMast.app */;
 			productType = "com.apple.product-type.application";
@@ -2030,9 +2030,9 @@
 			productReference = CED6077721B3658F00F6232E /* iMastIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		CEE4E2EA2377EAF500406371 /* iMast-Mac */ = {
+		CEE4E2EA2377EAF500406371 /* iMast Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast-Mac" */;
+			buildConfigurationList = CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac" */;
 			buildPhases = (
 				B8A02B96391699BC3883F34C /* [CP] Check Pods Manifest.lock */,
 				CEE4E2E72377EAF500406371 /* Sources */,
@@ -2048,9 +2048,9 @@
 				CEE4E3322377F7D800406371 /* PBXTargetDependency */,
 				CE90CCFC237804CD001C8E80 /* PBXTargetDependency */,
 			);
-			name = "iMast-Mac";
+			name = "iMast Mac";
 			productName = "iMast-Mac";
-			productReference = CEE4E2EB2377EAF500406371 /* iMast-Mac.app */;
+			productReference = CEE4E2EB2377EAF500406371 /* iMast.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEE4E2FB2377EAF700406371 /* iMast-MacTests */ = {
@@ -2251,7 +2251,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2AF352161EAB9C5500777C2E /* iMast */,
+				2AF352161EAB9C5500777C2E /* iMast iOS */,
 				2AF3522A1EAB9C5600777C2E /* iMastTests */,
 				2AF352351EAB9C5600777C2E /* iMastUITests */,
 				CE78CFA31EE812AD008313EA /* iMastShare */,
@@ -2259,7 +2259,7 @@
 				CED6077621B3658F00F6232E /* iMastIntents */,
 				CE43BE7F237775F000133C86 /* iMastiOSCore */,
 				CE43BE87237775F100133C86 /* iMastiOSCoreTests */,
-				CEE4E2EA2377EAF500406371 /* iMast-Mac */,
+				CEE4E2EA2377EAF500406371 /* iMast Mac */,
 				CEE4E2FB2377EAF700406371 /* iMast-MacTests */,
 				CEE4E3062377EAF700406371 /* iMast-MacUITests */,
 				CE90CCF2237804CD001C8E80 /* iMastMacShare */,
@@ -3045,12 +3045,12 @@
 /* Begin PBXTargetDependency section */
 		2AF3522D1EAB9C5600777C2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2AF352161EAB9C5500777C2E /* iMast */;
+			target = 2AF352161EAB9C5500777C2E /* iMast iOS */;
 			targetProxy = 2AF3522C1EAB9C5600777C2E /* PBXContainerItemProxy */;
 		};
 		2AF352381EAB9C5600777C2E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2AF352161EAB9C5500777C2E /* iMast */;
+			target = 2AF352161EAB9C5500777C2E /* iMast iOS */;
 			targetProxy = 2AF352371EAB9C5600777C2E /* PBXContainerItemProxy */;
 		};
 		CE43BE8B237775F100133C86 /* PBXTargetDependency */ = {
@@ -3060,7 +3060,7 @@
 		};
 		CE43BE8D237775F100133C86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2AF352161EAB9C5500777C2E /* iMast */;
+			target = 2AF352161EAB9C5500777C2E /* iMast iOS */;
 			targetProxy = CE43BE8C237775F100133C86 /* PBXContainerItemProxy */;
 		};
 		CE43BE94237775F100133C86 /* PBXTargetDependency */ = {
@@ -3106,12 +3106,12 @@
 		};
 		CEE4E2FE2377EAF700406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast-Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
 			targetProxy = CEE4E2FD2377EAF700406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3092377EAF700406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast-Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
 			targetProxy = CEE4E3082377EAF700406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3292377F7D800406371 /* PBXTargetDependency */ = {
@@ -3121,7 +3121,7 @@
 		};
 		CEE4E32B2377F7D800406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast-Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
 			targetProxy = CEE4E32A2377F7D800406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3322377F7D800406371 /* PBXTargetDependency */ = {
@@ -3920,7 +3920,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMast;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -3949,7 +3949,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = iMast;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -4205,7 +4205,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast" */ = {
+		2AF3523F1EAB9C5600777C2E /* Build configuration list for PBXNativeTarget "iMast iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2AF352401EAB9C5600777C2E /* Debug */,
@@ -4286,7 +4286,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast-Mac" */ = {
+		CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEE4E30F2377EAF700406371 /* Debug */,
