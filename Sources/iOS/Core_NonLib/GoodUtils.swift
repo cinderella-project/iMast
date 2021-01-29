@@ -27,6 +27,7 @@ import Hydra
 import Alamofire
 import SwiftyJSON
 import Ikemen
+import iMastiOSCore
 
 let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!
 
