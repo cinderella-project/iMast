@@ -25,29 +25,40 @@ import Cocoa
 import Ikemen
 import SnapKit
 import Combine
+import iMastMacCore
+import SDWebImage
 
 class AccountsPreferencesPaneViewController: NSViewController, PreferencesPaneProtocol {
-    private lazy var content = AccountsPreferencesPaneView()
-    var disposeBag = Set<AnyCancellable>()
+    private lazy var v = AccountsPreferencesPaneView()
+    var userTokens = [MastodonUserToken]()
     
     override func loadView() {
         // todo
-        view = content
+        view = v
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         title = "アカウント"
-        _ = content.addOrRemoveSegmentedControl ※ { c in
-            c.target = self
-            c.action = #selector(openAddAccountSheet)
-        }
+        v.addOrRemoveSegmentedControl.target = self
+        v.addOrRemoveSegmentedControl.action = #selector(openAddAccountSheet(_:))
+        v.accountsTableView.delegate = self
+        v.accountsTableView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUserTokens), name: .userTokenChanged, object: nil)
+        NotificationCenter.default.post(name: .userTokenChanged, object: nil)
     }
     
     func configureTabViewItem(item: NSTabViewItem) {
         item.label = "アカウント"
         item.image = NSImage(systemSymbolName: "at", accessibilityDescription: nil)
+    }
+    
+    @objc func reloadUserTokens() {
+        userTokens = MastodonUserToken.getAllUserTokens()
+        DispatchQueue.mainSafeSync {
+            v.accountsTableView.reloadData()
+        }
     }
     
     @objc func openAddAccountSheet(_ sender: NSSegmentedControl) {
@@ -57,5 +68,56 @@ class AccountsPreferencesPaneViewController: NSViewController, PreferencesPanePr
         default:
             break
         }
+    }
+}
+
+extension AccountsPreferencesPaneViewController: NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return userTokens.count
+    }
+}
+
+extension AccountsPreferencesPaneViewController: NSTableViewDelegate {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let token = userTokens.safe(row) else {
+            return nil
+        }
+        let view = NSView()
+        let imageView = NSImageView() ※ {
+            $0.wantsLayer = true
+            $0.layer?.cornerRadius = 4
+            $0.layer?.cornerCurve = .continuous
+            $0.layer?.masksToBounds = true
+        }
+        if let avatarUrlString = token.avatarUrl {
+            imageView.sd_setImage(with: URL(string: avatarUrlString), completed: nil)
+        }
+        let stackView = NSStackView(views: [
+            NSTextField(labelWithString: token.name ?? token.screenName ?? "(null)") ※ {
+                $0.setContentHuggingPriority(.required, for: .vertical)
+            },
+            NSTextField(labelWithString: "@\(token.acct)") ※ {
+                $0.textColor = .secondaryLabelColor
+                $0.setContentHuggingPriority(.required, for: .vertical)
+            },
+        ]) ※ {
+            $0.alignment = .leading
+            $0.spacing = 4
+            $0.orientation = .vertical
+            $0.setHuggingPriority(.required, for: .vertical)
+        }
+        view.addSubview(imageView)
+        view.addSubview(stackView)
+        imageView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(8)
+            make.leading.equalToSuperview().inset(4)
+            make.width.equalTo(imageView.snp.height)
+        }
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(8)
+            make.trailing.equalToSuperview().inset(4)
+            make.leading.equalTo(imageView.snp.trailing).offset(8)
+        }
+        return view
     }
 }

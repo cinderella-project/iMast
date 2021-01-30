@@ -27,11 +27,18 @@ import Ikemen
 class AccountsPreferencesPaneView: NSView {
     
     let accountsTableView = NSTableView() ※ { v in
+        v.addTableColumn(.init() ※ {
+            $0.resizingMask = .autoresizingMask
+        })
+        v.headerView = nil
+        v.usesAutomaticRowHeights = true
     }
     
     lazy private(set) var accountsTableViewWrapperScrollView = NSScrollView() ※ { v in
         v.documentView = self.accountsTableView
         v.borderType = .bezelBorder
+        v.hasVerticalScroller = true
+        v.autohidesScrollers = true
     }
     
     let addOrRemoveSegmentedControl = CombineCompatibleSegmentedControl(images: [
@@ -41,7 +48,7 @@ class AccountsPreferencesPaneView: NSView {
     ], trackingMode: .momentary, target: nil, action: nil) ※ { c in
         c.segmentStyle = .smallSquare
         c.setEnabled(false, forSegment: 2)
-        c.setWidth(100, forSegment: 2)
+        c.setWidth(200, forSegment: 2)
         c.setContentHuggingPriority(.required, for: .horizontal)
     }
     
@@ -63,7 +70,7 @@ class AccountsPreferencesPaneView: NSView {
             NSBox() ※ { v in
                 v.translatesAutoresizingMaskIntoConstraints = false
                 v.titlePosition = .noTitle
-                v.snp.makeConstraints { make in make.width.equalTo(240) }
+                v.snp.makeConstraints { make in make.width.equalTo(320) }
             },
         ]) ※ { v in
             v.orientation = .horizontal
