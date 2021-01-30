@@ -71,23 +71,16 @@ public class MastodonApp {
         return app
     }
     
-    @discardableResult
-    public func save() -> Bool {
-        do {
-            try dbQueue.inDatabase { db in
-                try db.execute(sql: "INSERT OR REPLACE INTO app (id, client_id, client_secret, name, redirect_uri, instance_hostname) VALUES (?,?,?,?,?,?)", arguments: [
-                    self.id,
-                    self.clientId,
-                    self.clientSecret,
-                    self.name,
-                    self.redirectUri,
-                    self.instance.hostName,
-                ])
-            }
-            return true
-        } catch {
-            print(error)
-            return false
+    public func save() throws {
+        try dbQueue.inDatabase { db in
+            try db.execute(sql: "INSERT OR REPLACE INTO app (id, client_id, client_secret, name, redirect_uri, instance_hostname) VALUES (?,?,?,?,?,?)", arguments: [
+                self.id,
+                self.clientId,
+                self.clientSecret,
+                self.name,
+                self.redirectUri,
+                self.instance.hostName,
+            ])
         }
     }
     

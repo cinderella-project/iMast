@@ -78,7 +78,7 @@ class ChangeActiveAccountViewController: UITableViewController {
             promise = promise.then { _ in
                 return userToken.getUserInfo()
             }.then { _ in
-                userToken.save()
+                try userToken.save()
                 successCount += 1
                 redrawRefreshControl()
                 return

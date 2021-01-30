@@ -130,30 +130,23 @@ public class MastodonUserToken: Equatable {
         return usertokens
     }
     
-    @discardableResult
-    public func save() -> Bool {
+    public func save() throws {
         print("save", self.screenName ?? "undefined screenName")
-        do {
-            try dbQueue.inDatabase { db in
-                let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
-                    self.id,
-                    ]) != nil
-                try db.execute(sql: !idFound ?
-                    "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
-                :   "UPDATE user SET app_id=?,access_token=?,name=?,screen_name=?,avatar_url=?,instance_hostname=? WHERE id=?", arguments: [
-                    self.app.id,
-                    self.token,
-                    self.name ?? self.screenName,
-                    self.screenName,
-                    self.avatarUrl,
-                    self.app.instance.hostName,
-                    self.id,
-                ])
-            }
-            return true
-        } catch {
-            print(error)
-            return false
+        try dbQueue.inDatabase { db in
+            let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
+                self.id,
+                ]) != nil
+            try db.execute(sql: !idFound ?
+                "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
+            :   "UPDATE user SET app_id=?,access_token=?,name=?,screen_name=?,avatar_url=?,instance_hostname=? WHERE id=?", arguments: [
+                self.app.id,
+                self.token,
+                self.name ?? self.screenName,
+                self.screenName,
+                self.avatarUrl,
+                self.app.instance.hostName,
+                self.id,
+            ])
         }
     }
     

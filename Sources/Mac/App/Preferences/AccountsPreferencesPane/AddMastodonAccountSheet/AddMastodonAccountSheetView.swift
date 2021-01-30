@@ -40,8 +40,9 @@ class AddMastodonAccountSheetView: NSView {
     
     let loginMethodSelect = NSPopUpButton() ※ { v in
         v.addItems(withTitles: [
-            "Safari",
-            "Safari（プライベートブラウズ）",
+            // TODO: Safariログインに対応 (たぶんないと審査が通らない)
+//            "Safari",
+//            "Safari（プライベートブラウズ）",
             "デフォルトブラウザ",
         ])
     }
@@ -52,6 +53,11 @@ class AddMastodonAccountSheetView: NSView {
         v.style = .spinning
         v.controlSize = .small
         v.startAnimation(nil)
+    }
+    
+    let codeLabel = NSTextField(labelWithString: "コード:")
+    let codeField = NSSecureTextField(string: "") ※ { v in
+        v.placeholderString = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsUuTtV"
     }
     
     init() {
@@ -66,6 +72,7 @@ class AddMastodonAccountSheetView: NSView {
                 [ NSTextField(labelWithString: "サーバアドレス:"), hostNameField ],
                 [ NSTextField(labelWithString: "認証に使用するブラウザ:"), loginMethodSelect ],
                 [ SpacerView(), forceLoginCheckbox ],
+                [ codeLabel, codeField ],
             ]) ※ { v in
                 v.column(at: 0).xPlacement = .trailing
                 v.rowAlignment = .firstBaseline

@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import Cocoa
+import Hydra
 import iMastMacCore
 
 class AddMastodonAccountSheetViewController: NSViewController {
@@ -29,6 +30,9 @@ class AddMastodonAccountSheetViewController: NSViewController {
     @objc var serverDomain = "" {
         didSet {
             recalcCanLogin()
+            if showCodeField { // codeが出るフェーズに行った後にホストを変えたらフェーズを戻す
+                app = nil
+            }
         }
     }
     @objc var forceLogin = false
@@ -38,6 +42,28 @@ class AddMastodonAccountSheetViewController: NSViewController {
         }
     }
     @objc dynamic var canLogin = false
+    @objc dynamic var code = "" {
+        didSet {
+            recalcCanLogin()
+        }
+    }
+    @objc dynamic var showCodeField = false {
+        didSet {
+            // app != nil と showCodeField が連動してなかったらバグ
+            if showCodeField != (app != nil) {
+                fatalError("unexpected state (showCodeField=true, app=nil)")
+            }
+            // code のフィールドを非表示にされたらcodeを消す
+            if showCodeField == false {
+                code = ""
+            }
+        }
+    }
+    var app: MastodonApp? {
+        didSet {
+            showCodeField = app != nil
+        }
+    }
     
     override func loadView() {
         view = v
@@ -55,6 +81,10 @@ class AddMastodonAccountSheetViewController: NSViewController {
         v.hostNameField.bind(.enabled, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         v.forceLoginCheckbox.bind(.value, to: self, withKeyPath: "forceLogin", options: nil)
         v.indicator.bind(.hidden, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        v.codeLabel.bind(.hidden, to: self, withKeyPath: "showCodeField", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        v.codeField.bind(.value, to: self, withKeyPath: "code", options: [.continuouslyUpdatesValue: true])
+        v.codeField.bind(.hidden, to: self, withKeyPath: "showCodeField", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        v.codeField.bind(.enabled, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
     }
     
     override func viewDidAppear() {
@@ -62,7 +92,8 @@ class AddMastodonAccountSheetViewController: NSViewController {
     }
     
     func recalcCanLogin() {
-        canLogin = !nowLoading && serverDomain.count > 0
+        // ロード中でない かつ サーバードメインが入力されている かつ (コード入力フェーズでない もしくは コードを入力済み)
+        canLogin = !nowLoading && serverDomain.count > 0 && (showCodeField == false || code.count > 0)
         print(canLogin)
     }
     
@@ -72,11 +103,24 @@ class AddMastodonAccountSheetViewController: NSViewController {
     
     @objc func startLogin() {
         nowLoading = true
-        MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob").then { app in
-            app.save()
-            NSWorkspace.shared.open(app.getAuthorizeUrl())
-        }.always(in: .main) { [weak self] in
-            self?.nowLoading = false
+        if let app = app {
+            async { [code] _ in
+                let token = try await(app.authorizeWithCode(code: code))
+                try await(token.getUserInfo())
+                try token.save()
+            }.then(in: .main) { [weak self] in
+                self?.dismissSheet()
+            }.always(in: .main) { [weak self] in
+                self?.nowLoading = false
+            }
+        } else {
+            MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob").then { [weak self] app in
+                try app.save()
+                NSWorkspace.shared.open(app.getAuthorizeUrl())
+                self?.app = app
+            }.always(in: .main) { [weak self] in
+                self?.nowLoading = false
+            }
         }
     }
 }

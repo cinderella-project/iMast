@@ -112,7 +112,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 async { _ in
                     let userToken = try await(app.authorizeWithCode(code: code))
                     _ = try await(userToken.getUserInfo())
-                    userToken.save()
+                    try userToken.save()
                     userToken.use()
                     nextVC.userToken = userToken
                 }.then(in: .main) { [weak scene] in

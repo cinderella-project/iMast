@@ -96,7 +96,7 @@ class AddAccountIndexViewController: FormViewController {
             }
             let appName = Defaults[.newAccountVia]
             let app = try await(instance.createApp(name: appName))
-            app.save()
+            try app.save()
             DispatchQueue.mainSafeSync {
                 alert.message = "\(L10n.Login.ProgressDialog.pleaseAuthorize) (3/4)"
             }

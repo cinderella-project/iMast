@@ -27,7 +27,8 @@ import Foundation
     import UIKit
     let UserAgentPlatformString = "iOS/\((UIDevice.current.systemVersion))"
 #else
-    let UserAgentPlatformString = "macOS/\(ProcessInfo.processInfo.operatingSystemVersionString)"
+    private let macVersion = ProcessInfo.processInfo.operatingSystemVersion
+    let UserAgentPlatformString = "macOS/\(macVersion.majorVersion).\(macVersion.minorVersion)\(macVersion.patchVersion > 0 ? ".\(macVersion.patchVersion)" : "")"
 #endif
 
 public let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (\(UserAgentPlatformString))"
