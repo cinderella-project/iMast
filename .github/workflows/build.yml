@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - 12_beta
+          - 12.3
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
@@ -18,4 +18,4 @@ jobs:
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
     - name: Build
-      run: set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme iMast CODE_SIGNING_REQUIRED=NO | xcpretty -c
+      run: set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme "iMast iOS" CODE_SIGNING_REQUIRED=NO | xcpretty -c
