@@ -95,6 +95,10 @@ class AddMastodonAccountSheetView: NSView {
             v.setHuggingPriority(.required, for: .vertical)
         }
         
+        nextButton.snp.makeConstraints { make in
+            make.width.equalTo(cancelButton.snp.width)
+        }
+        
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.center.size.equalToSuperview().inset(16)
