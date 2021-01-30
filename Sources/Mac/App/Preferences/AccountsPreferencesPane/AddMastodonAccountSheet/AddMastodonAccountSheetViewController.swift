@@ -58,6 +58,7 @@ class AddMastodonAccountSheetViewController: NSViewController {
             }
         }
     }
+    @objc dynamic var error: Error? = nil
     var app: MastodonApp? {
         didSet {
             showCodeField = app != nil
@@ -83,6 +84,8 @@ class AddMastodonAccountSheetViewController: NSViewController {
         v.codeField.bind(.value, to: self, withKeyPath: "code", options: [.continuouslyUpdatesValue: true])
         v.codeField.bind(.hidden, to: self, withKeyPath: "showCodeField", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         v.codeField.bind(.enabled, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
+        v.errorTextLabel.bind(.value, to: self, withKeyPath: "error.localizedDescription", options: nil)
+        v.errorTextLabel.bind(.hidden, to: self, withKeyPath: "error", options: [.valueTransformerName: NSValueTransformerName.isNilTransformerName])
     }
     
     override func viewDidAppear() {
@@ -101,6 +104,7 @@ class AddMastodonAccountSheetViewController: NSViewController {
     
     @objc func startLogin() {
         nowLoading = true
+        error = nil
         if let app = app {
             async { [code] _ in
                 let token = try await(app.authorizeWithCode(code: code))
@@ -110,6 +114,8 @@ class AddMastodonAccountSheetViewController: NSViewController {
                 self?.dismissSheet()
             }.always(in: .main) { [weak self] in
                 self?.nowLoading = false
+            }.catch { [weak self] error in
+                self?.error = error
             }
         } else {
             MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob").then { [weak self] app in
@@ -118,6 +124,8 @@ class AddMastodonAccountSheetViewController: NSViewController {
                 self?.app = app
             }.always(in: .main) { [weak self] in
                 self?.nowLoading = false
+            }.catch { [weak self] error in
+                self?.error = error
             }
         }
     }

@@ -27,6 +27,9 @@ import iMastMacCore
 import AuthenticationServices
 
 class AddMastodonAccountSheetView: NSView {
+    let errorTextLabel = NSTextField(labelWithString: "") ※ { v in
+        v.textColor = .systemRed
+    }
     let cancelButton = NSButton(title: "キャンセル", target: nil, action: nil) ※ { b in
         b.keyEquivalent = "\u{1B}"
     }
@@ -66,6 +69,7 @@ class AddMastodonAccountSheetView: NSView {
                 v.font = .boldSystemFont(ofSize: NSFont.systemFontSize)
                 v.alignment = .natural
             },
+            errorTextLabel,
             NSGridView(views: [
                 [ NSTextField(labelWithString: "サーバアドレス:"), hostNameField ],
                 [ NSTextField(labelWithString: "認証に使用するブラウザ:"), loginMethodSelect ],
@@ -76,7 +80,6 @@ class AddMastodonAccountSheetView: NSView {
                 for r in 1..<v.numberOfRows {
                     v.row(at: r).topPadding = 8
                 }
-                v.row(at: 2).topPadding = 2
             },
             NSStackView(views: [
                 SpacerView(),
