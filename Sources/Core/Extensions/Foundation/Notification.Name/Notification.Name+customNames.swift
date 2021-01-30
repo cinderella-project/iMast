@@ -1,5 +1,5 @@
 //
-//  NotificationCenter.Name+customNames.swift
+//  Notification.Name+customNames.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/07/28.
@@ -22,8 +22,8 @@
 //
 
 import Foundation
-import UIKit
 
 extension Notification.Name {
-    static let pushSettingsAccountReload = Notification.Name("pushSettingsAccountReload")
+    public static let pushSettingsAccountReload = Notification.Name("pushSettingsAccountReload")
+    public static let userTokenChanged = Notification.Name("iMast.userTokenChanged")
 }

@@ -28,14 +28,12 @@ import SVProgressHUD
 import Eureka
 import EurekaFormBuilder
 import UserNotifications
-import Notifwift
 import Hydra
 import Ikemen
 import iMastiOSCore
 
 class PushSettingsTableViewController: FormViewController {
     var loginSafari: LoginSafari!
-    let notifwift = Notifwift()
     
     var accounts: [PushServiceToken] = []
     
@@ -129,10 +127,12 @@ class PushSettingsTableViewController: FormViewController {
             }
         }
         self.title = L10n.Preferences.Push.title
-        self.notifwift.observe(.pushSettingsAccountReload) { _ in
-            self.reload(true)
-        }
-        Notifwift.post(.pushSettingsAccountReload)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadBlocking), name: .pushSettingsAccountReload, object: nil)
+        NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
+    }
+    
+    @objc func reloadBlocking() {
+        reload(true)
     }
     
     @objc func reload(_ blocking: Bool = false) {

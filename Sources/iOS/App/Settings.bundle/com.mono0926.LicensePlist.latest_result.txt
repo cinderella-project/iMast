@@ -278,18 +278,6 @@ name: Mew, nameSpecified:
 body: Copyright (c) 2018 M…
 version: 0.1.0
 
-name: Notifwift, nameSpecified: 
-body: Copyright (c) 2016 t…
-version: 1.1.1
-
-name: Notifwift, nameSpecified: 
-body: Copyright (c) 2016 t…
-version: 1.1.1
-
-name: Notifwift, nameSpecified: 
-body: Copyright (c) 2016 t…
-version: 1.1.1
-
 name: ReachabilitySwift, nameSpecified: 
 body: Copyright (c) 2016 A…
 version: 4.3.1

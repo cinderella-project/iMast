@@ -23,7 +23,7 @@ abstract_target 'iMastShared' do
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
     
-    target 'iMast' do
+    target 'iMast iOS' do
       # Pods for iMast
       pod 'Crossroad', '~> 3.2.0'
       pod 'Starscream', '~> 3.1.1'
@@ -32,7 +32,6 @@ abstract_target 'iMastShared' do
       pod 'EurekaFormBuilder', '~> 0.2.2'
       pod 'EurekaTwolineSliderRow'
       pod 'SVProgressHUD'
-      pod 'Notifwift', '~> 1.1.1'
       pod 'LicensePlist', '~> 2.16.0'
       
       target 'iMastTests' do
@@ -60,7 +59,7 @@ abstract_target 'iMastShared' do
   
   abstract_target 'Mac' do
     platform :osx, '10.15'
-    target 'iMast-Mac' do
+    target 'iMast Mac' do
     end
 
     target 'iMastMacCore' do

@@ -25,7 +25,6 @@ import UIKit
 import Crossroad
 import UserNotifications
 import SVProgressHUD
-import Notifwift
 import SafariServices
 import Hydra
 import iMastiOSCore

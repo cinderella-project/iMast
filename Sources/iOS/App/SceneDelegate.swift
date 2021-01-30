@@ -24,7 +24,6 @@
 import UIKit
 import Crossroad
 import Hydra
-import Notifwift
 import iMastiOSCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -127,7 +126,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return true
             }),
             ("/from-backend/push/oauth-finished", { _ in
-                Notifwift.post(.pushSettingsAccountReload)
+                NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
                 return true
             }),
         ])

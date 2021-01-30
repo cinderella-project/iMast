@@ -25,7 +25,6 @@ import UIKit
 import Eureka
 import Hydra
 import SVProgressHUD
-import Notifwift
 
 class PushSettingsAccountTableViewController: FormViewController {
     var account: PushServiceToken
@@ -102,7 +101,7 @@ class PushSettingsAccountTableViewController: FormViewController {
         }.always(in: .main) {
             vc.dismiss(animated: true, completion: nil)
         }.then { _ in
-            Notifwift.post(.pushSettingsAccountReload)
+            NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
             self.dismiss(animated: true, completion: nil)
         }.catch { error in
             self.alert(title: "エラー", message: error.localizedDescription)
@@ -122,7 +121,7 @@ class PushSettingsAccountTableViewController: FormViewController {
                 return self.account.delete().always {
                     SVProgressHUD.dismiss()
                 }.then { _ in
-                    Notifwift.post(.pushSettingsAccountReload)
+                    NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
                     self.dismiss(animated: true, completion: nil)
                 }
             } else {

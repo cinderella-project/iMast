@@ -23,7 +23,6 @@
 //
 
 import Foundation
-import Notifwift
 import iMastiOSCore
 
 class MastodonMemoryStore<T: MastodonMemoryStorable> {
