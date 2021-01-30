@@ -84,7 +84,7 @@ public class MastodonApp {
         }
     }
     
-    public func getAuthorizeUrl(forceLogin: Bool = false) -> URL {
+    public func getAuthorizeUrl() -> URL {
         var components = URLComponents()
         components.scheme = "https"
         components.host = instance.hostName
@@ -96,9 +96,6 @@ public class MastodonApp {
             .init(name: "response_type", value: "code"),
             .init(name: "state", value: id),
         ]
-        if forceLogin {
-            queryItems.append(.init(name: "force_login", value: "true"))
-        }
         components.queryItems = queryItems
         return components.url!
     }

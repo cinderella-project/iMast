@@ -35,7 +35,6 @@ class AddMastodonAccountSheetViewController: NSViewController {
             }
         }
     }
-    @objc var forceLogin = false
     @objc dynamic var nowLoading = false {
         didSet {
             recalcCanLogin()
@@ -79,7 +78,6 @@ class AddMastodonAccountSheetViewController: NSViewController {
         v.nextButton.bind(.enabled, to: self, withKeyPath: "canLogin", options: nil)
         v.hostNameField.bind(.value, to: self, withKeyPath: "serverDomain", options: [.continuouslyUpdatesValue: true])
         v.hostNameField.bind(.enabled, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
-        v.forceLoginCheckbox.bind(.value, to: self, withKeyPath: "forceLogin", options: nil)
         v.indicator.bind(.hidden, to: self, withKeyPath: "nowLoading", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         v.codeLabel.bind(.hidden, to: self, withKeyPath: "showCodeField", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         v.codeField.bind(.value, to: self, withKeyPath: "code", options: [.continuouslyUpdatesValue: true])

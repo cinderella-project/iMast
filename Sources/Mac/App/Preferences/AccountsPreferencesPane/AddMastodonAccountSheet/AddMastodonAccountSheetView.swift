@@ -47,8 +47,6 @@ class AddMastodonAccountSheetView: NSView {
         ])
     }
     
-    let forceLoginCheckbox = NSButton(checkboxWithTitle: "ブラウザでのログイン状態を無視", target: nil, action: nil)
-    
     let indicator = NSProgressIndicator() ※ { v in
         v.style = .spinning
         v.controlSize = .small
@@ -71,7 +69,6 @@ class AddMastodonAccountSheetView: NSView {
             NSGridView(views: [
                 [ NSTextField(labelWithString: "サーバアドレス:"), hostNameField ],
                 [ NSTextField(labelWithString: "認証に使用するブラウザ:"), loginMethodSelect ],
-                [ SpacerView(), forceLoginCheckbox ],
                 [ codeLabel, codeField ],
             ]) ※ { v in
                 v.column(at: 0).xPlacement = .trailing
