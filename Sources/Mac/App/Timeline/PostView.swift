@@ -40,6 +40,7 @@ class PostView: NSView {
         $0.isSelectable = true
         $0.becomeFirstResponder()
     }
+    let guardTextField = NSTextField(labelWithString: "Post → Hide Private Posts")
     
     init(post: MastodonPost) {
         super.init(frame: .zero)
@@ -80,6 +81,16 @@ class PostView: NSView {
             make.top.bottom.equalToSuperview().inset(8)
             make.trailing.equalToSuperview().inset(4)
             make.leading.equalTo(imageView.snp.trailing).offset(8)
+        }
+        if post.originalPost.visibility != .public, post.originalPost.visibility != .unlisted {
+            imageView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
+            stackView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
+            addSubview(guardTextField)
+            guardTextField.snp.makeConstraints { make in
+                make.size.lessThanOrEqualToSuperview()
+                make.center.equalToSuperview()
+            }
+            guardTextField.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: [.valueTransformerName: NSValueTransformerName.negateBooleanTransformerName])
         }
     }
     

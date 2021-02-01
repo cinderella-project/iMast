@@ -24,10 +24,24 @@
 import Cocoa
 import iMastMacCore
 
+extension UserDefaults {
+    static let appGroup = UserDefaults(suiteName: appGroupIdentifier)!
+}
+
+extension NSUserDefaultsController {
+    static let appGroup = NSUserDefaultsController(defaults: .appGroup, initialValues: nil)
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
     lazy var preferencesWindowController = PreferencesWindowController()
+    @objc dynamic var hidePrivatePosts = false {
+        didSet {
+            UserDefaults.appGroup.setValue(hidePrivatePosts, forKey: "hide_private_posts")
+            hidePrivatePostsMenuItem.state = hidePrivatePosts ? .on : .off
+        }
+    }
+    @IBOutlet var hidePrivatePostsMenuItem: NSMenuItem!
     
     @IBAction func openPreferences(_ sender: Any) {
         preferencesWindowController.showWindow(sender)
@@ -43,10 +57,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let windowController = MainWindowController()
         windowController.showWindow(nil)
+        hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
+    
+    @IBAction func toggleHidePrivatePosts(_ sender: NSMenuItem) {
+        print(hidePrivatePosts)
+        hidePrivatePosts = !hidePrivatePosts
+    }
 }

@@ -325,6 +325,13 @@ DQ
                                                 <action selector="sendPost:" target="Ady-hI-5gd" id="vWU-pf-0Xq"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="fxN-3f-qj2"/>
+                                        <menuItem title="Hide Private Posts" id="fQw-8G-tlS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleHidePrivatePosts:" target="Voe-Tx-rLC" id="bho-tX-1gl"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -403,9 +410,14 @@ DQ
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="iMast" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="iMast" customModuleProvider="target">
+                    <connections>
+                        <outlet property="hidePrivatePostsMenuItem" destination="fQw-8G-tlS" id="LCd-Mp-cnn"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="ayh-ku-2uh"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>

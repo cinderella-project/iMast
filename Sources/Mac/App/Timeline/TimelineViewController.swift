@@ -66,7 +66,6 @@ class TimelineViewController: NSViewController {
     }
     
     func addNewPosts(newPosts: [MastodonPost]) {
-//        let newPosts = newPosts.filter { $0.visibility == .public }
         posts.insert(contentsOf: newPosts, at: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: [])
