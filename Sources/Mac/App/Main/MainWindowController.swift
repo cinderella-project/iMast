@@ -31,7 +31,7 @@ class MainWindowController: NSWindowController {
     let toolBar = NSToolbar()
 
     init() {
-        let window = NSWindow(contentViewController: ViewController())
+        let window = NSWindow(contentViewController: MainViewController())
         super.init(window: window)
         toolBar.displayMode = .iconOnly
         toolBar.delegate = self

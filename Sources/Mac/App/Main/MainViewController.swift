@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -24,7 +24,7 @@
 import Cocoa
 import iMastMacCore
 
-class ViewController: NSViewController {
+class MainViewController: NSViewController {
     var child: NSViewController? = nil {
         didSet {
             if let vc = oldValue {

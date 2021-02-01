@@ -230,7 +230,7 @@
 		CEE35D982375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */; };
 		CEE4E2E62377E96B00406371 /* NSRange+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */; };
 		CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2ED2377EAF500406371 /* AppDelegate.swift */; };
-		CEE4E2F02377EAF500406371 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2EF2377EAF500406371 /* ViewController.swift */; };
+		CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2EF2377EAF500406371 /* MainViewController.swift */; };
 		CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE4E2F12377EAF700406371 /* Assets.xcassets */; };
 		CEE4E2F52377EAF700406371 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE4E2F32377EAF700406371 /* Main.storyboard */; };
 		CEE4E3012377EAF700406371 /* iMast_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E3002377EAF700406371 /* iMast_MacTests.swift */; };
@@ -775,7 +775,7 @@
 		CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceholderDetailViewController.swift; sourceTree = "<group>"; };
 		CEE4E2EB2377EAF500406371 /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4E2ED2377EAF500406371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEE4E2EF2377EAF500406371 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEE4E2EF2377EAF500406371 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CEE4E2F12377EAF700406371 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE4E2F42377EAF700406371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEE4E2F62377EAF700406371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1870,7 +1870,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFB988E25C823E500D55B03 /* MainWindowController.swift */,
-				CEE4E2EF2377EAF500406371 /* ViewController.swift */,
+				CEE4E2EF2377EAF500406371 /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3028,7 +3028,7 @@
 				CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */,
 				CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */,
 				CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */,
-				CEE4E2F02377EAF500406371 /* ViewController.swift in Sources */,
+				CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */,
 				CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */,
 				CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */,
 				CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */,
