@@ -31,6 +31,11 @@ import SDWebImage
 class AccountsPreferencesPaneViewController: NSViewController, PreferencesPaneProtocol {
     private lazy var v = AccountsPreferencesPaneView()
     var userTokens = [MastodonUserToken]()
+    @objc var selectionIndexes: IndexSet = .init() {
+        didSet {
+            v.addOrRemoveSegmentedControl.setEnabled(!selectionIndexes.isEmpty, forSegment: 1)
+        }
+    }
     
     override func loadView() {
         // todo
@@ -43,6 +48,7 @@ class AccountsPreferencesPaneViewController: NSViewController, PreferencesPanePr
         title = "アカウント"
         v.addOrRemoveSegmentedControl.target = self
         v.addOrRemoveSegmentedControl.action = #selector(openAddAccountSheet(_:))
+        v.accountsTableView.bind(.selectionIndexes, to: self, withKeyPath: "selectionIndexes", options: nil)
         v.accountsTableView.delegate = self
         v.accountsTableView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadUserTokens), name: .userTokenChanged, object: nil)
@@ -65,9 +71,23 @@ class AccountsPreferencesPaneViewController: NSViewController, PreferencesPanePr
         switch sender.selectedSegment {
         case 0:
             presentAsSheet(AddMastodonAccountSheetViewController())
+        case 1:
+            removeSelectedAccounts()
         default:
             break
         }
+    }
+    
+    @objc func removeSelectedAccounts() {
+        do {
+            for tokenIndex in selectionIndexes {
+                let token = userTokens[tokenIndex]
+                try token.delete()
+            }
+        } catch {
+            NSAlert(error: error).beginSheetModal(for: view.window!, completionHandler: nil)
+        }
+        NotificationCenter.default.post(name: .userTokenChanged, object: nil)
     }
 }
 

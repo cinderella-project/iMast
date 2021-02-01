@@ -167,18 +167,11 @@ public class MastodonUserToken: Equatable {
         
     }
     
-    @discardableResult
-    public func delete() -> Bool {
-        do {
-            try dbQueue.inDatabase { db in
-                try db.execute(sql: "DELETE FROM user WHERE id=?", arguments: [
-                    self.id,
-                ])
-            }
-            return true
-        } catch {
-            print(error)
-            return false
+    public func delete() throws {
+        try dbQueue.inDatabase { db in
+            try db.execute(sql: "DELETE FROM user WHERE id=?", arguments: [
+                self.id,
+            ])
         }
     }
     
