@@ -26,6 +26,12 @@ import Fuzi
 import Hydra
 import SDWebImage
 
+#if os(macOS)
+typealias NSUIFont = NSFont
+#else
+typealias NSUIFont = NSUIFont
+#endif
+
 extension String {
     func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
         do {
@@ -40,7 +46,7 @@ extension String {
                 .Element,
             ]
             
-            func generateAttrStr(attributes: [NSAttributedString.Key: Any], nodes: [XMLNode]) -> (NSMutableAttributedString, [Promise<Void>]) {
+            func generateAttrStr(attributes: [NSAttributedString.Key: Any], nodes: [Fuzi.XMLNode]) -> (NSMutableAttributedString, [Promise<Void>]) {
                 var promises: [Promise<Void>] = []
                 let attrStr = NSMutableAttributedString(string: "")
                 for node in nodes {
@@ -59,11 +65,16 @@ extension String {
                                     attrs[.underlineStyle] = NSUnderlineStyle.single.rawValue
                                 }
                             case "strong", "b":
-                                let font = (attrs[.font] as? UIFont) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+                                let font = (attrs[.font] as? NSUIFont) ?? NSUIFont.systemFont(ofSize: NSUIFont.systemFontSize)
+                                #if os(macOS)
+                                let newFont = NSUIFont(descriptor: font.fontDescriptor.withSymbolicTraits(.bold), size: font.pointSize)
+                                attrs[.font] = newFont
+                                #else
                                 if let fontDescriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) {
-                                    let newFont = UIFont(descriptor: fontDescriptor, size: font.pointSize)
+                                    let newFont = NSUIFont(descriptor: fontDescriptor, size: font.pointSize)
                                     attrs[.font] = newFont
                                 }
+                                #endif
                             default:
                                 break
                             }
@@ -78,6 +89,7 @@ extension String {
                                     childAttrStr.append(NSAttributedString(string: "\n", attributes: attrs))
                                 case "p":
                                     childAttrStr.append(NSAttributedString(string: "\n\n", attributes: attrs))
+                                #if !os(macOS)
                                 case "img":
                                     if let src = element.attributes["src"], let srcUrl = URL(string: src) {
                                         let attachment = NSTextAttachment()
@@ -102,6 +114,7 @@ extension String {
                                             promises.append(promise)
                                         }
                                     }
+                                #endif
                                 default:
                                     break
                                 }
@@ -141,7 +154,10 @@ extension String {
         }
     }
     
-    func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
+    public func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
+        #if os(macOS)
+        return parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler)
+        #else
         if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
             return newParserResult
         }
@@ -166,5 +182,6 @@ extension String {
         )
         attributedString?.addAttributes(attributes, range: NSRange(location: 0, length: attributedString?.length ?? 0))
         return attributedString
+        #endif
     }
 }

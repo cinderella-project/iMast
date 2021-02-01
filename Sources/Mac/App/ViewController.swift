@@ -22,13 +22,32 @@
 //  limitations under the License.
 
 import Cocoa
+import iMastMacCore
 
 class ViewController: NSViewController {
+    var child: NSViewController? = nil {
+        didSet {
+            if let vc = oldValue {
+                vc.view.removeFromSuperview()
+                vc.removeFromParent()
+            }
+            if let vc = child {
+                addChild(vc)
+                view.addSubview(vc.view)
+                vc.view.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let userToken = MastodonUserToken.getLatestUsed() {
+            child = TimelineViewController(userToken: userToken, timelineType: .home)
+        }
     }
 
     override var representedObject: Any? {
