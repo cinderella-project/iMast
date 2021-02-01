@@ -28,6 +28,14 @@ import Alamofire
 
 var mastodonInstanceInfoCache: [String: JSON] = [:]
 
+#if os(macOS)
+public let defaultAppName = "iMast (macOS)"
+private let website = "https://cinderella-project.github.io/iMast/mac/"
+#else
+public let defaultAppName = "iMast"
+private let website = "https://cinderella-project.github.io/iMast/"
+#endif
+
 public class MastodonInstance {
     public var hostName: String
     public var name: String?
@@ -67,13 +75,13 @@ public class MastodonInstance {
         }
     }
     
-    public func createApp(name: String = "iMast", redirect_uri: String = "imast://callback/") -> Promise<MastodonApp> {
+    public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") -> Promise<MastodonApp> {
         return Promise<MastodonApp> { resolve, reject, _ in
             let params = [
                 "client_name": name,
                 "scopes": "read write follow",
                 "redirect_uris": redirect_uri,
-                "website": "https://cinderella-project.github.io/iMast/",
+                "website": website,
             ]
             Alamofire.request("https://\(self.hostName)/api/v1/apps", method: .post, parameters: params).responseJSON { res in
                 if let error = res.error {
