@@ -4,7 +4,7 @@ ASSET_FILES = $(shell find src/assets -type f | grep -v /_ | tr '\n' ' ' | sed '
 NODEPATH = $(shell npm bin)
 all: first html assets styles
 first:
-	mkdir -p dist/help/
+	mkdir -p dist/{help,mac}/
 html: $(HTML_FILES)
 styles: $(STYLE_FILES)
 assets: $(ASSET_FILES)
