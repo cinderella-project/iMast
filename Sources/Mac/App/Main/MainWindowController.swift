@@ -61,7 +61,7 @@ extension MainWindowController: NSToolbarDelegate {
         case .newPost:
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.image = NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)
-            item.action = #selector(TimelineViewController.openNewPost)
+            item.action = #selector(TimelineViewController.newDocument(_:))
             return item
         default:
             return nil

@@ -73,7 +73,7 @@ class TimelineViewController: NSViewController {
         tableView.endUpdates()
     }
     
-    @objc func openNewPost() {
+    @objc func newDocument(_ sender: Any) {
         NewPostWindowController(userToken: userToken).showWindow(self)
     }
 }

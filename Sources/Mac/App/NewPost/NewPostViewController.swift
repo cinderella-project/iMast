@@ -57,7 +57,7 @@ class NewPostViewController: NSViewController {
         textView.bind(.value, to: self, withKeyPath: "text", options: [.continuouslyUpdatesValue: true])
     }
     
-    @objc func send() {
+    @objc func sendPost(_ sender: Any) {
         let alert = NSAlert()
         alert.informativeText = "送信中…"
         alert.beginSheetModal(for: view.window!, completionHandler: nil)
