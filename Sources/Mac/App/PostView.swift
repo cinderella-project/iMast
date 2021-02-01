@@ -27,6 +27,14 @@ import iMastMacCore
 
 class PostView: NSView {
     let imageView = NSImageView()
+    let userNameField = NSTextField(labelWithString: "") ※ {
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    }
+    let userAcctField = NSTextField(labelWithString: "") ※ {
+        $0.textColor = .secondaryLabelColor
+        $0.setContentCompressionResistancePriority(.init(251), for: .horizontal)
+    }
+    let timeField = NSTextField(labelWithString: "")
     let textField = NSTextField(wrappingLabelWithString: "") ※ {
         $0.allowsEditingTextAttributes = true
         $0.isSelectable = true
@@ -35,21 +43,40 @@ class PostView: NSView {
     
     init(post: MastodonPost) {
         super.init(frame: .zero)
+        // ---
         imageView.sd_setImage(with: URL(string: post.originalPost.account.avatarUrl), completed: nil)
+        userNameField.stringValue = post.originalPost.account.name
+        userAcctField.stringValue = "@" + post.originalPost.account.acct
         if let attributedString = post.originalPost.status.parseText2HTML(attributes: [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize)]) {
             textField.attributedStringValue = attributedString
         } else {
             textField.stringValue = post.originalPost.status
         }
+        // ---
         addSubview(imageView)
-        addSubview(textField)
+        let stackView = NSStackView(views: [
+            NSStackView(views: [
+                userNameField,
+                userAcctField,
+                timeField,
+            ]) ※ {
+                $0.setHuggingPriority(.required, for: .vertical)
+            },
+            textField,
+        ]) ※ {
+            $0.spacing = 4
+            $0.alignment = .leading
+            $0.orientation = .vertical
+            $0.setHuggingPriority(.required, for: .vertical)
+        }
+        addSubview(stackView)
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
             make.bottom.lessThanOrEqualToSuperview().inset(8)
             make.leading.equalToSuperview().inset(4)
             make.size.equalTo(48)
         }
-        textField.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
             make.trailing.equalToSuperview().inset(4)
             make.leading.equalTo(imageView.snp.trailing).offset(8)
