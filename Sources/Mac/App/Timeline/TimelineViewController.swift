@@ -74,7 +74,16 @@ class TimelineViewController: NSViewController {
     }
     
     @objc func newDocument(_ sender: Any) {
-        NewPostWindowController(userToken: userToken).showWindow(self)
+        let wc = NewPostWindowController(userToken: userToken)
+        if let window = view.window, let newWindow = wc.window {
+            // TLのウインドウの右に投稿画面を出す
+            var origin = window.frame.origin
+            print(origin.y, window.frame.height)
+            origin.y += window.frame.height - newWindow.frame.height
+            origin.x += window.frame.width
+            newWindow.setFrameOrigin(origin)
+        }
+        wc.showWindow(self)
     }
 }
 
