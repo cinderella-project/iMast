@@ -71,6 +71,10 @@ class TimelineViewController: NSViewController {
         tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: [])
         tableView.endUpdates()
     }
+    
+    @objc func openNewPost() {
+        NewPostWindowController(userToken: userToken).showWindow(self)
+    }
 }
 
 extension TimelineViewController: NSTableViewDataSource {

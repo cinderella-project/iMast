@@ -289,6 +289,9 @@
 		CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB985925C7F54A00D55B03 /* PostView.swift */; };
 		CEFB986725C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
 		CEFB986825C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
+		CEFB988F25C823E500D55B03 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB988E25C823E500D55B03 /* MainWindowController.swift */; };
+		CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98A825C827A400D55B03 /* NewPostWindowController.swift */; };
+		CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98B925C828E300D55B03 /* NewPostViewController.swift */; };
 		CEFE6AF721B5010600AF5E40 /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
@@ -810,6 +813,9 @@
 		CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emptyAsNil.swift"; sourceTree = "<group>"; };
 		CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		CEFB985925C7F54A00D55B03 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		CEFB988E25C823E500D55B03 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		CEFB98A825C827A400D55B03 /* NewPostWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostWindowController.swift; sourceTree = "<group>"; };
+		CEFB98B925C828E300D55B03 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootIntentHandler.swift; sourceTree = "<group>"; };
 		CEFE6B1021B508A600AF5E40 /* iMastIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastIntents.entitlements; sourceTree = "<group>"; };
 		D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1764,11 +1770,11 @@
 			isa = PBXGroup;
 			children = (
 				CEE4E2ED2377EAF500406371 /* AppDelegate.swift */,
-				CEE4E2EF2377EAF500406371 /* ViewController.swift */,
-				CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */,
-				CEFB985925C7F54A00D55B03 /* PostView.swift */,
-				CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */,
+				CEFB98B625C828A300D55B03 /* Main */,
+				CEFB98B725C828AF00D55B03 /* Timeline */,
+				CEFB98B825C828C700D55B03 /* NewPost */,
 				CE90CD0623780A7E001C8E80 /* Preferences */,
+				CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */,
 				CEE4E2F12377EAF700406371 /* Assets.xcassets */,
 				CEE4E2F32377EAF700406371 /* Main.storyboard */,
 				CEE4E2F62377EAF700406371 /* Info.plist */,
@@ -1858,6 +1864,33 @@
 				CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */,
 			);
 			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		CEFB98B625C828A300D55B03 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB988E25C823E500D55B03 /* MainWindowController.swift */,
+				CEE4E2EF2377EAF500406371 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CEFB98B725C828AF00D55B03 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */,
+				CEFB985925C7F54A00D55B03 /* PostView.swift */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		CEFB98B825C828C700D55B03 /* NewPost */ = {
+			isa = PBXGroup;
+			children = (
+				CEFB98A825C827A400D55B03 /* NewPostWindowController.swift */,
+				CEFB98B925C828E300D55B03 /* NewPostViewController.swift */,
+			);
+			path = NewPost;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2987,7 +3020,9 @@
 			files = (
 				CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */,
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
+				CEFB988F25C823E500D55B03 /* MainWindowController.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
+				CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */,
 				CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */,
 				CEE043B0237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift in Sources */,
 				CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */,
@@ -2997,6 +3032,7 @@
 				CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */,
 				CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */,
 				CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */,
+				CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

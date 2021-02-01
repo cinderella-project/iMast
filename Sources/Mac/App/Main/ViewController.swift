@@ -40,6 +40,10 @@ class ViewController: NSViewController {
             }
         }
     }
+    
+    override func loadView() {
+        view = .init()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

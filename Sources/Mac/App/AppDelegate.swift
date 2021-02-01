@@ -40,6 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
         }
+        
+        let windowController = MainWindowController()
+        windowController.showWindow(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
