@@ -218,7 +218,6 @@
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
-		CEE043B0237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */; };
 		CEE213131EF13EE600393C67 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = CEE213121EF13EE600393C67 /* emoji.json */; };
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
 		CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */; };
@@ -760,7 +759,6 @@
 		CEE043A923780C94007A915E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneView.swift; sourceTree = "<group>"; };
 		CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPaneProtocol.swift; sourceTree = "<group>"; };
-		CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCompatibleSegmentedControl.swift; sourceTree = "<group>"; };
 		CEE213121EF13EE600393C67 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
 		CEE254222004A8B2005FEB6F /* MastodonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
 		CEE254272004B5AA005FEB6F /* MastodonPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPost.swift; sourceTree = "<group>"; };
@@ -1774,7 +1772,6 @@
 				CEFB98B725C828AF00D55B03 /* Timeline */,
 				CEFB98B825C828C700D55B03 /* NewPost */,
 				CE90CD0623780A7E001C8E80 /* Preferences */,
-				CEE043AF237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift */,
 				CEE4E2F12377EAF700406371 /* Assets.xcassets */,
 				CEE4E2F32377EAF700406371 /* Main.storyboard */,
 				CEE4E2F62377EAF700406371 /* Info.plist */,
@@ -3024,7 +3021,6 @@
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
 				CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */,
 				CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */,
-				CEE043B0237A2BDE007A915E /* CombineCompatibleSegmentedControl.swift in Sources */,
 				CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */,
 				CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */,
 				CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */,

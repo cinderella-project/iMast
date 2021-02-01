@@ -41,7 +41,7 @@ class AccountsPreferencesPaneView: NSView {
         v.autohidesScrollers = true
     }
     
-    let addOrRemoveSegmentedControl = CombineCompatibleSegmentedControl(images: [
+    let addOrRemoveSegmentedControl = NSSegmentedControl(images: [
         NSImage(named: NSImage.addTemplateName)!,
         NSImage(named: NSImage.removeTemplateName)!,
         NSImage(size: .zero),
