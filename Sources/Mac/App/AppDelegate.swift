@@ -133,6 +133,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
         NSApplication.shared.mainMenu = menu
     }
+    
+    lazy var windowController = MainWindowController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -142,7 +144,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             openPreferences(self)
         }
         
-        let windowController = MainWindowController()
         windowController.showWindow(nil)
         hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
     }

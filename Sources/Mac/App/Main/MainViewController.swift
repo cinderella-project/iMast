@@ -37,6 +37,7 @@ class MainViewController: NSViewController {
                 vc.view.snp.makeConstraints { make in
                     make.edges.equalToSuperview()
                 }
+                vc.view.becomeFirstResponder()
             }
         }
     }
