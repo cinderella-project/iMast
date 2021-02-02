@@ -40,7 +40,7 @@ class PostView: NSView {
         $0.isSelectable = true
         $0.becomeFirstResponder()
     }
-    let guardTextField = NSTextField(labelWithString: "Post → Hide Private Posts")
+    let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
     
     init(post: MastodonPost) {
         super.init(frame: .zero)

@@ -1,0 +1,43 @@
+/* 
+  Menu.strings
+  iMast
+
+  Created by user on 2021/02/02.
+  Copyright © 2021 rinsuki. All rights reserved.
+*/
+
+"About %@" = "%@について";
+"Preferences…" = "環境設定…";
+"Services" = "サービス";
+"Hide %@" = "%@を非表示";
+"Hide Others" = "ほかを非表示";
+"Show All" = "すべてを表示";
+"Quit %@" = "%@を終了";
+
+"File" = "ファイル";
+"New" = "新規";
+"Close" = "閉じる";
+
+"Edit" = "編集";
+"Cut" = "カット";
+"Copy" = "コピー";
+"Paste" = "ペースト";
+"Delete" = "削除";
+"Select All" = "すべてを選択";
+
+"View" = "表示";
+"Show Toolbar" = "ツールバーを表示";
+"Customize Toolbar…" = "ツールバーをカスタマイズ…";
+"Show Sidebar" = "サイドバーを表示";
+
+"Post" = "投稿";
+"Send Post" = "投稿を送信";
+"Hide Private Posts" = "プライベートな投稿を非表示";
+
+"Window" = "ウインドウ";
+"Minimize" = "しまう";
+"Zoom" = "拡大/縮小";
+"Bring All to Front" = "すべてを手前に移動";
+
+"Help" = "ヘルプ";
+"%@ Help" = "%@のヘルプ";

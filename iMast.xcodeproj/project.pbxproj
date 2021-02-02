@@ -152,6 +152,11 @@
 		CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift */; };
 		CE8D2A2424C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift */; };
 		CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EC3022374F474002CA268 /* TopViewController.swift */; };
+		CE8EFA6525C8836B004FFE4B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFA6425C88357004FFE4B /* main.swift */; };
+		CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */; };
+		CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEA25C93C17004FFE4B /* strings.swift */; };
+		CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEB25C93C17004FFE4B /* assets.swift */; };
+		CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFAFC25C93C46004FFE4B /* Menu.strings */; };
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */; };
 		CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */; };
@@ -679,6 +684,12 @@
 		CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.Relationship.swift; sourceTree = "<group>"; };
 		CE8DF1841FED41C4005278FE /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CE8EC3022374F474002CA268 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		CE8EFA6425C88357004FFE4B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CE8EFA8D25C91D2C004FFE4B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8EFAB825C93BE8004FFE4B /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		CE8EFAEA25C93C17004FFE4B /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		CE8EFAEB25C93C17004FFE4B /* assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
+		CE8EFAFB25C93C46004FFE4B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Menu.strings; sourceTree = "<group>"; };
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableWrapperViewController.swift; sourceTree = "<group>"; };
 		CE90CCF3237804CD001C8E80 /* iMastMacShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastMacShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1439,6 +1450,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE8EFA9B25C93AEE004FFE4B /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */,
+				CE8EFAFC25C93C46004FFE4B /* Menu.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		CE8EFAB625C93BAA004FFE4B /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CE8EFAEB25C93C17004FFE4B /* assets.swift */,
+				CE8EFAEA25C93C17004FFE4B /* strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		CE8FD55B22D06D6F00331F15 /* ExtendedClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1767,6 +1796,10 @@
 		CEE4E2EC2377EAF500406371 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CE8EFAB825C93BE8004FFE4B /* swiftgen.yml */,
+				CE8EFAB625C93BAA004FFE4B /* Generated */,
+				CE8EFA9B25C93AEE004FFE4B /* Strings */,
+				CE8EFA6425C88357004FFE4B /* main.swift */,
 				CEE4E2ED2377EAF500406371 /* AppDelegate.swift */,
 				CEFB98B625C828A300D55B03 /* Main */,
 				CEFB98B725C828AF00D55B03 /* Timeline */,
@@ -2097,6 +2130,7 @@
 			buildConfigurationList = CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac" */;
 			buildPhases = (
 				B8A02B96391699BC3883F34C /* [CP] Check Pods Manifest.lock */,
+				CE8EFAB725C93BC7004FFE4B /* SwiftGen */,
 				CEE4E2E72377EAF500406371 /* Sources */,
 				CEE4E2E82377EAF500406371 /* Frameworks */,
 				CEE4E2E92377EAF500406371 /* Resources */,
@@ -2416,6 +2450,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */,
+				CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */,
+				CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */,
 				CEE4E2F52377EAF700406371 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2692,6 +2728,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		CE8EFAB725C93BC7004FFE4B /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/Mac/App/swiftgen.yml\n";
 		};
 		CE9B75C822079C3600EBAB1B /* Generate LicensePlist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3017,7 +3071,9 @@
 			files = (
 				CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */,
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
+				CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */,
 				CEFB988F25C823E500D55B03 /* MainWindowController.swift in Sources */,
+				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
 				CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */,
 				CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */,
@@ -3026,6 +3082,7 @@
 				CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */,
 				CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */,
 				CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */,
+				CE8EFA6525C8836B004FFE4B /* main.swift in Sources */,
 				CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */,
 				CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */,
 				CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */,
@@ -3304,6 +3361,22 @@
 				CE845D272172504A00AF35B4 /* Base */,
 			);
 			name = NewPost.storyboard;
+			sourceTree = "<group>";
+		};
+		CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE8EFA8D25C91D2C004FFE4B /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CE8EFAFC25C93C46004FFE4B /* Menu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE8EFAFB25C93C46004FFE4B /* ja */,
+			);
+			name = Menu.strings;
 			sourceTree = "<group>";
 		};
 		CEDF86FA23CF011100C8A69A /* OtherMenu.strings */ = {
