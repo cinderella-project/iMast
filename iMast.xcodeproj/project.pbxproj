@@ -236,7 +236,6 @@
 		CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2ED2377EAF500406371 /* AppDelegate.swift */; };
 		CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2EF2377EAF500406371 /* MainViewController.swift */; };
 		CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE4E2F12377EAF700406371 /* Assets.xcassets */; };
-		CEE4E2F52377EAF700406371 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE4E2F32377EAF700406371 /* Main.storyboard */; };
 		CEE4E3012377EAF700406371 /* iMast_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E3002377EAF700406371 /* iMast_MacTests.swift */; };
 		CEE4E30C2377EAF700406371 /* iMast_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E30B2377EAF700406371 /* iMast_MacUITests.swift */; };
 		CEE4E3272377F7D800406371 /* iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */; };
@@ -786,7 +785,6 @@
 		CEE4E2ED2377EAF500406371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE4E2EF2377EAF500406371 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CEE4E2F12377EAF700406371 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CEE4E2F42377EAF700406371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEE4E2F62377EAF700406371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEE4E2F72377EAF700406371 /* iMast_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMast_Mac.entitlements; sourceTree = "<group>"; };
 		CEE4E2FC2377EAF700406371 /* iMast-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iMast-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1806,7 +1804,6 @@
 				CEFB98B825C828C700D55B03 /* NewPost */,
 				CE90CD0623780A7E001C8E80 /* Preferences */,
 				CEE4E2F12377EAF700406371 /* Assets.xcassets */,
-				CEE4E2F32377EAF700406371 /* Main.storyboard */,
 				CEE4E2F62377EAF700406371 /* Info.plist */,
 				CEE4E2F72377EAF700406371 /* iMast_Mac.entitlements */,
 			);
@@ -2452,7 +2449,6 @@
 				CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */,
 				CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */,
 				CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */,
-				CEE4E2F52377EAF700406371 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3389,14 +3385,6 @@
 				CEC617F824C4550C00E2FF97 /* zh-Hant */,
 			);
 			name = OtherMenu.strings;
-			sourceTree = "<group>";
-		};
-		CEE4E2F32377EAF700406371 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEE4E2F42377EAF700406371 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		CEF8389024C289AA00C6919A /* Preferences.strings */ = {
