@@ -23,6 +23,7 @@
 
 import UIKit
 import SafariServices
+import iMastiOSCore
 
 extension UIViewController {
     func open(url: URL, forceDisableUniversalLink: Bool = false) {

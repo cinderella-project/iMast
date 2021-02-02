@@ -25,7 +25,7 @@ import UIKit
 import Hydra
 
 extension UIViewController {
-    func presentPromise(_ viewControllerToPresent: UIViewController, animated: Bool) -> Promise<Void> {
+    public func presentPromise(_ viewControllerToPresent: UIViewController, animated: Bool) -> Promise<Void> {
         return Promise<Void>(in: .main) { resolve, _, _ in
             self.present(viewControllerToPresent, animated: animated) {
                 resolve(())

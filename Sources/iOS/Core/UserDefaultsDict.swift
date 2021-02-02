@@ -37,42 +37,42 @@ extension UserDefaults {
         }
     }
 
-    subscript<T: WithDefaultValue>(key: DefaultsKey<T>) -> T {
+    public subscript<T: WithDefaultValue>(key: DefaultsKey<T>) -> T {
         get { return self.nullable(key) ?? T._defaultValue }
         set { set(newValue, forKey: key._key)}
     }
-    subscript<T: WithDefaultValue & RawRepresentable>(key: DefaultsKey<T>) -> T {
+    public subscript<T: WithDefaultValue & RawRepresentable>(key: DefaultsKey<T>) -> T {
         get { return self.nullable(key) ?? T._defaultValue }
         set { set(newValue.rawValue, forKey: key._key) }
     }
 }
 // UserDefaults.standard.forKey
 
-protocol WithDefaultValue {
+public protocol WithDefaultValue {
     static var _defaultValue: Self { get }
 }
 
 extension Int: WithDefaultValue {
-    static let _defaultValue = 0
+    public static let _defaultValue = 0
 }
 
 extension Double: WithDefaultValue {
-    static let _defaultValue = Double(0)
+    public static let _defaultValue = Double(0)
 }
 
 extension String: WithDefaultValue {
-    static let _defaultValue = ""
+    public static let _defaultValue = ""
 }
 
 extension Bool: WithDefaultValue {
-    static let _defaultValue = false
+    public static let _defaultValue = false
 }
 
-class DefaultsKeys {}
+public class DefaultsKeys {}
 
-class DefaultsKey<ValueType: WithDefaultValue>: DefaultsKeys {
+public class DefaultsKey<ValueType: WithDefaultValue>: DefaultsKeys {
     let _key: String
-    let _default: ValueType?
+    public let _default: ValueType?
     
     init(_ key: String) {
         self._key = key

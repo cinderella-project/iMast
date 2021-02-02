@@ -29,11 +29,11 @@ import SDWebImage
 #if os(macOS)
 typealias NSUIFont = NSFont
 #else
-typealias NSUIFont = NSUIFont
+typealias NSUIFont = UIFont
 #endif
 
 extension String {
-    func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
+    public func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
         do {
             let document = try Fuzi.HTMLDocument(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {

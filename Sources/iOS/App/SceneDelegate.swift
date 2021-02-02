@@ -61,7 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             #endif
             myAccount.getUserInfo().then { json in
                 if json["error"].string != nil && json["_response_code"].number == 401 {
-                    myAccount.delete()
+                    try myAccount.delete()
                     window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
                 }
             }

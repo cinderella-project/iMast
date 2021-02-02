@@ -23,6 +23,7 @@
 
 import Foundation
 import UIKit
+import iMastiOSCore
 
 struct UploadableMedia {
     enum MeidaFormat {

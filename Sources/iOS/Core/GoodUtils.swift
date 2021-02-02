@@ -27,26 +27,24 @@ import Hydra
 import Alamofire
 import SwiftyJSON
 import Ikemen
-import iMastiOSCore
 
-let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!
+public let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!
 
-var emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
+public let emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
 #if IS_DEBUG_BUILD
-    let isDebugBuild = true
+    public let isDebugBuild = true
 #else
-    let isDebugBuild = false
+    public let isDebugBuild = false
 #endif
 
-extension UIViewController {
-    
+public extension UIViewController {
     @objc func close() {
         dismiss(animated: true, completion: nil)
     }
 }
 
-extension UIView {
+public extension UIView {
     var viewController: UIViewController? {
         var responder: UIResponder? = self as UIResponder
         while let r = responder {
@@ -60,7 +58,7 @@ extension UIView {
 }
 
 // クエリ文字列をDictionaryに変換するやつ
-func urlComponentsToDict(url: URL) -> [String: String] {
+public func urlComponentsToDict(url: URL) -> [String: String] {
     let comp = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!
     var dict: [String: String] = [:]
     
@@ -96,14 +94,14 @@ extension UserDefaults {
     }
 }
 
-func numToCommaString(_ num: Int) -> String {
+public func numToCommaString(_ num: Int) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = NumberFormatter.Style.decimal
     return formatter.string(from: num as NSNumber)!
 }
 
-enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIterable {
-    var description: String {
+public enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIterable {
+    public var description: String {
         switch self {
         case .leftCenter:
             return "左中央"
@@ -118,7 +116,7 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
         }
     }
     
-    static var _defaultValue: PostFabLocation = .rightBottom
+    public static var _defaultValue: PostFabLocation = .rightBottom
     
     case leftCenter
     case rightCenter
@@ -127,5 +125,5 @@ enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIte
     case rightBottom
 }
 
-let UserDefaultsAppGroup = UserDefaults.init(suiteName: appGroupIdentifier)!
-var Defaults = UserDefaultsAppGroup
+public let UserDefaultsAppGroup = UserDefaults.init(suiteName: appGroupIdentifier)!
+public let Defaults = UserDefaultsAppGroup

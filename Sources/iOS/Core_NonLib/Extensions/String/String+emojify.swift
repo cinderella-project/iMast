@@ -22,6 +22,7 @@
 //
 
 import Foundation
+import iMastiOSCore
 
 extension String {
     func emojify() -> String {

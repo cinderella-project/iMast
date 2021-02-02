@@ -23,6 +23,7 @@
 
 import Eureka
 import EurekaTwolineSliderRow
+import iMastiOSCore
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
     func userDefaultsConnect<T: Equatable>(_ key: DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {

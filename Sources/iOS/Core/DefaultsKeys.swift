@@ -23,7 +23,7 @@
 
 import UIKit
 
-extension DefaultsKeys {
+public extension DefaultsKeys {
     static let streamingAutoConnect = DefaultsKey<String>("streaming_autoconnect", default: "always")
     static let appendMediaUrl = DefaultsKey<Bool>("append_mediaurl", default: true)
     static let newAccountVia = DefaultsKey<String>("new_account_via", default: "iMast")

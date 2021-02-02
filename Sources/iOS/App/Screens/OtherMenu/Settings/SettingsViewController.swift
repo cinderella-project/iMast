@@ -29,6 +29,7 @@ import SafariServices
 import SDWebImage
 import Alamofire
 import SwiftyJSON
+import iMastiOSCore
 
 class SettingsViewController: FormViewController {
 

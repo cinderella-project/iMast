@@ -24,6 +24,7 @@
 import UIKit
 import Eureka
 import AVKit
+import iMastiOSCore
 
 class PushSettingsChangeSoundViewController: FormViewController {
     var lastType: String = "boost"

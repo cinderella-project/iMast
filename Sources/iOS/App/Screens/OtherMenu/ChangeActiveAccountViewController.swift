@@ -166,7 +166,8 @@ class ChangeActiveAccountViewController: UITableViewController {
             alertVC.popoverPresentationController?.sourceView = self.tableView.cellForRow(at: indexPath)
             alertVC.popoverPresentationController?.permittedArrowDirections = [.up, .down]
             alertVC.addAction(UIAlertAction(title: "削除", style: .destructive) { _ in
-                if userToken.delete() {
+                do {
+                    try userToken.delete()
                     self.userTokens = MastodonUserToken.getAllUserTokens()
                     self.tableView.reloadData()
                     if indexPath.row == 0 {
@@ -176,6 +177,8 @@ class ChangeActiveAccountViewController: UITableViewController {
                             self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()))
                         }
                     }
+                } catch {
+                    self.errorReport(error: error)
                 }
             })
             alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))

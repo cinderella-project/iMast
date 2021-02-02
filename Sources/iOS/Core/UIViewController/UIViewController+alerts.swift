@@ -27,7 +27,7 @@ import Ikemen
 import SwiftyJSON
 
 extension UIViewController {
-    func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
+    public func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
         print("alert", title, message)
         return Promise<Void>(in: .main) { resolve, reject, _ in
             print("alert", title, message)
@@ -42,7 +42,7 @@ extension UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") -> Promise<Bool> {
+    public func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") -> Promise<Bool> {
         return Promise<Bool>(in: .main) { resolve, reject, _ in
             let alert = UIAlertController(
                 title: title,
@@ -58,7 +58,7 @@ extension UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func alert(title: String = "", message: String = "") {
+    public func alert(title: String = "", message: String = "") {
         alertWithPromise(title: title, message: message).then {}
     }
     
@@ -73,7 +73,7 @@ extension UIViewController {
         errorWithPromise(errorMsg: errorMsg).then {}
     }
     
-    func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void> {
+    public func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void> {
         let errorMessage: String = String(format: "エラーメッセージ:\n%@ (%@)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。", arguments: [
             errorMsg ?? "不明なエラー(iMast)",
             String(httpNumber ?? -1),
@@ -83,14 +83,14 @@ extension UIViewController {
             message: errorMessage
         )
     }
-    func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) {
+    public func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) {
         apiErrorWithPromise(errorMsg, httpNumber).then {}
     }
-    func apiError(_ json: JSON) {
+    public func apiError(_ json: JSON) {
         apiError(json["error"].string, json["_response_code"].int)
     }
     
-    func errorReport(error: Error) {
+    public func errorReport(error: Error) {
         let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "詳しい情報を見る", style: .default, handler: { _ in
