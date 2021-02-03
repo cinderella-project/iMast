@@ -265,6 +265,8 @@
 		CEE4E3702377F84200406371 /* MastodonUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA1123112E6900EE3B23 /* MastodonUserToken.swift */; };
 		CEE4E3712377F84400406371 /* genRandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEF523779EE800133C86 /* genRandomString.swift */; };
 		CEE4E3722377F84400406371 /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
+		CEEB1A3C25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */; };
+		CEEB1A3D25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */; };
 		CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */; };
 		CEEBC3CA23548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
@@ -787,6 +789,7 @@
 		CEE4E3262377F7D800406371 /* iMastMacCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMastMacCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4E32D2377F7D800406371 /* iMastMacCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMastMacCoreTests.swift; sourceTree = "<group>"; };
 		CEE4E32F2377F7D800406371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonWebSocketMessage.swift; sourceTree = "<group>"; };
 		CEEB9F941FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBarcodeReaderViewController.swift; sourceTree = "<group>"; };
 		CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewDiffableDataSource+plainSnapshot.swift"; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -1659,6 +1662,7 @@
 				CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */,
 				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
 				CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */,
+				CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2940,6 +2944,7 @@
 				CE43BEFD23779F8200133C86 /* String+sha256.swift in Sources */,
 				CEE4E3422377F81700406371 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE43BEFE23779FB200133C86 /* IndirectBox.swift in Sources */,
+				CEEB1A3C25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */,
 				CE43BEEC23779EB500133C86 /* MastodonApplication.swift in Sources */,
 				CE43BF072377A0A500133C86 /* APIError.swift in Sources */,
 				CE43BEEA23779EB500133C86 /* MastodonAccountRelationship.swift in Sources */,
@@ -3115,6 +3120,7 @@
 				CEE4E3412377F81400406371 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CEE4E3442377F82D00406371 /* Array+safe.swift in Sources */,
 				CEE4E35A2377F83900406371 /* String+sha256.swift in Sources */,
+				CEEB1A3D25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */,
 				CEE4E3622377F83C00406371 /* MastodonPost.swift in Sources */,
 				CE522BF724159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
 				CEE4E3642377F83C00406371 /* MastodonNotification.swift in Sources */,

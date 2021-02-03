@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import Foundation
+import Ikemen
 
 private let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
     let container = try $0.singleValueContainer()
@@ -42,9 +43,7 @@ private let jsISODateDecoder = JSONDecoder.DateDecodingStrategy.custom {
 }
 
 extension JSONDecoder {
-    static var forMastodonAPI: JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = jsISODateDecoder
-        return decoder
+    public static let forMastodonAPI = JSONDecoder() ※ {
+        $0.dateDecodingStrategy = jsISODateDecoder
     }
 }

@@ -42,11 +42,17 @@ class TimelineViewController: NSViewController {
         $0.documentView = tableView
     }
     var posts = [MastodonPost]()
+    var websocketTask: URLSessionWebSocketTask?
     
     init(userToken: MastodonUserToken, timelineType: MastodonTimelineType) {
         self.userToken = userToken
         self.timelineType = timelineType
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    deinit {
+        print("deinit", self)
+        websocketTask?.cancel()
     }
     
     required init?(coder: NSCoder) {
@@ -61,14 +67,60 @@ class TimelineViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         userToken.timeline(timelineType).then(in: .main) { [weak self] posts in
-            self?.addNewPosts(newPosts: posts)
+            self?.addNewPosts(newPosts: posts, animated: false)
+            self?.connectToStreaming()
         }
     }
     
-    func addNewPosts(newPosts: [MastodonPost]) {
+    func connectToStreaming() {
+        guard let wsParams = timelineType.wsParams else {
+            return
+        }
+        var components = URLComponents()
+        components.scheme = "wss"
+        components.host = userToken.app.instance.hostName
+        components.path = "/api/v1/streaming"
+        components.queryItems = wsParams.map { .init(name: $0.0, value: $0.1) }
+        var wsReq = URLRequest(url: components.url!)
+        wsReq.setValue(userToken.token, forHTTPHeaderField: "Sec-WebSocket-Protocol")
+        let websocketTask = URLSession.shared.webSocketTask(with: wsReq)
+        func receive() {
+            websocketTask.receive { [weak self] result in
+                switch result {
+                case .success(.string(let string)):
+                    do {
+                        let message = try JSONDecoder.forMastodonAPI.decode(MastodonWebSocketMessage.self, from: string.data(using: .utf8)!)
+                        switch message {
+                        case .update(let post):
+                            DispatchQueue.main.async { [weak self] in
+                                self?.addNewPosts(newPosts: [post], animated: true)
+                            }
+                        case .delete(let id):
+                            print(id)
+                        case .unknown(let event):
+                            print("Unknown Event", event)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                    receive()
+                case .failure(let error):
+                    print(error)
+                    websocketTask.cancel()
+                default:
+                    print("Unknown Message", result)
+                }
+            }
+        }
+        receive()
+        websocketTask.resume()
+        self.websocketTask = websocketTask
+    }
+    
+    func addNewPosts(newPosts: [MastodonPost], animated: Bool) {
         posts.insert(contentsOf: newPosts, at: 0)
         tableView.beginUpdates()
-        tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: [])
+        tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: animated ? [.effectGap] : [])
         tableView.endUpdates()
     }
     

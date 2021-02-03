@@ -261,9 +261,11 @@ extension MastodonUserToken {
 public class MastodonTimelineType {
     let endpoint: String
     let params: [String: Any]
+    public let wsParams: [String: String]?
     
-    static public let home = MastodonTimelineType(endpoint: "timelines/home")
-    static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"])
+    static public let home = MastodonTimelineType(endpoint: "timelines/home", wsParams: ["stream": "user"])
+    static public let federated = MastodonTimelineType(endpoint: "timelines/public", wsParams: ["stream": "public"])
+    static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"], wsParams: ["stream": "public:local"])
     static public func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
         var params: [String: Any] = [:]
         if pinned {
@@ -272,18 +274,19 @@ public class MastodonTimelineType {
         return MastodonTimelineType(endpoint: "accounts/\(account.id.string)/statuses", params: params)
     }
     static public func list(_ list: MastodonList) -> MastodonTimelineType {
-        return MastodonTimelineType(endpoint: "timelines/list/\(list.id.string)")
+        return MastodonTimelineType(endpoint: "timelines/list/\(list.id.string)", wsParams: ["stream": "list", "list": list.id.string])
     }
     
     static public func hashtag(_ tag: String) -> MastodonTimelineType {
         var charset = CharacterSet.urlPathAllowed
         charset.insert("/")
-        return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)")
+        return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)", wsParams: ["stream": "hashtag", "tag": tag])
     }
     
-    init(endpoint: String, params: [String: Any] = [:]) {
+    init(endpoint: String, params: [String: Any] = [:], wsParams: [String: String]? = nil) {
         self.endpoint = endpoint
         self.params = params
+        self.wsParams = wsParams
     }
 }
 
