@@ -32,12 +32,6 @@ public let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplica
 
 public let emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
 
-#if IS_DEBUG_BUILD
-    public let isDebugBuild = true
-#else
-    public let isDebugBuild = false
-#endif
-
 public extension UIViewController {
     @objc func close() {
         dismiss(animated: true, completion: nil)

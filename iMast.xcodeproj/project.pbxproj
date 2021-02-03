@@ -50,6 +50,7 @@
 		CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
+		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
 		CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
@@ -580,6 +581,7 @@
 		CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+responseDecodable.swift"; sourceTree = "<group>"; };
 		CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hydra.Promise+wrapper.swift"; sourceTree = "<group>"; };
 		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
+		CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDebugBuild.swift; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
@@ -1121,6 +1123,7 @@
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
+				CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */,
@@ -2892,6 +2895,7 @@
 				2A108F8F1ED4A40600BE1404 /* HomeTimeLineTableViewController.swift in Sources */,
 				2A108F931ED55C4F00BE1404 /* LocalTimeLineTableViewController.swift in Sources */,
 				CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */,
+				CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */,
 				CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */,
 				CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */,
 				CE43BEBA23777B5A00133C86 /* DateUtils.swift in Sources */,
