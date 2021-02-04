@@ -1,5 +1,5 @@
 //
-//  MainWindowController.swift
+//  MainWindow.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -30,7 +30,7 @@ private extension NSToolbarItem.Identifier {
     static let newPost = NSToolbarItem.Identifier("iMast.newPost")
 }
 
-class MainWindowController: NSWindowController {
+class MainWindow: NSWindow {
     let toolBar = NSToolbar()
     lazy var vc = MainViewController()
     lazy var currentViewSegmentedControl = NSSegmentedControl(images: [
@@ -45,26 +45,21 @@ class MainWindowController: NSWindowController {
     }
     
     init() {
-        super.init(window: nil)
-        loadWindow()
+        super.init(contentRect: .zero, styleMask: [.closable, .miniaturizable, .resizable, .titled], backing: .buffered, defer: true)
         toolBar.displayMode = .iconOnly
         toolBar.delegate = self
-        let window = NSWindow(contentViewController: vc)
         if let userToken = MastodonUserToken.getLatestUsed() {
-            window.subtitle = "@\(userToken.acct)"
+            subtitle = "@\(userToken.acct)"
         }
-        window.toolbar = toolBar
-        window.setContentSize(.init(width: 360, height: 560))
-        window.center()
-        self.window = window
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        // setup
+        contentViewController = vc
+        toolbar = toolBar
+        setContentSize(.init(width: 360, height: 560))
+        center()
     }
 }
 
-extension MainWindowController: NSToolbarDelegate {
+extension MainWindow: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .currentView,
@@ -94,7 +89,7 @@ extension MainWindowController: NSToolbarDelegate {
     }
 }
 
-extension MainWindowController: NSMenuDelegate {
+extension MainWindow: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
         for userToken in MastodonUserToken.getAllUserTokens() {
@@ -120,7 +115,7 @@ extension MainWindowController: NSMenuDelegate {
             return
         }
         currentViewSegmentedControl.setImage(sender.image, forSegment: 0)
-        window?.subtitle = "@\(userToken.acct)"
+        subtitle = "@\(userToken.acct)"
         switch sender.identifier?.rawValue {
         case "home":
             vc.child = TimelineViewController(userToken: userToken, timelineType: .home)

@@ -134,8 +134,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.mainMenu = menu
     }
     
-    lazy var windowController = MainWindowController()
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
@@ -143,8 +141,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
         }
-        
-        windowController.showWindow(nil)
+        let window = MainWindow()
+        window.makeKeyAndOrderFront(self)
         hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
     }
 

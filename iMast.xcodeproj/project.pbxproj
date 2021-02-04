@@ -285,7 +285,7 @@
 		CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB985925C7F54A00D55B03 /* PostView.swift */; };
 		CEFB986725C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
 		CEFB986825C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */; };
-		CEFB988F25C823E500D55B03 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB988E25C823E500D55B03 /* MainWindowController.swift */; };
+		CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB988E25C823E500D55B03 /* MainWindow.swift */; };
 		CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98A825C827A400D55B03 /* NewPostWindowController.swift */; };
 		CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98B925C828E300D55B03 /* NewPostViewController.swift */; };
 		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
@@ -813,7 +813,7 @@
 		CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emptyAsNil.swift"; sourceTree = "<group>"; };
 		CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		CEFB985925C7F54A00D55B03 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		CEFB988E25C823E500D55B03 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		CEFB988E25C823E500D55B03 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		CEFB98A825C827A400D55B03 /* NewPostWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostWindowController.swift; sourceTree = "<group>"; };
 		CEFB98B925C828E300D55B03 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TootIntentHandler.swift; sourceTree = "<group>"; };
@@ -1899,7 +1899,7 @@
 		CEFB98B625C828A300D55B03 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CEFB988E25C823E500D55B03 /* MainWindowController.swift */,
+				CEFB988E25C823E500D55B03 /* MainWindow.swift */,
 				CEE4E2EF2377EAF500406371 /* MainViewController.swift */,
 			);
 			path = Main;
@@ -3061,7 +3061,7 @@
 				CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */,
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
 				CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */,
-				CEFB988F25C823E500D55B03 /* MainWindowController.swift in Sources */,
+				CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */,
 				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
 				CEFB98A925C827A400D55B03 /* NewPostWindowController.swift in Sources */,
