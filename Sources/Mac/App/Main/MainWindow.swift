@@ -31,7 +31,6 @@ private extension NSToolbarItem.Identifier {
 }
 
 class MainWindow: NSWindow {
-    let toolBar = NSToolbar()
     lazy var vc = MainViewController()
     lazy var currentViewSegmentedControl = NSSegmentedControl(images: [
         NSImage(systemSymbolName: "house", accessibilityDescription: nil)!,
@@ -46,14 +45,16 @@ class MainWindow: NSWindow {
     
     init() {
         super.init(contentRect: .zero, styleMask: [.closable, .miniaturizable, .resizable, .titled], backing: .buffered, defer: true)
-        toolBar.displayMode = .iconOnly
-        toolBar.delegate = self
+        isReleasedWhenClosed = false
+        toolbar = NSToolbar() ※ {
+            $0.displayMode = .iconOnly
+            $0.delegate = self
+        }
         if let userToken = MastodonUserToken.getLatestUsed() {
             subtitle = "@\(userToken.acct)"
         }
         // setup
         contentViewController = vc
-        toolbar = toolBar
         setContentSize(.init(width: 360, height: 560))
         center()
     }
@@ -68,7 +69,7 @@ extension MainWindow: NSToolbarDelegate {
     }
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return toolbarDefaultItemIdentifiers(toolBar)
+        return toolbarDefaultItemIdentifiers(toolbar)
     }
     
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {

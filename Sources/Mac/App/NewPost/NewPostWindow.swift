@@ -1,5 +1,5 @@
 //
-//  NewPostWindowController.swift
+//  NewPostWindow.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
@@ -28,26 +28,24 @@ private extension NSToolbarItem.Identifier {
     static let send = NSToolbarItem.Identifier("iMast.send")
 }
 
-class NewPostWindowController: NSWindowController {
+class NewPostWindow: NSWindow {
     let toolBar = NSToolbar()
     
     init(userToken: MastodonUserToken) {
-        let window = NSWindow(contentViewController: NewPostViewController(userToken: userToken))
-        super.init(window: window)
-        window.setContentSize(.init(width: 320, height: 320))
-        window.title = "新規投稿"
-        window.subtitle = "@" + userToken.acct
+        super.init(contentRect: .zero, styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
+        isReleasedWhenClosed = false
+        contentViewController = NewPostViewController(userToken: userToken)
+        setContentSize(.init(width: 320, height: 320))
+        title = "新規投稿"
+        subtitle = "@" + userToken.acct
         toolBar.displayMode = .iconOnly
         toolBar.delegate = self
-        window.toolbar = toolBar
+        toolbar = toolBar
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
-extension NewPostWindowController: NSToolbarDelegate {
+extension NewPostWindow: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .send,
