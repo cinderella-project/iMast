@@ -153,4 +153,8 @@ extension TimelineViewController: NSTableViewDelegate {
         let post = posts[row]
         return PostView(post: post)
     }
+    
+    func tableView(_ tableView: NSTableView, shouldTypeSelectFor event: NSEvent, withCurrentSearch searchString: String?) -> Bool {
+        return false
+    }
 }
