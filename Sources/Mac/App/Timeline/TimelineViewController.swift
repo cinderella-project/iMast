@@ -121,9 +121,9 @@ class TimelineViewController: NSViewController {
         posts.insert(contentsOf: newPosts, at: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: animated ? [.effectGap] : [])
-        if posts.count > 100 {
-            tableView.removeRows(at: IndexSet([newPosts.count]), withAnimation: animated ? [.effectGap] : [])
+        while posts.count > 100 {
             posts.removeLast()
+            tableView.removeRows(at: IndexSet([posts.count]), withAnimation: animated ? [.effectGap] : [])
         }
         tableView.endUpdates()
     }
