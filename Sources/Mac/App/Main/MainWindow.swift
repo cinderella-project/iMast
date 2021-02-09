@@ -110,6 +110,10 @@ extension MainWindow: NSMenuDelegate {
                         $0.image = NSImage(systemSymbolName: "person.2", accessibilityDescription: nil)
                         $0.identifier = .init("local")
                     })
+                    $0.addItem(.init(title: "Federated", action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
+                        $0.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
+                        $0.identifier = .init("federated")
+                    })
                 }
             })
         }
@@ -127,6 +131,8 @@ extension MainWindow: NSMenuDelegate {
             vc.child = TimelineViewController(userToken: userToken, timelineType: .home)
         case "local":
             vc.child = TimelineViewController(userToken: userToken, timelineType: .local)
+        case "federated":
+            vc.child = TimelineViewController(userToken: userToken, timelineType: .federated)
         default:
             fatalError("Unknown Identifier: \(sender.identifier?.rawValue)")
         }
