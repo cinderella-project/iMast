@@ -58,6 +58,11 @@ class MainWindow: NSWindow {
         setContentSize(.init(width: 360, height: 560))
         center()
     }
+    
+    @objc override func newWindowForTab(_ sender: Any?) {
+        let newWindow = MainWindow()
+        addTabbedWindow(newWindow, ordered: .above)
+    }
 }
 
 extension MainWindow: NSToolbarDelegate {

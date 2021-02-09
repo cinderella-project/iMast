@@ -76,6 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 $0.addItem(.init(title: L10n.Menu.new, action: #selector(TimelineViewController.newDocument(_:)), keyEquivalent: "n") ※ {
                     $0.keyEquivalentModifierMask = []
                 })
+                $0.addItem(.init(title: L10n.Menu.newTab, action: #selector(MainWindow.newWindowForTab(_:)), keyEquivalent: "t"))
                 $0.addItem(.separator())
                 $0.addItem(.init(title: L10n.Menu.close, action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w"))
             }

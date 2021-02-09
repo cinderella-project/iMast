@@ -51,6 +51,8 @@ internal enum L10n {
     internal static let minimize = L10n.tr("Menu", "Minimize")
     /// 新規
     internal static let new = L10n.tr("Menu", "New")
+    /// 新規タブ
+    internal static let newTab = L10n.tr("Menu", "New Tab")
     /// ペースト
     internal static let paste = L10n.tr("Menu", "Paste")
     /// 投稿
