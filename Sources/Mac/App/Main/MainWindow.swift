@@ -62,6 +62,7 @@ class MainWindow: NSWindow {
     @objc override func newWindowForTab(_ sender: Any?) {
         let newWindow = MainWindow()
         addTabbedWindow(newWindow, ordered: .above)
+        newWindow.makeKeyAndOrderFront(sender)
     }
 }
 
