@@ -66,7 +66,7 @@ class TimelineViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        userToken.timeline(timelineType).then(in: .main) { [weak self] posts in
+        userToken.timeline(timelineType, limit: 50).then(in: .main) { [weak self] posts in
             self?.addNewPosts(newPosts: posts, animated: false)
             self?.connectToStreaming()
         }
@@ -121,6 +121,10 @@ class TimelineViewController: NSViewController {
         posts.insert(contentsOf: newPosts, at: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: IndexSet(0..<newPosts.count), withAnimation: animated ? [.effectGap] : [])
+        if posts.count > 100 {
+            tableView.removeRows(at: IndexSet([newPosts.count]), withAnimation: animated ? [.effectGap] : [])
+            posts.removeLast()
+        }
         tableView.endUpdates()
     }
     
