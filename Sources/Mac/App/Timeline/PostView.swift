@@ -25,6 +25,21 @@ import Cocoa
 import Ikemen
 import iMastMacCore
 
+private func getCurrentTimeString(date: Date) -> String {
+    let calendar = Calendar(identifier: .gregorian)
+    var timeFormat = "yyyy/MM/dd HH:mm:ss"
+    if calendar.component(.year, from: Date()) == calendar.component(.year, from: date) {
+        timeFormat = "MM/dd HH:mm:ss"
+    }
+    if calendar.isDateInToday(date) {
+        timeFormat = "HH:mm:ss"
+    }
+    let formatter = DateFormatter()
+    formatter.dateFormat = timeFormat
+    formatter.locale = .init(identifier: "en_US_POSIX")
+    return formatter.string(from: date)
+}
+
 class PostView: NSView {
     let imageView = NSImageView()
     let userNameField = NSTextField(labelWithString: "") ※ {
@@ -33,6 +48,7 @@ class PostView: NSView {
     let userAcctField = NSTextField(labelWithString: "") ※ {
         $0.textColor = .secondaryLabelColor
         $0.setContentCompressionResistancePriority(.init(251), for: .horizontal)
+        $0.setContentHuggingPriority(.init(249), for: .horizontal)
     }
     let timeField = NSTextField(labelWithString: "")
     let textField = NSTextField(wrappingLabelWithString: "") ※ {
@@ -44,16 +60,7 @@ class PostView: NSView {
     
     init(post: MastodonPost) {
         super.init(frame: .zero)
-        // ---
-        imageView.sd_setImage(with: URL(string: post.originalPost.account.avatarUrl), completed: nil)
-        userNameField.stringValue = post.originalPost.account.name
-        userAcctField.stringValue = "@" + post.originalPost.account.acct
-        if let attributedString = post.originalPost.status.parseText2HTML(attributes: [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize)]) {
-            textField.attributedStringValue = attributedString
-        } else {
-            textField.stringValue = post.originalPost.status
-        }
-        // ---
+        load(post: post)
         addSubview(imageView)
         let stackView = NSStackView(views: [
             NSStackView(views: [
@@ -96,5 +103,18 @@ class PostView: NSView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func load(post: MastodonPost) {
+        let original = post.originalPost
+        imageView.sd_setImage(with: URL(string: original.account.avatarUrl), completed: nil)
+        userNameField.stringValue = original.account.name
+        userAcctField.stringValue = "@" + original.account.acct
+        timeField.stringValue = getCurrentTimeString(date: original.createdAt)
+        if let attributedString = original.status.parseText2HTML(attributes: [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize)]) {
+            textField.attributedStringValue = attributedString
+        } else {
+            textField.stringValue = original.status
+        }
     }
 }
