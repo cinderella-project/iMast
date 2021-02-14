@@ -25,7 +25,7 @@ import Cocoa
 import iMastMacCore
 
 class MainViewController: NSViewController {
-    var child: NSViewController? = nil {
+    @objc dynamic var child: NSViewController? = nil {
         didSet {
             if let vc = oldValue {
                 vc.view.removeFromSuperview()
@@ -53,6 +53,7 @@ class MainViewController: NSViewController {
         if let userToken = MastodonUserToken.getLatestUsed() {
             child = TimelineViewController(userToken: userToken, timelineType: .home)
         }
+        bind(.title, to: self, withKeyPath: "child.title", options: nil)
     }
 
     override var representedObject: Any? {

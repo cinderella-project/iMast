@@ -48,6 +48,16 @@ class TimelineViewController: NSViewController {
         self.userToken = userToken
         self.timelineType = timelineType
         super.init(nibName: nil, bundle: nil)
+        switch timelineType {
+        case .home:
+            title = L10n.Timeline.home
+        case .local:
+            title = L10n.Timeline.local
+        case .federated:
+            title = L10n.Timeline.federated
+        default:
+            title = "Timeline"
+        }
     }
     
     deinit {

@@ -232,7 +232,7 @@ extension MastodonUserToken {
     public func timeline(_ type: MastodonTimelineType, limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonPost]> {
         var params = type.params
         if let limit = limit {
-            params["limit"] = limit
+            params["limit"] = limit.description
         }
         if let sinceId = sinceId {
             params["since_id"] = sinceId.string
@@ -258,18 +258,25 @@ extension MastodonUserToken {
     }
 }
 
-public class MastodonTimelineType {
+public class MastodonTimelineType: Equatable {
+    public static func == (lhs: MastodonTimelineType, rhs: MastodonTimelineType) -> Bool {
+        return
+            lhs.endpoint == rhs.endpoint &&
+            lhs.params == rhs.params &&
+            lhs.wsParams == rhs.wsParams
+    }
+    
     let endpoint: String
-    let params: [String: Any]
+    let params: [String: String]
     public let wsParams: [String: String]?
     
     static public let home = MastodonTimelineType(endpoint: "timelines/home", wsParams: ["stream": "user"])
     static public let federated = MastodonTimelineType(endpoint: "timelines/public", wsParams: ["stream": "public"])
     static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"], wsParams: ["stream": "public:local"])
     static public func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
-        var params: [String: Any] = [:]
+        var params: [String: String] = [:]
         if pinned {
-            params["pinned"] = 1
+            params["pinned"] = "1"
         }
         return MastodonTimelineType(endpoint: "accounts/\(account.id.string)/statuses", params: params)
     }
@@ -283,7 +290,7 @@ public class MastodonTimelineType {
         return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)", wsParams: ["stream": "hashtag", "tag": tag])
     }
     
-    init(endpoint: String, params: [String: Any] = [:], wsParams: [String: String]? = nil) {
+    init(endpoint: String, params: [String: String] = [:], wsParams: [String: String]? = nil) {
         self.endpoint = endpoint
         self.params = params
         self.wsParams = wsParams

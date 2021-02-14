@@ -82,6 +82,14 @@ internal enum L10n {
     /// 拡大/縮小
     internal static let zoom = L10n.tr("Menu", "Zoom")
   }
+  internal enum Timeline {
+    /// 連合
+    internal static let federated = L10n.tr("Timeline", "Federated")
+    /// ホーム
+    internal static let home = L10n.tr("Timeline", "Home")
+    /// ローカル
+    internal static let local = L10n.tr("Timeline", "Local")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

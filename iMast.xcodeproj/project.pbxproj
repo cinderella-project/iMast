@@ -125,6 +125,7 @@
 		CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */; };
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
+		CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */; };
 		CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -669,6 +670,7 @@
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
 		CE845D272172504A00AF35B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewPost.storyboard; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
+		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
 		CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFabButton.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
@@ -1450,6 +1452,7 @@
 			children = (
 				CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */,
 				CE8EFAFC25C93C46004FFE4B /* Menu.strings */,
+				CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2452,6 +2455,7 @@
 				CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */,
 				CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */,
 				CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */,
+				CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3351,6 +3355,14 @@
 				CE845D272172504A00AF35B4 /* Base */,
 			);
 			name = NewPost.storyboard;
+			sourceTree = "<group>";
+		};
+		CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE854B8A25D4C0AB00C30BD7 /* ja */,
+			);
+			name = Timeline.strings;
 			sourceTree = "<group>";
 		};
 		CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */ = {
