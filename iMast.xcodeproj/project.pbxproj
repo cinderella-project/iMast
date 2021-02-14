@@ -126,6 +126,7 @@
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */; };
+		CE77945025D9C10E00AF9F2C /* AutolayoutTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */; };
 		CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE78CFA61EE812AD008313EA /* ShareViewController.swift */; };
 		CE78CFAA1EE812AD008313EA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE78CFA81EE812AD008313EA /* MainInterface.storyboard */; };
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -657,6 +658,7 @@
 		CE75AE2021C0EF3100BA3C9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
 		CE75AE2221C0EF3200BA3C9F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Intents.strings; sourceTree = "<group>"; };
 		CE75AE2321C1030400BA3C9F /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutTextView.swift; sourceTree = "<group>"; };
 		CE78CFA41EE812AD008313EA /* iMastShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE78CFA61EE812AD008313EA /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -1426,6 +1428,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		CE77945D25D9C12100AF9F2C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		CE78CFA51EE812AD008313EA /* iMastShare */ = {
 			isa = PBXGroup;
 			children = (
@@ -1805,6 +1815,7 @@
 				CE8EFA9B25C93AEE004FFE4B /* Strings */,
 				CE8EFA6425C88357004FFE4B /* main.swift */,
 				CEE4E2ED2377EAF500406371 /* AppDelegate.swift */,
+				CE77945D25D9C12100AF9F2C /* Common */,
 				CEFB98B625C828A300D55B03 /* Main */,
 				CEFB98B725C828AF00D55B03 /* Timeline */,
 				CEFB98B825C828C700D55B03 /* NewPost */,
@@ -3068,6 +3079,7 @@
 				CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */,
 				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
+				CE77945025D9C10E00AF9F2C /* AutolayoutTextView.swift in Sources */,
 				CEFB98A925C827A400D55B03 /* NewPostWindow.swift in Sources */,
 				CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */,
 				CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */,

@@ -51,10 +51,10 @@ class PostView: NSView {
         $0.setContentHuggingPriority(.init(249), for: .horizontal)
     }
     let timeField = NSTextField(labelWithString: "")
-    let textField = NSTextField(wrappingLabelWithString: "") ※ {
-        $0.allowsEditingTextAttributes = true
-        $0.isSelectable = true
-        $0.becomeFirstResponder()
+    let textField = AutolayoutTextView() ※ {
+        $0.isEditable = false
+        $0.drawsBackground = false
+        $0.textContainer?.lineFragmentPadding = 0
     }
     let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
     
@@ -80,7 +80,7 @@ class PostView: NSView {
         addSubview(stackView)
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
-            make.bottom.lessThanOrEqualToSuperview().inset(8)
+//            make.bottom.lessThanOrEqualToSuperview().inset(8)
             make.leading.equalToSuperview().inset(4)
             make.size.equalTo(48)
         }
@@ -111,10 +111,14 @@ class PostView: NSView {
         userNameField.stringValue = original.account.name
         userAcctField.stringValue = "@" + original.account.acct
         timeField.stringValue = getCurrentTimeString(date: original.createdAt)
-        if let attributedString = original.status.parseText2HTML(attributes: [.font: NSFont.systemFont(ofSize: NSFont.systemFontSize)]) {
-            textField.attributedStringValue = attributedString
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: NSFont.systemFont(ofSize: NSFont.systemFontSize),
+            .foregroundColor: NSColor.controlTextColor,
+        ]
+        if let attributedString = original.status.parseText2HTML(attributes: attributes) {
+            textField.textStorage?.setAttributedString(attributedString)
         } else {
-            textField.stringValue = original.status
+            textField.textStorage?.setAttributedString(NSAttributedString(string: original.status, attributes: attributes))
         }
     }
 }
