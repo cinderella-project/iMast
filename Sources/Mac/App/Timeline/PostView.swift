@@ -40,8 +40,8 @@ private func getCurrentTimeString(date: Date) -> String {
     return formatter.string(from: date)
 }
 
-class PostView: NSView {
-    let imageView = NSImageView()
+class PostView: NSTableCellView {
+    let iconView = NSImageView()
     let userNameField = NSTextField(labelWithString: "") ※ {
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
@@ -51,9 +51,9 @@ class PostView: NSView {
         $0.setContentHuggingPriority(.init(249), for: .horizontal)
     }
     let timeField = NSTextField(labelWithString: "")
-    let textField = AutolayoutTextView() ※ {
+    let textView = AutolayoutTextView() ※ {
         $0.isEditable = false
-        $0.drawsBackground = false
+        $0.backgroundColor = .clear
         $0.textContainer?.lineFragmentPadding = 0
     }
     let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
@@ -61,7 +61,7 @@ class PostView: NSView {
     init(post: MastodonPost) {
         super.init(frame: .zero)
         load(post: post)
-        addSubview(imageView)
+        addSubview(iconView)
         let stackView = NSStackView(views: [
             NSStackView(views: [
                 userNameField,
@@ -70,7 +70,7 @@ class PostView: NSView {
             ]) ※ {
                 $0.setHuggingPriority(.required, for: .vertical)
             },
-            textField,
+            textView,
         ]) ※ {
             $0.spacing = 4
             $0.alignment = .leading
@@ -78,7 +78,7 @@ class PostView: NSView {
             $0.setHuggingPriority(.required, for: .vertical)
         }
         addSubview(stackView)
-        imageView.snp.makeConstraints { make in
+        iconView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
 //            make.bottom.lessThanOrEqualToSuperview().inset(8)
             make.leading.equalToSuperview().inset(4)
@@ -87,10 +87,10 @@ class PostView: NSView {
         stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
             make.trailing.equalToSuperview().inset(4)
-            make.leading.equalTo(imageView.snp.trailing).offset(8)
+            make.leading.equalTo(iconView.snp.trailing).offset(8)
         }
         if post.originalPost.visibility != .public, post.originalPost.visibility != .unlisted {
-            imageView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
+            iconView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
             stackView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
             addSubview(guardTextField)
             guardTextField.snp.makeConstraints { make in
@@ -107,7 +107,7 @@ class PostView: NSView {
     
     func load(post: MastodonPost) {
         let original = post.originalPost
-        imageView.sd_setImage(with: URL(string: original.account.avatarUrl), completed: nil)
+        iconView.sd_setImage(with: URL(string: original.account.avatarUrl), completed: nil)
         userNameField.stringValue = original.account.name
         userAcctField.stringValue = "@" + original.account.acct
         timeField.stringValue = getCurrentTimeString(date: original.createdAt)
@@ -116,9 +116,29 @@ class PostView: NSView {
             .foregroundColor: NSColor.controlTextColor,
         ]
         if let attributedString = original.status.parseText2HTML(attributes: attributes) {
-            textField.textStorage?.setAttributedString(attributedString)
+            textView.textStorage?.setAttributedString(attributedString)
         } else {
-            textField.textStorage?.setAttributedString(NSAttributedString(string: original.status, attributes: attributes))
+            textView.textStorage?.setAttributedString(NSAttributedString(string: original.status, attributes: attributes))
+        }
+    }
+    
+    override var backgroundStyle: NSView.BackgroundStyle {
+        didSet {
+            // NSTextView がうまく backgroundStyle で色を変えてくれない問題対策
+            switch backgroundStyle {
+            case .emphasized:
+                textView.linkTextAttributes = [:]
+                textView.textColor = .alternateSelectedControlTextColor
+            case .normal:
+                textView.linkTextAttributes = [
+                    .foregroundColor: NSColor.linkColor,
+                ]
+                textView.textColor = .controlTextColor
+            case .raised, .lowered:
+                print("unknown style", backgroundStyle)
+            @unknown default:
+                print("unknown style", backgroundStyle)
+            }
         }
     }
 }
