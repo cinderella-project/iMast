@@ -24,6 +24,9 @@
 import Cocoa
 import Ikemen
 import iMastMacCore
+#if SPARKLE_ENABLED
+import Sparkle
+#endif
 
 extension UserDefaults {
     static let appGroup = UserDefaults(suiteName: appGroupIdentifier)!
@@ -43,6 +46,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     var hidePrivatePostsMenuItem: NSMenuItem?
+    #if SPARKLE_ENABLED
+    let updater = SUUpdater()
+    #endif
     
     @IBAction func openPreferences(_ sender: Any) {
         preferencesWindowController.showWindow(sender)
@@ -54,6 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.init() ※ {
             $0.submenu = NSMenu() ※ {
                 $0.addItem(.init(title: L10n.Menu.about(appName), action: #selector(orderFrontAboutAppPanel(_:)), keyEquivalent: ""))
+                #if SPARKLE_ENABLED
+                $0.addItem(.init(title: L10n.Menu.checkForUpdates, action: #selector(SUUpdater.checkForUpdates(_:)), keyEquivalent: "") ※ {
+                    $0.target = updater
+                })
+                #endif
                 $0.addItem(.separator())
                 $0.addItem(.init(title: L10n.Menu.preferences, action: #selector(openPreferences(_:)), keyEquivalent: ","))
                 $0.addItem(.separator())

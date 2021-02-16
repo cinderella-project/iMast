@@ -34,6 +34,10 @@ name: Alamofire, nameSpecified:
 body: Copyright (c) 2014 A…
 version: 4.9.1
 
+name: Alamofire, nameSpecified: 
+body: Copyright (c) 2014 A…
+version: 4.9.1
+
 name: Crossroad, nameSpecified: 
 body: MIT License
 
@@ -124,6 +128,14 @@ name: Fuzi, nameSpecified:
 body: Copyright (c) 2015 C…
 version: 3.1.2
 
+name: Fuzi, nameSpecified: 
+body: Copyright (c) 2015 C…
+version: 3.1.2
+
+name: GRDB.swift, nameSpecified: 
+body: Copyright (C) 2019 G…
+version: 4.6.2
+
 name: GRDB.swift, nameSpecified: 
 body: Copyright (C) 2019 G…
 version: 4.6.2
@@ -195,6 +207,14 @@ version: 2.0.4
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
 version: 2.0.4
+
+name: HydraAsync, nameSpecified: 
+body: Copyright (c) 2015 d…
+version: 2.0.4
+
+name: KeychainAccess, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.2.1
 
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
@@ -326,9 +346,9 @@ name: SDWebImage, nameSpecified:
 body: Copyright (c) 2009-2…
 version: 5.9.1
 
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.0.1
+name: SDWebImage, nameSpecified: 
+body: Copyright (c) 2009-2…
+version: 5.9.1
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
@@ -361,6 +381,18 @@ version: 5.0.1
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
 version: 5.0.1
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 5.0.1
+
+name: SnapKit, nameSpecified: 
+body: Copyright (c) 2011-P…
+version: 5.0.1
+
+name: Sparkle, nameSpecified: 
+body: Copyright (c) 2006-2…
+version: 1.24.0
 
 name: Starscream, nameSpecified: 
 body:                     …
@@ -373,6 +405,10 @@ version: 3.1.1
 name: Starscream, nameSpecified: 
 body:                     …
 version: 3.1.1
+
+name: STRegex, nameSpecified: 
+body: The MIT License (MIT…
+version: 2.1.1
 
 name: STRegex, nameSpecified: 
 body: The MIT License (MIT…
@@ -482,6 +518,16 @@ body: MIT Licence
 Copyrig…
 version: 6.3.0
 
+name: SwiftGen, nameSpecified: 
+body: MIT Licence
+
+Copyrig…
+version: 6.3.0
+
+name: SwiftLint, nameSpecified: 
+body: The MIT License (MIT…
+version: 0.40.3
+
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
 version: 0.40.3
@@ -553,6 +599,14 @@ version: 5.0.0
 name: SwiftyJSON, nameSpecified: 
 body: The MIT License (MIT…
 version: 5.0.0
+
+name: SwiftyJSON, nameSpecified: 
+body: The MIT License (MIT…
+version: 5.0.0
+
+name: ※ikemen, nameSpecified: 
+body: Copyright (c) 2015 b…
+version: 
 
 name: ※ikemen, nameSpecified: 
 body: Copyright (c) 2015 b…

@@ -23,6 +23,8 @@ internal enum L10n {
     }
     /// すべてを手前に移動
     internal static let bringAllToFront = L10n.tr("Menu", "Bring All to Front")
+    /// アップデートを確認…
+    internal static let checkForUpdates = L10n.tr("Menu", "Check for Updates…")
     /// 閉じる
     internal static let close = L10n.tr("Menu", "Close")
     /// コピー
