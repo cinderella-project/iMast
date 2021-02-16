@@ -112,6 +112,11 @@ class PostView: NSTableCellView {
         userAcctField.stringValue = "@" + original.account.acct
         timeField.stringValue = getCurrentTimeString(date: original.createdAt)
         let attributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: NSMutableParagraphStyle() ※ {
+                // TODO: もっとマシにする
+                $0.minimumLineHeight = NSFont.systemFontSize + 2
+                $0.maximumLineHeight = $0.minimumLineHeight
+            },
             .font: NSFont.systemFont(ofSize: NSFont.systemFontSize),
             .foregroundColor: NSColor.controlTextColor,
         ]
