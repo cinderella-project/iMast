@@ -35,6 +35,7 @@ extension NSUserDefaultsController {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var preferencesWindowController = PreferencesWindowController()
+    lazy var aboutAppPanel = AboutAppPanel()
     @objc dynamic var hidePrivatePosts = false {
         didSet {
             UserDefaults.appGroup.setValue(hidePrivatePosts, forKey: "hide_private_posts")
@@ -52,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let appName = "iMast"
         menu.addItem(.init() ※ {
             $0.submenu = NSMenu() ※ {
-                $0.addItem(.init(title: L10n.Menu.about(appName), action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: ""))
+                $0.addItem(.init(title: L10n.Menu.about(appName), action: #selector(orderFrontAboutAppPanel(_:)), keyEquivalent: ""))
                 $0.addItem(.separator())
                 $0.addItem(.init(title: L10n.Menu.preferences, action: #selector(openPreferences(_:)), keyEquivalent: ","))
                 $0.addItem(.separator())
@@ -154,5 +155,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func toggleHidePrivatePosts(_ sender: NSMenuItem) {
         print(hidePrivatePosts)
         hidePrivatePosts = !hidePrivatePosts
+    }
+    
+    @objc func orderFrontAboutAppPanel(_ sender: Any) {
+        aboutAppPanel.center()
+        aboutAppPanel.makeKeyAndOrderFront(sender)
+        aboutAppPanel.center()
     }
 }

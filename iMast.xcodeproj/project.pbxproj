@@ -132,6 +132,8 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7AA3B725DBA84C00439AAD /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3B625DBA84C00439AAD /* AppGroup.swift */; };
 		CE7AA3B825DBA84C00439AAD /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3B625DBA84C00439AAD /* AppGroup.swift */; };
+		CE7AA3DD25DBB43700439AAD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
+		CE7AA3EB25DBB60E00439AAD /* AboutAppPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
@@ -276,6 +278,7 @@
 		CEEBC3CA23548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
+		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
 		CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */; };
 		CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */; };
 		CEF6C7D123B122D200E0ADA1 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */; };
@@ -666,6 +669,7 @@
 		CE78CFA91EE812AD008313EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		CE78CFAB1EE812AD008313EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7AA3B625DBA84C00439AAD /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppPanel.swift; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimeLineTableViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
@@ -803,6 +807,7 @@
 		CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewDiffableDataSource+plainSnapshot.swift"; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
+		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
 		CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetViewController.swift; sourceTree = "<group>"; };
 		CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetView.swift; sourceTree = "<group>"; };
 		CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpacerView.swift; path = Sources/Mac/Core/SpacerView.swift; sourceTree = SOURCE_ROOT; };
@@ -1819,6 +1824,8 @@
 				CE8EFA9B25C93AEE004FFE4B /* Strings */,
 				CE8EFA6425C88357004FFE4B /* main.swift */,
 				CEE4E2ED2377EAF500406371 /* AppDelegate.swift */,
+				CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */,
+				CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */,
 				CE77945D25D9C12100AF9F2C /* Common */,
 				CEFB98B625C828A300D55B03 /* Main */,
 				CEFB98B725C828AF00D55B03 /* Timeline */,
@@ -2469,6 +2476,7 @@
 			files = (
 				CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */,
 				CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */,
+				CE7AA3DD25DBB43700439AAD /* Settings.bundle in Resources */,
 				CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */,
 				CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */,
 			);
@@ -3092,10 +3100,12 @@
 				CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */,
 				CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */,
 				CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */,
+				CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */,
 				CE8EFA6525C8836B004FFE4B /* main.swift in Sources */,
 				CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */,
 				CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */,
 				CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */,
+				CE7AA3EB25DBB60E00439AAD /* AboutAppPanel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
