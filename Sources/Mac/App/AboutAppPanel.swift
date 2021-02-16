@@ -84,7 +84,9 @@ class AboutAppPanel: NSPanel {
     }
     
     @objc func openAcknowledgementsWindow(_ sender: Any) {
+        acknowledgementsWindow.isReleasedWhenClosed = false
         acknowledgementsWindow.center()
         acknowledgementsWindow.makeKeyAndOrderFront(self)
+        acknowledgementsWindow.center()
     }
 }
