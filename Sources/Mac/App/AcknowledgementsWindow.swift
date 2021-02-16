@@ -101,8 +101,10 @@ extension AcknowledgementsWindow: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let dic = (NSDictionary(contentsOf: items[tableView.selectedRow].url)!["PreferenceSpecifiers"] as! [NSDictionary]).first!
+        contentTextView.isEditable = false
         contentTextView.textStorage?.setAttributedString(NSAttributedString(string: dic["FooterText"] as! String, attributes: [
-            .font: NSFont.systemFont(ofSize: NSFont.systemFontSize)
+            .font: NSFont.systemFont(ofSize: NSFont.systemFontSize),
+            .foregroundColor: NSColor.labelColor,
         ]))
     }
 }
