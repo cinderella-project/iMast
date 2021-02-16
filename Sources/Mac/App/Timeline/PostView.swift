@@ -110,7 +110,7 @@ class PostView: NSTableCellView {
         iconView.sd_setImage(with: URL(string: original.account.avatarUrl), completed: nil)
         userNameField.stringValue = original.account.name
         userAcctField.stringValue = "@" + original.account.acct
-        timeField.stringValue = getCurrentTimeString(date: original.createdAt)
+        timeField.stringValue = (original.visibility.emoji ?? "") + getCurrentTimeString(date: original.createdAt)
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: NSMutableParagraphStyle() ※ {
                 // TODO: もっとマシにする
