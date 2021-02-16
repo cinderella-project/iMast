@@ -93,7 +93,6 @@ public class MastodonInstance {
                     return
                 }
                 let json = JSON(res.result.value!)
-                print(json)
                 resolve(MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri))
             }
         }

@@ -37,7 +37,6 @@ public class MastodonApp {
     
     init(instance: MastodonInstance, info: JSON, name: String, redirectUri: String) {
         self.instance = instance
-        print(info)
         clientId = info["client_id"].stringValue
         clientSecret = info["client_secret"].stringValue
         self.name = name
@@ -119,7 +118,6 @@ public class MastodonApp {
                     return
                 }
                 let json = JSON(res.result.value!)
-                print(json)
                 resolve(MastodonUserToken(app: self, token: json["access_token"].stringValue))
             }
         }
