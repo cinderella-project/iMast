@@ -27,12 +27,6 @@ import SwiftyJSON
 import GRDB
 import Hydra
 
-#if os(macOS)
-public let appGroupIdentifier = "4XKKKM86RN.jp.pronama.imast"
-#else
-public let appGroupIdentifier = "group.jp.pronama.imast"
-#endif
-
 let fileURL = getFileURL()
 public let dbQueue = try! DatabaseQueue(path: fileURL.path)
 func getFileURL() -> URL {
@@ -61,5 +55,12 @@ public func initDatabase() {
             table.column("displaying_screen", .text)
         }
     }
+    #if os(macOS)
+    migrator.registerMigration("access_token_to_keychain_for_mac") { db in
+        for token in try MastodonUserToken.getAllUserTokens(in: db) {
+            try token.save(in: db)
+        }
+    }
+    #endif
     try! migrator.migrate(dbQueue)
 }

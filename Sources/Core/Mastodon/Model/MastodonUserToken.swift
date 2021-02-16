@@ -26,10 +26,14 @@ import SwiftyJSON
 import Alamofire
 import Hydra
 import GRDB
+import KeychainAccess
 
 public class MastodonUserToken: Equatable {
     public var id: String?
     public var token: String
+    public var tokenAvailable: Bool {
+        token.count > 0
+    }
     public var app: MastodonApp
     public var name: String?
     public var screenName: String?
@@ -72,9 +76,10 @@ public class MastodonUserToken: Equatable {
     }
     
     static func initFromRow(row: Row, app: MastodonApp) -> MastodonUserToken {
+        let accessToken: String = row["access_token"] ?? (try? Keychain_ForAccessToken.get(row["id"])) ?? ""
         let usertoken = MastodonUserToken(
             app: app,
-            token: row["access_token"]
+            token: accessToken
         )
         usertoken.id = row["id"]
         usertoken.name = row["name"]
@@ -113,19 +118,23 @@ public class MastodonUserToken: Equatable {
     }
     
     static public func getAllUserTokens() -> [MastodonUserToken] {
-        var usertokens: [MastodonUserToken] = []
         do {
-            try dbQueue.inDatabase { db in
-                let rows = try Row.fetchAll(db, sql: "SELECT * from user ORDER BY last_used DESC")
-                for row in rows {
-                    let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
-                    let app = MastodonApp.initFromRow(row: approw)
-                    usertokens.append(initFromRow(row: row, app: app))
-                }
+            return try dbQueue.inDatabase { db in
+                return try getAllUserTokens(in: db)
             }
         } catch {
             print(error)
             return []
+        }
+    }
+    
+    static public func getAllUserTokens(in db: Database) throws -> [MastodonUserToken] {
+        var usertokens: [MastodonUserToken] = []
+        let rows = try Row.fetchAll(db, sql: "SELECT * from user ORDER BY last_used DESC")
+        for row in rows {
+            let approw = try Row.fetchOne(db, sql: "SELECT * from app where id=? LIMIT 1", arguments: [row["app_id"]])!
+            let app = MastodonApp.initFromRow(row: approw)
+            usertokens.append(initFromRow(row: row, app: app))
         }
         return usertokens
     }
@@ -133,21 +142,32 @@ public class MastodonUserToken: Equatable {
     public func save() throws {
         print("save", self.screenName ?? "undefined screenName")
         try dbQueue.inDatabase { db in
-            let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
-                self.id,
-                ]) != nil
-            try db.execute(sql: !idFound ?
-                "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
-            :   "UPDATE user SET app_id=?,access_token=?,name=?,screen_name=?,avatar_url=?,instance_hostname=? WHERE id=?", arguments: [
-                self.app.id,
-                self.token,
-                self.name ?? self.screenName,
-                self.screenName,
-                self.avatarUrl,
-                self.app.instance.hostName,
-                self.id,
-            ])
+            try save(in: db)
         }
+    }
+    
+    public func save(in db: Database) throws {
+        var token: String? = self.token
+        #if os(macOS) // TODO: 6.0 あたりで iOS でも Keychain を使うようにする
+        if let id = self.id, self.tokenAvailable {
+            try Keychain_ForAccessToken.set(self.token, key: id)
+            token = nil
+        }
+        #endif
+        let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
+            self.id,
+            ]) != nil
+        try db.execute(sql: !idFound ?
+            "INSERT INTO user (app_id, access_token, name, screen_name, avatar_url, instance_hostname, id) VALUES (?,?,?,?,?,?,?)"
+        :   "UPDATE user SET app_id=?,access_token=?,name=?,screen_name=?,avatar_url=?,instance_hostname=? WHERE id=?", arguments: [
+            self.app.id,
+            token,
+            self.name ?? self.screenName,
+            self.screenName,
+            self.avatarUrl,
+            self.app.instance.hostName,
+            self.id,
+        ])
     }
     
     @discardableResult

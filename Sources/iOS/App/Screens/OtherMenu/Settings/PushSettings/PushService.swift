@@ -92,23 +92,17 @@ struct PushServiceToken: Codable {
 
 class PushService {
 
-    #if !targetEnvironment(macCatalyst)
-    static let keyChain = Keychain(service: "net.rinsuki.imast-backend.push").accessibility(.alwaysThisDeviceOnly)
-    #else
-    static let keyChain = Keychain(service: "net.rinsuki.imast-backend.push").accessibility(.afterFirstUnlockThisDeviceOnly)
-    #endif
-
     static func getAuthorizationHeader() throws -> String? {
         let time = Int(Date().timeIntervalSince1970)
-        guard let userId = try self.keyChain.getString("userId"), let secret = try self.keyChain.getString("secret") else {
+        guard let userId = try Keychain_ForPushBackend.getString("userId"), let secret = try Keychain_ForPushBackend.getString("secret") else {
             return nil
         }
         return "CustomV1 \(userId):\((secret + ":" + String(time)).sha256!.lowercased()):\(time)"
     }
     
     static func isRegistered() throws -> Bool {
-        if try self.keyChain.getString("userId") == nil { return false }
-        if try self.keyChain.getString("secret") == nil { return false }
+        if try Keychain_ForPushBackend.getString("userId") == nil { return false }
+        if try Keychain_ForPushBackend.getString("secret") == nil { return false }
         return true
     }
     
@@ -143,8 +137,8 @@ class PushService {
 //                rej(PushServiceError.unknownError)
 //                return
 //            }
-            try! PushService.keyChain.set(res.id, key: "userId")
-            try! PushService.keyChain.set(res.secret, key: "secret")
+            try! Keychain_ForPushBackend.set(res.id, key: "userId")
+            try! Keychain_ForPushBackend.set(res.secret, key: "secret")
             
 //            resolve(())
             return ()
@@ -220,8 +214,8 @@ class PushService {
     
     static func deleteAuthInfo() -> Promise<Void> {
         return PromiseWrapper {
-            try self.keyChain.remove("userId")
-            try self.keyChain.remove("secret")
+            try Keychain_ForPushBackend.remove("userId")
+            try Keychain_ForPushBackend.remove("secret")
             return ()
         }
     }

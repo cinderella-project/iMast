@@ -109,7 +109,7 @@ class PushSettingsTableViewController: FormViewController {
                 ButtonRow { row in
                     row.title = L10n.Preferences.Push.Support.ShowUserID.title
                 }.onCellSelection { cell, row in
-                    guard let userId = try? PushService.keyChain.getString("userId") else {
+                    guard let userId = try? Keychain_ForPushBackend.getString("userId") else {
                         self.alert(title: L10n.Localizable.Error.title, message: L10n.Preferences.Push.Support.ShowUserID.failedToCheckUserID)
                         return
                     }
