@@ -1,0 +1,4 @@
+[submodule "thirdparty/SparkleBinaries"]
+	path = thirdparty/SparkleBinaries
+	url = https://github.com/cinderella-project/iMast-Sparkle-Build
+	branch = artifacts

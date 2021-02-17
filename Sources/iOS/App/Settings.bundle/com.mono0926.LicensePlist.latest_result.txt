@@ -390,10 +390,6 @@ name: SnapKit, nameSpecified:
 body: Copyright (c) 2011-P…
 version: 5.0.1
 
-name: Sparkle, nameSpecified: 
-body: Copyright (c) 2006-2…
-version: 1.24.0
-
 name: Starscream, nameSpecified: 
 body:                     …
 version: 3.1.1
@@ -648,7 +644,13 @@ name: mikutter, nameSpecified: , owner: mikutter, version:
 
 name: mikutter, nameSpecified: , owner: mikutter, version: 
 
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
+
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
+
 name: mikutter, nameSpecified: , owner: mikutter, version: 
+
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
 
 name: iMast (LICENSE), nameSpecified: , version: 
 body:                     …

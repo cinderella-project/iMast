@@ -23,9 +23,9 @@
 		2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */; };
 		2AF352301EAB9C5600777C2E /* iMastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3522F1EAB9C5600777C2E /* iMastTests.swift */; };
 		2AF3523B1EAB9C5600777C2E /* iMastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */; };
+		3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
-		88ACD8DA6906A6047D13B213 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03925728E8B8FCEE511EE8CF /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
@@ -92,6 +92,11 @@
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
 		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
+		CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; };
+		CE51BDC725DCE211007D3A8E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE51BDD725DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc in Embed Sparkle */ = {isa = PBXBuildFile; fileRef = CE51BDD425DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE51BDD825DCE252007D3A8E /* org.sparkle-project.InstallerStatus.xpc in Embed Sparkle */ = {isa = PBXBuildFile; fileRef = CE51BDD525DCE252007D3A8E /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CE51BDD925DCE252007D3A8E /* org.sparkle-project.InstallerLauncher.xpc in Embed Sparkle */ = {isa = PBXBuildFile; fileRef = CE51BDD625DCE252007D3A8E /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE522BE724159C370048E334 /* MastodonEndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */; };
 		CE522BE824159C380048E334 /* MastodonEndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */; };
 		CE522BEB24159C560048E334 /* MastodonEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE522BE924159C520048E334 /* MastodonEndpoint.swift */; };
@@ -472,6 +477,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		CE01D8B625DCB02D0021F8B5 /* Embed Sparkle */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				CE51BDD725DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc in Embed Sparkle */,
+				CE51BDD825DCE252007D3A8E /* org.sparkle-project.InstallerStatus.xpc in Embed Sparkle */,
+				CE51BDD925DCE252007D3A8E /* org.sparkle-project.InstallerLauncher.xpc in Embed Sparkle */,
+			);
+			name = "Embed Sparkle";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE43BE9A237775F100133C86 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,6 +532,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CEC4706925DC725F003E3AEF /* iMastMacCore.framework in Embed Frameworks */,
+				CE51BDC725DCE211007D3A8E /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +573,7 @@
 		16414B92EDA742EB287C5812 /* Pods-iMastShared-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastIntents/Pods-iMastShared-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		1739BD5070A82654DEC2563D /* Pods-iMast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMast.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMast/Pods-iMast.release.xcconfig"; sourceTree = "<group>"; };
 		1D6167F09384145CCE1875B6 /* Pods-iMastShared-iMastTodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastTodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastTodayWidget/Pods-iMastShared-iMastTodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		1DE94967A7D46FD66FC5CC29 /* Pods-iMastShared-Mac-iMast Mac (App Store).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-Mac-iMast Mac (App Store).release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store).release.xcconfig"; sourceTree = "<group>"; };
 		2187DFF7AD1E735EB49A8CF6 /* Pods_iMastShared_iOS_iMastTodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_iOS_iMastTodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FC0A36F8D2C4618825B671 /* Pods-iMastShared-iOS-iMast iOS-iMastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast iOS-iMastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests.release.xcconfig"; sourceTree = "<group>"; };
 		2605ADA75A3A0522311BE304 /* Pods-iMastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastUITests/Pods-iMastUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -598,6 +618,7 @@
 		4F2AB9461E461D9AAE0C3D54 /* Pods-iMastShared-iOS-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastIntents/Pods-iMastShared-iOS-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		5381BC0B6D32B2431F388D80 /* Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast-iMastUITests/Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		599E62B81E7F4F5E82780FF1 /* Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
 		6964C9CB69C9BCBC54486202 /* Pods-iMastShared-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iMastIntents/Pods-iMastShared-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
@@ -627,6 +648,7 @@
 		C7382FE797C7BE7768A87A5A /* Pods-iMastShared-iOS-iMast iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C73C84B4CE2284129D88B217 /* Pods-iMastShared-iOS-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastIntents/Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		CA974A17DD57ABC74CA8E6C9 /* Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastNotifyService/Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
+		CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableAVPlayerViewController.swift; sourceTree = "<group>"; };
 		CE099D022194315800A4BCCB /* UploadableMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableMedia.swift; sourceTree = "<group>"; };
 		CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostVisibility.swift; sourceTree = "<group>"; };
@@ -682,6 +704,10 @@
 		CE43BF112377AA8100133C86 /* String+parseInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseInt.swift"; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		CE51BDC525DCE211007D3A8E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = thirdparty/SparkleBinaries/Sparkle.framework; sourceTree = "<group>"; };
+		CE51BDD425DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerConnection.xpc"; sourceTree = "<group>"; };
+		CE51BDD525DCE252007D3A8E /* org.sparkle-project.InstallerStatus.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerStatus.xpc"; sourceTree = "<group>"; };
+		CE51BDD625DCE252007D3A8E /* org.sparkle-project.InstallerLauncher.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerLauncher.xpc"; sourceTree = "<group>"; };
 		CE522BE524159C1F0048E334 /* MastodonEndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpointProtocol.swift; sourceTree = "<group>"; };
 		CE522BE924159C520048E334 /* MastodonEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.swift; sourceTree = "<group>"; };
 		CE522BEE24159C7A0048E334 /* MastodonPaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPaging.swift; sourceTree = "<group>"; };
@@ -907,6 +933,7 @@
 		EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_Mac_iMastMacCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01DF6B7BFCD336446726F5F /* Pods-iMastNotifyService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastNotifyService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastNotifyService/Pods-iMastNotifyService.debug.xcconfig"; sourceTree = "<group>"; };
 		F9CFAD9A99356F5FC8E0D476 /* Pods-iMastTodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastTodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastTodayWidget/Pods-iMastTodayWidget.release.xcconfig"; sourceTree = "<group>"; };
+		FEB0C7B09C32086744A37B6F /* Pods-iMastShared-Mac-iMast Mac (App Store).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-Mac-iMast Mac (App Store).debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store).debug.xcconfig"; sourceTree = "<group>"; };
 		FF10654701F318DE1423C9FD /* Pods-iMastShared-iOS-iMast-iMastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast-iMastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast-iMastTests/Pods-iMastShared-iOS-iMast-iMastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -972,7 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC4706025DC725F003E3AEF /* iMastMacCore.framework in Frameworks */,
-				88ACD8DA6906A6047D13B213 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */,
+				CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1025,7 @@
 			files = (
 				CEE4E3332377F7D800406371 /* iMastMacCore.framework in Frameworks */,
 				904584C585DF8DF528E745A9 /* (null) in Frameworks */,
+				3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1125,8 @@
 				599E62B81E7F4F5E82780FF1 /* Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig */,
 				481D5233CE4FFCB1B5949700 /* Pods-iMastShared-Mac-iMast Mac (with Sparkle).debug.xcconfig */,
 				2BEA4FF41088A61C34A3F3A4 /* Pods-iMastShared-Mac-iMast Mac (with Sparkle).release.xcconfig */,
+				FEB0C7B09C32086744A37B6F /* Pods-iMastShared-Mac-iMast Mac (App Store).debug.xcconfig */,
+				1DE94967A7D46FD66FC5CC29 /* Pods-iMastShared-Mac-iMast Mac (App Store).release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1104,6 +1134,7 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
+				CE51BDE625DCE26A007D3A8E /* thirdparty */,
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
@@ -1169,6 +1200,8 @@
 		8076AB24184E0217BCEE6A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE51BDC525DCE211007D3A8E /* Sparkle.framework */,
+				CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */,
 				CE75AE2321C1030400BA3C9F /* Intents.framework */,
 				CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */,
 				EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */,
@@ -1181,6 +1214,7 @@
 				D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */,
 				0AF61C9009493323463C8105 /* Pods_iMastShared_iOS_iMast_iOS_iMastUITests.framework */,
 				03925728E8B8FCEE511EE8CF /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */,
+				5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1463,6 +1497,32 @@
 				CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */,
 			);
 			path = PostList;
+			sourceTree = "<group>";
+		};
+		CE51BDE625DCE26A007D3A8E /* thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				CE51BDE725DCE270007D3A8E /* SparkleBinaries */,
+			);
+			path = thirdparty;
+			sourceTree = "<group>";
+		};
+		CE51BDE725DCE270007D3A8E /* SparkleBinaries */ = {
+			isa = PBXGroup;
+			children = (
+				CE51BDE825DCE28B007D3A8E /* XPCServices */,
+			);
+			path = SparkleBinaries;
+			sourceTree = "<group>";
+		};
+		CE51BDE825DCE28B007D3A8E /* XPCServices */ = {
+			isa = PBXGroup;
+			children = (
+				CE51BDD425DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc */,
+				CE51BDD625DCE252007D3A8E /* org.sparkle-project.InstallerLauncher.xpc */,
+				CE51BDD525DCE252007D3A8E /* org.sparkle-project.InstallerStatus.xpc */,
+			);
+			path = XPCServices;
 			sourceTree = "<group>";
 		};
 		CE522BE4241595BC0048E334 /* Endpoint */ = {
@@ -2205,6 +2265,7 @@
 				CEC4706825DC725F003E3AEF /* Embed Frameworks */,
 				CEC4706A25DC725F003E3AEF /* [CP] Embed Pods Frameworks */,
 				CEC4706B25DC725F003E3AEF /* Embed App Extensions */,
+				CE01D8B625DCB02D0021F8B5 /* Embed Sparkle */,
 			);
 			buildRules = (
 			);
@@ -2678,15 +2739,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac/Pods-iMastShared-Mac-iMast Mac-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac/Pods-iMastShared-Mac-iMast Mac-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac/Pods-iMastShared-Mac-iMast Mac-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		33FEF94F9A39EBD8642E49F7 /* [CP] Check Pods Manifest.lock */ = {
@@ -2827,7 +2888,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iMastShared-Mac-iMast Mac-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-iMastShared-Mac-iMast Mac (App Store)-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4199,6 +4260,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdparty/SparkleBinaries",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/Mac/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4230,6 +4295,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/thirdparty/SparkleBinaries",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/Mac/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4371,7 +4440,7 @@
 		};
 		CEE4E30F2377EAF700406371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D802DD2B19C166C3A8C1752B /* Pods-iMastShared-Mac-iMast Mac.debug.xcconfig */;
+			baseConfigurationReference = FEB0C7B09C32086744A37B6F /* Pods-iMastShared-Mac-iMast Mac (App Store).debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4401,7 +4470,7 @@
 		};
 		CEE4E3102377EAF700406371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 063E8882337019B42F177F92 /* Pods-iMastShared-Mac-iMast Mac.release.xcconfig */;
+			baseConfigurationReference = 1DE94967A7D46FD66FC5CC29 /* Pods-iMastShared-Mac-iMast Mac (App Store).release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

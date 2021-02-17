@@ -150,7 +150,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/Sparkle</string>
 			<key>Title</key>
-			<string>Sparkle (1.24.0)</string>
+			<string>Sparkle</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

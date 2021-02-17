@@ -1,6 +1,8 @@
 github:
   - owner: mikutter
     name: mikutter
+  - owner: sparkle-project
+    name: Sparkle
 manual:
   - name: iMast (NOTICE)
     file: NOTICE

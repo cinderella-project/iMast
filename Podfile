@@ -59,11 +59,10 @@ abstract_target 'iMastShared' do
   
   abstract_target 'Mac' do
     platform :osx, '10.15'
-    target 'iMast Mac' do
+    target 'iMast Mac (App Store)' do
     end
     
     target 'iMast Mac (with Sparkle)' do
-      pod "Sparkle", "1.24.0"
     end
 
     target 'iMastMacCore' do
