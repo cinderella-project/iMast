@@ -89,6 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     $0.keyEquivalentModifierMask = []
                 })
                 $0.addItem(.init(title: L10n.Menu.newTab, action: #selector(MainWindow.newWindowForTab(_:)), keyEquivalent: "t"))
+                $0.addItem(.init(title: L10n.Menu.newWindow, action: #selector(openNewWindow), keyEquivalent: "n"))
                 $0.addItem(.separator())
                 $0.addItem(.init(title: L10n.Menu.close, action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w"))
             }
@@ -154,9 +155,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
         }
-        let window = MainWindow()
-        window.makeKeyAndOrderFront(self)
         hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
+        openNewWindow()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -172,5 +172,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         aboutAppPanel.center()
         aboutAppPanel.makeKeyAndOrderFront(sender)
         aboutAppPanel.center()
+    }
+    
+    @objc func openNewWindow() {
+        let window = MainWindow()
+        window.makeKeyAndOrderFront(self)
+    }
+    
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        openNewWindow()
+        return false
     }
 }
