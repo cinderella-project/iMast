@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2266,6 +2266,7 @@
 				CEC4706A25DC725F003E3AEF /* [CP] Embed Pods Frameworks */,
 				CEC4706B25DC725F003E3AEF /* Embed App Extensions */,
 				CE01D8B625DCB02D0021F8B5 /* Embed Sparkle */,
+				CE51BE0125DCE53A007D3A8E /* Sign to Sparkle */,
 			);
 			buildRules = (
 			);
@@ -2934,6 +2935,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		CE51BE0125DCE53A007D3A8E /* Sign to Sparkle */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sign to Sparkle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# 👇 Shorthand for the script; adjust to where you checked-out Sparkle into is 👇\nalias dosign=\"${PROJECT_DIR}/thirdparty/SparkleBinaries/bin/codesign_embedded_executable\"\n\n# Code Signing identity\nIDENTITY=\"${CODE_SIGN_IDENTITY}\"\nif [ \"$IDENTITY\" == \"\" ]\nthen\n    # If a code signing identity is not specified, use ad hoc signing\n    IDENTITY=\"-\"\nfi\n\n# Shorthand for the Sparkle.framework\nSPARKLE_PATH=${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework\n\ndosign \"$IDENTITY\" \"${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}\"/*.xpc\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Autoupdate\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Updater.app/\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}\"\n";
 		};
 		CE8EFAB725C93BC7004FFE4B /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
