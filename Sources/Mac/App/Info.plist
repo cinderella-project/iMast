@@ -26,6 +26,10 @@
 	<string>Copyright © 2017-2021 rinsuki. All rights reserved.</string>
 	<key>SUFeedURL</key>
 	<string>https://cinderella-project.github.io/iMast-AppCast/appcast-beta.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>KJkjtwnYE+5N6JSPfEpLXWNnKIiR2grHlEFjgQMVkSc=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>7200</integer>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
