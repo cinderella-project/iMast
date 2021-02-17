@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEE4E2EA2377EAF500406371"
                BuildableName = "iMast.app"
-               BlueprintName = "iMast Mac"
+               BlueprintName = "iMast Mac (App Store)"
                ReferencedContainer = "container:iMast.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -76,7 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEE4E2EA2377EAF500406371"
             BuildableName = "iMast.app"
-            BlueprintName = "iMast Mac"
+            BlueprintName = "iMast Mac (App Store)"
             ReferencedContainer = "container:iMast.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -93,7 +93,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEE4E2EA2377EAF500406371"
             BuildableName = "iMast.app"
-            BlueprintName = "iMast Mac"
+            BlueprintName = "iMast Mac (App Store)"
             ReferencedContainer = "container:iMast.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

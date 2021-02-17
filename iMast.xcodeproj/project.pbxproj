@@ -2255,9 +2255,9 @@
 			productReference = CED6077721B3658F00F6232E /* iMastIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		CEE4E2EA2377EAF500406371 /* iMast Mac */ = {
+		CEE4E2EA2377EAF500406371 /* iMast Mac (App Store) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac" */;
+			buildConfigurationList = CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac (App Store)" */;
 			buildPhases = (
 				B8A02B96391699BC3883F34C /* [CP] Check Pods Manifest.lock */,
 				CE8EFAB725C93BC7004FFE4B /* SwiftGen */,
@@ -2275,7 +2275,7 @@
 				CEE4E3322377F7D800406371 /* PBXTargetDependency */,
 				CE90CCFC237804CD001C8E80 /* PBXTargetDependency */,
 			);
-			name = "iMast Mac";
+			name = "iMast Mac (App Store)";
 			productName = "iMast-Mac";
 			productReference = CEE4E2EB2377EAF500406371 /* iMast.app */;
 			productType = "com.apple.product-type.application";
@@ -2486,7 +2486,7 @@
 				CED6077621B3658F00F6232E /* iMastIntents */,
 				CE43BE7F237775F000133C86 /* iMastiOSCore */,
 				CE43BE87237775F100133C86 /* iMastiOSCoreTests */,
-				CEE4E2EA2377EAF500406371 /* iMast Mac */,
+				CEE4E2EA2377EAF500406371 /* iMast Mac (App Store) */,
 				CEC4704325DC725F003E3AEF /* iMast Mac (with Sparkle) */,
 				CEE4E2FB2377EAF700406371 /* iMast-MacTests */,
 				CEE4E3062377EAF700406371 /* iMast-MacUITests */,
@@ -3502,12 +3502,12 @@
 		};
 		CEE4E2FE2377EAF700406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac (App Store) */;
 			targetProxy = CEE4E2FD2377EAF700406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3092377EAF700406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac (App Store) */;
 			targetProxy = CEE4E3082377EAF700406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3292377F7D800406371 /* PBXTargetDependency */ = {
@@ -3517,7 +3517,7 @@
 		};
 		CEE4E32B2377F7D800406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEE4E2EA2377EAF500406371 /* iMast Mac */;
+			target = CEE4E2EA2377EAF500406371 /* iMast Mac (App Store) */;
 			targetProxy = CEE4E32A2377F7D800406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E3322377F7D800406371 /* PBXTargetDependency */ = {
@@ -4768,7 +4768,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac" */ = {
+		CEE4E30E2377EAF700406371 /* Build configuration list for PBXNativeTarget "iMast Mac (App Store)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEE4E30F2377EAF700406371 /* Debug */,
