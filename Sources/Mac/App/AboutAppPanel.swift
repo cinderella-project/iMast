@@ -50,7 +50,12 @@ class AboutAppPanel: NSPanel {
         iconView.image = NSApplication.shared.applicationIconImage
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")!
         let appBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")!
-        appVersionField.stringValue = "Version \(appVersion) (\(appBuild))"
+        #if SPARKLE_ENABLED
+        let channel = "Sparkle"
+        #else
+        let channel = "AppStore"
+        #endif
+        appVersionField.stringValue = "Version \(appVersion) beta (\(appBuild), \(channel))"
         appCopyrightField.stringValue = Bundle.main.object(forInfoDictionaryKey: "NSHumanReadableCopyright") as! String
         let view = NSView()
         let stackView = NSStackView(views: [
