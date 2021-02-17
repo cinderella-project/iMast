@@ -26,8 +26,9 @@
 		3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
-		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		904584C585DF8DF528E745A9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
+		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
 		CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
@@ -1000,6 +1001,7 @@
 			files = (
 				CEC4706025DC725F003E3AEF /* iMastMacCore.framework in Frameworks */,
 				CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */,
+				C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,7 +1026,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E3332377F7D800406371 /* iMastMacCore.framework in Frameworks */,
-				904584C585DF8DF528E745A9 /* (null) in Frameworks */,
+				904584C585DF8DF528E745A9 /* BuildFile in Frameworks */,
 				3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2739,12 +2741,31 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi-macOS/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-macOS/GRDB.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync-macOS/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex-macOS/Regex.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-macOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/※ikemen-macOS/Ikemen.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2774,12 +2795,47 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-iOS/GRDB.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
+				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaTwolineSliderRow/EurekaTwolineSliderRow.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaTwolineSliderRow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2827,12 +2883,47 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-iOS/GRDB.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
+				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaTwolineSliderRow/EurekaTwolineSliderRow.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaTwolineSliderRow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2862,12 +2953,47 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-iOS/GRDB.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
+				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
+				"${BUILT_PRODUCTS_DIR}/EurekaTwolineSliderRow/EurekaTwolineSliderRow.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaTwolineSliderRow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3036,12 +3162,31 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (with Sparkle)/Pods-iMastShared-Mac-iMast Mac (with Sparkle)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (with Sparkle)/Pods-iMastShared-Mac-iMast Mac (with Sparkle)-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi-macOS/Fuzi.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-macOS/GRDB.framework",
+				"${BUILT_PRODUCTS_DIR}/HydraAsync-macOS/Hydra.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex-macOS/Regex.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-macOS/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/※ikemen-macOS/Ikemen.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (with Sparkle)/Pods-iMastShared-Mac-iMast Mac (with Sparkle)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
