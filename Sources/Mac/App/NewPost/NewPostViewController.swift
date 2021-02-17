@@ -63,9 +63,18 @@ class NewPostViewController: NSViewController {
         alert.beginSheetModal(for: view.window!, completionHandler: nil)
         userToken.newPost(status: text).then(in: .main) { [weak self] post in
             print(post)
-            self?.view.window?.close()
-        }.catch { error in
-            print(error)
+            guard let window = self?.view.window else {
+                return
+            }
+            window.attachedSheet?.close()
+            window.close()
+        }.catch(in: .main) { [weak self] error in
+            guard let window = self?.view.window else {
+                return
+            }
+            window.attachedSheet?.close()
+            let alert = NSAlert(error: error)
+            alert.beginSheetModal(for: window, completionHandler: nil)
         }
     }
 }
