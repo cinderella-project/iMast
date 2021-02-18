@@ -132,11 +132,14 @@ class PostView: NSTableCellView {
             // NSTextView がうまく backgroundStyle で色を変えてくれない問題対策
             switch backgroundStyle {
             case .emphasized:
-                textView.linkTextAttributes = [:]
+                textView.linkTextAttributes = [
+                    .cursor: NSCursor.pointingHand,
+                ]
                 textView.textColor = .alternateSelectedControlTextColor
             case .normal:
                 textView.linkTextAttributes = [
                     .foregroundColor: NSColor.linkColor,
+                    .cursor: NSCursor.pointingHand,
                 ]
                 textView.textColor = .controlTextColor
             case .raised, .lowered:
