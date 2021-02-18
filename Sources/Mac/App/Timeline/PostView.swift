@@ -44,13 +44,17 @@ class PostView: NSTableCellView {
     let iconView = NSImageView()
     let userNameField = NSTextField(labelWithString: "") ※ {
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        $0.setContentHuggingPriority(.required, for: .vertical)
     }
     let userAcctField = NSTextField(labelWithString: "") ※ {
         $0.textColor = .secondaryLabelColor
         $0.setContentCompressionResistancePriority(.init(251), for: .horizontal)
+        $0.setContentHuggingPriority(.required, for: .vertical)
         $0.setContentHuggingPriority(.init(249), for: .horizontal)
     }
-    let timeField = NSTextField(labelWithString: "")
+    let timeField = NSTextField(labelWithString: "") ※ {
+        $0.setContentHuggingPriority(.required, for: .vertical)
+    }
     let textView = AutolayoutTextView() ※ {
         $0.isEditable = false
         $0.backgroundColor = .clear
@@ -80,7 +84,7 @@ class PostView: NSTableCellView {
         addSubview(stackView)
         iconView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
-//            make.bottom.lessThanOrEqualToSuperview().inset(8)
+            make.bottom.lessThanOrEqualToSuperview().inset(8)
             make.leading.equalToSuperview().inset(4)
             make.size.equalTo(48)
         }
