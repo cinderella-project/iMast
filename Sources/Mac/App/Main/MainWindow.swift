@@ -100,22 +100,35 @@ extension MainWindow: NSToolbarDelegate {
 extension MainWindow: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
+        func addMenuItems(for userToken: MastodonUserToken, menu: NSMenu) {
+            menu.addItem(.init(title: L10n.Timeline.home, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
+                $0.image = NSImage(systemSymbolName: "house", accessibilityDescription: nil)
+                $0.identifier = .init("home")
+            })
+            menu.addItem(.init(title: L10n.Timeline.local, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
+                $0.image = NSImage(systemSymbolName: "person.2", accessibilityDescription: nil)
+                $0.identifier = .init("local")
+            })
+            menu.addItem(.init(title: L10n.Timeline.federated, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
+                $0.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
+                $0.identifier = .init("federated")
+            })
+        }
+        let maybeUserToken = vc.getUserTokenIfAvailable()
+        if let userToken = maybeUserToken {
+            menu.addItem(.init(title: "@" + userToken.acct, action: nil, keyEquivalent: ""))
+            menu.identifier = .init(userToken.id!)
+            addMenuItems(for: userToken, menu: menu)
+            menu.addItem(.separator())
+        }
         for userToken in MastodonUserToken.getAllUserTokens() {
+            if userToken.id == maybeUserToken?.id {
+                continue
+            }
             menu.addItem(.init(title: userToken.acct, action: nil, keyEquivalent: "") ※ {
                 $0.submenu = NSMenu() ※ {
                     $0.identifier = .init(userToken.id!)
-                    $0.addItem(.init(title: L10n.Timeline.home, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
-                        $0.image = NSImage(systemSymbolName: "house", accessibilityDescription: nil)
-                        $0.identifier = .init("home")
-                    })
-                    $0.addItem(.init(title: L10n.Timeline.local, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
-                        $0.image = NSImage(systemSymbolName: "person.2", accessibilityDescription: nil)
-                        $0.identifier = .init("local")
-                    })
-                    $0.addItem(.init(title: L10n.Timeline.federated, action: #selector(changeViewController(_:)), keyEquivalent: "") ※ {
-                        $0.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
-                        $0.identifier = .init("federated")
-                    })
+                    addMenuItems(for: userToken, menu: $0)
                 }
             })
         }

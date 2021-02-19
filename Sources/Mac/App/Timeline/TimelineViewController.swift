@@ -25,7 +25,7 @@ import Cocoa
 import Ikemen
 import iMastMacCore
 
-class TimelineViewController: NSViewController {
+class TimelineViewController: NSViewController, HasUserToken {
     let userToken: MastodonUserToken
     let timelineType: MastodonTimelineType
     lazy var tableView = NSTableView() ※ {

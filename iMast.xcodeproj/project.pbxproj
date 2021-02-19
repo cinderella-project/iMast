@@ -205,6 +205,8 @@
 		CEC01AD325DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */; };
 		CEC01AD425DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */; };
 		CEC01AE125DF99E5004D18C0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
+		CEC01AFC25DFC76B004D18C0 /* HasUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AFB25DFC76B004D18C0 /* HasUserToken.swift */; };
+		CEC01AFD25DFC76B004D18C0 /* HasUserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AFB25DFC76B004D18C0 /* HasUserToken.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
 		CEC4704B25DC725F003E3AEF /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEC4704C25DC725F003E3AEF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */; };
@@ -834,6 +836,7 @@
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
 		CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearancePreferencesPaneView.swift; sourceTree = "<group>"; };
+		CEC01AFB25DFC76B004D18C0 /* HasUserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasUserToken.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
 		CEC4707025DC725F003E3AEF /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactionsViewController.swift; sourceTree = "<group>"; };
@@ -1594,6 +1597,7 @@
 			children = (
 				CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */,
 				CEF763FD25DF7AB000902415 /* LayeredImageView.swift */,
+				CEC01AFB25DFC76B004D18C0 /* HasUserToken.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -3523,6 +3527,7 @@
 				CEC4704C25DC725F003E3AEF /* TimelineViewController.swift in Sources */,
 				CEC4704D25DC725F003E3AEF /* strings.swift in Sources */,
 				CEC4704E25DC725F003E3AEF /* MainWindow.swift in Sources */,
+				CEC01AFD25DFC76B004D18C0 /* HasUserToken.swift in Sources */,
 				CEC4704F25DC725F003E3AEF /* assets.swift in Sources */,
 				CEF763FF25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEC4705025DC725F003E3AEF /* AddMastodonAccountSheetView.swift in Sources */,
@@ -3580,6 +3585,7 @@
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
 				CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */,
 				CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */,
+				CEC01AFC25DFC76B004D18C0 /* HasUserToken.swift in Sources */,
 				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
 				CEF763FE25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,

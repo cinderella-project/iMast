@@ -24,7 +24,7 @@
 import Cocoa
 import iMastMacCore
 
-class MainViewController: NSViewController {
+class MainViewController: NSViewController, MaybeHasUserToken {
     @objc dynamic var child: NSViewController? = nil {
         didSet {
             if let vc = oldValue {
@@ -56,10 +56,7 @@ class MainViewController: NSViewController {
         bind(.title, to: self, withKeyPath: "child.title", options: nil)
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    func getUserTokenIfAvailable() -> MastodonUserToken? {
+        return (child as? MaybeHasUserToken)?.getUserTokenIfAvailable()
     }
-
 }
