@@ -173,7 +173,7 @@
 		CE90CCF6237804CD001C8E80 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = CE90CCF5237804CD001C8E80 /* icon.icns */; };
 		CE90CCF8237804CD001C8E80 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CCF7237804CD001C8E80 /* ShareViewController.swift */; };
 		CE90CCFD237804CD001C8E80 /* iMastMacShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE90CCF3237804CD001C8E80 /* iMastMacShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD03237807A7001C8E80 /* PreferencesWindowController.swift */; };
+		CE90CD0523780803001C8E80 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */; };
 		CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */; };
 		CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */; };
 		CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */; };
@@ -202,6 +202,9 @@
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
+		CEC01AD325DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */; };
+		CEC01AD425DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */; };
+		CEC01AE125DF99E5004D18C0 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
 		CEC4704B25DC725F003E3AEF /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEC4704C25DC725F003E3AEF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */; };
@@ -214,7 +217,7 @@
 		CEC4705325DC725F003E3AEF /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEC4705425DC725F003E3AEF /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
 		CEC4705525DC725F003E3AEF /* AddMastodonAccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */; };
-		CEC4705625DC725F003E3AEF /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD03237807A7001C8E80 /* PreferencesWindowController.swift */; };
+		CEC4705625DC725F003E3AEF /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */; };
 		CEC4705725DC725F003E3AEF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2EF2377EAF500406371 /* MainViewController.swift */; };
 		CEC4705825DC725F003E3AEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4E2ED2377EAF500406371 /* AppDelegate.swift */; };
 		CEC4705925DC725F003E3AEF /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
@@ -321,6 +324,10 @@
 		CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */; };
 		CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */; };
 		CEF6DCC322EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */; };
+		CEF763FE25DF7AB000902415 /* LayeredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF763FD25DF7AB000902415 /* LayeredImageView.swift */; };
+		CEF763FF25DF7AB000902415 /* LayeredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF763FD25DF7AB000902415 /* LayeredImageView.swift */; };
+		CEF7641A25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */; };
+		CEF7641B25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */; };
 		CEF8388E24C289AA00C6919A /* Preferences.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF8389024C289AA00C6919A /* Preferences.strings */; };
 		CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */; };
 		CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */; };
@@ -793,7 +800,7 @@
 		CE90CCF7237804CD001C8E80 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		CE90CCF9237804CD001C8E80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE90CCFA237804CD001C8E80 /* iMastMacShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastMacShare.entitlements; sourceTree = "<group>"; };
-		CE90CD03237807A7001C8E80 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneViewController.swift; sourceTree = "<group>"; };
 		CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationViewController.swift; sourceTree = "<group>"; };
 		CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListInfoViewController.swift; sourceTree = "<group>"; };
@@ -826,6 +833,7 @@
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
 		CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAdderTableViewController.swift; sourceTree = "<group>"; };
+		CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearancePreferencesPaneView.swift; sourceTree = "<group>"; };
 		CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAndUserViewController.swift; sourceTree = "<group>"; };
 		CEC4707025DC725F003E3AEF /* iMast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactionsViewController.swift; sourceTree = "<group>"; };
@@ -910,6 +918,8 @@
 		CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailContentViewController.swift; sourceTree = "<group>"; };
 		CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailBoostedUserViewController.swift; sourceTree = "<group>"; };
 		CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactionBarViewController.swift; sourceTree = "<group>"; };
+		CEF763FD25DF7AB000902415 /* LayeredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeredImageView.swift; sourceTree = "<group>"; };
+		CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearancePreferencesPaneViewController.swift; sourceTree = "<group>"; };
 		CEF8388324C2898100C6919A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OtherMenu.strings"; sourceTree = "<group>"; };
 		CEF8388424C2898200C6919A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OtherMenu.strings; sourceTree = "<group>"; };
 		CEF8388524C2898400C6919A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OtherMenu.strings; sourceTree = "<group>"; };
@@ -1583,6 +1593,7 @@
 			isa = PBXGroup;
 			children = (
 				CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */,
+				CEF763FD25DF7AB000902415 /* LayeredImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1670,9 +1681,10 @@
 		CE90CD0623780A7E001C8E80 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				CE90CD03237807A7001C8E80 /* PreferencesWindowController.swift */,
+				CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */,
 				CEE043A923780C94007A915E /* PreferencesViewController.swift */,
 				CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */,
+				CEF7640C25DF82C300902415 /* AppearancePreferencesPane */,
 				CE4AB77223AFD24600BE177B /* AccountsPreferencesPane */,
 			);
 			path = Preferences;
@@ -2061,6 +2073,15 @@
 				CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */,
 			);
 			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		CEF7640C25DF82C300902415 /* AppearancePreferencesPane */ = {
+			isa = PBXGroup;
+			children = (
+				CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */,
+				CEC01AD225DF944E004D18C0 /* AppearancePreferencesPaneView.swift */,
+			);
+			path = AppearancePreferencesPane;
 			sourceTree = "<group>";
 		};
 		CEFB98B625C828A300D55B03 /* Main */ = {
@@ -3498,18 +3519,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC4704B25DC725F003E3AEF /* PreferencesViewController.swift in Sources */,
+				CEF7641B25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */,
 				CEC4704C25DC725F003E3AEF /* TimelineViewController.swift in Sources */,
 				CEC4704D25DC725F003E3AEF /* strings.swift in Sources */,
 				CEC4704E25DC725F003E3AEF /* MainWindow.swift in Sources */,
 				CEC4704F25DC725F003E3AEF /* assets.swift in Sources */,
+				CEF763FF25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEC4705025DC725F003E3AEF /* AddMastodonAccountSheetView.swift in Sources */,
 				CEC4705125DC725F003E3AEF /* AutolayoutTextView.swift in Sources */,
 				CEC4705225DC725F003E3AEF /* NewPostWindow.swift in Sources */,
 				CEC4705325DC725F003E3AEF /* AccountsPreferencesPaneView.swift in Sources */,
 				CEC4705425DC725F003E3AEF /* PreferencesPaneProtocol.swift in Sources */,
 				CEC4705525DC725F003E3AEF /* AddMastodonAccountSheetViewController.swift in Sources */,
-				CEC4705625DC725F003E3AEF /* PreferencesWindowController.swift in Sources */,
+				CEC4705625DC725F003E3AEF /* PreferencesWindow.swift in Sources */,
 				CEC4705725DC725F003E3AEF /* MainViewController.swift in Sources */,
+				CEC01AD425DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */,
 				CEC4705825DC725F003E3AEF /* AppDelegate.swift in Sources */,
 				CEC4705925DC725F003E3AEF /* AcknowledgementsWindow.swift in Sources */,
 				CEC4705A25DC725F003E3AEF /* main.swift in Sources */,
@@ -3552,18 +3576,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */,
+				CEF7641A25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */,
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
 				CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */,
 				CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */,
 				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
+				CEF763FE25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
 				CE77945025D9C10E00AF9F2C /* AutolayoutTextView.swift in Sources */,
 				CEFB98A925C827A400D55B03 /* NewPostWindow.swift in Sources */,
 				CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */,
 				CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */,
 				CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */,
-				CE90CD0523780803001C8E80 /* PreferencesWindowController.swift in Sources */,
+				CE90CD0523780803001C8E80 /* PreferencesWindow.swift in Sources */,
 				CEE4E2F02377EAF500406371 /* MainViewController.swift in Sources */,
+				CEC01AD325DF944E004D18C0 /* AppearancePreferencesPaneView.swift in Sources */,
 				CEE4E2EE2377EAF500406371 /* AppDelegate.swift in Sources */,
 				CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */,
 				CE8EFA6525C8836B004FFE4B /* main.swift in Sources */,
@@ -3587,6 +3614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E30C2377EAF700406371 /* iMast_MacUITests.swift in Sources */,
+				CEC01AE125DF99E5004D18C0 /* PreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

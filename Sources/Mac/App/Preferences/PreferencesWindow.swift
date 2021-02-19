@@ -1,9 +1,9 @@
 //
-//  SpacerView.swift
+//  PreferencesWindow.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/12/24.
+//  Created by user on 2019/11/10.
 //
 //  ------------------------------------------------------------------------
 //
@@ -22,15 +22,11 @@
 //  limitations under the License.
 
 import Cocoa
+import Ikemen
 
-public class SpacerView: NSView {
-    public init(horizontal: Bool = true, vertical: Bool = true) {
-        super.init(frame: .zero)
-        setContentHuggingPriority(horizontal ? .init(999.9) : .required, for: .horizontal)
-        setContentHuggingPriority(vertical ? .init(999.9) : .required, for: .vertical)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+class PreferencesWindow: NSPanel {
+    convenience init() {
+        self.init(contentViewController: PreferencesViewController())
+        styleMask = [.titled, .closable]
     }
 }

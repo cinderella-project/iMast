@@ -41,7 +41,7 @@ private func getCurrentTimeString(date: Date) -> String {
 }
 
 class PostView: NSTableCellView {
-    let iconView = NSImageView()
+    let iconView = LayeredImageView()
     let userNameField = NSTextField(labelWithString: "") ※ {
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         $0.setContentHuggingPriority(.required, for: .vertical)
@@ -111,7 +111,7 @@ class PostView: NSTableCellView {
     
     func load(post: MastodonPost) {
         let original = post.originalPost
-        iconView.sd_setImage(with: URL(string: original.account.avatarUrl), completed: nil)
+        iconView.loadImage(url: URL(string: original.account.avatarUrl))
         userNameField.stringValue = original.account.name
         userAcctField.stringValue = "@" + original.account.acct
         timeField.stringValue = (original.visibility.emoji ?? "") + getCurrentTimeString(date: original.createdAt)

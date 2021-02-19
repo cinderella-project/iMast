@@ -1,13 +1,13 @@
 //
-//  PreferencesWindowController.swift
+//  AppearancePreferencesPaneViewController.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/11/10.
+//  Created by user on 2021/02/19.
 //
 //  ------------------------------------------------------------------------
 //
-//  Copyright 2017-2019 rinsuki and other contributors.
+//  Copyright 2017-2021 rinsuki and other contributors.
 // 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,21 +24,22 @@
 import Cocoa
 import Ikemen
 
-class PreferencesWindowController: NSWindowController {
-    init() {
-        let window = NSWindow(contentViewController: PreferencesViewController())
-        window.styleMask = [.titled, .closable]
-        super.init(window: window)
+class AppearancePreferencesPaneViewController: NSViewController, PreferencesPaneProtocol {
+    private lazy var v = AppearancePreferencesPaneView()
+    
+    override func loadView() {
+        // todo
+        view = v
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+        title = "表示"
     }
     
-    override func windowDidLoad() {
-        super.windowDidLoad()
-    
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    func configureTabViewItem(item: NSTabViewItem) {
+        item.label = "表示"
+        item.image = NSImage(systemSymbolName: "eyeglasses", accessibilityDescription: nil)
     }
-
 }

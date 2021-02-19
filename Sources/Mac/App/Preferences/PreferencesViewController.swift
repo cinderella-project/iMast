@@ -30,13 +30,35 @@ class PreferencesViewController: NSTabViewController {
 
         tabStyle = .toolbar
         canPropagateSelectedChildViewControllerTitle = true
+        
         let tabs: [NSViewController & PreferencesPaneProtocol] = [
             AccountsPreferencesPaneViewController(),
+            AppearancePreferencesPaneViewController(),
         ]
         
         for tab in tabs {
+            tab.view.snp.makeConstraints { make in
+                make.width.equalTo(600)
+            }
             addChild(tab)
             tab.configureTabViewItem(item: tabViewItem(for: tab)!)
         }
+    }
+    
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        if let tabViewItem = tabViewItem, let contentSize = tabViewItem.view?.fittingSize, let window = view.window {
+            let frameSize = window.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
+            let frame = NSRect(origin: window.frame.origin, size: frameSize).offsetBy(dx: 0, dy: window.frame.height - frameSize.height)
+            
+            NSAnimationContext.runAnimationGroup({ _ in
+                view.isHidden = true
+                window.animator().setFrame(frame, display: true)
+            }, completionHandler: { [weak self] in
+                self?.view.isHidden = false
+                window.title = tabViewItem.label
+            })
+        }
+        
+        super.tabView(tabView, didSelect: tabViewItem)
     }
 }

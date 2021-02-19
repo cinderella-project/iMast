@@ -48,7 +48,7 @@ class AccountsPreferencesPaneView: NSView {
     ], trackingMode: .momentary, target: nil, action: nil) ※ { c in
         c.segmentStyle = .smallSquare
         c.setEnabled(false, forSegment: 2)
-        c.setWidth(200, forSegment: 2)
+        c.setWidth(180, forSegment: 2)
         c.setContentHuggingPriority(.required, for: .horizontal)
     }
     
@@ -81,6 +81,7 @@ class AccountsPreferencesPaneView: NSView {
         
         topStackView.snp.makeConstraints { make in
             make.center.size.equalToSuperview().inset(16)
+            make.height.equalTo(480)
         }
     }
     

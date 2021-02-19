@@ -37,7 +37,7 @@ extension NSUserDefaultsController {
 }
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    lazy var preferencesWindowController = PreferencesWindowController()
+    lazy var preferencesWindow = PreferencesWindow()
     lazy var aboutAppPanel = AboutAppPanel()
     @objc dynamic var hidePrivatePosts = false {
         didSet {
@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     #endif
     
     @IBAction func openPreferences(_ sender: Any) {
-        preferencesWindowController.showWindow(sender)
+        preferencesWindow.makeKeyAndOrderFront(sender)
     }
     
     func applicationWillFinishLaunching(_ notification: Notification) {
@@ -155,6 +155,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
         }
+        UserDefaults.appGroup.register(defaults: [
+            "hide_private_posts": false,
+            "trilinear_bias": -1.0,
+        ])
         hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
         openNewWindow()
     }
