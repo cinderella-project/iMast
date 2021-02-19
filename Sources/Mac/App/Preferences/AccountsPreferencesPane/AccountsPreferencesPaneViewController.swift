@@ -103,14 +103,14 @@ extension AccountsPreferencesPaneViewController: NSTableViewDelegate {
             return nil
         }
         let view = NSView()
-        let imageView = NSImageView() ※ {
+        let imageView = LayeredImageView() ※ {
             $0.wantsLayer = true
             $0.layer?.cornerRadius = 4
             $0.layer?.cornerCurve = .continuous
             $0.layer?.masksToBounds = true
         }
         if let avatarUrlString = token.avatarUrl {
-            imageView.sd_setImage(with: URL(string: avatarUrlString), completed: nil)
+            imageView.loadImage(url: URL(string: avatarUrlString))
         }
         let stackView = NSStackView(views: [
             NSTextField(labelWithString: token.name ?? token.screenName ?? "(null)") ※ {
