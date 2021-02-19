@@ -160,6 +160,10 @@ extension TimelineViewController: NSTableViewDataSource {
 
 extension TimelineViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let post = posts[row]
         return PostView(post: post)
     }

@@ -40,7 +40,7 @@ private func getCurrentTimeString(date: Date) -> String {
     return formatter.string(from: date)
 }
 
-class PostView: NSTableCellView {
+class PostView: NSTableRowView {
     let iconView = LayeredImageView()
     let userNameField = NSTextField(labelWithString: "") ※ {
         $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -60,12 +60,15 @@ class PostView: NSTableCellView {
         $0.backgroundColor = .clear
         $0.textContainer?.lineFragmentPadding = 0
     }
+    let boostedPostIndicator = NSView() ※ {
+        $0.wantsLayer = true
+        $0.layer?.backgroundColor = Asset.barBoost.color.cgColor
+    }
     let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
     
     init(post: MastodonPost) {
         super.init(frame: .zero)
         load(post: post)
-        addSubview(iconView)
         let stackView = NSStackView(views: [
             NSStackView(views: [
                 userNameField,
@@ -81,16 +84,24 @@ class PostView: NSTableCellView {
             $0.orientation = .vertical
             $0.setHuggingPriority(.required, for: .vertical)
         }
-        addSubview(stackView)
+        subviews = [
+            boostedPostIndicator,
+            iconView,
+            stackView,
+        ]
+        boostedPostIndicator.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalTo(3)
+        }
         iconView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
             make.bottom.lessThanOrEqualToSuperview().inset(8)
-            make.leading.equalToSuperview().inset(4)
+            make.leading.equalToSuperview().inset(8)
             make.size.equalTo(48)
         }
         stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(8)
-            make.trailing.equalToSuperview().inset(4)
+            make.trailing.equalToSuperview().inset(8)
             make.leading.equalTo(iconView.snp.trailing).offset(8)
         }
         if post.originalPost.visibility != .public, post.originalPost.visibility != .unlisted {
@@ -110,6 +121,7 @@ class PostView: NSTableCellView {
     }
     
     func load(post: MastodonPost) {
+        boostedPostIndicator.isHidden = post.repost == nil
         let original = post.originalPost
         iconView.loadImage(url: URL(string: original.account.avatarUrl))
         userNameField.stringValue = original.account.name
@@ -131,10 +143,10 @@ class PostView: NSTableCellView {
         }
     }
     
-    override var backgroundStyle: NSView.BackgroundStyle {
+    override var isSelected: Bool {
         didSet {
             // NSTextView がうまく backgroundStyle で色を変えてくれない問題対策
-            switch backgroundStyle {
+            switch interiorBackgroundStyle {
             case .emphasized:
                 textView.linkTextAttributes = [
                     .cursor: NSCursor.pointingHand,
@@ -147,9 +159,9 @@ class PostView: NSTableCellView {
                 ]
                 textView.textColor = .controlTextColor
             case .raised, .lowered:
-                print("unknown style", backgroundStyle)
+                print("unknown style", interiorBackgroundStyle)
             @unknown default:
-                print("unknown style", backgroundStyle)
+                print("unknown style", interiorBackgroundStyle)
             }
         }
     }
