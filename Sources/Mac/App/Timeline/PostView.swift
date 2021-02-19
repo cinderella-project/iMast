@@ -64,6 +64,11 @@ class PostView: NSTableRowView {
         $0.wantsLayer = true
         $0.layer?.backgroundColor = Asset.barBoost.color.cgColor
     }
+    let attachedMediaStackView = NSStackView(views: []) ※ {
+        $0.orientation = .vertical
+        $0.spacing = 8
+        $0.setHuggingPriority(.required, for: .vertical)
+    }
     let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
     
     init(post: MastodonPost) {
@@ -78,6 +83,7 @@ class PostView: NSTableRowView {
                 $0.setHuggingPriority(.required, for: .vertical)
             },
             textView,
+            attachedMediaStackView,
         ]) ※ {
             $0.spacing = 4
             $0.alignment = .leading
@@ -105,8 +111,9 @@ class PostView: NSTableRowView {
             make.leading.equalTo(iconView.snp.trailing).offset(8)
         }
         if post.originalPost.visibility != .public, post.originalPost.visibility != .unlisted {
-            iconView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
-            stackView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
+            for view in [boostedPostIndicator, iconView, stackView] {
+                view.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
+            }
             addSubview(guardTextField)
             guardTextField.snp.makeConstraints { make in
                 make.size.lessThanOrEqualToSuperview()
@@ -141,6 +148,18 @@ class PostView: NSTableRowView {
         } else {
             textView.textStorage?.setAttributedString(NSAttributedString(string: original.status, attributes: attributes))
         }
+        if original.attachments.count > 0 {
+            for media in original.attachments {
+                let imageView = AttachmentView(attachment: media)
+                imageView.snp.makeConstraints { make in
+                    make.height.equalTo(40)
+                }
+                attachedMediaStackView.addArrangedSubview(imageView)
+            }
+            attachedMediaStackView.isHidden = false
+        } else {
+            attachedMediaStackView.isHidden = true
+        }
     }
     
     override var isSelected: Bool {
@@ -163,6 +182,29 @@ class PostView: NSTableRowView {
             @unknown default:
                 print("unknown style", interiorBackgroundStyle)
             }
+        }
+    }
+}
+
+class AttachmentView: LayeredImageView {
+    lazy var clickRecognizer = NSClickGestureRecognizer(target: self, action: #selector(open))
+    let attachment: MastodonAttachment
+    
+    init(attachment: MastodonAttachment) {
+        self.attachment = attachment
+        super.init()
+        layer?.contentsGravity = .resizeAspectFill
+        loadImage(url: URL(string: attachment.previewUrl ?? ""))
+        addGestureRecognizer(clickRecognizer)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func open() {
+        if let url = URL(string: attachment.url) {
+            NSWorkspace.shared.open(url)
         }
     }
 }
