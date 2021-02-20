@@ -65,6 +65,23 @@ class MainWindow: NSWindow {
         addTabbedWindow(newWindow, ordered: .above)
         newWindow.makeKeyAndOrderFront(sender)
     }
+    
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        if super.performKeyEquivalent(with: event) {
+            return true
+        }
+        
+        if event.modifierFlags.contains(.command),
+           let number = Int(event.characters ?? ""), number > 0,
+           let tabGroup = tabGroup,
+           let window = number == 9 ? tabGroup.windows.last : tabGroup.windows.safe(number - 1)
+        {
+            tabGroup.selectedWindow = window
+            return true
+        }
+        
+        return false
+    }
 }
 
 extension MainWindow: NSToolbarDelegate {
