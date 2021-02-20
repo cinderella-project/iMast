@@ -94,37 +94,41 @@ class TimelineViewController: NSViewController, HasUserToken {
         var wsReq = URLRequest(url: components.url!)
         wsReq.setValue(userToken.token, forHTTPHeaderField: "Sec-WebSocket-Protocol")
         let websocketTask = URLSession.shared.webSocketTask(with: wsReq)
-        func receive() {
-            websocketTask.receive { [weak self] result in
-                switch result {
-                case .success(.string(let string)):
-                    do {
-                        let message = try JSONDecoder.forMastodonAPI.decode(MastodonWebSocketMessage.self, from: string.data(using: .utf8)!)
-                        switch message {
-                        case .update(let post):
-                            DispatchQueue.main.async { [weak self] in
-                                self?.addNewPosts(newPosts: [post], animated: true)
-                            }
-                        case .delete(let id):
-                            print(id)
-                        case .unknown(let event):
-                            print("Unknown Event", event)
+        self.websocketTask = websocketTask
+        receiveOnce()
+        websocketTask.resume()
+    }
+    
+    func receiveOnce() {
+        guard let websocketTask = websocketTask else {
+            return
+        }
+        websocketTask.receive { [weak self] result in
+            switch result {
+            case .success(.string(let string)):
+                do {
+                    let message = try JSONDecoder.forMastodonAPI.decode(MastodonWebSocketMessage.self, from: string.data(using: .utf8)!)
+                    switch message {
+                    case .update(let post):
+                        DispatchQueue.main.async { [weak self] in
+                            self?.addNewPosts(newPosts: [post], animated: true)
                         }
-                    } catch {
-                        print(error)
+                    case .delete(let id):
+                        print(id)
+                    case .unknown(let event):
+                        print("Unknown Event", event)
                     }
-                    receive()
-                case .failure(let error):
+                } catch {
                     print(error)
-                    websocketTask.cancel()
-                default:
-                    print("Unknown Message", result)
                 }
+                self?.receiveOnce()
+            case .failure(let error):
+                print(error)
+                websocketTask.cancel()
+            default:
+                print("Unknown Message", result)
             }
         }
-        receive()
-        websocketTask.resume()
-        self.websocketTask = websocketTask
     }
     
     func addNewPosts(newPosts: [MastodonPost], animated: Bool) {
