@@ -69,6 +69,7 @@ class PostView: NSTableRowView {
         $0.spacing = 8
         $0.setHuggingPriority(.required, for: .vertical)
     }
+    let contentView = NSView()
     let guardTextField = NSTextField(labelWithString: "\(L10n.Menu.post) → \(L10n.Menu.hidePrivatePosts)")
     
     init(post: MastodonPost) {
@@ -90,11 +91,15 @@ class PostView: NSTableRowView {
             $0.orientation = .vertical
             $0.setHuggingPriority(.required, for: .vertical)
         }
-        subviews = [
+        subviews = [contentView]
+        contentView.subviews = [
             boostedPostIndicator,
             iconView,
             stackView,
         ]
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         boostedPostIndicator.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
             make.width.equalTo(3)
@@ -111,9 +116,7 @@ class PostView: NSTableRowView {
             make.leading.equalTo(iconView.snp.trailing).offset(8)
         }
         if post.originalPost.visibility != .public, post.originalPost.visibility != .unlisted {
-            for view in [boostedPostIndicator, iconView, stackView] {
-                view.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
-            }
+            contentView.bind(.hidden, to: NSUserDefaultsController.appGroup, withKeyPath: "values.hide_private_posts", options: nil)
             addSubview(guardTextField)
             guardTextField.snp.makeConstraints { make in
                 make.size.lessThanOrEqualToSuperview()
