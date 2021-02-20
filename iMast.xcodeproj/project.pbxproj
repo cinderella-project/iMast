@@ -55,6 +55,8 @@
 		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
+		CE3AFD8525E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
+		CE3AFD8625E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
 		CE3D751125C5E2DD00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
 		CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DB68520FB07FE005CFD77 /* PushService.swift */; };
@@ -139,7 +141,6 @@
 		CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CE78CFA41EE812AD008313EA /* iMastShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CE7AA3B725DBA84C00439AAD /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3B625DBA84C00439AAD /* AppGroup.swift */; };
 		CE7AA3B825DBA84C00439AAD /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3B625DBA84C00439AAD /* AppGroup.swift */; };
-		CE7AA3DD25DBB43700439AAD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
 		CE7AA3EB25DBB60E00439AAD /* AboutAppPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */; };
 		CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimeLineTableViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
@@ -231,7 +232,6 @@
 		CEC4706025DC725F003E3AEF /* iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */; };
 		CEC4706325DC725F003E3AEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE4E2F12377EAF700406371 /* Assets.xcassets */; };
 		CEC4706425DC725F003E3AEF /* Menu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFAFC25C93C46004FFE4B /* Menu.strings */; };
-		CEC4706525DC725F003E3AEF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
 		CEC4706625DC725F003E3AEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */; };
 		CEC4706725DC725F003E3AEF /* Timeline.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */; };
 		CEC4706925DC725F003E3AEF /* iMastMacCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -690,6 +690,8 @@
 		CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDebugBuild.swift; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
+		CE3AFD6925E0B1BE001B71E0 /* generate-license-info.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "generate-license-info.py"; sourceTree = "<group>"; };
+		CE3AFD8425E0BF2F001B71E0 /* licenses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = licenses.json; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
 		CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsDict.swift; sourceTree = "<group>"; };
 		CE43BE80237775F000133C86 /* iMastiOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iMastiOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1636,6 +1638,7 @@
 		CE8EFAB625C93BAA004FFE4B /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				CE3AFD8425E0BF2F001B71E0 /* licenses.json */,
 				CE8EFAEB25C93C17004FFE4B /* assets.swift */,
 				CE8EFAEA25C93C17004FFE4B /* strings.swift */,
 			);
@@ -1977,6 +1980,7 @@
 		CEE4E2EC2377EAF500406371 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CE3AFD6925E0B1BE001B71E0 /* generate-license-info.py */,
 				CE8EFAB825C93BE8004FFE4B /* swiftgen.yml */,
 				CE8EFAB625C93BAA004FFE4B /* Generated */,
 				CE8EFA9B25C93AEE004FFE4B /* Strings */,
@@ -2286,6 +2290,7 @@
 				CEC4704825DC725F003E3AEF /* [CP] Check Pods Manifest.lock */,
 				CEC4704925DC725F003E3AEF /* SwiftGen */,
 				CEC4711725DC78C1003E3AEF /* Generate LicensePlist */,
+				CE3AFD7625E0B1EF001B71E0 /* Generate License Info */,
 				CEC4704A25DC725F003E3AEF /* Sources */,
 				CEC4705F25DC725F003E3AEF /* Frameworks */,
 				CEC4706225DC725F003E3AEF /* Resources */,
@@ -2351,6 +2356,7 @@
 				B8A02B96391699BC3883F34C /* [CP] Check Pods Manifest.lock */,
 				CE8EFAB725C93BC7004FFE4B /* SwiftGen */,
 				CEC4711625DC789F003E3AEF /* Generate LicensePlist */,
+				CE3AFD7725E0B21F001B71E0 /* Generate License Info */,
 				CEE4E2E72377EAF500406371 /* Sources */,
 				CEE4E2E82377EAF500406371 /* Frameworks */,
 				CEE4E2E92377EAF500406371 /* Resources */,
@@ -2658,7 +2664,7 @@
 			files = (
 				CEC4706325DC725F003E3AEF /* Assets.xcassets in Resources */,
 				CEC4706425DC725F003E3AEF /* Menu.strings in Resources */,
-				CEC4706525DC725F003E3AEF /* Settings.bundle in Resources */,
+				CE3AFD8625E0BF30001B71E0 /* licenses.json in Resources */,
 				CEC4706625DC725F003E3AEF /* Localizable.strings in Resources */,
 				CEC4706725DC725F003E3AEF /* Timeline.strings in Resources */,
 			);
@@ -2684,7 +2690,7 @@
 			files = (
 				CEE4E2F22377EAF700406371 /* Assets.xcassets in Resources */,
 				CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */,
-				CE7AA3DD25DBB43700439AAD /* Settings.bundle in Resources */,
+				CE3AFD8525E0BF30001B71E0 /* licenses.json in Resources */,
 				CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */,
 				CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */,
 			);
@@ -3086,6 +3092,43 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		CE3AFD7625E0B1EF001B71E0 /* Generate License Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate License Info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./Sources/Mac/App/generate-license-info.py\n";
+		};
+		CE3AFD7725E0B21F001B71E0 /* Generate License Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate License Info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./Sources/Mac/App/generate-license-info.py\n";
 		};
 		CE51BE0125DCE53A007D3A8E /* Sign to Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;

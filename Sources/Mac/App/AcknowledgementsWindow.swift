@@ -55,19 +55,22 @@ class AcknowledgementsWindow: NSWindow {
     }
     lazy var contentTextView = contentScrollView.documentView as! NSTextView
     
-    var baseURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!
-    var items: [(name: String, url: URL)] = []
+    var items: [Item] = []
+    struct Item: Decodable {
+        let title: String
+        let text: String
+    }
     
     convenience init() {
         self.init(contentRect: .zero, styleMask: [.closable, .resizable, .titled, .fullSizeContentView], backing: .buffered, defer: false)
-        for item in NSDictionary(contentsOf: baseURL.appendingPathComponent("com.mono0926.LicensePlist.plist"))!["PreferenceSpecifiers"] as! [NSDictionary] {
-            if item["Type"] as? String != "PSChildPaneSpecifier" {
-                continue
+        do {
+            items = try JSONDecoder().decode([Item].self, from: Data(contentsOf: Bundle.main.url(forResource: "licenses", withExtension: "json")!))
+        } catch {
+            let alert = NSAlert(error: error)
+            alert.beginSheetModal(for: self) { _ in
+                self.close()
             }
-            items.append((name: item["Title"] as! String, url: baseURL.appendingPathComponent(item["File"] as! String + ".plist")))
         }
-        print(items)
-        
         let split = NSSplitView()
         split.addArrangedSubview(tableScrollView)
         split.addArrangedSubview(contentScrollView)
@@ -88,7 +91,7 @@ extension AcknowledgementsWindow: NSTableViewDataSource {
 extension AcknowledgementsWindow: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let view = NSView()
-        let textField = NSTextField(labelWithString: items[row].name)
+        let textField = NSTextField(labelWithString: items[row].title)
         view.addSubview(textField)
         textField.setContentCompressionResistancePriority(.init(1), for: .horizontal)
         textField.lineBreakMode = .byTruncatingTail
@@ -100,9 +103,9 @@ extension AcknowledgementsWindow: NSTableViewDelegate {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let dic = (NSDictionary(contentsOf: items[tableView.selectedRow].url)!["PreferenceSpecifiers"] as! [NSDictionary]).first!
+        let item = items[tableView.selectedRow]
         contentTextView.isEditable = false
-        contentTextView.textStorage?.setAttributedString(NSAttributedString(string: dic["FooterText"] as! String, attributes: [
+        contentTextView.textStorage?.setAttributedString(NSAttributedString(string: item.text, attributes: [
             .font: NSFont.systemFont(ofSize: NSFont.systemFontSize),
             .foregroundColor: NSColor.labelColor,
         ]))
