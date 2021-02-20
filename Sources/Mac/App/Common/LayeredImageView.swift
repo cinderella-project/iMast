@@ -36,7 +36,6 @@ class LayeredImageView: NSView {
     @objc dynamic var filterBias: Float = 0 {
         didSet {
             layer?.minificationFilterBias = filterBias
-            print(filterBias)
         }
     }
     
