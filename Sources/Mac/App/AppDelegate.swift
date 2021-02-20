@@ -99,11 +99,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 $0.addItem(.init(title: "Undo", action: Selector("undo:"), keyEquivalent: "z"))
                 $0.addItem(.init(title: "Redo", action: Selector("redo:"), keyEquivalent: "Z"))
                 $0.addItem(.separator())
-                $0.addItem(.init(title: L10n.Menu.cut, action: Selector("cut:"), keyEquivalent: "x"))
-                $0.addItem(.init(title: L10n.Menu.copy, action: Selector("copy:"), keyEquivalent: "c"))
-                $0.addItem(.init(title: L10n.Menu.paste, action: Selector("paste:"), keyEquivalent: "v"))
-                $0.addItem(.init(title: L10n.Menu.delete, action: Selector("delete:"), keyEquivalent: ""))
-                $0.addItem(.init(title: L10n.Menu.selectAll, action: Selector("selectAll:"), keyEquivalent: "a"))
+                $0.addItem(.init(title: L10n.Menu.cut, action: #selector(NSText.cut(_:)), keyEquivalent: "x"))
+                $0.addItem(.init(title: L10n.Menu.copy, action: #selector(NSText.copy(_:)), keyEquivalent: "c"))
+                $0.addItem(.init(title: L10n.Menu.paste, action: #selector(NSText.paste(_:)), keyEquivalent: "v"))
+                $0.addItem(.init(title: L10n.Menu.delete, action: #selector(NSText.delete(_:)), keyEquivalent: ""))
+                $0.addItem(.init(title: L10n.Menu.selectAll, action: #selector(NSText.selectAll(_:)), keyEquivalent: "a"))
             }
         })
         menu.addItem(.init() ※ {
@@ -113,9 +113,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 })
                 $0.addItem(.init(title: L10n.Menu.customizeToolbar, action: #selector(NSWindow.runToolbarCustomizationPalette(_:)), keyEquivalent: ""))
                 $0.addItem(.separator())
-                $0.addItem(.init(title: L10n.Menu.showSidebar, action: "toggleSidebar:", keyEquivalent: "s") ※ {
-                    $0.keyEquivalentModifierMask = [.command, .control]
-                })
+//                $0.addItem(.init(title: L10n.Menu.showSidebar, action: "toggleSidebar:", keyEquivalent: "s") ※ {
+//                    $0.keyEquivalentModifierMask = [.command, .control]
+//                })
                 $0.addItem(.init(title: "Enter Full Screen", action: #selector(NSWindow.toggleFullScreen(_:)), keyEquivalent: "f") ※ {
                     $0.keyEquivalentModifierMask = [.command, .control]
                 })
