@@ -31,7 +31,6 @@ private extension NSToolbarItem.Identifier {
 }
 
 class MainWindow: NSWindow {
-    lazy var vc = MainViewController()
     lazy var currentViewSegmentedControl = NSSegmentedControl(images: [
         NSImage(systemSymbolName: "house", accessibilityDescription: nil)!,
     ], trackingMode: .momentary, target: nil, action: nil) ※ {
@@ -41,6 +40,20 @@ class MainWindow: NSWindow {
             $0.update()
         }
         $0.setMenu(menu, forSegment: 0)
+    }
+    
+    override var contentViewController: NSViewController? {
+        willSet {
+            // 適当に contentViewController を入れ替えると frame.size が .zero なせいでウインドウの大きさがそっちにひっぱられる
+            // ので入れ替え時にサイズを自分で引き継がせる
+            if let current = contentView, let newView = newValue?.view {
+                newView.setFrameSize(current.frame.size)
+            }
+        }
+    }
+    
+    deinit {
+        print("deinit", self)
     }
     
     init() {
@@ -54,7 +67,9 @@ class MainWindow: NSWindow {
             subtitle = "@\(userToken.acct)"
         }
         // setup
-        contentViewController = vc
+        if let userToken = MastodonUserToken.getLatestUsed() {
+            contentViewController = TimelineViewController(userToken: userToken, timelineType: .home)
+        }
         setContentSize(.init(width: 360, height: 560))
         bind(.title, to: self, withKeyPath: "contentViewController.title", options: nil)
         center()
@@ -131,7 +146,7 @@ extension MainWindow: NSMenuDelegate {
                 $0.identifier = .init("federated")
             })
         }
-        let maybeUserToken = vc.getUserTokenIfAvailable()
+        let maybeUserToken = (contentViewController as? MaybeHasUserToken)?.getUserTokenIfAvailable()
         if let userToken = maybeUserToken {
             menu.addItem(.init(title: "@" + userToken.acct, action: nil, keyEquivalent: ""))
             menu.identifier = .init(userToken.id!)
@@ -160,11 +175,11 @@ extension MainWindow: NSMenuDelegate {
         subtitle = "@\(userToken.acct)"
         switch sender.identifier?.rawValue {
         case "home":
-            vc.child = TimelineViewController(userToken: userToken, timelineType: .home)
+            contentViewController = TimelineViewController(userToken: userToken, timelineType: .home)
         case "local":
-            vc.child = TimelineViewController(userToken: userToken, timelineType: .local)
+            contentViewController = TimelineViewController(userToken: userToken, timelineType: .local)
         case "federated":
-            vc.child = TimelineViewController(userToken: userToken, timelineType: .federated)
+            contentViewController = TimelineViewController(userToken: userToken, timelineType: .federated)
         default:
             fatalError("Unknown Identifier: \(sender.identifier?.rawValue)")
         }
