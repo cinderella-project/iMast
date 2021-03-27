@@ -160,7 +160,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "trilinear_bias": -1.0,
         ])
         hidePrivatePosts = UserDefaults.appGroup.bool(forKey: "hide_private_posts")
-        openNewWindow()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
