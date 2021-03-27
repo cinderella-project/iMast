@@ -154,10 +154,10 @@ extension MainWindow: NSMenuDelegate {
             menu.addItem(.separator())
         }
         for userToken in MastodonUserToken.getAllUserTokens() {
-            if userToken.id == maybeUserToken?.id {
-                continue
-            }
             menu.addItem(.init(title: userToken.acct, action: nil, keyEquivalent: "") ※ {
+                if userToken.id == maybeUserToken?.id {
+                    $0.state = .on
+                }
                 $0.submenu = NSMenu() ※ {
                     $0.identifier = .init(userToken.id!)
                     addMenuItems(for: userToken, menu: $0)
