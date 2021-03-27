@@ -24,6 +24,7 @@
 import Cocoa
 import Ikemen
 import iMastMacCore
+import SDWebImage
 #if SPARKLE_ENABLED
 import Sparkle
 #endif
@@ -151,6 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
+        SDImageCache.shared.config.maxMemoryCost = 32 * 1024 * 1024
         initDatabase()
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
