@@ -117,11 +117,15 @@ extension MainWindow: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.isNavigational = true
             item.view = currentViewSegmentedControl
+            item.menuFormRepresentation = .init(title: L10n.Timeline.switchTimelines, action: nil, keyEquivalent: "") ※ {
+                $0?.submenu = currentViewSegmentedControl.menu(forSegment: 0)
+            }
             return item
         case .newPost:
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.image = NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)
             item.action = #selector(TimelineViewController.newDocument(_:))
+            item.menuFormRepresentation = .init(title: L10n.Timeline.newPost, action: #selector(TimelineViewController.newDocument(_:)), keyEquivalent: "")
             return item
         default:
             return nil

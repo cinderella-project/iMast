@@ -93,6 +93,10 @@ internal enum L10n {
     internal static let home = L10n.tr("Timeline", "Home")
     /// ローカル
     internal static let local = L10n.tr("Timeline", "Local")
+    /// 新規投稿
+    internal static let newPost = L10n.tr("Timeline", "New Post")
+    /// タイムライン切替
+    internal static let switchTimelines = L10n.tr("Timeline", "Switch Timelines")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
