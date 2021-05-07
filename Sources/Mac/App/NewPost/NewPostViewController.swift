@@ -32,6 +32,7 @@ class NewPostViewController: NSViewController {
         $0.isRichText = false
         $0.autoresizingMask = .width
         $0.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        $0.allowsUndo = true
     }
     lazy var scrollView = NSScrollView() ※ {
         $0.documentView = textView
