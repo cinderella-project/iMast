@@ -28,6 +28,7 @@ import SVProgressHUD
 import SafariServices
 import Hydra
 import iMastiOSCore
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // とりあえずもろもろ初期化
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
+        SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         self.registerDefaultsFromSettingsBundle()
         self.migrateUserDefaultsToAppGroup()
         initDatabase()

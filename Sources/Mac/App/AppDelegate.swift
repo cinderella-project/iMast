@@ -153,6 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         SDImageCache.shared.config.maxMemoryCost = 32 * 1024 * 1024
+        SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         initDatabase()
         if MastodonUserToken.getAllUserTokens().count < 1 {
             openPreferences(self)
