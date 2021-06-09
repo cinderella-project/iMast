@@ -10,7 +10,7 @@ PODS:
   - GRDB.swift (4.6.2):
     - GRDB.swift/standard (= 4.6.2)
   - GRDB.swift/standard (4.6.2)
-  - HydraAsync (2.0.4)
+  - HydraAsync (2.0.6)
   - KeychainAccess (4.2.1)
   - LicensePlist (2.16.0)
   - Mew (0.1.0)
@@ -35,7 +35,7 @@ DEPENDENCIES:
   - EurekaTwolineSliderRow
   - Fuzi (~> 3.1.2)
   - GRDB.swift (~> 4.6.2)
-  - HydraAsync (~> 2.0.4)
+  - HydraAsync (~> 2.0.6)
   - KeychainAccess (~> 4.2.1)
   - LicensePlist (~> 2.16.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
@@ -91,7 +91,7 @@ SPEC CHECKSUMS:
   EurekaTwolineSliderRow: 2b3d380f1f37edec9fc15e7bb0c6cc32bd180656
   Fuzi: dba7215e52fb39dd7b1a62f69ede1e30edff0ae1
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
-  HydraAsync: 0407c5b78ba2fcf32cd82553e69da19eb385a968
+  HydraAsync: 8d589bd725b0224f899afafc9a396327405f8063
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
@@ -106,6 +106,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: 4c8d1e891fb2ea165921e2563121848869a9c936
+PODFILE CHECKSUM: b797f445bb10cd0b501ce4f3808326c939ae400c
 
 COCOAPODS: 1.10.1

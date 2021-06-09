@@ -128,7 +128,7 @@ class NotificationService: UNNotificationServiceExtension {
         var promise: [Promise<Void>] = []
         promise.append(async { _ in // get attachment images
             if let images = request.content.userInfo["images"] as? [String] {
-                let imageUrls = try await(all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }))
+                let imageUrls = try `await`(all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }))
                 for imageUrl in imageUrls {
                     self.bestAttemptContent?.attachments.append(try UNNotificationAttachment(identifier: imageUrl.path, url: imageUrl, options: nil))
                 }
@@ -141,7 +141,7 @@ class NotificationService: UNNotificationServiceExtension {
                     return
                 }
 
-                let notify = try await(userToken.getNotification(id: MastodonID(string: upstreamId)))
+                let notify = try `await`(userToken.getNotification(id: MastodonID(string: upstreamId)))
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(notify)
                 let str = String(data: data, encoding: .utf8)

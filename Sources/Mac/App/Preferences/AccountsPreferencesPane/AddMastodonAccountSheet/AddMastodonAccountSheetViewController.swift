@@ -107,8 +107,8 @@ class AddMastodonAccountSheetViewController: NSViewController {
         error = nil
         if let app = app {
             async { [code] _ in
-                let token = try await(app.authorizeWithCode(code: code))
-                try await(token.getUserInfo())
+                let token = try `await`(app.authorizeWithCode(code: code))
+                try `await`(token.getUserInfo())
                 try token.save()
                 NotificationCenter.default.post(name: .userTokenChanged, object: nil)
             }.then(in: .main) { [weak self] in

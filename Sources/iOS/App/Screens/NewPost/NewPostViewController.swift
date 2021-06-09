@@ -135,7 +135,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 DispatchQueue.main.async {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
-                let response = try await(self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                let response = try `await`(self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if response["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode: response["_response_code"].intValue)
                 }

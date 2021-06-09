@@ -90,12 +90,12 @@ class AddAccountIndexViewController: FormViewController {
                 alert.message = "\(L10n.Login.ProgressDialog.fetchingServerInfo) (1/4)"
             }
             let instance = MastodonInstance(hostName: hostName)
-            _ = try await(instance.getInfo())
+            _ = try `await`(instance.getInfo())
             DispatchQueue.mainSafeSync {
                 alert.message = "\(L10n.Login.ProgressDialog.registeringApplication) (2/4)"
             }
             let appName = Defaults[.newAccountVia]
-            let app = try await(instance.createApp(name: appName))
+            let app = try `await`(instance.createApp(name: appName))
             try app.save()
             DispatchQueue.mainSafeSync {
                 alert.message = "\(L10n.Login.ProgressDialog.pleaseAuthorize) (3/4)"

@@ -288,7 +288,7 @@ class ShareViewController: SLComposeServiceViewController {
         let promise: Promise<[JSON]> = async { status -> [JSON] in
             var results: [JSON] = []
             for medium in self.postMedia {
-                let result = try await(self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                let result = try `await`(self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
                 if result["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
                 }

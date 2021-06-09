@@ -245,7 +245,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 exportSession.shouldOptimizeForNetworkUse = true
                 exportSession.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
                 if exportSession.estimatedOutputFileLength >= RE_ENCODING_BORDER {
-                    guard try! await(self.confirm(
+                    guard try! `await`(self.confirm(
                         title: "確認",
                         message: "動画をこのままエンコードすると40MBを越えそうです(予想される出力ファイルサイズ: \(exportSession.estimatedOutputFileLength)bytes)。このままエンコードしますか?",
                         okButtonMessage: "OK",
@@ -256,13 +256,13 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 let alert = DispatchQueue.mainSafeSync {
                     UIAlertController(title: "動画の処理中", message: "しばらくお待ちください", preferredStyle: .alert)
                 }
-                try! await(self.presentPromise(alert, animated: true))
+                try! `await`(self.presentPromise(alert, animated: true))
                 let timer = DispatchQueue.mainSafeSync {
                     Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { _ in
                         alert.message = "しばらくお待ちください (\(String(format: "%.1f", arguments: [exportSession.progress * 100.0]))%, est: \(exportSession.estimatedOutputFileLength))"
                     })
                 }
-                try! await(exportSession.exportPromise())
+                try! `await`(exportSession.exportPromise())
                 timer.invalidate()
 //                    print((try? FileManager.default.attributesOfItem(atPath: outUrl.path)))
                 let data = try! Data(contentsOf: outUrl)

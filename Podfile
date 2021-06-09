@@ -9,7 +9,7 @@ abstract_target 'iMastShared' do
   pod 'Alamofire', '~> 4.9.1'
   pod 'GRDB.swift', '~> 4.6.2'
   pod 'SwiftyJSON', '~> 5.0.0'
-  pod 'HydraAsync', '~> 2.0.4'
+  pod 'HydraAsync', '~> 2.0.6'
   pod 'SDWebImage', '~> 5.9.1'
   pod 'Fuzi', '~> 3.1.2'
   pod 'SnapKit', '~> 5.0.1'
