@@ -227,8 +227,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
         let globalRect = view.convert(view.bounds, to: window)
         let safeAreaBottom = view.safeAreaInsets.bottom - additionalSafeAreaInsets.bottom
-        let marginBottom = window.bounds.maxY - globalRect.maxY
-        additionalSafeAreaInsets.bottom = (rect.size.height - safeAreaBottom - marginBottom) + 44
+        let modalBottom = window.bounds.maxY - globalRect.maxY
+        let windowBottom = (window.screen.bounds.height - window.bounds.height) / 2
+        let bottom = safeAreaBottom + modalBottom + windowBottom
+        additionalSafeAreaInsets.bottom = (rect.size.height - bottom) + 44
     }
     @objc func keyboardWillHide(notification: Notification?) {
         additionalSafeAreaInsets.bottom = 44
