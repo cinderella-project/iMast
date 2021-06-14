@@ -106,7 +106,7 @@
                             <constraint firstItem="m1w-xO-o8W" firstAttribute="bottom" secondItem="098-t9-MpK" secondAttribute="top" id="bcv-Pt-lac"/>
                             <constraint firstItem="0I0-hy-lHq" firstAttribute="width" secondItem="cLF-D1-GNS" secondAttribute="width" id="kDx-iK-ZQP"/>
                             <constraint firstItem="m1w-xO-o8W" firstAttribute="leading" secondItem="9dQ-cY-Tqg" secondAttribute="leading" id="kic-8K-mHU"/>
-                            <constraint firstItem="cLF-D1-GNS" firstAttribute="bottom" secondItem="098-t9-MpK" secondAttribute="bottom" id="lmD-MS-qXf"/>
+                            <constraint firstItem="cLF-D1-GNS" firstAttribute="bottom" secondItem="098-t9-MpK" secondAttribute="top" id="lmD-MS-qXf"/>
                             <constraint firstItem="8NC-Ka-Jwd" firstAttribute="leading" secondItem="cLF-D1-GNS" secondAttribute="leading" id="mar-Il-hw1"/>
                             <constraint firstItem="8NC-Ka-Jwd" firstAttribute="width" secondItem="cLF-D1-GNS" secondAttribute="width" id="ouw-3c-Cd8"/>
                             <constraint firstItem="098-t9-MpK" firstAttribute="leading" secondItem="9dQ-cY-Tqg" secondAttribute="leading" id="s9q-5s-xYC"/>
@@ -127,7 +127,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="NSFWButton" destination="PDD-NQ-dha" id="LRD-PN-I8a"/>
-                        <outlet property="bottomLayout" destination="lmD-MS-qXf" id="ZOU-sg-Dyx"/>
                         <outlet property="cwInput" destination="8NC-Ka-Jwd" id="8ZJ-zU-d29"/>
                         <outlet property="exactOnepixelConstraint" destination="iui-gF-SNS" id="G1S-gh-l40"/>
                         <outlet property="imageSelectButton" destination="9zg-4V-9GJ" id="6hp-AJ-AWh"/>

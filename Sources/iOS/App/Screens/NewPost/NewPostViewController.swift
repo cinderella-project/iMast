@@ -36,7 +36,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet weak var bottomLayout: NSLayoutConstraint!
     @IBOutlet weak var keyboardUpOrDown: UIBarButtonItem!
     @IBOutlet weak var cwInput: UITextField!
     var media: [UploadableMedia] = []
@@ -102,6 +101,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         // localize
         cwInput.placeholder = L10n.NewPost.Placeholders.cwWarningText
+        
+        additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -215,14 +216,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
-        let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        bottomLayout.constant = (rect?.size.height ?? 0) - self.bottomLayoutGuide.length
         self.view.layoutIfNeeded()
         self.keyboardUpOrDown.image = UIImage(named: "ArrowDown")
         nowKeyboardUpOrDown = true
+        guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        guard let window = view.window else {
+            return
+        }
+        let globalRect = view.convert(view.bounds, to: window)
+        let safeAreaBottom = view.safeAreaInsets.bottom - additionalSafeAreaInsets.bottom
+        let marginBottom = window.bounds.maxY - globalRect.maxY
+        additionalSafeAreaInsets.bottom = (rect.size.height - safeAreaBottom - marginBottom) + 44
     }
     @objc func keyboardWillHide(notification: Notification?) {
-        bottomLayout.constant = 0.0
+        additionalSafeAreaInsets.bottom = 44
         self.keyboardUpOrDown.image = UIImage(named: "ArrowUp")
         nowKeyboardUpOrDown = false
     }
