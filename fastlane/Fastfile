@@ -34,19 +34,19 @@ platform :ios do
     # push_to_git_remote(tags: false)
     add_git_tag(tag: version, message: changelog)
 
-    get_provisioning_profile
+#    get_provisioning_profile
 
-    project = Xcodeproj::Project.open("../iMast.xcodeproj")
-    bundle_id = "jp.pronama.imast"
+#    project = Xcodeproj::Project.open("../iMast.xcodeproj")
+#    bundle_id = "jp.pronama.imast"
     
-    target = project.targets.find { |target| target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"] == bundle_id}
-    appexs = target.dependencies.select { |dep| dep.target.product_type == "com.apple.product-type.app-extension" }
-    
-    for appex in appexs do
-       get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
-    end
+#    target = project.targets.find { |target| target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"] == bundle_id}
+#    appexs = target.dependencies.select { |dep| dep.target.product_type == "com.apple.product-type.app-extension" }
+#    
+#    for appex in appexs do
+#       get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
+#    end
 
-    build_app(workspace: "iMast.xcworkspace", scheme: "iMast iOS")
+    build_app(workspace: "iMast.xcworkspace", scheme: "iMast iOS", xcargs: "-allowProvisioningUpdates")
     upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90, groups: ["外部テスター"], wait_for_uploaded_build: true)
     push_to_git_remote
   end
