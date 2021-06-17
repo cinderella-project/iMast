@@ -4,12 +4,15 @@ on: [push]
 
 jobs:
   build:
+    # for contributors or forked version developers: macOS-11 image is currently private beta,
+    # so if you want to use macOS-11 outside of cinderella-project org, you should submit to private beta.
+    # more information: https://github.com/actions/virtual-environments/blob/main/docs/macos-11-onboarding.md
     runs-on: macOS-11
     strategy:
       matrix:
         xcode:
-          - 12.5
-          - 13.0
+          - "12.5"
+          - "13.0"
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
