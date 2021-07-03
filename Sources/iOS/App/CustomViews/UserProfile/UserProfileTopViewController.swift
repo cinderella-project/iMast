@@ -301,7 +301,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     
     @objc func openSharesheet() {
         let activityItems: [Any] = [
-            (self.input.name != "" ? self.input.name : self.input.screenName).emojify()+"さんのプロフィール - Mastodon",
+            "\(self.input.name != "" ? self.input.name : self.input.screenName)さんのプロフィール - Mastodon",
             NSURL(string: self.input.url)!,
         ]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)

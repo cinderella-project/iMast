@@ -288,7 +288,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
         }
         if post.spoilerText != "" {
-            textView.attributedText = NSAttributedString(string: post.spoilerText.emojify() + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
+            textView.attributedText = NSAttributedString(string: post.spoilerText + "\n(CWの内容は詳細画面で\(post.attachments.count != 0 ? ", \(post.attachments.count)個の添付メディア" : ""))", attributes: [
                 .foregroundColor: UIColor.secondaryLabel,
             ]).emojify(asyncLoadProgressHandler: {
                 self.textView.setNeedsDisplay()

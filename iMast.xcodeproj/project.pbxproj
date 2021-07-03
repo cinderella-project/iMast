@@ -246,7 +246,6 @@
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
 		CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0321074EFB003ECE10 /* NotificationService.swift */; };
 		CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */; };
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CEC8365F23C2126100E4A957 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC8365E23C2126000E4A957 /* strings.swift */; };
 		CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
@@ -259,7 +258,6 @@
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
-		CEE213131EF13EE600393C67 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = CEE213121EF13EE600393C67 /* emoji.json */; };
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
 		CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
@@ -858,7 +856,6 @@
 		CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastNotifyService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6BC0321074EFB003ECE10 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojify.swift"; sourceTree = "<group>"; };
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CEC8365C23C1FA6100E4A957 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		CEC8365E23C2126000E4A957 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
@@ -878,7 +875,6 @@
 		CEE043A923780C94007A915E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneView.swift; sourceTree = "<group>"; };
 		CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPaneProtocol.swift; sourceTree = "<group>"; };
-		CEE213121EF13EE600393C67 /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
 		CEE254222004A8B2005FEB6F /* MastodonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
 		CEE254272004B5AA005FEB6F /* MastodonPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPost.swift; sourceTree = "<group>"; };
 		CEE254292004B802005FEB6F /* MastodonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApplication.swift; sourceTree = "<group>"; };
@@ -1269,7 +1265,6 @@
 				CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */,
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
-				CEE213121EF13EE600393C67 /* emoji.json */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
 			);
 			path = App;
@@ -1319,7 +1314,6 @@
 			isa = PBXGroup;
 			children = (
 				CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */,
-				CEC6BC0E21076DB3003ECE10 /* String+emojify.swift */,
 				CE65772B21560BE300670F0A /* String+toPlainText.swift */,
 			);
 			path = String;
@@ -2602,7 +2596,6 @@
 				CE845D262172504A00AF35B4 /* NewPost.storyboard in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
-				CEE213131EF13EE600393C67 /* emoji.json in Resources */,
 				CE6554D723C25DDC0084FE1D /* Login.strings in Resources */,
 				CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */,
 				CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */,
@@ -3368,7 +3361,6 @@
 				CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */,
 				CE9BD65E2310ADD300763D3A /* TableViewDiffableDataSource.swift in Sources */,
 				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
-				CEC6BC0F21076DB3003ECE10 /* String+emojify.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
