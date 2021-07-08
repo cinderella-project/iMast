@@ -322,8 +322,6 @@ internal enum L10n {
       }
     }
     internal enum Post {
-      /// 投稿時にメディアURL追加
-      internal static let addMediaURL = L10n.tr("Preferences", "post.addMediaURL")
       /// 投稿
       internal static let title = L10n.tr("Preferences", "post.title")
       /// デフォルト公開範囲を利用

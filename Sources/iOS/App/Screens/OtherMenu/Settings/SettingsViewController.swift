@@ -81,10 +81,6 @@ class SettingsViewController: FormViewController {
     
     func getComposeSection() -> Section {
         return Section(header: L10n.Preferences.Post.title) {
-            SwitchRow { row in
-                row.title = L10n.Preferences.Post.addMediaURL
-                row.userDefaultsConnect(.appendMediaUrl)
-            }
             PushStringRow { row in
                 row.title = L10n.Preferences.Post.AutoResize.title
                 let sentakusi = [ // 自動リサイズの選択肢

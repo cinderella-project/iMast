@@ -13,7 +13,6 @@
 "general.newAccountVia.title" = "新規連携時のvia";
 
 "post.title" = "投稿";
-"post.addMediaURL" = "投稿時にメディアURL追加";
 "post.autoResize.title" = "画像の自動リサイズ";
 "post.autoResize.no" = "しない";
 "post.autoResize.pixel" = "%dpx以下にリサイズ";

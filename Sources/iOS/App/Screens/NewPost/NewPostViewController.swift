@@ -158,17 +158,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             let mediaIds = medias.map({ (media) in
                 return media["id"]
             })
-            if Defaults[.appendMediaUrl] {
-                var mediaUrls = ""
-                medias.filter({ (media) -> Bool in
-                    return media["text_url"].string != nil
-                }).forEach({ (media) in
-                    mediaUrls += " " + media["text_url"].stringValue
-                })
-                if (text.count + mediaUrls.count) <= 500 {
-                    text += mediaUrls
-                }
-            }
             var params: [String: Any] = [
                 "media_ids": mediaIds,
                 "sensitive": self.isNSFW || (self.cwInput.text != nil && self.cwInput.text != ""),
