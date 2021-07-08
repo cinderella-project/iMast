@@ -13,7 +13,6 @@
 "general.newAccountVia.title" = "신규연계시 via";
 
 "post.title" = "글";
-"post.addMediaURL" = "글 작성시 미디어 URL 추가";
 "post.autoResize.title" = "이미지 크기 자동조절";
 "post.autoResize.no" = "안함";
 "post.autoResize.pixel" = "%dpx 이하로 조절";
