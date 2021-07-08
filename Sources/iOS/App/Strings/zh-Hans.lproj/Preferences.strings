@@ -13,7 +13,6 @@
 "general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
 
 "post.title" = "嘟文发布";
-"post.addMediaURL" = "发布嘟文时添加图片链接";
 "post.autoResize.title" = "自动缩小图片";
 "post.autoResize.no" = "永不";
 "post.autoResize.pixel" = "缩小到%dpx以下";
