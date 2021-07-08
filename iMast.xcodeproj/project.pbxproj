@@ -30,8 +30,6 @@
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
-		CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
-		CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CE0E4C59247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */; };
 		CE0E4C5A247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */; };
 		CE1002D5200683850041B636 /* ReportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D4200683850041B636 /* ReportError.swift */; };
@@ -48,9 +46,6 @@
 		CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */; };
 		CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */; };
 		CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */; };
-		CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
-		CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
-		CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
@@ -194,6 +189,8 @@
 		CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */; };
 		CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
+		CEA787D42696EEB7002C9A5C /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
+		CEA787D62696EFAB002C9A5C /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
 		CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */; };
@@ -261,8 +258,6 @@
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
 		CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
-		CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
-		CEE357231FF6067F00675DFC /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357251FF6410600675DFC /* SettingsViewController.swift */; };
 		CEE35D962375D94F00AFEBA0 /* TopAccountMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE35D952375D94F00AFEBA0 /* TopAccountMasterViewController.swift */; };
 		CEE35D982375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */; };
@@ -335,11 +330,8 @@
 		CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB988E25C823E500D55B03 /* MainWindow.swift */; };
 		CEFB98A925C827A400D55B03 /* NewPostWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98A825C827A400D55B03 /* NewPostWindow.swift */; };
 		CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98B925C828E300D55B03 /* NewPostViewController.swift */; };
-		CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
-		CEFE6AFB21B5011700AF5E40 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE357211FF5E0B300675DFC /* EventListener.swift */; };
 		CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
-		CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */; };
 		CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */; };
 		DDF8D224AC746E71A8413B5D /* Pods_iMastShared_iOS_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0E2A4C001595BB41222635 /* Pods_iMastShared_iOS_iMastShare.framework */; };
 		E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7041702E67BCC8835441ADEE /* Pods_iMastShared_iOS_iMastiOSCore.framework */; };
@@ -882,7 +874,6 @@
 		CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostMediaListViewController.swift; sourceTree = "<group>"; };
 		CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSelectableTextView.swift; sourceTree = "<group>"; };
 		CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketWrapper.swift; sourceTree = "<group>"; };
-		CEE357211FF5E0B300675DFC /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		CEE357251FF6410600675DFC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CEE35D952375D94F00AFEBA0 /* TopAccountMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAccountMasterViewController.swift; sourceTree = "<group>"; };
 		CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceholderDetailViewController.swift; sourceTree = "<group>"; };
@@ -1291,10 +1282,11 @@
 		CE43BE81237775F000133C86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				CE43BEA02377776D00133C86 /* UIViewController */,
+				CEA787D12696EE60002C9A5C /* Extensions */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CE3DFEDF1FEE4C51005A480D /* UserDefaultsDict.swift */,
 				CE43BEBC23777BBD00133C86 /* DefaultsKeys.swift */,
+				CE099D022194315800A4BCCB /* UploadableMedia.swift */,
 				CE43BE82237775F000133C86 /* iMastiOSCore.h */,
 				CE43BE83237775F000133C86 /* Info.plist */,
 			);
@@ -1714,6 +1706,14 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		CEA787D12696EE60002C9A5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE43BEA02377776D00133C86 /* UIViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CEABB1C42377AD8400018C35 /* JSONDecoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1763,8 +1763,8 @@
 				CE43BE9F2377776300133C86 /* NSAttributedString */,
 				CE43BE9E2377773900133C86 /* String */,
 				CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */,
-				CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */,
 				CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */,
+				CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */,
 				CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */,
 				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
@@ -1850,9 +1850,7 @@
 				CEC6BBF82104F9E6003ECE10 /* Extensions */,
 				CE43BEB823777B4200133C86 /* Classes */,
 				CE1002D4200683850041B636 /* ReportError.swift */,
-				CE099D022194315800A4BCCB /* UploadableMedia.swift */,
 				CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */,
-				CEE357211FF5E0B300675DFC /* EventListener.swift */,
 				CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */,
 			);
 			path = Core_NonLib;
@@ -3343,7 +3341,6 @@
 				CE7ABB401FC5B1880087B387 /* ListTimeLineTableViewController.swift in Sources */,
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
 				CEC617FB24C5279200E2FF97 /* assets.swift in Sources */,
-				CE099D032194315800A4BCCB /* UploadableMedia.swift in Sources */,
 				CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */,
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
@@ -3353,7 +3350,6 @@
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
 				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
-				CE2D2B0221105DC2003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
@@ -3392,7 +3388,6 @@
 				CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
 				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
-				CEE357221FF5E0B300675DFC /* EventListener.swift in Sources */,
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */,
 				CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */,
@@ -3433,6 +3428,7 @@
 				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
+				CEA787D62696EFAB002C9A5C /* Hydra.Promise+wrapper.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */,
@@ -3503,6 +3499,7 @@
 				CE43BEF823779F1C00133C86 /* genRandomString.swift in Sources */,
 				CE522BF024159C9F0048E334 /* MastodonPaging.swift in Sources */,
 				CE8EFB4725C944B2004FFE4B /* UserDefaultsDict.swift in Sources */,
+				CEA787D42696EEB7002C9A5C /* UploadableMedia.swift in Sources */,
 				CE0E4C59247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */,
 				CE43BEE623779E2600133C86 /* MastodonInstance.swift in Sources */,
 				CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */,
@@ -3531,11 +3528,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */,
-				CEE357231FF6067F00675DFC /* EventListener.swift in Sources */,
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
-				CE099D042194318B00A4BCCB /* UploadableMedia.swift in Sources */,
-				CE2D2B0321105DCB003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */,
 			);
@@ -3584,9 +3578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
-				CE2D2B0521105DCC003B92B8 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
-				CEFE6AF821B5011600AF5E40 /* EventListener.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3596,11 +3588,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
-				CEFE6B0C21B5013B00AF5E40 /* Hydra.Promise+wrapper.swift in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
 				CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */,
 				CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */,
-				CEFE6AFB21B5011700AF5E40 /* EventListener.swift in Sources */,
 				CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */,
 				CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
 			);

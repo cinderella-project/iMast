@@ -25,18 +25,25 @@ import Foundation
 import UIKit
 import iMastiOSCore
 
-struct UploadableMedia {
-    enum MeidaFormat {
+public struct UploadableMedia {
+    public init(format: UploadableMedia.MeidaFormat, data: Data, url: URL?, thumbnailImage: UIImage) {
+        self.format = format
+        self.data = data
+        self.url = url
+        self.thumbnailImage = thumbnailImage
+    }
+    
+    public enum MeidaFormat {
         case jpeg
         case png
         case mp4
     }
-    let format: UploadableMedia.MeidaFormat
-    let data: Data
-    let url: URL?
-    let thumbnailImage: UIImage
+    public let format: UploadableMedia.MeidaFormat
+    public let data: Data
+    public let url: URL?
+    public let thumbnailImage: UIImage
     
-    func toUploadableData() -> Data {
+    public func toUploadableData() -> Data {
         let newSize = Defaults[.autoResizeSize]
         if newSize != 0, self.format == .jpeg || self.format == .png {
             // 画像の縮小と再圧縮
@@ -72,7 +79,7 @@ struct UploadableMedia {
         return self.data
     }
     
-    func getMimeType() -> String {
+    public func getMimeType() -> String {
         switch self.format {
         case .jpeg:
             return "image/jpeg"

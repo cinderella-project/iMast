@@ -28,6 +28,7 @@ import AVKit
 import Photos
 import Hydra
 import Ikemen
+import iMastiOSCore
 
 class NewPostMediaListViewController: UIViewController {
 
