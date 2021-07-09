@@ -51,7 +51,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     var scope = MastodonPostVisibility.public {
         didSet {
-            scopeSelectButton.image = UIImage(named: "visibility-"+scope.rawValue)
+            scopeSelectButton.image = scope.uiImage
         }
     }
     var replyToPost: MastodonPost?
@@ -101,6 +101,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         // localize
         cwInput.placeholder = L10n.NewPost.Placeholders.cwWarningText
+        scopeSelectButton.menu = UIMenu(title: "", children: MastodonPostVisibility.allCases.map { visibility in
+            return UIAction(title: visibility.localizedName, image: visibility.uiImage, state: .off) { [weak self] _ in
+                self?.scope = visibility
+            }
+        })
         
         additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
     }
@@ -304,21 +309,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         if !checkAppleMusic() {
             finished(nowPlayingText)
         }
-    }
-    @IBAction func scopeSelectButtonTapped(_ sender: Any) {
-        let alert = UIAlertController(
-            title: L10n.NewPost.SelectVisibility.title,
-            message: L10n.NewPost.SelectVisibility.description,
-            preferredStyle: .actionSheet
-        )
-        alert.popoverPresentationController?.barButtonItem = self.scopeSelectButton
-        for visibility in MastodonPostVisibility.allCases {
-            alert.addAction(UIAlertAction(title: visibility.localizedName, style: .default) { _ in
-                self.scope = visibility
-            })
-        }
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
     
     @IBOutlet weak var imageSelectButton: UIButton!

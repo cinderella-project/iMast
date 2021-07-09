@@ -22,6 +22,9 @@
 //  limitations under the License.
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 public enum MastodonPostVisibility: String, CaseIterable, Codable {
     case `public`
@@ -67,4 +70,27 @@ public enum MastodonPostVisibility: String, CaseIterable, Codable {
             return "✉️"
         }
     }
+    
+    public var sfSymbolsName: String? {
+        switch self {
+        case .public:
+            return nil
+        case .unlisted:
+            return "lock.open.fill"
+        case .private:
+            return "lock.fill"
+        case .direct:
+            return "envelope.fill"
+        }
+    }
+    
+    #if canImport(UIKit)
+    public var uiImage: UIImage? {
+        if let name = sfSymbolsName {
+            return UIImage(systemName: name)
+        } else {
+            return UIImage(named: "visibility-" + rawValue)
+        }
+    }
+    #endif
 }

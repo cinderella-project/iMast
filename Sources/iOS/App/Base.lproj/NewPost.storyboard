@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6D6-or-cv4">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="m1w-xO-o8W">
-                                <rect key="frame" x="0.0" y="88" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CW説明文 (省略可能)" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8NC-Ka-Jwd" customClass="UITextFieldWithInsets" customModule="iMast" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
@@ -34,26 +35,26 @@
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUI-JS-hiO">
                                         <rect key="frame" x="0.0" y="30" width="375" height="1"/>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="iui-gF-SNS"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-hy-lHq">
-                                        <rect key="frame" x="0.0" y="31" width="375" height="566"/>
+                                        <rect key="frame" x="0.0" y="31" width="375" height="610"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                             </stackView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="098-t9-MpK">
-                                <rect key="frame" x="0.0" y="685" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="729" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4ob-a4-G1n"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="VYb-zD-0Bt">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9zg-4V-9GJ">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="9zg-4V-9GJ">
                                             <rect key="frame" x="16" y="0.0" width="80" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -68,11 +69,7 @@
                                             <action selector="nsfwButtonTapped:" destination="6D6-or-cv4" id="IOw-ND-dNz"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="visibility-public" id="Y3a-nK-Avh">
-                                        <connections>
-                                            <action selector="scopeSelectButtonTapped:" destination="6D6-or-cv4" id="1P2-HL-Czs"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem image="visibility-public" width="44" id="Y3a-nK-Avh"/>
                                     <barButtonItem image="music.note" catalog="system" width="44" id="SJc-da-qK5">
                                         <connections>
                                             <action selector="nowPlayingTapped:" destination="6D6-or-cv4" id="ipd-KC-eiu"/>
@@ -87,15 +84,16 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-ia-k2a">
-                                <rect key="frame" x="8" y="643.33333333333337" width="359" height="33.666666666666629"/>
+                                <rect key="frame" x="8" y="687.33333333333337" width="359" height="33.666666666666629"/>
                                 <string key="text">rin@mastodon.example.com
 返信先: @uzuki: 凛ちゃんとデートです♪</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="tertiaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cLF-D1-GNS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3JX-ia-k2a" firstAttribute="leading" secondItem="0I0-hy-lHq" secondAttribute="leading" constant="8" id="AN4-xQ-U9P"/>
                             <constraint firstItem="hUI-JS-hiO" firstAttribute="width" secondItem="9dQ-cY-Tqg" secondAttribute="width" id="LPE-lc-OMZ"/>
@@ -113,7 +111,6 @@
                             <constraint firstItem="0I0-hy-lHq" firstAttribute="trailing" secondItem="3JX-ia-k2a" secondAttribute="trailing" constant="8" id="t4P-Sr-Con"/>
                             <constraint firstItem="098-t9-MpK" firstAttribute="trailing" secondItem="9dQ-cY-Tqg" secondAttribute="trailing" id="vvr-US-CBC"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cLF-D1-GNS"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="新規投稿" id="LfA-Ap-gme">
@@ -142,10 +139,24 @@
             <point key="canvasLocation" x="2103.75" y="-331.6901408450704"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="8NC-Ka-Jwd">
+            <size key="intrinsicContentSize" width="145.66666666666666" height="18.666666666666668"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ArrowUp" width="25" height="25"/>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
-        <image name="music.note" catalog="system" width="48" height="64"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="music.note" catalog="system" width="97" height="128"/>
         <image name="visibility-public" width="32" height="32"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
