@@ -218,7 +218,7 @@ public class MastodonUserToken: Equatable {
         }
     }
     
-    internal func request<E: MastodonEndpointProtocol>(_ ep: E) -> Promise<E.Response> {
+    internal func request<E: MastodonEndpointProtocol>(_ ep: E) async throws -> E.Response {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName
@@ -228,37 +228,21 @@ public class MastodonUserToken: Equatable {
             urlBuilder.queryItems = nil
         }
         let headers = getHeader()
-        return Promise<E.Response> { resolve, reject, _ in
-            var request = URLRequest(url: try urlBuilder.asURL())
-            request.httpMethod = ep.method
-            if let (body, contentType) = try ep.body() {
-                request.httpBody = body
-                request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
-            for (name, value) in headers {
-                request.setValue(value, forHTTPHeaderField: name)
-            }
-            print(request.httpMethod!, request.url!)
-            Alamofire.request(request).responseData { res in
-                do {
-                    switch res.result {
-                    case .success(let data):
-                        let res = try E.Response.decode(
-                            data: data,
-                            httpHeaders: res.response!.allHeaderFields as! [String: String]
-                        )
-                        resolve(res)
-                        return
-                    case .failure(let error):
-                        reject(error)
-                        return
-                    }
-                } catch {
-                    reject(error)
-                    return
-                }
-            }
+        var request = URLRequest(url: try urlBuilder.asURL())
+        request.httpMethod = ep.method
+        if let (body, contentType) = try ep.body() {
+            request.httpBody = body
+            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
         }
+        for (name, value) in headers {
+            request.setValue(value, forHTTPHeaderField: name)
+        }
+        print(request.httpMethod!, request.url!)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        return try E.Response.decode(
+            data: data,
+            httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
+        )
     }
     
     @available(*, deprecated)
