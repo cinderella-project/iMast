@@ -143,50 +143,45 @@ class PushSettingsTableViewController: FormViewController {
         }
     }
     
+    @MainActor
     func reload(_ blocking: Bool) async {
-        let vc = await MainActor.run {
-            ModalLoadingIndicatorViewController()
-        }
+        let vc = ModalLoadingIndicatorViewController()
         if blocking {
             await presentAsync(vc, animated: false)
         }
         do {
             try await deferAsync {
                 let accounts = try await PushService.getRegisterAccounts()
-                await MainActor.run {
-                    let rows = accounts.map { account -> BaseRow in
-                        return ButtonRow { row in
-                            row.title = account.acct
-                            row.cellStyle = .default
-                        }.cellUpdate { cell, row in
-                            cell.textLabel?.textColor = .label
-                            cell.textLabel?.textAlignment = .left
-                            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-                        }.onCellSelection { cell, row in
-                            let vc = PushSettingsAccountTableViewController(account: account)
-                            let wrapVC = UINavigationController(rootViewController: vc)
-                            self.present(wrapVC, animated: true, completion: nil)
+                let rows = accounts.map { account -> BaseRow in
+                    return ButtonRow { row in
+                        row.title = account.acct
+                        row.cellStyle = .default
+                    }.cellUpdate { cell, row in
+                        cell.textLabel?.textColor = .label
+                        cell.textLabel?.textAlignment = .left
+                        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+                    }.onCellSelection { cell, row in
+                        let vc = PushSettingsAccountTableViewController(account: account)
+                        let wrapVC = UINavigationController(rootViewController: vc)
+                        self.present(wrapVC, animated: true, completion: nil)
+                    }
+                }
+                self.accountsSection.removeAll()
+                self.accountsSection.append(contentsOf: rows)
+                self.accountsSection.append(ButtonRow { row in
+                    row.title = L10n.Preferences.Push.AddAccount.title
+                    row.onCellSelection { cell, row in
+                        Task {
+                            await self.addAccountDialog()
                         }
                     }
-                    self.accountsSection.removeAll()
-                    self.accountsSection.append(contentsOf: rows)
-                    self.accountsSection.append(ButtonRow { row in
-                        row.title = L10n.Preferences.Push.AddAccount.title
-                        row.onCellSelection { cell, row in
-                            Task {
-                                await self.addAccountDialog()
-                            }
-                        }
-                    })
-                    self.tableView.reloadData()
-                }
+                })
+                self.tableView.reloadData()
             } always: {
-                await MainActor.run {
-                    if blocking {
-                        vc.dismiss(animated: true, completion: nil)
-                    }
-                    self.tableView.refreshControl?.endRefreshing()
+                if blocking {
+                    vc.dismiss(animated: true, completion: nil)
                 }
+                self.tableView.refreshControl?.endRefreshing()
             }
         } catch {
             switch error {
@@ -207,35 +202,32 @@ class PushSettingsTableViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @MainActor
     func addAccountDialog() async {
         let host: String? = await withCheckedContinuation { continuation in
-            DispatchQueue.main.async {
-                let alert = UIAlertController(
-                    title: L10n.Preferences.Push.AddAccount.alertTitle,
-                    message: L10n.Preferences.Push.AddAccount.alertText,
-                    preferredStyle: .alert
-                )
-                alert.addTextField { textField in
-                    textField.placeholder = "mstdn.example.com"
-                }
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-                    continuation.resume(returning: alert.textFields?.first?.text)
-                })
-                alert.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel) { _ in
-                    continuation.resume(returning: nil)
-                })
-                self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(
+                title: L10n.Preferences.Push.AddAccount.alertTitle,
+                message: L10n.Preferences.Push.AddAccount.alertText,
+                preferredStyle: .alert
+            )
+            alert.addTextField { textField in
+                textField.placeholder = "mstdn.example.com"
             }
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                continuation.resume(returning: alert.textFields?.first?.text)
+            })
+            alert.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel) { _ in
+                continuation.resume(returning: nil)
+            })
+            self.present(alert, animated: true, completion: nil)
         }
         guard let host = host else {
             return
         }
         do {
             let url = try await PushService.getAuthorizeUrl(host: host)
-            await MainActor.run {
-                self.loginSafari = getLoginSafari()
-                self.loginSafari.open(url: URL(string: url)!, viewController: self)
-            }
+            self.loginSafari = getLoginSafari()
+            self.loginSafari.open(url: URL(string: url)!, viewController: self)
         } catch {
             self.alert(title: L10n.Localizable.Error.title, message: error.localizedDescription)
         }
