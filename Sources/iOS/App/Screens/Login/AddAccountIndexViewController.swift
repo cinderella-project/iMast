@@ -85,19 +85,19 @@ class AddAccountIndexViewController: FormViewController {
         }
         let alert = UIAlertController(title: L10n.Login.ProgressDialog.title, message: "...", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
-        let promise = async { status -> MastodonApp in
-            DispatchQueue.mainSafeSync {
+        let promise: Promise<MastodonApp> = asyncPromise {
+            await MainActor.run {
                 alert.message = "\(L10n.Login.ProgressDialog.fetchingServerInfo) (1/4)"
             }
             let instance = MastodonInstance(hostName: hostName)
-            _ = try `await`(instance.getInfo())
-            DispatchQueue.mainSafeSync {
+            _ = try await instance.getInfo().wait()
+            await MainActor.run {
                 alert.message = "\(L10n.Login.ProgressDialog.registeringApplication) (2/4)"
             }
             let appName = Defaults[.newAccountVia]
-            let app = try `await`(instance.createApp(name: appName))
+            let app = try await instance.createApp(name: appName).wait()
             try app.save()
-            DispatchQueue.mainSafeSync {
+            await MainActor.run {
                 alert.message = "\(L10n.Login.ProgressDialog.pleaseAuthorize) (3/4)"
             }
             return app

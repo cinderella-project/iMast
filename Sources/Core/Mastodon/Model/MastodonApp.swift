@@ -100,26 +100,21 @@ public class MastodonApp {
     }
     
     public func authorizeWithCode(code: String) -> Promise<MastodonUserToken> {
-        return Promise<MastodonUserToken> { resolve, reject, _ in
-            Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
+        struct Response: Decodable {
+            var access_token: String
+        }
+        
+        return asyncPromise {
+            let res: Response = try await Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
                 "grant_type": "authorization_code",
                 "redirect_uri": self.redirectUri,
                 "client_id": self.clientId,
                 "client_secret": self.clientSecret,
                 "code": code,
                 "state": self.id,
-            ]).responseJSON { res in
-                if res.result.value == nil {
-                    reject(APIError.nil("res.response.value"))
-                    return
-                }
-                if res.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                let json = JSON(res.result.value!)
-                resolve(MastodonUserToken(app: self, token: json["access_token"].stringValue))
-            }
+            ]).responseDecodable()
+            
+            return MastodonUserToken(app: self, token: res.access_token)
         }
     }
 }

@@ -285,10 +285,10 @@ class ShareViewController: SLComposeServiceViewController {
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
-        let promise: Promise<[JSON]> = async { status -> [JSON] in
+        let promise: Promise<[JSON]> = asyncPromise {
             var results: [JSON] = []
             for medium in self.postMedia {
-                let result = try `await`(self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
+                let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
                 if result["_response_code"].intValue >= 400 {
                     throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
                 }
