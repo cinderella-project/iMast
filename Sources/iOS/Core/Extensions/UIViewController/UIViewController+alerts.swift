@@ -58,6 +58,25 @@ extension UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    @MainActor
+    public func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") async -> Bool {
+        return await withCheckedContinuation { continuation in
+            let alert = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: UIAlertController.Style.alert
+            )
+            alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
+                continuation.resume(returning: true)
+            }))
+            alert.addAction(UIAlertAction(title: cancelButtonMessage, style: .cancel, handler: { action in
+                continuation.resume(returning: false)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
     public func alert(title: String = "", message: String = "") {
         alertWithPromise(title: title, message: message).then {}
     }

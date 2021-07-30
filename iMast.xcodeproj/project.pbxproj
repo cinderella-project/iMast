@@ -111,6 +111,8 @@
 		CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */; };
 		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
+		CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
+		CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
 		CE5DE8B721F513B40008D437 /* AVAssetExportSession+exportPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */; };
 		CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554C923C25DDC0084FE1D /* Localizable.strings */; };
 		CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CB23C25DDC0084FE1D /* Notification.strings */; };
@@ -721,6 +723,7 @@
 		CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioViewController.swift; sourceTree = "<group>"; };
 		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
+		CE5D9DF626B3C19500895234 /* deferAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deferAsync.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
 		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
@@ -1362,6 +1365,7 @@
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 				CE98789C26B5053F008A0A88 /* CodableVoid.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
+				CE5D9DF626B3C19500895234 /* deferAsync.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -3486,6 +3490,7 @@
 				CE522BEB24159C560048E334 /* MastodonEndpoint.swift in Sources */,
 				CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */,
 				CE90CCEC2377FC01001C8E80 /* UserAgent.swift in Sources */,
+				CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */,
 				CE43BEE323779E2600133C86 /* DatabaseMisc.swift in Sources */,
 				CE8EFB5425C94523004FFE4B /* GoodUtils.swift in Sources */,
 				CEE4E2E62377E96B00406371 /* NSRange+optional.swift in Sources */,
@@ -3700,6 +3705,7 @@
 				CEF6C7D123B122D200E0ADA1 /* SpacerView.swift in Sources */,
 				CE522BF124159C9F0048E334 /* MastodonPaging.swift in Sources */,
 				CEE4E3722377F84400406371 /* IndirectBox.swift in Sources */,
+				CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

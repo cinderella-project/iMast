@@ -88,7 +88,9 @@ class PushSettingsAccountTableViewController: FormViewController {
                         cell.textLabel?.textColor = .red
                     }
                     row.onCellSelection { [weak self] cell, row in
-                        self?.deleteConfirm()
+                        Task { [weak self] in
+                            await self?.deleteConfirm()
+                        }
                     }
                 }
             }
@@ -97,38 +99,41 @@ class PushSettingsAccountTableViewController: FormViewController {
     
     @objc func onSave() {
         let vc = ModalLoadingIndicatorViewController()
-        presentPromise(vc, animated: true).then {
-            self.account.update()
-        }.always(in: .main) {
-            vc.dismiss(animated: true, completion: nil)
-        }.then { _ in
-            NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
-            self.dismiss(animated: true, completion: nil)
-        }.catch { error in
-            self.alert(title: "エラー", message: error.localizedDescription)
+        Task {
+            await presentAsync(vc, animated: true)
+            do {
+                _ = try await deferAsync {
+                    try await account.update()
+                } always: {
+                    vc.dismiss(animated: true, completion: nil)
+                }
+                NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
+                dismiss(animated: true, completion: nil)
+            } catch {
+                alert(title: "エラー", message: error.localizedDescription)
+            }
         }
     }
     
-    func deleteConfirm() {
-        confirm(
+    func deleteConfirm() async {
+        guard await confirm(
             title: "確認",
              message: "\(self.account.acct)のプッシュ通知設定を削除してもよろしいですか?\n削除したアカウントは再度追加できます。",
              okButtonMessage: "削除する",
              style: .destructive,
              cancelButtonMessage: "キャンセル"
-        ).then { res -> Promise<Void> in
-            if res {
-                SVProgressHUD.show()
-                return self.account.delete().always {
-                    SVProgressHUD.dismiss()
-                }.then { _ in
-                    NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
-                    self.dismiss(animated: true, completion: nil)
-                }
-            } else {
-                return Promise(resolved: ())
-            }
-        }.catch { error in
+        ) else {
+            return
+        }
+        
+        SVProgressHUD.show()
+        do {
+            try await self.account.delete()
+            await SVProgressHUD.dismiss()
+            NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
+            self.dismiss(animated: true, completion: nil)
+        } catch {
+            await SVProgressHUD.dismiss()
             self.alert(title: "エラー", message: "削除に失敗しました。\n\n\(error.localizedDescription)")
         }
     }

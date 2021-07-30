@@ -73,7 +73,9 @@ class SettingsViewController: FormViewController {
             ButtonRow { row in
                 row.title = L10n.Preferences.Push.title
                 row.onCellSelection { cell, row in
-                    PushSettingsTableViewController.openRequest(vc: self)
+                    Task {
+                        await PushSettingsTableViewController.openRequest(vc: self)
+                    }
                 }
             }
         }

@@ -32,4 +32,14 @@ extension UIViewController {
             }
         }
     }
+    
+    @MainActor
+    public func presentAsync(_ viewControllerToPresent: UIViewController, animated: Bool) async {
+        // TODO: SWIFT TASK CONTINUATION MISUSE: presentAsync(_:animated:) leaked its continuation!
+        await withCheckedContinuation { continuation in
+            self.present(viewControllerToPresent, animated: animated) {
+                continuation.resume()
+            }
+        }
+    }
 }
