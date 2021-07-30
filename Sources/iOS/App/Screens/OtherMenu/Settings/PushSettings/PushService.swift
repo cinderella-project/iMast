@@ -73,7 +73,7 @@ struct PushServiceToken: Codable {
                 // swiftlint:disable trailing_comma
             ]],
             encoding: JSONEncoding.default,
-            headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
+            headers: ["Authorization": try PushService.getAuthorizationHeader()]
         ).responseDecodable()
         return result.result
     }
@@ -82,17 +82,17 @@ struct PushServiceToken: Codable {
         let result: PushServiceWrapper<String> = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
             method: .delete,
-            headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
+            headers: ["Authorization": try PushService.getAuthorizationHeader()]
         ).responseDecodable()
     }
 }
 
 class PushService {
 
-    static func getAuthorizationHeader() throws -> String? {
+    static func getAuthorizationHeader() throws -> String {
         let time = Int(Date().timeIntervalSince1970)
         guard let userId = try Keychain_ForPushBackend.getString("userId"), let secret = try Keychain_ForPushBackend.getString("secret") else {
-            return nil
+            throw PushServiceError.notRegistered
         }
         return "CustomV1 \(userId):\((secret + ":" + String(time)).sha256!.lowercased()):\(time)"
     }
@@ -125,7 +125,7 @@ class PushService {
     }
     
     static func updateDeviceToken(deviceToken: Data) {
-        guard let auth = try! self.getAuthorizationHeader() else {
+        guard let auth = try? self.getAuthorizationHeader() else {
             return
         }
         var params: Parameters = [
@@ -139,40 +139,31 @@ class PushService {
     }
     
     static func getRegisterAccounts() async throws -> [PushServiceToken] {
-        guard let auth = try self.getAuthorizationHeader() else {
-            throw PushServiceError.notRegistered
-        }
-        let res: PushServiceWrapper<[PushServiceToken]> = try await await Alamofire.request(
+        let res: PushServiceWrapper<[PushServiceToken]> = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
             method: .get,
-            headers: ["Authorization": auth]
+            headers: ["Authorization": try self.getAuthorizationHeader()]
         ).responseDecodable()
         return res.result
     }
     
     static func getAuthorizeUrl(host: String) async throws -> String {
         class Wrapper: Codable { var url: String }
-        guard let auth = try self.getAuthorizationHeader() else {
-            throw PushServiceError.notRegistered
-        }
         let res: Wrapper = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/get-url",
             method: .post,
             parameters: ["host": host],
             encoding: JSONEncoding.default,
-            headers: ["Authorization": auth]
+            headers: ["Authorization": try self.getAuthorizationHeader()]
         ).responseDecodable()
         return res.url
     }
     
     static func unRegister() async throws {
-        guard let auth = try self.getAuthorizationHeader() else {
-            throw PushServiceError.notRegistered
-        }
         let res: PushServiceWrapper<String> = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
             method: .delete,
-            headers: ["Authorization": auth]
+            headers: ["Authorization": try self.getAuthorizationHeader()]
         ).responseDecodable()
         try self.deleteAuthInfo()
     }

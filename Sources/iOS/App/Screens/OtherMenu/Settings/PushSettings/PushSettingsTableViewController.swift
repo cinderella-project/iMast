@@ -244,7 +244,7 @@ class PushSettingsTableViewController: FormViewController {
         ) else {
             return
         }
-        try! await PushService.deleteAuthInfo()
+        try! PushService.deleteAuthInfo()
         navigationController?.visibleViewController?.alert(title: "削除完了", message: "削除が完了しました。")
     }
     
