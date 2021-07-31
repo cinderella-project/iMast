@@ -135,41 +135,42 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         )
         present(alert, animated: true, completion: nil)
         
-        let uploadPromise: Promise<[JSON]> = asyncPromise {
-            var imageJSONs: [JSON] = []
+        let text = textInput.text ?? ""
+        let isSensitive = isNSFW || (cwInput.text != nil && cwInput.text != "")
+        let spoilerText = cwInput.text ?? ""
+        let scope = scope
+        
+        asyncPromise {
+            var media: [JSON] = []
             for (index, medium) in self.media.enumerated() {
-                DispatchQueue.main.async {
+                await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
                 let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
                 if response["_response_code"].intValue >= 400 {
-                    throw APIError.errorReturned(errorMessage: response["error"].stringValue, errorHttpCode: response["_response_code"].intValue)
+                    throw APIError.errorReturned(
+                        errorMessage: response["error"].stringValue,
+                        errorHttpCode: response["_response_code"].intValue
+                    )
                 }
                 if !response["id"].exists() {
                     throw APIError.nil("id")
                 }
-
-                imageJSONs.append(response)
+                media.append(response)
             }
-            return imageJSONs
-        }
-        
-        uploadPromise.then { (medias) -> Promise<MastodonPost> in
-            DispatchQueue.main.async {
+            await MainActor.run {
                 alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
             }
-            print(medias)
-            var text = self.textInput.text ?? ""
-            var req = MastodonEndpoint.CreatePost(
+            print(media)
+            let res = try await MastodonEndpoint.CreatePost(
                 status: text,
-                visibility: self.scope,
-                mediaIds: medias.map { .init(string: $0["id"].stringValue) },
-                spoiler: self.cwInput.text ?? "",
-                sensitive: self.isNSFW || (self.cwInput.text != nil && self.cwInput.text != ""),
+                visibility: scope,
+                mediaIds: media.map { .init(string: $0["id"].stringValue) },
+                spoiler: spoilerText,
+                sensitive: isSensitive,
                 inReplyToPost: self.replyToPost
-            )
-            return req.request(with: self.userToken)
-        }.then { res in
+            ).request(with: self.userToken)
+        }.then(in: .main) {
             self.clearContent()
             alert.dismiss(animated: false, completion: {
                 if self.navigationController is ModalNavigationViewController {
@@ -178,11 +179,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                     self.navigationController?.popViewController(animated: true)
                 }
             })
-        }.catch { err in
-            DispatchQueue.main.async {
-                alert.dismiss(animated: false, completion: {
-                    self.alert(title: L10n.Localizable.Error.title, message: "エラーが発生しました。\(err)")
-                })
+        }.catch(in: .main) { err in
+            alert.dismiss(animated: false) {
+                self.alert(title: L10n.Localizable.Error.title, message: "エラーが発生しました。\(err)")
             }
         }
     }
