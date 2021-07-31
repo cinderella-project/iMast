@@ -202,7 +202,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     title: "確認", message: confirm,
                     okButtonMessage: "はい", style: .destructive,
                     cancelButtonMessage: L10n.Localizable.cancel
-                ).then { result in
+                ) { result in
                     if result {
                         callAPI()
                     }

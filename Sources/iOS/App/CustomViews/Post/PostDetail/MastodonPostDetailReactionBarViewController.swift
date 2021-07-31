@@ -166,7 +166,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         let message = Defaults[.deleteTootTeokure]
             ? "失った信頼はもう戻ってきませんが、本当にこの投稿を削除しますか?"
             : "この投稿を削除しますか?"
-        confirm(title: "投稿の削除", message: message, okButtonMessage: "削除", style: .destructive).then { [weak self] res in
+        confirm(title: "投稿の削除", message: message, okButtonMessage: "削除", style: .destructive) { [weak self] res in
             guard res else { return }
             guard let strongSelf = self else { return }
             MastodonEndpoint.DeletePost(post: strongSelf.input).request(with: strongSelf.environment).then { [weak self] res in

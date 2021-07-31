@@ -116,7 +116,7 @@ class PushSettingsAccountTableViewController: FormViewController {
     }
     
     func deleteConfirm() async {
-        guard await confirm(
+        guard await confirmAsync(
             title: "確認",
              message: "\(self.account.acct)のプッシュ通知設定を削除してもよろしいですか?\n削除したアカウントは再度追加できます。",
              okButtonMessage: "削除する",

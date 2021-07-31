@@ -246,7 +246,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 exportSession.shouldOptimizeForNetworkUse = true
                 exportSession.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
                 if exportSession.estimatedOutputFileLength >= RE_ENCODING_BORDER {
-                    guard await self.confirm(
+                    guard await self.confirmAsync(
                         title: "確認",
                         message: "動画をこのままエンコードすると40MBを越えそうです(予想される出力ファイルサイズ: \(exportSession.estimatedOutputFileLength)bytes)。このままエンコードしますか?",
                         okButtonMessage: "OK",

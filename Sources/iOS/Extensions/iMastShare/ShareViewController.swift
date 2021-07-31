@@ -53,7 +53,10 @@ class ShareViewController: SLComposeServiceViewController {
         self.title = "Mastodonで共有"
         self.isMastodonLogged = self.userToken != nil
         if !self.isMastodonLogged {
-            alertWithPromise(title: "エラー", message: "iMastにMastodonのアカウントが設定されていません。\niMastを起動してアカウントを登録してください。").then {
+            alert(
+                title: "エラー",
+                message: "iMastにMastodonのアカウントが設定されていません。\niMastを起動してアカウントを登録してください。"
+            ) {
                 self.cancel()
             }
             return
@@ -300,28 +303,26 @@ class ShareViewController: SLComposeServiceViewController {
             }
             return results
         }
-        promise.then { images in
-            MastodonEndpoint.CreatePost(
-                status: self.contentText + self.postUrl,
-                visibility: self.visibility,
-                // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
-                mediaIds: images.map { .init(string: $0["id"].stringValue) }
-            ).request(with: self.userToken!).then { res in
+        Task {
+            do {
+                let images = try await promise.wait()
+                let res = try await MastodonEndpoint.CreatePost(
+                    status: self.contentText + self.postUrl,
+                    visibility: self.visibility,
+                    // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
+                    mediaIds: images.map { .init(string: $0["id"].stringValue) }
+                ).request(with: self.userToken!).wait()
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-            }
-        }.catch { (error) -> Void in
-            alert.dismiss(animated: false)
-            var promise: Promise<Void>!
-            do {
-                throw error
-            } catch APIError.errorReturned(let errorMessage, let errorHttpCode) {
-                promise = self.apiErrorWithPromise(errorMessage, errorHttpCode)
             } catch {
-                promise = self.apiErrorWithPromise("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
-            }
-            promise.then {
-                self.extensionContext!.cancelRequest(withError: error)
+                await MainActor.run { alert.dismiss(animated: false) }
+                switch error {
+                case APIError.errorReturned(errorMessage: let msg, errorHttpCode: let httpCode):
+                    await apiError(msg, httpCode)
+                default:
+                    await apiError("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
+                }
+                await MainActor.run { self.extensionContext!.cancelRequest(withError: error) }
             }
         }
     }

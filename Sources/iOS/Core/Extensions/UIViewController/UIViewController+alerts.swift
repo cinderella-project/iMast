@@ -22,93 +22,109 @@
 //  limitations under the License.
 
 import UIKit
-import Hydra
 import Ikemen
 import SwiftyJSON
 
 extension UIViewController {
-    public func alertWithPromise(title: String = "", message: String = "") -> Promise<Void> {
+    @MainActor
+    public func alertAsync(title: String = "", message: String = "") async {
         print("alert", title, message)
-        return Promise<Void>(in: .main) { resolve, reject, _ in
-            print("alert", title, message)
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
-                resolve(Void())
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
+        await withCheckedContinuation { continuation in
+            self.alert(title: title, message: message) {
+                continuation.resume()
+            }
+        } as Void
     }
-    public func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") -> Promise<Bool> {
-        return Promise<Bool>(in: .main) { resolve, reject, _ in
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-            alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
-                resolve(true)
-            }))
-            alert.addAction(UIAlertAction(title: cancelButtonMessage, style: .cancel, handler: { action in
-                resolve(false)
-            }))
-            self.present(alert, animated: true, completion: nil)
+    
+    @MainActor
+    public func alert(title: String = "", message: String = "", completionHandler: (() -> Void)? = nil) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+            completionHandler?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @MainActor
+    public func confirm(
+        title: String = "", message: String = "",
+        okButtonMessage: String = "OK", style: UIAlertAction.Style = .default,
+        cancelButtonMessage: String = "キャンセル",
+        completionHandler: ((Bool) -> Void)? = nil
+    ) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
+            completionHandler?(true)
+        }))
+        alert.addAction(UIAlertAction(title: cancelButtonMessage, style: .cancel, handler: { action in
+            completionHandler?(false)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @MainActor
+    public func confirmAsync(
+        title: String = "", message: String = "",
+        okButtonMessage: String = "OK", style: UIAlertAction.Style = .default,
+        cancelButtonMessage: String = "キャンセル"
+    ) async -> Bool {
+        await withCheckedContinuation { continuation in
+            self.confirm(
+                title: title, message: message, okButtonMessage: okButtonMessage, style: style, cancelButtonMessage: cancelButtonMessage
+            ) {
+                continuation.resume(returning: $0)
+            }
         }
     }
     
     @MainActor
-    public func confirm(title: String = "", message: String = "", okButtonMessage: String = "OK", style: UIAlertAction.Style = .default, cancelButtonMessage: String = "キャンセル") async -> Bool {
-        return await withCheckedContinuation { continuation in
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: UIAlertController.Style.alert
-            )
-            alert.addAction(UIAlertAction(title: okButtonMessage, style: style, handler: { action in
-                continuation.resume(returning: true)
-            }))
-            alert.addAction(UIAlertAction(title: cancelButtonMessage, style: .cancel, handler: { action in
-                continuation.resume(returning: false)
-            }))
-            self.present(alert, animated: true, completion: nil)
+    func errorAlert(errorMsg: String, completionHandler: (() -> Void)? = nil) {
+        alert(
+            title: "内部エラー",
+            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。",
+            completionHandler: completionHandler
+        )
+    }
+
+    @MainActor
+    func errorAlertAsync(errorMsg: String) async {
+        await withCheckedContinuation { continuation in
+            errorAlert(errorMsg: errorMsg) {
+                continuation.resume()
+            }
+        }
+    }
+    
+    @MainActor
+    public func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil, completionHandler: (() -> Void)? = nil) {
+        let msg = errorMsg ?? "不明なエラー(iMast)"
+        let errorMessage = "エラーメッセージ:\n\(msg) (\(httpNumber ?? -1)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。"
+        alert(title: "APIエラー", message: errorMessage, completionHandler: completionHandler)
+    }
+    
+    @MainActor
+    public func apiErrorAsync(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) async {
+        await withCheckedContinuation { continuation in
+            apiError(errorMsg, httpNumber) {
+                continuation.resume()
+            }
         }
     }
 
-    public func alert(title: String = "", message: String = "") {
-        alertWithPromise(title: title, message: message).then {}
+    @MainActor
+    public func apiError(_ json: JSON, completionHandler: (() -> Void)? = nil) {
+        apiError(json["error"].string, json["_response_code"].int, completionHandler: completionHandler)
     }
     
-    func errorWithPromise(errorMsg: String = "不明なエラー") -> Promise<Void> {
-        let promise = alertWithPromise(
-            title: "内部エラー",
-            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。"
-        ).then {}
-        return promise
-    }
-    func error(errorMsg: String = "") {
-        errorWithPromise(errorMsg: errorMsg).then {}
-    }
-    
-    public func apiErrorWithPromise(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) -> Promise<Void> {
-        let errorMessage: String = String(format: "エラーメッセージ:\n%@ (%@)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。", arguments: [
-            errorMsg ?? "不明なエラー(iMast)",
-            String(httpNumber ?? -1),
-        ])
-        return alertWithPromise(
-            title: "APIエラー",
-            message: errorMessage
-        )
-    }
-    public func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil) {
-        apiErrorWithPromise(errorMsg, httpNumber).then {}
-    }
-    public func apiError(_ json: JSON) {
-        apiError(json["error"].string, json["_response_code"].int)
-    }
-    
+    @MainActor
     public func errorReport(error: Error) {
         let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
         )

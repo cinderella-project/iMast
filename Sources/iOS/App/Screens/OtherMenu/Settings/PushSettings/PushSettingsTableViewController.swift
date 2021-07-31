@@ -88,7 +88,7 @@ class PushSettingsTableViewController: FormViewController {
                     cell.textLabel?.textColor = UIColor.red
                 }.onCellSelection { cell, row in
                     Task {
-                        guard await self.confirm(
+                        guard await self.confirmAsync(
                             title: "確認",
                             message: "プッシュ通知の設定を削除します。\nこれにより、サーバーに保存されているあなたのプッシュ通知に関連する情報が削除されます。\n再度利用するには、もう一度プッシュ通知の設定をしなおす必要があります。",
                             okButtonMessage: "削除する", style: UIAlertAction.Style.destructive,
@@ -235,7 +235,7 @@ class PushSettingsTableViewController: FormViewController {
     
     func deleteAuthInfo() async {
         let navigationController = self.navigationController
-        guard await confirm(
+        guard await confirmAsync(
             title: "エラー",
             message: "サーバー上にあなたのデータが見つかりませんでした。これは一時的な障害や、プログラムの不具合で起こる可能性があります。\n\nこれが一時的なものではなく、永久的に直らないようであれば、(存在するかもしれない)サーバー上のデータを見捨てて再登録することができます。再登録をするために現在のプッシュ通知アカウントを削除しますか?",
             okButtonMessage: "削除",
@@ -257,20 +257,21 @@ class PushSettingsTableViewController: FormViewController {
         }
         do {
             guard try await UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) else {
-                vc.confirm(
+                if await vc.confirmAsync(
                     title: "通知が許可されていません",
                     message: "iOSの設定で、iMastからの通知を許可してください。",
                     okButtonMessage: "設定へ", style: .default,
                     cancelButtonMessage: L10n.Localizable.cancel
-                ).then { res -> Bool in
-                    if res {
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-                    }
-                    return false
+                ) {
+                    await UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                 }
                 return
             }
-            guard await vc.confirm(title: "プッシュ通知の利用確認", message: "このプッシュ通知機能は、\n本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?", okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル") else {
+            guard await vc.confirmAsync(
+                title: "プッシュ通知の利用確認",
+                message: "このプッシュ通知機能は、\n本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?",
+                okButtonMessage: "同意する", style: .default, cancelButtonMessage: "キャンセル"
+            ) else {
                 return
             }
             try await PushService.register()

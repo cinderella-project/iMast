@@ -24,7 +24,7 @@
 import Foundation
 import UIKit
 
-func reportError(error: Error) {
+@MainActor func reportError(error: Error) {
     guard let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) else { return }
     guard let windowScene = scene as? UIWindowScene else { return }
     windowScene.windows.first?.rootViewController?.alert(title: "内部エラー", message: "お手数ですが、以下のエラーメッセージを@imast_ios@mstdn.rinsuki.netまでスクリーンショットでお伝えください。\n\(error)")

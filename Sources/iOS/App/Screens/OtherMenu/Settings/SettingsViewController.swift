@@ -308,7 +308,11 @@ class SettingsViewController: FormViewController {
                     formatter.groupingSize = 3
                     let sizeStr = formatter.string(from: size as NSNumber) ?? "0"
                     let count = SDImageCache.shared.totalDiskCount()
-                    self.confirm(title: "キャッシュ削除の確認", message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?", okButtonMessage: "OK").then { result in
+                    self.confirm(
+                        title: "キャッシュ削除の確認",
+                        message: "ストレージ上のキャッシュ(\(sizeStr)bytes, \(count)個)のキャッシュを削除します。よろしいですか?",
+                        okButtonMessage: "OK"
+                    ) { result in
                         if !result {
                             return
                         }
