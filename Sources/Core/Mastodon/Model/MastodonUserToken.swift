@@ -224,6 +224,9 @@ public class MastodonUserToken: Equatable {
         urlBuilder.host = app.instance.hostName
         urlBuilder.path = ep.endpoint
         urlBuilder.queryItems = ep.query
+        if urlBuilder.queryItems?.count == 0 {
+            urlBuilder.queryItems = nil
+        }
         let headers = getHeader()
         return Promise<E.Response> { resolve, reject, _ in
             var request = URLRequest(url: try urlBuilder.asURL())
