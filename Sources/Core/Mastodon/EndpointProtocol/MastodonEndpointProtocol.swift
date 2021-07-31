@@ -32,17 +32,23 @@ public protocol MastodonEndpointProtocol {
     var method: String { get }
 
     var query: [URLQueryItem] { get }
-    func body() throws -> Data?
+    func body() throws -> (Data, contentType: String)?
 }
 
 extension MastodonEndpointProtocol {
     public var query: [URLQueryItem] { return [] }
-    public func body() throws -> Data? {
+    public func body() throws -> (Data, contentType: String)? {
         return nil
     }
     
     public func request(with token: MastodonUserToken) -> Promise<Self.Response> {
         return token.request(self)
+    }
+}
+
+extension MastodonEndpointProtocol where Self: Encodable {
+    public func body() throws -> (Data, contentType: String)? {
+        return (try JSONEncoder().encode(self), "application/json")
     }
 }
 

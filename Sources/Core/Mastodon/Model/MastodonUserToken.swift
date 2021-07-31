@@ -228,7 +228,10 @@ public class MastodonUserToken: Equatable {
         return Promise<E.Response> { resolve, reject, _ in
             var request = URLRequest(url: try urlBuilder.asURL())
             request.httpMethod = ep.method
-            request.httpBody = try ep.body()
+            if let (body, contentType) = try ep.body() {
+                request.httpBody = body
+                request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+            }
             for (name, value) in headers {
                 request.setValue(value, forHTTPHeaderField: name)
             }
