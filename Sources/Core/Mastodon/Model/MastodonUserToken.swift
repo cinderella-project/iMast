@@ -281,51 +281,6 @@ public class MastodonUserToken: Equatable {
         }
     }
     
-    @available(*, deprecated)
-    public func post(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
-            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .post, parameters: params, headers: self.getHeader()).responseJSON { response in
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                resolve(json)
-            }
-        }
-    }
-    
-    @available(*, deprecated)
-    func put(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
-            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .put, parameters: params, headers: self.getHeader()).responseJSON { response in
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                resolve(json)
-            }
-        }
-    }
-    
-    @available(*, deprecated)
-    func delete(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
-            Alamofire.request("https://\(self.app.instance.hostName)/api/v1/"+endpoint, method: .delete, parameters: params, headers: self.getHeader()).responseJSON { response in
-                if response.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                var json = JSON(response.result.value!)
-                json["_response_code"].int = response.response?.statusCode ?? 599
-                resolve(json)
-            }
-        }
-    }
-    
     public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in
             Alamofire.upload(

@@ -301,13 +301,12 @@ class ShareViewController: SLComposeServiceViewController {
             return results
         }
         promise.then { images in
-            self.userToken!.post("statuses", params: [
-                "status": self.contentText + self.postUrl,
-                "visibility": self.visibility,
-                "media_ids": images.map({ (media) -> JSON in
-                    return media["id"]
-                }),
-            ]).then { res in
+            MastodonEndpoint.CreatePost(
+                status: self.contentText + self.postUrl,
+                visibility: self.visibility,
+                // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
+                mediaIds: images.map { .init(string: $0["id"].stringValue) }
+            ).request(with: self.userToken!).then { res in
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
             }

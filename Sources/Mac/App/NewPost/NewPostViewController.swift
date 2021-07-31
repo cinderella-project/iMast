@@ -62,7 +62,7 @@ class NewPostViewController: NSViewController {
         let alert = NSAlert()
         alert.informativeText = "送信中…"
         alert.beginSheetModal(for: view.window!, completionHandler: nil)
-        userToken.newPost(status: text).then(in: .main) { [weak self] post in
+        MastodonEndpoint.CreatePost(status: text).request(with: userToken).then(in: .main) { [weak self] post in
             print(post)
             guard let window = self?.view.window else {
                 return

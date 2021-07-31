@@ -154,33 +154,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             return imageJSONs
         }
         
-        uploadPromise.then { (medias) -> Promise<JSON> in
+        uploadPromise.then { (medias) -> Promise<MastodonPost> in
             DispatchQueue.main.async {
                 alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
             }
             print(medias)
             var text = self.textInput.text ?? ""
-            let mediaIds = medias.map({ (media) in
-                return media["id"]
-            })
-            var params: [String: Any] = [
-                "media_ids": mediaIds,
-                "sensitive": self.isNSFW || (self.cwInput.text != nil && self.cwInput.text != ""),
-                "spoiler_text": self.cwInput.text ?? "",
-                "status": text,
-                "visibility": self.scope,
-            ]
-            if let replyToPost = self.replyToPost {
-                params["in_reply_to_id"] = replyToPost.id.raw
-            }
-            return self.userToken.post("statuses", params: params)
+            var req = MastodonEndpoint.CreatePost(
+                status: text,
+                visibility: self.scope,
+                mediaIds: medias.map { .init(string: $0["id"].stringValue) },
+                spoiler: self.cwInput.text ?? "",
+                sensitive: self.isNSFW || (self.cwInput.text != nil && self.cwInput.text != ""),
+                inReplyToPost: self.replyToPost
+            )
+            return req.request(with: self.userToken)
         }.then { res in
-            if res["_response_code"].intValue >= 400 {
-                alert.dismiss(animated: false, completion: {
-                    self.apiError(res["error"].string, res["_response_code"].int)
-                })
-                return
-            }
             self.clearContent()
             alert.dismiss(animated: false, completion: {
                 if self.navigationController is ModalNavigationViewController {

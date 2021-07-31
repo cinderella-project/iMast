@@ -343,13 +343,15 @@ extension MastodonEndpoint {
             status: String,
             visibility: MastodonPostVisibility? = nil,
             mediaIds: [MastodonID] = [],
-            spoiler: String = "", sensitive: Bool = false
+            spoiler: String = "", sensitive: Bool = false,
+            inReplyToPost: MastodonPost? = nil
         ) {
             self.status = status
             self.visibility = visibility
             self.mediaIds = mediaIds
             self.spoiler = spoiler
             self.sensitive = sensitive
+            self.inReplyToPostId = inReplyToPost?.id
         }
         
         public typealias Response = MastodonPost
@@ -365,6 +367,7 @@ extension MastodonEndpoint {
         public var mediaIds: [MastodonID] = []
         public var spoiler: String = ""
         public var sensitive: Bool = false
+        public var inReplyToPostId: MastodonID?
         
         enum CodingKeys: String, CodingKey {
             case status
@@ -372,6 +375,7 @@ extension MastodonEndpoint {
             case mediaIds = "media_ids"
             case spoiler = "spoiler_text"
             case sensitive
+            case inReplyToPostId = "in_reply_to_id"
         }
     }
     
