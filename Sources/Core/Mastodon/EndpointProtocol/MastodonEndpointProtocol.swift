@@ -32,12 +32,14 @@ public protocol MastodonEndpointProtocol {
     var method: String { get }
 
     var query: [URLQueryItem] { get }
-    var body: Data? { get }
+    func body() throws -> Data?
 }
 
 extension MastodonEndpointProtocol {
     public var query: [URLQueryItem] { return [] }
-    public var body: Data? { return nil }
+    public func body() throws -> Data? {
+        return nil
+    }
     
     public func request(with token: MastodonUserToken) -> Promise<Self.Response> {
         return token.request(self)

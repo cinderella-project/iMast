@@ -310,7 +310,6 @@ extension MastodonEndpoint {
             paging?.addToQuery(&q)
             return q
         }
-        public let body: Data? = nil
         
         public var limit: Int?
         public var paging: MastodonPagingOption?
@@ -332,7 +331,6 @@ extension MastodonEndpoint {
             paging?.addToQuery(&q)
             return q
         }
-        public let body: Data? = nil
         
         public var limit: Int?
         public var paging: MastodonPagingOption?

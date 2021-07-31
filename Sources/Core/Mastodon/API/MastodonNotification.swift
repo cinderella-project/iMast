@@ -55,7 +55,6 @@ extension MastodonEndpoint {
             paging?.addToQuery(&q)
             return q
         }
-        public let body: Data? = nil
         
         public var excludedTypes: [String]
         public var limit: Int?

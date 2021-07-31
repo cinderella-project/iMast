@@ -133,7 +133,6 @@ extension MastodonEndpoint {
             paging?.addToQuery(&q)
             return q
         }
-        public let body: Data? = nil
         
         public var target: MastodonID
         public var type: MastodonFollowFetchType
