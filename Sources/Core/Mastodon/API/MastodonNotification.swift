@@ -24,20 +24,11 @@
 import Foundation
 import Hydra
 
-public struct MastodonNotification: Codable {
+public struct MastodonNotification: Codable, MastodonEndpointResponse {
     public let id: MastodonID
     public let type: String
     public let status: MastodonPost?
     public let account: MastodonAccount?
-
-}
-
-extension MastodonUserToken {
-    public func getNotification(id: MastodonID) -> Promise<MastodonNotification> {
-        return self.get("notifications/"+id.string).then { res in
-            return try MastodonNotification.decode(json: res)
-        }
-    }
 }
 
 extension MastodonEndpoint {
@@ -65,6 +56,18 @@ extension MastodonEndpoint {
             self.paging = paging
             self.excludedTypes = excludedTypes
         }
+    }
+    
+    public struct GetNotification: MastodonEndpointProtocol {
+        public typealias Response = MastodonNotification
 
+        public init(id: MastodonID) {
+            self.id = id
+        }
+        
+        public var endpoint: String { "/api/v1/notifications/\(id.string)" }
+        public let method = "GET"
+        
+        public let id: MastodonID
     }
 }

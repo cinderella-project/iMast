@@ -82,12 +82,12 @@ class MastodonPostAbuseViewController: FormViewController, Instantiatable {
     
     @objc func submitButtonTapped() {
         let values = form.values()
-        environment.reports(
+        MastodonEndpoint.CreateReport(
             account: self.input.account,
             comment: (values["text"] as? String) ?? "",
             forward: (values["forward"] as? Bool) ?? false,
             posts: [input]
-        ).then { (res) in
+        ).request(with: environment).then { (res) in
             self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
                 self.navigationController?.popViewController(animated: true)
             }

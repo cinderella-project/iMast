@@ -132,26 +132,20 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     }
     
     @objc func boostButtonTapped() {
-        if input.reposted {
-            environment.unrepost(post: input).then { [weak self] res in
-                self?.input(res)
-            }
-        } else {
-            environment.repost(post: input).then { [weak self] res in
-                self?.input(res)
-            }
+        let promise = input.reposted
+        ? MastodonEndpoint.DeleteRepost(post: input).request(with: environment)
+        : MastodonEndpoint.CreateRepost(post: input).request(with: environment)
+        promise.then { [weak self] res in
+            self?.input(res)
         }
     }
     
     @objc func favouriteButtonTapped() {
-        if input.favourited {
-            environment.unfavourite(post: input).then { [weak self] res in
-                self?.input(res)
-            }
-        } else {
-            environment.favourite(post: input).then { [weak self] res in
-                self?.input(res)
-            }
+        let promise = input.favourited
+        ? MastodonEndpoint.DeleteFavourite(post: input).request(with: environment)
+        : MastodonEndpoint.CreateFavourite(post: input).request(with: environment)
+        promise.then { [weak self] res in
+            self?.input(res)
         }
     }
     
@@ -175,7 +169,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         confirm(title: "投稿の削除", message: message, okButtonMessage: "削除", style: .destructive).then { [weak self] res in
             guard res else { return }
             guard let strongSelf = self else { return }
-            strongSelf.environment.delete(post: strongSelf.input).then { [weak self] res in
+            MastodonEndpoint.DeletePost(post: strongSelf.input).request(with: strongSelf.environment).then { [weak self] res in
                 self?.navigationController?.popViewController(animated: true)
                 self?.alert(title: "投稿を削除しました", message: "投稿を削除しました。\n※画面に反映されるには時間がかかる場合があります")
             }

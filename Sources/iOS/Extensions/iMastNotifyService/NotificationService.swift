@@ -141,7 +141,7 @@ class NotificationService: UNNotificationServiceExtension {
                     return
                 }
 
-                let notify = try `await`(userToken.getNotification(id: MastodonID(string: upstreamId)))
+                let notify = try `await`(MastodonEndpoint.GetNotification(id: .init(string: upstreamId)).request(with: userToken))
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(notify)
                 let str = String(data: data, encoding: .utf8)

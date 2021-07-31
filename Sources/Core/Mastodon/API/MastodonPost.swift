@@ -30,7 +30,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable {
+public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id.string)
         hasher.combine(self.url)
@@ -133,7 +133,7 @@ public struct MastodonCustomEmoji: Codable {
 
 }
 
-public struct MastodonPostContext: Codable {
+public struct MastodonPostContext: Codable, MastodonEndpointResponse {
     public let ancestors: [MastodonPost]
     public let descendants: [MastodonPost]
 }
@@ -170,62 +170,6 @@ extension MastodonUserToken {
             return post.account.acct == self.screenName
         default:
             return true
-        }
-    }
-    
-    public func newPost(status: String) -> Promise<MastodonPost> {
-        return self.post("statuses", params: ["status": status]).then { res -> MastodonPost in
-            return try MastodonPost.decode(json: res)
-        }
-    }
-
-    public func repost(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/reblog", params: [:]).then { res -> MastodonPost in
-            return try MastodonPost.decode(json: res)
-        }
-    }
-    public func unrepost(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/unreblog", params: [:]).then { res -> MastodonPost in
-            return try MastodonPost.decode(json: res)
-        }
-    }
-    
-    public func favourite(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/favourite", params: [:]).then { res -> MastodonPost in
-            return try MastodonPost.decode(json: res)
-        }
-    }
-    public func unfavourite(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.post("statuses/\(post.id.string)/unfavourite", params: [:]).then { res -> MastodonPost in
-            return try MastodonPost.decode(json: res)
-        }
-    }
-    
-    public func delete(post: MastodonPost) -> Promise<Void> {
-        return self.delete("statuses/\(post.id.string)").then { res in
-            return Void()
-        }
-    }
-    
-    public func context(post: MastodonPost) -> Promise<MastodonPostContext> {
-        return self.get("statuses/\(post.id.string)/context").then { res -> MastodonPostContext in
-            return try MastodonPostContext.decode(json: res)
-        }
-    }
-    
-    public func reports(
-        account: MastodonAccount,
-        comment: String = "",
-        forward: Bool = false,
-        posts: [MastodonPost]
-    ) -> Promise<Void> {
-        return self.post("reports", params: [
-            "account_id": account.id.raw,
-            "comment": comment,
-            "forward": forward,
-            "status_ids": posts.map({$0.id.raw}),
-        ]).then { res in
-                return Void()
         }
     }
     
@@ -338,6 +282,121 @@ extension MastodonEndpoint {
         public init(limit: Int? = nil, paging: MastodonPagingOption? = nil) {
             self.limit = limit
             self.paging = paging
+        }
+    }
+    
+    public struct CreateRepost: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/reblog" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct DeleteRepost: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/unreblog" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct CreateFavourite: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/favourite" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct DeleteFavourite: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/unfavourite" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct DeletePost: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)" }
+        public let method = "DELETE"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct CreatePost: MastodonEndpointProtocol, Encodable {
+        public init(
+            status: String,
+            visibility: MastodonPostVisibility? = nil,
+            mediaIds: [MastodonID] = [],
+            spoiler: String = "", sensitive: Bool = false
+        ) {
+            self.status = status
+            self.visibility = visibility
+            self.mediaIds = mediaIds
+            self.spoiler = spoiler
+            self.sensitive = sensitive
+        }
+        
+        public typealias Response = MastodonPost
+        
+        public let endpoint = "/api/v1/statuses"
+        public let method = "POST"
+        public func body() throws -> Data? {
+            return try JSONEncoder().encode(self)
+        }
+        
+        public var status: String
+        public var visibility: MastodonPostVisibility?
+        public var mediaIds: [MastodonID] = []
+        public var spoiler: String = ""
+        public var sensitive: Bool = false
+        
+        enum CodingKeys: String, CodingKey {
+            case status
+            case visibility
+            case mediaIds = "media_ids"
+            case spoiler = "spoiler_text"
+            case sensitive
+        }
+    }
+    
+    public struct GetContextOfPost: MastodonEndpointProtocol {
+        public typealias Response = MastodonPostContext
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/context" }
+        public let method = "GET"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
         }
     }
 }

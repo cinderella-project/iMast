@@ -76,7 +76,7 @@ class TootIntentHandler: NSObject, TootIntentHandling {
             return
         }
         
-        userToken.newPost(status: intent.text ?? "").then { (post) in
+        MastodonEndpoint.CreatePost(status: intent.text ?? "").request(with: userToken).then { (post) in
             completion(.init(code: .success, userActivity: nil))
         }.catch { (error) in
             print(error)

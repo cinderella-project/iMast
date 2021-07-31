@@ -175,6 +175,8 @@
 		CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */; };
 		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
 		CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */; };
+		CE98789D26B5053F008A0A88 /* CodableVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98789C26B5053F008A0A88 /* CodableVoid.swift */; };
+		CE98789E26B5053F008A0A88 /* CodableVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98789C26B5053F008A0A88 /* CodableVoid.swift */; };
 		CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */; };
 		CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */; };
 		CE9ABDA122E84D5C00621877 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */; };
@@ -799,6 +801,7 @@
 		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
 		CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonIDAvailable.swift; sourceTree = "<group>"; };
 		CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostWrapperViewController.swift; sourceTree = "<group>"; };
+		CE98789C26B5053F008A0A88 /* CodableVoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableVoid.swift; sourceTree = "<group>"; };
 		CE98F1E524F7922D00B382E3 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+prependItems.swift"; sourceTree = "<group>"; };
 		CE9A69A322CBF8CD009F51C6 /* BunmyakuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunmyakuTableViewController.swift; sourceTree = "<group>"; };
@@ -1357,6 +1360,7 @@
 				CE7AA3B625DBA84C00439AAD /* AppGroup.swift */,
 				CEAE471A24E8C21500645946 /* WeakRef.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
+				CE98789C26B5053F008A0A88 /* CodableVoid.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 			);
 			path = Core;
@@ -3489,6 +3493,7 @@
 				CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */,
 				CE43BEED23779EB500133C86 /* MastodonNotification.swift in Sources */,
 				CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */,
+				CE98789D26B5053F008A0A88 /* CodableVoid.swift in Sources */,
 				CE43BEEE23779EB500133C86 /* MastodonAttachment.swift in Sources */,
 				CEFB986825C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */,
 				CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */,
@@ -3671,6 +3676,7 @@
 				CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */,
 				CEE4E3692377F83C00406371 /* ThirdpartyTrendTags.swift in Sources */,
 				CEE4E3412377F81400406371 /* DispatchQueue+mainSafeSync.swift in Sources */,
+				CE98789E26B5053F008A0A88 /* CodableVoid.swift in Sources */,
 				CEE4E3442377F82D00406371 /* Array+safe.swift in Sources */,
 				CEE4E35A2377F83900406371 /* String+sha256.swift in Sources */,
 				CE7AA3B825DBA84C00439AAD /* AppGroup.swift in Sources */,

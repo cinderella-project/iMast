@@ -413,7 +413,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
         
         if environment.canBoost(post: post) {
             actions.append(.init(style: .normal, title: "ブースト") { (action, view, callback) in
-                self.environment.repost(post: post).then { result in
+                MastodonEndpoint.CreateRepost(post: post).request(with: self.environment).then { result in
                     self.updatePost(from: result.originalPost, includeRepost: true)
                     action.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                     callback(true)
@@ -427,7 +427,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
             })
         }
         actions.append(.init(style: .normal, title: "ふぁぼ") { (action, view, callback) in
-            self.environment.favourite(post: post).then { result in
+            MastodonEndpoint.CreateFavourite(post: post).request(with: self.environment).then { result in
                 self.updatePost(from: result.originalPost, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 callback(true)

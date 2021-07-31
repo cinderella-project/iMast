@@ -25,3 +25,35 @@ import Foundation
 
 public enum MastodonEndpoint {
 }
+
+extension MastodonEndpoint {
+    public struct CreateReport: MastodonEndpointProtocol, Encodable {
+        public init(
+            account: MastodonAccount,
+            comment: String = "",
+            forward: Bool = false,
+            posts: [MastodonPost]
+        ) {
+            self.accountId = account.id
+            self.comment = comment
+            self.forward = forward
+            self.postIds = posts.map { $0.id }
+        }
+        
+        public typealias Response = DecodableVoid
+        public let endpoint = "/api/v1/reports"
+        public let method = "POST"
+        
+        public var accountId: MastodonID
+        public var comment: String = ""
+        public var forward: Bool = false
+        public var postIds: [MastodonID]
+        
+        enum CodingKeys: String, CodingKey {
+            case accountId = "account_id"
+            case comment
+            case forward
+            case postIds = "status_ids"
+        }
+    }
+}

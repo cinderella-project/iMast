@@ -38,7 +38,7 @@ class BunmyakuTableViewController: TimeLineTableViewController {
     
     override func loadTimeline() -> Promise<()> {
         self.readmoreView.state = .loading
-        return environment.context(post: self.basePost).then { res in
+        return MastodonEndpoint.GetContextOfPost(post: basePost).request(with: environment).then { res in
             self.readmoreView.state = .moreLoadable
             self.addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
         }.catch { e in

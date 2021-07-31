@@ -22,3 +22,8 @@
 //  limitations under the License.
 
 import Foundation
+
+public struct DecodableVoid: Decodable, MastodonEndpointResponse {
+    public init(from decoder: Decoder) throws {
+    }
+}
