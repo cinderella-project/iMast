@@ -76,7 +76,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
             textField.placeholder = L10n.OtherMenu.Lists.Create.TextField.Name.placeholder
         }
         alert.addAction(UIAlertAction(title: L10n.OtherMenu.Lists.Create.Actions.primary, style: .default, handler: { _ in
-            self.environment.list(title: alert.textFields![0].text ?? "").then { list in
+            MastodonEndpoint.CreateList(title: alert.textFields![0].text ?? "").request(with: self.environment).then { list in
                 let vc = ListTimeLineTableViewController.instantiate(.plain, environment: self.environment)
                 vc.list = list
                 vc.title = list.title
@@ -89,7 +89,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
     }
     
     @objc func refreshList() {
-        self.environment.lists().then { lists in
+        MastodonEndpoint.MyLists().request(with: environment).then { lists in
             self.lists = lists
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()

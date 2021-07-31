@@ -95,7 +95,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                                 )
                                 return
                             }
-                            self.environment.lists().then({ lists in
+                            MastodonEndpoint.MyLists().request(with: self.environment).then({ lists in
                                 let vc = ListsTableViewController.instantiate(environment: self.environment)
                                 vc.lists = lists
                                 self.navigationController?.pushViewController(vc, animated: true)

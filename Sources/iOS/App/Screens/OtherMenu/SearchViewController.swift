@@ -145,7 +145,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         guard ["imastodon.net", "imastodon.blue"].contains(environment.app.instance.hostName) else {
             return
         }
-        environment.getTrendTags().then { res in
+        MastodonEndpoint.GetTrendTagsThirdparty().request(with: environment).then { res in
             self.tableView.refreshControl?.endRefreshing()
             guard res.score.count > 0 else {
                 return

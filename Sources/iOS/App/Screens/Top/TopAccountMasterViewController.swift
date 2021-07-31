@@ -108,7 +108,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             strongSelf.version = version
             strongSelf.update()
         }
-        environment.lists().then { [weak self] lists in
+        MastodonEndpoint.MyLists().request(with: environment).then { [weak self] lists in
             guard let strongSelf = self else { return }
             strongSelf.lists = lists
             strongSelf.update()

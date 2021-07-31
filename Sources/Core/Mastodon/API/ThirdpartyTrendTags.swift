@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct ThirdpartyTrendsTags: Codable {
+public struct ThirdpartyTrendsTags: Codable, MastodonEndpointResponse {
     public let updatedAt: Date
     public let score: [String: Float]
     
@@ -34,10 +34,13 @@ public struct ThirdpartyTrendsTags: Codable {
     }
 }
 
-extension MastodonUserToken {
-    public func getTrendTags() -> Promise<ThirdpartyTrendsTags> {
-        return self.get("trend_tags").then { res -> ThirdpartyTrendsTags in
-            return try ThirdpartyTrendsTags.decode(json: res)
+extension MastodonEndpoint {
+    public struct GetTrendTagsThirdparty: MastodonEndpointProtocol {
+        public typealias Response = ThirdpartyTrendsTags
+        public let endpoint = "/api/v1/trend_tags"
+        public let method = "GET"
+        
+        public init() {
         }
     }
 }

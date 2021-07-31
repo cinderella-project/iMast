@@ -40,7 +40,7 @@ extension MastodonSearchResultHashtag: Hashable {
     
 }
 
-public struct MastodonSearchResult: Codable {
+public struct MastodonSearchResult: Codable, MastodonEndpointResponse {
     public let accounts: [MastodonAccount]
     public let posts: [MastodonPost]
     public let hashtags: [MastodonSearchResultHashtag]
@@ -53,11 +53,37 @@ public struct MastodonSearchResult: Codable {
 
 extension MastodonUserToken {
     public func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> {
-        let params = ["q": q, "resolve": resolve] as [String: Any]
         return getIntVersion().then { ver in
-            return self.get(ver < MastodonVersionStringToInt("2.4.1") ? "search" : "../v2/search", params: params).then { res -> MastodonSearchResult in
-                return try MastodonSearchResult.decode(json: res)
-            }
+            let req = MastodonEndpoint.Search(
+                q: q, resolve: resolve,
+                version: ver < MastodonVersionStringToInt("2.4.1") ? .v1 : .v2
+            )
+            return req.request(with: self)
+        }
+    }
+}
+
+extension MastodonEndpoint {
+    public struct Search: MastodonEndpointProtocol {
+        public typealias Response = MastodonSearchResult
+        
+        public var endpoint: String { "/api/\(version.rawValue)/search" }
+        public let method = "GET"
+        
+        public var query: [URLQueryItem] {
+            return [
+                .init(name: "q", value: q),
+                .init(name: "resolve", value: resolve ? "true" : "false"),
+            ]
+        }
+        
+        public var q: String
+        public var resolve: Bool = true
+        public var version: Version
+        
+        public enum Version: String {
+            case v1
+            case v2
         }
     }
 }

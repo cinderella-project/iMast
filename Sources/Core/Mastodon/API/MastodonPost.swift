@@ -146,7 +146,7 @@ public struct MastodonPostMention: Codable {
 
 }
 
-public struct MastodonPoll: Codable {
+public struct MastodonPoll: Codable, MastodonEndpointResponse {
     let id: MastodonID
     public let expires_at: Date?
     public let expired: Bool
@@ -187,18 +187,6 @@ extension MastodonUserToken {
         return self.get(type.endpoint, params: params).then { res in
             return try res.arrayValue.map({try MastodonPost.decode(json: $0)})
         }
-    }
-    
-    public func vote(poll: MastodonPoll, choices: [Int]) -> Promise<MastodonPoll> {
-        return self.post("polls/\(poll.id.string)/votes", params: [
-            "choices": choices,
-        ]).then { res in
-            return try MastodonPoll.decode(json: res)
-        }
-    }
-    
-    public func refresh(post: MastodonPost) -> Promise<MastodonPost> {
-        return self.get("statuses/\(post.id.string)").then { try MastodonPost.decode(json: $0) }
     }
 }
 
@@ -397,6 +385,38 @@ extension MastodonEndpoint {
         
         public init(post: MastodonPost) {
             self.postID = post.id
+        }
+    }
+    
+    public struct VoteToPoll: MastodonEndpointProtocol, Encodable {
+        public typealias Response = MastodonPoll
+        
+        public var endpoint: String { "/api/v1/polls/\(pollId)/votes" }
+        public let method = "POST"
+        
+        public var pollId: MastodonID
+        public var choices: [Int]
+        
+        enum CodingKeys: String, CodingKey {
+            case choices
+        }
+        
+        public init(poll: MastodonPoll, choices: [Int]) {
+            self.pollId = poll.id
+            self.choices = choices
+        }
+    }
+    
+    public struct GetPost: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postId.string)" }
+        public let method = "GET"
+        
+        public var postId: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postId = post.id
         }
     }
 }

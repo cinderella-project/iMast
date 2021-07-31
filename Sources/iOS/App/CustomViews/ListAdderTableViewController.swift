@@ -58,7 +58,10 @@ class ListAdderTableViewController: UITableViewController, Instantiatable {
     
     @objc func loading() {
         // TODO: ON/OFFの処理をしてるときはそれが終わるまで待ちたい
-        zip(environment.lists(), environment.lists(joinedUser: input)).then { allLists, joinedLists in
+        zip(
+            MastodonEndpoint.MyLists().request(with: environment),
+            MastodonEndpoint.JoinedLists(account: input).request(with: environment)
+        ).then { allLists, joinedLists in
             print(allLists, joinedLists)
             let joinedListIds = joinedLists.map { $0.id.string }
             self.lists = allLists.map { (list: $0, isJoined: joinedListIds.contains($0.id.string)) }
@@ -94,14 +97,14 @@ class ListAdderTableViewController: UITableViewController, Instantiatable {
     @objc func tappedSwitchView(target: UISwitch) {
         let list = lists[target.tag].list
         let isOn = target.isOn
-        var promise: Promise<Void>
+        var promise: Promise<DecodableVoid>
         if isOn { // ONになった
-            promise = environment.list(list: list, addUserIds: [input.id])
+            promise = MastodonEndpoint.AddAccountsToList(list: list, accounts: [input]).request(with: environment)
         } else { // OFFになった
-            promise = environment.list(list: list, removeUserIds: [input.id])
+            promise = MastodonEndpoint.DeleteAccountsFromList(list: list, accounts: [input]).request(with: environment)
         }
         target.isEnabled = false
-        promise.then {
+        promise.then { _ in
             self.lists[target.tag].isJoined = isOn
         }.always(in: .main) {
             target.isEnabled = true

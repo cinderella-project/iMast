@@ -94,7 +94,7 @@ class EditListInfoViewController: FormViewController, Instantiatable, Interactab
     @objc func onSave() {
         isSaving = true
         let values = form.values()
-        environment.list(list: input, title: values["title"] as! String).then { [weak self] newList in
+        MastodonEndpoint.UpdateList(list: input, title: values["title"] as! String).request(with: environment).then { [weak self] newList in
             self?.outputHandler?(newList)
             self?.dismiss(animated: true, completion: nil)
         }.catch { [weak self] error in
@@ -112,7 +112,7 @@ class EditListInfoViewController: FormViewController, Instantiatable, Interactab
         alert.popoverPresentationController?.sourceView = cell
         alert.addAction(.init(title: "削除", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
-            self.environment.delete(list: self.input).then { [weak self] in
+            MastodonEndpoint.DeleteList(list: self.input).request(with: self.environment).then { [weak self] _ in
                 self?.dismiss(animated: true, completion: nil)
                 self?.output(nil)
             }

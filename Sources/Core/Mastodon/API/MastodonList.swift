@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct MastodonList: Codable {
+public struct MastodonList: Codable, MastodonEndpointResponse {
     public let id: MastodonID
     public let title: String
 }
@@ -32,37 +32,103 @@ public struct MastodonList: Codable {
 extension MastodonList: Hashable {
 }
 
-extension MastodonUserToken {
-    public func lists() -> Promise<[MastodonList]> {
-        return self.get("lists").then { res in
-            return try res.arrayValue.map({try MastodonList.decode(json: $0)})
+extension MastodonEndpoint {
+    public struct MyLists: MastodonEndpointProtocol {
+        public typealias Response = [MastodonList]
+        public let endpoint = "/api/v1/lists"
+        public let method = "GET"
+        
+        public init() {
         }
-    }
-    public func lists(joinedUser: MastodonAccount) -> Promise<[MastodonList]> {
-        return self.get("accounts/\(joinedUser.id.string)/lists").then { res in
-            return try res.arrayValue.map({try MastodonList.decode(json: $0)})
-        }
-    }
-    public func list(title: String) -> Promise<MastodonList> {
-        return self.post("lists", params: ["title": title]).then { res in
-            return try MastodonList.decode(json: res)
-        }
-    }
-    public func list(list: MastodonList, title: String) -> Promise<MastodonList> {
-        return self.put("lists/\(list.id.string)", params: ["title": title]).then { res in
-            return try MastodonList.decode(json: res)
-        }
-    }
-    public func list(list: MastodonList, addUserIds: [MastodonID]) -> Promise<Void> {
-        return self.post("lists/\(list.id.string)/accounts", params: ["account_ids": addUserIds.map { $0.raw }]).then { _ in return }
-    }
-    public func list(list: MastodonList, removeUserIds: [MastodonID]) -> Promise<Void> {
-        return self.delete("lists/\(list.id.string)/accounts", params: ["account_ids": removeUserIds.map { $0.raw }]).then { _ in return }
     }
     
-    public func delete(list: MastodonList) -> Promise<Void> {
-        return self.delete("lists/\(list.id.string)").then { res in
-            return Void()
+    public struct JoinedLists: MastodonEndpointProtocol {
+        public typealias Response = [MastodonList]
+        public var endpoint: String { "/api/v1/accounts/\(accountId.string)/lists" }
+        public let method = "GET"
+        
+        public var accountId: MastodonID
+        
+        public init(account: MastodonAccount) {
+            accountId = account.id
         }
+    }
+    
+    public struct CreateList: MastodonEndpointProtocol, Encodable {
+        public init(title: String) {
+            self.title = title
+        }
+        
+        public typealias Response = MastodonList
+        public let endpoint = "/api/v1/lists"
+        public let method = "POST"
+        
+        public var title: String
+    }
+    
+    public struct UpdateList: MastodonEndpointProtocol, Encodable {
+        public init(list: MastodonList, title: String) {
+            self.listId = list.id
+            self.title = title
+        }
+        
+        public typealias Response = MastodonList
+        public var endpoint: String { "/api/v1/lists/\(listId.string)" }
+        public let method = "PUT"
+        
+        public var listId: MastodonID
+        public var title: String
+        
+        enum CodingKeys: String, CodingKey {
+            case title
+        }
+    }
+    
+    public struct AddAccountsToList: MastodonEndpointProtocol, Encodable {
+        public init(list: MastodonList, accounts: [MastodonAccount]) {
+            self.listId = list.id
+            self.accountIds = accounts.map { $0.id }
+        }
+        
+        public typealias Response = DecodableVoid
+        public var endpoint: String { "/api/v1/lists/\(listId.string)/accounts" }
+        public let method = "POST"
+        
+        public var listId: MastodonID
+        public var accountIds: [MastodonID]
+        
+        enum CodingKeys: String, CodingKey {
+            case accountIds = "account_ids"
+        }
+    }
+    
+    public struct DeleteAccountsFromList: MastodonEndpointProtocol, Encodable {
+        public init(list: MastodonList, accounts: [MastodonAccount]) {
+            self.listId = list.id
+            self.accountIds = accounts.map { $0.id }
+        }
+        
+        public typealias Response = DecodableVoid
+        public var endpoint: String { "/api/v1/lists/\(listId.string)/accounts" }
+        public let method = "DELETE"
+        
+        public var listId: MastodonID
+        public var accountIds: [MastodonID]
+        
+        enum CodingKeys: String, CodingKey {
+            case accountIds = "account_ids"
+        }
+    }
+    
+    public struct DeleteList: MastodonEndpointProtocol {
+        public init(list: MastodonList) {
+            self.listId = list.id
+        }
+        
+        public typealias Response = DecodableVoid
+        public var endpoint: String { "/api/v1/lists/\(listId.string)" }
+        public let method = "DELETE"
+        
+        public var listId: MastodonID
     }
 }

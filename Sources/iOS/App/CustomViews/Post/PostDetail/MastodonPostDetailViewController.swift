@@ -93,7 +93,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
     }
     
     @objc func reload() {
-        environment.refresh(post: input).then { [weak self] res in
+        MastodonEndpoint.GetPost(post: input).request(with: environment).then { [weak self] res in
             guard let strongSelf = self else { return }
             strongSelf.input(res)
             strongSelf.tableView.refreshControl?.endRefreshing()

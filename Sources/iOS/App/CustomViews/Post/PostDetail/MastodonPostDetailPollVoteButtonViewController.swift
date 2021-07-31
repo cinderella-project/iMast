@@ -97,7 +97,7 @@ class MastodonPostDetailPollVoteButtonViewController: UIViewController, Instanti
     @objc func tapVote(_ sender: UIButton) {
         sender.alpha = 0.125
         votingIndicator.startAnimating()
-        environment.vote(poll: input.poll, choices: input.selected).then { [weak self] poll in
+        MastodonEndpoint.VoteToPoll(poll: input.poll, choices: input.selected).request(with: environment).then { [weak self] poll in
             guard let strongSelf = self else { return }
             strongSelf.handler?(poll)
         }
