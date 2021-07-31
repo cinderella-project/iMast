@@ -161,7 +161,6 @@
 		CE8EFB5425C94523004FFE4B /* GoodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */; };
 		CE8EFB7925C945C6004FFE4B /* UIViewController+alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEA2237778E800133C86 /* UIViewController+alerts.swift */; };
 		CE8EFB9325C945CD004FFE4B /* UIViewController+presentAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */; };
-		CE8EFB9425C945CD004FFE4B /* UIViewController+dismissPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */; };
 		CE8EFBC825C945F8004FFE4B /* UIViewController+openURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */; };
 		CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
 		CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */; };
@@ -728,7 +727,6 @@
 		CE5D9DF626B3C19500895234 /* deferAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deferAsync.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAsync.swift"; sourceTree = "<group>"; };
 		CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAssetExportSession+exportPromise.swift"; sourceTree = "<group>"; };
-		CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+dismissPromise.swift"; sourceTree = "<group>"; };
 		CE5F7CB523112D12005E819E /* MastodonInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonInstance.swift; sourceTree = "<group>"; };
 		CE6554CA23C25DDC0084FE1D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE6554CC23C25DDC0084FE1D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Notification.strings; sourceTree = "<group>"; };
@@ -1333,7 +1331,6 @@
 			isa = PBXGroup;
 			children = (
 				CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */,
-				CE5DE8B821F5CB6D0008D437 /* UIViewController+dismissPromise.swift */,
 				CE43BEA2237778E800133C86 /* UIViewController+alerts.swift */,
 			);
 			path = UIViewController;
@@ -3520,7 +3517,6 @@
 				CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */,
 				CE43BEF323779EB500133C86 /* MastodonIDAvailable.swift in Sources */,
 				CE43BF0C2377A9A000133C86 /* String+nsLength.swift in Sources */,
-				CE8EFB9425C945CD004FFE4B /* UIViewController+dismissPromise.swift in Sources */,
 				CE8EFB7925C945C6004FFE4B /* UIViewController+alerts.swift in Sources */,
 				CE8EFB9325C945CD004FFE4B /* UIViewController+presentAsync.swift in Sources */,
 				CE43BEE723779E2600133C86 /* MastodonUserToken.swift in Sources */,
