@@ -1,5 +1,5 @@
 //
-//  UIViewController+presentPromise.swift
+//  UIViewController+presentAsync.swift
 //  iMast
 //
 //  Created by rinsuki on 2019/01/21.
@@ -22,17 +22,8 @@
 //
 
 import UIKit
-import Hydra
 
 extension UIViewController {
-    public func presentPromise(_ viewControllerToPresent: UIViewController, animated: Bool) -> Promise<Void> {
-        return Promise<Void>(in: .main) { resolve, _, _ in
-            self.present(viewControllerToPresent, animated: animated) {
-                resolve(())
-            }
-        }
-    }
-    
     @MainActor
     public func presentAsync(_ viewControllerToPresent: UIViewController, animated: Bool) async {
         // TODO: SWIFT TASK CONTINUATION MISUSE: presentAsync(_:animated:) leaked its continuation!
