@@ -46,7 +46,6 @@
 		CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */; };
 		CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */; };
 		CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */; };
-		CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */; };
 		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
@@ -244,7 +243,6 @@
 		CEC6180224C5C56800E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */; };
 		CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */; };
 		CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */; };
-		CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */; };
 		CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */; };
 		CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0321074EFB003ECE10 /* NotificationService.swift */; };
 		CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -679,7 +677,6 @@
 		CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreView.swift; sourceTree = "<group>"; };
 		CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+responseDecodable.swift"; sourceTree = "<group>"; };
 		CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hydra.Promise+wrapper.swift"; sourceTree = "<group>"; };
-		CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift"; sourceTree = "<group>"; };
 		CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDebugBuild.swift; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
@@ -850,7 +847,6 @@
 		CEC617FC24C5361300E2FF97 /* storyboard-scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "storyboard-scenes.swift"; sourceTree = "<group>"; };
 		CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.FollowRequests.swift; sourceTree = "<group>"; };
 		CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+toString.swift"; sourceTree = "<group>"; };
-		CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Hydra.swift"; sourceTree = "<group>"; };
 		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSafari.swift; sourceTree = "<group>"; };
 		CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastNotifyService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6BC0321074EFB003ECE10 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -1774,8 +1770,6 @@
 				CE5DE8B621F513B40008D437 /* AVAssetExportSession+exportPromise.swift */,
 				CE2D2B0121105DC2003B92B8 /* Hydra.Promise+wrapper.swift */,
 				CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */,
-				CE2D2B062110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift */,
-				CEC6BBF92104FA1B003ECE10 /* SVProgressHUD+Hydra.swift */,
 				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
 				CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */,
 				CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */,
@@ -3358,14 +3352,12 @@
 				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,
 				CEE357261FF6410600675DFC /* SettingsViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,
-				CEC6BBFA2104FA1B003ECE10 /* SVProgressHUD+Hydra.swift in Sources */,
 				CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */,
 				2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */,
 				CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */,
 				CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
 				CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */,
 				CE9BD65E2310ADD300763D3A /* TableViewDiffableDataSource.swift in Sources */,
-				CE2D2B072110686A003B92B8 /* UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift in Sources */,
 				CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */,
 				CE9B1AA41F9DEDB50044341A /* ProfileCardViewController.swift in Sources */,
 				CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
