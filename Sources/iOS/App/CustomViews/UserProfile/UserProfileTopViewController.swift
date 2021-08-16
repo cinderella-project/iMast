@@ -73,6 +73,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
        
         self.input(input)
         TableViewCell<UserProfileBioViewController>.register(to: tableView)
+        TableViewCell<UserProfileFieldViewController>.register(to: tableView)
     }
     
     @objc func reload() {
@@ -171,6 +172,14 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             let cell = UITableViewCell()
             cell.accessibilityIdentifier = "bioCell"
             cells[0].append(cell)
+        }
+        if let fields = input.fields {
+            fields.indices.forEach { index in
+                let cell = UITableViewCell()
+                cell.accessibilityIdentifier = "fieldCell"
+                cell.tag = index
+                cells[0].append(cell)
+            }
         }
         if input.acct.contains("@") {
             cells[0].append(checkLatestProfileCell)
@@ -338,6 +347,15 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 from: tableView,
                 for: indexPath,
                 input: input,
+                parentViewController: self
+            )
+            cell.separatorInset = .zero
+            return cell
+        } else if cell.accessibilityIdentifier == "fieldCell" {
+            let cell = TableViewCell<UserProfileFieldViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: (account: input, field: input.fields![cell.tag]),
                 parentViewController: self
             )
             cell.separatorInset = .zero

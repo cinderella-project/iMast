@@ -37,6 +37,7 @@ public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointRespons
     public let url: String
     public let avatarUrl: String
     public let headerUrl: String
+    public let fields: [MastodonAccountField]?
 
     public let acct: String
     let moved: IndirectBox<MastodonAccount>?
@@ -61,6 +62,7 @@ public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointRespons
         case url
         case avatarUrl = "avatar_static"
         case headerUrl = "header_static"
+        case fields
 
         case acct
         case moved
@@ -99,6 +101,17 @@ struct MastodonFollowList {
     var prev: MastodonID?
     var next: MastodonID?
     
+}
+
+public struct MastodonAccountField: Codable {
+    public let name: String
+    public let value: String
+    public let verifiedAt: Date?
+    enum CodingKeys: String, CodingKey {
+        case name
+        case value
+        case verifiedAt = "verified_at"
+    }
 }
 
 extension MastodonEndpoint {
