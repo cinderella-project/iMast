@@ -38,6 +38,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
     }
     let valueLabel = UITextView() ※ { v in
         v.font = .systemFont(ofSize: UIFont.systemFontSize)
+        v.backgroundColor = .clear
         v.isScrollEnabled = false
         v.isEditable = false
         v.textContainerInset = .zero
