@@ -35,6 +35,8 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
 
     let nameLabel = UILabel() ※ { v in
         v.font = .systemFont(ofSize: UIFont.systemFontSize)
+        v.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
+        v.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     let valueLabel = UITextView() ※ { v in
         v.font = .systemFont(ofSize: UIFont.systemFontSize)
@@ -44,6 +46,11 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         v.textContainerInset = .zero
         v.textContainer.lineFragmentPadding = 0
     }
+    let verifiedAtLabel = UILabel() ※ { v in
+        v.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        v.textColor = v.tintColor
+    }
+    let verifiedIcon = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
 
     required init(with input: Input, environment: MastodonUserToken) {
         self.input = input
@@ -57,14 +64,29 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
 
     override func loadView() {
         let view = UIView()
-        let stackView = UIStackView(arrangedSubviews: [
+        let verifiedStackView = UIStackView(arrangedSubviews: [
+            verifiedAtLabel,
+            verifiedIcon,
+        ]) ※ {
+            $0.axis = .horizontal
+            $0.spacing = 4
+        }
+        let nameStackView = UIStackView(arrangedSubviews: [
             nameLabel,
+            verifiedStackView,
+        ]) ※ {
+            $0.axis = .horizontal
+            $0.spacing = 4
+        }
+        let mainStackView = UIStackView(arrangedSubviews: [
+            nameStackView,
             valueLabel,
-        ])
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        view.addSubview(stackView)
-        stackView.snp.makeConstraints { make in
+        ]) ※ {
+            $0.axis = .vertical
+            $0.spacing = 4
+        }
+        view.addSubview(mainStackView)
+        mainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.top.bottom.equalToSuperview().inset(8)
         }
@@ -103,6 +125,15 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
             self.valueLabel.attributedText = value
         } else {
             self.valueLabel.text = input.field.value.toPlainText()
+        }
+
+        if let verifiedAt = input.field.verifiedAt {
+            self.verifiedIcon.isHidden = false
+            self.verifiedAtLabel.isHidden = false
+            self.verifiedAtLabel.text = DateUtils.stringFromDate(verifiedAt, format: "yyyy/MM/dd")
+        } else {
+            self.verifiedIcon.isHidden = true
+            self.verifiedAtLabel.isHidden = true
         }
     }
 
