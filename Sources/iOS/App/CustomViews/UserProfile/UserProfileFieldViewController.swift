@@ -38,7 +38,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         v.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         v.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
-    let valueLabel = UITextView() ※ { v in
+    let valueTextView = UITextView() ※ { v in
         v.font = .systemFont(ofSize: UIFont.systemFontSize)
         v.backgroundColor = .clear
         v.isScrollEnabled = false
@@ -80,7 +80,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         }
         let mainStackView = UIStackView(arrangedSubviews: [
             nameStackView,
-            valueLabel,
+            valueTextView,
         ]) ※ {
             $0.axis = .vertical
             $0.spacing = 4
@@ -95,7 +95,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        valueLabel.delegate = self
+        valueTextView.delegate = self
         input(input)
     }
 
@@ -118,13 +118,13 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
             .font: UIFont.systemFont(ofSize: UIFont.systemFontSize),
             .foregroundColor: UIColor.label,
         ], asyncLoadProgressHandler: {
-            self.valueLabel.setNeedsDisplay()
+            self.valueTextView.setNeedsDisplay()
         })?.emojify(asyncLoadProgressHandler: {
-            self.valueLabel.setNeedsDisplay()
+            self.valueTextView.setNeedsDisplay()
         }, emojifyProtocol: input.account) {
-            self.valueLabel.attributedText = value
+            self.valueTextView.attributedText = value
         } else {
-            self.valueLabel.text = input.field.value.toPlainText()
+            self.valueTextView.text = input.field.value.toPlainText()
         }
 
         if let verifiedAt = input.field.verifiedAt {
