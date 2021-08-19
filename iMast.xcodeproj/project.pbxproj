@@ -24,6 +24,7 @@
 		2AF352301EAB9C5600777C2E /* iMastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3522F1EAB9C5600777C2E /* iMastTests.swift */; };
 		2AF3523B1EAB9C5600777C2E /* iMastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF3523A1EAB9C5600777C2E /* iMastUITests.swift */; };
 		3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */; };
+		5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
 		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -618,6 +619,7 @@
 		4F2AB9461E461D9AAE0C3D54 /* Pods-iMastShared-iOS-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastIntents/Pods-iMastShared-iOS-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		5381BC0B6D32B2431F388D80 /* Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast-iMastUITests/Pods-iMastShared-iOS-iMast-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
 		599E62B81E7F4F5E82780FF1 /* Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFieldViewController.swift; sourceTree = "<group>"; };
 		5E4C871ACF3804089BD53C1A /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		687BB408B5B20F62EE7044D9 /* Pods-iMastIntents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastIntents.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastIntents/Pods-iMastIntents.release.xcconfig"; sourceTree = "<group>"; };
 		694662BBDCFC9D77A4DFC768 /* Pods-iMastShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShare.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShare/Pods-iMastShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -1693,6 +1695,7 @@
 				CE6977861F0EE8A600C1B234 /* UserProfileTopViewController.swift */,
 				CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */,
 				CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */,
+				5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -3431,6 +3434,7 @@
 				CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */,
 				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
+				5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */,
 				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CEA787D62696EFAB002C9A5C /* Hydra.Promise+wrapper.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
