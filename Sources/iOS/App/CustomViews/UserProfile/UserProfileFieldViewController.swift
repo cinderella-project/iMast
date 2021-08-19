@@ -130,7 +130,10 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         if let verifiedAt = input.field.verifiedAt {
             self.verifiedIcon.isHidden = false
             self.verifiedAtLabel.isHidden = false
-            self.verifiedAtLabel.text = DateUtils.stringFromDate(verifiedAt, format: "yyyy/MM/dd")
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            self.verifiedAtLabel.text = formatter.string(from: verifiedAt)
         } else {
             self.verifiedIcon.isHidden = true
             self.verifiedAtLabel.isHidden = true
