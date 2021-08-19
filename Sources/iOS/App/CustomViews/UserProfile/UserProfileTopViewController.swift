@@ -174,7 +174,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             cells[0].append(cell)
         }
         if let fields = input.fields {
-            fields.indices.forEach { index in
+            for index in fields.indices {
                 let cell = UITableViewCell()
                 cell.accessibilityIdentifier = "fieldCell"
                 cell.tag = index
