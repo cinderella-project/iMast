@@ -48,9 +48,11 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
     }
     let verifiedAtLabel = UILabel() ※ { v in
         v.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
-        v.textColor = v.tintColor
+        v.textColor = .systemGreen
     }
-    let verifiedIcon = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
+    let verifiedIcon = UIImageView(image: UIImage(systemName: "checkmark.circle.fill")) ※ { v in
+        v.tintColor = .systemGreen
+    }
 
     required init(with input: Input, environment: MastodonUserToken) {
         self.input = input
