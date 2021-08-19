@@ -19,4 +19,4 @@ jobs:
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
     - name: Build
-      run: set -o pipefail && xcodebuild clean build -sdk iphoneos -workspace iMast.xcworkspace -scheme "iMast iOS" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+      run: set -o pipefail && xcodebuild clean build -sdk iphoneos -workspace iMast.xcworkspace -scheme "iMast iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
