@@ -89,7 +89,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         }
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(view.readableContentGuide)
+            make.leading.trailing.equalTo(view.layoutMarginsGuide)
             make.top.bottom.equalToSuperview().inset(8)
         }
         self.view = view
