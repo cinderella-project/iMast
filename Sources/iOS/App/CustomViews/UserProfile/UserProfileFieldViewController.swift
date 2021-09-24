@@ -27,6 +27,23 @@ import iMastiOSCore
 import Ikemen
 import Mew
 
+private class ZeroHeightView<WrappedView: UIView>: UIView {
+    let wrappedView: WrappedView
+    
+    init(wrapped wrappedView: WrappedView) {
+        self.wrappedView = wrappedView
+        super.init(frame: .zero)
+        addSubview(wrappedView)
+        wrappedView.snp.makeConstraints { make in
+            make.leading.trailing.centerY.equalToSuperview()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class UserProfileFieldViewController: UIViewController, Instantiatable, Injectable, UITextViewDelegate {
     typealias Input = (account: MastodonAccount, field: MastodonAccountField)
     typealias Environment = MastodonUserToken
@@ -50,8 +67,10 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         v.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
         v.textColor = .systemGreen
     }
-    let verifiedIcon = UIImageView(image: UIImage(systemName: "checkmark.circle.fill")) ※ { v in
-        v.tintColor = .systemGreen
+    private let verifiedIcon = ZeroHeightView(wrapped: UIImageView(image: UIImage(
+        systemName: "checkmark.circle.fill"
+    ))) ※ { v in
+        v.wrappedView.tintColor = .systemGreen
     }
 
     required init(with input: Input, environment: MastodonUserToken) {
