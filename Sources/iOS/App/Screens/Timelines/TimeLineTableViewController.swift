@@ -119,6 +119,9 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
         diffableDataSource.canEditRowAt = true
         tableView.dataSource = diffableDataSource
         tableView.separatorInset = .zero
+        // in iOS 15, UITableViewCell didn't apply separatorInset to first separator
+        // TODO: we should find right way to apply separatorInset to first separator and remove this workaround
+        tableView.tableHeaderView = UIView(frame: .zero)
         if isReadmoreEnabled {
             readmoreView.target = self
             readmoreView.action = #selector(readmoreTapped)
