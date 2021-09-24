@@ -359,6 +359,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 parentViewController: self
             )
             cell.separatorInset = .zero
+            cell.layoutIfNeeded()
             return cell
         }
         return cell
