@@ -51,12 +51,12 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
     var environment: Environment
 
     let nameLabel = UILabel() ※ { v in
-        v.font = .systemFont(ofSize: UIFont.systemFontSize)
+        v.font = .preferredFont(forTextStyle: .footnote) // foot :thinking_face:
         v.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         v.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     let valueTextView = UITextView() ※ { v in
-        v.font = .systemFont(ofSize: UIFont.systemFontSize)
+        v.font = .preferredFont(forTextStyle: .body)
         v.backgroundColor = .clear
         v.isScrollEnabled = false
         v.isEditable = false
@@ -64,7 +64,8 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         v.textContainer.lineFragmentPadding = 0
     }
     let verifiedAtLabel = UILabel() ※ { v in
-        v.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+        // foot :thinking_face:
+        v.font = .preferredFont(forTextStyle: .footnote, compatibleWith: UITraitCollection(legibilityWeight: .bold))
         v.textColor = .systemGreen
     }
     private let verifiedIcon = ZeroHeightView(wrapped: UIImageView(image: UIImage(
@@ -104,7 +105,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
             valueTextView,
         ]) ※ {
             $0.axis = .vertical
-            $0.spacing = 4
+            $0.spacing = 2
         }
         view.addSubview(mainStackView)
         mainStackView.snp.makeConstraints { make in
@@ -123,7 +124,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
     func input(_ input: Input) {
         self.input = input
         if let name = input.field.name.parseText2HTMLNew(attributes: [
-            .font: UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            .font: self.nameLabel.font,
             .foregroundColor: UIColor.label,
         ], asyncLoadProgressHandler: {
             self.nameLabel.setNeedsDisplay()
@@ -136,7 +137,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         }
 
         if let value = input.field.value.parseText2HTMLNew(attributes: [
-            .font: UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            .font: self.valueTextView.font,
             .foregroundColor: UIColor.label,
         ], asyncLoadProgressHandler: {
             self.valueTextView.setNeedsDisplay()
