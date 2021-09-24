@@ -36,7 +36,6 @@ class ReadmoreView: UIView {
     
     private let button = UIButton()
     private let indicator = UIActivityIndicatorView()
-    private let fakeSeparator = FakeSeparatorView()
     weak var target: AnyObject?
     var action: Selector?
     
@@ -63,7 +62,6 @@ class ReadmoreView: UIView {
         super.init(frame: .init(x: 0, y: 0, width: 320, height: 44))
         addSubview(button)
         addSubview(indicator)
-        addSubview(fakeSeparator)
         button.snp.makeConstraints { make in
             make.center.size.equalToSuperview()
             make.height.greaterThanOrEqualTo(44)
@@ -79,9 +77,6 @@ class ReadmoreView: UIView {
         }
         indicator.style = .medium
         indicator.hidesWhenStopped = true
-        fakeSeparator.snp.makeConstraints { make in
-            make.top.width.centerX.equalToSuperview()
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
