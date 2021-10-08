@@ -148,8 +148,7 @@ class NotificationService: UNNotificationServiceExtension {
                 let str = String(data: data, encoding: .utf8)
                 self.bestAttemptContent?.userInfo["upstreamObject"] = str
                 
-                if #available(iOSApplicationExtension 15.0, *),
-                   Defaults[.communicationNotificationsEnabled],
+                if Defaults[.communicationNotificationsEnabled],
                    let account = notify.account, notify.type == "mention",
                    let avatarURL = URL(string: account.avatarUrl)
                 {
