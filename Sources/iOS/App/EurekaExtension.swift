@@ -33,7 +33,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
             let (key, _) = arg
             return key == userDefaultsValue
         }.first?.value ?? "\(userDefaultsValue)"
-        self.cellUpdate { (cell, row) in
+        self.onChange { row in
             map.forEach({ (key_, value) in
                 if value == row.value {
                     Defaults[key] = key_
@@ -46,7 +46,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
 extension PushRow where T: WithDefaultValue & RawRepresentable {
     func userDefaultsConnect(_ key: DefaultsKey<T>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Defaults[key]
-        self.cellUpdate { (cell, row) in
+        self.onChange { row in
             guard let value = row.value else {
                 return
             }
@@ -59,7 +59,7 @@ extension TextRow {
     func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = Defaults[key]
         var oldValue = self.value
-        self.cellUpdate { cell, row in
+        self.onChange { row in
             if oldValue == row.value {
                 return
             }
@@ -88,7 +88,7 @@ extension TwolineSliderRow {
     func userDefaultsConnect(_ key: DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = Float(Defaults[key])
         var oldValue = self.value
-        self.cellUpdate { cell, row in
+        self.onChange { row in
             if oldValue == row.value {
                 return
             }
@@ -101,7 +101,7 @@ extension TextAreaRow {
     func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = Defaults[key]
         var oldValue = self.value
-        self.cellUpdate { cell, row in
+        self.onChange { row in
             if oldValue == row.value {
                 return
             }

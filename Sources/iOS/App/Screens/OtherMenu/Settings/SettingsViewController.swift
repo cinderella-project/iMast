@@ -340,6 +340,24 @@ class SettingsViewController: FormViewController {
                 }
                 row.userDefaultsConnect(.skipUniversalLinksCussionPage)
             }
+            SwitchRow { row in
+                row.title = "Communication Notifications を有効にする"
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.detailTextLabel?.text = "メンションのプッシュ通知に送信者のアイコンが付くようになります。"
+                    cell.detailTextLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.communicationNotificationsEnabled)
+            }
+            PushRow<DefaultsKeys.CommunicationNotificationsNameType> { row in
+                row.title = "有効時の名前のフォーマット"
+                row.options = DefaultsKeys.CommunicationNotificationsNameType.allCases
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.communicationNotificationsNameType)
+            }
         }
     }
     

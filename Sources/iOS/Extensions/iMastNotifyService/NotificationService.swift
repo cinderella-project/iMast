@@ -24,6 +24,7 @@
 import UserNotifications
 import Hydra
 import iMastiOSCore
+import Intents
 
 enum NotificationServiceError: Error {
     case imageDataIsNil
@@ -146,6 +147,47 @@ class NotificationService: UNNotificationServiceExtension {
                 let data = try encoder.encode(notify)
                 let str = String(data: data, encoding: .utf8)
                 self.bestAttemptContent?.userInfo["upstreamObject"] = str
+                
+                if #available(iOSApplicationExtension 15.0, *),
+                   Defaults[.communicationNotificationsEnabled],
+                   let account = notify.account, notify.type == "mention",
+                   let avatarURL = URL(string: account.avatarUrl)
+                {
+                    let displayName: String
+                    let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
+                    switch Defaults[.communicationNotificationsNameType] {
+                    case .acct:
+                        displayName = "@\(account.acct)"
+                    case .name:
+                        displayName = nameOrScreenName
+                    case .nameAfterAcct:
+                        displayName = "@\(account.acct) (\(nameOrScreenName))"
+                    case .acctAfterName:
+                        displayName = "\(nameOrScreenName) (@\(account.acct))"
+                    }
+                    let intent = INSendMessageIntent(
+                        recipients: [],
+                        outgoingMessageType: .outgoingMessageText,
+                        content: nil,
+                        speakableGroupName: nil,
+                        conversationIdentifier: nil,
+                        serviceName: nil,
+                        sender: INPerson(
+                            personHandle: INPersonHandle(value: account.url, type: .unknown),
+                            nameComponents: nil,
+                            displayName: displayName,
+                            image: INImage(url: avatarURL),
+                            contactIdentifier: nil,
+                            customIdentifier: account.url,
+                            isMe: false,
+                            suggestionType: .socialProfile
+                        ),
+                        attachments: nil
+                    )
+                    let old = self.bestAttemptContent!
+                    let new = try old.updating(from: intent).mutableCopy() as! UNMutableNotificationContent
+                    self.bestAttemptContent = new
+                }
             }
         })
         
