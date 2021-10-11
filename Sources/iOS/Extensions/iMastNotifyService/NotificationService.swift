@@ -170,7 +170,7 @@ class NotificationService: UNNotificationServiceExtension {
                         content: nil,
                         speakableGroupName: nil,
                         conversationIdentifier: nil,
-                        serviceName: nil,
+                        serviceName: "iMast",
                         sender: INPerson(
                             personHandle: INPersonHandle(value: account.url, type: .unknown),
                             nameComponents: nil,
