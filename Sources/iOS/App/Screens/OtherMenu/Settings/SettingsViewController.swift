@@ -238,16 +238,6 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.shareNoTwitterTracking)
             }
             SwitchRow { row in
-                row.title = "GPMを共有する時にNowPlayingフォーマットを使用"
-                row.userDefaultsConnect(.usingNowplayingFormatInShareGooglePlayMusicUrl)
-                row.cellStyle = .subtitle
-                row.cellUpdate { cell, row in
-                    cell.textLabel?.numberOfLines = 0
-                    cell.detailTextLabel?.text = "GPMのURLを共有しようとする際に https://play.google.com との通信が発生します。また、この機能は非公式であり、問題が発生しても開発者は責任を負いません。自己責任でお使いください。"
-                    cell.detailTextLabel?.numberOfLines = 0
-                }
-            }
-            SwitchRow { row in
                 row.title = "Spotifyを共有する時にNowPlayingフォーマットを使用"
                 row.userDefaultsConnect(.usingNowplayingFormatInShareSpotifyUrl)
                 row.cellStyle = .subtitle

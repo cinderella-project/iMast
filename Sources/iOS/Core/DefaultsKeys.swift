@@ -66,6 +66,7 @@ public extension DefaultsKeys {
     static let shareNoSpotifySIParameter = DefaultsKey<Bool>("share_no_spotify_si_parameter", default: false)
     static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
 
+    @available(*, unavailable)
     static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
     static let usingNowplayingFormatInShareSpotifyUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_spotify_url", default: false)
     static let useCustomizedSharePreview = DefaultsKey<Bool>("use_customized_share_preview", default: true)
