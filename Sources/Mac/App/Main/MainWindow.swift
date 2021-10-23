@@ -125,6 +125,7 @@ extension MainWindow: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.image = NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)
             item.action = #selector(TimelineViewController.newDocument(_:))
+            item.isBordered = true
             item.menuFormRepresentation = .init(title: L10n.Timeline.newPost, action: #selector(TimelineViewController.newDocument(_:)), keyEquivalent: "")
             return item
         default:
