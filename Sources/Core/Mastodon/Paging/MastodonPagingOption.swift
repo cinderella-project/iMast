@@ -24,7 +24,9 @@
 import Foundation
 
 public enum MastodonPagingOption {
+    /// since\_id or min\_id
     case prev(String, isSinceId: Bool)
+    /// max\_id
     case next(String)
     
     func addToQuery(_ to: inout [URLQueryItem]) {
