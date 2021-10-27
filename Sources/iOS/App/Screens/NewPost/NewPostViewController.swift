@@ -85,7 +85,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.scope = replyToPost.visibility
         }
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
-            userToken.getUserInfo(cache: true).then { res in
+            asyncPromise { try await self.userToken.getUserInfo(cache: true) }.then { res in
                 if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
                     self.scope = myScope
                 }
@@ -318,7 +318,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         imageSelectButton.setTitle(" 0", for: .normal)
         isNSFW = false
         if Defaults[.usingDefaultVisibility] && replyToPost == nil {
-            userToken.getUserInfo(cache: true).then { res in
+            asyncPromise { try await self.userToken.getUserInfo(cache: true) }.then { res in
                 if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
                     self.scope = myScope
                 }

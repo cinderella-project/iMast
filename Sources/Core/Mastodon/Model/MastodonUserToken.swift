@@ -202,25 +202,24 @@ public class MastodonUserToken: Equatable {
     
     static var verifyCredentialsCache: [String: JSON] = [:]
     
-    public func getUserInfo(cache: Bool = false) -> Promise<JSON> {
+    public func getUserInfo(cache: Bool = false) async throws -> JSON {
         if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache[self.acct] {
-            return Promise.init(resolved: cacheObj)
+            return cacheObj
         }
-        return self.get("accounts/verify_credentials").then { (response) -> Promise<JSON> in
-            self.name = response["display_name"].string
-            if self.name == nil || self.name?.isEmpty == true {
-                self.name = response["name"].string
-            }
-            self.screenName = response["username"].string
-            self.avatarUrl = response["avatar"].string
-            if let avatarUrl = self.avatarUrl, !avatarUrl.isEmpty, avatarUrl.first == "/" { // ホスト名がない！！！
-                self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
-            }
-            if response["error"].isEmpty {
-                MastodonUserToken.verifyCredentialsCache[self.acct] = response
-            }
-            return Promise.init(resolved: response)
+        let response = try await getJSON("accounts/verify_credentials")
+        self.name = response["display_name"].string
+        if self.name == nil || self.name?.isEmpty == true {
+            self.name = response["name"].string
         }
+        self.screenName = response["username"].string
+        self.avatarUrl = response["avatar"].string
+        if let avatarUrl = self.avatarUrl, !avatarUrl.isEmpty, avatarUrl.first == "/" { // ホスト名がない！！！
+            self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
+        }
+        if response["error"].isEmpty {
+            MastodonUserToken.verifyCredentialsCache[self.acct] = response
+        }
+        return response
     }
     
     internal func request<E: MastodonEndpointProtocol>(_ ep: E) async throws -> E.Response {
@@ -250,6 +249,39 @@ public class MastodonUserToken: Equatable {
         )
     }
     
+    @available(*, deprecated)
+    func getJSON(_ endpoint: String, params: [URLQueryItem] = []) async throws -> JSON {
+        print("GET", endpoint)
+        
+        var urlBuilder = URLComponents(url: URL(string: endpoint, relativeTo: URL(string: "https://\(self.app.instance.hostName)/api/v1/")!)!, resolvingAgainstBaseURL: true)!
+        urlBuilder.queryItems = params
+        if urlBuilder.queryItems?.count == 0 {
+            urlBuilder.queryItems = nil
+        }
+        let headers = getHeader()
+        var request = URLRequest(url: try urlBuilder.asURL())
+        print(request.url)
+        request.httpMethod = "GET"
+        for (name, value) in headers {
+            request.setValue(value, forHTTPHeaderField: name)
+        }
+        print(request.httpMethod!, request.url!)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
+            let json: JSON
+            do {
+                json = try JSON(data: data)
+            } catch {
+                throw APIError.unknownResponse(errorHttpCode: response.statusCode)
+            }
+            if let error = json["error"].string {
+                throw APIError.errorReturned(errorMessage: error, errorHttpCode: response.statusCode)
+            }
+            throw APIError.unknownResponse(errorHttpCode: response.statusCode)
+        }
+        return try JSON(data: data)
+    }
+
     @available(*, deprecated)
     func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
         return Promise<JSON> { resolve, reject, _ in

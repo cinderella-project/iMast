@@ -64,34 +64,33 @@ class ChangeActiveAccountViewController: UITableViewController {
     }
     
     @objc func refresh() {
+        Task {
+            await self.refreshAsync()
+        }
+    }
+    
+    func refreshAsync() async {
         var successCount = 0
         var failedCount = 0
         let allCount = userTokens.count
-        func redrawRefreshControl () {
-            print(successCount, failedCount, allCount)
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新(\(String(successCount))/\(String(allCount)))")
-        }
-        var promise = Promise.init(resolved: Void()).then { _ in
-            return
-        }
-        userTokens.forEach { (userToken) in
-            promise = promise.then { _ in
-                return userToken.getUserInfo()
-            }.then { _ in
+        for userToken in userTokens {
+            do {
+                try await userToken.getUserInfo(cache: false)
                 try userToken.save()
                 successCount += 1
-                redrawRefreshControl()
-                return
-            }.catch { _ in
+            } catch {
                 failedCount += 1
-                redrawRefreshControl()
-                return
+            }
+            print(successCount, failedCount, allCount)
+            let s = successCount, f = failedCount, all = allCount
+            await MainActor.run {
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新(成功\(s) + 失敗\(f) = 合計 \(s+f)/\(all))")
             }
         }
-        promise.then {_ in
-            self.updateTableView()
-            self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
+        await MainActor.run {
+            updateTableView()
+            refreshControl?.endRefreshing()
+            refreshControl?.attributedTitle = NSAttributedString(string: "ユーザー情報を更新")
         }
     }
     

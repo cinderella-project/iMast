@@ -59,11 +59,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.windowScene(windowScene, performActionFor: item) { _ in }
             }
             #endif
-            myAccount.getUserInfo().then { json in
-                if json["error"].string != nil && json["_response_code"].number == 401 {
+            asyncPromise { try await myAccount.getUserInfo() }.catch(in: .main) { error in
+                switch error {
+                case APIError.errorReturned(errorMessage: _, errorHttpCode: 401):
                     try myAccount.delete()
                     window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
+                default:
+                    break
                 }
+            }.catch { error in
+                print("Fail to delete failauth acccount...", error)
             }
             if let notifyRes = connectionOptions.notificationResponse {
                 let content = notifyRes.notification.request.content
@@ -110,7 +115,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let app = MastodonApp.initFromId(appId: state)
                 asyncPromise {
                     let userToken = try await app.authorizeWithCode(code: code)
-                    _ = try await userToken.getUserInfo().wait()
+                    _ = try await userToken.getUserInfo()
                     try userToken.save()
                     userToken.use()
                     nextVC.userToken = userToken
