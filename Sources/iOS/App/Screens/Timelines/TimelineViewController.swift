@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Hydra
 import Reachability
 import SafariServices
@@ -479,42 +478,66 @@ extension TimelineViewController: WebSocketWrapperDelegate {
         }
     }
     
-    func webSocketDidReceiveMessage(_ wrapper: WebSocketWrapper, text: String) {
-        var object = JSON(parseJSON: text)
-        switch object["event"].stringValue {
-        case "update":
-            object["payload"] = JSON(parseJSON: object["payload"].string ?? "{}")
-            do {
-                addNewPosts(posts: [try MastodonPost.decode(json: object["payload"])])
-            } catch {
-                DispatchQueue.main.async { [weak self] in
-                    reportError(error: error)
-                }
+    enum WebSocketEvent: Decodable {
+        case update(MastodonPost)
+        case delete(String)
+        case unknown(String)
+        
+        init(from decoder: Decoder) throws {
+            var container = try decoder.container(keyedBy: CodingKeys.self)
+            let event = try container.decode(String.self, forKey: .event)
+            switch event {
+            case "update":
+                let payload = try container.decode(String.self, forKey: .payload)
+                self = .update(try JSONDecoder.forMastodonAPI.decode(MastodonPost.self, from: payload.data(using: .utf8)!))
+            case "delete":
+                let payload = try container.decode(String.self, forKey: .payload)
+                self = .delete(payload)
+            default:
+                self = .unknown(event)
             }
-        case "delete":
-            let deletedTootID = object["payload"].stringValue
-            var snapshot = diffableDataSource.snapshot()
-            var deletePosts: [TableBody] = []
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case event
+            case payload
+        }
+    }
+    
+    func webSocketDidReceiveMessage(_ wrapper: WebSocketWrapper, text: String) {
+        do {
+            var event = try JSONDecoder().decode(WebSocketEvent.self, from: text.data(using: .utf8)!)
+            switch event {
+            case .update(let post):
+                addNewPosts(posts: [post])
+            case .delete(let deletedTootID):
+                var snapshot = diffableDataSource.snapshot()
+                var deletePosts: [TableBody] = []
 
-            for body in snapshot.itemIdentifiers(inSection: .posts) {
-                if case .post(let id, _) = body {
-                    if id.string == deletedTootID {
-                        deletePosts.append(body)
-                    } else if environment.memoryStore.post.container[id]?.repost?.value.id.string == deletedTootID {
-                        deletePosts.append(body)
+                for body in snapshot.itemIdentifiers(inSection: .posts) {
+                    if case .post(let id, _) = body {
+                        if id.string == deletedTootID {
+                            deletePosts.append(body)
+                        } else if environment.memoryStore.post.container[id]?.repost?.value.id.string == deletedTootID {
+                            deletePosts.append(body)
+                        }
                     }
                 }
-            }
-            
-            snapshot.deleteItems(deletePosts)
+                
+                snapshot.deleteItems(deletePosts)
 
-            if deletePosts.count > 0 {
-                updateDataSourceQueue.sync {
-                    diffableDataSource.apply(snapshot, animatingDifferences: true)
+                if deletePosts.count > 0 {
+                    updateDataSourceQueue.sync {
+                        diffableDataSource.apply(snapshot, animatingDifferences: true)
+                    }
                 }
+            case .unknown(let type):
+                print("WebSocket: Receiving Unknown Event Type: \(type)")
             }
-        default:
-            print(object)
+        } catch {
+            DispatchQueue.main.async {
+                self.errorReport(error: error)
+            }
         }
     }
 }
