@@ -98,6 +98,9 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
 
         title = L10n.Localizable.notifications
         additionalSafeAreaInsets.top = toolBar.frame.height
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        navigationItem.scrollEdgeAppearance = appearance
         changeContainer()
     }
     

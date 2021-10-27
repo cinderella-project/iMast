@@ -158,55 +158,9 @@ class ShareViewController: SLComposeServiceViewController {
             }
         }
         
-        // GPMなうぷれ対応
-        processGPMURL(url: url)
+        // なうぷれ対応
         processSpotifyURL(url: url)
         
-    }
-    
-    func processGPMURL(url: NSURL) {
-        if Defaults[.usingNowplayingFormatInShareGooglePlayMusicUrl],
-            url.scheme == "https", url.host == "play.google.com",
-            let path = url.path, path.starts(with: "/music/m/"),
-            let objectId = path.pregMatch(pattern: "^/music/m/(.+)$").safe(1) {
-            let previewUrl = "https://play.google.com/music/preview/\(objectId)"
-            Alamofire.request(previewUrl).responseData { res in
-                print(res)
-                switch res.result {
-                case .success(let data):
-                    guard let doc = try? Fuzi.HTMLDocument(data: data) else {
-                        print("GPMNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
-                        return
-                    }
-                    guard let trackElement = doc.xpath("//*[@itemtype='http://schema.org/MusicRecording/PlayMusicTrack']").first else {
-                        print("GPMNowPlayingError: PlayMusicTrackがなかった")
-                        return
-                    }
-                    if trackElement.parent?["itemtype"] == "http://schema.org/MusicAlbum/PlayMusicAlbum" {
-                        print("GPMNowPlayingError: parentがAlbum")
-                        return
-                    }
-                    guard let title = trackElement.xpath("./*[@itemprop='name']").first?.stringValue else {
-                        print("GPMNowPlayingError: nameがない")
-                        return
-                    }
-                    let artist = trackElement.xpath("./*[@itemprop='byArtist']/*[@itemprop='name']").first?.stringValue
-                    let albumTitle = trackElement.xpath("./*[@itemprop='inAlbum']/*[@itemprop='name']").first?.stringValue
-                    let nowPlayingText = Defaults[.nowplayingFormat]
-                        .replacingOccurrences(of: "{title}", with: title)
-                        .replacingOccurrences(of: "{artist}", with: artist ?? "")
-                        .replacingOccurrences(of: "{albumTitle}", with: albumTitle ?? "")
-                        .replacingOccurrences(of: "{albumArtist}", with: "")
-                    print(Thread.isMainThread)
-                    DispatchQueue.mainSafeSync {
-                        self.textView.text = nowPlayingText
-                    }
-                case .failure(let error):
-                    print("GPMNowPlayingError: Failed fetch Information", error)
-                }
-            }
-            print("GPMやないかーい", previewUrl)
-        }
     }
 
     func processSpotifyURL(url: NSURL) {

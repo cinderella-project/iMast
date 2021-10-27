@@ -176,13 +176,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             let vc = UserProfileTopViewController.instantiate(account, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
         case .hashtag(let hashtag):
-            let vc = HashtagTimeLineTableViewController(hashtag: hashtag.name, environment: self.environment)
+            let vc = HashtagTimelineViewController(hashtag: hashtag.name, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
         case .toot(let post):
             let vc = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
         case .trendTag(let tag, _):
-            let vc = HashtagTimeLineTableViewController(hashtag: tag, environment: self.environment)
+            let vc = HashtagTimelineViewController(hashtag: tag, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
         }
     }

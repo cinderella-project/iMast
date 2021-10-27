@@ -73,6 +73,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
        
         self.input(input)
         TableViewCell<UserProfileBioViewController>.register(to: tableView)
+        TableViewCell<UserProfileFieldViewController>.register(to: tableView)
     }
     
     @objc func reload() {
@@ -171,6 +172,14 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             let cell = UITableViewCell()
             cell.accessibilityIdentifier = "bioCell"
             cells[0].append(cell)
+        }
+        if let fields = input.fields {
+            for index in fields.indices {
+                let cell = UITableViewCell()
+                cell.accessibilityIdentifier = "fieldCell"
+                cell.tag = index
+                cells[0].append(cell)
+            }
         }
         if input.acct.contains("@") {
             cells[0].append(checkLatestProfileCell)
@@ -342,6 +351,16 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             )
             cell.separatorInset = .zero
             return cell
+        } else if cell.accessibilityIdentifier == "fieldCell" {
+            let cell = TableViewCell<UserProfileFieldViewController>.dequeued(
+                from: tableView,
+                for: indexPath,
+                input: (account: input, field: input.fields![cell.tag]),
+                parentViewController: self
+            )
+            cell.separatorInset = .zero
+            cell.layoutIfNeeded()
+            return cell
         }
         return cell
     }
@@ -356,7 +375,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         
         if indexPath.section == 1 {
             if indexPath.row == 0 {
-                let newVC = UserTimeLineTableViewController.instantiate(.plain, environment: self.environment)
+                let newVC = UserTimelineViewController.instantiate(.plain, environment: self.environment)
                 newVC.user = self.input
                 newVC.title = "投稿一覧"
                 self.navigationController?.pushViewController(newVC, animated: true)

@@ -1,5 +1,5 @@
 //
-//  HashtagTimeLineTableViewController.swift
+//  HashtagTimelineViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2018/10/27.
@@ -27,7 +27,7 @@ import SwiftyJSON
 import Mew
 import iMastiOSCore
 
-class HashtagTimeLineTableViewController: TimeLineTableViewController {
+class HashtagTimelineViewController: TimelineViewController {
     let hashtag: String
     
     init(hashtag: String, environment: MastodonUserToken) {

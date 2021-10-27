@@ -1,5 +1,5 @@
 //
-//  UserTimeLineTableViewController.swift
+//  UserTimelineViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2017/07/07.
@@ -26,7 +26,7 @@ import Hydra
 import SwiftyJSON
 import iMastiOSCore
 
-class UserTimeLineTableViewController: TimeLineTableViewController {
+class UserTimelineViewController: TimelineViewController {
     override func viewDidLoad() {
         self.timelineType = .user(self.user)
         super.viewDidLoad()

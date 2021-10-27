@@ -66,6 +66,7 @@ public extension DefaultsKeys {
     static let shareNoSpotifySIParameter = DefaultsKey<Bool>("share_no_spotify_si_parameter", default: false)
     static let deleteTootTeokure = DefaultsKey<Bool>("delete_toot_teokure", default: false)
 
+    @available(*, unavailable)
     static let usingNowplayingFormatInShareGooglePlayMusicUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_google_play_music_url", default: false)
     static let usingNowplayingFormatInShareSpotifyUrl = DefaultsKey<Bool>("using_nowplaying_format_in_share_spotify_url", default: false)
     static let useCustomizedSharePreview = DefaultsKey<Bool>("use_customized_share_preview", default: true)
@@ -86,4 +87,31 @@ public extension DefaultsKeys {
     
     static let useCustomBoostSound = DefaultsKey<Bool>("use_custom_boost_sound", default: false)
     static let useCustomFavouriteSound = DefaultsKey<Bool>("use_custom_favourite_sound", default: false)
+    static let communicationNotificationsEnabled = DefaultsKey<Bool>("communication_notifications_enabled", default: false)
+    static let communicationNotificationsNameType = DefaultsKey<CommunicationNotificationsNameType>("communication_notifications_name_type", default: .name)
+
+    enum CommunicationNotificationsNameType: String, CustomStringConvertible, WithDefaultValue, CaseIterable {
+        public static var _defaultValue: DefaultsKeys.CommunicationNotificationsNameType {
+            return .name
+        }
+        
+        case acct
+        case name
+        case nameAfterAcct
+        case acctAfterName
+        
+        public var description: String {
+            switch self {
+            case .acct:
+                return "@acctのみ"
+            case .name:
+                return "名前のみ"
+            case .nameAfterAcct:
+                return "@acct (名前)"
+            case .acctAfterName:
+                return "名前 (@acct)"
+            }
+        }
+    }
 }
+

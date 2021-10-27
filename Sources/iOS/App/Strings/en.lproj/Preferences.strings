@@ -22,7 +22,7 @@
 "nowPlaying.format.title" = "Format";
 "nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
 
-"timelineAppearance.title" = "タイムラインの外観";
+"timelineAppearance.title" = "Timeline Appearance";
 "timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
 "timelineAppearance.contentSize" = "本文の文字の大きさ";
 "timelineAppearance.contentBold" = "本文を太字で表示";
@@ -45,7 +45,7 @@
 "push.addAccount.title" = "Add Account";
 "push.addAccount.alertTitle" = "Add Account";
 "push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
-"push.shared.title" = "共通設定";
+"push.shared.title" = "Common Settings";
 "push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
 "push.shared.groupRules.title" = "グループ化のルール設定 (β)";
 "push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";

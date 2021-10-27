@@ -62,6 +62,7 @@ extension NewPostWindow: NSToolbarDelegate {
             let item = NSToolbarItem(itemIdentifier: itemIdentifier)
             item.image = NSImage(systemSymbolName: "paperplane", accessibilityDescription: nil)
             item.action = #selector(NewPostViewController.sendPost)
+            item.isBordered = true
             item.isNavigational = true
             return item
         default:

@@ -27,6 +27,7 @@ import Ikemen
 class PreferencesWindow: NSPanel {
     convenience init() {
         self.init(contentViewController: PreferencesViewController())
+        hidesOnDeactivate = false
         styleMask = [.titled, .closable]
     }
 }

@@ -240,16 +240,6 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(.shareNoTwitterTracking)
             }
             SwitchRow { row in
-                row.title = "GPMを共有する時にNowPlayingフォーマットを使用"
-                row.userDefaultsConnect(.usingNowplayingFormatInShareGooglePlayMusicUrl)
-                row.cellStyle = .subtitle
-                row.cellUpdate { cell, row in
-                    cell.textLabel?.numberOfLines = 0
-                    cell.detailTextLabel?.text = "GPMのURLを共有しようとする際に https://play.google.com との通信が発生します。また、この機能は非公式であり、問題が発生しても開発者は責任を負いません。自己責任でお使いください。"
-                    cell.detailTextLabel?.numberOfLines = 0
-                }
-            }
-            SwitchRow { row in
                 row.title = "Spotifyを共有する時にNowPlayingフォーマットを使用"
                 row.userDefaultsConnect(.usingNowplayingFormatInShareSpotifyUrl)
                 row.cellStyle = .subtitle
@@ -345,6 +335,24 @@ class SettingsViewController: FormViewController {
                     cell.textLabel?.numberOfLines = 0
                 }
                 row.userDefaultsConnect(.skipUniversalLinksCussionPage)
+            }
+            SwitchRow { row in
+                row.title = "Communication Notifications を有効にする"
+                row.cellStyle = .subtitle
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.detailTextLabel?.text = "メンションのプッシュ通知に送信者のアイコンが付くようになります。"
+                    cell.detailTextLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.communicationNotificationsEnabled)
+            }
+            PushRow<DefaultsKeys.CommunicationNotificationsNameType> { row in
+                row.title = "有効時の名前のフォーマット"
+                row.options = DefaultsKeys.CommunicationNotificationsNameType.allCases
+                row.cellUpdate { cell, row in
+                    cell.textLabel?.numberOfLines = 0
+                }
+                row.userDefaultsConnect(.communicationNotificationsNameType)
             }
         }
     }
