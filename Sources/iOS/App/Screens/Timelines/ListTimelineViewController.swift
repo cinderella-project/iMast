@@ -1,8 +1,8 @@
 //
-//  HomeTimeLineTableViewController.swift
+//  ListTimelineViewController.swift
 //  iMast
 //
-//  Created by rinsuki on 2017/05/24.
+//  Created by rinsuki on 2017/11/22.
 //  
 //  ------------------------------------------------------------------------
 //
@@ -24,16 +24,29 @@
 import UIKit
 import SwiftyJSON
 import Hydra
+import Eureka
+import iMastiOSCore
 
-class HomeTimeLineTableViewController: TimeLineTableViewController {
+class ListTimelineViewController: TimelineViewController {
+    
+    var list: MastodonList! {
+        didSet {
+            self.title = list.title
+        }
+    }
+    
     override func viewDidLoad() {
-        self.timelineType = .home
-        self.navigationItem.title = L10n.Localizable.homeTimeline
+        self.timelineType = .list(self.list)
         self.isNewPostAvailable = true
         super.viewDidLoad()
     }
+
+    @objc func editList() {
+        let vc = EditListInfoViewController.instantiate(list, environment: environment)
+        self.present(ModalNavigationViewController(rootViewController: vc), animated: true, completion: nil)
+    }
     
     override func websocketEndpoint() -> String? {
-        return "user"
+        return "list&list=\(list.id.string)"
     }
 }

@@ -335,7 +335,7 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         }
         if visibleString.starts(with: "#") {
             let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimeLineTableViewController.init(hashtag: tag, environment: environment)
+            let newVC = HashtagTimelineViewController.init(hashtag: tag, environment: environment)
             self.navigationController?.pushViewController(newVC, animated: true)
             return false
         }

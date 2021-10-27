@@ -77,7 +77,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
         }
         alert.addAction(UIAlertAction(title: L10n.OtherMenu.Lists.Create.Actions.primary, style: .default, handler: { _ in
             MastodonEndpoint.CreateList(title: alert.textFields![0].text ?? "").request(with: self.environment).then { list in
-                let vc = ListTimeLineTableViewController.instantiate(.plain, environment: self.environment)
+                let vc = ListTimelineViewController.instantiate(.plain, environment: self.environment)
                 vc.list = list
                 vc.title = list.title
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -121,7 +121,7 @@ class ListsTableViewController: UITableViewController, Instantiatable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let list = self.lists[indexPath.row]
-        let vc = ListTimeLineTableViewController(environment: self.environment)
+        let vc = ListTimelineViewController(environment: self.environment)
         vc.list = list
         vc.title = list.title
         self.navigationController?.pushViewController(vc, animated: true)

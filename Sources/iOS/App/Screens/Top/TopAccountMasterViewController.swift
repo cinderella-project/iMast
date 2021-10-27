@@ -175,19 +175,19 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             let vc = FollowRequestsListTableViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .home:
-            let vc = HomeTimeLineTableViewController.instantiate(.plain, environment: environment)
+            let vc = HomeTimelineViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .notifications:
             let vc = NotificationTableWrapperViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .local:
-            let vc = LocalTimeLineTableViewController.instantiate(.plain, environment: environment)
+            let vc = LocalTimelineViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .bookmarks:
             let vc = BookmarksTableViewController.instantiate(.init(), environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .list(let list):
-            let vc = ListTimeLineTableViewController.instantiate(.plain, environment: environment)
+            let vc = ListTimelineViewController.instantiate(.plain, environment: environment)
             vc.list = list
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         }

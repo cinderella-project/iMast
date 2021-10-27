@@ -375,7 +375,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         
         if indexPath.section == 1 {
             if indexPath.row == 0 {
-                let newVC = UserTimeLineTableViewController.instantiate(.plain, environment: self.environment)
+                let newVC = UserTimelineViewController.instantiate(.plain, environment: self.environment)
                 newVC.user = self.input
                 newVC.title = "投稿一覧"
                 self.navigationController?.pushViewController(newVC, animated: true)

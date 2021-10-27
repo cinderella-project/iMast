@@ -1,5 +1,5 @@
 //
-//  TimeLineTableViewController.swift
+//  TimelineViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2017/05/24.
@@ -31,7 +31,7 @@ import SnapKit
 import Mew
 import iMastiOSCore
 
-class TimeLineTableViewController: UIViewController, Instantiatable {
+class TimelineViewController: UIViewController, Instantiatable {
     enum TableSection: String, Hashable {
         case pinned
         case posts
@@ -402,7 +402,7 @@ class TimeLineTableViewController: UIViewController, Instantiatable {
     }
 }
 
-extension TimeLineTableViewController: UITableViewDelegate {
+extension TimelineViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard case .post(let id, _) = self.diffableDataSource.itemIdentifier(for: indexPath) else {
@@ -462,7 +462,7 @@ extension TimeLineTableViewController: UITableViewDelegate {
     }
 }
 
-extension TimeLineTableViewController: WebSocketWrapperDelegate {
+extension TimelineViewController: WebSocketWrapperDelegate {
     func webSocketDidConnect(_ wrapper: WebSocketWrapper) {
         DispatchQueue.mainSafeSync {
             streamingNavigationItem?.image = UIImage(systemName: "bolt.fill")

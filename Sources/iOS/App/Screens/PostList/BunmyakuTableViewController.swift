@@ -26,7 +26,7 @@ import UIKit
 import Hydra
 import iMastiOSCore
 
-class BunmyakuTableViewController: TimeLineTableViewController {
+class BunmyakuTableViewController: TimelineViewController {
     var basePost: MastodonPost!
     
     override func viewDidLoad() {

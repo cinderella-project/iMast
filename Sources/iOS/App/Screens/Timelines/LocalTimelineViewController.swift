@@ -1,5 +1,5 @@
 //
-//  LocalTimeLineTableViewController.swift
+//  LocalTimelineViewController.swift
 //  iMast
 //
 //  Created by rinsuki on 2017/05/24.
@@ -25,7 +25,7 @@ import UIKit
 import SwiftyJSON
 import Hydra
 
-class LocalTimeLineTableViewController: TimeLineTableViewController {
+class LocalTimelineViewController: TimelineViewController {
     override func viewDidLoad() {
         self.timelineType = .local
         self.navigationItem.title = L10n.Localizable.localTimeline
