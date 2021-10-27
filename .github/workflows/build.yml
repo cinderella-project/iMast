@@ -20,4 +20,4 @@ jobs:
     - name: Build (iOS)
       run: set -o pipefail && xcodebuild clean build -sdk iphonesimulator -workspace iMast.xcworkspace -scheme "iMast iOS" CODE_SIGNING_REQUIRED=NO | xcpretty -c
     - name: Build (macOS)
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
