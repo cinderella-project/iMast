@@ -106,7 +106,7 @@ class AddMastodonAccountSheetViewController: NSViewController {
         nowLoading = true
         error = nil
         if let app = app {
-            asyncPromise { [code] _ in
+            asyncPromise { [code] in
                 let token = try await app.authorizeWithCode(code: code).wait()
                 try await token.getUserInfo().wait()
                 try token.save()
