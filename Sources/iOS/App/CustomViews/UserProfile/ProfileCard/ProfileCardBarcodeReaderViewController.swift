@@ -61,7 +61,7 @@ class ProfileCardBarcodeReaderViewController: UIViewController, Instantiatable {
         do {
             let captureSession = AVCaptureSession()
             guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-                self.alertWithPromise(title: "エラー", message: "使用できるカメラがありません").then {
+                self.alert(title: "エラー", message: "使用できるカメラがありません") {
                     self.navigationController?.popViewController(animated: true)
                 }
                 return

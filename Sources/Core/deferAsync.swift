@@ -1,12 +1,13 @@
 //
-//  SVProgressHUD+Hydra.swift
-//  iMast
+//  deferAsync.swift
 //
-//  Created by rinsuki on 2018/07/23.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2021/07/30.
+//
 //  ------------------------------------------------------------------------
 //
-//  Copyright 2017-2019 rinsuki and other contributors.
+//  Copyright 2017-2021 rinsuki and other contributors.
 // 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,18 +20,16 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 import Foundation
-import SVProgressHUD
-import Hydra
 
-extension SVProgressHUD {
-    static func dismissPromise() -> Promise<Void> {
-        return Promise<Void> { resolve, _, _ in
-            SVProgressHUD.dismiss {
-                resolve(())
-            }
-        }
+public func deferAsync<T>(_ callback: () async throws -> T, always: () async -> Void) async rethrows -> T {
+    do {
+        let res: T = try await callback()
+        await always()
+        return res
+    } catch {
+        await always()
+        throw error
     }
 }

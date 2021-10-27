@@ -88,7 +88,7 @@ class MastodonPostAbuseViewController: FormViewController, Instantiatable {
             forward: (values["forward"] as? Bool) ?? false,
             posts: [input]
         ).request(with: environment).then { (res) in
-            self.alertWithPromise(title: "送信完了", message: "通報が完了しました！").then {
+            self.alert(title: "送信完了", message: "通報が完了しました！") {
                 self.navigationController?.popViewController(animated: true)
             }
         }

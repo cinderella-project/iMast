@@ -127,22 +127,23 @@ class NotificationService: UNNotificationServiceExtension {
         print(self.bestAttemptContent?.threadIdentifier)
         
         var promise: [Promise<Void>] = []
-        promise.append(async { _ in // get attachment images
+        promise.append(asyncPromise {
+            // get attachment images
             if let images = request.content.userInfo["images"] as? [String] {
-                let imageUrls = try `await`(all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }))
+                let imageUrls = try await all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }).wait()
                 for imageUrl in imageUrls {
                     self.bestAttemptContent?.attachments.append(try UNNotificationAttachment(identifier: imageUrl.path, url: imageUrl, options: nil))
                 }
             }
         })
-        promise.append(async { _ in
+        promise.append(asyncPromise {
             if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
                 let upstreamId = request.content.userInfo["upstreamId"] as? String {
                 guard let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
                     return
                 }
 
-                let notify = try `await`(MastodonEndpoint.GetNotification(id: .init(string: upstreamId)).request(with: userToken))
+                let notify = try await MastodonEndpoint.GetNotification(id: .init(string: upstreamId)).request(with: userToken)
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(notify)
                 let str = String(data: data, encoding: .utf8)

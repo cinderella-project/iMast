@@ -108,9 +108,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 let nextVC = AddAccountSuccessViewController()
                 let app = MastodonApp.initFromId(appId: state)
-                async { _ in
-                    let userToken = try `await`(app.authorizeWithCode(code: code))
-                    _ = try `await`(userToken.getUserInfo())
+                asyncPromise {
+                    let userToken = try await app.authorizeWithCode(code: code).wait()
+                    _ = try await userToken.getUserInfo().wait()
                     try userToken.save()
                     userToken.use()
                     nextVC.userToken = userToken

@@ -53,6 +53,7 @@ class LoginSafari12: LoginSafari {
     }
 }
 
+@MainActor
 func getLoginSafari() -> LoginSafari {
     return LoginSafari12()
 }

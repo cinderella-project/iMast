@@ -60,8 +60,8 @@ struct PushServiceToken: Codable {
     var _id: String
 
     
-    func update() -> Promise<PushServiceToken> {
-        return Alamofire.request(
+    func update() async throws -> PushServiceToken {
+        let result: PushServiceWrapper<PushServiceToken> = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
             method: .put,
             parameters: ["notify": [
@@ -73,29 +73,26 @@ struct PushServiceToken: Codable {
                 // swiftlint:disable trailing_comma
             ]],
             encoding: JSONEncoding.default,
-            headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
-            ).responseDecodable(PushServiceWrapper<PushServiceToken>.self).then({ wrapper  in
-                return Promise(resolved: wrapper.result)
-            })
+            headers: ["Authorization": try PushService.getAuthorizationHeader()]
+        ).responseDecodable()
+        return result.result
     }
     
-    func delete() -> Promise<Void> {
-        return Alamofire.request(
+    func delete() async throws {
+        let result: PushServiceWrapper<String> = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
             method: .delete,
-            headers: ["Authorization": try! PushService.getAuthorizationHeader()!]
-        ).responseDecodable(PushServiceWrapper<String>.self).then { _ in
-            return ()
-        }
+            headers: ["Authorization": try PushService.getAuthorizationHeader()]
+        ).responseDecodable()
     }
 }
 
 class PushService {
 
-    static func getAuthorizationHeader() throws -> String? {
+    static func getAuthorizationHeader() throws -> String {
         let time = Int(Date().timeIntervalSince1970)
         guard let userId = try Keychain_ForPushBackend.getString("userId"), let secret = try Keychain_ForPushBackend.getString("secret") else {
-            return nil
+            throw PushServiceError.notRegistered
         }
         return "CustomV1 \(userId):\((secret + ":" + String(time)).sha256!.lowercased()):\(time)"
     }
@@ -106,47 +103,29 @@ class PushService {
         return true
     }
     
-    static func register() -> Promise<Void> {
+    static func register() async throws {
+        let device = await UIDevice.current
         let params = [
-            "deviceName": UIDevice.current.platform,
-            "deviceVersion": UIDevice.current.systemVersion,
+            "deviceName": await device.platform,
+            "deviceVersion": await device.systemVersion,
             "timestamp": Int(Date().timeIntervalSince1970),
         ] as Parameters
         class Response: Codable {
             var id: String
             var secret: String
         }
-        return Alamofire.request(
+        let res: Response = try await Alamofire.request(
                 "https://imast-backend.rinsuki.net/push/api/v1/create",
                 method: .post,
                 parameters: params,
                 encoding: JSONEncoding.default
-        ).responseDecodable(Response.self).then { res -> Void in
-//            if response.statusCode != 200 {
-//                func getMessage() -> String {
-//                    guard let data = res.data else {
-//                        return "(empty)"
-//                    }
-//                    return String(data: data, encoding: String.Encoding.utf8) ?? "(empty)"
-//                }
-//                rej(PushServiceError.serverError(message: getMessage(), httpCode: response.statusCode))
-//                return
-//            }
-//            let json = JSON(data)
-//            guard let userId = json["id"].string, let secret = json["secret"].string else {
-//                rej(PushServiceError.unknownError)
-//                return
-//            }
-            try! Keychain_ForPushBackend.set(res.id, key: "userId")
-            try! Keychain_ForPushBackend.set(res.secret, key: "secret")
-            
-//            resolve(())
-            return ()
-        }
+        ).responseDecodable()
+        try Keychain_ForPushBackend.set(res.id, key: "userId")
+        try Keychain_ForPushBackend.set(res.secret, key: "secret")
     }
     
     static func updateDeviceToken(deviceToken: Data) {
-        guard let auth = try! self.getAuthorizationHeader() else {
+        guard let auth = try? self.getAuthorizationHeader() else {
             return
         }
         var params: Parameters = [
@@ -159,64 +138,38 @@ class PushService {
         Alamofire.request("https://imast-backend.rinsuki.net/push/api/v1/device-token", method: .put, parameters: params, encoding: JSONEncoding.default, headers: ["Authorization": auth])
     }
     
-    static func getRegisterAccounts() -> Promise<[PushServiceToken]> {
-        typealias TokenList = [PushServiceToken]
-        return PromiseWrapper {
-            return try self.getAuthorizationHeader()
-        }.then { auth -> Promise<PushServiceWrapper<TokenList>> in
-            guard let auth = auth else {
-                throw PushServiceError.notRegistered
-            }
-            return Alamofire.request(
-                "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
-                method: .get,
-                headers: ["Authorization": auth]
-            ).responseDecodable(PushServiceWrapper<TokenList>.self)
-        }.then { $0.result }
+    static func getRegisterAccounts() async throws -> [PushServiceToken] {
+        let res: PushServiceWrapper<[PushServiceToken]> = try await Alamofire.request(
+            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
+            method: .get,
+            headers: ["Authorization": try self.getAuthorizationHeader()]
+        ).responseDecodable()
+        return res.result
     }
     
-    static func getAuthorizeUrl(host: String) -> Promise<String> {
+    static func getAuthorizeUrl(host: String) async throws -> String {
         class Wrapper: Codable { var url: String }
-        return PromiseWrapper { () -> String? in
-            return try self.getAuthorizationHeader()
-        }.then { auth -> Promise<Wrapper> in
-            guard let auth = auth else {
-                throw PushServiceError.notRegistered
-            }
-            return Alamofire.request(
-                "https://imast-backend.rinsuki.net/push/api/v1/get-url",
-                method: .post,
-                parameters: ["host": host],
-                encoding: JSONEncoding.default,
-                headers: ["Authorization": auth]
-            ).responseDecodable(Wrapper.self)
-        }.then { wrapper -> String in
-            return wrapper.url
-        }
+        let res: Wrapper = try await Alamofire.request(
+            "https://imast-backend.rinsuki.net/push/api/v1/get-url",
+            method: .post,
+            parameters: ["host": host],
+            encoding: JSONEncoding.default,
+            headers: ["Authorization": try self.getAuthorizationHeader()]
+        ).responseDecodable()
+        return res.url
     }
     
-    static func unRegister() -> Promise<Void> {
-        return PromiseWrapper {
-            try self.getAuthorizationHeader()
-        }.then { auth -> Promise<PushServiceWrapper<String>> in
-            guard let auth = auth else {
-                throw PushServiceError.notRegistered
-            }
-            return Alamofire.request(
-                "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
-                method: .delete,
-                headers: ["Authorization": auth]
-            ).responseDecodable(PushServiceWrapper<String>.self)
-        }.then { result -> Promise<Void> in
-            return self.deleteAuthInfo()
-        }
+    static func unRegister() async throws {
+        let res: PushServiceWrapper<String> = try await Alamofire.request(
+            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
+            method: .delete,
+            headers: ["Authorization": try self.getAuthorizationHeader()]
+        ).responseDecodable()
+        try self.deleteAuthInfo()
     }
     
-    static func deleteAuthInfo() -> Promise<Void> {
-        return PromiseWrapper {
-            try Keychain_ForPushBackend.remove("userId")
-            try Keychain_ForPushBackend.remove("secret")
-            return ()
-        }
+    static func deleteAuthInfo() throws {
+        try Keychain_ForPushBackend.remove("userId")
+        try Keychain_ForPushBackend.remove("secret")
     }
 }

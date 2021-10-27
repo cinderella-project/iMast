@@ -41,8 +41,21 @@ extension MastodonEndpointProtocol {
         return nil
     }
     
+    public func request(with token: MastodonUserToken) async throws -> Self.Response {
+        return try await token.request(self)
+    }
+    
+    @available(*, deprecated, message: "Use native async/await version instead.")
     public func request(with token: MastodonUserToken) -> Promise<Self.Response> {
-        return token.request(self)
+        return Promise { resolve, reject, context in
+            Task {
+                do {
+                    resolve(try await request(with: token))
+                } catch {
+                    reject(error)
+                }
+            }
+        }
     }
 }
 

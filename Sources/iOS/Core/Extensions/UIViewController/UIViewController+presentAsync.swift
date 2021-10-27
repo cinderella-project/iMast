@@ -1,8 +1,8 @@
 //
-//  UNUserNotificationCenter.requestAuthorization+Hydra.Promise.swift
+//  UIViewController+presentAsync.swift
 //  iMast
 //
-//  Created by rinsuki on 2018/07/31.
+//  Created by rinsuki on 2019/01/21.
 //  
 //  ------------------------------------------------------------------------
 //
@@ -21,20 +21,16 @@
 //  limitations under the License.
 //
 
-import Foundation
-import UserNotifications
-import Hydra
+import UIKit
 
-extension UNUserNotificationCenter {
-    func requestAuthorization(options: UNAuthorizationOptions) -> Promise<Bool> {
-        return Promise<Bool> { resolve, reject, _ in
-            self.requestAuthorization(options: options, completionHandler: { accepted, error in
-                if let error = error {
-                    reject(error)
-                } else {
-                    resolve(accepted)
-                }
-            })
+extension UIViewController {
+    @MainActor
+    public func presentAsync(_ viewControllerToPresent: UIViewController, animated: Bool) async {
+        // TODO: SWIFT TASK CONTINUATION MISUSE: presentAsync(_:animated:) leaked its continuation!
+        await withCheckedContinuation { continuation in
+            self.present(viewControllerToPresent, animated: animated) {
+                continuation.resume()
+            }
         }
     }
 }

@@ -30,28 +30,28 @@ extension Alamofire.DataRequest {
         case httpError(message: String, code: Int)
     }
     
-    public func responseDecodable<T: Decodable>(_ type: T.Type) -> Promise<T> {
-        return Promise<T> { resolve, reject, _ in
-            self.responseData { res in
+    public func responseData() async throws -> (Data, HTTPURLResponse) {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.responseData(queue: nil) { res in
                 switch res.result {
-                case .success(let value):
-                    if res.response?.statusCode ?? 499 >= 400 {
-                        reject(DecodableError.httpError(
-                            message: String(data: value, encoding: .utf8) ?? "(不明)",
-                            code: res.response?.statusCode ?? 499
-                        ))
-                        return
-                    }
-                    do {
-                        resolve(try JSONDecoder.forMastodonAPI.decode(type, from: value))
-                    } catch {
-                        reject(error)
-                    }
+                case .success(let data):
+                    continuation.resume(returning: (data, res.response!))
                 case .failure(let error):
-                    reject(error)
+                    continuation.resume(throwing: error)
                 }
             }
         }
+    }
+    
+    public func responseDecodable<T: Decodable>() async throws -> T {
+        let (data, response) = try await responseData()
+        if response.statusCode >= 400 {
+            throw DecodableError.httpError(
+                message: String(data: data, encoding: .utf8) ?? "(不明)",
+                code: response.statusCode
+            )
+        }
+        return try JSONDecoder.forMastodonAPI.decode(T.self, from: data)
     }
 }
 

@@ -53,7 +53,10 @@ class ShareViewController: SLComposeServiceViewController {
         self.title = "Mastodonで共有"
         self.isMastodonLogged = self.userToken != nil
         if !self.isMastodonLogged {
-            alertWithPromise(title: "エラー", message: "iMastにMastodonのアカウントが設定されていません。\niMastを起動してアカウントを登録してください。").then {
+            alert(
+                title: "エラー",
+                message: "iMastにMastodonのアカウントが設定されていません。\niMastを起動してアカウントを登録してください。"
+            ) {
                 self.cancel()
             }
             return
@@ -239,43 +242,37 @@ class ShareViewController: SLComposeServiceViewController {
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         let alert = UIAlertController(title: "投稿中", message: "しばらくお待ちください", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: nil)
-        let promise: Promise<[JSON]> = async { status -> [JSON] in
-            var results: [JSON] = []
-            for medium in self.postMedia {
-                let result = try `await`(self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()))
-                if result["_response_code"].intValue >= 400 {
-                    throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
+        Task {
+            do {
+                var images: [JSON] = []
+                for medium in self.postMedia {
+                    let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
+                    if result["_response_code"].intValue >= 400 {
+                        throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
+                    }
+                    if result["id"].exists() {
+                        images.append(result)
+                    } else {
+                        print(result)
+                    }
                 }
-                if result["id"].exists() {
-                    results.append(result)
-                } else {
-                    print(result)
-                }
-            }
-            return results
-        }
-        promise.then { images in
-            MastodonEndpoint.CreatePost(
-                status: self.contentText + self.postUrl,
-                visibility: self.visibility,
-                // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
-                mediaIds: images.map { .init(string: $0["id"].stringValue) }
-            ).request(with: self.userToken!).then { res in
+                let res = try await MastodonEndpoint.CreatePost(
+                    status: self.contentText + self.postUrl,
+                    visibility: self.visibility,
+                    // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
+                    mediaIds: images.map { .init(string: $0["id"].stringValue) }
+                ).request(with: self.userToken!)
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-            }
-        }.catch { (error) -> Void in
-            alert.dismiss(animated: false)
-            var promise: Promise<Void>!
-            do {
-                throw error
-            } catch APIError.errorReturned(let errorMessage, let errorHttpCode) {
-                promise = self.apiErrorWithPromise(errorMessage, errorHttpCode)
             } catch {
-                promise = self.apiErrorWithPromise("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
-            }
-            promise.then {
-                self.extensionContext!.cancelRequest(withError: error)
+                await MainActor.run { alert.dismiss(animated: false) }
+                switch error {
+                case APIError.errorReturned(errorMessage: let msg, errorHttpCode: let httpCode):
+                    await apiError(msg, httpCode)
+                default:
+                    await apiError("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
+                }
+                await MainActor.run { self.extensionContext!.cancelRequest(withError: error) }
             }
         }
     }
