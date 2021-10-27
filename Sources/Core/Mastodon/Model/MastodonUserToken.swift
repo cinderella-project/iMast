@@ -189,9 +189,14 @@ public class MastodonUserToken: Equatable {
     
     public func delete() throws {
         try dbQueue.inDatabase { db in
+            try db.beginTransaction()
+            try db.execute(sql: "DELETE FROM state_restoration WHERE user=?", arguments: [
+                self.id,
+            ])
             try db.execute(sql: "DELETE FROM user WHERE id=?", arguments: [
                 self.id,
             ])
+            try db.commit()
         }
     }
     
