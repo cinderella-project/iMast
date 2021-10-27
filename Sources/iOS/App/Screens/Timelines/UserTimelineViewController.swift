@@ -34,29 +34,20 @@ class UserTimelineViewController: TimelineViewController {
     
     var user: MastodonAccount!
     
-    override func loadTimeline() -> Promise<Void> {
+    override func loadTimeline() async throws {
         self.readmoreView.state = .loading
-        return environment.getIntVersion().then { version -> Promise<[[MastodonPost]]> in
-            let pinnedPostPromise = version >= MastodonVersionStringToInt("1.6.0rc1")
-                ? self.environment.timeline(.user(self.user, pinned: true))
-                : Promise.init(resolved: [] as [MastodonPost])
-            return all([
-                pinnedPostPromise,
-                self.environment.timeline(.user(self.user)),
-            ])
-        }.then { res -> Void in
-            self.readmoreView.state = .moreLoadable
-            var snapshot = self.diffableDataSource.snapshot()
-            snapshot.appendItems(res[0].map {
-                self.environment.memoryStore.post.change(obj: $0)
-                return .post(id: $0.id, pinned: true)
-            }, toSection: .pinned)
-            self.diffableDataSource.apply(snapshot, animatingDifferences: false)
-            self.addNewPosts(posts: res[1])
-            return Void()
-        }.catch { e in
-            self.readmoreView.state = .withError
-            self.readmoreView.lastError = e
-        }
+        let version = try await environment.getIntVersion().wait()
+        async let pinnedPosts = version >= MastodonVersionStringToInt("1.6.0rc1")
+            ? MastodonEndpoint.GetTimeline(.user(user, pinned: true)).request(with: environment)
+            : []
+        async let posts = MastodonEndpoint.GetTimeline(.user(user)).request(with: environment)
+        var snapshot = self.diffableDataSource.snapshot()
+        snapshot.appendItems(try await pinnedPosts.map {
+            environment.memoryStore.post.change(obj: $0)
+            return .post(id: $0.id, pinned: true)
+        }, toSection: .pinned)
+        diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
+        self.addNewPosts(posts: try await posts)
+        self.readmoreView.state = .moreLoadable
     }
 }

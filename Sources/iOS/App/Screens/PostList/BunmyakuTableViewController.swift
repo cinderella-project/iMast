@@ -36,14 +36,10 @@ class BunmyakuTableViewController: TimelineViewController {
         self.title = L10n.Localizable.Bunmyaku.title
     }
     
-    override func loadTimeline() -> Promise<()> {
+    override func loadTimeline() async throws {
         self.readmoreView.state = .loading
-        return MastodonEndpoint.GetContextOfPost(post: basePost).request(with: environment).then { res in
-            self.readmoreView.state = .moreLoadable
-            self.addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
-        }.catch { e in
-            self.readmoreView.state = .withError
-            self.readmoreView.lastError = e
-        }
+        let res = try await MastodonEndpoint.GetContextOfPost(post: basePost).request(with: environment)
+        self.addNewPosts(posts: res.ancestors + [self.basePost] + res.descendants)
+        self.readmoreView.state = .moreLoadable
     }
 }

@@ -76,7 +76,7 @@ class TimelineViewController: NSViewController, HasUserToken {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        userToken.timeline(timelineType, limit: 50).then(in: .main) { [weak self] posts in
+        MastodonEndpoint.GetTimeline(timelineType, limit: 50).request(with: userToken).then(in: .main) { [weak self] posts in
             self?.addNewPosts(newPosts: posts, animated: false)
             self?.connectToStreaming()
         }

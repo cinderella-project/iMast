@@ -172,22 +172,6 @@ extension MastodonUserToken {
             return true
         }
     }
-    
-    public func timeline(_ type: MastodonTimelineType, limit: Int? = nil, sinceId: MastodonID? = nil, maxId: MastodonID? = nil) -> Promise<[MastodonPost]> {
-        var params = type.params
-        if let limit = limit {
-            params["limit"] = limit.description
-        }
-        if let sinceId = sinceId {
-            params["since_id"] = sinceId.string
-        }
-        if let maxId = maxId {
-            params["max_id"] = maxId.string
-        }
-        return self.get(type.endpoint, params: params).then { res in
-            return try res.arrayValue.map({try MastodonPost.decode(json: $0)})
-        }
-    }
 }
 
 public class MastodonTimelineType: Equatable {
@@ -199,16 +183,16 @@ public class MastodonTimelineType: Equatable {
     }
     
     let endpoint: String
-    let params: [String: String]
+    let params: [URLQueryItem]
     public let wsParams: [String: String]?
     
     static public let home = MastodonTimelineType(endpoint: "timelines/home", wsParams: ["stream": "user"])
     static public let federated = MastodonTimelineType(endpoint: "timelines/public", wsParams: ["stream": "public"])
-    static public let local = MastodonTimelineType(endpoint: "timelines/public", params: ["local": "true"], wsParams: ["stream": "public:local"])
+    static public let local = MastodonTimelineType(endpoint: "timelines/public", params: [.init(name: "local", value: "true")], wsParams: ["stream": "public:local"])
     static public func user(_ account: MastodonAccount, pinned: Bool = false) -> MastodonTimelineType {
-        var params: [String: String] = [:]
+        var params: [URLQueryItem] = []
         if pinned {
-            params["pinned"] = "1"
+            params.append(.init(name: "pinned", value: "1"))
         }
         return MastodonTimelineType(endpoint: "accounts/\(account.id.string)/statuses", params: params)
     }
@@ -222,7 +206,7 @@ public class MastodonTimelineType: Equatable {
         return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)", wsParams: ["stream": "hashtag", "tag": tag])
     }
     
-    init(endpoint: String, params: [String: String] = [:], wsParams: [String: String]? = nil) {
+    init(endpoint: String, params: [URLQueryItem] = [], wsParams: [String: String]? = nil) {
         self.endpoint = endpoint
         self.params = params
         self.wsParams = wsParams
@@ -230,6 +214,32 @@ public class MastodonTimelineType: Equatable {
 }
 
 extension MastodonEndpoint {
+    public struct GetTimeline: MastodonEndpointWithPagingProtocol {
+        public typealias Response = [MastodonPost]
+        
+        public var endpoint: String {
+            return "/api/v1/\(timelineType.endpoint)"
+        }
+        public let method: String = "GET"
+        
+        public var query: [URLQueryItem] {
+            var q = timelineType.params
+            if let limit = limit { q.append(.init(name: "limit", value: limit.description)) }
+            paging?.addToQuery(&q)
+            return q
+        }
+        
+        public var timelineType: MastodonTimelineType
+        public var limit: Int?
+        public var paging: MastodonPagingOption?
+        
+        public init(_ timelineType: MastodonTimelineType, limit: Int? = nil, paging: MastodonPagingOption? = nil) {
+            self.timelineType = timelineType
+            self.limit = limit
+            self.paging = paging
+        }
+    }
+    
     public struct GetBookmarks: MastodonEndpointWithPagingProtocol {
         public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
 

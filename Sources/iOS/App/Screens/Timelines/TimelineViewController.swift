@@ -134,7 +134,7 @@ class TimelineViewController: UIViewController, Instantiatable {
             }
         }
         
-        loadTimeline().then {
+        performLoadTimeline {
             self.tableView.reloadData()
             self.websocketConnect(auto: true)
         }
@@ -205,21 +205,28 @@ class TimelineViewController: UIViewController, Instantiatable {
         readmoreView.layoutIfNeeded()
     }
     
-    func loadTimeline() -> Promise<()> {
+    func performLoadTimeline(completion: @escaping () -> Void) {
+        Task {
+            do {
+                try await loadTimeline()
+                completion()
+            } catch {
+                self.readmoreView.state = .withError
+                self.readmoreView.lastError = error
+            }
+        }
+    }
+    
+    func loadTimeline() async throws {
         guard let timelineType = self.timelineType else {
             print("loadTimelineを実装するか、self.timelineTypeを定義してください。")
-            return Promise.init(resolved: Void())
+            return
         }
         
         self.readmoreView.state = .loading
-        return self.environment.timeline(timelineType).then { (posts) -> Void in
-            self.readmoreView.state = .moreLoadable
-            self.addNewPosts(posts: posts)
-            return Void()
-        }.catch { e in
-            self.readmoreView.state = .withError
-            self.readmoreView.lastError = e
-        }
+        let posts = try await MastodonEndpoint.GetTimeline(timelineType).request(with: environment)
+        self.addNewPosts(posts: posts)
+        self.readmoreView.state = .moreLoadable
     }
     
     @objc func refreshTimeline() {
@@ -229,19 +236,15 @@ class TimelineViewController: UIViewController, Instantiatable {
             return
         }
         let snapshot = self.diffableDataSource.snapshot()
-        var pointer: MastodonID?
-        if let v = snapshot.itemIdentifiers(inSection: .posts).first,
-            case .post(let id, _) = v {
-            pointer = id
-        } else {
-            pointer = nil
+        var timelineRequest = MastodonEndpoint.GetTimeline(timelineType, limit: 40)
+        if let v = snapshot.itemIdentifiers(inSection: .posts).first, case .post(let id, _) = v {
+            timelineRequest.paging = .prev(id.string, isSinceId: true)
         }
-        environment.timeline(
-            timelineType,
-            limit: 40,
-            sinceId: pointer
-        ).then { posts in
+        timelineRequest.request(with: environment).then { posts in
             self.addNewPosts(posts: posts)
+        }.catch { error in
+            self.errorReport(error: error)
+        }.always(in: .main) {
             self.refreshControl.endRefreshing()
         }
     }
@@ -258,19 +261,12 @@ class TimelineViewController: UIViewController, Instantiatable {
             return
         }
         let snapshot = self.diffableDataSource.snapshot()
-        var pointer: MastodonID?
-        if let v = snapshot.itemIdentifiers(inSection: .posts).last,
-            case .post(let id, _) = v {
-            pointer = id
-        } else {
-            pointer = nil
+        var request = MastodonEndpoint.GetTimeline(timelineType, limit: 40)
+        if let v = snapshot.itemIdentifiers(inSection: .posts).last, case .post(let id, _) = v {
+            request.paging = .next(id.string)
         }
         
-        environment.timeline(
-            timelineType,
-            limit: 40,
-            maxId: pointer
-        ).then { posts in
+        request.request(with: environment).then { posts in
             self.appendNewPosts(posts: posts)
             self.readmoreView.state = posts.count == 0 ? .allLoaded : .moreLoadable
         }.catch { e in
@@ -393,7 +389,7 @@ class TimelineViewController: UIViewController, Instantiatable {
             self.diffableDataSource.apply(snapshot, animatingDifferences: false)
         }
         self.isAlreadyAdded = [:]
-        self.loadTimeline().then {
+        performLoadTimeline {
             if isStreamingConnectingNow {
                 self.socket?.connect()
             }

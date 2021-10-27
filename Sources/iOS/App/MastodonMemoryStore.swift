@@ -49,7 +49,9 @@ class MastodonMemoryStore<T: MastodonMemoryStorable> {
         if isFirst {
             obj.setChain(store: self)
         }
-        self.notificationCenter.post(name: .init(obj.id.string), object: obj)
+        DispatchQueue.mainSafeSync {
+            self.notificationCenter.post(name: .init(obj.id.string), object: obj)
+        }
         obj.changeChain(store: self)
     }
     
