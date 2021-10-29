@@ -33,6 +33,7 @@ class WebSocketWrapper: WebSocketDelegate {
     let webSocket: WebSocket
     var reconnect: Bool = true
     var reconnectWait: Int8 = 0
+    var sendMessageWhenConnected: [String] = []
     weak var delegate: WebSocketWrapperDelegate?
     
     init(webSocket: WebSocket) {
@@ -61,6 +62,9 @@ class WebSocketWrapper: WebSocketDelegate {
         print("WebSocket Connected")
         reconnectWait = 0
         delegate?.webSocketDidConnect(self)
+        for message in sendMessageWhenConnected {
+            webSocket.write(string: message, completion: nil)
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -90,12 +94,19 @@ protocol WebSocketWrapperDelegate: class {
     func webSocketDidReceiveMessage(_ wrapper: WebSocketWrapper, text: String)
 }
 
+private struct SubscribeRequest: Encodable {
+    let type: String = "subscribe"
+    let stream: String
+    let list: String?
+}
+
 extension MastodonUserToken {
     func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
         return self.app.instance.getInfo().then { info in
+            let isMultiEndpoint = endpoint.contains(" ")
             var streamingUrlString = ""
             streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
-            streamingUrlString += "/api/v1/streaming/?stream=" + endpoint
+            streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
             let protocols: [String]?
             if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
                 protocols = [self.token]
@@ -107,6 +118,12 @@ extension MastodonUserToken {
             urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
             let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
             let wrap = WebSocketWrapper(webSocket: webSocket)
+            if isMultiEndpoint {
+                let encoder = JSONEncoder()
+                wrap.sendMessageWhenConnected = endpoint
+                    .split(separator: " ")
+                    .map { String(data: try! encoder.encode(SubscribeRequest(stream: String($0), list: nil)), encoding: .utf8)! }
+            }
             webSockets.append(.init(value: wrap))
             return Promise(resolved: wrap)
         }

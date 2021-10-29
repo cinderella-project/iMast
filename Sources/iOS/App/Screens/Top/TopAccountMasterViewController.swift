@@ -44,6 +44,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         case home
         case notifications
         case local
+        case homeAndLocal
         case bookmarks
         case list(MastodonList)
     }
@@ -89,6 +90,9 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         snapshot.appendItems([.profile, .followRequests])
         snapshot.appendSections([.timelines])
         snapshot.appendItems([.home, .notifications, .local])
+        if version >= MastodonVersionStringToInt("3.3.0") {
+            snapshot.appendItems([.homeAndLocal])
+        }
         snapshot.appendSections([.dependedByMastodonVersion])
         if version >= MastodonVersionStringToInt("3.1.0") {
             snapshot.appendItems([.bookmarks])
@@ -150,6 +154,10 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "person.and.person")
             cell.textLabel?.text = L10n.Localizable.LocalTimeline.short
+        case .homeAndLocal:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.imageView?.image = UIImage(systemName: "display.2")
+            cell.textLabel?.text = "Home + Local"
         case .bookmarks:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bookmark")
@@ -182,6 +190,9 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .local:
             let vc = LocalTimelineViewController.instantiate(.plain, environment: environment)
+            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
+        case .homeAndLocal:
+            let vc = HomeAndLocalTimelineViewController.instantiate(.plain, environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .bookmarks:
             let vc = BookmarksTableViewController.instantiate(.init(), environment: environment)
