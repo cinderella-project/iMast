@@ -168,7 +168,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             }),
         ]
         
-        if input.bio != "<p></p>" {
+        if input.bio.toPlainText() != "" {
             let cell = UITableViewCell()
             cell.accessibilityIdentifier = "bioCell"
             cells[0].append(cell)
