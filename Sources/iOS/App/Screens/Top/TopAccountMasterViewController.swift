@@ -79,7 +79,18 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         )
         
         update()
-        loadLists()
+        Task {
+            async let version = environment.getIntVersion().wait()
+            async let lists = MastodonEndpoint.MyLists().request(with: environment)
+            if let version = try? await version {
+                self.version = version
+                update()
+            }
+            if let lists = try? await lists {
+                self.lists = lists
+                update()
+            }
+        }
     }
     
     var isFirstUpdate = true
@@ -104,19 +115,6 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         dataSource.defaultRowAnimation = .fade
         dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
         isFirstUpdate = false
-    }
-    
-    func loadLists() {
-        environment.getIntVersion().then { [weak self] version in
-            guard let strongSelf = self else { return }
-            strongSelf.version = version
-            strongSelf.update()
-        }
-        MastodonEndpoint.MyLists().request(with: environment).then { [weak self] lists in
-            guard let strongSelf = self else { return }
-            strongSelf.lists = lists
-            strongSelf.update()
-        }
     }
     
     func input(_ input: Input) {
