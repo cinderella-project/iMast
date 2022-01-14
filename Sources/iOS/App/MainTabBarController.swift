@@ -63,8 +63,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
         ltlVC.tabBarItem.accessibilityIdentifier = "ltl"
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
-        otherVC.tabBarItem.image = Asset.moreOutline.image
-        otherVC.tabBarItem.selectedImage = Asset.more.image
+        otherVC.tabBarItem.image = UIImage(systemName: "ellipsis")
         otherVC.tabBarItem.title = L10n.Localizable.other
         otherVC.tabBarItem.accessibilityIdentifier = "others"
         

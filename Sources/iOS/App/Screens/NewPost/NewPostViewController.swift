@@ -199,7 +199,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     
     @objc func keyboardWillShow(notification: Notification?) {
         self.view.layoutIfNeeded()
-        self.keyboardUpOrDown.image = UIImage(named: "ArrowDown")
+        self.keyboardUpOrDown.image = UIImage(systemName: "chevron.down")
         nowKeyboardUpOrDown = true
         guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
@@ -216,7 +216,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     @objc func keyboardWillHide(notification: Notification?) {
         additionalSafeAreaInsets.bottom = 44
-        self.keyboardUpOrDown.image = UIImage(named: "ArrowUp")
+        self.keyboardUpOrDown.image = UIImage(systemName: "chevron.up")
         nowKeyboardUpOrDown = false
     }
     @IBAction func keyboardUpOrDownTapped(_ sender: Any) {
