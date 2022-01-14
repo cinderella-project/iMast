@@ -87,35 +87,35 @@ class NotificationService: UNNotificationServiceExtension {
         // Modify the notification content here...
         
         self.bestAttemptContent?.threadIdentifier = ""
-        if Defaults[.groupNotifyAccounts], let receiveUser = request.content.userInfo["receiveUser"] as? [String] {
+        if Defaults.groupNotifyAccounts, let receiveUser = request.content.userInfo["receiveUser"] as? [String] {
             self.bestAttemptContent?.threadIdentifier += "account=\(receiveUser.joined(separator: "@")),"
         }
         if let notifyType = request.content.userInfo["notifyType"] as? String {
             switch notifyType {
             case "reblog":
-                if Defaults[.groupNotifyTypeBoost] {
+                if Defaults.groupNotifyTypeBoost {
                     self.bestAttemptContent?.threadIdentifier += "type=boost,"
                 }
-                if Defaults[.useCustomBoostSound] {
+                if Defaults.useCustomBoostSound {
                     self.bestAttemptContent?.sound = .init(named: .init("custom-boost.caf"))
                 }
             case "favourite":
-                if Defaults[.groupNotifyTypeFavourite] {
+                if Defaults.groupNotifyTypeFavourite {
                     self.bestAttemptContent?.threadIdentifier += "type=favourite,"
                 }
-                if Defaults[.useCustomFavouriteSound] {
+                if Defaults.useCustomFavouriteSound {
                     self.bestAttemptContent?.sound = .init(named: .init("custom-favourite.caf"))
                 }
             case "mention":
-                if Defaults[.groupNotifyTypeMention] {
+                if Defaults.groupNotifyTypeMention {
                     self.bestAttemptContent?.threadIdentifier += "type=mention,"
                 }
             case "follow":
-                if Defaults[.groupNotifyTypeFollow] {
+                if Defaults.groupNotifyTypeFollow {
                     self.bestAttemptContent?.threadIdentifier += "type=follow,"
                 }
             case "unknown":
-                if Defaults[.groupNotifyTypeUnknown] {
+                if Defaults.groupNotifyTypeUnknown {
                     self.bestAttemptContent?.threadIdentifier += "type=unknown,"
                 }
             case "information":
@@ -149,13 +149,13 @@ class NotificationService: UNNotificationServiceExtension {
                 let str = String(data: data, encoding: .utf8)
                 self.bestAttemptContent?.userInfo["upstreamObject"] = str
                 
-                if Defaults[.communicationNotificationsEnabled],
+                if Defaults.communicationNotificationsEnabled,
                    let account = notify.account, notify.type == "mention",
                    let avatarURL = URL(string: account.avatarUrl)
                 {
                     let displayName: String
                     let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
-                    switch Defaults[.communicationNotificationsNameType] {
+                    switch Defaults.communicationNotificationsNameType {
                     case .acct:
                         displayName = "@\(account.acct)"
                     case .name:
@@ -194,7 +194,7 @@ class NotificationService: UNNotificationServiceExtension {
         let promiseAll = all(promise)
         
         promiseAll.catch { error in
-            if Defaults[.showPushServiceError] {
+            if Defaults.showPushServiceError {
                 self.bestAttemptContent?.title = "Notification Service Error"
                 self.bestAttemptContent?.subtitle = ""
                 self.bestAttemptContent?.body = "\(error)"

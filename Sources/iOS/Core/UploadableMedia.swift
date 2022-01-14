@@ -44,7 +44,7 @@ public struct UploadableMedia {
     public let thumbnailImage: UIImage
     
     public func toUploadableData() -> Data {
-        let newSize = Defaults[.autoResizeSize]
+        let newSize = Defaults.autoResizeSize
         if newSize != 0, self.format == .jpeg || self.format == .png {
             // 画像の縮小と再圧縮
             guard let image = UIImage(data: self.data) else {

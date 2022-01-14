@@ -100,10 +100,10 @@ class MastodonCompactPollViewController: UIViewController, Instantiatable, Injec
             return
         }
         self.view.isHidden = false
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-        self.expireLabel.font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-        self.descriptionLabel.font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-        self.paddingConstraint.update(offset: -Defaults[.timelineTextFontsize])
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
+        self.expireLabel.font = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
+        self.descriptionLabel.font = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
+        self.paddingConstraint.update(offset: -Defaults.timelineTextFontsize)
 
         var expireLabelComponents = ["\(poll.votes_count)票"]
         if poll.expired {

@@ -82,19 +82,13 @@ extension String {
     
 }
 
-extension UserDefaults {
-    func exists(_ key: String) -> Bool {
-        return self.object(forKey: key) != nil
-    }
-}
-
 public func numToCommaString(_ num: Int) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = NumberFormatter.Style.decimal
     return formatter.string(from: num as NSNumber)!
 }
 
-public enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, CaseIterable {
+public enum PostFabLocation: String, CustomStringConvertible, CaseIterable {
     public var description: String {
         switch self {
         case .leftCenter:
@@ -110,8 +104,6 @@ public enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, 
         }
     }
     
-    public static var _defaultValue: PostFabLocation = .rightBottom
-    
     case leftCenter
     case rightCenter
     case leftBottom
@@ -120,4 +112,3 @@ public enum PostFabLocation: String, WithDefaultValue, CustomStringConvertible, 
 }
 
 public let UserDefaultsAppGroup = UserDefaults.init(suiteName: appGroupIdentifier)!
-public let Defaults = UserDefaultsAppGroup

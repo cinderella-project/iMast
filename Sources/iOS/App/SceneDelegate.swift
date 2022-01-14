@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         if let myAccount = token {
-            window.rootViewController = Defaults[.newFirstScreen]
+            window.rootViewController = Defaults.newFirstScreen
                 ? TopViewController()
                 : MainTabBarController.instantiate(environment: myAccount)
             #if !targetEnvironment(macCatalyst)

@@ -27,7 +27,7 @@ import iMastiOSCore
 
 extension UIViewController {
     func open(url: URL, forceDisableUniversalLink: Bool = false) {
-        if Defaults[.useUniversalLink], forceDisableUniversalLink == false {
+        if Defaults.useUniversalLink, forceDisableUniversalLink == false {
             UIApplication.shared.open(url, options: [
                 .universalLinksOnly: true,
             ]) { result in
@@ -35,7 +35,7 @@ extension UIViewController {
                     // Universal Links クッションページスキップ処理
                     // TODO: 設定ファイルとして分離したい
                     // TODO: もしもの時のためにリモートでのキルスイッチを用意したほうがいいかもしれない
-                    if Defaults[.skipUniversalLinksCussionPage] {
+                    if Defaults.skipUniversalLinksCussionPage {
                         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
                         var cussionPageSkipInfoFounds = false
                         if url.host == "poplinks.idolmaster-official.jp", url.path == "/snspost/launchpage.html" {

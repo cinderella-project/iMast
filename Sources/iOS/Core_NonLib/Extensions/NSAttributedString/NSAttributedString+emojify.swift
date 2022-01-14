@@ -41,7 +41,7 @@ extension NSAttributedString {
             while let range = (retstr.string as NSString).range(of: shortcode).optional {
                 let attachment = NSTextAttachment()
                 let fontAttribute = retstr.attribute(.font, at: range.location, longestEffectiveRange: nil, in: range)
-                let font = fontAttribute as? UIFont ?? UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+                let font = fontAttribute as? UIFont ?? UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
                 let size = font.lineHeight + 1
                 attachment.bounds = CGRect(x: 0, y: 0, width: size, height: size)
                 attachment.bounds.origin = CGPoint(x: 0, y: -4)

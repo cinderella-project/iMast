@@ -140,7 +140,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     var oldOffset: CGFloat = 0
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard Defaults[.notifyTabInfiniteScroll] else {
+        guard Defaults.notifyTabInfiniteScroll else {
             return
         }
         let currentOffset = scrollView.contentOffset.y

@@ -84,7 +84,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             self.textInput.text = replyAccounts.joined()
             self.scope = replyToPost.visibility
         }
-        if Defaults[.usingDefaultVisibility] && replyToPost == nil {
+        if Defaults.usingDefaultVisibility && replyToPost == nil {
             asyncPromise { try await self.userToken.getUserInfo(cache: true) }.then { res in
                 if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
                     self.scope = myScope
@@ -257,7 +257,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         if nowPlayingMusic.title == nil {
             return
         }
-        var nowPlayingText = Defaults[.nowplayingFormat]
+        var nowPlayingText = Defaults.nowplayingFormat
         nowPlayingText = nowPlayingText.replacingOccurrences(of: "{title}", with: nowPlayingMusic.title ?? "")
         nowPlayingText = nowPlayingText.replacingOccurrences(of: "{artist}", with: nowPlayingMusic.artist ?? "")
         nowPlayingText = nowPlayingText.replacingOccurrences(of: "{albumArtist}", with: nowPlayingMusic.albumArtist ?? "")
@@ -268,7 +268,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
 
         func checkAppleMusic() -> Bool {
-            guard Defaults[.nowplayingAddAppleMusicUrl] else { return false }
+            guard Defaults.nowplayingAddAppleMusicUrl else { return false }
             let storeId = nowPlayingMusic.playbackStoreID
             guard storeId != "0" else { return false }
             let region = Locale.current.regionCode ?? "jp"
@@ -317,7 +317,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         media = []
         imageSelectButton.setTitle(" 0", for: .normal)
         isNSFW = false
-        if Defaults[.usingDefaultVisibility] && replyToPost == nil {
+        if Defaults.usingDefaultVisibility && replyToPost == nil {
             asyncPromise { try await self.userToken.getUserInfo(cache: true) }.then { res in
                 if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
                     self.scope = myScope

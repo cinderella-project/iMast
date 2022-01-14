@@ -136,7 +136,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             self.view.isHidden = false
         }
         
-        let thumbnailHeight = Defaults[.thumbnailHeight]
+        let thumbnailHeight = Defaults.thumbnailHeight
         
         // mediaStackView内のimageViewのストックが足りなかったら追加する
         while mediaStackView.arrangedSubviews.count < input.attachments.count {
@@ -195,7 +195,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             return
         }
         
-        if media.type.shouldUseMediaPlayer, Defaults[.useAVPlayer], let url = URL(string: media.url) {
+        if media.type.shouldUseMediaPlayer, Defaults.useAVPlayer, let url = URL(string: media.url) {
             let item = AVPlayerItem(url: url)
             let player = AVPlayer(playerItem: item)
             let viewController = LoopableAVPlayerViewController()

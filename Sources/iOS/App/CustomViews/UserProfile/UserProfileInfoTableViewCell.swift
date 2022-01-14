@@ -83,7 +83,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
             .request(with: userToken)
             .then { (relationships) in
                 let relationship = relationships[0]
-                let relationshipOld: Bool = Defaults[.followRelationshipsOld]
+                let relationshipOld: Bool = Defaults.followRelationshipsOld
                 var relationshipText: String
                 if user.acct == self.userToken.screenName {
                     relationshipText = "関係: それはあなたです！"

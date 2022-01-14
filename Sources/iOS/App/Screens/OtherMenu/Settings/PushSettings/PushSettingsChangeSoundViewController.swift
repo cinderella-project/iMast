@@ -36,7 +36,7 @@ class PushSettingsChangeSoundViewController: FormViewController {
             Section(header: "ブースト") {
                 SwitchRow { row in
                     row.title = "有効"
-                    row.userDefaultsConnect(.useCustomBoostSound)
+                    row.userDefaultsConnect(Defaults.$useCustomBoostSound)
                 }
                 ButtonRow { row in
                     row.title = "ファイル選択"
@@ -61,7 +61,7 @@ class PushSettingsChangeSoundViewController: FormViewController {
             Section(header: "ふぁぼ") {
                 SwitchRow { row in
                     row.title = "有効"
-                    row.userDefaultsConnect(.useCustomFavouriteSound)
+                    row.userDefaultsConnect(Defaults.$useCustomFavouriteSound)
                 }
                 ButtonRow { row in
                     row.title = "ファイル選択"

@@ -23,6 +23,7 @@
 
 import UIKit
 import Eureka
+import iMastiOSCore
 
 class PushSettingsGroupNotifyTableViewController: FormViewController {
 
@@ -45,7 +46,7 @@ class PushSettingsGroupNotifyTableViewController: FormViewController {
             Section {
                 SwitchRow { row in
                     row.title = L10n.Preferences.Push.Shared.GroupRules.byAccount
-                    row.userDefaultsConnect(.groupNotifyAccounts)
+                    row.userDefaultsConnect(Defaults.$groupNotifyAccounts)
                 }
             }
             Section(
@@ -54,23 +55,23 @@ class PushSettingsGroupNotifyTableViewController: FormViewController {
             ) {
                 SwitchRow { row in
                     row.title = "ブースト"
-                    row.userDefaultsConnect(.groupNotifyTypeBoost)
+                    row.userDefaultsConnect(Defaults.$groupNotifyTypeBoost)
                 }
                 SwitchRow { row in
                     row.title = "お気に入り"
-                    row.userDefaultsConnect(.groupNotifyTypeFavourite)
+                    row.userDefaultsConnect(Defaults.$groupNotifyTypeFavourite)
                 }
                 SwitchRow { row in
                     row.title = "メンション"
-                    row.userDefaultsConnect(.groupNotifyTypeMention)
+                    row.userDefaultsConnect(Defaults.$groupNotifyTypeMention)
                 }
                 SwitchRow { row in
                     row.title = "フォロー"
-                    row.userDefaultsConnect(.groupNotifyTypeFollow)
+                    row.userDefaultsConnect(Defaults.$groupNotifyTypeFollow)
                 }
                 SwitchRow { row in
                     row.title = "その他"
-                    row.userDefaultsConnect(.groupNotifyTypeUnknown)
+                    row.userDefaultsConnect(Defaults.$groupNotifyTypeUnknown)
                 }
             }
         }

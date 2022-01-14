@@ -55,7 +55,7 @@ class SettingsViewController: FormViewController {
         return Section {
             PushStringRow { row in
                 row.title = L10n.Preferences.General.StreamingAutoConnect.title
-                row.userDefaultsConnect(.streamingAutoConnect, map: [
+                row.userDefaultsConnect(Defaults.$streamingAutoConnect, map: [
                     ("no", L10n.Preferences.General.StreamingAutoConnect.no),
                     ("wifi", L10n.Preferences.General.StreamingAutoConnect.wifi),
                     ("always", L10n.Preferences.General.StreamingAutoConnect.always),
@@ -64,11 +64,11 @@ class SettingsViewController: FormViewController {
             TextRow { row in
                 row.title = L10n.Preferences.General.NewAccountVia.title
                 row.placeholder = "iMast"
-                row.userDefaultsConnect(.newAccountVia, ifEmptyUseDefaultValue: true)
+                row.userDefaultsConnect(Defaults.$newAccountVia, ifEmptyUseDefaultValue: true)
             }
             SwitchRow { row in
                 row.title = "フォロー関係を以前の表記にする"
-                row.userDefaultsConnect(.followRelationshipsOld)
+                row.userDefaultsConnect(Defaults.$followRelationshipsOld)
             }
             ButtonRow { row in
                 row.title = L10n.Preferences.Push.title
@@ -97,11 +97,11 @@ class SettingsViewController: FormViewController {
                     let str = px == 0 ? L10n.Preferences.Post.AutoResize.no : L10n.Preferences.Post.AutoResize.pixel(px)
                     return (px, str)
                 }
-                row.userDefaultsConnect(.autoResizeSize, map: smap)
+                row.userDefaultsConnect(Defaults.$autoResizeSize, map: smap)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.Post.useDefaultVisibility
-                row.userDefaultsConnect(.usingDefaultVisibility)
+                row.userDefaultsConnect(Defaults.$usingDefaultVisibility)
             }
         }
     }
@@ -114,11 +114,11 @@ class SettingsViewController: FormViewController {
             TextAreaRow { row in
                 row.placeholder = "#NowPlaying {title} - {artist} ({albumTitle})"
                 row.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
-                row.userDefaultsConnect(.nowplayingFormat)
+                row.userDefaultsConnect(Defaults.$nowplayingFormat)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.NowPlaying.addURLIfAppleMusicAndAvailable
-                row.userDefaultsConnect(.nowplayingAddAppleMusicUrl)
+                row.userDefaultsConnect(Defaults.$nowplayingAddAppleMusicUrl)
             }
         }
     }
@@ -127,7 +127,7 @@ class SettingsViewController: FormViewController {
         return Section(header: "投稿詳細") {
             SwitchRow { row in
                 row.title = "投稿削除をておくれにする"
-                row.userDefaultsConnect(.deleteTootTeokure)
+                row.userDefaultsConnect(Defaults.$deleteTootTeokure)
             }
         }
     }
@@ -141,7 +141,7 @@ class SettingsViewController: FormViewController {
                     cell.slider.minimumValue = 10
                 }
                 row.steps = 20
-                row.userDefaultsConnect(.timelineUsernameFontsize)
+                row.userDefaultsConnect(Defaults.$timelineUsernameFontsize)
             }
             TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.contentSize
@@ -150,11 +150,11 @@ class SettingsViewController: FormViewController {
                     cell.slider.minimumValue = 10
                 }
                 row.steps = 20
-                row.userDefaultsConnect(.timelineTextFontsize)
+                row.userDefaultsConnect(Defaults.$timelineTextFontsize)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.contentBold
-                row.userDefaultsConnect(.timelineTextBold)
+                row.userDefaultsConnect(Defaults.$timelineTextBold)
             }
             TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.iconSize
@@ -163,15 +163,15 @@ class SettingsViewController: FormViewController {
                     cell.slider.minimumValue = 24
                 }
                 row.steps = (72-24)*2
-                row.userDefaultsConnect(.timelineIconSize)
+                row.userDefaultsConnect(Defaults.$timelineIconSize)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.visibilityAsEmoji
-                row.userDefaultsConnect(.visibilityEmoji)
+                row.userDefaultsConnect(Defaults.$visibilityEmoji)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.inReplyToAsEmoji
-                row.userDefaultsConnect(.inReplyToEmoji)
+                row.userDefaultsConnect(Defaults.$inReplyToEmoji)
             }
             TwolineSliderRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.thumbnailHeight
@@ -180,11 +180,11 @@ class SettingsViewController: FormViewController {
                     cell.slider.minimumValue = 0
                 }
                 row.steps = 100/5
-                row.userDefaultsConnect(.thumbnailHeight)
+                row.userDefaultsConnect(Defaults.$thumbnailHeight)
             }
             TwolineSliderRow { row in
                 row.title = "ピン留め投稿の行数制限"
-                row.userDefaultsConnect(.pinnedTootLinesLimit)
+                row.userDefaultsConnect(Defaults.$pinnedTootLinesLimit)
                 row.steps = 10
                 row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
                 row.cellSetup { cell, row in
@@ -194,16 +194,16 @@ class SettingsViewController: FormViewController {
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.BigNewPostButton.show
-                row.userDefaultsConnect(.postFabEnabled)
+                row.userDefaultsConnect(Defaults.$postFabEnabled)
             }
             PushRow<PostFabLocation> { row in
                 row.title = L10n.Preferences.TimelineAppearance.BigNewPostButton.Location.title
                 row.options = PostFabLocation.allCases
-                row.userDefaultsConnect(.postFabLocation)
+                row.userDefaultsConnect(Defaults.$postFabLocation)
             }
             SwitchRow { row in
                 row.title = "acctのホスト名を略す"
-                row.userDefaultsConnect(.acctAbbr)
+                row.userDefaultsConnect(Defaults.$acctAbbr)
                 row.cellStyle = .subtitle
                 row.cellUpdate { cell, row in
                     cell.detailTextLabel?.text = "例: m6n.s4l"
@@ -211,7 +211,7 @@ class SettingsViewController: FormViewController {
             }
             SwitchRow { row in
                 row.title = "投稿の言語情報を表示時に考慮"
-                row.userDefaultsConnect(.usePostLanguageInfo)
+                row.userDefaultsConnect(Defaults.$usePostLanguageInfo)
             }
         }
     }
@@ -220,15 +220,15 @@ class SettingsViewController: FormViewController {
         return Section(header: L10n.Preferences.Timeline.title) {
             SwitchRow { row in
                 row.title = L10n.Preferences.Timeline.openWebMInVLC
-                row.userDefaultsConnect(.webmVlcOpen)
+                row.userDefaultsConnect(Defaults.$webmVlcOpen)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.Timeline.useSystemVideoPlayer
-                row.userDefaultsConnect(.useAVPlayer)
+                row.userDefaultsConnect(Defaults.$useAVPlayer)
             }
             SwitchRow { row in
                 row.title = L10n.Preferences.Timeline.useUniversalLinks
-                row.userDefaultsConnect(.useUniversalLink)
+                row.userDefaultsConnect(Defaults.$useUniversalLink)
             }
         }
     }
@@ -237,11 +237,11 @@ class SettingsViewController: FormViewController {
         return Section(header: "共有") {
             SwitchRow { row in
                 row.title = "Twitterにトラッキングさせない"
-                row.userDefaultsConnect(.shareNoTwitterTracking)
+                row.userDefaultsConnect(Defaults.$shareNoTwitterTracking)
             }
             SwitchRow { row in
                 row.title = "Spotifyを共有する時にNowPlayingフォーマットを使用"
-                row.userDefaultsConnect(.usingNowplayingFormatInShareSpotifyUrl)
+                row.userDefaultsConnect(Defaults.$usingNowplayingFormatInShareSpotifyUrl)
                 row.cellStyle = .subtitle
                 row.cellUpdate { cell, row in
                     cell.textLabel?.numberOfLines = 0
@@ -251,11 +251,11 @@ class SettingsViewController: FormViewController {
             }
             SwitchRow { row in
                 row.title = "Spotifyのsiパラメータを削除"
-                row.userDefaultsConnect(.shareNoSpotifySIParameter)
+                row.userDefaultsConnect(Defaults.$shareNoSpotifySIParameter)
             }
             SwitchRow { row in
                 row.title = "共有プレビューで独自実装を利用"
-                row.userDefaultsConnect(.useCustomizedSharePreview)
+                row.userDefaultsConnect(Defaults.$useCustomizedSharePreview)
                 row.cellStyle = .subtitle
                 row.cellUpdate { cell, row in
                     cell.detailTextLabel?.text = "メモリ制限でクラッシュする問題への対策です。\n何らかの不都合が生じた場合はオフにしてみてください。"
@@ -319,22 +319,22 @@ class SettingsViewController: FormViewController {
         return Section(header: "実験的な要素") {
             SwitchRow { row in
                 row.title = "新しいHTMLパーサーを使う"
-                row.userDefaultsConnect(.newHtmlParser)
+                row.userDefaultsConnect(Defaults.$newHtmlParser)
             }
             SwitchRow { row in
                 row.title = "通知タブの無限スクロール"
-                row.userDefaultsConnect(.notifyTabInfiniteScroll)
+                row.userDefaultsConnect(Defaults.$notifyTabInfiniteScroll)
             }
             SwitchRow { row in
                 row.title = "最初の画面を新しいものに (α)"
-                row.userDefaultsConnect(.newFirstScreen)
+                row.userDefaultsConnect(Defaults.$newFirstScreen)
             }
             SwitchRow { row in
                 row.title = "可能なら Universal Links の一部クッションページを省略"
                 row.cellUpdate { (cell, _) in
                     cell.textLabel?.numberOfLines = 0
                 }
-                row.userDefaultsConnect(.skipUniversalLinksCussionPage)
+                row.userDefaultsConnect(Defaults.$skipUniversalLinksCussionPage)
             }
             SwitchRow { row in
                 row.title = "Communication Notifications を有効にする"
@@ -344,15 +344,15 @@ class SettingsViewController: FormViewController {
                     cell.detailTextLabel?.text = "メンションのプッシュ通知に送信者のアイコンが付くようになります。"
                     cell.detailTextLabel?.numberOfLines = 0
                 }
-                row.userDefaultsConnect(.communicationNotificationsEnabled)
+                row.userDefaultsConnect(Defaults.$communicationNotificationsEnabled)
             }
-            PushRow<DefaultsKeys.CommunicationNotificationsNameType> { row in
+            PushRow<Defaults.CommunicationNotificationsNameType> { row in
                 row.title = "有効時の名前のフォーマット"
-                row.options = DefaultsKeys.CommunicationNotificationsNameType.allCases
+                row.options = Defaults.CommunicationNotificationsNameType.allCases
                 row.cellUpdate { cell, row in
                     cell.textLabel?.numberOfLines = 0
                 }
-                row.userDefaultsConnect(.communicationNotificationsNameType)
+                row.userDefaultsConnect(Defaults.$communicationNotificationsNameType)
             }
         }
     }

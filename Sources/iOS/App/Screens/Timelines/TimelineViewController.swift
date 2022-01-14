@@ -164,13 +164,13 @@ class TimelineViewController: UIViewController, Instantiatable {
                 discoverabilityTitle: L10n.NewPost.KeyCommand.Open.description
             ))
             
-            if Defaults[.postFabEnabled] {
+            if Defaults.postFabEnabled {
                 _ = postFabButton ※ {
                     view.addSubview(postFabButton)
                     $0.snp.makeConstraints { make in
                         let offset = 16
                         // X
-                        switch Defaults[.postFabLocation] {
+                        switch Defaults.postFabLocation {
                         case .leftCenter, .leftBottom:
                             make.left.equalTo(view.safeAreaLayoutGuide).offset(offset)
                         case .rightCenter, .rightBottom:
@@ -180,7 +180,7 @@ class TimelineViewController: UIViewController, Instantiatable {
                         }
                         
                         // Y
-                        switch Defaults[.postFabLocation] {
+                        switch Defaults.postFabLocation {
                         case .leftCenter, .rightCenter:
                             make.centerY.equalTo(view.safeAreaLayoutGuide)
                         case .leftBottom, .centerBottom, .rightBottom:
@@ -325,7 +325,7 @@ class TimelineViewController: UIViewController, Instantiatable {
     
     func websocketConnect(auto: Bool) {
         if auto {
-            let conditions = Defaults[.streamingAutoConnect]
+            let conditions = Defaults.streamingAutoConnect
             if conditions == "no" {
                 return
             } else if conditions == "wifi" {

@@ -199,10 +199,10 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         // アイコン
         self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
         })
-        self.iconWidthConstraint.constant = CGFloat(Defaults[.timelineIconSize])
+        self.iconWidthConstraint.constant = CGFloat(Defaults.timelineIconSize)
 
         // ユーザー名
-        let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineUsernameFontsize]))
+        let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineUsernameFontsize))
         self.userNameLabel.attributedText = NSAttributedString(string: post.account.name.emptyAsNil ?? post.account.screenName, attributes: [
             .font: userNameFont,
         ]).emojify(asyncLoadProgressHandler: {
@@ -212,7 +212,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         
         // acct
         var acct = post.account.acct
-        if Defaults[.acctAbbr] {
+        if Defaults.acctAbbr {
             var acctSplitted = acct.split(separator: "@").map { String($0) }
             if acctSplitted.count == 2 {
                 var acctHost = acctSplitted[1]
@@ -243,10 +243,10 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.acctNameLabel.attributedText = acctAttrText
 
         // 右上のいろいろ
-        self.isReplyTreeLabel.isHidden = !(Defaults[.inReplyToEmoji] && post.inReplyToId != nil)
+        self.isReplyTreeLabel.isHidden = !(Defaults.inReplyToEmoji && post.inReplyToId != nil)
         self.isReplyTreeLabel.font = userNameFont
-        self.visibilityLabel.isHidden = post.visibility == .public || Defaults[.visibilityEmoji] == false
-        if Defaults[.visibilityEmoji], let emoji = post.visibility.emoji {
+        self.visibilityLabel.isHidden = post.visibility == .public || Defaults.visibilityEmoji == false
+        if Defaults.visibilityEmoji, let emoji = post.visibility.emoji {
             self.visibilityLabel.isHidden = false
             self.visibilityLabel.alpha = post.visibility == .unlisted ? 0.5 : 1.0
             self.visibilityLabel.text = emoji
@@ -276,15 +276,15 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 
         // 投稿本文の処理
         let html = post.status.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "")
-        var font = UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
-        if Defaults[.timelineTextBold] {
+        var font = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
+        if Defaults.timelineTextBold {
             font = UIFont.boldSystemFont(ofSize: font.pointSize)
         }
         var attrs: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: UIColor.label,
         ]
-        if Defaults[.usePostLanguageInfo], let lang = post.language {
+        if Defaults.usePostLanguageInfo, let lang = post.language {
             attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
         }
         if post.spoilerText != "" {

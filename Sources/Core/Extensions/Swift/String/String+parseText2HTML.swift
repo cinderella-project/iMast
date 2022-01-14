@@ -93,7 +93,7 @@ extension String {
                                 case "img":
                                     if let src = element.attributes["src"], let srcUrl = URL(string: src) {
                                         let attachment = NSTextAttachment()
-                                        let font = attributes[.font] as? UIFont ?? UIFont.systemFont(ofSize: CGFloat(Defaults[.timelineTextFontsize]))
+                                        let font = attributes[.font] as? UIFont ?? UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
                                         let size = font.lineHeight + 1
                                         attachment.bounds = CGRect(x: 0, y: 0, width: size, height: size)
                                         attachment.bounds.origin = CGPoint(x: 0, y: -4)
@@ -158,7 +158,7 @@ extension String {
         #if os(macOS)
         return parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler)
         #else
-        if Defaults[.newHtmlParser], let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
+        if Defaults.newHtmlParser, let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
             return newParserResult
         }
         if !self.replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").contains("<") {

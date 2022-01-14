@@ -165,7 +165,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
             .font: UIFont.preferredFont(forTextStyle: .body),
             .foregroundColor: UIColor.label,
         ]
-        if Defaults[.usePostLanguageInfo], let lang = post.language {
+        if Defaults.usePostLanguageInfo, let lang = post.language {
             attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
         }
         textView.attributedText = post.status.parseText2HTMLNew(attributes: attrs)?.emojify(asyncLoadProgressHandler: { [weak textView] in

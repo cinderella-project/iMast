@@ -94,7 +94,7 @@ class AddAccountIndexViewController: FormViewController {
             await MainActor.run {
                 alert.message = "\(L10n.Login.ProgressDialog.registeringApplication) (2/4)"
             }
-            let appName = Defaults[.newAccountVia]
+            let appName = Defaults.newAccountVia
             let app = try await instance.createApp(name: appName).wait()
             try app.save()
             await MainActor.run {

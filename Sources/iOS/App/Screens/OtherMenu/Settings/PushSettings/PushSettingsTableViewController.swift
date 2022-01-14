@@ -63,7 +63,7 @@ class PushSettingsTableViewController: FormViewController {
             Section(header: L10n.Preferences.Push.Shared.title) {
                 SwitchRow { row in
                     row.title = L10n.Preferences.Push.Shared.displayErrorIfOccured
-                    row.userDefaultsConnect(.showPushServiceError)
+                    row.userDefaultsConnect(Defaults.$showPushServiceError)
                 }.cellUpdate { cell, row in
                     cell.textLabel?.numberOfLines = 0
                 }

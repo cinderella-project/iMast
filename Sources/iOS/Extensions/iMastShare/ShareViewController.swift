@@ -115,7 +115,7 @@ class ShareViewController: SLComposeServiceViewController {
         let query = urlComponentsToDict(url: url as URL)
         
         // Twitterトラッキングを蹴る
-        if Defaults[.shareNoTwitterTracking], url.host?.hasSuffix("twitter.com") ?? false {
+        if Defaults.shareNoTwitterTracking, url.host?.hasSuffix("twitter.com") ?? false {
             var urlComponents = URLComponents(string: url.absoluteString!)!
             urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "ref_src" && $0.name != "s"})
             if (urlComponents.queryItems ?? []).count == 0 {
@@ -124,7 +124,7 @@ class ShareViewController: SLComposeServiceViewController {
             let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
             url = NSURL(string: urlString)!
         }
-        if Defaults[.shareNoSpotifySIParameter], url.host == "open.spotify.com" {
+        if Defaults.shareNoSpotifySIParameter, url.host == "open.spotify.com" {
             var urlComponents = URLComponents(string: url.absoluteString!)!
             urlComponents.queryItems = (urlComponents.queryItems ?? []).filter({$0.name != "si"})
             if (urlComponents.queryItems ?? []).count == 0 {
@@ -164,7 +164,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     func processSpotifyURL(url: NSURL) {
-        if Defaults[.usingNowplayingFormatInShareSpotifyUrl],
+        if Defaults.usingNowplayingFormatInShareSpotifyUrl,
             url.scheme == "https", url.host == "open.spotify.com",
             let path = url.path, path.starts(with: "/track/"),
             let objectId = path.pregMatch(pattern: "^/track/(.+)$").safe(1) {
@@ -203,7 +203,7 @@ class ShareViewController: SLComposeServiceViewController {
                         return
                     }
                     
-                    let nowPlayingText = Defaults[.nowplayingFormat]
+                    let nowPlayingText = Defaults.nowplayingFormat
                         .replacingOccurrences(of: "{title}", with: track.name)
                         .replacingOccurrences(of: "{artist}", with: track.artists.map { $0.name }.joined(separator: ", "))
                         .replacingOccurrences(of: "{albumTitle}", with: track.album.name)
@@ -286,7 +286,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
     
     override func loadPreviewView() -> UIView! {
-        if Defaults[.useCustomizedSharePreview] {
+        if Defaults.useCustomizedSharePreview {
             return nil
         } else {
             return super.loadPreviewView()
