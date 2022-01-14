@@ -30,8 +30,6 @@ import Ikemen
 
 public let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!
 
-public let emojidict = JSON(parseJSON: String(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "emoji", ofType: "json")!)), encoding: .utf8)!)
-
 public extension UIViewController {
     @objc func close() {
         dismiss(animated: true, completion: nil)
@@ -65,21 +63,6 @@ public func urlComponentsToDict(url: URL) -> [String: String] {
     }
     
     return dict
-}
-
-extension String {
-    
-    func toDate() -> Date {
-        let formatter = DateFormatter()
-        formatter.locale=Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat="yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSZZZZZZ"
-        return formatter.date(from: self)!
-    }
-    
-    func format(_ params: CVarArg...) -> String {
-        return String(format: self, arguments: params)
-    }
-    
 }
 
 public func numToCommaString(_ num: Int) -> String {
