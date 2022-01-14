@@ -45,20 +45,17 @@ class MainTabBarController: UITabBarController, Instantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
         let homeVC = UINavigationController(rootViewController: HomeTimelineViewController.instantiate(.plain, environment: self.environment))
-        homeVC.tabBarItem.image = UIImage(systemName: "house")
-        homeVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+        homeVC.tabBarItem.image = UIImage(systemName: "house.fill")
         homeVC.tabBarItem.title = L10n.Localizable.HomeTimeline.short
         homeVC.tabBarItem.accessibilityIdentifier = "home"
 
         let notifyVC = UINavigationController(rootViewController: NotificationTableWrapperViewController.instantiate(environment: self.environment))
-        notifyVC.tabBarItem.image = UIImage(systemName: "bell")
-        notifyVC.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
+        notifyVC.tabBarItem.image = UIImage(systemName: "bell.fill")
         notifyVC.tabBarItem.title = L10n.Localizable.notifications
         notifyVC.tabBarItem.accessibilityIdentifier = "notifications"
 
         let ltlVC = UINavigationController(rootViewController: LocalTimelineViewController.instantiate(.plain, environment: self.environment))
-        ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person")
-        ltlVC.tabBarItem.selectedImage = UIImage(systemName: "person.and.person.fill")
+        ltlVC.tabBarItem.image = UIImage(systemName: "person.and.person.fill")
         ltlVC.tabBarItem.title = L10n.Localizable.LocalTimeline.short
         ltlVC.tabBarItem.accessibilityIdentifier = "ltl"
 
