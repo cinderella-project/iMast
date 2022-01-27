@@ -6,23 +6,23 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"general.streamingAutoConnect.title" = "ストリーミング自動接続";
-"general.streamingAutoConnect.no" = "常にしない";
-"general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
+"general.streamingAutoConnect.title" = "Auto-Connect to Streaming";
+"general.streamingAutoConnect.no" = "Don't";
+"general.streamingAutoConnect.wifi" = "only if connected to Wi-Fi";
 "general.streamingAutoConnect.always" = "Always";
-"general.newAccountVia.title" = "新規連携時のvia";
+"general.newAccountVia.title" = "Application Name for OAuth to Mastodon";
 
-"post.title" = "投稿";
+"post.title" = "Post";
 "post.autoResize.title" = "画像の自動リサイズ";
-"post.autoResize.no" = "しない";
+"post.autoResize.no" = "Don't";
 "post.autoResize.pixel" = "%dpx以下にリサイズ";
 "post.useDefaultVisibility" = "デフォルト公開範囲を利用";
 
 "nowPlaying.title" = "NowPlaying";
 "nowPlaying.format.title" = "Format";
-"nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
+"nowPlaying.addURLIfAppleMusicAndAvailable" = "Add Apple Music URL automatically (If possible)";
 
-"timelineAppearance.title" = "タイムラインの外観";
+"timelineAppearance.title" = "Timeline Appearance";
 "timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
 "timelineAppearance.contentSize" = "本文の文字の大きさ";
 "timelineAppearance.contentBold" = "本文を太字で表示";
@@ -47,9 +47,9 @@
 "push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
 "push.shared.title" = "Common Settings";
 "push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
-"push.shared.groupRules.title" = "グループ化のルール設定 (β)";
-"push.shared.groupRules.byAccount" = "アカウント毎にグループを分ける";
-"push.shared.groupRules.byType.title" = "通知タイプ毎にグループを分ける";
+"push.shared.groupRules.title" = "Customize rules for grouping (β)";
+"push.shared.groupRules.byAccount" = "Grouping per account";
+"push.shared.groupRules.byType.title" = "Grouping per notification types";
 "push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
 "push.shared.customSounds.title" = "Custom Notification Sound (α)";
 "push.shared.deleteAccount.title" = "Delete Push Notifications Account";
