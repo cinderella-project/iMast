@@ -27,8 +27,8 @@
 "timelineAppearance.contentSize" = "本文の文字の大きさ";
 "timelineAppearance.contentBold" = "本文を太字で表示";
 "timelineAppearance.iconSize" = "アイコンの大きさ";
-"timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
-"timelineAppearance.inReplyToAsEmoji" = "inReplyToの有無を絵文字で表示";
+"timelineAppearance.visibilityAsEmoji" = "Show Visibility as Emoji";
+"timelineAppearance.inReplyToAsEmoji" = "Show emoji if post is reply";
 "timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
 "timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
 "timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
