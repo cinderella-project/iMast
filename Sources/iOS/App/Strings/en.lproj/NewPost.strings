@@ -9,10 +9,10 @@
 "placeholders.cwWarningText" = "Content Warning (Optional)";
 "infoText.inReplyTo" = "Reply to: %@";
 "send" = "Send";
-"reply" = "返信";
+"reply" = "Reply";
 
-"selectVisibility.title" = "公開範囲";
-"selectVisibility.description" = "公開範囲を選択してください";
+"selectVisibility.title" = "Visibility";
+"selectVisibility.description" = "Please select visibility of post.";
 
 "addImageFromButton" = "Add images from left side button";
 // Safariのファイル選択時の表記に合わせてほしい

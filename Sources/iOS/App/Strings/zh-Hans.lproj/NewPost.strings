@@ -18,7 +18,7 @@
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "拍照";
 // Safariのファイル選択時の表記に合わせてほしい
-"media.picker.photoLibrary" = "相册";
+"media.picker.photoLibrary" = "照片图库";
 "media.preview" = "预览";
 "media.delete" = "删除";
 
