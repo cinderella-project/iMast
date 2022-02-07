@@ -31,7 +31,7 @@
 "notifications" = "알림";
 
 "localTimeline" = "로컬 타임라인";
-"localTimeline.short" = "LTL";
+"localTimeline.short" = "로컬";
 
 "post" = "글";
 "streaming" = "스트리밍";
