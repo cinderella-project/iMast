@@ -40,7 +40,6 @@ class ShareViewController: SLComposeServiceViewController {
     }
     var accountConfig = SLComposeSheetConfigurationItem()!
     var visibilityConfig = SLComposeSheetConfigurationItem()!
-    var postUrl = ""
     var visibility: MastodonPostVisibility = .public {
         didSet {
             visibilityConfig.value = visibility.localizedName
@@ -97,7 +96,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        let textLength = self.contentText.count + self.postUrl.count + 1
+        let textLength = self.contentText.count
         self.charactersRemaining = 500 - textLength as NSNumber
         return self.isMastodonLogged && (textLength > 0 || postMedia.count > 0)
     }
@@ -134,7 +133,7 @@ class ShareViewController: SLComposeServiceViewController {
             let urlString = (urlComponents.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
             url = NSURL(string: urlString)!
         }
-        self.postUrl = url.absoluteString == nil ? "" : " "+url.absoluteString!
+        var postUrl = url.absoluteString
         
         // Twitter共有の引き継ぎ
         if url.host == "twitter.com" && url.path == "/intent/tweet" {
@@ -153,15 +152,24 @@ class ShareViewController: SLComposeServiceViewController {
             if let via = query["via"] {
                 twitterPostText += " https://twitter.com/\(via)さんから"
             }
+            postUrl = nil
             DispatchQueue.main.sync {
                 self.textView.text = twitterPostText
-                self.postUrl = ""
             }
         }
         
         // なうぷれ対応
         processSpotifyURL(url: url)
         
+        if let postUrl = postUrl {
+            DispatchQueue.main.sync {
+                self.textView.text += "\n" + postUrl
+            }
+        }
+        
+        DispatchQueue.main.sync {
+            self.validateContent()
+        }
     }
 
     func processSpotifyURL(url: NSURL) {
@@ -258,7 +266,7 @@ class ShareViewController: SLComposeServiceViewController {
                     }
                 }
                 let res = try await MastodonEndpoint.CreatePost(
-                    status: self.contentText + self.postUrl,
+                    status: self.contentText,
                     visibility: self.visibility,
                     // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
                     mediaIds: images.map { .init(string: $0["id"].stringValue) }
