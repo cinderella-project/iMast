@@ -97,8 +97,9 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
-        self.charactersRemaining = 500 - self.contentText.count - self.postUrl.count as NSNumber
-        return Int(truncating: self.charactersRemaining) >= 0 && self.isMastodonLogged
+        let textLength = self.contentText.count + self.postUrl.count + 1
+        self.charactersRemaining = 500 - textLength as NSNumber
+        return self.isMastodonLogged && (textLength > 0 || postMedia.count > 0)
     }
     
     func processUrl(item: NSSecureCoding?, error: Error?) {
