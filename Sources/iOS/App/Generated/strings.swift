@@ -221,7 +221,7 @@ internal enum L10n {
       /// プレビュー
       internal static let preview = L10n.tr("NewPost", "media.preview")
       internal enum Picker {
-        /// フォトライブラリ
+        /// 写真ライブラリ
         internal static let photoLibrary = L10n.tr("NewPost", "media.picker.photoLibrary")
         /// 写真を撮る
         internal static let takePhoto = L10n.tr("NewPost", "media.picker.takePhoto")
