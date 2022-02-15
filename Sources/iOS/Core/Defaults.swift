@@ -47,7 +47,7 @@ public class Defaults {
     @DefaultsKey("in_reply_to_emoji") public static var inReplyToEmoji: Bool = true
     @DefaultsKey("acct_abbr") public static var acctAbbr: Bool = true
     @DefaultsKey("post_fab_enabled") public static var postFabEnabled: Bool = true
-    @DefaultsKey("post_fab_location") public static var postFabLocation: PostFabLocation = .rightBottom
+    @DefaultsKeyRawRepresentable("post_fab_location") public static var postFabLocation: PostFabLocation = .rightBottom
     @DefaultsKey("use_post_language_info") public static var usePostLanguageInfo: Bool = true
 
     @DefaultsKey("webm_vlc_open") public static var webmVlcOpen: Bool = true
@@ -85,7 +85,7 @@ public class Defaults {
     @DefaultsKey("use_custom_boost_sound") public static var useCustomBoostSound: Bool = false
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false
     @DefaultsKey("communication_notifications_enabled") public static var communicationNotificationsEnabled: Bool = false
-    @DefaultsKey("communication_notifications_name_type") public static var communicationNotificationsNameType: CommunicationNotificationsNameType = .name
+    @DefaultsKeyRawRepresentable("communication_notifications_name_type") public static var communicationNotificationsNameType: CommunicationNotificationsNameType = .name
 
     public enum CommunicationNotificationsNameType: String, CustomStringConvertible, CaseIterable {
         case acct

@@ -23,24 +23,77 @@
 
 import Foundation
 
-@propertyWrapper
-public class DefaultsKey<ValueType> {
+public class _BaseDefaultsKey<ValueType> {
     let key: String
     let defaults = UserDefaultsAppGroup
-    public let defaultValue: ValueType
-    public var projectedValue: DefaultsKey<ValueType> { return self }
     
-    public var wrappedValue: ValueType {
+    fileprivate var _raw_wrappedValue: ValueType? {
         get {
-            return (defaults.object(forKey: key) as? ValueType) ?? defaultValue
+            return defaults.object(forKey: key) as? ValueType
         }
         set {
             defaults.set(newValue, forKey: key)
         }
     }
-
-    init(wrappedValue defaultValue: ValueType, _ key: String) {
+    
+    fileprivate init(key: String) {
         self.key = key
+    }
+}
+
+@propertyWrapper
+public class DefaultsKey<ValueType: DefaultsKeySuitable>: _BaseDefaultsKey<ValueType> {
+    public let defaultValue: ValueType
+    public var projectedValue: DefaultsKey<ValueType> { return self }
+    public var wrappedValue: ValueType {
+        get {
+            return _raw_wrappedValue ?? defaultValue
+        }
+        set {
+            _raw_wrappedValue = newValue
+        }
+    }
+    
+    init(wrappedValue defaultValue: ValueType, _ key: String) {
         self.defaultValue = defaultValue
+        super.init(key: key)
+    }
+}
+
+public protocol DefaultsKeySuitable {
+}
+
+extension String: DefaultsKeySuitable {
+}
+
+extension Int: DefaultsKeySuitable {
+}
+
+extension Bool: DefaultsKeySuitable {
+}
+
+extension Double: DefaultsKeySuitable {
+}
+
+@propertyWrapper
+public class DefaultsKeyRawRepresentable<ValueType: RawRepresentable>: _BaseDefaultsKey<ValueType.RawValue> {
+    public var projectedValue: DefaultsKeyRawRepresentable<ValueType> { return self }
+    public let defaultValue: ValueType
+    
+    public var wrappedValue: ValueType {
+        get {
+            guard let rawWrappedValue = _raw_wrappedValue else {
+                return defaultValue
+            }
+            return .init(rawValue: rawWrappedValue) ?? defaultValue
+        }
+        set {
+            _raw_wrappedValue = newValue.rawValue
+        }
+    }
+    
+    public init(wrappedValue defaultValue: ValueType, _ key: String) {
+        self.defaultValue = defaultValue
+        super.init(key: key)
     }
 }

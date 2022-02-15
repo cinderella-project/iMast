@@ -44,7 +44,7 @@ final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
 }
 
 extension PushRow where T: RawRepresentable {
-    func userDefaultsConnect(_ key: DefaultsKey<T>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
+    func userDefaultsConnect(_ key: DefaultsKeyRawRepresentable<T>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = key.wrappedValue
         self.onChange { row in
             guard let value = row.value else {
