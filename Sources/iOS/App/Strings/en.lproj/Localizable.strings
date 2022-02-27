@@ -45,6 +45,9 @@
 "refetch" = "Refresh";
 "cancel" = "Cancel";
 
+"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.description" = "最終編集: %@";
+
 "other" = "Others";
 "switchTab" = "Switch to %@";
 "switchActiveAccount" = "Switch active account";
