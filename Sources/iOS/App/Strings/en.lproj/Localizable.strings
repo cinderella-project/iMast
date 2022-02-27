@@ -45,8 +45,8 @@
 "refetch" = "Refresh";
 "cancel" = "Cancel";
 
-"editedWarning.title" = "この投稿は投稿後に編集されています";
-"editedWarning.description" = "最終編集: %@";
+"editedWarning.title" = "This post was edited after first published";
+"editedWarning.description" = "Last edited at: %@";
 
 "other" = "Others";
 "switchTab" = "Switch to %@";
