@@ -45,6 +45,9 @@
 "refetch" = "重新連接";
 "cancel" = "取消";
 
+"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.description" = "最終編集: %@";
+
 "other" = "其他";
 "switchTab" = "%@ に切り替え";
 "switchActiveAccount" = "賬號管理";

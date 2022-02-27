@@ -23,7 +23,7 @@
 "authorize.tos.termsOfService" = "이 서버의 이용 약관";
 
 "passwordLogin.mailAddress" = "메일 주소";
-"passwordLogin.password" = "패스워드";
+"passwordLogin.password" = "비밀번호";
 
 "welcome.message" = "환영합니다.\n%@\n님";
 "welcome.toTimeline" = "타임라인에";

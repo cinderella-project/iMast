@@ -31,7 +31,7 @@
 "notifications" = "알림";
 
 "localTimeline" = "로컬 타임라인";
-"localTimeline.short" = "LTL";
+"localTimeline.short" = "로컬";
 
 "post" = "글";
 "streaming" = "스트리밍";
@@ -45,6 +45,9 @@
 "refetch" = "새로고침";
 "cancel" = "취소";
 
+"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.description" = "最終編集: %@";
+
 "other" = "기타";
 "switchTab" = "%@ (으)로 전환";
 "switchActiveAccount" = "계정 변경";
@@ -56,7 +59,7 @@
 "helpAndFeedback" = "도움말 / 피드백";
 "bookmarks" = "북마크";
 
-"aboutThisApp.title" = "이 App에 대해서";
+"aboutThisApp.title" = "이 앱에 대해서";
 "aboutThisApp.author" = "만든이";
 "aboutThisApp.translators" = "번역에 참여해주신 분들";
 "aboutThisApp.praise" = "칭찬하기";

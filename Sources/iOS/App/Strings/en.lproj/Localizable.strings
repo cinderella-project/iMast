@@ -45,6 +45,9 @@
 "refetch" = "Refresh";
 "cancel" = "Cancel";
 
+"editedWarning.title" = "This post was edited after first published";
+"editedWarning.description" = "Last edited at: %@";
+
 "other" = "Others";
 "switchTab" = "Switch to %@";
 "switchActiveAccount" = "Switch active account";
