@@ -34,6 +34,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
     var input: Input
     
     enum Row {
+        case editedWarning
         case boostedUser
         case content
         case poll
@@ -58,6 +59,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         var dataSource: [Row] = []
         if input.repost != nil {
             dataSource.append(.boostedUser)
+        }
+        if input.editedAt != nil {
+            dataSource.append(.editedWarning)
         }
         dataSource.append(.content)
         if input.originalPost.poll != nil {
@@ -134,6 +138,15 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
                 parentViewController: self
             )
             cell.accessoryType = .disclosureIndicator
+        case .editedWarning:
+            cell = .init(style: .subtitle, reuseIdentifier: nil)
+            cell.textLabel?.text = L10n.Localizable.EditedWarning.title
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .long
+            if let editedAt = input.editedAt {
+                cell.detailTextLabel?.text = L10n.Localizable.EditedWarning.description(formatter.string(from: editedAt))
+            }
         case .content:
             cell = TableViewCell<MastodonPostDetailContentViewController>.dequeued(
                 from: tableView,
@@ -169,6 +182,17 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             )
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let source = self.dataSource[indexPath.row]
+        switch source {
+        case .editedWarning:
+            // TODO: 履歴表示を実装したら選択可能にしないといけない
+            return nil
+        default:
+            return indexPath
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

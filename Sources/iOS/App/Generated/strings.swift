@@ -89,6 +89,14 @@ internal enum L10n {
       /// 文脈
       internal static let title = L10n.tr("Localizable", "bunmyaku.title")
     }
+    internal enum EditedWarning {
+      /// 最終編集: %@
+      internal static func description(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "editedWarning.description", String(describing: p1))
+      }
+      /// この投稿は投稿後に編集されています
+      internal static let title = L10n.tr("Localizable", "editedWarning.title")
+    }
     internal enum Error {
       /// インスタンスを入力してください。
       internal static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")

@@ -64,6 +64,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     let isReplyTreeLabel = UILabel() ※ { v in
         v.text = "💬"
     }
+    let editedLabel = UILabel() ※ { v in
+        v.text = "✏️"
+    }
     let visibilityLabel = UILabel()
     
     let textView = NotSelectableTextView() ※ { v in
@@ -132,6 +135,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
                 isReplyTreeLabel,
                 visibilityLabel,
                 pinnedLabel,
+                editedLabel,
                 createdAtLabel,
             ]) ※ {
                 $0.axis = .horizontal
@@ -256,6 +260,8 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         self.pinnedLabel.isHidden = !input.pinned
         self.pinnedLabel.font = userNameFont
+        self.editedLabel.isHidden = post.editedAt == nil
+        self.editedLabel.font = userNameFont
         
         // ブースト/ふぁぼったかどうか
         

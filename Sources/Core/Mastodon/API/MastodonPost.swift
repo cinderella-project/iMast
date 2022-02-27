@@ -57,6 +57,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     }
     public let status: String
     public let createdAt: Date
+    public let editedAt: Date?
     public let repostCount: Int
     public let favouritesCount: Int
 
@@ -102,6 +103,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case repost = "reblog"
         case status = "content"
         case createdAt = "created_at"
+        case editedAt = "edited_at"
         case repostCount = "reblogs_count"
         case favouritesCount = "favourites_count"
         case _reposted = "reblogged"
