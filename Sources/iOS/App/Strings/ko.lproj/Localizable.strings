@@ -45,6 +45,9 @@
 "refetch" = "새로고침";
 "cancel" = "취소";
 
+"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.description" = "最終編集: %@";
+
 "other" = "기타";
 "switchTab" = "%@ (으)로 전환";
 "switchActiveAccount" = "계정 변경";
