@@ -44,13 +44,13 @@
 "push.accounts.title" = "Accounts";
 "push.addAccount.title" = "Add Account";
 "push.addAccount.alertTitle" = "Add Account";
-"push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
+"push.addAccount.alertText" = "Enter the hostname of the instance\n(http://<instance link>)";
 "push.shared.title" = "Common Settings";
 "push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
 "push.shared.groupRules.title" = "Customize rules for grouping (β)";
 "push.shared.groupRules.byAccount" = "Grouping per account";
 "push.shared.groupRules.byType.title" = "Grouping per notification types";
-"push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
+"push.shared.groupRules.byType.description" = "Everything that is set to \"on\" will become a separate group.";
 "push.shared.customSounds.title" = "Custom Notification Sound (α)";
 "push.shared.deleteAccount.title" = "Delete Push Notifications Account";
 
