@@ -70,6 +70,11 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         return self._favourited ?? false
     }
     let _favourited: Bool?
+    
+    public var bookmarked: Bool {
+        return self._bookmarked ?? false
+    }
+    public var _bookmarked: Bool?
 
     public var muted: Bool {
         return self._muted ?? false
@@ -109,6 +114,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case _reposted = "reblogged"
         case _favourited = "favourited"
         case _muted = "muted"
+        case _bookmarked = "bookmarked"
         case sensitive
         case spoilerText = "spoiler_text"
         case pinned
@@ -328,6 +334,32 @@ extension MastodonEndpoint {
         public typealias Response = MastodonPost
         
         public var endpoint: String { "/api/v1/statuses/\(postID.string)/unfavourite" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct CreateBookmark: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/bookmark" }
+        public let method = "POST"
+        
+        public let postID: MastodonID
+        
+        public init(post: MastodonPost) {
+            self.postID = post.id
+        }
+    }
+    
+    public struct DeleteBookmark: MastodonEndpointProtocol {
+        public typealias Response = MastodonPost
+        
+        public var endpoint: String { "/api/v1/statuses/\(postID.string)/unbookmark" }
         public let method = "POST"
         
         public let postID: MastodonID

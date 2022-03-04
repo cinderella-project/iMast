@@ -110,16 +110,41 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
 
         // build
         var othersMenuChildrens = [UICommand]()
-        othersMenuChildrens.append(.init(title: "共有", image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
-        othersMenuChildrens.append(.init(title: "文脈", image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
+        othersButton.menu = UIMenu(children: [UIDeferredMenuElement { [weak self] completion in
+            guard let strongSelf = self else {
+                completion([])
+                return
+            }
+            Task {
+                do {
+                    completion(try await strongSelf.buildOthersMenu())
+                } catch {
+                    completion([])
+                }
+            }
+        }])
+    }
+    
+    func buildOthersMenu() async throws -> [UIMenuElement] {
+        var elements = [UICommand]()
+        let version = try await environment.getIntVersion().wait()
+        if version >= MastodonVersionStringToInt("3.1.0") {
+            if input.bookmarked {
+                elements.append(.init(title: "ブックマークから削除", image: UIImage(systemName: "bookmark.slash"), action: #selector(removeFromBookmark)))
+            } else {
+                elements.append(.init(title: "ブックマーク", image: UIImage(systemName: "bookmark"), action: #selector(addToBookmark)))
+            }
+        }
+        elements.append(.init(title: "共有", image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
+        elements.append(.init(title: "文脈", image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
         if input.hasCustomEmoji {
-            othersMenuChildrens.append(.init(title: "カスタム絵文字一覧", action: #selector(openEmojiListVC)))
+            elements.append(.init(title: "カスタム絵文字一覧", action: #selector(openEmojiListVC)))
         }
         if environment.screenName == input.account.acct {
-            othersMenuChildrens.append(.init(title: "削除", image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
+            elements.append(.init(title: "削除", image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
         }
-        othersMenuChildrens.append(.init(title: "通報", image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
-        othersButton.menu = UIMenu(children: othersMenuChildrens)
+        elements.append(.init(title: "通報", image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
+        return elements
     }
     
     @objc func openReplyVC() {
@@ -145,6 +170,18 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         ? MastodonEndpoint.DeleteFavourite(post: input).request(with: environment)
         : MastodonEndpoint.CreateFavourite(post: input).request(with: environment)
         promise.then { [weak self] res in
+            self?.input(res)
+        }
+    }
+    
+    @objc func addToBookmark() {
+        MastodonEndpoint.CreateBookmark(post: input).request(with: environment).then { [weak self] res in
+            self?.input(res)
+        }
+    }
+    
+    @objc func removeFromBookmark() {
+        MastodonEndpoint.DeleteBookmark(post: input).request(with: environment).then { [weak self] res in
             self?.input(res)
         }
     }
