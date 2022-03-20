@@ -192,7 +192,9 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                 completion([])
                 return
             }
-            strongSelf.buildRelationshipsMenu(completion: completion)
+            Task {
+                completion(await strongSelf.buildRelationshipsMenu())
+            }
         })
         othersMenuItem.menu = UIMenu(children: othersMenuItems)
     }
@@ -222,90 +224,98 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         }
     }
 
-    func buildRelationshipsMenu(completion: @escaping ([UIMenuElement]) -> Void) {
+    func buildRelationshipsMenu() async -> [UIMenuElement] {
         // UIDeferredMenuElement に UICommand を渡すとガン無視されるので UIAction を使う
         let shareCommand = UIAction(title: L10n.UserProfile.Actions.share, image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
             self?.openSharesheet()
         }
         let myScreenName = "@"+self.environment.screenName!
         let screenName = "@"+input.acct
-        MastodonEndpoint.Relationship
-            .Get(accounts: [input])
-            .request(with: environment)
-            .then { $0[0] }
-            .then { relationship in
-                var items = [UIMenuElement]()
-                items.append(shareCommand)
-                if myScreenName != screenName { // 自分じゃない
-                    if !relationship.following { // 未フォロー
-                        if !relationship.requested { // リクエストもしてない
-                            items.append(self.createAlertAction(
-                                endpoint: MastodonEndpoint.Relationship.Follow(target: self.input),
-                                title: L10n.UserProfile.Actions.follow, image: UIImage(systemName: "person.badge.plus"),
-                                confirm: nil
-                            ))
-                        } else { // フォローリクエスト中
-                            items.append(self.createAlertAction(
-                                endpoint: MastodonEndpoint.Relationship.Unfollow(target: self.input),
-                                title: L10n.UserProfile.Actions.followRequestCancel, image: UIImage(systemName: "person.crop.circle.badge.xmark"),
-                                confirm: screenName+"へのフォローリクエストを撤回しますか?"
-                            ))
-                        }
-                    } else { // フォロー済み
+        do {
+            async let version = environment.getIntVersion().wait()
+            let relationship = try await MastodonEndpoint.Relationship.Get(accounts: [input]).request(with: environment)[0]
+            var items = [UIMenuElement]()
+            items.append(shareCommand)
+            let isMe = myScreenName == screenName
+            if !isMe { // 自分じゃない
+                if !relationship.following { // 未フォロー
+                    if !relationship.requested { // リクエストもしてない
+                        items.append(self.createAlertAction(
+                            endpoint: MastodonEndpoint.Relationship.Follow(target: self.input),
+                            title: L10n.UserProfile.Actions.follow, image: UIImage(systemName: "person.badge.plus"),
+                            confirm: nil
+                        ))
+                    } else { // フォローリクエスト中
                         items.append(self.createAlertAction(
                             endpoint: MastodonEndpoint.Relationship.Unfollow(target: self.input),
-                            title: L10n.UserProfile.Actions.unfollow, image: UIImage(systemName: "person.crop.circle.badge.minus"),
-                            confirm: screenName+"のフォローを解除しますか?"
+                            title: L10n.UserProfile.Actions.followRequestCancel, image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                            confirm: screenName+"へのフォローリクエストを撤回しますか?"
                         ))
                     }
-                    if !relationship.muting { // 未ミュート
-                        items.append(self.createAlertAction(
-                            endpoint: MastodonEndpoint.Relationship.Mute(target: self.input),
-                            title: L10n.UserProfile.Actions.mute, image: UIImage(systemName: "speaker.slash"),
-                            confirm: screenName+"をミュートしますか?"
-                        ))
-                    } else {
-                        items.append(self.createAlertAction(
-                            endpoint: MastodonEndpoint.Relationship.Unmute(target: self.input),
-                            title: L10n.UserProfile.Actions.unmute, image: UIImage(systemName: "speaker.1"),
-                            confirm: screenName+"のミュートを解除しますか?"
-                        ))
-                    }
-                    if !relationship.blocking { // 未ブロック
-                        items.append(self.createAlertAction(
-                            endpoint: MastodonEndpoint.Relationship.Block(target: self.input),
-                            title: L10n.UserProfile.Actions.block, image: UIImage(systemName: "nosign"),
-                            confirm: screenName+"をブロックしますか?"
-                        ))
-                    } else {
-                        items.append(self.createAlertAction(
-                            endpoint: MastodonEndpoint.Relationship.Unblock(target: self.input),
-                            title: L10n.UserProfile.Actions.unblock,
-                            confirm: screenName+"のブロックを解除しますか?"
-                        ))
-                    }
-                } else { // 自分なら
-                    items.append(UIAction(title: L10n.UserProfile.Actions.profileCard, image: UIImage(systemName: "person.crop.rectangle")) { [weak self] _ in
-                        self?.openProfilecard()
-                    })
-                    items.append(UIAction(title: L10n.Localizable.favouritesList, image: UIImage(systemName: "star")) { [weak self] _ in
-                        self?.openFavouritesList()
-                    })
-                    items.append(UIAction(title: L10n.UserProfile.Actions.followRequestsList, image: UIImage(systemName: "rectangle.stack.person.crop")) { [weak self] _ in
-                        self?.openFollowRequestsList()
-                    })
+                } else { // フォロー済み
+                    items.append(self.createAlertAction(
+                        endpoint: MastodonEndpoint.Relationship.Unfollow(target: self.input),
+                        title: L10n.UserProfile.Actions.unfollow, image: UIImage(systemName: "person.crop.circle.badge.minus"),
+                        confirm: screenName+"のフォローを解除しますか?"
+                    ))
                 }
-                if myScreenName == screenName || relationship.following {
+                if !relationship.muting { // 未ミュート
+                    items.append(self.createAlertAction(
+                        endpoint: MastodonEndpoint.Relationship.Mute(target: self.input),
+                        title: L10n.UserProfile.Actions.mute, image: UIImage(systemName: "speaker.slash"),
+                        confirm: screenName+"をミュートしますか?"
+                    ))
+                } else {
+                    items.append(self.createAlertAction(
+                        endpoint: MastodonEndpoint.Relationship.Unmute(target: self.input),
+                        title: L10n.UserProfile.Actions.unmute, image: UIImage(systemName: "speaker.1"),
+                        confirm: screenName+"のミュートを解除しますか?"
+                    ))
+                }
+                if !relationship.blocking { // 未ブロック
+                    items.append(self.createAlertAction(
+                        endpoint: MastodonEndpoint.Relationship.Block(target: self.input),
+                        title: L10n.UserProfile.Actions.block, image: UIImage(systemName: "nosign"),
+                        confirm: screenName+"をブロックしますか?"
+                    ))
+                } else {
+                    items.append(self.createAlertAction(
+                        endpoint: MastodonEndpoint.Relationship.Unblock(target: self.input),
+                        title: L10n.UserProfile.Actions.unblock,
+                        confirm: screenName+"のブロックを解除しますか?"
+                    ))
+                }
+            } else { // 自分なら
+                items.append(UIAction(title: L10n.UserProfile.Actions.profileCard, image: UIImage(systemName: "person.crop.rectangle")) { [weak self] _ in
+                    self?.openProfilecard()
+                })
+                items.append(UIAction(title: L10n.Localizable.favouritesList, image: UIImage(systemName: "star")) { [weak self] _ in
+                    self?.openFavouritesList()
+                })
+                items.append(UIAction(title: L10n.UserProfile.Actions.followRequestsList, image: UIImage(systemName: "rectangle.stack.person.crop")) { [weak self] _ in
+                    self?.openFollowRequestsList()
+                })
+            }
+            if isMe || relationship.following {
+                var shouldDisplayListAdder = false
+                if let version = try? await version {
+                    shouldDisplayListAdder = version > MastodonVersionStringToInt("2.1.0rc1")
+                } else {
+                    shouldDisplayListAdder = true
+                }
+                if shouldDisplayListAdder {
                     items.append(UIAction(title: "リストへ追加/削除", image: UIImage(systemName: "list.bullet")) { [weak self] _ in
                         self?.openListAdder()
                     })
+                } else {
+                    items.append(UIAction(title: "リストへ追加/削除", subtitle: "サーバーが古いので利用できません", image: UIImage(systemName: "list.bullet"), attributes: .disabled) { _ in })
                 }
-                completion(items)
             }
-            .catch { e in
-                print(e)
-                completion([shareCommand])
-            }
+            return items
+        } catch {
+            print(error)
+            return [shareCommand]
+        }
     }
     
     @objc func openSharesheet() {
