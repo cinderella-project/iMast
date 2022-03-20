@@ -81,7 +81,10 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     }
     let _muted: Bool?
 
-    public let sensitive: Bool
+    public var sensitive: Bool {
+        return self._sensitive ?? false
+    }
+    let _sensitive: Bool?
     public let spoilerText: String
     public let attachments: [MastodonAttachment]
     public let application: MastodonApplication?
@@ -115,7 +118,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case _favourited = "favourited"
         case _muted = "muted"
         case _bookmarked = "bookmarked"
-        case sensitive
+        case _sensitive = "sensitive"
         case spoilerText = "spoiler_text"
         case pinned
         case application
