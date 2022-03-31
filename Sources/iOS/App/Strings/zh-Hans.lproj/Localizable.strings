@@ -47,6 +47,13 @@
 
 "editedWarning.title" = "この投稿は投稿後に編集されています";
 "editedWarning.description" = "最終編集: %@";
+"editHistory.title" = "編集履歴";
+"editHistory.desc.original" = "オリジナル";
+"editHistory.desc.diff.template" = "変更点: %@";
+"editHistory.desc.diff.content" = "本文";
+"editHistory.desc.diff.cw" = "CW警告文";
+"editHistory.desc.diff.attachments" = "添付メディア";
+"editHistory.desc.diff.sensitive" = "NSFWフラグ";
 
 "other" = "其他";
 "switchTab" = "切换到 %@";

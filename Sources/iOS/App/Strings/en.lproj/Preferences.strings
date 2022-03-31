@@ -13,9 +13,9 @@
 "general.newAccountVia.title" = "Application Name for OAuth to Mastodon";
 
 "post.title" = "Post";
-"post.autoResize.title" = "画像の自動リサイズ";
+"post.autoResize.title" = "Automatic image resize";
 "post.autoResize.no" = "Don't";
-"post.autoResize.pixel" = "%dpx以下にリサイズ";
+"post.autoResize.pixel" = "Resize below %dpx";
 "post.useDefaultVisibility" = "デフォルト公開範囲を利用";
 
 "nowPlaying.title" = "NowPlaying";
@@ -23,16 +23,16 @@
 "nowPlaying.addURLIfAppleMusicAndAvailable" = "Add Apple Music URL automatically (If possible)";
 
 "timelineAppearance.title" = "Timeline Appearance";
-"timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
-"timelineAppearance.contentSize" = "本文の文字の大きさ";
-"timelineAppearance.contentBold" = "本文を太字で表示";
-"timelineAppearance.iconSize" = "アイコンの大きさ";
+"timelineAppearance.userNameSize" = "Username text size";
+"timelineAppearance.contentSize" = "Body text size";
+"timelineAppearance.contentBold" = "Show body text in bold";
+"timelineAppearance.iconSize" = "Icon size";
 "timelineAppearance.visibilityAsEmoji" = "Show Visibility as Emoji";
 "timelineAppearance.inReplyToAsEmoji" = "Show emoji if post is reply";
-"timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
-"timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
-"timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
-"timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
+"timelineAppearance.thumbnailHeight" = "Thumbnail height";
+"timelineAppearance.nurunuru" = "Slippery Mode (Will take effect after restarting app)";
+"timelineAppearance.bigNewPostButton.show" = "Show large post button";
+"timelineAppearance.bigNewPostButton.location.title" = "Position of the large post button";
 
 "timeline.title" = "Timeline";
 "timeline.openWebMInVLC" = "Open WebM in VLC";
@@ -44,13 +44,13 @@
 "push.accounts.title" = "Accounts";
 "push.addAccount.title" = "Add Account";
 "push.addAccount.alertTitle" = "Add Account";
-"push.addAccount.alertText" = "インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)";
+"push.addAccount.alertText" = "Enter the hostname of the instance\n(Please DON'T include https:// or something like that not host name)";
 "push.shared.title" = "Common Settings";
 "push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
 "push.shared.groupRules.title" = "Customize rules for grouping (β)";
 "push.shared.groupRules.byAccount" = "Grouping per account";
 "push.shared.groupRules.byType.title" = "Grouping per notification types";
-"push.shared.groupRules.byType.description" = "ONにしたタイプはすべて個別のグループになります。";
+"push.shared.groupRules.byType.description" = "Everything that is set to \"on\" will become a separate group.";
 "push.shared.customSounds.title" = "Custom Notification Sound (α)";
 "push.shared.deleteAccount.title" = "Delete Push Notifications Account";
 

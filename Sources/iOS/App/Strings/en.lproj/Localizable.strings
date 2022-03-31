@@ -47,6 +47,13 @@
 
 "editedWarning.title" = "This post was edited after first published";
 "editedWarning.description" = "Last edited at: %@";
+"editHistory.title" = "Edit History";
+"editHistory.desc.original" = "Original";
+"editHistory.desc.diff.template" = "Changed: %@";
+"editHistory.desc.diff.content" = "Text";
+"editHistory.desc.diff.cw" = "Content Warning";
+"editHistory.desc.diff.attachments" = "Attached Media";
+"editHistory.desc.diff.sensitive" = "NSFW or not";
 
 "other" = "Others";
 "switchTab" = "Switch to %@";
