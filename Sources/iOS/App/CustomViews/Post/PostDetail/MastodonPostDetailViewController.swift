@@ -147,11 +147,12 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             if let editedAt = input.editedAt {
                 cell.detailTextLabel?.text = L10n.Localizable.EditedWarning.description(formatter.string(from: editedAt))
             }
+            cell.accessoryType = .disclosureIndicator
         case .content:
             cell = TableViewCell<MastodonPostDetailContentViewController>.dequeued(
                 from: tableView,
                 for: indexPath,
-                input: self.input,
+                input: self.input.originalPost,
                 output: { [weak self] in
                     guard let tableView = self?.tableView else { return }
                     tableView.beginUpdates()
@@ -184,20 +185,12 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let source = self.dataSource[indexPath.row]
-        switch source {
-        case .editedWarning:
-            // TODO: 履歴表示を実装したら選択可能にしないといけない
-            return nil
-        default:
-            return indexPath
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let source = self.dataSource[indexPath.row]
         switch source {
+        case .editedWarning:
+            let vc = MastodonEditHistoryViewController(with: input.id, environment: environment)
+            self.navigationController?.pushViewController(vc, animated: true)
         case .boostedUser:
             let vc = UserProfileTopViewController.instantiate(input.account, environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)

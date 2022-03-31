@@ -28,7 +28,7 @@ import SnapKit
 import iMastiOSCore
 
 class MastodonPostDetailContentViewController: UIViewController, Instantiatable, Injectable, Interactable {
-    typealias Input = MastodonPost
+    typealias Input = MastodonPostContentProtocol
     typealias Environment = MastodonUserToken
     typealias Output = Void
     let environment: Environment
@@ -144,35 +144,37 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     
     func input(_ input: Input) {
         self.input = input
-        let post = input.originalPost
-        
-        userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
-        userNameLabel.text = post.account.name
-        let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
-            .foregroundColor: UIColor.systemGray,
-        ])
-        if !post.account.acct.contains("@") { // acctにhostがない場合は追加する
-            userAcctString.append(NSAttributedString(string: "@\(environment.app.instance.hostName)", attributes: [
-                .foregroundColor: UIColor.systemGray2,
-            ]))
-        }
-        userAcctLabel.attributedText = userAcctString
-        
-        cwWarningLabel.text = post.spoilerText
+        cwWarningLabel.text = input.spoilerText
         updateCWHiddenFlag()
         
         var attrs: [NSAttributedString.Key : Any] = [
             .font: UIFont.preferredFont(forTextStyle: .body),
             .foregroundColor: UIColor.label,
         ]
-        if Defaults.usePostLanguageInfo, let lang = post.language {
-            attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
+        if let post = input as? MastodonPost {
+            userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
+            userNameLabel.text = post.account.name
+            let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
+                .foregroundColor: UIColor.systemGray,
+            ])
+            if !post.account.acct.contains("@") { // acctにhostがない場合は追加する
+                userAcctString.append(NSAttributedString(string: "@\(environment.app.instance.hostName)", attributes: [
+                    .foregroundColor: UIColor.systemGray2,
+                ]))
+            }
+            userAcctLabel.attributedText = userAcctString
+            if Defaults.usePostLanguageInfo, let lang = post.language {
+                attrs[kCTLanguageAttributeName as NSAttributedString.Key] = lang
+            }
+            userButton.isHidden = false
+        } else {
+            userButton.isHidden = true
         }
-        textView.attributedText = post.status.parseText2HTMLNew(attributes: attrs)?.emojify(asyncLoadProgressHandler: { [weak textView] in
+        textView.attributedText = input.status.parseText2HTMLNew(attributes: attrs)?.emojify(asyncLoadProgressHandler: { [weak textView] in
             textView?.setNeedsDisplay()
-        }, emojifyProtocol: post)
+        }, emojifyProtocol: input)
         
-        attachedMediaListViewController.input(post)
+        attachedMediaListViewController.input(input)
     }
     
     func output(_ handler: ((Output) -> Void)?) {
@@ -187,7 +189,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     
     func updateCWHiddenFlag() {
-        if input.originalPost.spoilerText != "" {
+        if input.spoilerText != "" {
             cwWarningStackView.isHidden = false
             restrictTextViewHeight.isActive = !showCWContent
         } else {
@@ -206,7 +208,10 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     
     @objc func tapUser() {
-        let vc = UserProfileTopViewController.instantiate(input.originalPost.account, environment: environment)
+        guard let post = input as? MastodonPost else {
+            return
+        }
+        let vc = UserProfileTopViewController.instantiate(post.account, environment: environment)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -216,7 +221,7 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
-        if let mention = input.mentions.first(where: { $0.url == urlString }) {
+        if let post = input as? MastodonPost, let mention = post.mentions.first(where: { $0.url == urlString }) {
             MastodonEndpoint.GetAccount(target: mention.id)
                 .request(with: environment)
                 .then { [weak self] user in

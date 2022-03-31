@@ -30,7 +30,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse {
+public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse, MastodonPostContentProtocol {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id.string)
         hasher.combine(self.url)

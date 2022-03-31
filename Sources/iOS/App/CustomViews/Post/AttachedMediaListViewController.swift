@@ -29,7 +29,7 @@ import SafariServices
 import iMastiOSCore
 
 class AttachedMediaListViewController: UIViewController, Instantiatable, Injectable, Interactable {
-    typealias Input = MastodonPost
+    typealias Input = MastodonPostContentProtocol
     typealias Environment = Void
     enum Output {
         case show
@@ -124,7 +124,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         input(input)
     }
 
-    func input(_ input: MastodonPost) {
+    func input(_ input: Input) {
         self.input = input
         self.output = input.sensitive ? .hide : .show
         self.outputHandler?(self.output)
