@@ -85,7 +85,6 @@ class TopMasterViewController: UITableViewController {
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = "アカウントを追加"
             cell.textLabel?.textColor = view.tintColor
-            cell.imageView?.image = UIImage(systemName: "plus.circle")
         case .settings:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = L10n.Localizable.settings
