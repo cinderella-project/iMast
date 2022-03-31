@@ -89,6 +89,28 @@ internal enum L10n {
       /// 文脈
       internal static let title = L10n.tr("Localizable", "bunmyaku.title")
     }
+    internal enum EditHistory {
+      /// 編集履歴
+      internal static let title = L10n.tr("Localizable", "editHistory.title")
+      internal enum Desc {
+        /// オリジナル
+        internal static let original = L10n.tr("Localizable", "editHistory.desc.original")
+        internal enum Diff {
+          /// 添付メディア
+          internal static let attachments = L10n.tr("Localizable", "editHistory.desc.diff.attachments")
+          /// 本文
+          internal static let content = L10n.tr("Localizable", "editHistory.desc.diff.content")
+          /// CW警告文
+          internal static let cw = L10n.tr("Localizable", "editHistory.desc.diff.cw")
+          /// NSFWフラグ
+          internal static let sensitive = L10n.tr("Localizable", "editHistory.desc.diff.sensitive")
+          /// 変更点: %@
+          internal static func template(_ p1: Any) -> String {
+            return L10n.tr("Localizable", "editHistory.desc.diff.template", String(describing: p1))
+          }
+        }
+      }
+    }
     internal enum EditedWarning {
       /// 最終編集: %@
       internal static func description(_ p1: Any) -> String {

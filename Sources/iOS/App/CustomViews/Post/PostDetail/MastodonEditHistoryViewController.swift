@@ -48,7 +48,7 @@ class MastodonEditHistoryViewController: UITableViewController, Instantiatable {
     }
     
     override func viewDidLoad() {
-        title = "編集履歴"
+        title = L10n.Localizable.EditHistory.title
         TableViewCell<MastodonPostDetailContentViewController>.register(to: tableView)
         
         MastodonEndpoint.GetPostEditHistory(input).request(with: environment).then(in: .main) { history in
@@ -65,6 +65,36 @@ class MastodonEditHistoryViewController: UITableViewController, Instantiatable {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return formatter.string(from: contents[section].createdAt)
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0 {
+            return L10n.Localizable.EditHistory.Desc.original
+        } else {
+            var changed: [String] = []
+            let previous = contents[section-1]
+            let current = contents[section]
+            if previous.status != current.status {
+                changed.append(L10n.Localizable.EditHistory.Desc.Diff.content)
+            }
+            if previous.sensitive != current.sensitive {
+                changed.append(L10n.Localizable.EditHistory.Desc.Diff.sensitive)
+            }
+            if previous.spoilerText != current.spoilerText {
+                changed.append(L10n.Localizable.EditHistory.Desc.Diff.cw)
+            }
+            if previous.attachments.count != current.attachments.count {
+                changed.append(L10n.Localizable.EditHistory.Desc.Diff.attachments)
+            } else if current.attachments.count > 0 {
+                for i in 0..<current.attachments.count {
+                    if previous.attachments[i].url != current.attachments[i].url {
+                        changed.append(L10n.Localizable.EditHistory.Desc.Diff.attachments)
+                        break
+                    }
+                }
+            }
+            return L10n.Localizable.EditHistory.Desc.Diff.template(ListFormatter.localizedString(byJoining: changed))
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
