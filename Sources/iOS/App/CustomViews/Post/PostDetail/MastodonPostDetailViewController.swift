@@ -60,7 +60,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         if input.repost != nil {
             dataSource.append(.boostedUser)
         }
-        if input.editedAt != nil {
+        if input.originalPost.editedAt != nil {
             dataSource.append(.editedWarning)
         }
         dataSource.append(.content)
@@ -144,7 +144,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             let formatter = DateFormatter()
             formatter.dateStyle = .long
             formatter.timeStyle = .long
-            if let editedAt = input.editedAt {
+            if let editedAt = input.originalPost.editedAt {
                 cell.detailTextLabel?.text = L10n.Localizable.EditedWarning.description(formatter.string(from: editedAt))
             }
             cell.accessoryType = .disclosureIndicator
@@ -189,7 +189,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         let source = self.dataSource[indexPath.row]
         switch source {
         case .editedWarning:
-            let vc = MastodonEditHistoryViewController(with: input.id, environment: environment)
+            let vc = MastodonEditHistoryViewController(with: input.originalPost.id, environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)
         case .boostedUser:
             let vc = UserProfileTopViewController.instantiate(input.account, environment: environment)
