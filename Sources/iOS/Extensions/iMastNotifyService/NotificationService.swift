@@ -153,18 +153,8 @@ class NotificationService: UNNotificationServiceExtension {
                    let account = notify.account, notify.type == "mention",
                    let avatarURL = URL(string: account.avatarUrl)
                 {
-                    let displayName: String
+                    let displayName: String = "@\(account.acct)"
                     let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
-                    switch Defaults.communicationNotificationsNameType {
-                    case .acct:
-                        displayName = "@\(account.acct)"
-                    case .name:
-                        displayName = nameOrScreenName
-                    case .nameAfterAcct:
-                        displayName = "@\(account.acct) (\(nameOrScreenName))"
-                    case .acctAfterName:
-                        displayName = "\(nameOrScreenName) (@\(account.acct))"
-                    }
                     let intent = INSendMessageIntent(
                         recipients: [],
                         outgoingMessageType: .outgoingMessageText,

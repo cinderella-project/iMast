@@ -85,25 +85,4 @@ public class Defaults {
     @DefaultsKey("use_custom_boost_sound") public static var useCustomBoostSound: Bool = false
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false
     @DefaultsKey("communication_notifications_enabled") public static var communicationNotificationsEnabled: Bool = false
-    @DefaultsKeyRawRepresentable("communication_notifications_name_type") public static var communicationNotificationsNameType: CommunicationNotificationsNameType = .name
-
-    public enum CommunicationNotificationsNameType: String, CustomStringConvertible, CaseIterable {
-        case acct
-        case name
-        case nameAfterAcct
-        case acctAfterName
-        
-        public var description: String {
-            switch self {
-            case .acct:
-                return "@acctのみ"
-            case .name:
-                return "名前のみ"
-            case .nameAfterAcct:
-                return "@acct (名前)"
-            case .acctAfterName:
-                return "名前 (@acct)"
-            }
-        }
-    }
 }

@@ -346,14 +346,6 @@ class SettingsViewController: FormViewController {
                 }
                 row.userDefaultsConnect(Defaults.$communicationNotificationsEnabled)
             }
-            PushRow<Defaults.CommunicationNotificationsNameType> { row in
-                row.title = "有効時の名前のフォーマット"
-                row.options = Defaults.CommunicationNotificationsNameType.allCases
-                row.cellUpdate { cell, row in
-                    cell.textLabel?.numberOfLines = 0
-                }
-                row.userDefaultsConnect(Defaults.$communicationNotificationsNameType)
-            }
         }
     }
     
