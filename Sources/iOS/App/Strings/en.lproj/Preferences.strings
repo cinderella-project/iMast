@@ -30,7 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "Show Visibility as Emoji";
 "timelineAppearance.inReplyToAsEmoji" = "Show emoji if post is reply";
 "timelineAppearance.thumbnailHeight" = "Thumbnail height";
-"timelineAppearance.nurunuru" = "Slippery Mode (Will take effect after restarting)";
+"timelineAppearance.nurunuru" = "Slippery Mode (Will take effect after restarting app)";
 "timelineAppearance.bigNewPostButton.show" = "Show large post button";
 "timelineAppearance.bigNewPostButton.location.title" = "Position of the large post button";
 
@@ -44,7 +44,7 @@
 "push.accounts.title" = "Accounts";
 "push.addAccount.title" = "Add Account";
 "push.addAccount.alertTitle" = "Add Account";
-"push.addAccount.alertText" = "Enter the hostname of the instance\n(http://<instance link>)";
+"push.addAccount.alertText" = "Enter the hostname of the instance\n(Please DON'T include https:// or something like that not host name)";
 "push.shared.title" = "Common Settings";
 "push.shared.displayErrorIfOccured" = "Display error instead of fallback content if error occured";
 "push.shared.groupRules.title" = "Customize rules for grouping (β)";
