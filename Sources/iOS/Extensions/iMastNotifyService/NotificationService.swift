@@ -153,7 +153,7 @@ class NotificationService: UNNotificationServiceExtension {
                    let account = notify.account, notify.type == "mention",
                    let avatarURL = URL(string: account.avatarUrl)
                 {
-                    let displayName: String = "@\(account.acct)"
+                    let displayName: String = account.acct.contains("@") ? "@\(account.acct)" : "@\(account.acct)@\(userToken.app.instance.hostName)"
                     let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
                     let intent = INSendMessageIntent(
                         recipients: [],
