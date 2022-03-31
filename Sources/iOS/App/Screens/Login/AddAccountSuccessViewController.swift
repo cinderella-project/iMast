@@ -88,6 +88,6 @@ class AddAccountSuccessViewController: UIViewController {
     }
     
     @objc func goTimelineTapped() {
-        changeRootVC(MainTabBarController(with: (), environment: self.userToken))
+        changeRootVC(Defaults.newFirstScreen ? TopViewController() : MainTabBarController(with: (), environment: self.userToken))
     }
 }

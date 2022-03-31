@@ -35,6 +35,7 @@ class TopMasterViewController: UITableViewController {
     
     enum Item: Hashable {
         case account(accountId: String)
+        case addAccount
         case settings
         case helpAndFeedback
         case aboutThisApp
@@ -60,6 +61,7 @@ class TopMasterViewController: UITableViewController {
         var snapshot = dataSource.plainSnapshot()
         snapshot.appendSections([.accounts, .others])
         snapshot.appendItems(userTokens.map { .account(accountId: $0.id!) }, toSection: .accounts)
+        snapshot.appendItems([.addAccount], toSection: .accounts)
         snapshot.appendItems([
             .settings,
             .helpAndFeedback,
@@ -79,6 +81,11 @@ class TopMasterViewController: UITableViewController {
             cell.textLabel?.text = userToken.name ?? ""
             cell.detailTextLabel?.text = "@\(userToken.acct) (via \(userToken.app.name))"
             cell.accessoryType = .disclosureIndicator
+        case .addAccount:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = "アカウントを追加"
+            cell.textLabel?.textColor = view.tintColor
+            cell.imageView?.image = UIImage(systemName: "plus.circle")
         case .settings:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = L10n.Localizable.settings
@@ -104,6 +111,9 @@ class TopMasterViewController: UITableViewController {
                 TopAccountMasterViewController.instantiate(environment: userToken),
                 animated: true
             )
+        case .addAccount:
+            let vc = AddAccountIndexViewController()
+            self.changeRootVC(UINavigationController(rootViewController: vc))
         case .settings:
             showDetailViewController(UINavigationController(rootViewController: SettingsViewController()), sender: self)
         case .helpAndFeedback:
