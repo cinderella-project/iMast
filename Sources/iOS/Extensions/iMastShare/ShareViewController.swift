@@ -82,8 +82,13 @@ class ShareViewController: SLComposeServiceViewController {
         ]
 
         for inputItem in self.extensionContext!.inputItems as! [NSExtensionItem] {
+            #if DEBUG
+            print("inputItem", inputItem)
+            #endif
             for itemProvider in inputItem.attachments ?? [] {
-                print(itemProvider)
+                #if DEBUG
+                print("itemProvider", itemProvider)
+                #endif
                 for (uti, handler) in itemHandlers {
                     if itemProvider.hasItemConformingToTypeIdentifier(uti as String) {
                         itemProvider.loadItem(forTypeIdentifier: uti as String, options: nil, completionHandler: handler)
@@ -100,6 +105,8 @@ class ShareViewController: SLComposeServiceViewController {
         self.charactersRemaining = 500 - textLength as NSNumber
         return self.isMastodonLogged && (textLength > 0 || postMedia.count > 0)
     }
+    
+    var firstURLFinished = false
     
     func processUrl(item: NSSecureCoding?, error: Error?) {
         if let error = error {
@@ -154,6 +161,7 @@ class ShareViewController: SLComposeServiceViewController {
             }
             postUrl = nil
             DispatchQueue.main.sync {
+                firstURLFinished = true
                 self.textView.text = twitterPostText
             }
         }
@@ -163,6 +171,10 @@ class ShareViewController: SLComposeServiceViewController {
         
         if let postUrl = postUrl {
             DispatchQueue.main.sync {
+                guard !firstURLFinished else {
+                    return
+                }
+                firstURLFinished = true
                 self.textView.text += "\n" + postUrl
             }
         }
