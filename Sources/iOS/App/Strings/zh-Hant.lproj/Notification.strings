@@ -13,4 +13,6 @@
 "types.poll.owner" = "您的投票已結束";
 "types.poll.notowner" = "你投過的投票已經結束";
 "types.followRequest" = "@%@想要關注你";
+"types.postUpdated.isMe" = "投稿が編集されました";
+"types.postUpdated.notMe" = "過去にブーストした投稿が編集されました";
 "types.unknown" = "未知的通知：%@";
