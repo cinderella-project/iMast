@@ -34,6 +34,7 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
     
     let notifyTypeImageView = UIImageView() ※ { v in
         v.tintColor = .label
+        v.contentMode = .scaleAspectFit
         v.snp.makeConstraints { make in
             make.size.equalTo(16)
         }
@@ -86,7 +87,7 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
     func input(_ input: MastodonNotification) {
         self.input = input
         notifyTypeImageView.image = Self.getIcon(type: input.type)
-        titleLabel.text = Self.getTitle(notification: input)
+        titleLabel.text = getTitle(notification: input)
         descriptionLabel.text = (input.status?.status.toPlainText() ?? input.account?.name ?? " ")
             .replacingOccurrences(of: "\n", with: " ")
     }
@@ -103,12 +104,14 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
             return Asset.follow.image
         case "poll":
             return Asset.poll.image
+        case "update":
+            return UIImage(systemName: "pencil")
         default:
             return nil
         }
     }
     
-    static func getTitle(notification: MastodonNotification) -> String {
+    func getTitle(notification: MastodonNotification) -> String {
         let acct = notification.account?.acct ?? ""
         switch notification.type {
         case "reblog":
@@ -120,13 +123,19 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
         case "follow":
             return L10n.Notification.Types.follow(acct)
         case "poll":
-            if MastodonUserToken.getLatestUsed()?.screenName == notification.account?.acct {
+            if environment.screenName == notification.account?.acct {
                 return L10n.Notification.Types.Poll.owner
             } else {
                 return L10n.Notification.Types.Poll.notowner
             }
         case "follow_request":
             return L10n.Notification.Types.followRequest(acct)
+        case "update":
+            if environment.screenName == notification.status?.originalPost.account.acct {
+                return L10n.Notification.Types.PostUpdated.isMe
+            } else {
+                return L10n.Notification.Types.PostUpdated.notMe
+            }
         default:
             return L10n.Notification.Types.unknown(notification.type)
         }

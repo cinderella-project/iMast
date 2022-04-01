@@ -300,6 +300,12 @@ internal enum L10n {
         /// あなたが作成した投票が終了しました
         internal static let owner = L10n.tr("Notification", "types.poll.owner")
       }
+      internal enum PostUpdated {
+        /// 投稿が編集されました
+        internal static let isMe = L10n.tr("Notification", "types.postUpdated.isMe")
+        /// 過去にブーストした投稿が編集されました
+        internal static let notMe = L10n.tr("Notification", "types.postUpdated.notMe")
+      }
     }
   }
   internal enum OtherMenu {

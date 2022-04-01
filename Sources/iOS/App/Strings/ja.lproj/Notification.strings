@@ -13,4 +13,6 @@
 "types.poll.owner" = "あなたが作成した投票が終了しました";
 "types.poll.notowner" = "あなたが参加した投票が終了しました";
 "types.followRequest" = "@%@さんがあなたをフォローしたいようです";
+"types.postUpdated.isMe" = "投稿が編集されました";
+"types.postUpdated.notMe" = "過去にブーストした投稿が編集されました";
 "types.unknown" = "不明な通知: %@";
