@@ -201,12 +201,8 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         }
         
         // アイコン
-        // TODO: Xcode 13.3 でビルドすると起きる謎のアイコンすりかわりバグ用workaroundなのでそのうち外す
-        self.iconView.sd_cancelCurrentImageLoad()
-        self.iconView.image = nil
-        DispatchQueue.main.async {
-            self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: self.environment.app.instance.url))
-        }
+        self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
+        })
         self.iconWidthConstraint.constant = CGFloat(Defaults.timelineIconSize)
 
         // ユーザー名

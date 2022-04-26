@@ -40,7 +40,7 @@ DEPENDENCIES:
   - LicensePlist (~> 2.16.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - ReachabilitySwift (~> 4.3.1)
-  - SDWebImage (= 5.9.1)
+  - SDWebImage (~> 5.9.1)
   - SnapKit (~> 5.0.1)
   - Starscream (~> 3.1.1)
   - STRegex (~> 2.1.1)
@@ -106,6 +106,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: d6cfdd9d733d4cc3aa4cbe56a35770e4a72a70c7
+PODFILE CHECKSUM: b797f445bb10cd0b501ce4f3808326c939ae400c
 
 COCOAPODS: 1.11.2
