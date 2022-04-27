@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>6.1.1</string>
 	<key>CFBundleVersion</key>
-	<string>258</string>
+	<string>259</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
