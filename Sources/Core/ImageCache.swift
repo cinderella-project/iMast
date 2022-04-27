@@ -36,6 +36,7 @@ public extension UIImageView {
     func loadImage(from url: URL?, callback: (() -> Void)? = nil) {
         guard let url = url as? NSURL else {
             NSLog("overwrite image with URL nil")
+            image = nil
             uiImageViewLastLoadingURL.removeObject(forKey: self)
             if let oldOne = uiImageViewCancelToken.object(forKey: self) {
                 oldOne.cancel()
@@ -51,6 +52,7 @@ public extension UIImageView {
         if let oldOne = uiImageViewCancelToken.object(forKey: self) {
             oldOne.cancel()
         }
+        image = nil
         let cancellable = SDWebImageManager.shared.loadImage(with: url as URL, options: [], progress: nil) { [weak self] image, _, _, _, _, _  in
             guard let self = self else {
                 return
