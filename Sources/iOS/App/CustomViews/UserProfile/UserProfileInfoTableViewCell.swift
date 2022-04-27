@@ -75,7 +75,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
     
     func load(user: MastodonAccount) {
         self.user = user
-        self.iconView.sd_setImage(with: URL(string: user.avatarUrl), completed: nil)
+        self.iconView.loadImage(from: URL(string: user.avatarUrl))
         self.iconView.ignoreSmartInvert()
         self.nameLabel.text = user.name == "" ? user.screenName : user.name
         self.screenNameLabel.text = "@" + user.acct

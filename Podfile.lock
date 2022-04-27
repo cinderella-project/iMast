@@ -15,9 +15,9 @@ PODS:
   - LicensePlist (2.16.0)
   - Mew (0.1.0)
   - ReachabilitySwift (4.3.1)
-  - SDWebImage (5.9.1):
-    - SDWebImage/Core (= 5.9.1)
-  - SDWebImage/Core (5.9.1)
+  - SDWebImage (5.9.5):
+    - SDWebImage/Core (= 5.9.5)
+  - SDWebImage/Core (5.9.5)
   - SnapKit (5.0.1)
   - Starscream (3.1.1)
   - STRegex (2.1.1)
@@ -96,7 +96,7 @@ SPEC CHECKSUMS:
   LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
+  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   STRegex: d49e88d0fe58538d3175fdd989bc1243b9be2a07

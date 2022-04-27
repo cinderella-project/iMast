@@ -56,7 +56,7 @@ class EmojiListTableViewController: UITableViewController {
         let cell = UITableViewCell()
         let emoji = self.emojis[indexPath.row]
         // Configure the cell...
-        cell.imageView?.sd_setImage(with: URL(string: emoji.url)) { _, _, _, _ in
+        cell.imageView?.loadImage(from: URL(string: emoji.url)) {
             cell.layoutIfNeeded()
         }
         cell.textLabel?.text = ":" + emoji.shortcode + ":"

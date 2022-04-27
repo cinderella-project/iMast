@@ -99,7 +99,7 @@ class MastodonPostDetailBoostedUserViewController: UIViewController, Instantiata
     }
     
     func input(_ input: Input) {
-        iconView.sd_setImage(with: URL(string: input.avatarUrl), completed: nil)
+        iconView.loadImage(from: URL(string: input.avatarUrl))
         nameLabel.text = input.name
         let userAcctString = NSMutableAttributedString(string: "@\(input.acct)", attributes: [
             .foregroundColor: UIColor.gray,

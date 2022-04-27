@@ -159,7 +159,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             let imageView = mediaStackView.arrangedSubviews[i] as! UIImageView
             imageView.image = nil
             if let previewURL = media.previewUrl {
-                imageView.sd_setImage(with: URL(string: previewURL), completed: nil)
+                imageView.loadImage(from: URL(string: previewURL))
             }
             imageView.isHidden = false
         }

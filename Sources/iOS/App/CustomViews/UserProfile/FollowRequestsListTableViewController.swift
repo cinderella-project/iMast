@@ -95,7 +95,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
             cell.textLabel?.text = request.acct
         }
         cell.detailTextLabel?.text = "@\(request.acct)"
-        cell.imageView?.sd_setImage(with: URL(string: request.avatarUrl)) { (image, error, cacheType, imageUrl) in
+        cell.imageView?.loadImage(from: URL(string: request.avatarUrl)) {
             cell.setNeedsLayout()
         }
         cell.imageView?.ignoreSmartInvert()

@@ -83,7 +83,7 @@ class AddAccountSuccessViewController: UIViewController {
         welcomeMessageLabel.text = L10n.Login.Welcome.message("@"+userToken.acct)
         toTimelineButton.setTitle(L10n.Login.Welcome.toTimeline, for: .normal)
         if let avatarUrl = self.userToken.avatarUrl {
-            myIconImageView.sd_setImage(with: URL(string: avatarUrl))
+            myIconImageView.loadImage(from: URL(string: avatarUrl))
         }
     }
     

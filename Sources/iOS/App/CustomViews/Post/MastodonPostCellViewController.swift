@@ -194,15 +194,15 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             tootInfoView.isHidden = false
             boostedIconView.isHidden = false
             boostedIconView.image = nil
-            boostedIconView.sd_setImage(with: URL(string: originalPost.account.avatarUrl), completed: nil)
+            boostedIconView.loadImage(from: URL(string: originalPost.account.avatarUrl))
         } else {
             tootInfoView.isHidden = true
             boostedIconView.isHidden = true
         }
         
         // アイコン
-        self.iconView.sd_setImage(with: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url), completed: {_, _, _, _ in
-        })
+        print("loading", Thread.isMainThread)
+        self.iconView.loadImage(from: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url))
         self.iconWidthConstraint.constant = CGFloat(Defaults.timelineIconSize)
 
         // ユーザー名

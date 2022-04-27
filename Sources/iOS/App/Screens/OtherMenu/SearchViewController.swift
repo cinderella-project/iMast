@@ -73,10 +73,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
                 cell.textLabel?.text = account.name == "" ? account.screenName : account.name
                 cell.detailTextLabel?.text = "@" + account.acct
                 let iconUrl = URL(string: account.avatarUrl, relativeTo: URL(string: "https://" + environment.app.instance.hostName)!)
-                cell.imageView?.sd_setImage(with: iconUrl, completed: { (_, _, _, _) in
+                cell.imageView?.loadImage(from: iconUrl) {
                     cell.setNeedsLayout()
                     cell.layoutIfNeeded()
-                })
+                }
                 return cell
             case .hashtag(let tag):
                 let cell = UITableViewCell(style: .default, reuseIdentifier: nil)

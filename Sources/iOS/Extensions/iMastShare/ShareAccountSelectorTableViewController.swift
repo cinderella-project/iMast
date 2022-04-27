@@ -72,9 +72,9 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         }
         
         if let avatarUrl = userToken.avatarUrl {
-            cell.imageView?.sd_setImage(with: URL(string: avatarUrl), completed: { (image, error, cacheType, url) in
+            cell.imageView?.loadImage(from: URL(string: avatarUrl)) {
                 cell.setNeedsLayout()
-            })
+            }
             cell.imageView?.ignoreSmartInvert()
         }
         

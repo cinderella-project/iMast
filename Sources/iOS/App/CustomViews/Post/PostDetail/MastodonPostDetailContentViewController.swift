@@ -152,7 +152,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
             .foregroundColor: UIColor.label,
         ]
         if let post = input as? MastodonPost {
-            userIconView.sd_setImage(with: URL(string: post.account.avatarUrl), completed: nil)
+            userIconView.loadImage(from: URL(string: post.account.avatarUrl))
             userNameLabel.text = post.account.name
             let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
                 .foregroundColor: UIColor.systemGray,

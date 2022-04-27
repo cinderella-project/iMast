@@ -133,7 +133,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
             cell = .init(style: .subtitle, reuseIdentifier: nil)
             cell.textLabel?.text = environment.name ?? environment.screenName ?? ""
             cell.detailTextLabel?.text = "@" + environment.acct
-            cell.imageView?.sd_setImage(with: URL(string: environment.avatarUrl ?? "")) { _, _, _, _ in
+            cell.imageView?.loadImage(from: URL(string: environment.avatarUrl ?? "")) {
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
             }

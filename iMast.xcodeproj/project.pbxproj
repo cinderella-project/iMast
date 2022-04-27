@@ -202,6 +202,8 @@
 		CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */; };
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
+		CEB60B562819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
+		CEB60B572819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
 		CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB97029240012420028AD2A /* AboutThisAppViewController.swift */; };
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBB33E21F32381300E4D3AB /* ShareVisibilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */; };
@@ -820,6 +822,7 @@
 		CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAndLocalTimelineViewController.swift; sourceTree = "<group>"; };
 		CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariRow.swift; sourceTree = "<group>"; };
 		CEAE471A24E8C21500645946 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
+		CEB60B552819EA21001D26B7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		CEB97029240012420028AD2A /* AboutThisAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisAppViewController.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		CEBB33E11F32381200E4D3AB /* ShareVisibilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVisibilityTableViewController.swift; sourceTree = "<group>"; };
@@ -1358,6 +1361,7 @@
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 				CE5D9DF626B3C19500895234 /* deferAsync.swift */,
 				CE98789926B4909C008A0A88 /* Hydra+promiseAsync.swift */,
+				CEB60B552819EA21001D26B7 /* ImageCache.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -3462,6 +3466,7 @@
 				CE98789A26B4909C008A0A88 /* Hydra+promiseAsync.swift in Sources */,
 				CE43BEF023779EB500133C86 /* MastodonSearchResult.swift in Sources */,
 				CE8EFB2E25C9448B004FFE4B /* Defaults.swift in Sources */,
+				CEB60B562819EA21001D26B7 /* ImageCache.swift in Sources */,
 				CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */,
 				CE522BF624159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
 				CE43BEE923779EB500133C86 /* MastodonAccount.swift in Sources */,
@@ -3658,6 +3663,7 @@
 				CEE4E3602377F83C00406371 /* MastodonAccount.swift in Sources */,
 				CE522BE824159C380048E334 /* MastodonEndpointProtocol.swift in Sources */,
 				CEE4E36A2377F83C00406371 /* MastodonIDAvailable.swift in Sources */,
+				CEB60B572819EA21001D26B7 /* ImageCache.swift in Sources */,
 				CE9BB390241C4F03004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
 				CEE4E36E2377F84200406371 /* MastodonApp.swift in Sources */,
 				CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */,

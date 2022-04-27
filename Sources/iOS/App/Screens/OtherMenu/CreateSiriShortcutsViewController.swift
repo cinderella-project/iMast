@@ -58,9 +58,9 @@ class CreateSiriShortcutsViewController: FormViewController {
                             cell.textLabel?.text = userToken.name
                             cell.detailTextLabel?.text = "\(userToken.acct) (\(userToken.app.name))"
                             if let url = URL(string: userToken.avatarUrl ?? "") {
-                                cell.imageView?.sd_setImage(with: url, completed: { (_, _, _, _) in
+                                cell.imageView?.loadImage(from: url) {
                                     cell.setNeedsLayout()
-                                })
+                                }
                             }
                         }
                     }

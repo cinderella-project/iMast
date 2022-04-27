@@ -43,8 +43,8 @@ class ProfileCardViewController: UIViewController {
         self.view.ignoreSmartInvert()
         
         // Do any additional setup after loading the view.
-        self.backgroundImageView.sd_setImage(with: URL(string: user.headerUrl))
-        self.iconView.sd_setImage(with: URL(string: user.avatarUrl))
+        self.backgroundImageView.loadImage(from: URL(string: user.headerUrl))
+        self.iconView.loadImage(from: URL(string: user.avatarUrl))
         
         let qr = CIFilter.qrCodeGenerator()
         qr.message = user.url.data(using: .utf8)!
