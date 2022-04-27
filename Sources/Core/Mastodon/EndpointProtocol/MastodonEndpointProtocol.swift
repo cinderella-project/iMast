@@ -27,7 +27,7 @@ import Hydra
 public protocol MastodonEndpointProtocol {
     associatedtype Response: MastodonEndpointResponse
     
-    /// e.g. "/api/v1/account"
+    /// e.g. "/api/v1/account". you need to percent-encoding on some characters.
     var endpoint: String { get }
     var method: String { get }
 

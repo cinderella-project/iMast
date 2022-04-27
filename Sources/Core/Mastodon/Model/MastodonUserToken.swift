@@ -226,7 +226,7 @@ public class MastodonUserToken: Equatable {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = app.instance.hostName
-        urlBuilder.path = ep.endpoint
+        urlBuilder.percentEncodedPath = ep.endpoint
         urlBuilder.queryItems = ep.query
         if urlBuilder.queryItems?.count == 0 {
             urlBuilder.queryItems = nil

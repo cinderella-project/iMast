@@ -213,7 +213,6 @@ public class MastodonTimelineType: Equatable {
     
     static public func hashtag(_ tag: String) -> MastodonTimelineType {
         var charset = CharacterSet.urlPathAllowed
-        charset.insert("/")
         return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)", wsParams: ["stream": "hashtag", "tag": tag])
     }
     
