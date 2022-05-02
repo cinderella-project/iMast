@@ -45,7 +45,7 @@
 "refetch" = "重新连接";
 "cancel" = "取消";
 
-"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.title" = "已编辑的嘟文";
 "editedWarning.description" = "最終編集: %@";
 "editHistory.title" = "編集履歴";
 "editHistory.desc.original" = "オリジナル";
