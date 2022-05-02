@@ -50,10 +50,10 @@
 "editHistory.title" = "編集履歴";
 "editHistory.desc.original" = "オリジナル";
 "editHistory.desc.diff.template" = "変更点: %@";
-"editHistory.desc.diff.content" = "本文";
-"editHistory.desc.diff.cw" = "CW警告文";
-"editHistory.desc.diff.attachments" = "添付メディア";
-"editHistory.desc.diff.sensitive" = "NSFWフラグ";
+"editHistory.desc.diff.content" = "正文";
+"editHistory.desc.diff.cw" = "折叠部分的警告信息";
+"editHistory.desc.diff.attachments" = "媒体附件";
+"editHistory.desc.diff.sensitive" = "NSFW标记";
 
 "other" = "其他";
 "switchTab" = "切换到 %@";
