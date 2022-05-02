@@ -46,10 +46,10 @@
 "cancel" = "取消";
 
 "editedWarning.title" = "已编辑的嘟文";
-"editedWarning.description" = "最終編集: %@";
-"editHistory.title" = "編集履歴";
-"editHistory.desc.original" = "オリジナル";
-"editHistory.desc.diff.template" = "変更点: %@";
+"editedWarning.description" = "最后一次编辑：%@";
+"editHistory.title" = "编辑历史";
+"editHistory.desc.original" = "原始嘟文";
+"editHistory.desc.diff.template" = "更改的内容：%@";
 "editHistory.desc.diff.content" = "正文";
 "editHistory.desc.diff.cw" = "折叠部分的警告信息";
 "editHistory.desc.diff.attachments" = "媒体附件";
