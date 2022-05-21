@@ -74,13 +74,13 @@
 "aboutThisApp.reviewInAppStore" = "在 App Store 上評論";
 "aboutThisApp.tootWithHashtag" = "在話題 #imast_ios 中發布";
 
-"chooseAccount" = "請選擇要使用的賬號";
+"chooseAccount" = "選擇要使用的帳號";
 
 "favouritesList" = "收藏一覽";
 "bunmyaku.title" = "文脈";
 
 "error.title" = "錯誤";
-"error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
+"error.requiredNewerOS" = "此功能須IOS版本%.1f及以上";
 "error.requiredNewerMastodon" = "實例版本%@及以上才能使用此功能\n（如果在iMast運行時實例升級了，重啟即可使用此功能）\n請向各自的管理員詢問Mastodon實例的升級計劃";
 "error.pleaseInputInstance" = "請輸入實例";
 
