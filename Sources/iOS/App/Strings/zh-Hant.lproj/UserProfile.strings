@@ -42,7 +42,7 @@
 "actions.block" = "封鎖";
 "actions.unblock" = "解除封鎖";
 
-"actions.followRequestsList" = "關注申請列表";
+"actions.followRequestsList" = "關注請求清單";
 
 "actions.cancel" = "取消";
 
