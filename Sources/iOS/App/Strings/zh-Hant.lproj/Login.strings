@@ -11,7 +11,7 @@
 "loginButton" = "登錄";
 
 "progressDialog.title" = "正在登錄";
-"progressDialog.fetchingServerInfo" = "正在從伺服器取得信息…";
+"progressDialog.fetchingServerInfo" = "正在取得伺服器資訊…";
 "progressDialog.registeringApplication" = "正在將app註冊在伺服器上…";
 "progressDialog.pleaseAuthorize" = "請您認證";
 
