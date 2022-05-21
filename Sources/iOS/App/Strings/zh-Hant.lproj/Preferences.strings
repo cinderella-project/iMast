@@ -6,25 +6,25 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"general.streamingAutoConnect.title" = "ストリーミング自動接続";
-"general.streamingAutoConnect.no" = "常にしない";
-"general.streamingAutoConnect.wifi" = "WiFi接続時のみ";
-"general.streamingAutoConnect.always" = "常にする";
+"general.streamingAutoConnect.title" = "自動連接串流";
+"general.streamingAutoConnect.no" = "從不";
+"general.streamingAutoConnect.wifi" = "僅連接WiFi時";
+"general.streamingAutoConnect.always" = "總是";
 "general.newAccountVia.title" = "新規連携時のvia";
 
-"post.title" = "投稿";
-"post.autoResize.title" = "画像の自動リサイズ";
-"post.autoResize.no" = "しない";
-"post.autoResize.pixel" = "%dpx以下にリサイズ";
-"post.useDefaultVisibility" = "デフォルト公開範囲を利用";
+"post.title" = "發嘟";
+"post.autoResize.title" = "自動縮放影像大小";
+"post.autoResize.no" = "否";
+"post.autoResize.pixel" = "縮放至%dpx以下";
+"post.useDefaultVisibility" = "套用預設可見範圍";
 
-"nowPlaying.title" = "NowPlaying";
-"nowPlaying.format.title" = "フォーマット";
+"nowPlaying.title" = "現正播放";
+"nowPlaying.format.title" = "格式";
 "nowPlaying.addURLIfAppleMusicAndAvailable" = "Apple MusicならURLを付ける (できれば)";
 
-"timelineAppearance.title" = "タイムラインの外観";
-"timelineAppearance.userNameSize" = "ユーザー名の文字の大きさ";
-"timelineAppearance.contentSize" = "本文の文字の大きさ";
+"timelineAppearance.title" = "時間軸樣式";
+"timelineAppearance.userNameSize" = "使用者名稱文字大小";
+"timelineAppearance.contentSize" = "正文文字大小";
 "timelineAppearance.contentBold" = "本文を太字で表示";
 "timelineAppearance.iconSize" = "アイコンの大きさ";
 "timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
