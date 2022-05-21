@@ -16,9 +16,9 @@
 "progressDialog.pleaseAuthorize" = "請進行認證";
 
 "authorize.title" = "認證";
-"authorize.method.safari" = "使用Safari登錄（推薦）";
+"authorize.method.safari" = "使用Safari登入 (推薦)";
 
-"authorize.tos.header" = "登錄後就代表您已同意以下的守則和隱私權政策";
+"authorize.tos.header" = "登入後即代表您已同意以下的守則和隱私權政策";
 "authorize.tos.rules" = "此實例的守則";
 "authorize.tos.termsOfService" = "此實例的服務條款";
 
