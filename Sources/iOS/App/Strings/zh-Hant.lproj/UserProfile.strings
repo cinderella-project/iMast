@@ -23,7 +23,7 @@
 
 "title" = "個人資料";
 
-"cells.toots.title" = "發佈";
+"cells.toots.title" = "發嘟";
 "cells.following.title" = "正在關注";
 "cells.followers.title" = "關注者";
 "cells.createdAt.title" = "加入日";
@@ -46,5 +46,5 @@
 
 "actions.cancel" = "取消";
 
-"federatedUserWarning" = "此用戶來自其他實例，所以數據可能並不完整";
+"federatedUserWarning" = "此使用者來自其他實例，所以數據可能並不完整";
 "checkLatestProfileInWeb" = "線上檢視最新個人資料";
