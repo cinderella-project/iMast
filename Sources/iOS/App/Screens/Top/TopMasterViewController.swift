@@ -23,6 +23,7 @@
 
 import UIKit
 import iMastiOSCore
+import SwiftUI
 
 class TopMasterViewController: UITableViewController {
     private var userTokens = MastodonUserToken.getAllUserTokens()
@@ -37,6 +38,7 @@ class TopMasterViewController: UITableViewController {
         case account(accountId: String)
         case addAccount
         case settings
+        case settings2
         case helpAndFeedback
         case aboutThisApp
     }
@@ -64,6 +66,7 @@ class TopMasterViewController: UITableViewController {
         snapshot.appendItems([.addAccount], toSection: .accounts)
         snapshot.appendItems([
             .settings,
+            .settings2,
             .helpAndFeedback,
             .aboutThisApp,
         ], toSection: .others)
@@ -88,6 +91,10 @@ class TopMasterViewController: UITableViewController {
         case .settings:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.textLabel?.text = L10n.Localizable.settings
+            cell.accessoryType = .disclosureIndicator
+        case .settings2:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = L10n.Localizable.settings + " (SwiftUI)"
             cell.accessoryType = .disclosureIndicator
         case .helpAndFeedback:
             cell = .init(style: .default, reuseIdentifier: nil)
@@ -115,6 +122,8 @@ class TopMasterViewController: UITableViewController {
             self.changeRootVC(UINavigationController(rootViewController: vc))
         case .settings:
             showDetailViewController(UINavigationController(rootViewController: SettingsViewController()), sender: self)
+        case .settings2:
+            showDetailViewController(UINavigationController(rootViewController: UIHostingController(rootView: SettingsView())), sender: self)
         case .helpAndFeedback:
             showDetailViewController(UINavigationController(rootViewController: HelpAndFeedbackTableViewController()), sender: self)
         case .aboutThisApp:

@@ -50,6 +50,7 @@
 		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
+		CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */; };
 		CE3AFD8525E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3AFD8625E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
@@ -195,6 +196,7 @@
 		CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */; };
 		CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
+		CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA528D428527DE70095EB1F /* SettingsView.swift */; };
 		CEA787D42696EEB7002C9A5C /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
@@ -673,6 +675,7 @@
 		CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDebugBuild.swift; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
+		CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkaroundForSubtitleSpacing.swift; sourceTree = "<group>"; };
 		CE3AFD6925E0B1BE001B71E0 /* generate-license-info.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "generate-license-info.py"; sourceTree = "<group>"; };
 		CE3AFD8425E0BF2F001B71E0 /* licenses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = licenses.json; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
@@ -815,6 +818,7 @@
 		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonUserToken+toIntentAccount.swift"; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
+		CEA528D428527DE70095EB1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
 		CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+forMastodonAPI.swift"; sourceTree = "<group>"; };
 		CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAndLocalTimelineViewController.swift; sourceTree = "<group>"; };
@@ -1251,6 +1255,7 @@
 				2AF352231EAB9C5600777C2E /* LaunchScreen.storyboard */,
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
+				CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */,
 				CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
@@ -1452,6 +1457,7 @@
 			children = (
 				CE4D387F23BD03E100543E72 /* PushSettings */,
 				CEE357251FF6410600675DFC /* SettingsViewController.swift */,
+				CEA528D428527DE70095EB1F /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -3375,6 +3381,7 @@
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */,
 				CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */,
+				CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */,
 				CE5460A127F592E400A676B3 /* MastodonEditHistoryViewController.swift in Sources */,
 				CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
@@ -3422,6 +3429,7 @@
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */,
+				CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
 				CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */,
@@ -4081,7 +4089,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4109,7 +4117,7 @@
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

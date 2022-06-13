@@ -22,8 +22,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-public class _BaseDefaultsKey<ValueType> {
+public class _BaseDefaultsKey<ValueType>: Defaults {
     let key: String
     let defaults = UserDefaultsAppGroup
     
@@ -95,5 +96,27 @@ public class DefaultsKeyRawRepresentable<ValueType: RawRepresentable>: _BaseDefa
     public init(wrappedValue defaultValue: ValueType, _ key: String) {
         self.defaultValue = defaultValue
         super.init(key: key)
+    }
+}
+
+public extension AppStorage {
+    init(defaults: DefaultsKey<Value>) where Value == Bool {
+        self.init(wrappedValue: defaults.wrappedValue, defaults.key, store: defaults.defaults)
+    }
+    
+    init(defaults: DefaultsKey<Value>) where Value == Double {
+        self.init(wrappedValue: defaults.wrappedValue, defaults.key, store: defaults.defaults)
+    }
+    
+    init(defaults: DefaultsKey<Value>) where Value == String {
+        self.init(wrappedValue: defaults.wrappedValue, defaults.key, store: defaults.defaults)
+    }
+    
+    init(defaults: DefaultsKey<Value>) where Value == Int {
+        self.init(wrappedValue: defaults.wrappedValue, defaults.key, store: defaults.defaults)
+    }
+    
+    init(defaults: DefaultsKeyRawRepresentable<Value>) where Value.RawValue == String {
+        self.init(wrappedValue: defaults.wrappedValue, defaults.key, store: defaults.defaults)
     }
 }
