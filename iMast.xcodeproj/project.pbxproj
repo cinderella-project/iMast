@@ -37,6 +37,8 @@
 		CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */; };
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
+		CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DD28576A8C00F6A0AF /* Ikemen */; };
+		CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DF28576A9200F6A0AF /* Ikemen */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -969,6 +971,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
+				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,6 +1053,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */,
+				CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2208,6 +2212,9 @@
 			dependencies = (
 			);
 			name = iMastiOSCore;
+			packageProductDependencies = (
+				CE11D6DD28576A8C00F6A0AF /* Ikemen */,
+			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2409,6 +2416,9 @@
 			dependencies = (
 			);
 			name = iMastMacCore;
+			packageProductDependencies = (
+				CE11D6DF28576A9200F6A0AF /* Ikemen */,
+			);
 			productName = iMastMacCore;
 			productReference = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2552,6 +2562,9 @@
 				"zh-Hant",
 			);
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
+			packageReferences = (
+				CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */,
+			);
 			productRefGroup = 2AF352181EAB9C5500777C2E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2765,7 +2778,6 @@
 				"${BUILT_PRODUCTS_DIR}/STRegex-macOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-macOS/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/※ikemen-macOS/Ikemen.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2778,7 +2790,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2820,7 +2831,6 @@
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
 				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
@@ -2841,7 +2851,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
@@ -2908,7 +2917,6 @@
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
 				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
@@ -2929,7 +2937,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
@@ -2978,7 +2985,6 @@
 				"${BUILT_PRODUCTS_DIR}/STRegex-iOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/※ikemen-iOS/Ikemen.framework",
 				"${BUILT_PRODUCTS_DIR}/Crossroad/Crossroad.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/EurekaFormBuilder/EurekaFormBuilder.framework",
@@ -2999,7 +3005,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Crossroad.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EurekaFormBuilder.framework",
@@ -3165,7 +3170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path Sources/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path Sources/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers --xcworkspace-path iMast.xcworkspace\nfi\n";
 		};
 		CEC4704825DC725F003E3AEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3223,7 +3228,6 @@
 				"${BUILT_PRODUCTS_DIR}/STRegex-macOS/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-macOS/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/※ikemen-macOS/Ikemen.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3236,7 +3240,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ikemen.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5096,6 +5099,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/banjun/ikemen";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE11D6DD28576A8C00F6A0AF /* Ikemen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
+			productName = Ikemen;
+		};
+		CE11D6DF28576A9200F6A0AF /* Ikemen */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
+			productName = Ikemen;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2AF3520F1EAB9C5500777C2E /* Project object */;
 }

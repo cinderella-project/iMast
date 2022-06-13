@@ -183,6 +183,8 @@
 
    END OF TERMS AND CONDITIONS
 </string>
+			<key>License</key>
+			<string>unknown</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

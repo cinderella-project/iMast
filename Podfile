@@ -13,7 +13,6 @@ abstract_target 'iMastShared' do
   pod 'SDWebImage', '~> 5.9.1'
   pod 'Fuzi', '~> 3.1.2'
   pod 'SnapKit', '~> 5.0.1'
-  pod '※ikemen', '~> 0.6.0'
   pod 'KeychainAccess', '~> 4.2.1'
   pod 'SwiftGen', '~> 6.3.0'
   pod "STRegex", "~> 2.1.1"
@@ -32,7 +31,7 @@ abstract_target 'iMastShared' do
       pod 'EurekaFormBuilder', '~> 0.2.2'
       pod 'EurekaTwolineSliderRow'
       pod 'SVProgressHUD'
-      pod 'LicensePlist', '~> 2.16.0'
+      pod 'LicensePlist', '~> 3.22.0'
       
       target 'iMastTests' do
         # Pods for testing

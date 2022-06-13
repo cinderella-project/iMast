@@ -76,6 +76,14 @@
 		</dict>
 		<dict>
 			<key>File</key>
+			<string>com.mono0926.LicensePlist/ikemen</string>
+			<key>Title</key>
+			<string>ikemen (0.7.0)</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
 			<string>com.mono0926.LicensePlist/iMast (LICENSE)</string>
 			<key>Title</key>
 			<string>iMast (LICENSE)</string>
@@ -102,7 +110,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/LicensePlist</string>
 			<key>Title</key>
-			<string>LicensePlist (2.16.0)</string>
+			<string>LicensePlist (3.22.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -199,14 +207,6 @@
 			<string>com.mono0926.LicensePlist/SwiftyJSON</string>
 			<key>Title</key>
 			<string>SwiftyJSON (5.0.0)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
-			<string>com.mono0926.LicensePlist/※ikemen</string>
-			<key>Title</key>
-			<string>※ikemen</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

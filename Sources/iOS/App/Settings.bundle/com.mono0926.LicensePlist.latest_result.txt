@@ -256,19 +256,19 @@ name: LicensePlist, nameSpecified:
 body: MIT License
 
 Copyrig…
-version: 2.16.0
+version: 3.22.0
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 2.16.0
+version: 3.22.0
 
 name: LicensePlist, nameSpecified: 
 body: MIT License
 
 Copyrig…
-version: 2.16.0
+version: 3.22.0
 
 name: Mew, nameSpecified: 
 body: Copyright (c) 2018 M…
@@ -600,57 +600,19 @@ name: SwiftyJSON, nameSpecified:
 body: The MIT License (MIT…
 version: 5.0.0
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
+name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
 
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
-
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
-
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
-
-name: ※ikemen, nameSpecified: 
-body: Copyright (c) 2015 b…
-version: 
-
-name: mikutter, nameSpecified: , owner: mikutter, version: 
-
-name: mikutter, nameSpecified: , owner: mikutter, version: 
-
-name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
-
-name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
-
-name: mikutter, nameSpecified: , owner: mikutter, version: 
-
-name: Sparkle, nameSpecified: , owner: sparkle-project, version: 
+name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.7.0, source: https://github.com/banjun/ikemen
 
 name: iMast (LICENSE), nameSpecified: , version: 
 body:                     …
@@ -661,4 +623,4 @@ Copyright 2017…
 
 add-version-numbers: true
 
-LicensePlist Version: 2.16.0
+LicensePlist Version: 3.22.0

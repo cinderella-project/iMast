@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ikemen",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/banjun/ikemen",
+      "state" : {
+        "revision" : "e05233856b49d4280301adaab00f8bf713c7bcf6",
+        "version" : "0.7.0"
+      }
+    }
+  ],
+  "version" : 2
+}

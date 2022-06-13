@@ -10,6 +10,8 @@
 Copyright 2017-2021 rinsuki and other contributors.
 
 The source code is licensed under the terms of the Apache License, Version 2.0.</string>
+			<key>License</key>
+			<string>unknown</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

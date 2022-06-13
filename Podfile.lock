@@ -12,7 +12,7 @@ PODS:
   - GRDB.swift/standard (4.6.2)
   - HydraAsync (2.0.6)
   - KeychainAccess (4.2.1)
-  - LicensePlist (2.16.0)
+  - LicensePlist (3.22.0)
   - Mew (0.1.0)
   - ReachabilitySwift (4.3.1)
   - SDWebImage (5.9.5):
@@ -25,7 +25,6 @@ PODS:
   - SwiftGen (6.3.0)
   - SwiftLint (0.40.3)
   - SwiftyJSON (5.0.0)
-  - "※ikemen (0.6.0)"
 
 DEPENDENCIES:
   - Alamofire (~> 4.9.1)
@@ -37,7 +36,7 @@ DEPENDENCIES:
   - GRDB.swift (~> 4.6.2)
   - HydraAsync (~> 2.0.6)
   - KeychainAccess (~> 4.2.1)
-  - LicensePlist (~> 2.16.0)
+  - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - ReachabilitySwift (~> 4.3.1)
   - SDWebImage (~> 5.9.1)
@@ -48,7 +47,6 @@ DEPENDENCIES:
   - SwiftGen (~> 6.3.0)
   - SwiftLint (~> 0.40.3)
   - SwiftyJSON (~> 5.0.0)
-  - "※ikemen (~> 0.6.0)"
 
 SPEC REPOS:
   trunk:
@@ -71,7 +69,6 @@ SPEC REPOS:
     - SwiftGen
     - SwiftLint
     - SwiftyJSON
-    - "※ikemen"
 
 EXTERNAL SOURCES:
   Mew:
@@ -93,7 +90,7 @@ SPEC CHECKSUMS:
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
   HydraAsync: 8d589bd725b0224f899afafc9a396327405f8063
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  LicensePlist: 26afd3ef32fffcc649a15b31d96fef5eded65497
+  LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
@@ -104,8 +101,7 @@ SPEC CHECKSUMS:
   SwiftGen: 3d5024a47ea79e408cded20763d7a17d18a4548c
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
-  "※ikemen": da47fe6e0acfbe241611221f4d98ade266bf50a2
 
-PODFILE CHECKSUM: b797f445bb10cd0b501ce4f3808326c939ae400c
+PODFILE CHECKSUM: 3a1b4184397d52b5e1bdaa40f6b8d1d8d852ed57
 
 COCOAPODS: 1.11.3
