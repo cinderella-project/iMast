@@ -38,6 +38,7 @@
 		CE109714220631E5000A5101 /* EmojiListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE109713220631E5000A5101 /* EmojiListTableViewController.swift */; };
 		CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DD28576A8C00F6A0AF /* Ikemen */; };
 		CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DF28576A9200F6A0AF /* Ikemen */; };
+		CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -656,6 +657,7 @@
 		CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportError_AppExtension.swift; sourceTree = "<group>"; };
 		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
+		CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPushSettingsButton.swift; sourceTree = "<group>"; };
 		CE23ABCD23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Search.strings; sourceTree = "<group>"; };
 		CE23ABCE23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE23ABCF23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Notification.strings; sourceTree = "<group>"; };
@@ -1470,6 +1472,7 @@
 				CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */,
 				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */,
+				CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */,
 			);
 			path = PushSettings;
 			sourceTree = "<group>";
@@ -3342,6 +3345,7 @@
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CEEB9F951FA1A32800B8AF03 /* ProfileCardBarcodeReaderViewController.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
+				CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */,
 				CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */,
 				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,
 				CEAC1FBF272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift in Sources */,

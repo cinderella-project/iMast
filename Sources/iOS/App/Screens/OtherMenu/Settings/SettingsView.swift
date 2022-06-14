@@ -90,9 +90,7 @@ struct SettingsView: View {
                     LabeledContent(L10n.Preferences.General.NewAccountVia.title, value: newAccountVia)
                 }
                 Toggle("フォロー関係を以前の表記にする", isOn: $followRelationshipsOld)
-                Button("プッシュ通知") {
-                    print("TODO")
-                }
+                OpenPushSettingsButton()
             }
         }
     }
