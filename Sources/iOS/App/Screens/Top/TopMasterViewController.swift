@@ -123,7 +123,7 @@ class TopMasterViewController: UITableViewController {
         case .settings:
             showDetailViewController(UINavigationController(rootViewController: SettingsViewController()), sender: self)
         case .settings2:
-            showDetailViewController(UINavigationController(rootViewController: UIHostingController(rootView: SettingsView())), sender: self)
+            showDetailViewController(UINavigationController(rootViewController: NewSettingsViewController()), sender: self)
         case .helpAndFeedback:
             showDetailViewController(UINavigationController(rootViewController: HelpAndFeedbackTableViewController()), sender: self)
         case .aboutThisApp:

@@ -24,6 +24,24 @@
 import SwiftUI
 import iMastiOSCore
 import SDWebImage
+import SafariServices
+
+class NewSettingsViewController: UIHostingController<SettingsView> {
+    init() {
+        super.init(rootView: .init())
+        navigationItem.title = L10n.Localizable.settings
+        navigationItem.rightBarButtonItem = .init(title: "ヘルプ", style: .plain, target: self, action: #selector(openHelp))
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func openHelp() {
+        let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
+        self.present(safari, animated: true, completion: nil)
+    }
+}
 
 struct SettingsView: View {
     
@@ -38,15 +56,6 @@ struct SettingsView: View {
             ShareSection()
             MediaCacheSection()
             ExperimentalSection()
-        }
-        .navigationTitle(L10n.Localizable.settings)
-        .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button("ヘルプ") {
-                    print("TODO: Open Help")
-                }
-            }
         }
     }
     
