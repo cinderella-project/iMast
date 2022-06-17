@@ -13,7 +13,6 @@
 		2A108F911ED559EF00BE1404 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F901ED559EF00BE1404 /* TimelineViewController.swift */; };
 		2A108F931ED55C4F00BE1404 /* LocalTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A108F921ED55C4F00BE1404 /* LocalTimelineViewController.swift */; };
 		2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */; };
-		2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */; };
 		2A4A6C2F1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */; };
 		2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F791ECD08130062630F /* OtherMenuViewController.swift */; };
 		2A533F7C1ECD30BF0062630F /* ChangeActiveAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */; };
@@ -89,6 +88,7 @@
 		CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
+		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
 		CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; };
 		CE51BDC725DCE211007D3A8E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -579,7 +579,6 @@
 		2A108F901ED559EF00BE1404 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		2A108F921ED55C4F00BE1404 /* LocalTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalTimelineViewController.swift; sourceTree = "<group>"; };
 		2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
-		2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountIndexViewController.swift; sourceTree = "<group>"; };
 		2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAccountSelectLoginMethodViewController.swift; sourceTree = "<group>"; };
 		2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseMisc.swift; sourceTree = "<group>"; };
 		2A533F791ECD08130062630F /* OtherMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherMenuViewController.swift; sourceTree = "<group>"; };
@@ -700,6 +699,7 @@
 		CE43BF0A2377A97F00133C86 /* String+nsLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+nsLength.swift"; sourceTree = "<group>"; };
 		CE43BF0E2377AA1A00133C86 /* String+trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trim.swift"; sourceTree = "<group>"; };
 		CE43BF112377AA8100133C86 /* String+parseInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseInt.swift"; sourceTree = "<group>"; };
+		CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountIndexView.swift; sourceTree = "<group>"; };
 		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		CE51BDC525DCE211007D3A8E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = thirdparty/SparkleBinaries/Sparkle.framework; sourceTree = "<group>"; };
@@ -1858,7 +1858,7 @@
 		CEE357171FF516A800675DFC /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2A4A6C281EAC25AD001BB00A /* AddAccountIndexViewController.swift */,
+				CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */,
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
 			);
@@ -3385,7 +3385,6 @@
 				CE5460A127F592E400A676B3 /* MastodonEditHistoryViewController.swift in Sources */,
 				CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */,
 				CE6977871F0EE8A600C1B234 /* UserProfileTopViewController.swift in Sources */,
-				2A4A6C291EAC25AD001BB00A /* AddAccountIndexViewController.swift in Sources */,
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */,
 				CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */,
@@ -3400,6 +3399,7 @@
 				CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */,
 				CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */,
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
+				CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */,
 				CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */,
 				CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */,
