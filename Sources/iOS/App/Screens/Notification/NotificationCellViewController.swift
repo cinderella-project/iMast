@@ -72,8 +72,11 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
         topStackView.spacing = 8
         topStackView.alignment = .top
         view.addSubview(topStackView)
+        notifyTypeImageView.snp.makeConstraints { make in
+            make.trailing.equalTo(view.snp.leading).inset(Defaults.timelineIconSize + 8)
+        }
         topStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(8)
             make.top.bottom.equalToSuperview().inset(8)
         }
         self.view = view
