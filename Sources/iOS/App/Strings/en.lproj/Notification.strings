@@ -14,5 +14,5 @@
 "types.poll.notowner" = "A poll you voted on has ended";
 "types.followRequest" = "@%@ wants to follow you";
 "types.postUpdated.isMe" = "Your post was edited";
-"types.postUpdated.notMe" = "Previously boosted uploads have been edited";
+"types.postUpdated.notMe" = "Previously boosted posts have been edited";
 "types.unknown" = "Unknown Notification: %@";
