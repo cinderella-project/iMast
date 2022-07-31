@@ -25,7 +25,6 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 import KeychainAccess
-import Hydra
 import iMastiOSCore
 
 enum PushServiceError: Error {
