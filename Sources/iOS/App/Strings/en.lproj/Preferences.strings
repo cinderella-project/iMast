@@ -16,7 +16,7 @@
 "post.autoResize.title" = "Automatic image resize";
 "post.autoResize.no" = "Don't";
 "post.autoResize.pixel" = "Resize below %dpx";
-"post.useDefaultVisibility" = "デフォルト公開範囲を利用";
+"post.useDefaultVisibility" = "Use default visibility";
 
 "nowPlaying.title" = "NowPlaying";
 "nowPlaying.format.title" = "Format";
