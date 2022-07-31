@@ -155,33 +155,6 @@ extension String {
     }
     
     public func parseText2HTML(attributes: [NSAttributedString.Key: Any] = [:], asyncLoadProgressHandler: (() -> Void)? = nil) -> NSAttributedString? {
-        #if os(macOS)
         return parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler)
-        #else
-        if Defaults.newHtmlParser, let newParserResult = self.parseText2HTMLNew(attributes: attributes, asyncLoadProgressHandler: asyncLoadProgressHandler) {
-            return newParserResult
-        }
-        if !self.replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "").contains("<") {
-            return nil
-        }
-        
-        // 受け取ったデータをUTF-8エンコードする
-        let encodeData = self.data(using: String.Encoding.utf8, allowLossyConversion: true)
-        
-        // 表示データのオプションを設定する
-        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
-            NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue,
-        ]
-        
-        // 文字列の変換処理
-        let attributedString = try? NSMutableAttributedString(
-            data: encodeData!,
-            options: attributedOptions,
-            documentAttributes: nil
-        )
-        attributedString?.addAttributes(attributes, range: NSRange(location: 0, length: attributedString?.length ?? 0))
-        return attributedString
-        #endif
     }
 }

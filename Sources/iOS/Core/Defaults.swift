@@ -77,7 +77,6 @@ public class Defaults {
     @DefaultsKey("group_notify_type_follow") public static var groupNotifyTypeFollow: Bool = false
     @DefaultsKey("group_notify_type_unknown") public static var groupNotifyTypeUnknown: Bool = false
     
-    @DefaultsKey("new_html_parser") public static var newHtmlParser: Bool = true
     @DefaultsKey("notify_tab_infinite_scroll") public static var notifyTabInfiniteScroll: Bool = false
     @DefaultsKey("new_first_screen") public static var newFirstScreen: Bool = false
     @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true

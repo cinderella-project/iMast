@@ -318,10 +318,6 @@ class SettingsViewController: FormViewController {
     func getExperimentalSection() -> Section {
         return Section(header: "実験的な要素") {
             SwitchRow { row in
-                row.title = "新しいHTMLパーサーを使う"
-                row.userDefaultsConnect(Defaults.$newHtmlParser)
-            }
-            SwitchRow { row in
                 row.title = "通知タブの無限スクロール"
                 row.userDefaultsConnect(Defaults.$notifyTabInfiniteScroll)
             }
