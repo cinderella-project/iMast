@@ -182,16 +182,6 @@ class SettingsViewController: FormViewController {
                 row.steps = 100/5
                 row.userDefaultsConnect(Defaults.$thumbnailHeight)
             }
-            TwolineSliderRow { row in
-                row.title = "ピン留め投稿の行数制限"
-                row.userDefaultsConnect(Defaults.$pinnedTootLinesLimit)
-                row.steps = 10
-                row.displayValueFor = { ($0 ?? 0.0) == 0 ? "無制限" : "\(Int($0 ?? 0))行" }
-                row.cellSetup { cell, row in
-                    cell.slider.maximumValue = 10
-                    cell.slider.minimumValue = 0
-                }
-            }
             SwitchRow { row in
                 row.title = L10n.Preferences.TimelineAppearance.BigNewPostButton.show
                 row.userDefaultsConnect(Defaults.$postFabEnabled)

@@ -43,7 +43,6 @@ public class Defaults {
     @DefaultsKey("visibility_emoji") public static var visibilityEmoji: Bool = true
     @DefaultsKey("thumbnail_height") public static var thumbnailHeight: Double = 50
     @DefaultsKey("timeline_text_bold") public static var timelineTextBold: Bool = false
-    @DefaultsKey("pinned_toot_lines_limit") public static var pinnedTootLinesLimit: Double = 0
     @DefaultsKey("in_reply_to_emoji") public static var inReplyToEmoji: Bool = true
     @DefaultsKey("acct_abbr") public static var acctAbbr: Bool = true
     @DefaultsKey("post_fab_enabled") public static var postFabEnabled: Bool = true
