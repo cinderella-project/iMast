@@ -43,6 +43,7 @@ public class Defaults {
     @DefaultsKey("visibility_emoji") public static var visibilityEmoji: Bool = true
     @DefaultsKey("thumbnail_height") public static var thumbnailHeight: Double = 50
     @DefaultsKey("timeline_text_bold") public static var timelineTextBold: Bool = false
+    @available(*, unavailable) @DefaultsKey("pinned_toot_lines_limit") public static var pinnedTootLinesLimit: Double = 0
     @DefaultsKey("in_reply_to_emoji") public static var inReplyToEmoji: Bool = true
     @DefaultsKey("acct_abbr") public static var acctAbbr: Bool = true
     @DefaultsKey("post_fab_enabled") public static var postFabEnabled: Bool = true
@@ -76,6 +77,7 @@ public class Defaults {
     @DefaultsKey("group_notify_type_follow") public static var groupNotifyTypeFollow: Bool = false
     @DefaultsKey("group_notify_type_unknown") public static var groupNotifyTypeUnknown: Bool = false
     
+    @available(*, unavailable) @DefaultsKey("new_html_parser") public static var newHtmlParser: Bool = true
     @DefaultsKey("notify_tab_infinite_scroll") public static var notifyTabInfiniteScroll: Bool = false
     @DefaultsKey("new_first_screen") public static var newFirstScreen: Bool = false
     @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true
