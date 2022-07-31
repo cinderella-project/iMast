@@ -22,10 +22,7 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftyJSON
 import GRDB
-import Hydra
 
 let fileURL = getFileURL()
 public let dbQueue = try! DatabaseQueue(path: fileURL.path)

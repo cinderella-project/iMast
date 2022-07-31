@@ -23,7 +23,6 @@
 //
 
 import UIKit
-import Hydra
 import iMastiOSCore
 
 class BunmyakuTableViewController: TimelineViewController {

@@ -22,8 +22,6 @@
 //
 
 import Foundation
-import Hydra
-import SwiftyJSON
 
 struct MastodonPostHashtag: Codable {
     let name: String

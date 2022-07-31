@@ -22,7 +22,6 @@
 //
 
 import Foundation
-import Hydra
 
 public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointResponse {
     public let id: MastodonID

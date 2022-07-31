@@ -23,7 +23,6 @@
 
 import UIKit
 import Eureka
-import Hydra
 import SVProgressHUD
 import iMastiOSCore
 

@@ -22,7 +22,6 @@
 //
 
 import Foundation
-import Hydra
 
 public struct MastodonNotification: Codable, MastodonEndpointResponse {
     public let id: MastodonID

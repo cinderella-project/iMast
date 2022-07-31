@@ -23,7 +23,6 @@
 
 import UIKit
 import SwiftyJSON
-import Hydra
 
 class LocalTimelineViewController: TimelineViewController {
     override func viewDidLoad() {

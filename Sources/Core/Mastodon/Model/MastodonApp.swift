@@ -23,7 +23,6 @@
 
 import Foundation
 import SwiftyJSON
-import Hydra
 import Alamofire
 import GRDB
 

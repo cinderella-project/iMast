@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import Cocoa
-import Hydra
 import iMastMacCore
 
 class AddMastodonAccountSheetViewController: NSViewController {

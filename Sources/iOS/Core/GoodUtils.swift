@@ -23,7 +23,6 @@
 
 import Foundation
 import UIKit
-import Hydra
 import Alamofire
 import SwiftyJSON
 import Ikemen

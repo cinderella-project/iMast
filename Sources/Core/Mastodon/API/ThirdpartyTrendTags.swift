@@ -22,7 +22,6 @@
 //
 
 import Foundation
-import Hydra
 
 public struct ThirdpartyTrendsTags: Codable, MastodonEndpointResponse {
     public let updatedAt: Date

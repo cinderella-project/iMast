@@ -23,7 +23,6 @@
 
 import Foundation
 import Alamofire
-import Hydra
 
 extension Alamofire.DataRequest {
     public enum DecodableError: Error {

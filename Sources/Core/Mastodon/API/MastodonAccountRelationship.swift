@@ -22,7 +22,6 @@
 //
 
 import Foundation
-import Hydra
 
 public struct MastodonAccountRelationship: Codable, MastodonEndpointResponse {
     let id: MastodonID

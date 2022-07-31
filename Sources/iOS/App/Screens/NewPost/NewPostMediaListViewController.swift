@@ -26,7 +26,6 @@ import MobileCoreServices
 import AVFoundation
 import AVKit
 import Photos
-import Hydra
 import Ikemen
 import iMastiOSCore
 
@@ -264,6 +263,9 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                     })
                 }
                 await exportSession.export()
+                if let error = exportSession.error {
+                    throw error
+                }
                 timer.invalidate()
 //                    print((try? FileManager.default.attributesOfItem(atPath: outUrl.path)))
                 let data = try! Data(contentsOf: outUrl)
