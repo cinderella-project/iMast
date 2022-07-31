@@ -13,6 +13,6 @@
 "types.poll.owner" = "您发起的投票已结束";
 "types.poll.notowner" = "您参加的投票已结束";
 "types.followRequest" = "@%@向你发出了关注请求";
-"types.postUpdated.isMe" = "投稿が編集されました";
-"types.postUpdated.notMe" = "過去にブーストした投稿が編集されました";
+"types.postUpdated.isMe" = "嘟文已被编辑";
+"types.postUpdated.notMe" = "您曾转嘟的嘟文已被编辑";
 "types.unknown" = "未知的通知：%@";

@@ -8,17 +8,17 @@
 
 "title" = "登錄";
 "pleaseInputMastodonInstance" = "請輸入Mastodon實例鏈接";
-"loginButton" = "登錄";
+"loginButton" = "登入";
 
-"progressDialog.title" = "正在登錄";
-"progressDialog.fetchingServerInfo" = "正在從伺服器取得信息…";
+"progressDialog.title" = "登入中";
+"progressDialog.fetchingServerInfo" = "正在取得伺服器資訊…";
 "progressDialog.registeringApplication" = "正在將app註冊在伺服器上…";
-"progressDialog.pleaseAuthorize" = "請您認證";
+"progressDialog.pleaseAuthorize" = "請進行認證";
 
 "authorize.title" = "認證";
-"authorize.method.safari" = "使用Safari登錄（推薦）";
+"authorize.method.safari" = "使用Safari登入 (推薦)";
 
-"authorize.tos.header" = "登錄後就代表您已同意以下的守則和隱私權政策";
+"authorize.tos.header" = "登入後即代表您已同意以下的守則和隱私權政策";
 "authorize.tos.rules" = "此實例的守則";
 "authorize.tos.termsOfService" = "此實例的服務條款";
 
@@ -26,4 +26,4 @@
 "passwordLogin.password" = "密碼";
 
 "welcome.message" = "%@\n歡迎使用";
-"welcome.toTimeline" = "タイムラインへ";
+"welcome.toTimeline" = "前往時間軸";

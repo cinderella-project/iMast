@@ -24,6 +24,6 @@
 "title" = "搜索";
 
 "sections.posts.title" = "嘟文";
-"sections.accounts.title" = "使用者";
+"sections.accounts.title" = "帳號";
 "sections.hashtags.title" = "主題標籤";
 "sections.trendTags.title" = "熱門標籤 (更新: %@)";

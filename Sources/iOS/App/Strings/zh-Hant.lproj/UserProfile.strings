@@ -21,11 +21,11 @@
   limitations under the License.
 */
 
-"title" = "資料";
+"title" = "個人資料";
 
-"cells.toots.title" = "嘟文";
+"cells.toots.title" = "發嘟";
 "cells.following.title" = "正在關注";
-"cells.followers.title" = "關注著";
+"cells.followers.title" = "關注者";
 "cells.createdAt.title" = "加入日";
 
 "actions.title" = "更多";
@@ -33,7 +33,7 @@
 "actions.profileCard" = "名片";
 
 "actions.follow" = "關注";
-"actions.followRequestCancel" = "撤回關注申請";
+"actions.followRequestCancel" = "取消關注請求";
 "actions.unfollow" = "取消關注";
 
 "actions.mute" = "靜音";
@@ -42,9 +42,9 @@
 "actions.block" = "封鎖";
 "actions.unblock" = "解除封鎖";
 
-"actions.followRequestsList" = "關注申請列表";
+"actions.followRequestsList" = "關注請求清單";
 
 "actions.cancel" = "取消";
 
-"federatedUserWarning" = "此用戶來自其他實例，所以數據可能並不完整";
-"checkLatestProfileInWeb" = "Webで最新のプロフィールを見る";
+"federatedUserWarning" = "此使用者來自其他實例，所以數據可能並不完整";
+"checkLatestProfileInWeb" = "線上檢視最新個人資料";

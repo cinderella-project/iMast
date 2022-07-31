@@ -34,7 +34,7 @@
 "localTimeline.short" = "本機時間軸";
 
 "post" = "發嘟";
-"streaming" = "Streaming";
+"streaming" = "串流";
 "streamingStatus" = "狀態: %@";
 
 "connected" = "已連接";
@@ -46,23 +46,23 @@
 "cancel" = "取消";
 
 "editedWarning.title" = "この投稿は投稿後に編集されています";
-"editedWarning.description" = "最終編集: %@";
-"editHistory.title" = "編集履歴";
-"editHistory.desc.original" = "オリジナル";
-"editHistory.desc.diff.template" = "変更点: %@";
-"editHistory.desc.diff.content" = "本文";
+"editedWarning.description" = "最後編輯: %@";
+"editHistory.title" = "編輯記錄";
+"editHistory.desc.original" = "原始內容";
+"editHistory.desc.diff.template" = "變更點: %@";
+"editHistory.desc.diff.content" = "正文";
 "editHistory.desc.diff.cw" = "CW警告文";
-"editHistory.desc.diff.attachments" = "添付メディア";
-"editHistory.desc.diff.sensitive" = "NSFWフラグ";
+"editHistory.desc.diff.attachments" = "附加媒體";
+"editHistory.desc.diff.sensitive" = "NSFW旗標";
 
 "other" = "其他";
-"switchTab" = "%@ に切り替え";
-"switchActiveAccount" = "賬號管理";
-"currentAccount" = "已選擇的賬號：@%@";
+"switchTab" = "切換至 %@";
+"switchActiveAccount" = "帳號管理";
+"currentAccount" = "目前帳號：@%@";
 "myProfile" = "個人資料";
 "lists" = "名單";
 "settings" = "偏好設定";
-"help.title" = "ヘルプ";
+"help.title" = "說明";
 "helpAndFeedback" = "幫助 / 意見反饋";
 "bookmarks" = "書籤";
 
@@ -74,13 +74,13 @@
 "aboutThisApp.reviewInAppStore" = "在 App Store 上評論";
 "aboutThisApp.tootWithHashtag" = "在話題 #imast_ios 中發布";
 
-"chooseAccount" = "請選擇要使用的賬號";
+"chooseAccount" = "選擇要使用的帳號";
 
 "favouritesList" = "收藏一覽";
 "bunmyaku.title" = "文脈";
 
 "error.title" = "錯誤";
-"error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
+"error.requiredNewerOS" = "此功能須IOS版本%.1f及以上";
 "error.requiredNewerMastodon" = "實例版本%@及以上才能使用此功能\n（如果在iMast運行時實例升級了，重啟即可使用此功能）\n請向各自的管理員詢問Mastodon實例的升級計劃";
 "error.pleaseInputInstance" = "請輸入實例";
 
