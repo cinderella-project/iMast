@@ -23,7 +23,6 @@
 
 import UIKit
 import Mew
-import Hydra
 import iMastiOSCore
 
 class ListAdderTableViewController: UITableViewController, Instantiatable {
@@ -58,13 +57,12 @@ class ListAdderTableViewController: UITableViewController, Instantiatable {
     
     @objc func loading() {
         // TODO: ON/OFFの処理をしてるときはそれが終わるまで待ちたい
-        zip(
-            MastodonEndpoint.MyLists().request(with: environment),
-            MastodonEndpoint.JoinedLists(account: input).request(with: environment)
-        ).then { allLists, joinedLists in
-            print(allLists, joinedLists)
-            let joinedListIds = joinedLists.map { $0.id.string }
-            self.lists = allLists.map { (list: $0, isJoined: joinedListIds.contains($0.id.string)) }
+        Task { @MainActor in
+            async let allLists = MastodonEndpoint.MyLists().request(with: environment)
+            async let joinedLists = MastodonEndpoint.JoinedLists(account: input).request(with: environment)
+            let joinedListIds = try await joinedLists.map { $0.id.string }
+            let listsInfo = try await allLists.map { (list: $0, isJoined: joinedListIds.contains($0.id.string)) }
+            self.lists = listsInfo
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
@@ -97,17 +95,19 @@ class ListAdderTableViewController: UITableViewController, Instantiatable {
     @objc func tappedSwitchView(target: UISwitch) {
         let list = lists[target.tag].list
         let isOn = target.isOn
-        var promise: Promise<DecodableVoid>
-        if isOn { // ONになった
-            promise = MastodonEndpoint.AddAccountsToList(list: list, accounts: [input]).request(with: environment)
-        } else { // OFFになった
-            promise = MastodonEndpoint.DeleteAccountsFromList(list: list, accounts: [input]).request(with: environment)
-        }
         target.isEnabled = false
-        promise.then { _ in
+        Task { @MainActor in
+            defer {
+                DispatchQueue.main.async {
+                    target.isEnabled = true
+                }
+            }
+            if isOn {
+                _ = try await MastodonEndpoint.AddAccountsToList(list: list, accounts: [self.input]).request(with: self.environment)
+            } else {
+                _ = try await MastodonEndpoint.DeleteAccountsFromList(list: list, accounts: [self.input]).request(with: self.environment)
+            }
             self.lists[target.tag].isJoined = isOn
-        }.always(in: .main) {
-            target.isEnabled = true
         }
     }
 }
