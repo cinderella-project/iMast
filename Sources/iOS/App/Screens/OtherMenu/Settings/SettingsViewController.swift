@@ -316,13 +316,6 @@ class SettingsViewController: FormViewController {
                 row.userDefaultsConnect(Defaults.$newFirstScreen)
             }
             SwitchRow { row in
-                row.title = "可能なら Universal Links の一部クッションページを省略"
-                row.cellUpdate { (cell, _) in
-                    cell.textLabel?.numberOfLines = 0
-                }
-                row.userDefaultsConnect(Defaults.$skipUniversalLinksCussionPage)
-            }
-            SwitchRow { row in
                 row.title = "Communication Notifications を有効にする"
                 row.cellStyle = .subtitle
                 row.cellUpdate { cell, row in

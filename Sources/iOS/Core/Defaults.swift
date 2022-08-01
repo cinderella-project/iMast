@@ -80,7 +80,7 @@ public class Defaults {
     @available(*, unavailable) @DefaultsKey("new_html_parser") public static var newHtmlParser: Bool = true
     @DefaultsKey("notify_tab_infinite_scroll") public static var notifyTabInfiniteScroll: Bool = false
     @DefaultsKey("new_first_screen") public static var newFirstScreen: Bool = false
-    @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true
+    @available(*, unavailable) @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true
     
     @DefaultsKey("use_custom_boost_sound") public static var useCustomBoostSound: Bool = false
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false
