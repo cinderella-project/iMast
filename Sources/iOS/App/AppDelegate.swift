@@ -250,7 +250,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 func openVLC(_ url: String) -> Bool {
-    if !UserDefaults.standard.bool(forKey: "webm_vlc_open") {
+    if !Defaults.webmVlcOpen {
         return false
     }
     let vlcOpenUrl = URL(string: "vlc-x-callback://x-callback-url/stream?url=\(url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")!
