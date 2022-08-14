@@ -258,7 +258,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 }
                 await self.presentAsync(alert, animated: true)
                 let timer = DispatchQueue.mainSafeSync {
-                    Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { _ in
+                    Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { @MainActor _ in
                         alert.message = "しばらくお待ちください (\(String(format: "%.1f", arguments: [exportSession.progress * 100.0]))%, est: \(exportSession.estimatedOutputFileLength))"
                     })
                 }
