@@ -127,7 +127,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                 }
                 ButtonRow { row in
                     row.title = L10n.Localizable.settings
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: SettingsView()) }), onDismiss: nil)
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { NewSettingsViewController() }), onDismiss: nil)
                 }
                 #if !targetEnvironment(macCatalyst)
                 ButtonRow { row in
