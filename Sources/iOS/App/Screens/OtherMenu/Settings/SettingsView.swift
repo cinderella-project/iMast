@@ -164,7 +164,6 @@ struct SettingsView: View {
         @AppStorage(defaults: .$visibilityEmoji) var visibilityEmoji
         @AppStorage(defaults: .$inReplyToEmoji) var inReplyToEmoji
         @AppStorage(defaults: .$thumbnailHeight) var thumbnailHeight
-        @AppStorage(defaults: .$pinnedTootLinesLimit) var pinnedTootLinesLimit
         @AppStorage(defaults: .$postFabEnabled) var postFabEnabled
         @AppStorage(defaults: .$postFabLocation) var postFabLocation
         @AppStorage(defaults: .$acctAbbr) var acctAbbr
@@ -191,10 +190,6 @@ struct SettingsView: View {
                     VStack {
                         LabeledContent(L10n.Preferences.TimelineAppearance.thumbnailHeight, value: String(format: "%.1f", thumbnailHeight))
                         Slider(value: $thumbnailHeight, in: 0...100, step: 5)
-                    }
-                    VStack {
-                        LabeledContent("ピン留め投稿の行数制限", value: pinnedTootLinesLimit == 0 ? "無制限" : "\(Int(pinnedTootLinesLimit))行")
-                        Slider(value: $pinnedTootLinesLimit, in: 0...10, step: 1)
                     }
                 }
                 Group {
@@ -291,18 +286,14 @@ struct SettingsView: View {
     }
     
     struct ExperimentalSection: View {
-        @AppStorage(defaults: .$newHtmlParser) var newHtmlParser
         @AppStorage(defaults: .$notifyTabInfiniteScroll) var notifyTabInfiniteScroll
         @AppStorage(defaults: .$newFirstScreen) var newFirstScreen
-        @AppStorage(defaults: .$skipUniversalLinksCussionPage) var skipUniversalLinksCussionPage
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
 
         var body: some View {
             Section("実験的な要素") {
-                Toggle("新しいHTMLパーサーを使う", isOn: $newHtmlParser)
                 Toggle("通知タブの無限スクロール", isOn: $notifyTabInfiniteScroll)
                 Toggle("最初の画面を新しい物に (α)", isOn: $newFirstScreen)
-                Toggle("可能なら Universal Links の一部クッションページを省略", isOn: $skipUniversalLinksCussionPage)
                 Toggle(isOn: $communicationNotificationsEnabled) {
                     Text("Communication Notifications を有効にする").workaroundForSubtitleSpacing()
                     Text("メンションのプッシュ通知に送信者のアイコンが付くようになります。")
