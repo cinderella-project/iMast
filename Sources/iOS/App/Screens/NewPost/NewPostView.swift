@@ -86,11 +86,14 @@ class NewPostView: UIView {
             make.leading.trailing.equalToSuperview()
         }
         
+        let separatorView = SeparatorView()
+        
         let stackView = UIStackView(arrangedSubviews: [
             cwInput,
-            SeparatorView(),
+            separatorView,
             textInput,
         ])
+        stackView.alignment = .center
         stackView.spacing = 0
         stackView.axis = .vertical
         addSubview(stackView)
@@ -99,10 +102,20 @@ class NewPostView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(toolBar.snp.top)
         }
+        cwInput.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(safeAreaLayoutGuide)
+        }
+        separatorView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+        }
+        textInput.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(safeAreaLayoutGuide)
+        }
+        
 
         addSubview(currentAccountLabel)
         currentAccountLabel.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(stackView).inset(8)
+            make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)
         }
         bringSubviewToFront(toolBar)
     }
