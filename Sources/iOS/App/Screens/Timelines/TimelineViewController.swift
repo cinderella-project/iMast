@@ -280,7 +280,7 @@ class TimelineViewController: UIViewController, Instantiatable {
     }
     
     @objc func openNewPostVC() {
-        let vc = StoryboardScene.NewPost.initialScene.instantiate()
+        let vc = NewPostViewController()
         vc.userToken = self.environment
         self.processNewPostVC(newPostVC: vc)
         self.navigationController?.pushViewController(vc, animated: true)

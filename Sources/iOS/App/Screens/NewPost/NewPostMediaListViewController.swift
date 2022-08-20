@@ -103,9 +103,6 @@ class NewPostMediaListViewController: UIViewController {
     }
 
     func refresh() {
-        // update image select button title
-        self.newPostVC.imageSelectButton.setTitle(" "+self.newPostVC.media.count.description, for: .normal)
-        
         // update image list view
         for imageView in self.imagesStackView.arrangedSubviews {
             self.imagesStackView.removeArrangedSubview(imageView)

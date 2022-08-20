@@ -13,7 +13,7 @@ xcassets:
     output: assets.swift
 ib:
   inputs:
-  - ./Base.lproj
+#  - ./Base.lproj
   - ./CustomViews/UserProfile/ProfileCard
   outputs:
   - templateName: scenes-swift5

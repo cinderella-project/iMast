@@ -121,7 +121,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     @objc func openNewPost() {
-        let vc = StoryboardScene.NewPost.initialScene.instantiate()
+        let vc = NewPostViewController()
         vc.userToken = environment
         present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
