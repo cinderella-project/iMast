@@ -92,6 +92,7 @@ class NewPostMediaListViewController: UIViewController {
                 }
             ),
         ])
+        addButton.preferredMenuElementOrder = .fixed
         addButton.menu = menu
         addButton.showsMenuAsPrimaryAction = true
         self.refresh()
