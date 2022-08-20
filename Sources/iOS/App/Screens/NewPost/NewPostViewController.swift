@@ -89,16 +89,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             scope = replyToPost.visibility
             title = L10n.NewPost.reply
         } else {
-            title = "新規投稿"
+            title = L10n.NewPost.title
         }
 
         if Defaults.usingDefaultVisibility && replyToPost == nil {
-            Task { @MainActor in
-                let res = try await self.userToken.getUserInfo(cache: true)
-                if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
-                    self.scope = myScope
-                }
-            }
+            setVisibilityFromUserInfo()
         }
 
         contentView.textInput.becomeFirstResponder()
@@ -115,19 +110,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         ]
         
         additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
+        configureObserver()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.configureObserver()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     @objc func sendPost(_ sender: Any) {
@@ -195,11 +183,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         // notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func removeObserver() {
-        let notification = NotificationCenter.default
-        notification.removeObserver(self)
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
@@ -310,13 +293,18 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         media = []
         isNSFW = false
         if Defaults.usingDefaultVisibility && replyToPost == nil {
-            asyncPromise { try await self.userToken.getUserInfo(cache: true) }.then { res in
-                if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
-                    self.scope = myScope
-                }
-            }
+            setVisibilityFromUserInfo()
         } else {
             scope = .public
+        }
+    }
+    
+    func setVisibilityFromUserInfo() {
+        Task { @MainActor in
+            let res = try await self.userToken.getUserInfo(cache: true)
+            if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
+                self.scope = myScope
+            }
         }
     }
 }

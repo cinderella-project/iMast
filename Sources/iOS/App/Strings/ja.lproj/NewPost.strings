@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "CW説明文 (省略可能)";
 "infoText.inReplyTo" = "返信先: %@";
 "send" = "送信";
+"title" = "新規投稿";
 "reply" = "返信";
 
 "selectVisibility.title" = "公開範囲";
