@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "Content Warning (Optional)";
 "infoText.inReplyTo" = "Reply to: %@";
 "send" = "Send";
+"title" = "New Post";
 "reply" = "Reply";
 
 "selectVisibility.title" = "Visibility";
