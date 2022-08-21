@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "Content Warning (Optional)";
 "infoText.inReplyTo" = "Reply to: %@";
 "send" = "Send";
+"title" = "新規投稿";
 "reply" = "Reply";
 
 "selectVisibility.title" = "Visibility";
