@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "CW설명문 (생략 가능)";
 "infoText.inReplyTo" = "%@ 님에게";
 "send" = "보내기";
+"title" = "新規投稿";
 "reply" = "답글";
 
 "selectVisibility.title" = "공개범위";
