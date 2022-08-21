@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "折叠部分的警告信息（可选）";
 "infoText.inReplyTo" = "回复给：%@";
 "send" = "发布";
+"title" = "新規投稿";
 "reply" = "回复";
 
 "selectVisibility.title" = "嘟文可见范围";
