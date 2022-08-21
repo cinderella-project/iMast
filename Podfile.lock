@@ -15,9 +15,9 @@ PODS:
   - LicensePlist (3.22.0)
   - Mew (0.1.0)
   - ReachabilitySwift (4.3.1)
-  - SDWebImage (5.9.5):
-    - SDWebImage/Core (= 5.9.5)
-  - SDWebImage/Core (5.9.5)
+  - SDWebImage (5.12.6):
+    - SDWebImage/Core (= 5.12.6)
+  - SDWebImage/Core (5.12.6)
   - SnapKit (5.0.1)
   - Starscream (3.1.1)
   - STRegex (2.1.1)
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - ReachabilitySwift (~> 4.3.1)
-  - SDWebImage (~> 5.9.1)
+  - SDWebImage (~> 5.12.6)
   - SnapKit (~> 5.0.1)
   - Starscream (~> 3.1.1)
   - STRegex (~> 2.1.1)
@@ -93,7 +93,7 @@ SPEC CHECKSUMS:
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
+  SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   STRegex: d49e88d0fe58538d3175fdd989bc1243b9be2a07
@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 3a1b4184397d52b5e1bdaa40f6b8d1d8d852ed57
+PODFILE CHECKSUM: 2451a248dea1092ea51a4e71ea4cece44711aa15
 
 COCOAPODS: 1.11.3

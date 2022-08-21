@@ -312,43 +312,43 @@ version: 4.3.1
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
-version: 5.9.5
+version: 5.12.6
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
