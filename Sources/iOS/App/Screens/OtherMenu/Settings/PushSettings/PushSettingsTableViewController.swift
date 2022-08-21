@@ -248,9 +248,10 @@ class PushSettingsTableViewController: FormViewController {
     }
     
     static func openRequest(vc: UIViewController) async {
+        let navigationController = vc.navigationController ?? vc.parent?.navigationController
         if try! PushService.isRegistered() {
             DispatchQueue.main.async {
-                vc.navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
+                navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
             }
             return
         }
@@ -276,7 +277,7 @@ class PushSettingsTableViewController: FormViewController {
             try await PushService.register()
             await MainActor.run {
                 UIApplication.shared.registerForRemoteNotifications()
-                vc.navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
+                navigationController?.pushViewController(PushSettingsTableViewController(), animated: true)
             }
         } catch {
             switch error {

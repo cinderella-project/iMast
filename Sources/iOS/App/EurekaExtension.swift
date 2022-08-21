@@ -22,7 +22,6 @@
 //
 
 import Eureka
-import EurekaTwolineSliderRow
 import iMastiOSCore
 
 final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
@@ -84,19 +83,6 @@ extension SwitchRow {
     }
 }
 
-extension TwolineSliderRow {
-    func userDefaultsConnect(_ key: DefaultsKey<Double>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        self.value = Float(key.wrappedValue)
-        var oldValue = self.value
-        self.onChange { row in
-            if oldValue == row.value {
-                return
-            }
-            oldValue = row.value
-            key.wrappedValue = Double(row.value ?? 0.0)
-        }
-    }
-}
 extension TextAreaRow {
     func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
         self.value = key.wrappedValue

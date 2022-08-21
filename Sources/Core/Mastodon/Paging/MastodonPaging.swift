@@ -22,11 +22,10 @@
 //  limitations under the License.
 
 import Foundation
-import Regex
 
 public struct MastodonPaging {
-    static let nextIdExpression = Regex("max_id=([0-9a-zA-Z_-]+)")
-    static let prevIdExpression = Regex("(since|min)_id=([0-9a-zA-Z_-]+)")
+    static let nextIdExpression = /max_id=([0-9a-zA-Z_-]+)/
+    static let prevIdExpression = /(since|min)_id=([0-9a-zA-Z_-]+)/
     
     var prevIsSinceId: Bool = false
     var prevId: String?
@@ -68,12 +67,12 @@ public struct MastodonPaging {
     }
     
     init(headerString: String) {
-        if let nextId = Self.nextIdExpression.firstMatch(in: headerString)?.captures.safe(0) {
-            self.nextId = nextId
+        if let nextId = try? Self.nextIdExpression.firstMatch(in: headerString)?.output.1 {
+            self.nextId = String(nextId)
         }
-        if let captures = Self.prevIdExpression.firstMatch(in: headerString)?.captures {
-            self.prevIsSinceId = captures[0] == "since"
-            self.prevId = captures[1]
+        if let captures = try? Self.prevIdExpression.firstMatch(in: headerString)?.output {
+            prevIsSinceId = captures.1 == "since"
+            prevId = String(captures.2)
         }
     }
 }

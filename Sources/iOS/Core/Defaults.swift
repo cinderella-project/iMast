@@ -25,10 +25,10 @@ import UIKit
 
 public class Defaults {
     @DefaultsKey("streaming_autoconnect") public static var streamingAutoConnect: String = "always"
-    @available(*, unavailable)
-    @DefaultsKey("append_mediaurl") public static var appendMediaUrl: Bool = true
+    // @available(*, unavailable) @DefaultsKey("append_mediaurl") public static var appendMediaUrl: Bool = true
     @DefaultsKey("new_account_via") public static var newAccountVia: String = "iMast"
     @DefaultsKey("follow_relationships_old") public static var followRelationshipsOld: Bool = false
+    /*
     @available(*, unavailable)
     @DefaultsKey("workaroundOfiOS13_1UITextView") public static var workaroundOfiOS13_1UITextView: Bool = [
         "13.1",
@@ -36,6 +36,7 @@ public class Defaults {
         "13.1.2",
         "13.1.3",
     ].firstIndex(of: UIDevice.current.systemVersion) != nil
+     */
 
     @DefaultsKey("timeline_username_fontsize") public static var timelineUsernameFontsize: Double = 14
     @DefaultsKey("timeline_text_fontsize") public static var timelineTextFontsize: Double = 15
@@ -43,7 +44,7 @@ public class Defaults {
     @DefaultsKey("visibility_emoji") public static var visibilityEmoji: Bool = true
     @DefaultsKey("thumbnail_height") public static var thumbnailHeight: Double = 50
     @DefaultsKey("timeline_text_bold") public static var timelineTextBold: Bool = false
-    @available(*, unavailable) @DefaultsKey("pinned_toot_lines_limit") public static var pinnedTootLinesLimit: Double = 0
+    // @available(*, unavailable) @DefaultsKey("pinned_toot_lines_limit") public static var pinnedTootLinesLimit: Double = 0
     @DefaultsKey("in_reply_to_emoji") public static var inReplyToEmoji: Bool = true
     @DefaultsKey("acct_abbr") public static var acctAbbr: Bool = true
     @DefaultsKey("post_fab_enabled") public static var postFabEnabled: Bool = true
@@ -63,8 +64,7 @@ public class Defaults {
     @DefaultsKey("share_no_spotify_si_parameter") public static var shareNoSpotifySIParameter: Bool = false
     @DefaultsKey("delete_toot_teokure") public static var deleteTootTeokure: Bool = false
 
-    @available(*, unavailable)
-    @DefaultsKey("using_nowplaying_format_in_share_google_play_music_url") public static var usingNowplayingFormatInShareGooglePlayMusicUrl: Bool = false
+    // @available(*, unavailable) @DefaultsKey("using_nowplaying_format_in_share_google_play_music_url") public static var usingNowplayingFormatInShareGooglePlayMusicUrl: Bool = false
     @DefaultsKey("using_nowplaying_format_in_share_spotify_url") public static var usingNowplayingFormatInShareSpotifyUrl: Bool = false
     @DefaultsKey("use_customized_share_preview") public static var useCustomizedSharePreview: Bool = true
 
@@ -77,10 +77,10 @@ public class Defaults {
     @DefaultsKey("group_notify_type_follow") public static var groupNotifyTypeFollow: Bool = false
     @DefaultsKey("group_notify_type_unknown") public static var groupNotifyTypeUnknown: Bool = false
     
-    @available(*, unavailable) @DefaultsKey("new_html_parser") public static var newHtmlParser: Bool = true
+    // @available(*, unavailable) @DefaultsKey("new_html_parser") public static var newHtmlParser: Bool = true
     @DefaultsKey("notify_tab_infinite_scroll") public static var notifyTabInfiniteScroll: Bool = false
     @DefaultsKey("new_first_screen") public static var newFirstScreen: Bool = false
-    @available(*, unavailable) @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true
+    // @available(*, unavailable) @DefaultsKey("skip_universal_links_cussion_page") public static var skipUniversalLinksCussionPage: Bool = true
     
     @DefaultsKey("use_custom_boost_sound") public static var useCustomBoostSound: Bool = false
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false

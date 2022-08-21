@@ -207,6 +207,8 @@ internal enum L10n {
     internal static let reply = L10n.tr("NewPost", "reply")
     /// 送信
     internal static let send = L10n.tr("NewPost", "send")
+    /// 新規投稿
+    internal static let title = L10n.tr("NewPost", "title")
     internal enum Alerts {
       internal enum Sending {
         /// 投稿中

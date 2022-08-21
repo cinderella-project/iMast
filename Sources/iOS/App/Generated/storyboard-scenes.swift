@@ -12,16 +12,6 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
-  internal enum LaunchScreen: StoryboardType {
-    internal static let storyboardName = "LaunchScreen"
-
-    internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
-  }
-  internal enum NewPost: StoryboardType {
-    internal static let storyboardName = "NewPost"
-
-    internal static let initialScene = InitialSceneType<iMast.NewPostViewController>(storyboard: NewPost.self)
-  }
   internal enum ProfileCard: StoryboardType {
     internal static let storyboardName = "ProfileCard"
 

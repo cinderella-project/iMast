@@ -92,6 +92,7 @@ class NewPostMediaListViewController: UIViewController {
                 }
             ),
         ])
+        addButton.preferredMenuElementOrder = .fixed
         addButton.menu = menu
         addButton.showsMenuAsPrimaryAction = true
         self.refresh()
@@ -103,9 +104,6 @@ class NewPostMediaListViewController: UIViewController {
     }
 
     func refresh() {
-        // update image select button title
-        self.newPostVC.imageSelectButton.setTitle(" "+self.newPostVC.media.count.description, for: .normal)
-        
         // update image list view
         for imageView in self.imagesStackView.arrangedSubviews {
             self.imagesStackView.removeArrangedSubview(imageView)
@@ -258,7 +256,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 }
                 await self.presentAsync(alert, animated: true)
                 let timer = DispatchQueue.mainSafeSync {
-                    Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { _ in
+                    Timer.scheduledTimer(withTimeInterval: 0.025, repeats: true, block: { @MainActor _ in
                         alert.message = "しばらくお待ちください (\(String(format: "%.1f", arguments: [exportSession.progress * 100.0]))%, est: \(exportSession.estimatedOutputFileLength))"
                     })
                 }

@@ -23,6 +23,7 @@
 
 import UIKit
 import iMastiOSCore
+import SwiftUI
 
 class TopMasterViewController: UITableViewController {
     private var userTokens = MastodonUserToken.getAllUserTokens()
@@ -114,7 +115,7 @@ class TopMasterViewController: UITableViewController {
             let vc = AddAccountIndexViewController()
             self.changeRootVC(UINavigationController(rootViewController: vc))
         case .settings:
-            showDetailViewController(UINavigationController(rootViewController: SettingsViewController()), sender: self)
+            showDetailViewController(UINavigationController(rootViewController: NewSettingsViewController()), sender: self)
         case .helpAndFeedback:
             showDetailViewController(UINavigationController(rootViewController: HelpAndFeedbackTableViewController()), sender: self)
         case .aboutThisApp:
