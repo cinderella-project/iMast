@@ -9,6 +9,7 @@
 "placeholders.cwWarningText" = "摺疊部分的警告訊息 (可選)";
 "infoText.inReplyTo" = "回覆給：%@";
 "send" = "發嘟";
+"title" = "新規投稿";
 "reply" = "回覆";
 
 "selectVisibility.title" = "可見範圍";
