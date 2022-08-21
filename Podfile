@@ -15,7 +15,6 @@ abstract_target 'iMastShared' do
   pod 'SnapKit', '~> 5.0.1'
   pod 'KeychainAccess', '~> 4.2.1'
   pod 'SwiftGen', '~> 6.3.0'
-  pod "STRegex", "~> 2.1.1"
   
   abstract_target 'iOS' do
     platform :ios, '14.0'

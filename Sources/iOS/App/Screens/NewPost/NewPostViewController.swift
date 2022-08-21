@@ -79,7 +79,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentView.currentAccountLabel.text = userToken.acct
         navigationItem.largeTitleDisplayMode = .never
         if let replyToPost = replyToPost {
-            contentView.currentAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.toPlainText().replacingAll(matching: "\n", with: " "))"
+            contentView.currentAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.toPlainText().replacingOccurrences(of: "\n", with: " "))"
             var replyAccounts = [replyToPost.account.acct]
             for mention in replyToPost.mentions {
                 replyAccounts.append(mention.acct)
