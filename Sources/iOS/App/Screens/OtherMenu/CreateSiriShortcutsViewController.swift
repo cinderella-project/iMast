@@ -82,17 +82,17 @@ class CreateSiriShortcutsViewController: FormViewController {
     }
     
     func addToSiri() {
-        let values = form.values()
-        let intent = TootIntent()
-        let userToken = values["account"] as? MastodonUserToken
-        let text = values["text"] as? String
-        intent.account = userToken?.toIntentAccount()
-        intent.text = text
-        guard let shortcut = INShortcut(intent: intent) else { return }
-        let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
-        viewController.modalPresentationStyle = .formSheet
-        viewController.delegate = self
-        self.present(viewController, animated: true, completion: nil)
+//        let values = form.values()
+//        let intent = TootIntent()
+//        let userToken = values["account"] as? MastodonUserToken
+//        let text = values["text"] as? String
+//        intent.account = userToken?.toIntentAccount()
+//        intent.text = text
+//        guard let shortcut = INShortcut(intent: intent) else { return }
+//        let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+//        viewController.modalPresentationStyle = .formSheet
+//        viewController.delegate = self
+//        self.present(viewController, animated: true, completion: nil)
     }
 
 }
