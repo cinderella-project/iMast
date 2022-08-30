@@ -289,6 +289,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$notifyTabInfiniteScroll) var notifyTabInfiniteScroll
         @AppStorage(defaults: .$newFirstScreen) var newFirstScreen
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
+        @AppStorage(defaults: .$openAsHalfModalFromTimeline) var openAsHalfModalFromTimeline
 
         var body: some View {
             Section("実験的な要素") {
@@ -298,6 +299,7 @@ struct SettingsView: View {
                     Text("Communication Notifications を有効にする").workaroundForSubtitleSpacing()
                     Text("メンションのプッシュ通知に送信者のアイコンが付くようになります。")
                 }
+                Toggle("タイムラインから何かを開いた時にハーフモーダルにする", isOn: $openAsHalfModalFromTimeline)
             }
         }
     }

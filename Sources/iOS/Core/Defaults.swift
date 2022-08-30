@@ -85,4 +85,5 @@ public class Defaults {
     @DefaultsKey("use_custom_boost_sound") public static var useCustomBoostSound: Bool = false
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false
     @DefaultsKey("communication_notifications_enabled") public static var communicationNotificationsEnabled: Bool = false
+    @DefaultsKey("open_as_half_modal_from_timeline") public static var openAsHalfModalFromTimeline: Bool = false
 }

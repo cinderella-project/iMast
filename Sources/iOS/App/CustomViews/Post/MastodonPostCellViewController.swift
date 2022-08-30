@@ -319,7 +319,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     
     @objc func iconTapped() {
         let vc = UserProfileTopViewController.instantiate(input.post.originalPost.account, environment: self.environment)
-        self.navigationController?.pushViewController(vc, animated: true)
+        showFromTimeline(vc)
     }
 }
 

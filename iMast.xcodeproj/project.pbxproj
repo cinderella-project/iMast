@@ -204,6 +204,7 @@
 		CEAC9C8A23951BD000D16388 /* OpenSafariRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */; };
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
+		CEB0CEB528BDE822007C96C6 /* UIViewController+showFromTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */; };
 		CEB60B562819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
 		CEB60B572819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
 		CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB97029240012420028AD2A /* AboutThisAppViewController.swift */; };
@@ -825,6 +826,7 @@
 		CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAndLocalTimelineViewController.swift; sourceTree = "<group>"; };
 		CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSafariRow.swift; sourceTree = "<group>"; };
 		CEAE471A24E8C21500645946 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
+		CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showFromTimeline.swift"; sourceTree = "<group>"; };
 		CEB60B552819EA21001D26B7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		CEB97029240012420028AD2A /* AboutThisAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutThisAppViewController.swift; sourceTree = "<group>"; };
 		CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -1634,6 +1636,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */,
+				CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -3389,6 +3392,7 @@
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,
 				CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */,
 				CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */,
+				CEB0CEB528BDE822007C96C6 /* UIViewController+showFromTimeline.swift in Sources */,
 				CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */,
 				CE8FD55D22D06D9300331F15 /* UITextFieldWithInsets.swift in Sources */,

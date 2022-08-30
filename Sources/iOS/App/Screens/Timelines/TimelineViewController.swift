@@ -283,7 +283,7 @@ class TimelineViewController: UIViewController, Instantiatable {
         let vc = NewPostViewController()
         vc.userToken = self.environment
         self.processNewPostVC(newPostVC: vc)
-        self.navigationController?.pushViewController(vc, animated: true)
+        showFromTimeline(vc)
     }
     
     @objc func postFabTapped(sender: UITapGestureRecognizer) {
@@ -448,7 +448,7 @@ extension TimelineViewController: UITableViewDelegate {
         case .post(let id, _):
             guard let post = environment.memoryStore.post.container[id] else { break }
             let postDetailVC = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
-            self.navigationController?.pushViewController(postDetailVC, animated: true)
+            showFromTimeline(postDetailVC)
         }
     }
     
