@@ -129,12 +129,6 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                     row.title = L10n.Localizable.settings
                     row.presentationMode = .show(controllerProvider: .callback(builder: { NewSettingsViewController() }), onDismiss: nil)
                 }
-                #if !targetEnvironment(macCatalyst)
-                ButtonRow { row in
-                    row.title = "Siri Shortcuts"
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { CreateSiriShortcutsViewController() }), onDismiss: nil)
-                }
-                #endif
                 ButtonRow { row in
                     row.title = L10n.Localizable.helpAndFeedback
                     row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)

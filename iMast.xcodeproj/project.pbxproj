@@ -91,7 +91,6 @@
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
-		CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */; };
 		CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; };
 		CE51BDC725DCE211007D3A8E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE51BDD725DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc in Embed Sparkle */ = {isa = PBXBuildFile; fileRef = CE51BDD425DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -703,7 +702,6 @@
 		CE43BF0E2377AA1A00133C86 /* String+trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trim.swift"; sourceTree = "<group>"; };
 		CE43BF112377AA8100133C86 /* String+parseInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseInt.swift"; sourceTree = "<group>"; };
 		CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountIndexView.swift; sourceTree = "<group>"; };
-		CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		CE51BDC525DCE211007D3A8E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = thirdparty/SparkleBinaries/Sparkle.framework; sourceTree = "<group>"; };
 		CE51BDD425DCE252007D3A8E /* org.sparkle-project.InstallerConnection.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerConnection.xpc"; sourceTree = "<group>"; };
@@ -1887,7 +1885,6 @@
 				2A533F791ECD08130062630F /* OtherMenuViewController.swift */,
 				CEB97029240012420028AD2A /* AboutThisAppViewController.swift */,
 				CE7DBECF21843141008727D4 /* SearchViewController.swift */,
-				CE5099BA21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift */,
 				2A533F7B1ECD30BF0062630F /* ChangeActiveAccountViewController.swift */,
 				CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */,
 			);
@@ -3417,7 +3414,6 @@
 				CE97DB6022D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift in Sources */,
 				CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */,
 				5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */,
-				CE5099BB21BE60A700C09C16 /* CreateSiriShortcutsViewController.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */,
