@@ -83,7 +83,6 @@
 		CE43BEF823779F1C00133C86 /* genRandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEF523779EE800133C86 /* genRandomString.swift */; };
 		CE43BEFD23779F8200133C86 /* String+sha256.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEAA23777A2400133C86 /* String+sha256.swift */; };
 		CE43BEFE23779FB200133C86 /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
-		CE43BF032377A05C00133C86 /* String+preg.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEB023777A9100133C86 /* String+preg.swift */; };
 		CE43BF072377A0A500133C86 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF052377A09500133C86 /* APIError.swift */; };
 		CE43BF092377A92100133C86 /* Array+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BECE2377825700133C86 /* Array+safe.swift */; };
 		CE43BF0C2377A9A000133C86 /* String+nsLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0A2377A97F00133C86 /* String+nsLength.swift */; };
@@ -288,7 +287,6 @@
 		CEE4E3432377F82700406371 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
 		CEE4E3442377F82D00406371 /* Array+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BECE2377825700133C86 /* Array+safe.swift */; };
 		CEE4E35A2377F83900406371 /* String+sha256.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEAA23777A2400133C86 /* String+sha256.swift */; };
-		CEE4E35B2377F83900406371 /* String+preg.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEB023777A9100133C86 /* String+preg.swift */; };
 		CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0A2377A97F00133C86 /* String+nsLength.swift */; };
 		CEE4E35D2377F83900406371 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CEE4E35E2377F83900406371 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
@@ -690,7 +688,6 @@
 		CE43BE91237775F100133C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE43BEA2237778E800133C86 /* UIViewController+alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alerts.swift"; sourceTree = "<group>"; };
 		CE43BEAA23777A2400133C86 /* String+sha256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+sha256.swift"; sourceTree = "<group>"; };
-		CE43BEB023777A9100133C86 /* String+preg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+preg.swift"; sourceTree = "<group>"; };
 		CE43BEB623777B2A00133C86 /* UIDevice+platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+platform.swift"; sourceTree = "<group>"; };
 		CE43BEB923777B5A00133C86 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		CE43BEBC23777BBD00133C86 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -1408,7 +1405,6 @@
 			isa = PBXGroup;
 			children = (
 				CE43BEAA23777A2400133C86 /* String+sha256.swift */,
-				CE43BEB023777A9100133C86 /* String+preg.swift */,
 				CE43BF0A2377A97F00133C86 /* String+nsLength.swift */,
 				CE43BF0E2377AA1A00133C86 /* String+trim.swift */,
 				CE43BF112377AA8100133C86 /* String+parseInt.swift */,
@@ -3500,7 +3496,6 @@
 				CE43BEE723779E2600133C86 /* MastodonUserToken.swift in Sources */,
 				CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */,
 				CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */,
-				CE43BF032377A05C00133C86 /* String+preg.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3676,7 +3671,6 @@
 				CEC6180324C5C56900E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */,
 				CE8D2A2424C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */,
-				CEE4E35B2377F83900406371 /* String+preg.swift in Sources */,
 				CEE4E36F2377F84200406371 /* MastodonInstance.swift in Sources */,
 				CEE4E3662377F83C00406371 /* MastodonList.swift in Sources */,
 				CEE4E33E2377F80E00406371 /* NSRange+optional.swift in Sources */,

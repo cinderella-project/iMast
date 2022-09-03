@@ -46,7 +46,6 @@ class MastodonPostAbuseViewController: UIHostingController<MastodonPostAbuseView
         fatalError("init(coder:) has not been implemented")
     }
     
-    var placeholder = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "投稿を通報"

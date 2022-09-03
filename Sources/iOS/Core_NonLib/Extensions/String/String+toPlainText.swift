@@ -25,9 +25,9 @@ import Foundation
 
 extension String {
     func toPlainText() -> String {
-        return self.pregReplace(pattern: "<br.+?>", with: "\n")
+        return self.replacing(/<br.+?>/, with: "\n")
             .replacingOccurrences(of: "</p><p>", with: "\n\n")
-            .pregReplace(pattern: "<.+?>", with: "")
+            .replacing(/<.+?>/, with: "")
             .replacingOccurrences(of: "&lt;", with: "<")
             .replacingOccurrences(of: "&gt;", with: ">")
             .replacingOccurrences(of: "&apos;", with: "'")

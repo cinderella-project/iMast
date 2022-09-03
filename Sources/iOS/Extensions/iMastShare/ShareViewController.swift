@@ -188,7 +188,7 @@ class ShareViewController: SLComposeServiceViewController {
         if Defaults.usingNowplayingFormatInShareSpotifyUrl,
             url.scheme == "https", url.host == "open.spotify.com",
             let path = url.path, path.starts(with: "/track/"),
-            let objectId = path.pregMatch(pattern: "^/track/(.+)$").safe(1) {
+            let objectId = path.firstMatch(of: /^\/track\/(.+)$/)?.output.1 {
             let previewUrl = "https://open.spotify.com/embed/track/\(objectId)"
             Alamofire.request(previewUrl).responseData { res in
                 switch res.result {

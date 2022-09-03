@@ -214,7 +214,6 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     @objc func openAbuseVC() {
         let newVC = MastodonPostAbuseViewController.instantiate(input, environment: environment)
-        newVC.placeholder = "『\(input.status.pregReplace(pattern: "<.+?>", with: ""))』を通報します。\n詳細をお書きください（必須ではありません）"
         navigationController?.pushViewController(newVC, animated: true)
     }
     
