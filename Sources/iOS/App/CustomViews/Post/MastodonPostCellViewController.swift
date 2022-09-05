@@ -69,7 +69,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     let visibilityLabel = UILabel()
     
-    let textView = NotSelectableTextView() ※ { v in
+    let textView = NotSelectableTextView(usingTextLayoutManager: !Defaults.workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) ※ { v in
         v.backgroundColor = nil
         v.isScrollEnabled = false
         v.isEditable = false
