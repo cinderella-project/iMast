@@ -203,7 +203,6 @@
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEB0CEB528BDE822007C96C6 /* UIViewController+showFromTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */; };
-		CEB0CEB828C4D7B6007C96C6 /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
 		CEB60B562819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
 		CEB60B572819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
 		CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB97029240012420028AD2A /* AboutThisAppViewController.swift */; };
@@ -3585,7 +3584,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB0CEB828C4D7B6007C96C6 /* PushSettingsTableViewController.swift in Sources */,
 				CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */,
 				CEF7641A25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */,
 				CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */,
