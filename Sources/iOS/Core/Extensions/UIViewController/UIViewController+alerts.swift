@@ -23,7 +23,6 @@
 
 import UIKit
 import Ikemen
-import SwiftyJSON
 
 extension UIViewController {
     @MainActor
@@ -117,11 +116,6 @@ extension UIViewController {
                 continuation.resume()
             }
         }
-    }
-
-    @MainActor
-    public func apiError(_ json: JSON, completionHandler: (() -> Void)? = nil) {
-        apiError(json["error"].string, json["_response_code"].int, completionHandler: completionHandler)
     }
     
     @MainActor

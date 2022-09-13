@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Mew
 import iMastiOSCore
 

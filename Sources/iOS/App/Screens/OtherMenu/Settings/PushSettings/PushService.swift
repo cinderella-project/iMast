@@ -23,7 +23,6 @@
 
 import Alamofire
 import Foundation
-import SwiftyJSON
 import KeychainAccess
 import iMastiOSCore
 

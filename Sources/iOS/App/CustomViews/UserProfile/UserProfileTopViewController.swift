@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Accounts
 import SafariServices
 import Mew

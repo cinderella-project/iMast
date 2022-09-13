@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class LocalTimelineViewController: TimelineViewController {
     override func viewDidLoad() {

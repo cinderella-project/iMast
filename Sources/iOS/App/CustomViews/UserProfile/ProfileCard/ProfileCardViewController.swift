@@ -24,7 +24,6 @@
 import UIKit
 import CoreImage
 import CoreImage.CIFilterBuiltins
-import SwiftyJSON
 import iMastiOSCore
 
 class ProfileCardViewController: UIViewController {

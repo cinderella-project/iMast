@@ -23,7 +23,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 import SVProgressHUD
 import Eureka
 import EurekaFormBuilder

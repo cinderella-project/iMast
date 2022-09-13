@@ -22,8 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
-import SDWebImage
 import iMastiOSCore
 import Ikemen
 
