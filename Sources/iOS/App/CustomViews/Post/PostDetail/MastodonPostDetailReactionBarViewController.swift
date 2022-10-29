@@ -135,6 +135,11 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
                 elements.append(.init(title: "ブックマーク", image: UIImage(systemName: "bookmark"), action: #selector(addToBookmark)))
             }
         }
+        if version >= MastodonVersionStringToInt("3.5.0rc1") {
+            if input.account.acct == environment.screenName {
+                elements.append(.init(title: "編集", image: UIImage(systemName: "pencil"), action: #selector(openEditPostVC)))
+            }
+        }
         elements.append(.init(title: "共有", image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
         elements.append(.init(title: "文脈", image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
         if input.hasCustomEmoji {
@@ -183,6 +188,13 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         MastodonEndpoint.DeleteBookmark(post: input).request(with: environment).then { [weak self] res in
             self?.input(res)
         }
+    }
+                                
+    @objc func openEditPostVC() {
+        let vc = NewPostViewController()
+        vc.userToken = environment
+        vc.editPost = input
+        present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
     
     @objc func openBunmyakuVC() {

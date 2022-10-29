@@ -203,6 +203,8 @@ internal enum L10n {
   internal enum NewPost {
     /// ← から画像を追加
     internal static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
+    /// 編集
+    internal static let edit = L10n.tr("NewPost", "edit")
     /// 返信
     internal static let reply = L10n.tr("NewPost", "reply")
     /// 送信

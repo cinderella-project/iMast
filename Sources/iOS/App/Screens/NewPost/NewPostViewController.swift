@@ -49,6 +49,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             contentView.scopeSelectItem.image = scope.uiImage
         }
     }
+    var editPost: MastodonPost?
     var replyToPost: MastodonPost?
     
     var userToken: MastodonUserToken!
@@ -92,8 +93,23 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             title = L10n.NewPost.title
         }
 
-        if Defaults.usingDefaultVisibility && replyToPost == nil {
+        if Defaults.usingDefaultVisibility && replyToPost == nil && editPost == nil {
             setVisibilityFromUserInfo()
+        }
+
+        if let editPost = editPost {
+            title = L10n.NewPost.edit
+
+            contentView.textInput.text = editPost.status.toPlainText()
+
+            // TODO: 添付メディアの編集にも対応する
+            contentView.imageSelectButton.setTitle(" \(editPost.attachments.count)", for: .normal)
+            contentView.imageSelectButton.isEnabled = false
+            
+            scope = editPost.visibility
+            contentView.scopeSelectItem.isEnabled = false
+
+            isNSFW = editPost.sensitive
         }
 
         contentView.textInput.becomeFirstResponder()
@@ -127,7 +143,57 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             preferredStyle: UIAlertController.Style.alert
         )
         present(alert, animated: true, completion: nil)
-        
+        if editPost != nil {
+            submitEdit(alert)
+        } else {
+            submitPost(alert)
+        }
+    }
+    
+    func submitEdit(_ alert: UIAlertController) {
+        let baseMessage = "しばらくお待ちください\n"
+        guard let editPost else {
+            preconditionFailure()
+        }
+        let text = contentView.textInput.text ?? ""
+        let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
+        let spoilerText = contentView.cwInput.text ?? ""
+
+        Task {
+            do {
+                let request = MastodonEndpoint.EditPost(
+                    postID: editPost.id,
+                    status: text,
+                    mediaIds: editPost.attachments.map { $0.id },
+                    sensitive: isSensitive,
+                    spoiler: spoilerText
+                )
+                await MainActor.run {
+                    alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
+                }
+                let response = try await request.request(with: userToken)
+                await MainActor.run {
+                    userToken.memoryStore.post.change(obj: response)
+                    alert.dismiss(animated: false, completion: {
+                        if self.navigationController is ModalNavigationViewController {
+                            self.navigationController?.dismiss(animated: true, completion: nil)
+                        } else {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                }
+            } catch {
+                await MainActor.run {
+                    alert.dismiss(animated: false) {
+                        self.errorReport(error: error)
+                    }
+                }
+            }
+        }
+    }
+    
+    func submitPost(_ alert: UIAlertController) {
+        let baseMessage = "しばらくお待ちください\n"
         let text = contentView.textInput.text ?? ""
         let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""

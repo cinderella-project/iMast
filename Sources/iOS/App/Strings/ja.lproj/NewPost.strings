@@ -11,6 +11,7 @@
 "send" = "送信";
 "title" = "新規投稿";
 "reply" = "返信";
+"edit" = "編集";
 
 "selectVisibility.title" = "公開範囲";
 "selectVisibility.description" = "公開範囲を選択してください";

@@ -423,6 +423,44 @@ extension MastodonEndpoint {
         }
     }
     
+    public struct EditPost: MastodonEndpointProtocol, Encodable {
+        public init(
+            postID: MastodonID,
+            status: String?,
+            mediaIds: [MastodonID]?,
+            sensitive: Bool?,
+            spoiler: String?
+        ) {
+            self.postID = postID
+            self.status = status
+            self.mediaIds = mediaIds
+            self.sensitive = sensitive
+            self.spoiler = spoiler
+        }
+        
+        public typealias Response = MastodonPost
+        public var endpoint: String {
+            return "/api/v1/statuses/\(postID)"
+        }
+        public let method = "PUT"
+        public func body() throws -> Data? {
+            return try JSONEncoder().encode(self)
+        }
+        
+        public var postID: MastodonID
+        public var status: String?
+        public var mediaIds: [MastodonID]?
+        public var sensitive: Bool?
+        public var spoiler: String?
+        
+        enum CodingKeys: String, CodingKey {
+            case status
+            case mediaIds = "media_ids"
+            case sensitive
+            case spoiler = "spoiler_text"
+        }
+    }
+    
     public struct GetContextOfPost: MastodonEndpointProtocol {
         public typealias Response = MastodonPostContext
         
