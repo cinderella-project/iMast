@@ -11,6 +11,7 @@
 "send" = "发布";
 "title" = "新規投稿";
 "reply" = "回复";
+"edit" = "編集";
 
 "selectVisibility.title" = "嘟文可见范围";
 "selectVisibility.description" = "请选择嘟文可见范围";
