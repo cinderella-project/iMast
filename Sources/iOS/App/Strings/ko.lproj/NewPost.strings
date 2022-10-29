@@ -11,6 +11,7 @@
 "send" = "보내기";
 "title" = "新規投稿";
 "reply" = "답글";
+"edit" = "編集";
 
 "selectVisibility.title" = "공개범위";
 "selectVisibility.description" = "공개범위를 설정해주세요";
