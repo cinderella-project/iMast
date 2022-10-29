@@ -69,6 +69,7 @@ class NewPostView: UIView {
     let nowPlayingItem = UIBarButtonItem(image: .init(systemName: "music.note"), style: .plain, target: nil, action: nil) ※ {
         $0.width = 44
     }
+    private let dummyViewForAdjustKeyboardHeight = UIView()
     
     convenience init() {
         self.init(frame: .zero)
@@ -84,6 +85,12 @@ class NewPostView: UIView {
         toolBar.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.leading.trailing.equalToSuperview()
+        }
+        
+        addSubview(dummyViewForAdjustKeyboardHeight)
+        dummyViewForAdjustKeyboardHeight.snp.makeConstraints { make in
+            make.size.equalTo(0)
+            make.bottom.equalTo(keyboardSafeArea.layoutGuide.snp.bottom)
         }
         
         let separatorView = SeparatorView()
@@ -112,7 +119,6 @@ class NewPostView: UIView {
             make.leading.trailing.equalTo(safeAreaLayoutGuide)
         }
         
-
         addSubview(currentAccountLabel)
         currentAccountLabel.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)

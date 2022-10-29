@@ -126,7 +126,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         ]
         
         additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
-        configureObserver()
     }
 
     override func didReceiveMemoryWarning() {
@@ -244,31 +243,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    func configureObserver() {
-        let notification = NotificationCenter.default
-        // notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        additionalSafeAreaInsets.bottom = view.keyboardSafeArea.insets.bottom + 44
     }
     
-    @objc func keyboardWillShow(notification: Notification?) {
-        self.view.layoutIfNeeded()
-        guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-            return
-        }
-        guard let window = view.window else {
-            return
-        }
-        let globalRect = view.convert(view.bounds, to: window)
-        let safeAreaBottom = view.safeAreaInsets.bottom - additionalSafeAreaInsets.bottom
-        let modalBottom = window.bounds.maxY - globalRect.maxY
-        let windowBottom = (window.screen.bounds.height - window.bounds.height) / 2
-        let bottom = safeAreaBottom + modalBottom + windowBottom
-        additionalSafeAreaInsets.bottom = (rect.size.height - bottom) + 44
-    }
-    @objc func keyboardWillHide(notification: Notification?) {
-        additionalSafeAreaInsets.bottom = 44
-    }
     @objc func nsfwButtonTapped(_ sender: Any) {
         isNSFW = !isNSFW
     }

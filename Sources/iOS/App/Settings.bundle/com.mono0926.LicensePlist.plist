@@ -92,6 +92,14 @@
 		</dict>
 		<dict>
 			<key>File</key>
+			<string>com.mono0926.LicensePlist/KeyboardGuide</string>
+			<key>Title</key>
+			<string>keyboardguide</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>File</key>
 			<string>com.mono0926.LicensePlist/KeychainAccess</string>
 			<key>Title</key>
 			<string>KeychainAccess (4.2.1)</string>

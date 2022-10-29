@@ -562,6 +562,8 @@ name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.7.0, source: https://github.com/banjun/ikemen
 
+name: KeyboardGuide, nameSpecified: keyboardguide, owner: niw, version: , source: https://github.com/niw/KeyboardGuide
+
 name: iMast (LICENSE), nameSpecified: , version: 
 body:                     …
 

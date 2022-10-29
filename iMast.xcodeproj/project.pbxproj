@@ -89,6 +89,7 @@
 		CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
+		CE4B47A0290DB5EE00C105DA /* KeyboardGuide in Frameworks */ = {isa = PBXBuildFile; productRef = CE4B479F290DB5EE00C105DA /* KeyboardGuide */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE51BDC625DCE211007D3A8E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; };
 		CE51BDC725DCE211007D3A8E /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE51BDC525DCE211007D3A8E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -945,6 +946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE43BE95237775F100133C86 /* iMastiOSCore.framework in Frameworks */,
+				CE4B47A0290DB5EE00C105DA /* KeyboardGuide in Frameworks */,
 				0DB50C2D6AF7EB43D6C6CA58 /* Pods_iMastShared_iOS_iMast_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2152,6 +2154,9 @@
 				CE43BE94237775F100133C86 /* PBXTargetDependency */,
 			);
 			name = "iMast iOS";
+			packageProductDependencies = (
+				CE4B479F290DB5EE00C105DA /* KeyboardGuide */,
+			);
 			productName = iMast;
 			productReference = 2AF352171EAB9C5500777C2E /* iMast.app */;
 			productType = "com.apple.product-type.application";
@@ -2563,6 +2568,7 @@
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
 			packageReferences = (
 				CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */,
+				CE4B479E290DB5EE00C105DA /* XCRemoteSwiftPackageReference "KeyboardGuide" */,
 			);
 			productRefGroup = 2AF352181EAB9C5500777C2E /* Products */;
 			projectDirPath = "";
@@ -5081,6 +5087,14 @@
 				minimumVersion = 0.7.0;
 			};
 		};
+		CE4B479E290DB5EE00C105DA /* XCRemoteSwiftPackageReference "KeyboardGuide" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/niw/KeyboardGuide";
+			requirement = {
+				kind = revision;
+				revision = 84e36334aeb537548a975282bf4b58485e140b23;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -5093,6 +5107,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
 			productName = Ikemen;
+		};
+		CE4B479F290DB5EE00C105DA /* KeyboardGuide */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE4B479E290DB5EE00C105DA /* XCRemoteSwiftPackageReference "KeyboardGuide" */;
+			productName = KeyboardGuide;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

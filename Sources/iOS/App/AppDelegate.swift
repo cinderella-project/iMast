@@ -29,6 +29,7 @@ import SafariServices
 import Hydra
 import iMastiOSCore
 import SDWebImage
+import KeyboardGuide
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // とりあえずもろもろ初期化
+        KeyboardGuide.shared.activate()
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         self.registerDefaultsFromSettingsBundle()
