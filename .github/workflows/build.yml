@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - "14.0"
+          - "14.1"
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
