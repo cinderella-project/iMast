@@ -11,6 +11,7 @@
 "send" = "Send";
 "title" = "New Post";
 "reply" = "Reply";
+"edit" = "Edit";
 
 "selectVisibility.title" = "Visibility";
 "selectVisibility.description" = "Please select visibility of post.";

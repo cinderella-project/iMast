@@ -11,6 +11,7 @@
 "send" = "發嘟";
 "title" = "新規投稿";
 "reply" = "回覆";
+"edit" = "編集";
 
 "selectVisibility.title" = "可見範圍";
 "selectVisibility.description" = "請選擇可見範圍";
