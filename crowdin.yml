@@ -1,3 +1,5 @@
 files:
   - source: /Sources/iOS/App/Strings/ja.lproj/*.strings
     translation: /Sources/iOS/App/Strings/%osx_code%/%original_file_name%
+  - source: /Sources/Core/Assets/Strings/ja.lproj/*.strings
+    translation: /Sources/Core/Assets/Strings/%osx_code%/%original_file_name%
