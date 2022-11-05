@@ -8,14 +8,6 @@
         "revision" : "e05233856b49d4280301adaab00f8bf713c7bcf6",
         "version" : "0.7.0"
       }
-    },
-    {
-      "identity" : "keyboardguide",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/niw/KeyboardGuide",
-      "state" : {
-        "revision" : "84e36334aeb537548a975282bf4b58485e140b23"
-      }
     }
   ],
   "version" : 2
