@@ -268,42 +268,18 @@ public class MastodonUserToken: Equatable {
         print(request.httpMethod!, request.url!)
         let (data, response) = try await URLSession.shared.data(for: request)
         if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
-            let json: JSON
             do {
-                json = try JSON(data: data)
+                let error = try JSONDecoder.forMastodonAPI.decode(MastodonErrorResponse.self, from: data)
+                throw APIError.errorReturned(errorMessage: error.error, errorHttpCode: response.statusCode)
             } catch {
-                throw APIError.unknownResponse(errorHttpCode: response.statusCode)
+                throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
             }
-            if let error = json["error"].string {
-                throw APIError.errorReturned(errorMessage: error, errorHttpCode: response.statusCode)
-            }
-            throw APIError.unknownResponse(errorHttpCode: response.statusCode)
         }
         return try JSON(data: data)
     }
-
-    @available(*, deprecated)
-    func get(_ endpoint: String, params: [String: Any]? = nil) -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
-            print("GET", endpoint)
-            
-            Alamofire.request(URL(string: endpoint, relativeTo: URL(string: "https://\(self.app.instance.hostName)/api/v1/")!)!, parameters: params, headers: self.getHeader()).responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    var json = JSON(value)
-                    json["_response_code"].int = response.response?.statusCode ?? 599
-                    resolve(json)
-                    return
-                case .failure(let error):
-                    reject(error)
-                    return
-                }
-            }
-        }
-    }
     
-    public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
+    public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") -> Promise<MastodonAttachment> {
+        return Promise<MastodonAttachment> { resolve, reject, _ in
             Alamofire.upload(
                 multipartFormData: { (multipartFormData) in
                     multipartFormData.append(file, withName: "file", fileName: filename, mimeType: mimetype)
@@ -315,21 +291,26 @@ public class MastodonUserToken: Equatable {
                     switch encodingResult {
                     case .success(let upload, _, _):
                         print(upload)
-                        upload.responseJSON { response in
-                            var json: JSON = JSON("{}")
-                            if response.result.value == nil {
-                                if response.response?.statusCode == 413 { // メディアデカすぎ
-                                    json = JSON(parseJSON: "{}")
-                                    json["error"] = JSON("File too big")
+                        upload.responseData { res in
+                            switch res.result {
+                            case .success(let data):
+                                let urlRes = res.response!
+                                if urlRes.statusCode < 300 {
+                                    do {
+                                        resolve(try JSONDecoder.forMastodonAPI.decode(MastodonAttachment.self, from: data))
+                                    } catch {
+                                        reject(error)
+                                    }
                                 } else {
-                                    reject(APIError.nil("response.result.value"))
-                                    return
+                                    if let error = try? JSONDecoder().decode(MastodonErrorResponse.self, from: data).error {
+                                        reject(APIError.errorReturned(errorMessage: error, errorHttpCode: urlRes.statusCode))
+                                    } else {
+                                        reject(APIError.unknownResponse(errorHttpCode: urlRes.statusCode, errorString: .init(data: data, encoding: .utf8)))
+                                    }
                                 }
-                            } else {
-                                json = JSON(response.result.value!)
+                            case .failure(let error):
+                                reject(error)
                             }
-                            json["_response_code"] = JSON(response.response?.statusCode ?? 599)
-                            resolve(json)
                         }
                     case .failure(let encodingError):
                         print("UploadError", encodingError)

@@ -1,13 +1,13 @@
 //
-//  APIError.swift
+//  MastodonErrorResponse.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2019/11/10.
+//  Created by user on 2022/11/05.
 //
 //  ------------------------------------------------------------------------
 //
-//  Copyright 2017-2019 rinsuki and other contributors.
+//  Copyright 2017-2021 rinsuki and other contributors.
 // 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,11 +23,6 @@
 
 import Foundation
 
-public enum APIError: Error {
-    case `nil`(String)
-    case alreadyError // すでにエラーをユーザーに伝えているときに使う
-    case errorReturned(errorMessage: String, errorHttpCode: Int) // APIがまともにエラーを返してきた場合
-    case unknownResponse(errorHttpCode: Int, errorString: String?) // APIがJSONではない何かを返してきた場合
-    case decodeFailed // 画像のデコードに失敗したときのエラー
-    case dateParseFailed(dateString: String)
+struct MastodonErrorResponse: Codable {
+    let error: String
 }

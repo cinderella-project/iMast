@@ -265,23 +265,15 @@ class ShareViewController: SLComposeServiceViewController {
         present(alert, animated: true, completion: nil)
         Task {
             do {
-                var images: [JSON] = []
+                var images: [MastodonAttachment] = []
                 for medium in self.postMedia {
                     let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
-                    if result["_response_code"].intValue >= 400 {
-                        throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
-                    }
-                    if result["id"].exists() {
-                        images.append(result)
-                    } else {
-                        print(result)
-                    }
+                    images.append(result)
                 }
                 let res = try await MastodonEndpoint.CreatePost(
                     status: self.contentText,
                     visibility: self.visibility,
-                    // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
-                    mediaIds: images.map { .init(string: $0["id"].stringValue) }
+                    mediaIds: images.map { $0.id }
                 ).request(with: self.userToken!)
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)

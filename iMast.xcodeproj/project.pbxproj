@@ -151,6 +151,8 @@
 		CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
 		CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
 		CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
+		CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */; };
+		CE8AAC572916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */; };
 		CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */; };
 		CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */; };
 		CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift */; };
@@ -785,6 +787,11 @@
 		CE8AAC442916330000AC7FB4 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		CE8AAC482916332F00AC7FB4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE8AAC4E2916343800AC7FB4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
+		CE8AAC512916509A00AC7FB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CE8AAC522916509C00AC7FB4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CE8AAC532916509D00AC7FB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8AAC542916509F00AC7FB4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonErrorResponse.swift; sourceTree = "<group>"; };
 		CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFabButton.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
@@ -1880,6 +1887,7 @@
 				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
 				CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */,
 				CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */,
+				CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3526,6 +3534,7 @@
 				CE43BEF423779EB500133C86 /* MastodonVersionStringToInt.swift in Sources */,
 				CE43BEE523779E2600133C86 /* MastodonApp.swift in Sources */,
 				CE522BF324159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
+				CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */,
 				CE7AA3B725DBA84C00439AAD /* AppGroup.swift in Sources */,
 				CE522BEB24159C560048E334 /* MastodonEndpoint.swift in Sources */,
 				CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */,
@@ -3701,6 +3710,7 @@
 				CEE4E3632377F83C00406371 /* MastodonApplication.swift in Sources */,
 				CE0E4C5A247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */,
 				CEE4E3712377F84400406371 /* genRandomString.swift in Sources */,
+				CE8AAC572916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */,
 				CEE4E33F2377F81100406371 /* JSONDecoder+forMastodonAPI.swift in Sources */,
 				CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */,
 				CE522BF424159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
@@ -3966,6 +3976,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE8AAC482916332F00AC7FB4 /* ja */,
+				CE8AAC512916509A00AC7FB4 /* zh-Hans */,
+				CE8AAC522916509C00AC7FB4 /* zh-Hant */,
+				CE8AAC532916509D00AC7FB4 /* en */,
+				CE8AAC542916509F00AC7FB4 /* ko */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

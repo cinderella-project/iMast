@@ -200,21 +200,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         let scope = scope
         
         asyncPromise {
-            var media: [JSON] = []
+            var media: [MastodonAttachment] = []
             for (index, medium) in self.media.enumerated() {
                 await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
                 let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
-                if response["_response_code"].intValue >= 400 {
-                    throw APIError.errorReturned(
-                        errorMessage: response["error"].stringValue,
-                        errorHttpCode: response["_response_code"].intValue
-                    )
-                }
-                if !response["id"].exists() {
-                    throw APIError.nil("id")
-                }
                 media.append(response)
             }
             await MainActor.run {
@@ -224,7 +215,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             let res = try await MastodonEndpoint.CreatePost(
                 status: text,
                 visibility: scope,
-                mediaIds: media.map { .init(string: $0["id"].stringValue) },
+                mediaIds: media.map { $0.id },
                 spoiler: spoilerText,
                 sensitive: isSensitive,
                 inReplyToPost: self.replyToPost
