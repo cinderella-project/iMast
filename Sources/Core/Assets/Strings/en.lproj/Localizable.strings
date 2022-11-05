@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  iMast
+
+  Created by user on 2022/11/05.
+  Copyright © 2022 rinsuki. All rights reserved.
+*/
+
+"visibility.title" = "Visibility";
+"visibility.title.public" = "Public";
+"visibility.title.unlisted" = "Unlisted";
+"visibility.title.private" = "Followers only";
+"visibility.title.direct" = "Mentioned peoples only";
+
+"visibility.description.public" = "LTLやフォロワーのHTL等に流れます";
+"visibility.description.unlisted" = "LTLやハッシュタグ検索には出ません";
+"visibility.description.private" = "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます";
+"visibility.description.direct" = "メンションを飛ばした対象の人にのみ見れます";
+
+"errorAlert.title" = "Error";
+"errorAlert.message" = "Error occurred.\n\n%@";
+"errorAlert.moreInfo" = "Show More Info";
+
+"errorMoreInfo.title" = "Error Detail";
+
+"error.failedToDecodeAsUTF8" = "(Unknown)";
+
+"postFab.locations.leftCenter" = "Left Center";
+"postFab.locations.rightCenter" = "Right Center";
+"postFab.locations.leftBottom" = "Bottom Left";
+"postFab.locations.centerBottom" = "Bottom Center";
+"postFab.locations.rightBottom" = "Bottom Right";
+
+"cancel" = "Cancel";
