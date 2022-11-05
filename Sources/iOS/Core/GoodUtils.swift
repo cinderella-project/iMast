@@ -73,15 +73,15 @@ public enum PostFabLocation: String, CustomStringConvertible, CaseIterable {
     public var description: String {
         switch self {
         case .leftCenter:
-            return "左中央"
+            return CoreL10n.PostFab.Locations.leftCenter
         case .rightCenter:
-            return "右中央"
+            return CoreL10n.PostFab.Locations.rightCenter
         case .leftBottom:
-            return "左下"
+            return CoreL10n.PostFab.Locations.leftBottom
         case .centerBottom:
-            return "中央下"
+            return CoreL10n.PostFab.Locations.centerBottom
         case .rightBottom:
-            return "右下"
+            return CoreL10n.PostFab.Locations.rightBottom
         }
     }
     

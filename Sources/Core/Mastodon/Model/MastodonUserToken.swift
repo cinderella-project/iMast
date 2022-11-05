@@ -320,7 +320,7 @@ public class MastodonUserToken: Equatable {
                             if response.result.value == nil {
                                 if response.response?.statusCode == 413 { // メディアデカすぎ
                                     json = JSON(parseJSON: "{}")
-                                    json["error"] = JSON("画像が大きすぎます")
+                                    json["error"] = JSON("File too big")
                                 } else {
                                     reject(APIError.nil("response.result.value"))
                                     return

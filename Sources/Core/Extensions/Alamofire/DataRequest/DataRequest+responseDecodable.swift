@@ -46,7 +46,7 @@ extension Alamofire.DataRequest {
         let (data, response) = try await responseData()
         if response.statusCode >= 400 {
             throw DecodableError.httpError(
-                message: String(data: data, encoding: .utf8) ?? "(不明)",
+                message: String(data: data, encoding: .utf8) ?? CoreL10n.Error.failedToDecodeAsUTF8,
                 code: response.statusCode
             )
         }

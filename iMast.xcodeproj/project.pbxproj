@@ -148,6 +148,10 @@
 		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
 		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
+		CE8AAC4A2916333500AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
+		CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
+		CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
+		CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
 		CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */; };
 		CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */; };
 		CE8D2A2324C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D2A2224C67A3B003C65B5 /* MastodonEndpoint.Relationship.swift */; };
@@ -513,6 +517,15 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE8AAC462916331500AC7FB4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE90CD01237804CD001C8E80 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,6 +783,9 @@
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
+		CE8AAC442916330000AC7FB4 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		CE8AAC482916332F00AC7FB4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8AAC4E2916343800AC7FB4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		CE8C1C3F242B1F3400FC8B46 /* PostFabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFabButton.swift; sourceTree = "<group>"; };
 		CE8C713A2153323D00D53BCF /* String+parseText2HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseText2HTML.swift"; sourceTree = "<group>"; };
 		CE8C713C21549D4000D53BCF /* NSAttributedString+toMutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+toMutable.swift"; sourceTree = "<group>"; };
@@ -1354,6 +1370,7 @@
 		CE43BED423779E1800133C86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CE8AAC43291632ED00AC7FB4 /* Assets */,
 				CE43BF042377A08400133C86 /* ENum */,
 				CE43BEBB23777BA300133C86 /* Protocols */,
 				CE43BEFA23779F6700133C86 /* Extensions */,
@@ -1598,6 +1615,32 @@
 				CE78CFAB1EE812AD008313EA /* Info.plist */,
 			);
 			path = iMastShare;
+			sourceTree = "<group>";
+		};
+		CE8AAC402916327800AC7FB4 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AAC492916332F00AC7FB4 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		CE8AAC43291632ED00AC7FB4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AAC4D2916342200AC7FB4 /* Generated */,
+				CE8AAC402916327800AC7FB4 /* Strings */,
+				CE8AAC442916330000AC7FB4 /* swiftgen.yml */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CE8AAC4D2916342200AC7FB4 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AAC4E2916343800AC7FB4 /* strings.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		CE8C1C3E242B1F1700FC8B46 /* Views */ = {
@@ -2207,9 +2250,11 @@
 			buildPhases = (
 				F4C7F871D1C6E27DB505209E /* [CP] Check Pods Manifest.lock */,
 				CE43BE7B237775F000133C86 /* Headers */,
+				CE8AAC4C2916336F00AC7FB4 /* ShellScript */,
 				CE43BE7C237775F000133C86 /* Sources */,
 				CE43BE7D237775F000133C86 /* Frameworks */,
 				CE43BE7E237775F000133C86 /* Resources */,
+				CE8AAC462916331500AC7FB4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2631,6 +2676,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8AAC4A2916333500AC7FB4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2713,6 +2759,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3126,6 +3173,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# 👇 Shorthand for the script; adjust to where you checked-out Sparkle into is 👇\nalias dosign=\"${PROJECT_DIR}/thirdparty/SparkleBinaries/bin/codesign_embedded_executable\"\n\n# Code Signing identity\nIDENTITY=\"${CODE_SIGN_IDENTITY}\"\nif [ \"$IDENTITY\" == \"\" ]\nthen\n    # If a code signing identity is not specified, use ad hoc signing\n    IDENTITY=\"-\"\nfi\n\n# Shorthand for the Sparkle.framework\nSPARKLE_PATH=${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework\n\ndosign \"$IDENTITY\" \"${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}\"/*.xpc\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Autoupdate\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Updater.app/\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}\"\n";
 		};
+		CE8AAC4C2916336F00AC7FB4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/Core/Assets/swiftgen.yml\n";
+		};
 		CE8EFAB725C93BC7004FFE4B /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3473,6 +3538,7 @@
 				CE90CCEC2377FC01001C8E80 /* UserAgent.swift in Sources */,
 				CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */,
 				CE43BEE323779E2600133C86 /* DatabaseMisc.swift in Sources */,
+				CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */,
 				CE8EFB5425C94523004FFE4B /* GoodUtils.swift in Sources */,
 				CEE4E2E62377E96B00406371 /* NSRange+optional.swift in Sources */,
 				CE5460A427F593C400A676B3 /* MastodonPostContent.swift in Sources */,
@@ -3642,6 +3708,7 @@
 				CE0E4C5A247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */,
 				CEE4E3712377F84400406371 /* genRandomString.swift in Sources */,
 				CEE4E33F2377F81100406371 /* JSONDecoder+forMastodonAPI.swift in Sources */,
+				CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */,
 				CE522BF424159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
 				CEE4E33C2377F80900406371 /* APIError.swift in Sources */,
 				CEE4E36B2377F83C00406371 /* MastodonVersionStringToInt.swift in Sources */,
@@ -3899,6 +3966,14 @@
 				CE854B8A25D4C0AB00C30BD7 /* ja */,
 			);
 			name = Timeline.strings;
+			sourceTree = "<group>";
+		};
+		CE8AAC492916332F00AC7FB4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE8AAC482916332F00AC7FB4 /* ja */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */ = {

@@ -52,7 +52,7 @@ extension UIViewController {
     public func confirm(
         title: String = "", message: String = "",
         okButtonMessage: String = "OK", style: UIAlertAction.Style = .default,
-        cancelButtonMessage: String = "キャンセル",
+        cancelButtonMessage: String = CoreL10n.cancel,
         completionHandler: ((Bool) -> Void)? = nil
     ) {
         let alert = UIAlertController(
@@ -73,7 +73,7 @@ extension UIViewController {
     public func confirmAsync(
         title: String = "", message: String = "",
         okButtonMessage: String = "OK", style: UIAlertAction.Style = .default,
-        cancelButtonMessage: String = "キャンセル"
+        cancelButtonMessage: String = CoreL10n.cancel
     ) async -> Bool {
         await withCheckedContinuation { continuation in
             self.confirm(
@@ -120,9 +120,15 @@ extension UIViewController {
     
     @MainActor
     public func errorReport(error: Error) {
-        let alert = UIAlertController(title: "エラー", message: "エラーが発生しました。\n\n\(error.localizedDescription)", preferredStyle: .alert
+        let alert = UIAlertController(
+            title: CoreL10n.ErrorAlert.title,
+            message: CoreL10n.ErrorAlert.message(error.localizedDescription),
+            preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "詳しい情報を見る", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(
+            title: CoreL10n.ErrorAlert.moreInfo,
+            style: .default
+        ) { _ in
             class ErrorReportViewController: UIViewController {
                 let textView = UITextView() ※ { view in
                     view.font = UIFont.init(name: "Menlo", size: 15)
@@ -135,7 +141,7 @@ extension UIViewController {
                 }
                 
                 override func viewDidLoad() {
-                    title = "エラー詳細"
+                    title = CoreL10n.ErrorMoreInfo.title
                     navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
                 }
             }
@@ -143,7 +149,7 @@ extension UIViewController {
             let navVC = UINavigationController(rootViewController: vc)
             vc.textView.text = "\(error)"
             self.present(navVC, animated: true, completion: nil)
-        }))
+        })
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
