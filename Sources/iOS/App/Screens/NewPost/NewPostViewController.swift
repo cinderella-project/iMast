@@ -205,7 +205,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
-                let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
+                let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
                 media.append(response)
             }
             await MainActor.run {

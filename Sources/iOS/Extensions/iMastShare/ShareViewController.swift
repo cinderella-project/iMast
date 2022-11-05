@@ -267,7 +267,7 @@ class ShareViewController: SLComposeServiceViewController {
             do {
                 var images: [MastodonAttachment] = []
                 for medium in self.postMedia {
-                    let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
+                    let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
                     images.append(result)
                 }
                 let res = try await MastodonEndpoint.CreatePost(

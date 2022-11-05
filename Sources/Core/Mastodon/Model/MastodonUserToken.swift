@@ -278,46 +278,47 @@ public class MastodonUserToken: Equatable {
         return try JSON(data: data)
     }
     
-    public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") -> Promise<MastodonAttachment> {
-        return Promise<MastodonAttachment> { resolve, reject, _ in
+    public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") async throws -> MastodonAttachment {
+        let request = try await withCheckedThrowingContinuation { continuation in
             Alamofire.upload(
                 multipartFormData: { (multipartFormData) in
                     multipartFormData.append(file, withName: "file", fileName: filename, mimeType: mimetype)
                 },
                 to: "https://\(self.app.instance.hostName)/api/v1/media",
                 method: .post,
-                headers: self.getHeader(),
-                encodingCompletion: { encodingResult in
-                    switch encodingResult {
-                    case .success(let upload, _, _):
-                        print(upload)
-                        upload.responseData { res in
-                            switch res.result {
-                            case .success(let data):
-                                let urlRes = res.response!
-                                if urlRes.statusCode < 300 {
-                                    do {
-                                        resolve(try JSONDecoder.forMastodonAPI.decode(MastodonAttachment.self, from: data))
-                                    } catch {
-                                        reject(error)
-                                    }
-                                } else {
-                                    if let error = try? JSONDecoder().decode(MastodonErrorResponse.self, from: data).error {
-                                        reject(APIError.errorReturned(errorMessage: error, errorHttpCode: urlRes.statusCode))
-                                    } else {
-                                        reject(APIError.unknownResponse(errorHttpCode: urlRes.statusCode, errorString: .init(data: data, encoding: .utf8)))
-                                    }
-                                }
-                            case .failure(let error):
-                                reject(error)
-                            }
-                        }
-                    case .failure(let encodingError):
-                        print("UploadError", encodingError)
-                        reject(encodingError)
-                    }
+                headers: self.getHeader()
+            ) { encodingResult in
+                switch encodingResult {
+                case .success(let request, _, _):
+                    continuation.resume(returning: request)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
                 }
-            )
+            }
+        }
+        let (data, urlRes): (Data, HTTPURLResponse) = try await withCheckedThrowingContinuation { continuation in
+            request.responseData { res in
+                switch res.result {
+                case .success(let data):
+                    let urlRes = res.response!
+                    continuation.resume(returning: (data, urlRes))
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+        if urlRes.statusCode < 300 {
+            do {
+                return try JSONDecoder.forMastodonAPI.decode(MastodonAttachment.self, from: data)
+            } catch {
+                throw error
+            }
+        } else {
+            if let error = try? JSONDecoder().decode(MastodonErrorResponse.self, from: data).error {
+                throw APIError.errorReturned(errorMessage: error, errorHttpCode: urlRes.statusCode)
+            } else {
+                throw APIError.unknownResponse(errorHttpCode: urlRes.statusCode, errorString: .init(data: data, encoding: .utf8))
+            }
         }
     }
     
