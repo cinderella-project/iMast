@@ -25,7 +25,7 @@ public enum CoreL10n {
       public static let title = CoreL10n.tr("Localizable", "error.api.title")
     }
     public enum Http {
-      /// サーバーから予期せぬエラーが返却されました。\n(HTTP %1$d)\n\n%2$@
+      /// サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@
       public static func text(_ p1: Int, _ p2: Any) -> String {
         return CoreL10n.tr("Localizable", "error.http.text", p1, String(describing: p2))
       }
