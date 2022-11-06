@@ -32,3 +32,8 @@
 "postFab.locations.rightBottom" = "右下";
 
 "cancel" = "キャンセル";
+
+"error.api.title" = "APIエラー";
+"error.api.text" = "サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)";
+"error.http.title" = "サーバーエラー";
+"error.http.text" = "サーバーから予期せぬエラーが返却されました。\n(HTTP %1$d)\n\n%2$@";
