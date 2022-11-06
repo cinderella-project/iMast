@@ -126,9 +126,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         if let name = input.field.name.parseText2HTMLNew(attributes: [
             .font: self.nameLabel.font,
             .foregroundColor: UIColor.label,
-        ], asyncLoadProgressHandler: {
-            self.nameLabel.setNeedsDisplay()
-        })?.emojify(asyncLoadProgressHandler: {
+        ])?.emojify(asyncLoadProgressHandler: {
             self.nameLabel.setNeedsDisplay()
         }, emojifyProtocol: input.account) {
             self.nameLabel.attributedText = name
@@ -139,9 +137,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
         if let value = input.field.value.parseText2HTMLNew(attributes: [
             .font: self.valueTextView.font,
             .foregroundColor: UIColor.label,
-        ], asyncLoadProgressHandler: {
-            self.valueTextView.setNeedsDisplay()
-        })?.emojify(asyncLoadProgressHandler: {
+        ])?.emojify(asyncLoadProgressHandler: {
             self.valueTextView.setNeedsDisplay()
         }, emojifyProtocol: input.account) {
             self.valueTextView.attributedText = value

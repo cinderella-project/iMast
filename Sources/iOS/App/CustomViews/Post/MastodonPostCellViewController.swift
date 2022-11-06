@@ -292,9 +292,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             ]).emojify(asyncLoadProgressHandler: {
                 self.textView.setNeedsDisplay()
             }, emojifyProtocol: post)
-        } else if let attrStr = html.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
-            self.textView.setNeedsDisplay()
-        })?.emojify(asyncLoadProgressHandler: {
+        } else if let attrStr = html.parseText2HTML(attributes: attrs)?.emojify(asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
         }, emojifyProtocol: post) {
             textView.attributedText = attrStr
