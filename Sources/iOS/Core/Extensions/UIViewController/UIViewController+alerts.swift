@@ -85,24 +85,6 @@ extension UIViewController {
     }
     
     @MainActor
-    func errorAlert(errorMsg: String, completionHandler: (() -> Void)? = nil) {
-        alert(
-            title: "内部エラー",
-            message: "あれ？何かがおかしいようです。\nこのメッセージは通常このアプリにバグがあるときに表示されます。\nもしよければ、下のエラーメッセージを開発者にお伝え下さい。\nエラーメッセージ: \(errorMsg)\n同じことをしようとしてもこのエラーが出る場合は、アプリを再起動してみてください。",
-            completionHandler: completionHandler
-        )
-    }
-
-    @MainActor
-    func errorAlertAsync(errorMsg: String) async {
-        await withCheckedContinuation { continuation in
-            errorAlert(errorMsg: errorMsg) {
-                continuation.resume()
-            }
-        }
-    }
-    
-    @MainActor
     public func apiError(_ errorMsg: String? = nil, _ httpNumber: Int? = nil, completionHandler: (() -> Void)? = nil) {
         let msg = errorMsg ?? "不明なエラー(iMast)"
         let errorMessage = "エラーメッセージ:\n\(msg) (\(httpNumber ?? -1)\n\nエラーメッセージに従っても解決しない場合は、アプリを再起動してみてください。"
@@ -120,6 +102,15 @@ extension UIViewController {
     
     @MainActor
     public func errorReport(error: Error) {
+        if case APIError.errorReturned(errorMessage: let message, errorHttpCode: let code) = error {
+            return alert(title: CoreL10n.Error.Api.title, message: CoreL10n.Error.Api.text(message, code))
+        }
+        if case APIError.unknownResponse(errorHttpCode: let code, errorString: let message) = error {
+            return alert(
+                title: CoreL10n.Error.Http.title,
+                message: CoreL10n.Error.Http.text(code, message ?? CoreL10n.Error.failedToDecodeAsUTF8)
+            )
+        }
         let alert = UIAlertController(
             title: CoreL10n.ErrorAlert.title,
             message: CoreL10n.ErrorAlert.message(error.localizedDescription),

@@ -16,6 +16,22 @@ public enum CoreL10n {
   public enum Error {
     /// (不明)
     public static let failedToDecodeAsUTF8 = CoreL10n.tr("Localizable", "error.failedToDecodeAsUTF8")
+    public enum Api {
+      /// サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)
+      public static func text(_ p1: Any, _ p2: Int) -> String {
+        return CoreL10n.tr("Localizable", "error.api.text", String(describing: p1), p2)
+      }
+      /// APIエラー
+      public static let title = CoreL10n.tr("Localizable", "error.api.title")
+    }
+    public enum Http {
+      /// サーバーから予期せぬエラーが返却されました。\n(HTTP %1$d)\n\n%2$@
+      public static func text(_ p1: Int, _ p2: Any) -> String {
+        return CoreL10n.tr("Localizable", "error.http.text", p1, String(describing: p2))
+      }
+      /// サーバーエラー
+      public static let title = CoreL10n.tr("Localizable", "error.http.title")
+    }
   }
 
   public enum ErrorAlert {

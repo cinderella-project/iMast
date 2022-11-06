@@ -243,6 +243,13 @@ public class MastodonUserToken: Equatable {
         }
         print(request.httpMethod!, request.url!)
         let (data, response) = try await URLSession.shared.data(for: request)
+        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
+            if let error = try? JSONDecoder.forMastodonAPI.decode(MastodonErrorResponse.self, from: data) {
+                throw APIError.errorReturned(errorMessage: error.error, errorHttpCode: response.statusCode)
+            } else {
+                throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
+            }
+        }
         return try E.Response.decode(
             data: data,
             httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]

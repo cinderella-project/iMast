@@ -136,7 +136,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     
     @objc func sendPost(_ sender: Any) {
         print(isNSFW)
-        let baseMessage = "しばらくお待ちください\n"
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let alert = UIAlertController(
             title: L10n.NewPost.Alerts.Sending.title,
             message: baseMessage + "準備中",
@@ -151,7 +151,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     func submitEdit(_ alert: UIAlertController) {
-        let baseMessage = "しばらくお待ちください\n"
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         guard let editPost else {
             preconditionFailure()
         }
@@ -193,7 +193,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     func submitPost(_ alert: UIAlertController) {
-        let baseMessage = "しばらくお待ちください\n"
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let text = contentView.textInput.text ?? ""
         let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""
@@ -231,7 +231,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             })
         }.catch(in: .main) { err in
             alert.dismiss(animated: false) {
-                self.alert(title: L10n.Localizable.Error.title, message: "エラーが発生しました。\(err)")
+                self.errorReport(error: err)
             }
         }
     }

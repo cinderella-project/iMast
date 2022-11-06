@@ -213,6 +213,8 @@ internal enum L10n {
     internal static let title = L10n.tr("NewPost", "title")
     internal enum Alerts {
       internal enum Sending {
+        /// しばらくお待ちください…
+        internal static let pleaseWait = L10n.tr("NewPost", "alerts.sending.pleaseWait")
         /// 投稿中
         internal static let title = L10n.tr("NewPost", "alerts.sending.title")
         internal enum Steps {
