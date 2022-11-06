@@ -285,9 +285,6 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     ))
                 }
             } else { // 自分なら
-                items.append(UIAction(title: L10n.UserProfile.Actions.profileCard, image: UIImage(systemName: "person.crop.rectangle")) { [weak self] _ in
-                    self?.openProfilecard()
-                })
                 items.append(UIAction(title: L10n.Localizable.favouritesList, image: UIImage(systemName: "star")) { [weak self] _ in
                     self?.openFavouritesList()
                 })
@@ -329,13 +326,6 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     
     @objc func openListAdder() {
         let newVC = ListAdderTableViewController(with: self.input, environment: self.environment)
-        self.navigationController?.pushViewController(newVC, animated: true)
-    }
-    
-    @objc func openProfilecard() {
-        let newVC = StoryboardScene.ProfileCard.initialScene.instantiate()
-        newVC.user = self.input
-        newVC.userToken = self.environment
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     

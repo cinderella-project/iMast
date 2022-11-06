@@ -520,8 +520,6 @@ internal enum L10n {
       internal static let followRequestsList = L10n.tr("UserProfile", "actions.followRequestsList")
       /// ミュート
       internal static let mute = L10n.tr("UserProfile", "actions.mute")
-      /// 名刺
-      internal static let profileCard = L10n.tr("UserProfile", "actions.profileCard")
       /// 共有
       internal static let share = L10n.tr("UserProfile", "actions.share")
       /// アクション
