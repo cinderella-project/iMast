@@ -34,6 +34,6 @@
 "cancel" = "Cancel";
 
 "error.api.title" = "API Error";
-"error.api.text" = "Server returns error.\n\n%1$@\n(HTTP %2$d)";
+"error.api.text" = "Server returned an error.\n\n%1$@\n(HTTP %2$d)";
 "error.http.title" = "Server Error";
-"error.http.text" = "Server returns unexpected response.\n(HTTP %1$d)\n\n%2$@";
+"error.http.text" = "Server returns an unexpected response.\n(HTTP %1$d)\n\n%2$@";
