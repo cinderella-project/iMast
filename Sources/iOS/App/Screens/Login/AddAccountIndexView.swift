@@ -123,9 +123,9 @@ struct _AddAccountIndexView: View {
         do {
             await setLoginState(.fetchingServerInfo)
             let instance = MastodonInstance(hostName: instance)
-            _ = try await instance.getInfo().wait()
+            _ = try await instance.getInfo()
             await setLoginState(.registeringApplication)
-            let app = try await instance.createApp(name: Defaults.newAccountVia).wait()
+            let app = try await instance.createApp(name: Defaults.newAccountVia)
             try app.save()
             await setLoginState(.pleaseAuthorize)
             await MainActor.run {

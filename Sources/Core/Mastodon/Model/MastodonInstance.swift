@@ -24,7 +24,7 @@
 import Foundation
 import SwiftyJSON
 import Hydra
-import Alamofire
+//import Alamofire
 
 var mastodonInstanceInfoCache: [String: JSON] = [:]
 
@@ -49,52 +49,36 @@ public class MastodonInstance {
         self.hostName = hostName.replacing(/.+@/, with: "").lowercased()
     }
     
-    public func getInfo() -> Promise<JSON> {
-        return Promise<JSON> { resolve, reject, _ in
-            if let cache = mastodonInstanceInfoCache[self.hostName] {
-                resolve(cache)
-                return
-            }
-            Alamofire.request("https://\(self.hostName)/api/v1/instance").responseJSON { res in
-                // print(res)
-                if let error = res.error {
-                    reject(error)
-                    return
-                }
-                if res.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                let json = JSON(res.result.value!)
-                self.name = json["name"].string
-                self.description = json["description"].string
-                self.email = json["email"].string
-                mastodonInstanceInfoCache[self.hostName] = json
-                resolve(json)
-            }
+    public func getInfo() async throws -> JSON {
+        if let cache = mastodonInstanceInfoCache[self.hostName] {
+            return cache
         }
+        var request = try URLRequest(url: URL(string: "https://\(hostName)/api/v1/instance")!, method: .get)
+        request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+        let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
+        let json = try JSON(data: data)
+        
+        self.name = json["name"].string
+        self.description = json["description"].string
+        self.email = json["email"].string
+        mastodonInstanceInfoCache[self.hostName] = json
+        return json
     }
     
-    public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") -> Promise<MastodonApp> {
-        return Promise<MastodonApp> { resolve, reject, _ in
-            let params = [
-                "client_name": name,
-                "scopes": "read write follow",
-                "redirect_uris": redirect_uri,
-                "website": website,
-            ]
-            Alamofire.request("https://\(self.hostName)/api/v1/apps", method: .post, parameters: params).responseJSON { res in
-                if let error = res.error {
-                    reject(error)
-                    return
-                }
-                if res.result.value == nil {
-                    reject(APIError.nil("response.result.value"))
-                    return
-                }
-                let json = JSON(res.result.value!)
-                resolve(MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri))
-            }
-        }
+    public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") async throws -> MastodonApp {
+        let params = [
+            "client_name": name,
+            "scopes": "read write follow",
+            "redirect_uris": redirect_uri,
+            "website": website,
+        ]
+        var request = try URLRequest(url: URL(string: "https://\(hostName)/api/v1/apps")!, method: .post)
+        request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(params)
+        let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
+        let json = try JSON(data: data)
+        
+        return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri)
     }
 }

@@ -86,16 +86,11 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         cell.accessoryType = .disclosureIndicator
                         cell.textLabel?.textColor = nil
                     }
-                    row.onCellSelection { cell, row in
-                        // TODO: ここの下限バージョンの処理をあとで共通化する
-                        self.environment.getIntVersion().then { version in
-                            if version < MastodonVersionStringToInt("2.1.0rc1") {
-                                self.alert(
-                                    title: L10n.Localizable.Error.title,
-                                    message: L10n.Localizable.Error.requiredNewerMastodon("2.1.0rc1")
-                                )
-                                return
-                            }
+                    row.onCellSelection { [weak self] cell, row in
+                        guard let self = self else {
+                            return
+                        }
+                        self.mastodonVersionBarrier(version: "2.1.0rc1") {
                             MastodonEndpoint.MyLists().request(with: self.environment).then({ lists in
                                 let vc = ListsTableViewController.instantiate(environment: self.environment)
                                 vc.lists = lists
@@ -111,16 +106,11 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         cell.accessoryType = .disclosureIndicator
                         cell.textLabel?.textColor = nil
                     }
-                    row.onCellSelection { cell, row in
-                        // TODO: ここの下限バージョンの処理をあとで共通化する
-                        self.environment.getIntVersion().then { version in
-                            if version < MastodonVersionStringToInt("3.1.0") {
-                                self.alert(
-                                    title: L10n.Localizable.Error.title,
-                                    message: L10n.Localizable.Error.requiredNewerMastodon("3.1.0")
-                                )
-                                return
-                            }
+                    row.onCellSelection { [weak self] cell, row in
+                        guard let self = self else {
+                            return
+                        }
+                        self.mastodonVersionBarrier(version: "3.1.0") {
                             self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
                         }
                     }
@@ -150,8 +140,26 @@ class OtherMenuViewController: FormViewController, Instantiatable {
         self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func mastodonVersionBarrier(version: String, callback: @escaping () -> Void) {
+        Task {
+            do {
+                async let currentVersionInt = self.environment.getIntVersion()
+                let neededVersionInt = MastodonVersionStringToInt(version)
+                if try await currentVersionInt < neededVersionInt {
+                    await MainActor.run {
+                        self.alert(
+                            title: L10n.Localizable.Error.title,
+                            message: L10n.Localizable.Error.requiredNewerMastodon(version)
+                        )
+                    }
+                    return
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorReport(error: error)
+                }
+            }
+            await MainActor.run(body: callback)
+        }
     }
 }

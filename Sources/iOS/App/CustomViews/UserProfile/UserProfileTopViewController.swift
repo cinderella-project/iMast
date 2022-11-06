@@ -231,7 +231,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         let myScreenName = "@"+self.environment.screenName!
         let screenName = "@"+input.acct
         do {
-            async let version = environment.getIntVersion().wait()
+            async let version = environment.getIntVersion()
             let relationship = try await MastodonEndpoint.Relationship.Get(accounts: [input]).request(with: environment)[0]
             var items = [UIMenuElement]()
             items.append(shareCommand)

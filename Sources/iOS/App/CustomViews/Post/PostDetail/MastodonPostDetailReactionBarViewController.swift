@@ -127,7 +127,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     func buildOthersMenu() async throws -> [UIMenuElement] {
         var elements = [UICommand]()
-        let version = try await environment.getIntVersion().wait()
+        let version = try await environment.getIntVersion()
         if version >= MastodonVersionStringToInt("3.1.0") {
             if input.bookmarked {
                 elements.append(.init(title: "ブックマークから削除", image: UIImage(systemName: "bookmark.slash"), action: #selector(removeFromBookmark)))

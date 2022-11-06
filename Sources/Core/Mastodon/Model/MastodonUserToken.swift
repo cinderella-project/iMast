@@ -58,10 +58,8 @@ public class MastodonUserToken: Equatable {
         ]
     }
     
-    public func getIntVersion() -> Promise<Int> {
-        return self.app.instance.getInfo().then { (res) -> Int in
-            return MastodonVersionStringToInt(res["version"].stringValue)
-        }
+    public func getIntVersion() async throws -> Int {
+        return MastodonVersionStringToInt(try await self.app.instance.getInfo()["version"].stringValue)
     }
     
     static public func initFromId(id: String) -> MastodonUserToken? {

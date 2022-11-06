@@ -34,7 +34,7 @@ class UserTimelineViewController: TimelineViewController {
     
     override func loadTimeline() async throws {
         self.readmoreView.state = .loading
-        let version = try await environment.getIntVersion().wait()
+        let version = try await environment.getIntVersion()
         async let pinnedPosts = version >= MastodonVersionStringToInt("1.6.0rc1")
             ? MastodonEndpoint.GetTimeline(.user(user, pinned: true)).request(with: environment)
             : []

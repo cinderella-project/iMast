@@ -337,7 +337,8 @@ class TimelineViewController: UIViewController, Instantiatable {
         guard let webSocketEndpoint = self.websocketEndpoint() else {
             return
         }
-        environment.getWebSocket(endpoint: webSocketEndpoint).then { socket in
+        Task {
+            let socket = try await environment.getWebSocket(endpoint: webSocketEndpoint)
             socket.delegate = self
             socket.connect()
             self.socket = socket
