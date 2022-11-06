@@ -30,6 +30,7 @@
 "keyCommand.send.description" = "Send post";
 
 "alerts.sending.title" = "Sending post";
+"alerts.sending.pleaseWait" = "Please wait...";
 "alerts.sending.steps.mediaUpload" = "Uploading image (%1$d/%2$d)";
 "alerts.sending.steps.send" = "Sending";
 
