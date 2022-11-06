@@ -36,4 +36,4 @@
 "error.api.title" = "APIエラー";
 "error.api.text" = "サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)";
 "error.http.title" = "サーバーエラー";
-"error.http.text" = "サーバーから予期せぬエラーが返却されました。\n(HTTP %1$d)\n\n%2$@";
+"error.http.text" = "サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@";
