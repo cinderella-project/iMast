@@ -118,14 +118,17 @@ class AddMastodonAccountSheetViewController: NSViewController {
                 self?.error = error
             }
         } else {
-            MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob").then { [weak self] app in
-                try app.save()
-                NSWorkspace.shared.open(app.getAuthorizeUrl())
-                self?.app = app
-            }.always(in: .main) { [weak self] in
-                self?.nowLoading = false
-            }.catch { [weak self] error in
-                self?.error = error
+            Task { [weak self] in
+                do {
+                    let app = try await MastodonInstance(hostName: serverDomain).createApp(redirect_uri: "urn:ietf:wg:oauth:2.0:oob")
+                    try app.save()
+                    NSWorkspace.shared.open(app.getAuthorizeUrl())
+                    self?.app = app
+                    self?.nowLoading = false
+                } catch {
+                    self?.error = error
+                    self?.nowLoading = false
+                }
             }
         }
     }
