@@ -161,32 +161,72 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     }
     
     @objc func boostButtonTapped() {
-        let promise = input.reposted
-        ? MastodonEndpoint.DeleteRepost(post: input).request(with: environment)
-        : MastodonEndpoint.CreateRepost(post: input).request(with: environment)
-        promise.then { [weak self] res in
-            self?.input(res)
+        Task {
+            do {
+                let res: MastodonPost
+                if input.reposted {
+                    res = try await MastodonEndpoint.DeleteRepost(post: input).request(with: environment)
+                } else {
+                    res = try await MastodonEndpoint.CreateRepost(post: input).request(with: environment)
+                }
+                await MainActor.run {
+                    self.input(res)
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorReport(error: error)
+                }
+            }
         }
     }
     
     @objc func favouriteButtonTapped() {
-        let promise = input.favourited
-        ? MastodonEndpoint.DeleteFavourite(post: input).request(with: environment)
-        : MastodonEndpoint.CreateFavourite(post: input).request(with: environment)
-        promise.then { [weak self] res in
-            self?.input(res)
+        Task {
+            do {
+                let res: MastodonPost
+                if input.favourited {
+                    res = try await MastodonEndpoint.DeleteFavourite(post: input).request(with: environment)
+                } else {
+                    res = try await MastodonEndpoint.CreateFavourite(post: input).request(with: environment)
+                }
+                await MainActor.run {
+                    self.input(res)
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorReport(error: error)
+                }
+            }
         }
     }
     
     @objc func addToBookmark() {
-        MastodonEndpoint.CreateBookmark(post: input).request(with: environment).then { [weak self] res in
-            self?.input(res)
+        Task {
+            do {
+                let res = try await MastodonEndpoint.CreateBookmark(post: input).request(with: environment)
+                await MainActor.run {
+                    self.input(res)
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorReport(error: error)
+                }
+            }
         }
     }
     
     @objc func removeFromBookmark() {
-        MastodonEndpoint.DeleteBookmark(post: input).request(with: environment).then { [weak self] res in
-            self?.input(res)
+        Task {
+            do {
+                let res = try await MastodonEndpoint.DeleteBookmark(post: input).request(with: environment)
+                await MainActor.run {
+                    self.input(res)
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorReport(error: error)
+                }
+            }
         }
     }
                                 
