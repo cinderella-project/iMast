@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct DecodableVoid: Decodable, MastodonEndpointResponse {
+public struct DecodableVoid: Decodable, MastodonEndpointResponse, Sendable {
     public init(from decoder: Decoder) throws {
     }
 }

@@ -23,7 +23,7 @@
 
 import Foundation
 
-public func deferAsync<T>(_ callback: () async throws -> T, always: () async -> Void) async rethrows -> T {
+public func deferAsync<T>(_ callback: @Sendable () async throws -> T, always: @Sendable () async -> Void) async rethrows -> T {
     do {
         let res: T = try await callback()
         await always()

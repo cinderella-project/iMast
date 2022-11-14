@@ -270,7 +270,7 @@ class ShareViewController: SLComposeServiceViewController {
                     let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
                     images.append(result)
                 }
-                let res = try await MastodonEndpoint.CreatePost(
+                _ = try await MastodonEndpoint.CreatePost(
                     status: self.contentText,
                     visibility: self.visibility,
                     mediaIds: images.map { $0.id }
@@ -278,14 +278,9 @@ class ShareViewController: SLComposeServiceViewController {
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
             } catch {
-                await MainActor.run { alert.dismiss(animated: false) }
-                switch error {
-                case APIError.errorReturned(errorMessage: let msg, errorHttpCode: let httpCode):
-                    await apiError(msg, httpCode)
-                default:
-                    await apiError("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
-                }
-                await MainActor.run { self.extensionContext!.cancelRequest(withError: error) }
+                alert.dismiss(animated: false)
+                errorReport(error: error)
+                extensionContext?.cancelRequest(withError: error)
             }
         }
     }

@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonID: Codable, CustomStringConvertible {
+public struct MastodonID: Codable, CustomStringConvertible, Sendable {
     @available(*, unavailable)
     var int: Int64 = -1
     public var string: String

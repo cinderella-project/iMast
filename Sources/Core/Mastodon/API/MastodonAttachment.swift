@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonAttachment: Codable {
+public struct MastodonAttachment: Codable, Sendable {
     public let id: MastodonID
     public let type: MediaType
     public let url: String

@@ -38,8 +38,8 @@ struct PushServiceWrapper<T: Codable>: Codable {
     var result: T
 }
 
-struct PushServiceToken: Codable {
-    class PushServiceTokenNotifyFlags: Codable {
+struct PushServiceToken: Codable, Sendable {
+    class PushServiceTokenNotifyFlags: Codable, Sendable {
         var follow: Bool
         var followRequest: Bool
         var mention: Bool

@@ -28,16 +28,16 @@ import Hydra
 import GRDB
 import KeychainAccess
 
-public class MastodonUserToken: Equatable {
-    public var id: String?
-    public var token: String
-    public var tokenAvailable: Bool {
+public class MastodonUserToken: Equatable, @unchecked Sendable {
+    public private(set) var id: String?
+    public private(set) var token: String
+    private var tokenAvailable: Bool {
         token.count > 0
     }
-    public var app: MastodonApp
-    public var name: String?
-    public var screenName: String?
-    public var avatarUrl: String?
+    public private(set) var app: MastodonApp
+    public private(set) var name: String?
+    public private(set) var screenName: String?
+    public private(set) var avatarUrl: String?
     
     public var acct: String {
         return "\(self.screenName ?? "")@\(self.app.instance.hostName)"

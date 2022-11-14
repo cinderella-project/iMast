@@ -148,7 +148,7 @@ class PushSettingsTableViewController: FormViewController {
             await presentAsync(vc, animated: false)
         }
         do {
-            try await deferAsync {
+            try await deferAsync { @MainActor in
                 let accounts = try await PushService.getRegisterAccounts()
                 let rows = accounts.map { account -> BaseRow in
                     return ButtonRow { row in
@@ -175,7 +175,7 @@ class PushSettingsTableViewController: FormViewController {
                     }
                 })
                 self.tableView.reloadData()
-            } always: {
+            } always: { @MainActor in
                 if blocking {
                     vc.dismiss(animated: true, completion: nil)
                 }

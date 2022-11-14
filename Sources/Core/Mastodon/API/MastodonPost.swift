@@ -28,7 +28,7 @@ struct MastodonPostHashtag: Codable {
     let url: String
 }
 
-public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse, MastodonPostContentProtocol {
+public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse, MastodonPostContentProtocol, Sendable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id.string)
         hasher.combine(self.url)
@@ -142,7 +142,7 @@ public struct MastodonCustomEmoji: Codable {
 
 }
 
-public struct MastodonPostContext: Codable, MastodonEndpointResponse {
+public struct MastodonPostContext: Codable, MastodonEndpointResponse, Sendable {
     public let ancestors: [MastodonPost]
     public let descendants: [MastodonPost]
 }
