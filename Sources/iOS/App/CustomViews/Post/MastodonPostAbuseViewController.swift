@@ -48,7 +48,7 @@ class MastodonPostAbuseViewController: UIHostingController<MastodonPostAbuseView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "投稿を通報"
+        title = L10n.Localizable.ReportPost.title
         navigationItem.largeTitleDisplayMode = .never
     }
 }
@@ -107,26 +107,26 @@ struct MastodonPostAbuseView: View {
     var body: some View {
         Form {
             Group {
-                Section("対象の投稿") {
+                Section(L10n.Localizable.ReportPost.TargetPost.title) {
                     Text(model.postText)
                 }
                 Section {
                     TextField(
-                        "追加情報", text: $model.text,
-                        prompt: Text("オプション"),
+                        L10n.Localizable.ReportPost.AdditionalInfo.title, text: $model.text,
+                        prompt: Text(L10n.Localizable.ReportPost.AdditionalInfo.placeholderOption),
                         axis: .vertical
                     )
                     .lineLimit(4...)
                 } header: {
-                    Text("追加情報")
+                    Text(L10n.Localizable.ReportPost.AdditionalInfo.title)
                 }
                 if let forwardDestination = model.forwardDestination {
                     Section {
                         Toggle(isOn: $model.forward) {
-                            Text("リモートサーバーに転送")
+                            Text(L10n.Localizable.ReportPost.ForwardToRemote.title)
                         }
                     } footer: {
-                        Text("このチェックボックスをONにすると、この通報内容は\(forwardDestination)にも転送されます。あなたのアカウントがあるサーバーと\(forwardDestination)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。")
+                        Text(L10n.Localizable.ReportPost.ForwardToRemote.description(forwardDestination))
                     }
                 }
             }
@@ -137,18 +137,18 @@ struct MastodonPostAbuseView: View {
                 if model.sending {
                     ProgressView()
                 } else {
-                    Button("送信") {
+                    Button(L10n.Localizable.ReportPost.send) {
                         model.send()
                     }
                 }
             }
         }
-        .alert("送信しました", isPresented: $model.sending, actions: {
+        .alert(L10n.Localizable.ReportPost.Finished.title, isPresented: $model.sending, actions: {
             Button("OK") {
                 dismiss()
             }
         })
-        .navigationTitle(Text("投稿を通報"))
+        .navigationTitle(Text(L10n.Localizable.ReportPost.title))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

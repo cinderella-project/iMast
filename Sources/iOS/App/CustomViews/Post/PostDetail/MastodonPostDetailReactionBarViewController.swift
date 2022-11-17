@@ -137,18 +137,18 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         }
         if version >= MastodonVersionStringToInt("3.5.0rc1") {
             if input.account.acct == environment.screenName {
-                elements.append(.init(title: "編集", image: UIImage(systemName: "pencil"), action: #selector(openEditPostVC)))
+                elements.append(.init(title: L10n.NewPost.edit, image: UIImage(systemName: "pencil"), action: #selector(openEditPostVC)))
             }
         }
-        elements.append(.init(title: "共有", image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
-        elements.append(.init(title: "文脈", image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
+        elements.append(.init(title: L10n.Localizable.PostDetail.share, image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
+        elements.append(.init(title: L10n.Localizable.Bunmyaku.title, image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
         if input.hasCustomEmoji {
-            elements.append(.init(title: "カスタム絵文字一覧", action: #selector(openEmojiListVC)))
+            elements.append(.init(title: L10n.Localizable.CustomEmojis.title, action: #selector(openEmojiListVC)))
         }
         if environment.screenName == input.account.acct {
-            elements.append(.init(title: "削除", image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
+            elements.append(.init(title: L10n.Localizable.PostDetail.delete, image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
         }
-        elements.append(.init(title: "通報", image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
+        elements.append(.init(title: L10n.Localizable.PostDetail.reportAbuse, image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
         return elements
     }
     
