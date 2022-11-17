@@ -30,7 +30,6 @@
 
 "actions.title" = "액션";
 "actions.share" = "공유";
-"actions.profileCard" = "명함";
 
 "actions.follow" = "팔로우";
 "actions.followRequestCancel" = "팔로우 요청을 철회";

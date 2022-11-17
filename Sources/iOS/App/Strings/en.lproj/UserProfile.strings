@@ -30,7 +30,6 @@
 
 "actions.title" = "Actions";
 "actions.share" = "Share";
-"actions.profileCard" = "Profile Card";
 
 "actions.follow" = "Follow";
 "actions.followRequestCancel" = "Cancel follow request";
