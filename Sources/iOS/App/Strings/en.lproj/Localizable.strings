@@ -91,7 +91,7 @@
 "reportPost.additionalInfo.title" = "Additional Info";
 "reportPost.additionalInfo.placeholderOption" = "Optional";
 "reportPost.forwardToRemote.title" = "Forward to remote server";
-"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
+"reportPost.forwardToRemote.description" = "The report will transfer to %1$@. This feature requires your account's server and %1$@'s version greater than Mastodon 2.3 or support of report via federation.";
 "reportPost.finished.title" = "Reported";
 
 "error.title" = "Error";
