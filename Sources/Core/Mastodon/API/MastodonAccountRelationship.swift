@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonAccountRelationship: Codable, MastodonEndpointResponse {
+public struct MastodonAccountRelationship: Codable, MastodonEndpointResponse, Sendable {
     let id: MastodonID
     public let following: Bool
     public var showing_reblogs: Bool {

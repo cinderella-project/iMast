@@ -25,7 +25,7 @@ import Foundation
 import Hydra
 
 public protocol MastodonEndpointProtocol {
-    associatedtype Response: MastodonEndpointResponse
+    associatedtype Response: MastodonEndpointResponse, Sendable
     
     /// e.g. "/api/v1/account". you need to percent-encoding on some characters.
     var endpoint: String { get }

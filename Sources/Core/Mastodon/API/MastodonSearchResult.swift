@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct MastodonSearchResultHashtag: Codable {
+public struct MastodonSearchResultHashtag: Codable, Sendable {
     public let name: String
     
     public init(from decoder: Decoder) throws {
@@ -40,7 +40,7 @@ extension MastodonSearchResultHashtag: Hashable {
     
 }
 
-public struct MastodonSearchResult: Codable, MastodonEndpointResponse {
+public struct MastodonSearchResult: Codable, MastodonEndpointResponse, Sendable {
     public let accounts: [MastodonAccount]
     public let posts: [MastodonPost]
     public let hashtags: [MastodonSearchResultHashtag]
