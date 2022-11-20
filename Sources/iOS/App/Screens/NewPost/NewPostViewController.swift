@@ -101,6 +101,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             title = L10n.NewPost.edit
 
             contentView.textInput.text = editPost.status.toPlainText()
+            contentView.cwInput.text = editPost.spoilerText
 
             // TODO: 添付メディアの編集にも対応する
             contentView.imageSelectButton.setTitle(" \(editPost.attachments.count)", for: .normal)
