@@ -181,7 +181,7 @@ internal enum L10n {
         internal static let title = L10n.tr("Localizable", "reportPost.finished.title")
       }
       internal enum ForwardToRemote {
-        /// このチェックボックスをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。
+        /// このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。
         internal static func description(_ p1: Any) -> String {
           return L10n.tr("Localizable", "reportPost.forwardToRemote.description", String(describing: p1))
         }
