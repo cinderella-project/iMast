@@ -45,7 +45,19 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
                     cell.textLabel?.textColor = nil
                 }
                 row.onCellSelection { [weak self] cell, row in
-                    self?.safariLoginButton()
+                    self?.safariLoginButton(prefersEphemeralWebBrowserSession: false)
+                }
+            }
+            ButtonRow { row in
+                row.title = L10n.Login.Authorize.Method.safariEphemeral
+                row.cellUpdate { cell, row in
+                    cell.accessibilityIdentifier = "loginWithSafariEphemeral"
+                    cell.textLabel?.textAlignment = .left
+                    cell.accessoryType = .disclosureIndicator
+                    cell.textLabel?.textColor = nil
+                }
+                row.onCellSelection { [weak self] cell, row in
+                    self?.safariLoginButton(prefersEphemeralWebBrowserSession: true)
                 }
             }
         }
@@ -70,8 +82,12 @@ class AddAccountSelectLoginMethodViewController: FormViewController {
     
     private var loginSafari: LoginSafari?
     
-    func safariLoginButton() {
+    func safariLoginButton(prefersEphemeralWebBrowserSession: Bool) {
         loginSafari = getLoginSafari()
-        loginSafari?.open(url: self.app!.getAuthorizeUrl(), viewController: self)
+        loginSafari?.open(
+            url: self.app!.getAuthorizeUrl(),
+            viewController: self,
+            prefersEphemeralWebBrowserSession: prefersEphemeralWebBrowserSession
+        )
     }
 }

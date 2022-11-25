@@ -225,7 +225,7 @@ class PushSettingsTableViewController: FormViewController {
         do {
             let url = try await PushService.getAuthorizeUrl(host: host)
             self.loginSafari = getLoginSafari()
-            self.loginSafari.open(url: URL(string: url)!, viewController: self)
+            self.loginSafari.open(url: URL(string: url)!, viewController: self, prefersEphemeralWebBrowserSession: false)
         } catch {
             self.alert(title: L10n.Localizable.Error.title, message: error.localizedDescription)
         }

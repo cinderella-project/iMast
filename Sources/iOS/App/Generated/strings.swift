@@ -207,6 +207,8 @@ internal enum L10n {
       internal enum Method {
         /// Safariでログイン (推奨)
         internal static let safari = L10n.tr("Login", "authorize.method.safari")
+        /// Safariでログイン (プライベートブラウズ)
+        internal static let safariEphemeral = L10n.tr("Login", "authorize.method.safariEphemeral")
       }
       internal enum Tos {
         /// ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。
