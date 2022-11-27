@@ -49,7 +49,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             contentView.scopeSelectItem.image = scope.uiImage
         }
     }
-    var editPost: MastodonPost?
+    var editPost: (post: MastodonPost, source: MastodonPostSource)?
     var replyToPost: MastodonPost?
     
     var userToken: MastodonUserToken!
@@ -100,17 +100,17 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         if let editPost = editPost {
             title = L10n.NewPost.edit
 
-            contentView.textInput.text = editPost.status.toPlainText()
-            contentView.cwInput.text = editPost.spoilerText
+            contentView.textInput.text = editPost.source.text
+            contentView.cwInput.text = editPost.source.spoilerText
 
             // TODO: 添付メディアの編集にも対応する
-            contentView.imageSelectButton.setTitle(" \(editPost.attachments.count)", for: .normal)
+            contentView.imageSelectButton.setTitle(" \(editPost.post.attachments.count)", for: .normal)
             contentView.imageSelectButton.isEnabled = false
             
-            scope = editPost.visibility
+            scope = editPost.post.visibility
             contentView.scopeSelectItem.isEnabled = false
 
-            isNSFW = editPost.sensitive
+            isNSFW = editPost.post.sensitive
         }
 
         contentView.textInput.becomeFirstResponder()
@@ -163,9 +163,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         Task {
             do {
                 let request = MastodonEndpoint.EditPost(
-                    postID: editPost.id,
+                    postID: editPost.post.id,
                     status: text,
-                    mediaIds: editPost.attachments.map { $0.id },
+                    mediaIds: editPost.post.attachments.map { $0.id },
                     sensitive: isSensitive,
                     spoiler: spoilerText
                 )

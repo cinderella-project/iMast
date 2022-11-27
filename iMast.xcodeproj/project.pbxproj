@@ -319,6 +319,8 @@
 		CEEB1A3C25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */; };
 		CEEB1A3D25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */; };
 		CEEBC3CA23548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */; };
+		CEEDC51629337514008358DB /* MastodonPostSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC51529337514008358DB /* MastodonPostSource.swift */; };
+		CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC51529337514008358DB /* MastodonPostSource.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
@@ -919,6 +921,7 @@
 		CEE674DA28B08ADF00667E04 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonWebSocketMessage.swift; sourceTree = "<group>"; };
 		CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewDiffableDataSource+plainSnapshot.swift"; sourceTree = "<group>"; };
+		CEEDC51529337514008358DB /* MastodonPostSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostSource.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
@@ -1862,6 +1865,7 @@
 				CEE254222004A8B2005FEB6F /* MastodonAccount.swift */,
 				CEDEDC9D2007DEAF00CD2784 /* MastodonAccountRelationship.swift */,
 				CEE254272004B5AA005FEB6F /* MastodonPost.swift */,
+				CEEDC51529337514008358DB /* MastodonPostSource.swift */,
 				CE5460A227F593C000A676B3 /* MastodonPostContent.swift */,
 				CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */,
 				CEE254292004B802005FEB6F /* MastodonApplication.swift */,
@@ -3520,6 +3524,7 @@
 				CE522BF324159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
 				CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */,
 				CE7AA3B725DBA84C00439AAD /* AppGroup.swift in Sources */,
+				CEEDC51629337514008358DB /* MastodonPostSource.swift in Sources */,
 				CE522BEB24159C560048E334 /* MastodonEndpoint.swift in Sources */,
 				CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */,
 				CE90CCEC2377FC01001C8E80 /* UserAgent.swift in Sources */,
@@ -3724,6 +3729,7 @@
 				CE7AA3B825DBA84C00439AAD /* AppGroup.swift in Sources */,
 				CEEB1A3D25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */,
 				CE8AAC5B291777C300AC7FB4 /* MastodonAPI.swift in Sources */,
+				CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */,
 				CEE4E3622377F83C00406371 /* MastodonPost.swift in Sources */,
 				CE522BF724159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
 				CEE4E3642377F83C00406371 /* MastodonNotification.swift in Sources */,

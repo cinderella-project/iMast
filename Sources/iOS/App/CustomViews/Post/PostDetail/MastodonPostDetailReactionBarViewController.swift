@@ -231,10 +231,17 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     }
                                 
     @objc func openEditPostVC() {
-        let vc = NewPostViewController()
-        vc.userToken = environment
-        vc.editPost = input
-        present(ModalNavigationViewController(rootViewController: vc), animated: true)
+        Task {
+            do {
+                let source = try await MastodonEndpoint.GetPostSource(input.id).request(with: environment)
+                let vc = NewPostViewController()
+                vc.userToken = environment
+                vc.editPost = (post: input, source: source)
+                present(ModalNavigationViewController(rootViewController: vc), animated: true)
+            } catch {
+                reportError(error: error)
+            }
+        }
     }
     
     @objc func openBunmyakuVC() {
