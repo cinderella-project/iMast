@@ -17,6 +17,7 @@
 
 "authorize.title" = "인증";
 "authorize.method.safari" = "Safari 로 로그인 (권장)";
+"authorize.method.safariEphemeral" = "Safariでログイン (プライベートブラウズ)";
 
 "authorize.tos.header" = "로그인 하는 것으로, 아래의 규칙과 개인정보 보호 정책 등에 동의하는 것으로 간주됩니다.";
 "authorize.tos.rules" = "이 서버의 규칙";
