@@ -30,7 +30,7 @@
 
 "notifications" = "通知";
 
-"localTimeline" = "本機時間軸";
+"localTimeline" = "本站時間軸";
 "localTimeline.short" = "本機時間軸";
 
 "post" = "發嘟";
@@ -91,7 +91,7 @@
 "reportPost.additionalInfo.title" = "額外資訊";
 "reportPost.additionalInfo.placeholderOption" = "可選填";
 "reportPost.forwardToRemote.title" = "轉送遠端伺服器";
-"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
+"reportPost.forwardToRemote.description" = "啟用開關時，此報告也將轉發給 %1$@。 您的帳戶所在的伺服器和 %1$@ 都必須運作 Mastodon 2.3 或更高版本，或者支援通過聯合報告進行轉發。";
 "reportPost.finished.title" = "已發送";
 
 "error.title" = "錯誤";
