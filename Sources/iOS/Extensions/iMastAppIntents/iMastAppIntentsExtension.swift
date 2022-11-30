@@ -1,12 +1,13 @@
 //
-//  IntentHandler.swift
-//  iMastIntents
+//  iMastAppIntentsExtension.swift
 //
-//  Created by rinsuki on 2018/12/02.
-//  
+//  iMast https://github.com/cinderella-project/iMast
+//
+//  Created by user on 2022/08/25.
+//
 //  ------------------------------------------------------------------------
 //
-//  Copyright 2017-2019 rinsuki and other contributors.
+//  Copyright 2017-2021 rinsuki and other contributors.
 // 
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,18 +20,12 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
-import Intents
+import AppIntents
 
-class IntentHandler: INExtension {
-    
-    override func handler(for intent: INIntent) -> Any? {
-        switch intent {
-        case is TootIntent:
-            return TootIntentHandler()
-        default:
-            return nil
-        }
-    }
+@main
+struct iMastAppIntentsExtension: AppIntentsExtension {
+}
+
+class AppIntentsBundleClass: NSObject {
 }

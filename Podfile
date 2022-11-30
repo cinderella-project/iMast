@@ -50,6 +50,9 @@ abstract_target 'iMastShared' do
     target 'iMastIntents' do
     end
 
+    target 'iMastAppIntents' do
+    end
+
     target 'iMastiOSCore' do
     end
   end
