@@ -77,8 +77,8 @@
 "chooseAccount" = "選擇要使用的帳號";
 
 "favouritesList" = "收藏一覽";
-"bunmyaku.title" = "文脈";
-"postDetail.title" = "投稿詳細";
+"bunmyaku.title" = "對話脈絡";
+"postDetail.title" = "嘟文詳情";
 
 "postDetail.share" = "分享";
 "postDetail.delete" = "刪除";
@@ -86,13 +86,13 @@
 "customEmojis.title" = "自定emoji列表";
 
 "reportPost.title" = "檢舉嘟文";
-"reportPost.send" = "送信";
-"reportPost.targetPost.title" = "対象の投稿";
-"reportPost.additionalInfo.title" = "追加の情報";
-"reportPost.additionalInfo.placeholderOption" = "オプション";
-"reportPost.forwardToRemote.title" = "リモートサーバーに転送";
+"reportPost.send" = "發送檢舉";
+"reportPost.targetPost.title" = "要檢舉的嘟文";
+"reportPost.additionalInfo.title" = "額外資訊";
+"reportPost.additionalInfo.placeholderOption" = "可選填";
+"reportPost.forwardToRemote.title" = "轉送遠端伺服器";
 "reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
-"reportPost.finished.title" = "送信しました";
+"reportPost.finished.title" = "已發送";
 
 "error.title" = "錯誤";
 "error.requiredNewerOS" = "此功能須IOS版本%.1f及以上";
