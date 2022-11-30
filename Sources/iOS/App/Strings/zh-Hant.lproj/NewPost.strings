@@ -35,4 +35,4 @@
 "alerts.sending.steps.send" = "正在傳送";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
-"errors.declineAppleMusicPermission" = "無法讀取音樂庫，請在設置APP中開啟iMast的「媒體與Apple Music」許可權";
+"errors.declineAppleMusicPermission" = "無法讀取音樂庫，請在設定APP中允許iMast的「媒體與Apple Music」取用權限";
