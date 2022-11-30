@@ -24,24 +24,24 @@
 "title" = "個人資料";
 
 "cells.toots.title" = "發嘟";
-"cells.following.title" = "正在關注";
-"cells.followers.title" = "關注者";
-"cells.createdAt.title" = "加入日";
+"cells.following.title" = "跟隨中";
+"cells.followers.title" = "跟隨者";
+"cells.createdAt.title" = "加入日期";
 
 "actions.title" = "更多";
 "actions.share" = "分享";
 
-"actions.follow" = "關注";
-"actions.followRequestCancel" = "取消關注請求";
-"actions.unfollow" = "取消關注";
+"actions.follow" = "跟隨";
+"actions.followRequestCancel" = "取消跟隨請求";
+"actions.unfollow" = "取消跟隨";
 
 "actions.mute" = "靜音";
-"actions.unmute" = "解除靜音";
+"actions.unmute" = "取消靜音";
 
 "actions.block" = "封鎖";
 "actions.unblock" = "解除封鎖";
 
-"actions.followRequestsList" = "關注請求清單";
+"actions.followRequestsList" = "跟隨請求清單";
 
 "actions.cancel" = "取消";
 
