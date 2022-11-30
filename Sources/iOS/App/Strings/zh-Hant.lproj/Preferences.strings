@@ -39,8 +39,8 @@
 "timeline.useSystemVideoPlayer" = "使用系統影片播放器";
 "timeline.useUniversalLinks" = "Universal Links優先";
 
-"push.link" = "プッシュ通知";
-"push.title" = "プッシュ通知設定";
+"push.link" = "推播通知";
+"push.title" = "推播通知設定";
 "push.accounts.title" = "帳號清單";
 "push.addAccount.title" = "添加帳號";
 "push.addAccount.alertTitle" = "添加帳號";
@@ -52,10 +52,10 @@
 "push.shared.groupRules.byType.title" = "根據通知類型分組";
 "push.shared.groupRules.byType.description" = "為所有標記ON的類型分組";
 "push.shared.customSounds.title" = "自訂提示音 (α)";
-"push.shared.deleteAccount.title" = "プッシュ通知の設定を削除";
+"push.shared.deleteAccount.title" = "刪除推播通知設定";
 
-"push.support.title" = "サポート用";
-"push.support.showUserID.title" = "プッシュ通知ユーザーIDを表示";
+"push.support.title" = "支援用";
+"push.support.showUserID.title" = "顯示推播通知使用者ID";
 "push.support.showUserID.alertTitle" = "使用者ID";
 "push.support.showUserID.copyAction" = "複製";
 "push.support.showUserID.failedToCheckUserID" = "忘記使用者ID";
