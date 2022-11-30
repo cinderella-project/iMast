@@ -35,7 +35,7 @@ class ShareVisibilityTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.title = "公開範囲"
+        self.title = CoreL10n.Visibility.title
         self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     }
 

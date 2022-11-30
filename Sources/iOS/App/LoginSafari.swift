@@ -27,7 +27,7 @@ import SafariServices
 import AuthenticationServices
 
 protocol LoginSafari {
-    func open(url: URL, viewController: UIViewController)
+    func open(url: URL, viewController: UIViewController, prefersEphemeralWebBrowserSession: Bool)
 }
 
 extension UIViewController: ASWebAuthenticationPresentationContextProviding {
@@ -39,7 +39,7 @@ extension UIViewController: ASWebAuthenticationPresentationContextProviding {
 class LoginSafari12: LoginSafari {
     var authSession: ASWebAuthenticationSession?
 
-    func open(url: URL, viewController: UIViewController) {
+    func open(url: URL, viewController: UIViewController, prefersEphemeralWebBrowserSession: Bool) {
         authSession = .init(url: url, callbackURLScheme: nil, completionHandler: { url, error in
             guard let url = url else {
                 return
@@ -48,6 +48,7 @@ class LoginSafari12: LoginSafari {
                 viewController.view.window?.windowScene?.open(url, options: nil, completionHandler: nil)
             }
         })
+        authSession?.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
         authSession?.presentationContextProvider = viewController
         authSession?.start()
     }

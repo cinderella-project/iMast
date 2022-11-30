@@ -188,7 +188,7 @@ class ShareViewController: SLComposeServiceViewController {
         if Defaults.usingNowplayingFormatInShareSpotifyUrl,
             url.scheme == "https", url.host == "open.spotify.com",
             let path = url.path, path.starts(with: "/track/"),
-            let objectId = path.pregMatch(pattern: "^/track/(.+)$").safe(1) {
+            let objectId = path.firstMatch(of: /^\/track\/(.+)$/)?.output.1 {
             let previewUrl = "https://open.spotify.com/embed/track/\(objectId)"
             Alamofire.request(previewUrl).responseData { res in
                 switch res.result {
@@ -265,35 +265,22 @@ class ShareViewController: SLComposeServiceViewController {
         present(alert, animated: true, completion: nil)
         Task {
             do {
-                var images: [JSON] = []
+                var images: [MastodonAttachment] = []
                 for medium in self.postMedia {
-                    let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
-                    if result["_response_code"].intValue >= 400 {
-                        throw APIError.errorReturned(errorMessage: result["error"].stringValue, errorHttpCode: result["_response_code"].intValue)
-                    }
-                    if result["id"].exists() {
-                        images.append(result)
-                    } else {
-                        print(result)
-                    }
+                    let result = try await self.userToken!.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
+                    images.append(result)
                 }
-                let res = try await MastodonEndpoint.CreatePost(
+                _ = try await MastodonEndpoint.CreatePost(
                     status: self.contentText,
                     visibility: self.visibility,
-                    // TODO: ちゃんと upload で MastodonMedia を返すようにしてそのidを使う
-                    mediaIds: images.map { .init(string: $0["id"].stringValue) }
+                    mediaIds: images.map { $0.id }
                 ).request(with: self.userToken!)
                 alert.dismiss(animated: true)
                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
             } catch {
-                await MainActor.run { alert.dismiss(animated: false) }
-                switch error {
-                case APIError.errorReturned(errorMessage: let msg, errorHttpCode: let httpCode):
-                    await apiError(msg, httpCode)
-                default:
-                    await apiError("未知のエラーが発生しました。\n\(error.localizedDescription)", -1001)
-                }
-                await MainActor.run { self.extensionContext!.cancelRequest(withError: error) }
+                alert.dismiss(animated: false)
+                errorReport(error: error)
+                extensionContext?.cancelRequest(withError: error)
             }
         }
     }

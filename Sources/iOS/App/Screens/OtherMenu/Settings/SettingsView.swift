@@ -56,6 +56,13 @@ struct SettingsView: View {
             ShareSection()
             MediaCacheSection()
             ExperimentalSection()
+            Section {
+                NavigationLink(destination: DeveloperSettingsView()) {
+                    Label("内部設定", systemImage: "wrench.and.screwdriver.fill")
+                }
+            } footer: {
+                Text("開発者から指示されたか、あなたが開発者である場合を除いて、通常これらの設定を変更する必要はありません。")
+            }
         }
     }
     
@@ -289,6 +296,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$notifyTabInfiniteScroll) var notifyTabInfiniteScroll
         @AppStorage(defaults: .$newFirstScreen) var newFirstScreen
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
+        @AppStorage(defaults: .$openAsHalfModalFromTimeline) var openAsHalfModalFromTimeline
 
         var body: some View {
             Section("実験的な要素") {
@@ -298,8 +306,26 @@ struct SettingsView: View {
                     Text("Communication Notifications を有効にする").workaroundForSubtitleSpacing()
                     Text("メンションのプッシュ通知に送信者のアイコンが付くようになります。")
                 }
+                Toggle("タイムラインから何かを開いた時にハーフモーダルにする", isOn: $openAsHalfModalFromTimeline)
             }
         }
+    }
+    
+}
+
+struct DeveloperSettingsView: View {
+    @AppStorage(defaults: .$workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) var workaroundOfiOS16_TextKit2_WontUpdatesLinkColor
+    
+    var body: some View {
+        Form {
+            Section("Workarounds") {
+                Toggle(isOn: $workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) {
+                    Text("投稿の本文表示に TextKit 1 を使用").workaroundForSubtitleSpacing()
+                    Text("ハーフモーダルに関連してタイムラインにある投稿内のリンクの色がおかしくなる現象への Workaround です。")
+                }
+            }
+        }
+        .navigationTitle("内部設定")
     }
 }
 

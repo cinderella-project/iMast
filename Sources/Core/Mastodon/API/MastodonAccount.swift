@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointResponse {
+public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointResponse, Sendable {
     public let id: MastodonID
     public let name: String
     public let screenName: String
@@ -102,7 +102,7 @@ struct MastodonFollowList {
     
 }
 
-public struct MastodonAccountField: Codable {
+public struct MastodonAccountField: Codable, Sendable {
     public let name: String
     public let value: String
     public let verifiedAt: Date?

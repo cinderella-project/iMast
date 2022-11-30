@@ -80,7 +80,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         
         update()
         Task {
-            async let version = environment.getIntVersion().wait()
+            async let version = environment.getIntVersion()
             async let lists = MastodonEndpoint.MyLists().request(with: environment)
             if let version = try? await version {
                 self.version = version

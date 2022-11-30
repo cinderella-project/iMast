@@ -116,27 +116,39 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         TableViewCell<MastodonPostCellViewController>.register(to: self.tableView)
     }
     
+    var searchResultLoadTask: Task<Void, Error>? {
+        didSet {
+            oldValue?.cancel()
+        }
+    }
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {
             return
         }
         self.refreshControl?.beginRefreshing()
-        environment.search(q: text).then { result in
-            var snapshot = self.dataSource.plainSnapshot()
-            if result.accounts.count > 0 {
-                snapshot.appendSections([.accounts])
-                snapshot.appendItems(result.accounts.map { .account($0) }, toSection: .accounts)
+        searchResultLoadTask = Task {
+            let result = try await environment.search(q: text)
+            await MainActor.run { [weak self] in
+                guard let self = self, !Task.isCancelled else {
+                    return
+                }
+                var snapshot = self.dataSource.plainSnapshot()
+                if result.accounts.count > 0 {
+                    snapshot.appendSections([.accounts])
+                    snapshot.appendItems(result.accounts.map { .account($0) }, toSection: .accounts)
+                }
+                if result.hashtags.count > 0 {
+                    snapshot.appendSections([.hashtags])
+                    snapshot.appendItems(result.hashtags.map { .hashtag($0) }, toSection: .hashtags)
+                }
+                if result.posts.count > 0 {
+                    snapshot.appendSections([.toots])
+                    snapshot.appendItems(result.posts.map { .toot($0) }, toSection: .toots)
+                }
+                self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+                self.refreshControl?.endRefreshing()
             }
-            if result.hashtags.count > 0 {
-                snapshot.appendSections([.hashtags])
-                snapshot.appendItems(result.hashtags.map { .hashtag($0) }, toSection: .hashtags)
-            }
-            if result.posts.count > 0 {
-                snapshot.appendSections([.toots])
-                snapshot.appendItems(result.posts.map { .toot($0) }, toSection: .toots)
-            }
-            self.dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
-            self.refreshControl?.endRefreshing()
         }
     }
     

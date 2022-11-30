@@ -21,7 +21,7 @@
   limitations under the License.
 */
 
-"readmore" = "Read more";
+"readmore" = "More";
 "nothingMore" = "Nothing more";
 "fetchFailed" = "Fetch failed";
 
@@ -78,6 +78,21 @@
 
 "favouritesList" = "Favorites";
 "bunmyaku.title" = "Context";
+"postDetail.title" = "Post detail";
+
+"postDetail.share" = "Share";
+"postDetail.delete" = "Delete";
+"postDetail.reportAbuse" = "Report";
+"customEmojis.title" = "Custom Emoji List";
+
+"reportPost.title" = "Report this post";
+"reportPost.send" = "Send";
+"reportPost.targetPost.title" = "対象の投稿";
+"reportPost.additionalInfo.title" = "Additional Info";
+"reportPost.additionalInfo.placeholderOption" = "Optional";
+"reportPost.forwardToRemote.title" = "Forward to remote server";
+"reportPost.forwardToRemote.description" = "The report will transfer to %1$@. This feature requires your account's server and %1$@'s version greater than Mastodon 2.3 or support of report via federation.";
+"reportPost.finished.title" = "Reported";
 
 "error.title" = "Error";
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";

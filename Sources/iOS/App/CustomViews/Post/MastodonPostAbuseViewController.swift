@@ -22,86 +22,133 @@
 //
 
 import UIKit
-import SwiftyJSON
-import Eureka
 import Mew
 import iMastiOSCore
+import SwiftUI
 
-class MastodonPostAbuseViewController: FormViewController, Instantiatable {
+class MastodonPostAbuseViewController: UIHostingController<MastodonPostAbuseView>, Instantiatable {
     typealias Input = MastodonPost
     typealias Environment = MastodonUserToken
     
     private let input: Input
     internal let environment: Environment
+    private let model: MastodonPostAbuseViewModel
     
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
-        super.init(style: .grouped)
+        model = .init(post: input, userToken: environment)
+        super.init(rootView: .init(model: model))
+        model.viewController = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var placeholder = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "通報"
-        
-        self.form.append {
-            Section {
-                TextAreaRow("text") {
-                    $0.placeholder = self.placeholder
-                    $0.textAreaHeight = TextAreaHeight.dynamic(initialTextViewHeight: 90)
+        title = L10n.Localizable.ReportPost.title
+        navigationItem.largeTitleDisplayMode = .never
+    }
+}
+
+class MastodonPostAbuseViewModel: ObservableObject {
+    let post: MastodonPost
+    let userToken: MastodonUserToken
+    let postText: String
+    let forwardDestination: String?
+    
+    weak var viewController: MastodonPostAbuseViewController?
+
+    @Published @MainActor var text: String = ""
+    @Published @MainActor var forward: Bool = false
+    @Published @MainActor var sending: Bool = false
+    @Published @MainActor var finished: Bool = false
+    
+    internal init(post: MastodonPost, userToken: MastodonUserToken) {
+        self.post = post
+        self.userToken = userToken
+        if let host = post.account.acct.split(separator: "@").safe(1) {
+            forwardDestination = String(host)
+        } else {
+            forwardDestination = nil
+        }
+        postText = post.status.toPlainText() + (post.attachments.count > 0 ? " (\(post.attachments.count)個のメディア)" : "")
+    }
+    
+    func send() {
+        Task {
+            await MainActor.run {
+                sending = true
+            }
+            do {
+                let text = await text
+                let forward = await forward
+                let req = MastodonEndpoint.CreateReport(account: post.account, comment: text, forward: forward, posts: [post])
+                try await req.request(with: userToken)
+                await MainActor.run {
+                    finished = true
+                }
+            } catch {
+                await MainActor.run {
+                    viewController?.errorReport(error: error)
+                    sending = false
                 }
             }
         }
-        
-        if let remoteInstance = input.account.acct.split(separator: "@").safe(1) {
-            let message = "このチェックボックスをONにすると、この通報内容は\(remoteInstance)にも転送されます。あなたのアカウントがあるインスタンスと\(remoteInstance)が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。"
-            self.form.append {
-                Section(
-                    footer: message
-                ) {
-                    SwitchRow("forward") { row in
-                        row.title = "リモートインスタンスに転送"
+    }
+}
+
+struct MastodonPostAbuseView: View {
+    @ObservedObject var model: MastodonPostAbuseViewModel
+    @Environment(\.dismiss) var dismiss: DismissAction
+    
+    var body: some View {
+        Form {
+            Group {
+                Section(L10n.Localizable.ReportPost.TargetPost.title) {
+                    Text(model.postText)
+                }
+                Section {
+                    TextField(
+                        L10n.Localizable.ReportPost.AdditionalInfo.title, text: $model.text,
+                        prompt: Text(L10n.Localizable.ReportPost.AdditionalInfo.placeholderOption),
+                        axis: .vertical
+                    )
+                    .lineLimit(4...)
+                } header: {
+                    Text(L10n.Localizable.ReportPost.AdditionalInfo.title)
+                }
+                if let forwardDestination = model.forwardDestination {
+                    Section {
+                        Toggle(isOn: $model.forward) {
+                            Text(L10n.Localizable.ReportPost.ForwardToRemote.title)
+                        }
+                    } footer: {
+                        Text(L10n.Localizable.ReportPost.ForwardToRemote.description(forwardDestination))
                     }
                 }
             }
         }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "送信", style: .done, target: self, action: #selector(submitButtonTapped))
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @objc func submitButtonTapped() {
-        let values = form.values()
-        MastodonEndpoint.CreateReport(
-            account: self.input.account,
-            comment: (values["text"] as? String) ?? "",
-            forward: (values["forward"] as? Bool) ?? false,
-            posts: [input]
-        ).request(with: environment).then { (res) in
-            self.alert(title: "送信完了", message: "通報が完了しました！") {
-                self.navigationController?.popViewController(animated: true)
+        .disabled(model.sending)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                if model.sending {
+                    ProgressView()
+                } else {
+                    Button(L10n.Localizable.ReportPost.send) {
+                        model.send()
+                    }
+                }
             }
         }
+        .alert(L10n.Localizable.ReportPost.Finished.title, isPresented: $model.sending, actions: {
+            Button("OK") {
+                dismiss()
+            }
+        })
+        .navigationTitle(Text(L10n.Localizable.ReportPost.title))
+        .navigationBarTitleDisplayMode(.inline)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

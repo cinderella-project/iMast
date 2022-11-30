@@ -11,6 +11,7 @@
 "send" = "送信";
 "title" = "新規投稿";
 "reply" = "返信";
+"edit" = "編集";
 
 "selectVisibility.title" = "公開範囲";
 "selectVisibility.description" = "公開範囲を選択してください";
@@ -29,6 +30,7 @@
 "keyCommand.send.description" = "投稿を送信";
 
 "alerts.sending.title" = "投稿中";
+"alerts.sending.pleaseWait" = "しばらくお待ちください…";
 "alerts.sending.steps.mediaUpload" = "画像アップロード中 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "送信中";
 

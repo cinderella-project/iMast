@@ -89,6 +89,10 @@ internal enum L10n {
       /// 文脈
       internal static let title = L10n.tr("Localizable", "bunmyaku.title")
     }
+    internal enum CustomEmojis {
+      /// カスタム絵文字一覧
+      internal static let title = L10n.tr("Localizable", "customEmojis.title")
+    }
     internal enum EditHistory {
       /// 編集履歴
       internal static let title = L10n.tr("Localizable", "editHistory.title")
@@ -151,6 +155,44 @@ internal enum L10n {
       /// LTL
       internal static let short = L10n.tr("Localizable", "localTimeline.short")
     }
+    internal enum PostDetail {
+      /// 削除
+      internal static let delete = L10n.tr("Localizable", "postDetail.delete")
+      /// 通報
+      internal static let reportAbuse = L10n.tr("Localizable", "postDetail.reportAbuse")
+      /// 共有
+      internal static let share = L10n.tr("Localizable", "postDetail.share")
+      /// 投稿詳細
+      internal static let title = L10n.tr("Localizable", "postDetail.title")
+    }
+    internal enum ReportPost {
+      /// 送信
+      internal static let send = L10n.tr("Localizable", "reportPost.send")
+      /// 投稿を通報
+      internal static let title = L10n.tr("Localizable", "reportPost.title")
+      internal enum AdditionalInfo {
+        /// オプション
+        internal static let placeholderOption = L10n.tr("Localizable", "reportPost.additionalInfo.placeholderOption")
+        /// 追加の情報
+        internal static let title = L10n.tr("Localizable", "reportPost.additionalInfo.title")
+      }
+      internal enum Finished {
+        /// 送信しました
+        internal static let title = L10n.tr("Localizable", "reportPost.finished.title")
+      }
+      internal enum ForwardToRemote {
+        /// このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。
+        internal static func description(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "reportPost.forwardToRemote.description", String(describing: p1))
+        }
+        /// リモートサーバーに転送
+        internal static let title = L10n.tr("Localizable", "reportPost.forwardToRemote.title")
+      }
+      internal enum TargetPost {
+        /// 対象の投稿
+        internal static let title = L10n.tr("Localizable", "reportPost.targetPost.title")
+      }
+    }
   }
   internal enum Login {
     /// ログイン
@@ -165,6 +207,8 @@ internal enum L10n {
       internal enum Method {
         /// Safariでログイン (推奨)
         internal static let safari = L10n.tr("Login", "authorize.method.safari")
+        /// Safariでログイン (プライベートブラウズ)
+        internal static let safariEphemeral = L10n.tr("Login", "authorize.method.safariEphemeral")
       }
       internal enum Tos {
         /// ログインすることで、以下のルールやプライバシーポリシーなどに同意したことになります。
@@ -203,6 +247,8 @@ internal enum L10n {
   internal enum NewPost {
     /// ← から画像を追加
     internal static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
+    /// 編集
+    internal static let edit = L10n.tr("NewPost", "edit")
     /// 返信
     internal static let reply = L10n.tr("NewPost", "reply")
     /// 送信
@@ -211,6 +257,8 @@ internal enum L10n {
     internal static let title = L10n.tr("NewPost", "title")
     internal enum Alerts {
       internal enum Sending {
+        /// しばらくお待ちください…
+        internal static let pleaseWait = L10n.tr("NewPost", "alerts.sending.pleaseWait")
         /// 投稿中
         internal static let title = L10n.tr("NewPost", "alerts.sending.title")
         internal enum Steps {
@@ -516,8 +564,6 @@ internal enum L10n {
       internal static let followRequestsList = L10n.tr("UserProfile", "actions.followRequestsList")
       /// ミュート
       internal static let mute = L10n.tr("UserProfile", "actions.mute")
-      /// 名刺
-      internal static let profileCard = L10n.tr("UserProfile", "actions.profileCard")
       /// 共有
       internal static let share = L10n.tr("UserProfile", "actions.share")
       /// アクション

@@ -23,61 +23,61 @@
 
 import Foundation
 
-public struct MastodonID: Codable, CustomStringConvertible {
-    @available(*, unavailable)
-    var int: Int64 = -1
-    public var string: String
-    public var raw: Any
+public enum MastodonID: Codable, CustomStringConvertible, Sendable {
+    case int(Int64)
+    case string(String)
+    
+    public var string: String {
+        switch self {
+        case .int(let value):
+            return value.description
+        case .string(let value):
+            return value
+        }
+    }
+    
+    public var raw: Any {
+        switch self {
+        case .int(let value):
+            return value
+        case .string(let value):
+            return value
+        }
+    }
     
     public var description: String {
         print("WARNING: get description")
         return self.string
     }
     
-    public init(string: String) {
-        self.string = string
-//        self.int = Int64(string)!
-        self.raw = string
-    }
-    
     public init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer()
         do {
-            raw = try value.decode(String.self)
+            self = .string(try value.decode(String.self))
         } catch {
-            raw = try value.decode(Int64.self)
-        }
-        if raw is Int64 {
-            guard let int = raw as? Int64 else {
-                throw MastodonIDError.convertFailed
-            }
-//            self.int = int
-            self.string = int.description
-        } else if raw is String {
-            guard let string = raw as? String else {
-                throw MastodonIDError.convertFailed
-            }
-            self.string = string
-//            guard let int = Int64(self.string) else {
-//                throw MastodonIDError.failedConvertToInt
-//            }
-//            self.int = int
-        } else {
-            throw MastodonIDError.notIntAndStringWhat
+            self = .int(try value.decode(Int64.self))
         }
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        let raw = self.raw
-        if let raw = raw as? String {
-            try container.encode(raw)
-        } else if let raw = raw as? Int64 {
-            try container.encode(raw)
+        switch self {
+        case .string(let value):
+            try container.encode(value)
+        case .int(let value):
+            try container.encode(value)
         }
     }
     
     public func compare(_ otherId: MastodonID) -> ComparisonResult {
+        if case .int(let myID) = self, case .int(let myID2) = otherId {
+            if myID > myID2 {
+                return .orderedDescending
+            } else if myID < myID2 {
+                return .orderedAscending
+            }
+            return .orderedSame
+        }
         if self.string == otherId.string {
             return .orderedSame
         }
@@ -105,10 +105,4 @@ extension MastodonID: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.string)
     }
-}
-
-enum MastodonIDError: Error {
-    case failedConvertToInt
-    case notIntAndStringWhat
-    case convertFailed
 }

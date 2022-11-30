@@ -24,7 +24,7 @@
 import Foundation
 import Hydra
 
-public struct MastodonSearchResultHashtag: Codable {
+public struct MastodonSearchResultHashtag: Codable, Sendable {
     public let name: String
     
     public init(from decoder: Decoder) throws {
@@ -40,7 +40,7 @@ extension MastodonSearchResultHashtag: Hashable {
     
 }
 
-public struct MastodonSearchResult: Codable, MastodonEndpointResponse {
+public struct MastodonSearchResult: Codable, MastodonEndpointResponse, Sendable {
     public let accounts: [MastodonAccount]
     public let posts: [MastodonPost]
     public let hashtags: [MastodonSearchResultHashtag]
@@ -52,14 +52,13 @@ public struct MastodonSearchResult: Codable, MastodonEndpointResponse {
 }
 
 extension MastodonUserToken {
-    public func search(q: String, resolve: Bool = true) -> Promise<MastodonSearchResult> {
-        return getIntVersion().then { ver in
-            let req = MastodonEndpoint.Search(
-                q: q, resolve: resolve,
-                version: ver < MastodonVersionStringToInt("2.4.1") ? .v1 : .v2
-            )
-            return req.request(with: self)
-        }
+    public func search(q: String, resolve: Bool = true) async throws -> MastodonSearchResult {
+        let version = try await getIntVersion()
+        let req = MastodonEndpoint.Search(
+            q: q, resolve: resolve,
+            version: version < MastodonVersionStringToInt("2.4.1") ? .v1 : .v2
+        )
+        return try await req.request(with: self)
     }
 }
 

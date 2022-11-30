@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import SDWebImage
 import Mew
 import iMastiOSCore

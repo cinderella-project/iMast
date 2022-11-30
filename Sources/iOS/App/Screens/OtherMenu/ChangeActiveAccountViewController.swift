@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import iMastiOSCore
 
 class ChangeActiveAccountViewController: UITableViewController {

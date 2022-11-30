@@ -78,6 +78,21 @@
 
 "favouritesList" = "喜欢一览";
 "bunmyaku.title" = "对话";
+"postDetail.title" = "投稿詳細";
+
+"postDetail.share" = "共有";
+"postDetail.delete" = "削除";
+"postDetail.reportAbuse" = "通報";
+"customEmojis.title" = "カスタム絵文字一覧";
+
+"reportPost.title" = "投稿を通報";
+"reportPost.send" = "送信";
+"reportPost.targetPost.title" = "対象の投稿";
+"reportPost.additionalInfo.title" = "追加の情報";
+"reportPost.additionalInfo.placeholderOption" = "オプション";
+"reportPost.forwardToRemote.title" = "リモートサーバーに転送";
+"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
+"reportPost.finished.title" = "送信しました";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";

@@ -35,26 +35,26 @@ public enum MastodonPostVisibility: String, CaseIterable, Codable {
     public var localizedName: String {
         switch self {
         case .public:
-            return "公開"
+            return CoreL10n.Visibility.Title.public
         case .unlisted:
-            return "未収載"
+            return CoreL10n.Visibility.Title.unlisted
         case .private:
-            return "フォロワー限定"
+            return CoreL10n.Visibility.Title.private
         case .direct:
-            return "ダイレクト"
+            return CoreL10n.Visibility.Title.direct
         }
     }
     
     public var localizedDescription: String {
         switch self {
         case .public:
-            return "LTLやフォロワーのHTL等に流れます"
+            return CoreL10n.Visibility.Description.public
         case .unlisted:
-            return "LTLやハッシュタグ検索には出ません"
+            return CoreL10n.Visibility.Description.unlisted
         case .private:
-            return "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます"
+            return CoreL10n.Visibility.Description.private
         case .direct:
-            return "メンションを飛ばした対象の人にのみ見れます"
+            return CoreL10n.Visibility.Description.direct
         }
     }
     

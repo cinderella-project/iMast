@@ -101,32 +101,31 @@ private struct SubscribeRequest: Encodable {
 }
 
 extension MastodonUserToken {
-    func getWebSocket(endpoint: String) -> Promise<WebSocketWrapper> {
-        return self.app.instance.getInfo().then { info in
-            let isMultiEndpoint = endpoint.contains(" ")
-            var streamingUrlString = ""
-            streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
-            streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
-            let protocols: [String]?
-            if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
-                protocols = [self.token]
-            } else {
-                streamingUrlString += "&access_token=" + self.token
-                protocols = nil
-            }
-            var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
-            urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-            let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
-            let wrap = WebSocketWrapper(webSocket: webSocket)
-            if isMultiEndpoint {
-                let encoder = JSONEncoder()
-                wrap.sendMessageWhenConnected = endpoint
-                    .split(separator: " ")
-                    .map { String(data: try! encoder.encode(SubscribeRequest(stream: String($0), list: nil)), encoding: .utf8)! }
-            }
-            webSockets.append(.init(value: wrap))
-            return Promise(resolved: wrap)
+    func getWebSocket(endpoint: String) async throws -> WebSocketWrapper {
+        let info = try await self.app.instance.getInfo()
+        let isMultiEndpoint = endpoint.contains(" ")
+        var streamingUrlString = ""
+        streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
+        streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
+        let protocols: [String]?
+        if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
+            protocols = [self.token]
+        } else {
+            streamingUrlString += "&access_token=" + self.token
+            protocols = nil
         }
+        var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+        urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+        let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
+        let wrap = WebSocketWrapper(webSocket: webSocket)
+        if isMultiEndpoint {
+            let encoder = JSONEncoder()
+            wrap.sendMessageWhenConnected = endpoint
+                .split(separator: " ")
+                .map { String(data: try! encoder.encode(SubscribeRequest(stream: String($0), list: nil)), encoding: .utf8)! }
+        }
+        webSockets.append(.init(value: wrap))
+        return wrap
     }
 }
 

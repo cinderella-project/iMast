@@ -23,7 +23,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 import SVProgressHUD
 import Eureka
 import EurekaFormBuilder
@@ -149,7 +148,7 @@ class PushSettingsTableViewController: FormViewController {
             await presentAsync(vc, animated: false)
         }
         do {
-            try await deferAsync {
+            try await deferAsync { @MainActor in
                 let accounts = try await PushService.getRegisterAccounts()
                 let rows = accounts.map { account -> BaseRow in
                     return ButtonRow { row in
@@ -176,7 +175,7 @@ class PushSettingsTableViewController: FormViewController {
                     }
                 })
                 self.tableView.reloadData()
-            } always: {
+            } always: { @MainActor in
                 if blocking {
                     vc.dismiss(animated: true, completion: nil)
                 }
@@ -226,7 +225,7 @@ class PushSettingsTableViewController: FormViewController {
         do {
             let url = try await PushService.getAuthorizeUrl(host: host)
             self.loginSafari = getLoginSafari()
-            self.loginSafari.open(url: URL(string: url)!, viewController: self)
+            self.loginSafari.open(url: URL(string: url)!, viewController: self, prefersEphemeralWebBrowserSession: false)
         } catch {
             self.alert(title: L10n.Localizable.Error.title, message: error.localizedDescription)
         }

@@ -90,9 +90,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         refreshControl.addTarget(self, action: #selector(self.reload), for: .valueChanged)
         tableView.refreshControl = refreshControl
 
-        self.title = "投稿詳細"
+        self.title = L10n.Localizable.PostDetail.title
         navigationItem.largeTitleDisplayMode = .always
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "文脈", style: .plain, target: self, action: #selector(openBunmyakuVC))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Localizable.Bunmyaku.title, style: .plain, target: self, action: #selector(openBunmyakuVC))
         self.input(input)
     }
     

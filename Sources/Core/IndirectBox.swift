@@ -45,3 +45,6 @@ extension IndirectBox: Encodable where T: Encodable {
         return try value.encode(to: encoder)
     }
 }
+
+extension IndirectBox: Sendable where T: Sendable {
+}

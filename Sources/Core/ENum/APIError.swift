@@ -27,7 +27,7 @@ public enum APIError: Error {
     case `nil`(String)
     case alreadyError // すでにエラーをユーザーに伝えているときに使う
     case errorReturned(errorMessage: String, errorHttpCode: Int) // APIがまともにエラーを返してきた場合
-    case unknownResponse(errorHttpCode: Int) // APIがJSONではない何かを返してきた場合
+    case unknownResponse(errorHttpCode: Int, errorString: String?) // APIがJSONではない何かを返してきた場合
     case decodeFailed // 画像のデコードに失敗したときのエラー
     case dateParseFailed(dateString: String)
 }

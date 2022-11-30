@@ -37,7 +37,7 @@ class EmojiListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = "カスタム絵文字一覧"
+        self.title = L10n.Localizable.CustomEmojis.title
     }
 
     // MARK: - Table view data source

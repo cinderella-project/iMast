@@ -11,6 +11,7 @@
 "send" = "보내기";
 "title" = "新規投稿";
 "reply" = "답글";
+"edit" = "編集";
 
 "selectVisibility.title" = "공개범위";
 "selectVisibility.description" = "공개범위를 설정해주세요";
@@ -29,6 +30,7 @@
 "keyCommand.send.description" = "글 게시";
 
 "alerts.sending.title" = "게시 중";
+"alerts.sending.pleaseWait" = "しばらくお待ちください…";
 "alerts.sending.steps.mediaUpload" = "미디어 업로드 중 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "전송중";
 

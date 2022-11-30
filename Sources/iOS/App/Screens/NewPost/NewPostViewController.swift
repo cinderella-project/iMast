@@ -49,6 +49,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             contentView.scopeSelectItem.image = scope.uiImage
         }
     }
+    var editPost: (post: MastodonPost, source: MastodonPostSource)?
     var replyToPost: MastodonPost?
     
     var userToken: MastodonUserToken!
@@ -92,8 +93,24 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             title = L10n.NewPost.title
         }
 
-        if Defaults.usingDefaultVisibility && replyToPost == nil {
+        if Defaults.usingDefaultVisibility && replyToPost == nil && editPost == nil {
             setVisibilityFromUserInfo()
+        }
+
+        if let editPost = editPost {
+            title = L10n.NewPost.edit
+
+            contentView.textInput.text = editPost.source.text
+            contentView.cwInput.text = editPost.source.spoilerText
+
+            // TODO: 添付メディアの編集にも対応する
+            contentView.imageSelectButton.setTitle(" \(editPost.post.attachments.count)", for: .normal)
+            contentView.imageSelectButton.isEnabled = false
+            
+            scope = editPost.post.visibility
+            contentView.scopeSelectItem.isEnabled = false
+
+            isNSFW = editPost.post.sensitive
         }
 
         contentView.textInput.becomeFirstResponder()
@@ -120,35 +137,76 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     
     @objc func sendPost(_ sender: Any) {
         print(isNSFW)
-        let baseMessage = "しばらくお待ちください\n"
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let alert = UIAlertController(
             title: L10n.NewPost.Alerts.Sending.title,
             message: baseMessage + "準備中",
             preferredStyle: UIAlertController.Style.alert
         )
         present(alert, animated: true, completion: nil)
-        
+        if editPost != nil {
+            submitEdit(alert)
+        } else {
+            submitPost(alert)
+        }
+    }
+    
+    func submitEdit(_ alert: UIAlertController) {
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
+        guard let editPost else {
+            preconditionFailure()
+        }
+        let text = contentView.textInput.text ?? ""
+        let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
+        let spoilerText = contentView.cwInput.text ?? ""
+
+        Task {
+            do {
+                let request = MastodonEndpoint.EditPost(
+                    postID: editPost.post.id,
+                    status: text,
+                    mediaIds: editPost.post.attachments.map { $0.id },
+                    sensitive: isSensitive,
+                    spoiler: spoilerText
+                )
+                await MainActor.run {
+                    alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
+                }
+                let response = try await request.request(with: userToken)
+                await MainActor.run {
+                    userToken.memoryStore.post.change(obj: response)
+                    alert.dismiss(animated: false, completion: {
+                        if self.navigationController is ModalNavigationViewController {
+                            self.navigationController?.dismiss(animated: true, completion: nil)
+                        } else {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                }
+            } catch {
+                await MainActor.run {
+                    alert.dismiss(animated: false) {
+                        self.errorReport(error: error)
+                    }
+                }
+            }
+        }
+    }
+    
+    func submitPost(_ alert: UIAlertController) {
+        let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let text = contentView.textInput.text ?? ""
         let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""
         let scope = scope
         
         asyncPromise {
-            var media: [JSON] = []
+            var media: [MastodonAttachment] = []
             for (index, medium) in self.media.enumerated() {
                 await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
-                let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType()).wait()
-                if response["_response_code"].intValue >= 400 {
-                    throw APIError.errorReturned(
-                        errorMessage: response["error"].stringValue,
-                        errorHttpCode: response["_response_code"].intValue
-                    )
-                }
-                if !response["id"].exists() {
-                    throw APIError.nil("id")
-                }
+                let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
                 media.append(response)
             }
             await MainActor.run {
@@ -158,7 +216,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             let res = try await MastodonEndpoint.CreatePost(
                 status: text,
                 visibility: scope,
-                mediaIds: media.map { .init(string: $0["id"].stringValue) },
+                mediaIds: media.map { $0.id },
                 spoiler: spoilerText,
                 sensitive: isSensitive,
                 inReplyToPost: self.replyToPost
@@ -174,7 +232,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             })
         }.catch(in: .main) { err in
             alert.dismiss(animated: false) {
-                self.alert(title: L10n.Localizable.Error.title, message: "エラーが発生しました。\(err)")
+                self.errorReport(error: err)
             }
         }
     }
@@ -198,7 +256,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         let modalBottom = window.bounds.maxY - globalRect.maxY
         let windowBottom = (window.screen.bounds.height - window.bounds.height) / 2
         let bottom = safeAreaBottom + modalBottom + windowBottom
-        additionalSafeAreaInsets.bottom = (rect.size.height - bottom) + 44
+        additionalSafeAreaInsets.bottom = max(rect.size.height - bottom, 0) + 44
     }
     @objc func keyboardWillHide(notification: Notification?) {
         additionalSafeAreaInsets.bottom = 44

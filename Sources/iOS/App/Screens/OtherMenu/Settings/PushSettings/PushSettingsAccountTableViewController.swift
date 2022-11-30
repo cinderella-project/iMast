@@ -103,7 +103,7 @@ class PushSettingsAccountTableViewController: FormViewController {
             do {
                 _ = try await deferAsync {
                     try await account.update()
-                } always: {
+                } always: { @MainActor in
                     vc.dismiss(animated: true, completion: nil)
                 }
                 NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)

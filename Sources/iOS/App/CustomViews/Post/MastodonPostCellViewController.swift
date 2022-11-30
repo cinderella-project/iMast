@@ -69,7 +69,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     let visibilityLabel = UILabel()
     
-    let textView = NotSelectableTextView() ※ { v in
+    let textView = NotSelectableTextView(usingTextLayoutManager: !Defaults.workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) ※ { v in
         v.backgroundColor = nil
         v.isScrollEnabled = false
         v.isEditable = false
@@ -219,16 +219,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         if Defaults.acctAbbr {
             var acctSplitted = acct.split(separator: "@").map { String($0) }
             if acctSplitted.count == 2 {
-                var acctHost = acctSplitted[1]
-                let regex = try! NSRegularExpression(pattern: "[a-zA-Z]{4,}")
-                var replaceTarget: Set<String> = []
-                for r in regex.matches(in: acctHost, options: [], range: NSRange(location: 0, length: acctHost.nsLength)) {
-                    replaceTarget.insert((acctHost as NSString).substring(with: r.range))
-                }
-                for r in replaceTarget {
-                    acctHost = acctHost.replacingOccurrences(of: r, with: "\(r.first!)\(r.nsLength-2)\(r.last!)")
-                }
-                acctSplitted[1] = acctHost
+                acctSplitted[1] = acctSplitted[1].replacing(/[a-zA-Z]{4,}/, with: { match in
+                    return "\(match.output.first!)\(match.output.count-2)\(match.output.last!)"
+                })
             }
             acct = acctSplitted.joined(separator: "@")
         }
@@ -299,9 +292,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             ]).emojify(asyncLoadProgressHandler: {
                 self.textView.setNeedsDisplay()
             }, emojifyProtocol: post)
-        } else if let attrStr = html.parseText2HTML(attributes: attrs, asyncLoadProgressHandler: {
-            self.textView.setNeedsDisplay()
-        })?.emojify(asyncLoadProgressHandler: {
+        } else if let attrStr = html.parseText2HTML(attributes: attrs)?.emojify(asyncLoadProgressHandler: {
             self.textView.setNeedsDisplay()
         }, emojifyProtocol: post) {
             textView.attributedText = attrStr
@@ -319,7 +310,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     
     @objc func iconTapped() {
         let vc = UserProfileTopViewController.instantiate(input.post.originalPost.account, environment: self.environment)
-        self.navigationController?.pushViewController(vc, animated: true)
+        showFromTimeline(vc)
     }
 }
 

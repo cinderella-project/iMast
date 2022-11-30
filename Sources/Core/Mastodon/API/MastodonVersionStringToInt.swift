@@ -43,10 +43,9 @@ public func MastodonVersionStringToInt(_ versionStr_: String) -> Int {
     versionInt += (1000 * 100 * 100) * versionStrs[0].parseInt()
     versionInt += (1000 * 100) * versionStrs[1].parseInt()
     versionInt += (1000) * versionStrs[2].parseInt()
-    let rc_match = versionStrs[2].pregMatch(pattern: "rc([0-9]+)") as [String]
-    print("rc", rc_match)
-    if rc_match.count >= 2 { // rc version
-        let rc_ver = rc_match[1].parseInt()
+    if let rc_match = versionStrs[2].firstMatch(of: /rc([0-9+])/) {
+        print("rc", rc_match)
+        let rc_ver = Int(rc_match.output.1) ?? 0
         versionInt -= 400
         versionInt += rc_ver
     }

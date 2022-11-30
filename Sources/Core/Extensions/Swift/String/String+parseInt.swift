@@ -25,6 +25,9 @@ import Foundation
 
 extension String {
     func parseInt() -> Int {
-        return Int(self.pregMatch(pattern: "^[0-9]+")[0]) ?? 0
+        guard let numString = firstMatch(of: /^[0-9]+/) else {
+            return 0
+        }
+        return Int(numString.output) ?? 0
     }
 }
