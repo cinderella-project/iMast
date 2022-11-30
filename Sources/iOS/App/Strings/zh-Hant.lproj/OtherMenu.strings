@@ -6,8 +6,8 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"lists.title" = "名單";
-"lists.create.title" = "建立名單";
-"lists.create.message" = "請輸入名單標題";
-"lists.create.textField.name.placeholder" = "名單標題";
+"lists.title" = "列表";
+"lists.create.title" = "建立列表";
+"lists.create.message" = "請輸入列表名稱";
+"lists.create.textField.name.placeholder" = "列表名稱";
 "lists.create.actions.primary" = "建立";
