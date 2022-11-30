@@ -9,21 +9,21 @@
 "visibility.title" = "公開範圍";
 "visibility.title.public" = "公開";
 "visibility.title.unlisted" = "未収載";
-"visibility.title.private" = "フォロワーのみ";
-"visibility.title.direct" = "指定した相手のみ";
+"visibility.title.private" = "僅限跟隨者";
+"visibility.title.direct" = "僅限指定對象";
 
 "visibility.description.public" = "LTLやフォロワーのHTL等に流れます";
 "visibility.description.unlisted" = "LTLやハッシュタグ検索には出ません";
 "visibility.description.private" = "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます";
 "visibility.description.direct" = "メンションを飛ばした対象の人にのみ見れます";
 
-"errorAlert.title" = "エラー";
-"errorAlert.message" = "エラーが発生しました。\n\n%@";
+"errorAlert.title" = "錯誤";
+"errorAlert.message" = "發生錯誤了。\n\n%@";
 "errorAlert.moreInfo" = "詳しい情報を見る";
 
-"errorMoreInfo.title" = "エラー詳細";
+"errorMoreInfo.title" = "錯誤細節";
 
-"error.failedToDecodeAsUTF8" = "(不明)";
+"error.failedToDecodeAsUTF8" = "(未知)";
 
 "postFab.locations.leftCenter" = "左中央";
 "postFab.locations.rightCenter" = "右中央";
@@ -31,9 +31,9 @@
 "postFab.locations.centerBottom" = "中央下";
 "postFab.locations.rightBottom" = "右下";
 
-"cancel" = "キャンセル";
+"cancel" = "取消";
 
-"error.api.title" = "APIエラー";
-"error.api.text" = "サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)";
-"error.http.title" = "サーバーエラー";
+"error.api.title" = "API錯誤";
+"error.api.text" = "伺服器端回傳了錯誤。\n\n%1$@\n(HTTP %2$d)";
+"error.http.title" = "伺服器錯誤";
 "error.http.text" = "サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@";
