@@ -8,32 +8,32 @@
 
 "visibility.title" = "公開範圍";
 "visibility.title.public" = "公開";
-"visibility.title.unlisted" = "未収載";
+"visibility.title.unlisted" = "已隱藏";
 "visibility.title.private" = "僅限跟隨者";
 "visibility.title.direct" = "僅限指定對象";
 
-"visibility.description.public" = "LTLやフォロワーのHTL等に流れます";
-"visibility.description.unlisted" = "LTLやハッシュタグ検索には出ません";
-"visibility.description.private" = "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます";
-"visibility.description.direct" = "メンションを飛ばした対象の人にのみ見れます";
+"visibility.description.public" = "出現在本站時間軸和跟隨者的主頁";
+"visibility.description.unlisted" = "不會出現在 LTL 或主題標籤搜尋中";
+"visibility.description.private" = "只有你的跟隨者和你提及的對象可見";
+"visibility.description.direct" = "僅有提及的對象可見";
 
 "errorAlert.title" = "錯誤";
 "errorAlert.message" = "發生錯誤了。\n\n%@";
-"errorAlert.moreInfo" = "詳しい情報を見る";
+"errorAlert.moreInfo" = "顯示更多資訊";
 
 "errorMoreInfo.title" = "錯誤細節";
 
 "error.failedToDecodeAsUTF8" = "(未知)";
 
-"postFab.locations.leftCenter" = "左中央";
-"postFab.locations.rightCenter" = "右中央";
-"postFab.locations.leftBottom" = "左下";
-"postFab.locations.centerBottom" = "中央下";
-"postFab.locations.rightBottom" = "右下";
+"postFab.locations.leftCenter" = "左方";
+"postFab.locations.rightCenter" = "右方";
+"postFab.locations.leftBottom" = "左下方";
+"postFab.locations.centerBottom" = "正下方";
+"postFab.locations.rightBottom" = "右下方";
 
 "cancel" = "取消";
 
 "error.api.title" = "API錯誤";
 "error.api.text" = "伺服器端回傳了錯誤。\n\n%1$@\n(HTTP %2$d)";
 "error.http.title" = "伺服器錯誤";
-"error.http.text" = "サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@";
+"error.http.text" = "伺服器回傳非預期的回應內容。\n(HTTP %1$d)\n\n%2$@";
