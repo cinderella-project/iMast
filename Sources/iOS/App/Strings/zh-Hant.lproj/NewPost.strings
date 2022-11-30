@@ -9,9 +9,9 @@
 "placeholders.cwWarningText" = "摺疊部分的警告訊息 (可選)";
 "infoText.inReplyTo" = "回覆給：%@";
 "send" = "發嘟";
-"title" = "新規投稿";
+"title" = "發送新嘟文";
 "reply" = "回覆";
-"edit" = "編集";
+"edit" = "編輯";
 
 "selectVisibility.title" = "可見範圍";
 "selectVisibility.description" = "請選擇可見範圍";
@@ -30,7 +30,7 @@
 "keyCommand.send.description" = "發佈嘟文";
 
 "alerts.sending.title" = "正在發佈";
-"alerts.sending.pleaseWait" = "しばらくお待ちください…";
+"alerts.sending.pleaseWait" = "稍待片刻…";
 "alerts.sending.steps.mediaUpload" = "正在上傳圖片 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "正在傳送";
 
