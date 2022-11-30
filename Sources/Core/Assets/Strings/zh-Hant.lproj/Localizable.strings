@@ -6,7 +6,7 @@
   Copyright © 2022 rinsuki. All rights reserved.
 */
 
-"visibility.title" = "公開範囲";
+"visibility.title" = "公開範圍";
 "visibility.title.public" = "公開";
 "visibility.title.unlisted" = "未収載";
 "visibility.title.private" = "フォロワーのみ";
