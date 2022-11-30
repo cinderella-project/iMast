@@ -44,9 +44,9 @@
 "push.accounts.title" = "帳號清單";
 "push.addAccount.title" = "添加帳號";
 "push.addAccount.alertTitle" = "添加帳號";
-"push.addAccount.alertText" = "請輸入站台主機名稱\n(無需輸入https://或非主機名稱的部分)";
+"push.addAccount.alertText" = "請輸入實例的主機名稱\n(請勿包含https://或非主機名稱的部分)";
 "push.shared.title" = "通用設定";
-"push.shared.displayErrorIfOccured" = "如果客戶端在接收通知過程中失敗時，將推送錯誤訊息，而不是原始通知內容";
+"push.shared.displayErrorIfOccured" = "如果客戶端在接收通知時發生錯誤，將推送錯誤訊息，而不是原始通知內容";
 "push.shared.groupRules.title" = "群組化規則設定 (β)";
 "push.shared.groupRules.byAccount" = "根據帳號分組";
 "push.shared.groupRules.byType.title" = "根據通知類型分組";
