@@ -6,7 +6,7 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"title" = "登錄";
+"title" = "登入";
 "pleaseInputMastodonInstance" = "請輸入Mastodon實例鏈接";
 "loginButton" = "登入";
 
@@ -23,7 +23,7 @@
 "authorize.tos.rules" = "此實例的守則";
 "authorize.tos.termsOfService" = "此實例的服務條款";
 
-"passwordLogin.mailAddress" = "郵箱";
+"passwordLogin.mailAddress" = "電子郵件位址";
 "passwordLogin.password" = "密碼";
 
 "welcome.message" = "%@\n歡迎使用";
