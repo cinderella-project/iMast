@@ -6,34 +6,34 @@
   Copyright © 2022 rinsuki. All rights reserved.
 */
 
-"visibility.title" = "公開範囲";
-"visibility.title.public" = "公開";
-"visibility.title.unlisted" = "未収載";
-"visibility.title.private" = "フォロワーのみ";
-"visibility.title.direct" = "指定した相手のみ";
+"visibility.title" = "可见范围";
+"visibility.title.public" = "公开";
+"visibility.title.unlisted" = "不公开";
+"visibility.title.private" = "仅关注者";
+"visibility.title.direct" = "仅提到的人";
 
-"visibility.description.public" = "LTLやフォロワーのHTL等に流れます";
-"visibility.description.unlisted" = "LTLやハッシュタグ検索には出ません";
-"visibility.description.private" = "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます";
-"visibility.description.direct" = "メンションを飛ばした対象の人にのみ見れます";
+"visibility.description.public" = "所有人可见";
+"visibility.description.unlisted" = "对所有人可见，但不加入搜索功能";
+"visibility.description.private" = "仅对关注者和被提及的用户可见";
+"visibility.description.direct" = "仅对被提及的用户可见";
 
-"errorAlert.title" = "エラー";
-"errorAlert.message" = "エラーが発生しました。\n\n%@";
-"errorAlert.moreInfo" = "詳しい情報を見る";
+"errorAlert.title" = "错误";
+"errorAlert.message" = "发生错误。\n\n%@";
+"errorAlert.moreInfo" = "查看详情";
 
-"errorMoreInfo.title" = "エラー詳細";
+"errorMoreInfo.title" = "错误详情";
 
-"error.failedToDecodeAsUTF8" = "(不明)";
+"error.failedToDecodeAsUTF8" = "(未知)";
 
-"postFab.locations.leftCenter" = "左中央";
-"postFab.locations.rightCenter" = "右中央";
+"postFab.locations.leftCenter" = "中间靠左";
+"postFab.locations.rightCenter" = "中间靠右";
 "postFab.locations.leftBottom" = "左下";
-"postFab.locations.centerBottom" = "中央下";
+"postFab.locations.centerBottom" = "底部居中";
 "postFab.locations.rightBottom" = "右下";
 
-"cancel" = "キャンセル";
+"cancel" = "取消";
 
-"error.api.title" = "APIエラー";
-"error.api.text" = "サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)";
-"error.http.title" = "サーバーエラー";
-"error.http.text" = "サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@";
+"error.api.title" = "API错误";
+"error.api.text" = "服务器请求出错。\n%1$@\n(HTTP %2$d)";
+"error.http.title" = "服务器错误";
+"error.http.text" = "服务器出现未知错误。\n(HTTP %1$d)%2$@";
