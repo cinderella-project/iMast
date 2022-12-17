@@ -23,7 +23,7 @@
 
 "title" = "搜索";
 
-"sections.posts.title" = "嘟文";
+"sections.posts.title" = "帖子";
 "sections.accounts.title" = "用户";
 "sections.hashtags.title" = "话题标签";
 "sections.trendTags.title" = "趋势标签（更新：%@）";
