@@ -45,13 +45,13 @@
 "refetch" = "重新连接";
 "cancel" = "取消";
 
-"editedWarning.title" = "已编辑的嘟文";
+"editedWarning.title" = "已编辑的帖子";
 "editedWarning.description" = "最后一次编辑：%@";
 "editHistory.title" = "编辑历史";
-"editHistory.desc.original" = "原始嘟文";
+"editHistory.desc.original" = "原始帖子";
 "editHistory.desc.diff.template" = "更改的内容：%@";
 "editHistory.desc.diff.content" = "正文";
-"editHistory.desc.diff.cw" = "折叠部分的警告信息";
+"editHistory.desc.diff.cw" = "添加内容警告";
 "editHistory.desc.diff.attachments" = "媒体附件";
 "editHistory.desc.diff.sensitive" = "NSFW标记";
 
@@ -85,8 +85,8 @@
 "postDetail.reportAbuse" = "通報";
 "customEmojis.title" = "カスタム絵文字一覧";
 
-"reportPost.title" = "投稿を通報";
-"reportPost.send" = "送信";
+"reportPost.title" = "举报帖子";
+"reportPost.send" = "提交";
 "reportPost.targetPost.title" = "対象の投稿";
 "reportPost.additionalInfo.title" = "追加の情報";
 "reportPost.additionalInfo.placeholderOption" = "オプション";
