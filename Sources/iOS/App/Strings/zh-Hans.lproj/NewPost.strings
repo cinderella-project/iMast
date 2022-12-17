@@ -6,17 +6,17 @@
   Copyright © 2020 rinsuki. All rights reserved.
 */
 
-"placeholders.cwWarningText" = "折叠部分的警告信息（可选）";
+"placeholders.cwWarningText" = "内容警告（可选）";
 "infoText.inReplyTo" = "回复给：%@";
 "send" = "发布";
-"title" = "新規投稿";
+"title" = "新帖子";
 "reply" = "回复";
-"edit" = "編集";
+"edit" = "编辑";
 
-"selectVisibility.title" = "嘟文可见范围";
-"selectVisibility.description" = "请选择嘟文可见范围";
+"selectVisibility.title" = "可见范围";
+"selectVisibility.description" = "请选择可见范围";
 
-"addImageFromButton" = "←点此处添加图片";
+"addImageFromButton" = "←点击此处添加图片";
 // Safariのファイル選択時の表記に合わせてほしい
 "media.picker.takePhoto" = "拍照";
 // Safariのファイル選択時の表記に合わせてほしい
@@ -24,13 +24,13 @@
 "media.preview" = "预览";
 "media.delete" = "删除";
 
-"keyCommand.open.title" = "发布嘟文";
-"keyCommand.open.description" = "打开发布新嘟文页面";
+"keyCommand.open.title" = "发布帖子";
+"keyCommand.open.description" = "打开帖子发布页面";
 "keyCommand.send.title" = "发布";
-"keyCommand.send.description" = "发布嘟文";
+"keyCommand.send.description" = "发布帖子";
 
 "alerts.sending.title" = "正在发布";
-"alerts.sending.pleaseWait" = "しばらくお待ちください…";
+"alerts.sending.pleaseWait" = "请稍候…";
 "alerts.sending.steps.mediaUpload" = "正在上传图片 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "正在发送数据";
 
