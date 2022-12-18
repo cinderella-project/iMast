@@ -15,4 +15,4 @@
 "types.followRequest" = "@%@向你发出了关注请求";
 "types.postUpdated.isMe" = "帖子已被编辑";
 "types.postUpdated.notMe" = "您曾转发的帖子已被编辑";
-"types.unknown" = "未知的通知：%@";
+"types.unknown" = "未知通知：%@";
