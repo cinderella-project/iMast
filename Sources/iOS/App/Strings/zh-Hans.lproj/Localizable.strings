@@ -98,6 +98,7 @@
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
 "error.requiredNewerMastodon" = "服务器版本%@及以上才能使用此功能\n（如果在iMast运行时服务器升级了，重启App即可使用此功能）\n请向各自的管理员询问Mastodon服务器的升级计划";
 "error.pleaseInputInstance" = "请输入服务器链接";
+"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
 
 "error.unknown.title" = "未知错误";
 "error.unknown.text" = "如果可以，请将此提示出现时的情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";
