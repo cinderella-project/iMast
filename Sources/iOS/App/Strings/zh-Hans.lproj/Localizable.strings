@@ -45,20 +45,20 @@
 "refetch" = "重新连接";
 "cancel" = "取消";
 
-"editedWarning.title" = "已编辑的嘟文";
+"editedWarning.title" = "已编辑的帖子";
 "editedWarning.description" = "最后一次编辑：%@";
 "editHistory.title" = "编辑历史";
-"editHistory.desc.original" = "原始嘟文";
+"editHistory.desc.original" = "原始帖子";
 "editHistory.desc.diff.template" = "更改的内容：%@";
 "editHistory.desc.diff.content" = "正文";
-"editHistory.desc.diff.cw" = "折叠部分的警告信息";
+"editHistory.desc.diff.cw" = "内容警告";
 "editHistory.desc.diff.attachments" = "媒体附件";
-"editHistory.desc.diff.sensitive" = "NSFW标记";
+"editHistory.desc.diff.sensitive" = "敏感内容标记";
 
 "other" = "其他";
 "switchTab" = "切换到 %@";
 "switchActiveAccount" = "账号管理";
-"currentAccount" = "已选择的账号：@%@";
+"currentAccount" = "当前账号：@%@";
 "myProfile" = "个人主页";
 "lists" = "列表";
 "settings" = "设置";
@@ -76,28 +76,29 @@
 
 "chooseAccount" = "请选择要使用的账号";
 
-"favouritesList" = "喜欢一览";
+"favouritesList" = "喜欢";
 "bunmyaku.title" = "对话";
-"postDetail.title" = "投稿詳細";
+"postDetail.title" = "帖子详情";
 
-"postDetail.share" = "共有";
-"postDetail.delete" = "削除";
-"postDetail.reportAbuse" = "通報";
-"customEmojis.title" = "カスタム絵文字一覧";
+"postDetail.share" = "分享";
+"postDetail.delete" = "删除";
+"postDetail.reportAbuse" = "举报";
+"customEmojis.title" = "自定义表情一览";
 
-"reportPost.title" = "投稿を通報";
-"reportPost.send" = "送信";
-"reportPost.targetPost.title" = "対象の投稿";
-"reportPost.additionalInfo.title" = "追加の情報";
-"reportPost.additionalInfo.placeholderOption" = "オプション";
-"reportPost.forwardToRemote.title" = "リモートサーバーに転送";
-"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
-"reportPost.finished.title" = "送信しました";
+"reportPost.title" = "举报帖子";
+"reportPost.send" = "提交";
+"reportPost.targetPost.title" = "帖子内容";
+"reportPost.additionalInfo.title" = "备注";
+"reportPost.additionalInfo.placeholderOption" = "可选";
+"reportPost.forwardToRemote.title" = "转发举报至该用户所在服务器";
+"reportPost.forwardToRemote.description" = "勾选此选项可以将举报内容转发至%1$@。此功能需要您所在的服务器和%1$@的Mastodon版本为 2.3 以上，或者支持联邦（Fediverse）举报转发功能。";
+"reportPost.finished.title" = "提交成功";
 
 "error.title" = "错误";
 "error.requiredNewerOS" = "IOS版本%.1f及以上才能使用此功能";
-"error.requiredNewerMastodon" = "实例版本%@及以上才能使用此功能\n（如果在iMast运行时实例升级了，重启即可使用此功能）\n请向各自的管理员询问Mastodon实例的升级计划";
-"error.pleaseInputInstance" = "请输入实例";
+"error.requiredNewerMastodon" = "服务器版本%@及以上才能使用此功能\n（如果在iMast运行时服务器升级了，重启App即可使用此功能）\n请向各自的管理员询问Mastodon服务器的升级计划";
+"error.pleaseInputInstance" = "请输入服务器链接";
+"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
 
 "error.unknown.title" = "未知错误";
 "error.unknown.text" = "如果可以，请将此提示出现时的情况告诉给 @imast_ios@mstdn.rinsuki.net，并附上以下代码。";

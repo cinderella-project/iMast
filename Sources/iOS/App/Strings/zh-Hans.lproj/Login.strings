@@ -7,7 +7,7 @@
 */
 
 "title" = "登录";
-"pleaseInputMastodonInstance" = "请输入Mastodon实例链接";
+"pleaseInputMastodonInstance" = "请输入Mastodon服务器链接";
 "loginButton" = "登录";
 
 "progressDialog.title" = "正在登录";
@@ -17,11 +17,11 @@
 
 "authorize.title" = "认证";
 "authorize.method.safari" = "使用Safari登录（推荐）";
-"authorize.method.safariEphemeral" = "Safariでログイン (プライベートブラウズ)";
+"authorize.method.safariEphemeral" = "使用Safari登录（无痕浏览）";
 
-"authorize.tos.header" = "登录后就代表您已同意以下的守则和隐私权政策";
-"authorize.tos.rules" = "此实例的守则";
-"authorize.tos.termsOfService" = "此实例的使用条款";
+"authorize.tos.header" = "登录后就代表您已同意以下的守则和隐私权政策等";
+"authorize.tos.rules" = "此服务器的守则";
+"authorize.tos.termsOfService" = "此服务器的使用条款";
 
 "passwordLogin.mailAddress" = "邮箱";
 "passwordLogin.password" = "密码";

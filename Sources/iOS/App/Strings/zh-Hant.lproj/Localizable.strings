@@ -30,7 +30,7 @@
 
 "notifications" = "通知";
 
-"localTimeline" = "本機時間軸";
+"localTimeline" = "本站時間軸";
 "localTimeline.short" = "本機時間軸";
 
 "post" = "發嘟";
@@ -45,13 +45,13 @@
 "refetch" = "重新連接";
 "cancel" = "取消";
 
-"editedWarning.title" = "この投稿は投稿後に編集されています";
+"editedWarning.title" = "已編輯的嘟文";
 "editedWarning.description" = "最後編輯: %@";
 "editHistory.title" = "編輯記錄";
 "editHistory.desc.original" = "原始內容";
 "editHistory.desc.diff.template" = "變更點: %@";
 "editHistory.desc.diff.content" = "正文";
-"editHistory.desc.diff.cw" = "CW警告文";
+"editHistory.desc.diff.cw" = "內容警示訊息";
 "editHistory.desc.diff.attachments" = "附加媒體";
 "editHistory.desc.diff.sensitive" = "NSFW旗標";
 
@@ -77,27 +77,28 @@
 "chooseAccount" = "選擇要使用的帳號";
 
 "favouritesList" = "收藏一覽";
-"bunmyaku.title" = "文脈";
-"postDetail.title" = "投稿詳細";
+"bunmyaku.title" = "對話脈絡";
+"postDetail.title" = "嘟文詳情";
 
-"postDetail.share" = "共有";
-"postDetail.delete" = "削除";
-"postDetail.reportAbuse" = "通報";
-"customEmojis.title" = "カスタム絵文字一覧";
+"postDetail.share" = "分享";
+"postDetail.delete" = "刪除";
+"postDetail.reportAbuse" = "檢舉";
+"customEmojis.title" = "自定emoji列表";
 
-"reportPost.title" = "投稿を通報";
-"reportPost.send" = "送信";
-"reportPost.targetPost.title" = "対象の投稿";
-"reportPost.additionalInfo.title" = "追加の情報";
-"reportPost.additionalInfo.placeholderOption" = "オプション";
-"reportPost.forwardToRemote.title" = "リモートサーバーに転送";
-"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
-"reportPost.finished.title" = "送信しました";
+"reportPost.title" = "檢舉嘟文";
+"reportPost.send" = "發送檢舉";
+"reportPost.targetPost.title" = "要檢舉的嘟文";
+"reportPost.additionalInfo.title" = "額外資訊";
+"reportPost.additionalInfo.placeholderOption" = "可選填";
+"reportPost.forwardToRemote.title" = "轉送遠端伺服器";
+"reportPost.forwardToRemote.description" = "啟用開關時，此報告也將轉發給 %1$@。 您的帳戶所在的伺服器和 %1$@ 都必須運作 Mastodon 2.3 或更高版本，或者支援通過聯合報告進行轉發。";
+"reportPost.finished.title" = "已發送";
 
 "error.title" = "錯誤";
 "error.requiredNewerOS" = "此功能須IOS版本%.1f及以上";
 "error.requiredNewerMastodon" = "實例版本%@及以上才能使用此功能\n（如果在iMast運行時實例升級了，重啟即可使用此功能）\n請向各自的管理員詢問Mastodon實例的升級計劃";
 "error.pleaseInputInstance" = "請輸入實例";
+"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
 
 "error.unknown.title" = "未知錯誤";
 "error.unknown.text" = "如果可以，請將此提示出現時的情況告訴給 @imast_ios@mstdn.rinsuki.net，並附上以下代碼。";

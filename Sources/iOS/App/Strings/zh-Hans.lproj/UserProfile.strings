@@ -23,7 +23,7 @@
 
 "title" = "主页";
 
-"cells.toots.title" = "嘟文";
+"cells.toots.title" = "帖子";
 "cells.following.title" = "正在关注";
 "cells.followers.title" = "关注者";
 "cells.createdAt.title" = "注册时间";
@@ -41,9 +41,9 @@
 "actions.block" = "屏蔽";
 "actions.unblock" = "取消屏蔽";
 
-"actions.followRequestsList" = "关注申请一览";
+"actions.followRequestsList" = "关注申请";
 
 "actions.cancel" = "取消";
 
-"federatedUserWarning" = "此用户来自其他实例，所以数据可能并不完整";
+"federatedUserWarning" = "此用户来自其他服务器，所以数据可能并不完整";
 "checkLatestProfileInWeb" = "在网页版查看最新的个人资料";

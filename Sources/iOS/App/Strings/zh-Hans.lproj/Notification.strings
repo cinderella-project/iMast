@@ -7,12 +7,12 @@
 */
 
 "types.follow" = "@%@关注了你";
-"types.favourite" = "@%@收藏了你的嘟文";
+"types.favourite" = "@%@喜欢了你的帖子";
 "types.mention" = "@%@提及了你";
-"types.boost" = "@%@转嘟了嘟文";
+"types.boost" = "@%@转发了帖子";
 "types.poll.owner" = "您发起的投票已结束";
 "types.poll.notowner" = "您参加的投票已结束";
 "types.followRequest" = "@%@向你发出了关注请求";
-"types.postUpdated.isMe" = "嘟文已被编辑";
-"types.postUpdated.notMe" = "您曾转嘟的嘟文已被编辑";
-"types.unknown" = "未知的通知：%@";
+"types.postUpdated.isMe" = "帖子已被编辑";
+"types.postUpdated.notMe" = "您曾转发的帖子已被编辑";
+"types.unknown" = "未知通知：%@";

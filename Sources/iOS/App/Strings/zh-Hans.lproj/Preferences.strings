@@ -10,13 +10,13 @@
 "general.streamingAutoConnect.no" = "永不";
 "general.streamingAutoConnect.wifi" = "仅WiFi";
 "general.streamingAutoConnect.always" = "开启";
-"general.newAccountVia.title" = "绑定新账户时显示的嘟文小尾巴";
+"general.newAccountVia.title" = "绑定新账户时显示的帖子小尾巴";
 
-"post.title" = "嘟文发布";
+"post.title" = "帖子";
 "post.autoResize.title" = "自动缩小图片";
 "post.autoResize.no" = "永不";
 "post.autoResize.pixel" = "缩小到%dpx以下";
-"post.useDefaultVisibility" = "使用默认的嘟文可见范围";
+"post.useDefaultVisibility" = "使用默认的可见范围";
 
 "nowPlaying.title" = "NowPlaying";
 "nowPlaying.format.title" = "格式";
@@ -27,12 +27,12 @@
 "timelineAppearance.contentSize" = "正文字体大小";
 "timelineAppearance.contentBold" = "加粗正文字体";
 "timelineAppearance.iconSize" = "头像大小";
-"timelineAppearance.visibilityAsEmoji" = "用emoji显示嘟文可见范围";
-"timelineAppearance.inReplyToAsEmoji" = "用emoji显示是否为回复嘟文";
+"timelineAppearance.visibilityAsEmoji" = "用emoji显示帖子可见范围";
+"timelineAppearance.inReplyToAsEmoji" = "用emoji显示是否为回复帖子";
 "timelineAppearance.thumbnailHeight" = "缩略图大小";
 "timelineAppearance.nurunuru" = "高刷模式（需重启）";
-"timelineAppearance.bigNewPostButton.show" = "显示发布按钮";
-"timelineAppearance.bigNewPostButton.location.title" = "发布按钮的位置";
+"timelineAppearance.bigNewPostButton.show" = "显示大发布按钮";
+"timelineAppearance.bigNewPostButton.location.title" = "大发布按钮的位置";
 
 "timeline.title" = "时间轴";
 "timeline.openWebMInVLC" = "用VLC打开WebM";
@@ -44,12 +44,12 @@
 "push.accounts.title" = "账户一览";
 "push.addAccount.title" = "添加账户";
 "push.addAccount.alertTitle" = "添加账户";
-"push.addAccount.alertText" = "请输入实例链接\n（请不要输入https://等元素）";
+"push.addAccount.alertText" = "请输入服务器链接\n（请不要输入https://等元素）";
 "push.shared.title" = "通用设置";
 "push.shared.displayErrorIfOccured" = "如果客户端在接收通知时的过程中失败，将推送错误信息，而不是原始通知内容";
 "push.shared.groupRules.title" = "分组规则设置（测试）";
-"push.shared.groupRules.byAccount" = "账户分组";
-"push.shared.groupRules.byType.title" = "通知种类分组";
+"push.shared.groupRules.byAccount" = "每个账户使用单独的分组";
+"push.shared.groupRules.byType.title" = "每个通知种类使用单独的分组";
 "push.shared.groupRules.byType.description" = "开启的类型将在单独的分组中";
 "push.shared.customSounds.title" = "自定义通知铃声（早期测试）";
 "push.shared.deleteAccount.title" = "删除通知推送设置";
