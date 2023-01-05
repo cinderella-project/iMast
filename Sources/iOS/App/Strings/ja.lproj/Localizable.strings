@@ -98,6 +98,7 @@
 "error.requiredNewerOS" = "この機能を利用するためには iOS %.1f 以上が必要です。";
 "error.requiredNewerMastodon" = "この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。";
 "error.pleaseInputInstance" = "インスタンスを入力してください。";
+"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
 
 "error.unknown.title" = "謎のエラー";
 "error.unknown.text" = "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。";

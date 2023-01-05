@@ -41,7 +41,7 @@ class UserTimelineViewController: TimelineViewController {
         async let posts = MastodonEndpoint.GetTimeline(.user(user)).request(with: environment)
         var snapshot = self.diffableDataSource.snapshot()
         snapshot.appendItems(try await pinnedPosts.map {
-            environment.memoryStore.post.change(obj: $0)
+            try environment.memoryStore.post.change(obj: $0)
             return .post(id: $0.id, pinned: true)
         }, toSection: .pinned)
         diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)

@@ -290,20 +290,28 @@ class TimelineViewController: UIViewController, Instantiatable {
         self.openNewPostVC()
     }
     
-    func addNewPosts(posts: [MastodonPost]) {
-        if posts.count == 0 {
+    func addNewPosts(posts inputPosts: [MastodonPost]) {
+        if inputPosts.count == 0 {
             return
         }
-        let posts: [MastodonPost] = posts.sorted(by: { (a, b) -> Bool in
-            return a.id.compare(b.id) == .orderedDescending
-        }).filter({ (post) -> Bool in
-            self.environment.memoryStore.post.change(obj: post)
-            if isAlreadyAdded[post.id.string] != true {
-                isAlreadyAdded[post.id.string] = true
-                return true
+        let posts: [MastodonPost]
+        do {
+            posts = try inputPosts.sorted(by: { (a, b) -> Bool in
+                return a.id.compare(b.id) == .orderedDescending
+            }).filter({ (post) -> Bool in
+                try self.environment.memoryStore.post.change(obj: post)
+                if isAlreadyAdded[post.id.string] != true {
+                    isAlreadyAdded[post.id.string] = true
+                    return true
+                }
+                return false
+            })
+        } catch {
+            DispatchQueue.mainAsyncIfNeed {
+                self.errorReport(error: error)
             }
-            return false
-        })
+            return
+        }
         
         var snapshot = self.diffableDataSource.snapshot()
         snapshot.prependItems(
@@ -353,7 +361,14 @@ class TimelineViewController: UIViewController, Instantiatable {
     func appendNewPosts(posts: [MastodonPost]) {
         var snapshot = self.diffableDataSource.snapshot()
         for post in posts {
-            environment.memoryStore.post.change(obj: post)
+            do {
+                try environment.memoryStore.post.change(obj: post)
+            } catch {
+                DispatchQueue.mainAsyncIfNeed {
+                    self.errorReport(error: error)
+                }
+                return
+            }
         }
         snapshot.appendItems(posts.map { .post(id: $0.id, pinned: false) }, toSection: .posts)
         updateDataSourceQueue.sync {
@@ -413,7 +428,7 @@ extension TimelineViewController: UITableViewDelegate {
         if environment.canBoost(post: post) {
             actions.append(.init(style: .normal, title: "ブースト") { (action, view, callback) in
                 MastodonEndpoint.CreateRepost(post: post).request(with: self.environment).then { result in
-                    self.updatePost(from: result.originalPost, includeRepost: true)
+                    try self.updatePost(from: result.originalPost, includeRepost: true)
                     action.backgroundColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                     callback(true)
                 }
@@ -427,7 +442,7 @@ extension TimelineViewController: UITableViewDelegate {
         }
         actions.append(.init(style: .normal, title: "ふぁぼ") { (action, view, callback) in
             MastodonEndpoint.CreateFavourite(post: post).request(with: self.environment).then { result in
-                self.updatePost(from: result.originalPost, includeRepost: true)
+                try self.updatePost(from: result.originalPost, includeRepost: true)
                 action.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
                 callback(true)
             }
@@ -453,8 +468,8 @@ extension TimelineViewController: UITableViewDelegate {
         }
     }
     
-    func updatePost(from: MastodonPost, includeRepost: Bool) {
-        MastodonMemoryStoreContainer[self.environment].post.change(obj: from)
+    func updatePost(from: MastodonPost, includeRepost: Bool) throws {
+        try MastodonMemoryStoreContainer[self.environment].post.change(obj: from)
     }
 }
 
@@ -533,12 +548,12 @@ extension TimelineViewController: WebSocketWrapperDelegate {
                     }
                 }
             case .statusUpdate(let post):
-                environment.memoryStore.post.change(obj: post)
+                try environment.memoryStore.post.change(obj: post)
             case .unknown(let type):
                 print("WebSocket: Receiving Unknown Event Type: \(type)")
             }
         } catch {
-            DispatchQueue.main.async {
+            DispatchQueue.mainAsyncIfNeed {
                 self.errorReport(error: error)
             }
         }

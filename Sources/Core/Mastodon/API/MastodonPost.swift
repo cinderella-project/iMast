@@ -100,7 +100,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     public var poll: MastodonPoll?
     public let language: String?
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case id
         case url
         case account

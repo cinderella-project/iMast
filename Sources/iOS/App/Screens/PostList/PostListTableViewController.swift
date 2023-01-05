@@ -94,7 +94,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         request
             .request(with: environment)
             .then { res in
-                res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
+                try res.content.forEach { try self.environment.memoryStore.post.change(obj: $0) }
                 if self.postIds.count == 0 {
                     self.paging.next = res.paging.next
                 }
@@ -115,7 +115,7 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
         var request = input
         request.paging = next
         request.request(with: environment).then { res in
-            res.content.forEach { self.environment.memoryStore.post.change(obj: $0) }
+            try res.content.forEach { try self.environment.memoryStore.post.change(obj: $0) }
             self.postIds.append(contentsOf: res.content.map { $0.id })
             self.paging.next = res.paging.next
             self.update()

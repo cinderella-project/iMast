@@ -136,6 +136,10 @@ internal enum L10n {
       }
       /// エラー
       internal static let title = L10n.tr("Localizable", "error.title")
+      /// サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています
+      internal static func tryToChainItself(_ p1: Any, _ p2: Any, _ p3: Any) -> String {
+        return L10n.tr("Localizable", "error.tryToChainItself", String(describing: p1), String(describing: p2), String(describing: p3))
+      }
       internal enum Unknown {
         /// もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。
         internal static let text = L10n.tr("Localizable", "error.unknown.text")

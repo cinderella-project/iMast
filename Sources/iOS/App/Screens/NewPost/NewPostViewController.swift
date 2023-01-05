@@ -173,8 +173,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.send
                 }
                 let response = try await request.request(with: userToken)
-                await MainActor.run {
-                    userToken.memoryStore.post.change(obj: response)
+                try await MainActor.run {
+                    try userToken.memoryStore.post.change(obj: response)
                     alert.dismiss(animated: false, completion: {
                         if self.navigationController is ModalNavigationViewController {
                             self.navigationController?.dismiss(animated: true, completion: nil)

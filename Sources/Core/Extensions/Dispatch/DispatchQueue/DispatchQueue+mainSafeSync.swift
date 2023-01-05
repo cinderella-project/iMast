@@ -47,4 +47,12 @@ extension DispatchQueue {
             return try DispatchQueue.main.sync(execute: closure)
         }
     }
+    
+    static public func mainAsyncIfNeed(execute closure: @escaping () -> Void) {
+        if Thread.isMainThread {
+            closure()
+        } else {
+            DispatchQueue.main.async(execute: closure)
+        }
+    }
 }

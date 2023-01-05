@@ -25,6 +25,17 @@
 import Foundation
 import iMastiOSCore
 
+enum MastodonMemoryStoreInternalError: Error, LocalizedError {
+    case tryToChainItself(any MastodonMemoryStorable.Type, MastodonID, String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .tryToChainItself(let typ, let id, let key):
+            return L10n.Localizable.Error.tryToChainItself(typ.self, id.string, key)
+        }
+    }
+}
+
 class MastodonMemoryStore<T: MastodonMemoryStorable> {
     private let notificationCenter = NotificationCenter()
     fileprivate(set) var container: [MastodonID: T] = [:]
@@ -43,25 +54,25 @@ class MastodonMemoryStore<T: MastodonMemoryStorable> {
         self.notificationCenter.removeObserver(observer, name: .init(id.string), object: nil)
     }
     
-    func change(obj: T) {
+    func change(obj: T) throws {
         let isFirst = container[obj.id] == nil
         container[obj.id] = obj
         if isFirst {
-            obj.setChain(store: self)
+            try obj.setChain(store: self)
         }
         DispatchQueue.mainSafeSync {
             self.notificationCenter.post(name: .init(obj.id.string), object: obj)
         }
-        obj.changeChain(store: self)
+        try obj.changeChain(store: self)
     }
     
     /// 通知チェーンに追加する。
     /// from が更新されたら、ブーストで投稿を含んでいる to も更新されるイメージ。
     /// - Parameter from: 通知チェーンの発火元
     /// - Parameter to: 通知チェーンの通知先
-    fileprivate func addChain(from: MastodonID, to: MastodonID) {
+    fileprivate func addChain(from: MastodonID, to: MastodonID, key: String) throws {
         if from == to {
-            fatalError("INFINITIE LOOP YEAAAAAAAAAAH")
+            throw MastodonMemoryStoreInternalError.tryToChainItself(T.self, from, key)
         }
         print("\(from.string) -> \(to.string)")
         var chainArr = self.chain[from] ?? []
@@ -71,25 +82,25 @@ class MastodonMemoryStore<T: MastodonMemoryStorable> {
 }
 
 protocol MastodonMemoryStorable: MastodonIDAvailable {
-    func changeChain(store: MastodonMemoryStore<Self>)
+    func changeChain(store: MastodonMemoryStore<Self>) throws
     
-    func setChain(store: MastodonMemoryStore<Self>)
+    func setChain(store: MastodonMemoryStore<Self>) throws
 }
 
 extension MastodonPost: MastodonMemoryStorable {
-    func changeChain(store: MastodonMemoryStore<MastodonPost>) {
+    func changeChain(store: MastodonMemoryStore<MastodonPost>) throws {
         for chain in store.chain[self.id] ?? [] {
             var boost = store.container[chain]!
             if boost.repost?.value.id == self.id {
                 boost.repost = .value(self)
             }
-            store.change(obj: boost)
+            try store.change(obj: boost)
         }
     }
     
-    func setChain(store: MastodonMemoryStore<MastodonPost>) {
+    func setChain(store: MastodonMemoryStore<MastodonPost>) throws {
         if let orig = self.repost?.value {
-            store.addChain(from: orig.id, to: self.id)
+            try store.addChain(from: orig.id, to: self.id, key: MastodonPost.CodingKeys.repost.rawValue)
         }
     }
 }
