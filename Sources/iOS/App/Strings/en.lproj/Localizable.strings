@@ -98,7 +98,7 @@
 "error.requiredNewerOS" = "This feature requires iOS %.1f or higher.";
 "error.requiredNewerMastodon" = "This feature requires Mastodon %@ or higher.";
 "error.pleaseInputInstance" = "Please enter instance URL.";
-"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
+"error.tryToChainItself" = "Server returned invalid data: %1$@ ID %2$@ is referencing itself in %3$@";
 
 "error.unknown.title" = "Unknown error";
 "error.unknown.text" = "If you'd like, please send a message describing how this alert displayed with the code below to @imast_ios@mstdn.rinsuki.net.";
