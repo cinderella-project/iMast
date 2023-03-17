@@ -54,6 +54,9 @@ class ReadmoreView: UIView {
                     button.setTitle(isError ? L10n.Localizable.Error.title : L10n.Localizable.readmore, for: .normal)
                     button.setTitleColor(isError ? .systemRed : tintColor, for: .normal)
                 }
+                if state != .withError {
+                    lastError = nil
+                }
             }
         }
     }

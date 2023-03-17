@@ -54,34 +54,41 @@ class FollowTableViewController: UITableViewController, Instantiatable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.title = input.type == .following ? "フォロー一覧" : "フォロワー一覧"
-        self.load()
+        title = input.type == .following ? L10n.UserProfile.Cells.Following.title : L10n.UserProfile.Cells.Followers.title
+        readmoreView.target = self
+        readmoreView.action = #selector(readMore)
+        readmoreView.setTableView(tableView)
+        tableView.tableFooterView = readmoreView
+        Task {
+            await load()
+        }
     }
     
-    func load() {
+    @MainActor func load(paging: MastodonPagingOption? = nil) async {
         self.readmoreView.state = .loading
-        MastodonEndpoint.GetFollows(
-            target: input.userId,
-            type: input.type,
-            paging: paging
-        )
-            .request(with: environment)
-            .then { res in
-                self.users.append(contentsOf: res.content)
-                self.paging = res.paging.next
-                self.readmoreView.state = res.paging.next == nil ? .allLoaded : .moreLoadable
-                self.tableView.reloadData()
-            }
+        do {
+            let res = try await MastodonEndpoint.GetFollows(
+                target: input.userId,
+                type: input.type,
+                paging: paging
+            ).request(with: environment)
+            users.append(contentsOf: res.content)
+            self.paging = res.paging.next
+            readmoreView.state = res.paging.next == nil ? .allLoaded : .moreLoadable
+            tableView.reloadData()
+        } catch {
+            readmoreView.state = .withError
+            readmoreView.lastError = error
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func readMore() {
+        guard readmoreView.state == .moreLoadable else {
+            return
+        }
+        Task {
+            await load(paging: paging)
+        }
     }
 
     // MARK: - Table view data source
@@ -103,12 +110,7 @@ class FollowTableViewController: UITableViewController, Instantiatable {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            let newVC = UserProfileTopViewController.instantiate(self.users[indexPath.row], environment: self.environment)
-            self.navigationController?.pushViewController(newVC, animated: true)
-        } else if readmoreView.state == .moreLoadable {
-            self.load()
-        }
-        print(indexPath)
+        let newVC = UserProfileTopViewController.instantiate(self.users[indexPath.row], environment: self.environment)
+        navigationController?.pushViewController(newVC, animated: true)
     }
 }
