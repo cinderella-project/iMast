@@ -111,22 +111,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 else {
                     return false
                 }
-                let nextVC = AddAccountSuccessViewController()
                 let app = MastodonApp.initFromId(appId: state)
-                asyncPromise {
-                    let userToken = try await app.authorizeWithCode(code: code)
-                    _ = try await userToken.getUserInfo()
-                    try userToken.save()
-                    userToken.use()
-                    nextVC.userToken = userToken
-                }.then(in: .main) { [weak scene] in
-                    guard let scene = scene as? UIWindowScene else {
-                        return
-                    }
-                    guard let window = scene.windows.first else {
-                        return
-                    }
-                    window.rootViewController = nextVC
+                let vc = UINavigationController(rootViewController: AddAccountAcquireTokenViewController(app: app, code: code))
+                vc.setNavigationBarHidden(true, animated: false)
+                guard let scene = scene as? UIWindowScene else {
+                    return false
+                }
+                guard let window = scene.windows.first else {
+                    return false
+                }
+                if let rootViewController = window.rootViewController {
+                    vc.modalPresentationStyle = .fullScreen
+                    rootViewController.present(vc, animated: true)
+                } else {
+                    window.rootViewController = vc
                 }
                 return true
             }),

@@ -29,6 +29,7 @@
 		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
+		CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */; };
 		CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */; };
 		CE0E4C59247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */; };
 		CE0E4C5A247C9B3C002B6C9A /* MastodonPostVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E4C57247C9B31002B6C9A /* MastodonPostVisibility.swift */; };
@@ -661,6 +662,7 @@
 		C7382FE797C7BE7768A87A5A /* Pods-iMastShared-iOS-iMast iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMast iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C73C84B4CE2284129D88B217 /* Pods-iMastShared-iOS-iMastIntents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastIntents/Pods-iMastShared-iOS-iMastIntents.debug.xcconfig"; sourceTree = "<group>"; };
 		CA974A17DD57ABC74CA8E6C9 /* Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMastShared-iOS-iMastNotifyService/Pods-iMastShared-iOS-iMastNotifyService.release.xcconfig"; sourceTree = "<group>"; };
+		CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountAcquireTokenViewController.swift; sourceTree = "<group>"; };
 		CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopableAVPlayerViewController.swift; sourceTree = "<group>"; };
 		CE099D022194315800A4BCCB /* UploadableMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadableMedia.swift; sourceTree = "<group>"; };
@@ -1900,6 +1902,7 @@
 			children = (
 				CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */,
 				2A4A6C2E1EACE8E9001BB00A /* AddAccountSelectLoginMethodViewController.swift */,
+				CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */,
 				2A66E7FD1EAF374400735081 /* AddAccountSuccessViewController.swift */,
 			);
 			path = Login;
@@ -3385,6 +3388,7 @@
 				CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */,
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
+				CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */,
 				CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */,
 				CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */,
 				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,

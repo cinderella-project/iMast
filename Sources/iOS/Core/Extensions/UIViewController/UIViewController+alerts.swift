@@ -101,14 +101,15 @@ extension UIViewController {
     }
     
     @MainActor
-    public func errorReport(error: Error) {
+    public func errorReport(error: Error, completionHandler: (() -> Void)? = nil) {
         if case APIError.errorReturned(errorMessage: let message, errorHttpCode: let code) = error {
-            return alert(title: CoreL10n.Error.Api.title, message: CoreL10n.Error.Api.text(message, code))
+            return alert(title: CoreL10n.Error.Api.title, message: CoreL10n.Error.Api.text(message, code), completionHandler: completionHandler)
         }
         if case APIError.unknownResponse(errorHttpCode: let code, errorString: let message) = error {
             return alert(
                 title: CoreL10n.Error.Http.title,
-                message: CoreL10n.Error.Http.text(code, message ?? CoreL10n.Error.failedToDecodeAsUTF8)
+                message: CoreL10n.Error.Http.text(code, message ?? CoreL10n.Error.failedToDecodeAsUTF8),
+                completionHandler: completionHandler
             )
         }
         let alert = UIAlertController(
@@ -121,6 +122,8 @@ extension UIViewController {
             style: .default
         ) { _ in
             class ErrorReportViewController: UIViewController {
+                var completionHandler: (() -> Void)? = nil
+                
                 let textView = UITextView() ※ { view in
                     view.font = UIFont.init(name: "Menlo", size: 15)
                     view.adjustsFontForContentSizeCategory = true
@@ -135,13 +138,21 @@ extension UIViewController {
                     title = CoreL10n.ErrorMoreInfo.title
                     navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
                 }
+                
+                override func viewDidDisappear(_ animated: Bool) {
+                    super.viewDidDisappear(animated)
+                    completionHandler?()
+                }
             }
             let vc = ErrorReportViewController()
             let navVC = UINavigationController(rootViewController: vc)
             vc.textView.text = "\(error)"
+            vc.completionHandler = completionHandler
             self.present(navVC, animated: true, completion: nil)
         })
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            completionHandler?()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
 }

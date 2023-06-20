@@ -38,14 +38,17 @@ class AddAccountSuccessViewController: UIViewController {
         v.numberOfLines = 0
         v.textAlignment = .center
     }
-    let toTimelineButton = UIButton() ※ { v in
-        v.backgroundColor = v.tintColor
-        v.titleLabel?.textColor = .white
-        v.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        v.contentEdgeInsets = .init(top: 16, left: 0, bottom: 16, right: 0)
-        v.layer.cornerRadius = 10
-        v.layer.cornerCurve = .continuous
-        v.layer.masksToBounds = true
+    let toTimelineButton = UIButton(type: .system) ※ { v in
+        v.configuration = .filled() ※ { c in
+            c.title = L10n.Login.Welcome.toTimeline
+            c.titleTextAttributesTransformer = .init { incoming in
+                var outgoing = incoming
+                outgoing.font = .boldSystemFont(ofSize: UIFont.buttonFontSize)
+                return outgoing
+            }
+            c.cornerStyle = .large
+            c.buttonSize = .large
+        }
     }
     
     var userToken: MastodonUserToken!
@@ -79,7 +82,6 @@ class AddAccountSuccessViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         welcomeMessageLabel.text = L10n.Login.Welcome.message("@"+userToken.acct)
-        toTimelineButton.setTitle(L10n.Login.Welcome.toTimeline, for: .normal)
         if let avatarUrl = self.userToken.avatarUrl {
             myIconImageView.loadImage(from: URL(string: avatarUrl))
         }

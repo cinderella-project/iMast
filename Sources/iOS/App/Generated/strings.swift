@@ -205,6 +205,14 @@ internal enum L10n {
     internal static let pleaseInputMastodonInstance = L10n.tr("Login", "pleaseInputMastodonInstance")
     /// ログイン
     internal static let title = L10n.tr("Login", "title")
+    internal enum AcquireTokenProgress {
+      /// あともう少しです…
+      internal static let almostDone = L10n.tr("Login", "acquireTokenProgress.almostDone")
+      /// プロフィール情報を取得中…
+      internal static let fetchingProfile = L10n.tr("Login", "acquireTokenProgress.fetchingProfile")
+      /// 認証中…
+      internal static let fetchingToken = L10n.tr("Login", "acquireTokenProgress.fetchingToken")
+    }
     internal enum Authorize {
       /// 認証
       internal static let title = L10n.tr("Login", "authorize.title")
