@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import Accounts
 import SafariServices
 import Mew
 import iMastiOSCore

@@ -286,18 +286,6 @@ name: Mew, nameSpecified:
 body: Copyright (c) 2018 M…
 version: 0.1.0
 
-name: ReachabilitySwift, nameSpecified: 
-body: Copyright (c) 2016 A…
-version: 4.3.1
-
-name: ReachabilitySwift, nameSpecified: 
-body: Copyright (c) 2016 A…
-version: 4.3.1
-
-name: ReachabilitySwift, nameSpecified: 
-body: Copyright (c) 2016 A…
-version: 4.3.1
-
 name: SDWebImage, nameSpecified: 
 body: Copyright (c) 2009-2…
 version: 5.12.6
@@ -389,24 +377,6 @@ version: 3.1.1
 name: Starscream, nameSpecified: 
 body:                     …
 version: 3.1.1
-
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
-
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
-
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
 
 name: SwiftGen, nameSpecified: 
 body: MIT Licence

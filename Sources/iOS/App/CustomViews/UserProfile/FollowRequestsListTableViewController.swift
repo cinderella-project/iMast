@@ -102,6 +102,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
         return cell
     }
 
+    #if !os(xrOS)
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = self.followRequests[indexPath.row]
         let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
@@ -124,6 +125,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
             authorizeAction,
         ]
     }
+    #endif
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let newVC = UserProfileTopViewController.instantiate(self.followRequests[indexPath.row], environment: self.environment)

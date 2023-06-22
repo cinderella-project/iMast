@@ -25,6 +25,7 @@ import UIKit
 import SDWebImage
 import iMastiOSCore
 
+#if !os(xrOS)
 class ShareAccountSelectorTableViewController: UITableViewController {
 
     let userTokens = MastodonUserToken.getAllUserTokens()
@@ -144,3 +145,4 @@ class ShareAccountSelectorTableViewController: UITableViewController {
     */
 
 }
+#endif

@@ -22,7 +22,9 @@
 //
 
 import UIKit
+#if !os(xrOS)
 import Social
+#endif
 import Hydra
 import SwiftyJSON
 import Alamofire
@@ -30,6 +32,7 @@ import Fuzi
 import MobileCoreServices
 import iMastiOSCore
 
+#if !os(xrOS)
 class ShareViewController: SLComposeServiceViewController {
     
     var isMastodonLogged = false
@@ -301,3 +304,4 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
 }
+#endif

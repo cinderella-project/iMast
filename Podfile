@@ -25,10 +25,10 @@ abstract_target 'iMastShared' do
       # Pods for iMast
       pod 'Crossroad', '~> 3.2.0'
       pod 'Starscream', '~> 3.1.1'
-      pod 'ReachabilitySwift', '~> 4.3.1'
+     #  pod 'ReachabilitySwift', '~> 4.3.1'
       pod 'Eureka', '~> 5.3.0'
       pod 'EurekaFormBuilder', '~> 0.2.2'
-      pod 'SVProgressHUD'
+      # pod 'SVProgressHUD'
       pod 'LicensePlist', '~> 3.22.0'
       
       target 'iMastTests' do
@@ -72,6 +72,8 @@ post_install do |installer|
     project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+        config.build_settings['TARGETED_DEVICE_FAMILY'] = '1,2,7'
+        config.build_settings['SUPPORTED_PLATFORMS'] = 'iphoneos iphonesimulator xros xrsimulator'
       end
     end
   end

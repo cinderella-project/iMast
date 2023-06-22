@@ -124,14 +124,6 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/ReachabilitySwift</string>
-			<key>Title</key>
-			<string>ReachabilitySwift (4.3.1)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/SDWebImage</string>
 			<key>Title</key>
 			<string>SDWebImage (5.12.6)</string>
@@ -159,14 +151,6 @@
 			<string>com.mono0926.LicensePlist/Starscream</string>
 			<key>Title</key>
 			<string>Starscream (3.1.1)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
-			<string>com.mono0926.LicensePlist/SVProgressHUD</string>
-			<key>Title</key>
-			<string>SVProgressHUD (2.2.5)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

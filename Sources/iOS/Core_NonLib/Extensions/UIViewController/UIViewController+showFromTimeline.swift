@@ -48,10 +48,12 @@ fileprivate class SheetHeightResolver {
 //        print("keyboard hide...")
     }
     
+#if !os(xrOS)
     func resolver(_ context: UISheetPresentationControllerDetentResolutionContext) -> CGFloat? {
 //        print("recalc...")
         return max(200, context.maximumDetentValue - 180 - currentHeight)
     }
+    #endif
 }
 
 extension UIViewController {
@@ -59,8 +61,10 @@ extension UIViewController {
         if Defaults.openAsHalfModalFromTimeline, traitCollection.verticalSizeClass != .compact {
             let navigationController = UINavigationController()
             if let sheet = navigationController.sheetPresentationController {
+#if !os(xrOS)
                 sheet.detents = [.custom(resolver: SheetHeightResolver.shared.resolver)]
                 sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+#endif
                 sheet.prefersEdgeAttachedInCompactHeight = false
                 navigationController.presentationController?.overrideTraitCollection = .init(verticalSizeClass: .compact)
                 navigationController.setViewControllers([viewController], animated: false)

@@ -244,6 +244,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func keyboardWillShow(notification: Notification?) {
+        #if !os(xrOS)
         self.view.layoutIfNeeded()
         guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
@@ -257,6 +258,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         let windowBottom = (window.screen.bounds.height - window.bounds.height) / 2
         let bottom = safeAreaBottom + modalBottom + windowBottom
         additionalSafeAreaInsets.bottom = max(rect.size.height - bottom, 0) + 44
+        #endif
     }
     @objc func keyboardWillHide(notification: Notification?) {
         additionalSafeAreaInsets.bottom = 44

@@ -23,7 +23,9 @@
 
 import UIKit
 import Hydra
+#if !os(xrOS)
 import Reachability
+#endif
 import SafariServices
 import Ikemen
 import SnapKit
@@ -337,9 +339,11 @@ class TimelineViewController: UIViewController, Instantiatable {
             if conditions == "no" {
                 return
             } else if conditions == "wifi" {
+                #if !os(xrOS)
                 if !(Reachability.init()?.isReachableViaWiFi ?? false) {
                     return
                 }
+                #endif
             }
         }
         guard let webSocketEndpoint = self.websocketEndpoint() else {

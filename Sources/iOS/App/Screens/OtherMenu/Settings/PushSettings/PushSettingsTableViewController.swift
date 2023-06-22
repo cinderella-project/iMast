@@ -23,7 +23,9 @@
 
 import UIKit
 import Alamofire
+#if !os(xrOS)
 import SVProgressHUD
+#endif
 import Eureka
 import EurekaFormBuilder
 import UserNotifications

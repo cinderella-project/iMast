@@ -315,6 +315,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 }
 
 extension MastodonPostCellViewController: UITextViewDelegate {
+    #if !os(xrOS)
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
@@ -339,4 +340,5 @@ extension MastodonPostCellViewController: UITextViewDelegate {
         self.open(url: URL(string: urlString)!)
         return false
     }
+    #endif
 }

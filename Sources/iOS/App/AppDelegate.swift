@@ -24,7 +24,9 @@
 import UIKit
 import Crossroad
 import UserNotifications
+#if !os(xrOS)
 import SVProgressHUD
+#endif
 import SafariServices
 import Hydra
 import iMastiOSCore
@@ -55,9 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UNUserNotificationCenter.current().delegate = self
         
+        #if !os(xrOS)
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.setDefaultMaskType(.black)
-        
+        #endif
+
         // AppGroup/imageCacheを消す
         do {
             let imageCacheUrl = appGroupFileUrl.appendingPathComponent("imageCache")

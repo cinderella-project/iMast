@@ -195,10 +195,12 @@ class NewPostMediaListViewController: UIViewController {
 }
 
 extension NewPostMediaListViewController: UIDocumentPickerDelegate {
+#if !os(xrOS)
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
         self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
     }
+#endif
 }
 
 extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
@@ -209,6 +211,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
             let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
             self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
         } else if let url = info[.mediaURL] as? URL {
+#if !os(xrOS)
             Task {
                 let asset = AVURLAsset(url: url)
                 // サムネイルを作る
@@ -273,6 +276,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                 }
             }
             return
+#endif
         } else if let image = info[.originalImage] as? UIImage {
             // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
             guard let data = image.jpegData(compressionQuality: 1) else {

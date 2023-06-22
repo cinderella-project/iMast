@@ -73,6 +73,7 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
         }
     }
     
+#if !os(xrOS)
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         let string = (textView.attributedText.string as NSString).substring(with: characterRange)
         if string.hasPrefix("@") {
@@ -83,4 +84,5 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
         self.present(safari, animated: true, completion: nil)
         return false
     }
+#endif
 }

@@ -23,7 +23,9 @@
 
 import UIKit
 import Eureka
+#if !os(xrOS)
 import SVProgressHUD
+#endif
 import iMastiOSCore
 
 class PushSettingsAccountTableViewController: FormViewController {
@@ -124,15 +126,20 @@ class PushSettingsAccountTableViewController: FormViewController {
         ) else {
             return
         }
-        
+#if !os(xrOS)
         SVProgressHUD.show()
+#endif
         do {
             try await self.account.delete()
+#if !os(xrOS)
             await SVProgressHUD.dismiss()
+#endif
             NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
             self.dismiss(animated: true, completion: nil)
         } catch {
+#if !os(xrOS)
             await SVProgressHUD.dismiss()
+#endif
             self.alert(title: "エラー", message: "削除に失敗しました。\n\n\(error.localizedDescription)")
         }
     }

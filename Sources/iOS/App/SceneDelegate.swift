@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         if let myAccount = token {
             window.rootViewController = Defaults.newFirstScreen
-                ? TopViewController()
+                ? TopViewController(style: .doubleColumn)
                 : MainTabBarController.instantiate(environment: myAccount)
             #if !targetEnvironment(macCatalyst)
             if let item = connectionOptions.shortcutItem {

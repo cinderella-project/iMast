@@ -27,7 +27,9 @@ import Ikemen
 class NewPostView: UIView {
     let textInput = UITextView() ※ {
         $0.font = .systemFont(ofSize: 14)
+        #if !os(xrOS)
         $0.keyboardDismissMode = .interactiveWithAccessory
+        #endif
     }
     
     let cwInput = UITextFieldWithInsets() ※ {

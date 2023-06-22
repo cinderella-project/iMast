@@ -218,6 +218,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
 
 // TODO: リンクを開く処理をMastodonPostCellViewController側と共通化する
 extension MastodonPostDetailContentViewController: UITextViewDelegate {
+    #if !os(xrOS)
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         var urlString = url.absoluteString
         let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
@@ -243,4 +244,5 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
         self.open(url: URL(string: urlString)!)
         return false
     }
+    #endif
 }

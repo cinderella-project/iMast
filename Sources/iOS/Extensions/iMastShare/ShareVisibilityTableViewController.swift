@@ -24,6 +24,7 @@
 import UIKit
 import iMastiOSCore
 
+#if !os(xrOS)
 class ShareVisibilityTableViewController: UITableViewController {
     var parentVC: ShareViewController!
     
@@ -75,3 +76,4 @@ class ShareVisibilityTableViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+#endif

@@ -154,7 +154,7 @@ class ChangeActiveAccountViewController: UITableViewController {
         }
     }
     */
-    
+    #if !os(xrOS)
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
             tableView.isEditing = false
@@ -186,6 +186,7 @@ class ChangeActiveAccountViewController: UITableViewController {
             deleteAction,
         ]
     }
+    #endif
 
     /*
     // Override to support rearranging the table view.
