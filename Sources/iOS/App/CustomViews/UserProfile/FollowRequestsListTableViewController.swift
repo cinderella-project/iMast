@@ -102,27 +102,34 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let user = self.followRequests[indexPath.row]
-        let authorizeAction = UITableViewRowAction(style: .normal, title: "許可") { _, _ in
-            MastodonEndpoint.FollowRequests.Judge(target: user, judge: .authorize)
-                .request(with: self.environment)
-                .then { res in
+        let authorizeAction = UIContextualAction(style: .normal, title: "許可") { _, _, completionHandler in
+            Task { @MainActor in
+                do {
+                    try await MastodonEndpoint.FollowRequests.Judge(target: user, judge: .authorize).request(with: self.environment)
                     self.refresh()
+                    completionHandler(true)
+                } catch {
+                    self.errorReport(error: error)
+                    completionHandler(false)
                 }
+            }
         }
-        authorizeAction.backgroundColor = UIColor.init(red: 0.3, green: 0.95, blue: 0.3, alpha: 1)
-        let rejectAction = UITableViewRowAction(style: .destructive, title: "拒否") { _, _ in
-            MastodonEndpoint.FollowRequests.Judge(target: user, judge: .reject)
-                .request(with: self.environment)
-                .then { res in
+        authorizeAction.backgroundColor = .systemGreen
+        let rejectAction = UIContextualAction(style: .destructive, title: "拒否") { _, _, completionHandler in
+            Task { @MainActor in
+                do {
+                    try await MastodonEndpoint.FollowRequests.Judge(target: user, judge: .reject).request(with: self.environment)
                     self.refresh()
+                    completionHandler(true)
+                } catch {
+                    self.errorReport(error: error)
+                    completionHandler(false)
                 }
+            }
         }
-        return [
-            rejectAction,
-            authorizeAction,
-        ]
+        return .init(actions: [rejectAction, authorizeAction])
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

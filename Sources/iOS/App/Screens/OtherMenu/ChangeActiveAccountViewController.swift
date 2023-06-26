@@ -155,8 +155,8 @@ class ChangeActiveAccountViewController: UITableViewController {
     }
     */
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "削除") { (action, sourceView, completionHandler) -> Void in
             tableView.isEditing = false
             let userToken = self.userTokens[indexPath.row]
             let alertVC = UIAlertController(title: "削除の確認", message: "iMastから以下のアカウントを削除しますか？\n(この端末のiMastからアカウント切り替えができなくなるだけで、iMastの連携が自動で解除されたり、他の端末のiMastからこのアカウントが消えたり、Mastodonからこのアカウントが消えることはありません。)\n\n@\(userToken.acct)", preferredStyle: .actionSheet)
@@ -174,42 +174,17 @@ class ChangeActiveAccountViewController: UITableViewController {
                             self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()))
                         }
                     }
+                    completionHandler(true)
                 } catch {
                     self.errorReport(error: error)
+                    completionHandler(false)
                 }
             })
-            alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+            alertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+                completionHandler(false)
+            })
             self.present(alertVC, animated: true, completion: nil)
         }
-        deleteAction.backgroundColor = UIColor.red
-        return [
-            deleteAction,
-        ]
+        return .init(actions: [deleteAction])
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
