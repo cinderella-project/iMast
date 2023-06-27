@@ -73,14 +73,21 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
         }
     }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        let string = (textView.attributedText.string as NSString).substring(with: characterRange)
-        if string.hasPrefix("@") {
-            resolveUserProfile(userToken: environment, url: URL)
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        switch interaction {
+        case .invokeDefaultAction:
+            let string = (textView.attributedText.string as NSString).substring(with: characterRange)
+            if string.hasPrefix("@") {
+                resolveUserProfile(userToken: environment, url: url)
+                return false
+            }
+            let safari = SFSafariViewController(url: url)
+            self.present(safari, animated: true, completion: nil)
             return false
+        case .preview:
+            return false
+        case .presentActions:
+            return true
         }
-        let safari = SFSafariViewController(url: URL)
-        self.present(safari, animated: true, completion: nil)
-        return false
     }
 }

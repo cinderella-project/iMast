@@ -315,28 +315,37 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
 }
 
 extension MastodonPostCellViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
-        var urlString = url.absoluteString
-        let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
-        if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
-            MastodonEndpoint.GetAccount(target: mention.id)
-                .request(with: environment)
-                .then { user in
-                    let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
-                    self.navigationController?.pushViewController(newVC, animated: true)
-                }
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        switch interaction {
+        case .invokeDefaultAction:
+            var urlString = url.absoluteString
+            let visibleString = (textView.attributedText.string as NSString).substring(with: characterRange)
+            if let mention = input.post.mentions.first(where: { $0.url == urlString }) {
+                MastodonEndpoint.GetAccount(target: mention.id)
+                    .request(with: environment)
+                    .then { user in
+                        let newVC = UserProfileTopViewController.instantiate(user, environment: self.environment)
+                        self.navigationController?.pushViewController(newVC, animated: true)
+                    }
+                return false
+            }
+            if let media = input.post.attachments.first(where: { $0.textUrl == urlString }) {
+                urlString = media.url
+            }
+            if visibleString.starts(with: "#") {
+                let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
+                let newVC = HashtagTimelineViewController.init(hashtag: tag, environment: environment)
+                self.navigationController?.pushViewController(newVC, animated: true)
+                return false
+            }
+            self.open(url: URL(string: urlString)!)
             return false
+        case .presentActions:
+            return true // TODO: メニュー項目に追加できないか検討
+        case .preview:
+            return false // TODO: 独自プレビュー実装できないか検討
+        @unknown default:
+            return true
         }
-        if let media = input.post.attachments.first(where: { $0.textUrl == urlString }) {
-            urlString = media.url
-        }
-        if visibleString.starts(with: "#") {
-            let tag = String(visibleString[visibleString.index(after: visibleString.startIndex)...])
-            let newVC = HashtagTimelineViewController.init(hashtag: tag, environment: environment)
-            self.navigationController?.pushViewController(newVC, animated: true)
-            return false
-        }
-        self.open(url: URL(string: urlString)!)
-        return false
     }
 }
