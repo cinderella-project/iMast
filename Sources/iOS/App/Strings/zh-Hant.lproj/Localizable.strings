@@ -98,7 +98,7 @@
 "error.requiredNewerOS" = "此功能須IOS版本%.1f及以上";
 "error.requiredNewerMastodon" = "實例版本%@及以上才能使用此功能\n（如果在iMast運行時實例升級了，重啟即可使用此功能）\n請向各自的管理員詢問Mastodon實例的升級計劃";
 "error.pleaseInputInstance" = "請輸入實例";
-"error.tryToChainItself" = "サーバーから無効なデータが返されました: %1$@ のID %2$@ は %3$@ 内で自分自身を参照しています";
+"error.tryToChainItself" = "伺服器端回傳無效資料: %1$@ 的 ID %2$@ 在 %3$@ 裡參考了它自己本身";
 
 "error.unknown.title" = "未知錯誤";
 "error.unknown.text" = "如果可以，請將此提示出現時的情況告訴給 @imast_ios@mstdn.rinsuki.net，並附上以下代碼。";
