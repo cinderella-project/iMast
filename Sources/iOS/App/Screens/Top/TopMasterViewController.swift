@@ -24,9 +24,12 @@
 import UIKit
 import iMastiOSCore
 import SwiftUI
+import GRDB
 
 class TopMasterViewController: UITableViewController {
     private var userTokens = MastodonUserToken.getAllUserTokens()
+    private var observer: TransactionObserver?
+    private var firstUpdated = true
 
     enum Section {
         case pinned
@@ -58,7 +61,9 @@ class TopMasterViewController: UITableViewController {
         // Do any additional setup after loading the view.
         title = "iMast"
         navigationItem.largeTitleDisplayMode = .always
-        
+    }
+    
+    func refresh(animated: Bool) {
         var snapshot = dataSource.plainSnapshot()
         snapshot.appendSections([.accounts, .others])
         snapshot.appendItems(userTokens.map { .account(accountId: $0.id!) }, toSection: .accounts)
@@ -68,7 +73,31 @@ class TopMasterViewController: UITableViewController {
             .helpAndFeedback,
             .aboutThisApp,
         ], toSection: .others)
-        dataSource.apply(snapshot, animatingDifferences: false)
+        dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard observer == nil else {
+            // already observing
+            return
+        }
+        
+        let observation = ValueObservation.tracking { db in
+            try MastodonUserToken.getAllUserTokens(in: db)
+        }
+        
+        observer = try? observation.start(in: dbQueue, onChange: { [weak self] userTokens in
+            guard let strongSelf = self else { return }
+            strongSelf.userTokens = userTokens
+            DispatchQueue.main.async {
+                strongSelf.refresh(animated: !strongSelf.firstUpdated)
+                strongSelf.firstUpdated = false
+            }
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        observer = nil // stop observe
     }
     
     func cellProvider(_ tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? {
@@ -100,6 +129,27 @@ class TopMasterViewController: UITableViewController {
             cell.accessoryType = .disclosureIndicator
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return nil
+        }
+        
+        guard case .account(let accountId) = item, let userToken = userTokens.first(where: { $0.id == accountId }) else {
+            return nil
+        }
+        
+        return .init() { (elements) -> UIMenu? in
+            return .init(children: [
+                UIAction(title: "Move To The Top", image: .init(systemName: "arrow.up.to.line.compact")) { _ in
+                    // TODO: find a better way to avoid conflicting animation
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700)) {
+                        userToken.use()
+                    }
+                },
+            ])
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
