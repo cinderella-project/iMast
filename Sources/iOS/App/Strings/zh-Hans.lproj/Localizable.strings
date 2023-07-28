@@ -33,6 +33,9 @@
 "localTimeline" = "本站时间轴";
 "localTimeline.short" = "本站时间轴";
 
+"federatedTimeline" = "連合タイムライン";
+"federatedTimeline.short" = "連合";
+
 "post" = "发布";
 "streaming" = "Streaming";
 "streamingStatus" = "状态：%@";
