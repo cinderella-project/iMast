@@ -33,6 +33,9 @@
 "localTimeline" = "ローカルタイムライン";
 "localTimeline.short" = "LTL";
 
+"federatedTimeline" = "連合タイムライン";
+"federatedTimeline.short" = "連合";
+
 "post" = "投稿";
 "streaming" = "Streaming";
 "streamingStatus" = "状態: %@";

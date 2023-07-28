@@ -41,12 +41,8 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     enum Item: Hashable {
         case profile
         case followRequests
-        case home
-        case notifications
-        case local
-        case homeAndLocal
+        case viewDescriptor(CodableViewDescriptor)
         case bookmarks
-        case list(MastodonList)
     }
     
     required init(with input: Input, environment: Environment) {
@@ -100,9 +96,9 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         snapshot.appendSections([.profile])
         snapshot.appendItems([.profile, .followRequests])
         snapshot.appendSections([.timelines])
-        snapshot.appendItems([.home, .notifications, .local])
+        snapshot.appendItems([.viewDescriptor(.home), .viewDescriptor(.notifications), .viewDescriptor(.local), .viewDescriptor(.federated)])
         if version >= MastodonVersionStringToInt("3.3.0") {
-            snapshot.appendItems([.homeAndLocal])
+            snapshot.appendItems([.viewDescriptor(.homeAndLocal)])
         }
         snapshot.appendSections([.dependedByMastodonVersion])
         if version >= MastodonVersionStringToInt("3.1.0") {
@@ -110,7 +106,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         }
         if lists.count > 0 {
             snapshot.appendSections([.lists])
-            snapshot.appendItems(lists.map { .list($0) })
+            snapshot.appendItems(lists.map { .viewDescriptor(.list(id: $0.id.string, title: $0.title)) })
         }
         dataSource.defaultRowAnimation = .fade
         dataSource.apply(snapshot, animatingDifferences: !isFirstUpdate)
@@ -140,30 +136,14 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         case .followRequests:
             cell = .init(style: .value1, reuseIdentifier: nil)
             cell.textLabel?.text = L10n.UserProfile.Actions.followRequestsList
-        case .home:
+        case .viewDescriptor(let descriptor):
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = L10n.Localizable.HomeTimeline.short
-            cell.imageView?.image = UIImage(systemName: "house")
-        case .notifications:
-            cell = .init(style: .default, reuseIdentifier: nil)
-            cell.imageView?.image = UIImage(systemName: "bell")
-            cell.textLabel?.text = L10n.Localizable.notifications
-        case .local:
-            cell = .init(style: .default, reuseIdentifier: nil)
-            cell.imageView?.image = UIImage(systemName: "person.and.person")
-            cell.textLabel?.text = L10n.Localizable.LocalTimeline.short
-        case .homeAndLocal:
-            cell = .init(style: .default, reuseIdentifier: nil)
-            cell.imageView?.image = UIImage(systemName: "display.2")
-            cell.textLabel?.text = "Home + Local"
+            cell.textLabel?.text = descriptor.localizedShortTitle
+            cell.imageView?.image = descriptor.systemImage
         case .bookmarks:
             cell = .init(style: .default, reuseIdentifier: nil)
             cell.imageView?.image = UIImage(systemName: "bookmark")
             cell.textLabel?.text = L10n.Localizable.bookmarks
-        case .list(let list):
-            cell = .init(style: .default, reuseIdentifier: nil)
-            cell.imageView?.image = UIImage(systemName: "list.bullet")
-            cell.textLabel?.text = list.title
         }
         return cell
     }
@@ -180,24 +160,11 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         case .followRequests:
             let vc = FollowRequestsListTableViewController.instantiate(environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-        case .home:
-            let vc = HomeTimelineViewController.instantiate(.plain, environment: environment)
-            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-        case .notifications:
-            let vc = NotificationTableWrapperViewController.instantiate(environment: environment)
-            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-        case .local:
-            let vc = LocalTimelineViewController.instantiate(.plain, environment: environment)
-            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-        case .homeAndLocal:
-            let vc = HomeAndLocalTimelineViewController.instantiate(.plain, environment: environment)
-            showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         case .bookmarks:
             let vc = BookmarksTableViewController.instantiate(.init(), environment: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
-        case .list(let list):
-            let vc = ListTimelineViewController.instantiate(.plain, environment: environment)
-            vc.list = list
+        case .viewDescriptor(let descriptor):
+            let vc = descriptor.createViewController(with: environment)
             showDetailViewController(UINavigationController(rootViewController: vc), sender: self)
         }
     }
@@ -206,22 +173,44 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         guard let item = dataSource.itemIdentifier(for: indexPath) else {
             return nil
         }
+        var ourElements: [UIMenuElement] = []
         switch item {
-        case .list(let list):
-            print(list)
-            return .init(identifier: nil, previewProvider: nil) { (elements) -> UIMenu? in
-                print(elements)
-                return .init(children: [
-                    UIAction(title: "リストを編集", image: UIImage(systemName: "pencil")) { [weak self] _ in
+        case .viewDescriptor(let descriptor):
+            // TODO: 新TOP画面お気に入り
+//            ourElements.append(UIAction(title: "お気に入りに追加", image: UIImage(systemName: "star")) { [weak self] _ in
+//            })
+            switch descriptor {
+            case .list(id: let id, title: _):
+                ourElements.append(UIAction(title: "リストを編集", image: UIImage(systemName: "pencil")) { [weak self] _ in
+                    Task {
                         guard let strongSelf = self else { return }
-                        strongSelf.present(
-                            ModalNavigationViewController(rootViewController: EditListInfoViewController.instantiate(list, environment: strongSelf.environment)),
-                            animated: true, completion: nil
-                        )
+                        do {
+                            let list = try await MastodonEndpoint.GetListFromId(id: .string(id)).request(with: strongSelf.environment)
+                            await MainActor.run {
+                                strongSelf.present(
+                                    ModalNavigationViewController(rootViewController: EditListInfoViewController.instantiate(list, environment: strongSelf.environment)),
+                                    animated: true, completion: nil
+                                )
+                            }
+                        } catch {
+                            await MainActor.run {
+                                strongSelf.errorReport(error: error)
+                            }
+                        }
                     }
-                ])
+                })
+            default:
+                break
             }
         default:
+            break
+        }
+        if ourElements.count > 0 {
+            return .init(identifier: nil, previewProvider: nil) { (elements) -> UIMenu? in
+                print(elements)
+                return .init(children: ourElements.reversed())
+            }
+        } else {
             return nil
         }
     }

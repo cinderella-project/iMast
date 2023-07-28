@@ -29,6 +29,8 @@ internal enum L10n {
     internal static let disconnect = L10n.tr("Localizable", "disconnect")
     /// ふぁぼ一覧
     internal static let favouritesList = L10n.tr("Localizable", "favouritesList")
+    /// 連合タイムライン
+    internal static let federatedTimeline = L10n.tr("Localizable", "federatedTimeline")
     /// 取得失敗
     internal static let fetchFailed = L10n.tr("Localizable", "fetchFailed")
     /// ヘルプ / Feedback
@@ -146,6 +148,10 @@ internal enum L10n {
         /// 謎のエラー
         internal static let title = L10n.tr("Localizable", "error.unknown.title")
       }
+    }
+    internal enum FederatedTimeline {
+      /// 連合
+      internal static let short = L10n.tr("Localizable", "federatedTimeline.short")
     }
     internal enum Help {
       /// ヘルプ

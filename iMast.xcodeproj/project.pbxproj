@@ -132,6 +132,7 @@
 		CE6AB7F821CB66EB0052FA36 /* NotificationCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6AB7F621CB66EB0052FA36 /* NotificationCellViewController.swift */; };
 		CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */; };
 		CE71AF4E224221090054A008 /* NSAttributedString+emojify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */; };
+		CE73EFB02A74272E008B0A58 /* FederatedTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73EFAF2A74272E008B0A58 /* FederatedTimelineViewController.swift */; };
 		CE75AE1821C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CE75AE1B21C0EF2100BA3C9F /* Intents.intentdefinition */; };
 		CE77940F25D9948000AF9F2C /* Timeline.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE854B8B25D4C0AB00C30BD7 /* Timeline.strings */; };
@@ -147,6 +148,8 @@
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
 		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
 		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */; };
+		CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
+		CE83C85F2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
 		CE8AAC4A2916333500AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
 		CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
@@ -261,6 +264,7 @@
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
 		CEC8365F23C2126100E4A957 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC8365E23C2126000E4A957 /* strings.swift */; };
 		CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
+		CECD766E2A74164C00A56FD0 /* CodableViewDescriptor+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */; };
 		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
 		CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */; };
 		CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */; };
@@ -767,6 +771,7 @@
 		CE6EA6E1217CE62100809A65 /* NSRange+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRange+optional.swift"; sourceTree = "<group>"; };
 		CE71AF4D224221090054A008 /* NSAttributedString+emojify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+emojify.swift"; sourceTree = "<group>"; };
 		CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojifyProtocol.swift; sourceTree = "<group>"; };
+		CE73EFAF2A74272E008B0A58 /* FederatedTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FederatedTimelineViewController.swift; sourceTree = "<group>"; };
 		CE75AE1C21C0EF2400BA3C9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		CE75AE2021C0EF3100BA3C9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
 		CE75AE2221C0EF3200BA3C9F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -785,6 +790,7 @@
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
+		CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableViewDescriptor.swift; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
 		CE8AAC442916330000AC7FB4 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
@@ -879,6 +885,7 @@
 		CEC8365E23C2126000E4A957 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsTableViewController.swift; sourceTree = "<group>"; };
+		CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodableViewDescriptor+localized.swift"; sourceTree = "<group>"; };
 		CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollSelectorViewController.swift; sourceTree = "<group>"; };
 		CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollVoteButtonViewController.swift; sourceTree = "<group>"; };
 		CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollStatViewController.swift; sourceTree = "<group>"; };
@@ -1271,6 +1278,7 @@
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
 				CE9ABDA022E84D5C00621877 /* SceneDelegate.swift */,
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
+				CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */,
 				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CE4D388023BD17E000543E72 /* Screens */,
 				CEE3571E1FF51A3900675DFC /* CustomViews */,
@@ -1387,6 +1395,7 @@
 				CEAE471A24E8C21500645946 /* WeakRef.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
 				CE98789C26B5053F008A0A88 /* CodableVoid.swift */,
+				CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
 				CE5D9DF626B3C19500895234 /* deferAsync.swift */,
 				CE98789926B4909C008A0A88 /* Hydra+promiseAsync.swift */,
@@ -1939,6 +1948,7 @@
 				2A108F8E1ED4A40600BE1404 /* HomeTimelineViewController.swift */,
 				CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */,
 				2A108F921ED55C4F00BE1404 /* LocalTimelineViewController.swift */,
+				CE73EFAF2A74272E008B0A58 /* FederatedTimelineViewController.swift */,
 				CE6977881F0F086E00C1B234 /* UserTimelineViewController.swift */,
 				CE9C344D218473DF002C6E80 /* HashtagTimelineViewController.swift */,
 				CE7ABB3F1FC5B1880087B387 /* ListTimelineViewController.swift */,
@@ -3468,6 +3478,7 @@
 				2A66E7FE1EAF374400735081 /* AddAccountSuccessViewController.swift in Sources */,
 				2A108F911ED559EF00BE1404 /* TimelineViewController.swift in Sources */,
 				CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */,
+				CECD766E2A74164C00A56FD0 /* CodableViewDescriptor+localized.swift in Sources */,
 				CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */,
 				CEE35D982375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift in Sources */,
 				CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */,
@@ -3482,6 +3493,7 @@
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
 				CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */,
+				CE73EFB02A74272E008B0A58 /* FederatedTimelineViewController.swift in Sources */,
 				CE8C713D21549D4000D53BCF /* NSAttributedString+toMutable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3536,6 +3548,7 @@
 				CE43BEE323779E2600133C86 /* DatabaseMisc.swift in Sources */,
 				CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */,
 				CE8EFB5425C94523004FFE4B /* GoodUtils.swift in Sources */,
+				CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */,
 				CEE4E2E62377E96B00406371 /* NSRange+optional.swift in Sources */,
 				CE5460A427F593C400A676B3 /* MastodonPostContent.swift in Sources */,
 				CE522BE724159C370048E334 /* MastodonEndpointProtocol.swift in Sources */,
@@ -3720,6 +3733,7 @@
 				CEE4E3602377F83C00406371 /* MastodonAccount.swift in Sources */,
 				CE522BE824159C380048E334 /* MastodonEndpointProtocol.swift in Sources */,
 				CEE4E36A2377F83C00406371 /* MastodonIDAvailable.swift in Sources */,
+				CE83C85F2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */,
 				CEB60B572819EA21001D26B7 /* ImageCache.swift in Sources */,
 				CE9BB390241C4F03004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
 				CEE4E36E2377F84200406371 /* MastodonApp.swift in Sources */,
