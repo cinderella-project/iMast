@@ -32,6 +32,6 @@ class FederatedTimelineViewController: TimelineViewController {
     }
     
     override func websocketEndpoint() -> String? {
-        return "public:local"
+        return "public"
     }
 }
