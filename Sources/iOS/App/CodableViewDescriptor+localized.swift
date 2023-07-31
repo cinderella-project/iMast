@@ -117,8 +117,8 @@ extension CodableViewDescriptor {
 
 private func createTitleMenuFromUserToken(vc: UIViewController, userToken: MastodonUserToken, store: Int) -> [UIMenuElement] {
     let descriptors: [CodableViewDescriptor] = [.home, .notifications, .local, .federated, .homeAndLocal]
-    return descriptors.map { descriptor in
-        return UIAction(title: descriptor.localizedShortTitle, image: descriptor.systemImage) { [weak vc, weak userToken] _ in
+    let makeAction = { [weak vc, weak userToken] (descriptor: CodableViewDescriptor) in
+        return UIAction(title: descriptor.localizedShortTitle, image: descriptor.systemImage) { [weak vc, weak userToken] (_: UIAction) in
             guard let vc = vc, let userToken = userToken else {
                 return
             }
@@ -135,4 +135,21 @@ private func createTitleMenuFromUserToken(vc: UIViewController, userToken: Masto
             }
         }
     }
+    
+    var elements: [UIMenuElement] = descriptors.map { makeAction($0) }
+    elements.append(UIMenu(title: L10n.Localizable.lists, image: UIImage(systemName: "list.bullet"), children: [
+        UIDeferredMenuElement({ [weak userToken] callback in
+            Task { [weak userToken] in
+                var items: [UIMenuElement] = []
+                if let userToken = userToken {
+                    items.append(contentsOf: ((try? await MastodonEndpoint.MyLists().request(with: userToken)) ?? []).map { makeAction(.list(id: $0.id.string, title: $0.title)) })
+                }
+                await MainActor.run { [items] in
+                    callback(items)
+                }
+            }
+        })
+    ]))
+    
+    return elements
 }
