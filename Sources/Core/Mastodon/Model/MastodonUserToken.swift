@@ -330,4 +330,26 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     public static func == (lhs: MastodonUserToken, rhs: MastodonUserToken) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    public func getSelectedTabs() throws -> [Int: CodableViewDescriptor] {
+        let rows = try dbQueue.inDatabase { try Row.fetchAll($0, sql: "SELECT tab_index, version, value FROM user_selected_tabs WHERE user = ?", arguments: [self.id]) }
+        var ret: [Int: CodableViewDescriptor] = [:]
+        for row in rows {
+            if row["version"] != 1 {
+                continue
+            }
+            guard let index: Int = row["tab_index"], let value: String = row["value"] else {
+                continue
+            }
+            ret[index] = try JSONDecoder().decode(CodableViewDescriptor.self, from: value.data(using: .utf8)!)
+        }
+        return ret
+    }
+    
+    public func setSelectedTab(index: Int, descriptor: CodableViewDescriptor) throws {
+        let json = String(data: try JSONEncoder().encode(descriptor), encoding: .utf8)!
+        try dbQueue.inDatabase { db in
+            try db.execute(sql: "INSERT INTO user_selected_tabs (user, tab_index, version, value) VALUES (?, ?, 1, ?) ON CONFLICT (user, tab_index) DO UPDATE SET version = excluded.version, value = excluded.value", arguments: [self.id, index, json])
+        }
+    }
 }

@@ -24,6 +24,7 @@
 import Foundation
 import UIKit
 import iMastiOSCore
+import Mew
 
 extension CodableViewDescriptor {
     var localizedLongTitle: String {
@@ -81,7 +82,7 @@ extension CodableViewDescriptor {
         return UIImage(systemName: systemImageName)
     }
     
-    func createViewController(with userToken: MastodonUserToken) -> UIViewController {
+    private func _internal_createViewController(with userToken: MastodonUserToken) -> UIViewController {
         switch self {
         case .home:
             return HomeTimelineViewController.instantiate(.plain, environment: userToken)
@@ -97,6 +98,41 @@ extension CodableViewDescriptor {
             let vc = ListTimelineViewController.instantiate(.plain, environment: userToken)
             vc.list = .init(id: .string(id), title: title)
             return vc
+        }
+    }
+    
+    func createViewController(with userToken: MastodonUserToken, store: Int? = nil) -> UIViewController {
+        let vc = _internal_createViewController(with: userToken)
+        if let store = store {
+            vc.navigationItem.titleMenuProvider = { [weak vc, weak userToken] suggestions in
+                guard let vc = vc, let userToken = userToken else {
+                    return UIMenu()
+                }
+                return UIMenu(children: createTitleMenuFromUserToken(vc: vc, userToken: userToken, store: store))
+            }
+        }
+        return vc
+    }
+}
+
+private func createTitleMenuFromUserToken(vc: UIViewController, userToken: MastodonUserToken, store: Int) -> [UIMenuElement] {
+    let descriptors: [CodableViewDescriptor] = [.home, .notifications, .local, .federated, .homeAndLocal]
+    return descriptors.map { descriptor in
+        return UIAction(title: descriptor.localizedShortTitle, image: descriptor.systemImage) { [weak vc, weak userToken] _ in
+            guard let vc = vc, let userToken = userToken else {
+                return
+            }
+            let newVC = descriptor.createViewController(with: userToken, store: store)
+            vc.navigationController?.setViewControllers([newVC], animated: true)
+            vc.navigationController?.tabBarItem.title = descriptor.localizedShortTitle
+            vc.navigationController?.tabBarItem.image = descriptor.systemImage
+            do {
+                try userToken.setSelectedTab(index: store, descriptor: descriptor)
+            } catch {
+                DispatchQueue.main.async {
+                    newVC.errorReport(error: error)
+                }
+            }
         }
     }
 }

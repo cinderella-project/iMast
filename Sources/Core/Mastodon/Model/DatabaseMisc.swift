@@ -37,6 +37,7 @@ func getFileURL() -> URL {
         print("migrate: App Library -> AppGroup")
         try! FileManager.default.moveItem(atPath: NSHomeDirectory()+"/Library/imast.sqlite", toPath: fileURL.path)
     }
+    print("database: ", fileURL.path)
     return fileURL
 }
 public func initDatabase() {
@@ -59,5 +60,14 @@ public func initDatabase() {
         }
     }
     #endif
+    migrator.registerMigration("user_selected_tabs") { db in
+        try db.create(table: "user_selected_tabs") { table in
+            table.column("user", .text).notNull().references("user", column: "id", onDelete: .cascade, onUpdate: .cascade, deferred: true)
+            table.column("tab_index", .integer).notNull().check { $0 >= 0 && $0 <= 3 }
+            table.column("version", .integer).notNull().defaults(to: 1).check { $0 == 1 }
+            table.column("value", .text).notNull()
+            table.primaryKey(["user", "tab_index"])
+        }
+    }
     try! migrator.migrate(dbQueue)
 }

@@ -44,16 +44,22 @@ class MainTabBarController: UITabBarController, Instantiatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for descriptor in [
-            CodableViewDescriptor.home,
-            CodableViewDescriptor.notifications,
-            CodableViewDescriptor.local,
-        ] {
-            let vc = UINavigationController(rootViewController: descriptor.createViewController(with: environment))
+        var currentSelectedTabs: [Int: CodableViewDescriptor] = [:]
+        do {
+            currentSelectedTabs = try environment.getSelectedTabs()
+        } catch {
+            self.errorReport(error: error)
+        }
+        lazyLoadVCs = [
+            currentSelectedTabs[0] ?? CodableViewDescriptor.home,
+            currentSelectedTabs[1] ?? CodableViewDescriptor.notifications,
+            currentSelectedTabs[2] ?? CodableViewDescriptor.local,
+        ].enumerated().map { (i, descriptor) -> UIViewController in
+            let vc = UINavigationController(rootViewController: descriptor.createViewController(with: environment, store: i))
             vc.tabBarItem.image = descriptor.systemImage
             vc.tabBarItem.title = descriptor.localizedShortTitle
-            vc.tabBarItem.accessibilityIdentifier = "descriptor:" + String(data: try! JSONEncoder().encode(descriptor), encoding: .utf8)!
-            lazyLoadVCs.append(vc)
+            vc.tabBarItem.accessibilityIdentifier = "vc[\(i)]"
+            return vc
         }
 
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
