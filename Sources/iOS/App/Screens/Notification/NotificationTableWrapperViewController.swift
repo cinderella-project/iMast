@@ -101,6 +101,7 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
         navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.largeTitleDisplayMode = .never
         changeContainer()
     }
     

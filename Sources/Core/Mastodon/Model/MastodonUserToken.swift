@@ -352,4 +352,52 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
             try db.execute(sql: "INSERT INTO user_selected_tabs (user, tab_index, version, value) VALUES (?, ?, 1, ?) ON CONFLICT (user, tab_index) DO UPDATE SET version = excluded.version, value = excluded.value", arguments: [self.id, index, json])
         }
     }
+    
+    public struct PinnedScreen {
+        public let id: Int
+        public let userTokenId: String
+        public let position: Double
+        public let descriptor: CodableViewDescriptor
+        
+        init?(from row: Row) {
+            id = row["id"]
+            userTokenId = row["user"]
+            position = row["position"]
+            guard let version: Int = row["version"], version == 1 else {
+                return nil
+            }
+            let value: String = row["value"]
+            guard let descriptor = try? JSONDecoder().decode(CodableViewDescriptor.self, from: value.data(using: .utf8)!) else {
+                return nil
+            }
+            self.descriptor = descriptor
+        }
+    }
+    
+    static public func getPinnedScreens(in db: Database) throws -> [PinnedScreen] {
+        return try Row.fetchAll(db, sql: "SELECT id, user, position, version, value FROM user_pinned_screens ORDER BY position ASC").compactMap { PinnedScreen(from: $0) }
+    }
+    
+    static public func setPinnedScreenPosition(in db: Database, id: Int, position: Double) throws {
+        return try db.execute(sql: "UPDATE user_pinned_screens SET position = ? WHERE id = ?", arguments: [position, id])
+    }
+    
+    public func addPinnedScreen(descriptor: CodableViewDescriptor) throws {
+        return try dbQueue.inDatabase { db in
+            try db.execute(sql: "INSERT INTO user_pinned_screens(user, position, version, value) VALUES (?, IFNULL((SELECT MAX(position) + 65535.0 FROM user_pinned_screens ORDER BY position DESC LIMIT 1), 65535.0), 1, ?)", arguments: [
+                self.id,
+                String(data: try JSONEncoder().encode(descriptor), encoding: .utf8)!,
+            ])
+        }
+    }
+    
+    static public func removePinnedScreen(id: Int) throws {
+        return try dbQueue.inDatabase { db in
+            try db.execute(sql: "DELETE FROM user_pinned_screens WHERE id = ?", arguments: [id])
+        }
+    }
+    
+    static public func defragPinnedScreens(in db: Database, padding: Double = 65535.0) throws {
+        try db.execute(sql: "UPDATE user_pinned_screens SET position = new_pos FROM (SELECT id, ROW_NUMBER() OVER (ORDER BY position ASC) * ? as new_pos FROM user_pinned_screens) as new_pos_table WHERE user_pinned_screens.id = new_pos_table.id", arguments: [padding])
+    }
 }

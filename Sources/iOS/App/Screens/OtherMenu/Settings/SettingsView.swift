@@ -315,6 +315,7 @@ struct SettingsView: View {
 
 struct DeveloperSettingsView: View {
     @AppStorage(defaults: .$workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) var workaroundOfiOS16_TextKit2_WontUpdatesLinkColor
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         Form {
@@ -323,6 +324,25 @@ struct DeveloperSettingsView: View {
                     Text("投稿の本文表示に TextKit 1 を使用").workaroundForSubtitleSpacing()
                     Text("ハーフモーダルに関連してタイムラインにある投稿内のリンクの色がおかしくなる現象への Workaround です。")
                 }
+            }
+            Section("user_pinned_screens") {
+                Button {
+                    try! dbQueue.inDatabase { db in
+                        try MastodonUserToken.defragPinnedScreens(in: db)
+                    }
+                    dismiss()
+                } label: {
+                    Text("Force Defrag (padding=default)")
+                }
+                Button(role: .destructive) {
+                    try! dbQueue.inDatabase { db in
+                        try MastodonUserToken.defragPinnedScreens(in: db, padding: 1)
+                    }
+                    dismiss()
+                } label: {
+                    Text("Force Defrag (padding=1, causes re-defrag in next time)")
+                }
+
             }
         }
         .navigationTitle("内部設定")

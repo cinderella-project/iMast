@@ -176,9 +176,14 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         var ourElements: [UIMenuElement] = []
         switch item {
         case .viewDescriptor(let descriptor):
-            // TODO: 新TOP画面お気に入り
-//            ourElements.append(UIAction(title: "お気に入りに追加", image: UIImage(systemName: "star")) { [weak self] _ in
-//            })
+            ourElements.append(UIAction(title: "トップ画面に追加", image: UIImage(systemName: "star")) { [weak self] _ in
+                guard let strongSelf = self else { return }
+                do {
+                    try strongSelf.environment.addPinnedScreen(descriptor: descriptor)
+                } catch {
+                    strongSelf.errorReport(error: error)
+                }
+            })
             switch descriptor {
             case .list(id: let id, title: _):
                 ourElements.append(UIAction(title: "リストを編集", image: UIImage(systemName: "pencil")) { [weak self] _ in

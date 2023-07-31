@@ -69,5 +69,14 @@ public func initDatabase() {
             table.primaryKey(["user", "tab_index"])
         }
     }
+    migrator.registerMigration("user_pinned_screens") { db in
+        try db.create(table: "user_pinned_screens") { table in
+            table.column("id", .integer).primaryKey(autoincrement: true).notNull()
+            table.column("position", .double).notNull().unique()
+            table.column("user", .text).notNull().references("user", column: "id", onDelete: .cascade, onUpdate: .cascade, deferred: true)
+            table.column("version", .integer).notNull().defaults(to: 1).check { $0 == 1 }
+            table.column("value", .text).notNull()
+        }
+    }
     try! migrator.migrate(dbQueue)
 }
