@@ -33,8 +33,8 @@
 "localTimeline" = "로컬 타임라인";
 "localTimeline.short" = "로컬";
 
-"federatedTimeline" = "連合タイムライン";
-"federatedTimeline.short" = "連合";
+"federatedTimeline" = "연합 타임라인";
+"federatedTimeline.short" = "연합";
 
 "post" = "글";
 "streaming" = "스트리밍";
