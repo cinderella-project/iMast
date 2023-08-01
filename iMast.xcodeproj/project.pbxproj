@@ -117,12 +117,6 @@
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
 		CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
-		CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554C923C25DDC0084FE1D /* Localizable.strings */; };
-		CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CB23C25DDC0084FE1D /* Notification.strings */; };
-		CE6554D523C25DDC0084FE1D /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CD23C25DDC0084FE1D /* Search.strings */; };
-		CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CF23C25DDC0084FE1D /* UserProfile.strings */; };
-		CE6554D723C25DDC0084FE1D /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554D123C25DDC0084FE1D /* Login.strings */; };
-		CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554E123C26C250084FE1D /* NewPost.strings */; };
 		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
 		CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
@@ -151,8 +145,8 @@
 		CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE83C85F2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
-		CE8AAC4A2916333500AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
-		CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Localizable.strings */; };
+		CE8AAC4A2916333500AC7FB4 /* Core.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Core.strings */; };
+		CE8AAC4B2916333600AC7FB4 /* Core.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8AAC492916332F00AC7FB4 /* Core.strings */; };
 		CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
 		CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC4E2916343800AC7FB4 /* strings.swift */; };
 		CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */; };
@@ -262,7 +256,6 @@
 		CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0321074EFB003ECE10 /* NotificationService.swift */; };
 		CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
-		CEC8365F23C2126100E4A957 /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC8365E23C2126000E4A957 /* strings.swift */; };
 		CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
 		CECD766E2A74164C00A56FD0 /* CodableViewDescriptor+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */; };
 		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
@@ -270,7 +263,6 @@
 		CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */; };
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
 		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CEDF86F823CF011100C8A69A /* OtherMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDF86FA23CF011100C8A69A /* OtherMenu.strings */; };
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
@@ -329,6 +321,16 @@
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
+		CEF47F602A792F2400D1AEAB /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
+		CEF47F672A79338800D1AEAB /* strings_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF47F662A79338800D1AEAB /* strings_ios.swift */; };
+		CEF47F682A7934B700D1AEAB /* Notification.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CB23C25DDC0084FE1D /* Notification.strings */; };
+		CEF47F692A7934B700D1AEAB /* NewPost.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554E123C26C250084FE1D /* NewPost.strings */; };
+		CEF47F6B2A7934B700D1AEAB /* Login.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554D123C25DDC0084FE1D /* Login.strings */; };
+		CEF47F6C2A7934B700D1AEAB /* Preferences.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF8389024C289AA00C6919A /* Preferences.strings */; };
+		CEF47F6D2A7934B700D1AEAB /* UserProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CF23C25DDC0084FE1D /* UserProfile.strings */; };
+		CEF47F6E2A7934B700D1AEAB /* OtherMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDF86FA23CF011100C8A69A /* OtherMenu.strings */; };
+		CEF47F6F2A7934B700D1AEAB /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CD23C25DDC0084FE1D /* Search.strings */; };
+		CEF47F702A79350B00D1AEAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554C923C25DDC0084FE1D /* Localizable.strings */; };
 		CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */; };
 		CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */; };
 		CEF6C7D123B122D200E0ADA1 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */; };
@@ -340,7 +342,6 @@
 		CEF763FF25DF7AB000902415 /* LayeredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF763FD25DF7AB000902415 /* LayeredImageView.swift */; };
 		CEF7641A25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */; };
 		CEF7641B25DF85DC00902415 /* AppearancePreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7641925DF85DC00902415 /* AppearancePreferencesPaneViewController.swift */; };
-		CEF8388E24C289AA00C6919A /* Preferences.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF8389024C289AA00C6919A /* Preferences.strings */; };
 		CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF851F5223742D100FEA0F0 /* String+emptyAsNil.swift */; };
 		CEFB983F25C7EDC100D55B03 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */; };
 		CEFB985A25C7F55800D55B03 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB985925C7F54A00D55B03 /* PostView.swift */; };
@@ -522,15 +523,6 @@
 				CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE8AAC462916331500AC7FB4 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CE90CD01237804CD001C8E80 /* Embed App Extensions */ = {
@@ -794,12 +786,12 @@
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
 		CE8AAC442916330000AC7FB4 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		CE8AAC482916332F00AC7FB4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8AAC482916332F00AC7FB4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Core.strings; sourceTree = "<group>"; };
 		CE8AAC4E2916343800AC7FB4 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
-		CE8AAC512916509A00AC7FB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CE8AAC522916509C00AC7FB4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CE8AAC532916509D00AC7FB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CE8AAC542916509F00AC7FB4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE8AAC512916509A00AC7FB4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Core.strings"; sourceTree = "<group>"; };
+		CE8AAC522916509C00AC7FB4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Core.strings"; sourceTree = "<group>"; };
+		CE8AAC532916509D00AC7FB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Core.strings; sourceTree = "<group>"; };
+		CE8AAC542916509F00AC7FB4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Core.strings; sourceTree = "<group>"; };
 		CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonErrorResponse.swift; sourceTree = "<group>"; };
 		CE8AAC58291777B900AC7FB4 /* MastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAPI.swift; sourceTree = "<group>"; };
 		CE8AAC5C291780A900AC7FB4 /* UIViewController+resolveUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+resolveUserProfile.swift"; sourceTree = "<group>"; };
@@ -882,7 +874,6 @@
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CEC8365C23C1FA6100E4A957 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		CEC8365E23C2126000E4A957 /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
 		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
 		CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsTableViewController.swift; sourceTree = "<group>"; };
 		CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodableViewDescriptor+localized.swift"; sourceTree = "<group>"; };
@@ -934,6 +925,8 @@
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
+		CEF47F612A79322000D1AEAB /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		CEF47F662A79338800D1AEAB /* strings_ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings_ios.swift; sourceTree = "<group>"; };
 		CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetViewController.swift; sourceTree = "<group>"; };
 		CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetView.swift; sourceTree = "<group>"; };
 		CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpacerView.swift; path = Sources/Mac/Core/SpacerView.swift; sourceTree = SOURCE_ROOT; };
@@ -1271,8 +1264,7 @@
 		CE3D453523766DE5006F1198 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				CEC8365C23C1FA6100E4A957 /* swiftgen.yml */,
-				CEC8366723C22AAC00E4A957 /* Strings */,
+				CEF47F612A79322000D1AEAB /* swiftgen.yml */,
 				CEC8365B23C1F9B800E4A957 /* Generated */,
 				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
 				2AF3521A1EAB9C5500777C2E /* AppDelegate.swift */,
@@ -1319,6 +1311,9 @@
 		CE43BE81237775F000133C86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CEC8365C23C1FA6100E4A957 /* swiftgen.yml */,
+				CEF47F652A79338800D1AEAB /* Generated */,
+				CEC8366723C22AAC00E4A957 /* Strings */,
 				CEA787D12696EE60002C9A5C /* Extensions */,
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CE3DFEDF1FEE4C51005A480D /* DefaultsKey.swift */,
@@ -1627,7 +1622,7 @@
 		CE8AAC402916327800AC7FB4 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				CE8AAC492916332F00AC7FB4 /* Localizable.strings */,
+				CE8AAC492916332F00AC7FB4 /* Core.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -1837,7 +1832,6 @@
 			isa = PBXGroup;
 			children = (
 				CEC617FA24C5279100E2FF97 /* assets.swift */,
-				CEC8365E23C2126000E4A957 /* strings.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -2100,6 +2094,14 @@
 			path = iMastMacCoreTests;
 			sourceTree = "<group>";
 		};
+		CEF47F652A79338800D1AEAB /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				CEF47F662A79338800D1AEAB /* strings_ios.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		CEF6C7CB23B0B41B00E0ADA1 /* AddMastodonAccountSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -2257,11 +2259,10 @@
 			buildPhases = (
 				F4C7F871D1C6E27DB505209E /* [CP] Check Pods Manifest.lock */,
 				CE43BE7B237775F000133C86 /* Headers */,
-				CE8AAC4C2916336F00AC7FB4 /* ShellScript */,
+				CE8AAC4C2916336F00AC7FB4 /* SwiftGen */,
 				CE43BE7C237775F000133C86 /* Sources */,
 				CE43BE7D237775F000133C86 /* Frameworks */,
 				CE43BE7E237775F000133C86 /* Resources */,
-				CE8AAC462916331500AC7FB4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2649,17 +2650,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDF86F823CF011100C8A69A /* OtherMenu.strings in Resources */,
-				CE6554D623C25DDC0084FE1D /* UserProfile.strings in Resources */,
-				CE6554D323C25DDC0084FE1D /* Localizable.strings in Resources */,
-				CE6554D523C25DDC0084FE1D /* Search.strings in Resources */,
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
-				CE6554D723C25DDC0084FE1D /* Login.strings in Resources */,
-				CE6554DF23C26C250084FE1D /* NewPost.strings in Resources */,
-				CE6554D423C25DDC0084FE1D /* Notification.strings in Resources */,
-				CEF8388E24C289AA00C6919A /* Preferences.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2681,7 +2674,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8AAC4A2916333500AC7FB4 /* Localizable.strings in Resources */,
+				CEF47F6E2A7934B700D1AEAB /* OtherMenu.strings in Resources */,
+				CE8AAC4A2916333500AC7FB4 /* Core.strings in Resources */,
+				CEF47F6D2A7934B700D1AEAB /* UserProfile.strings in Resources */,
+				CEF47F6C2A7934B700D1AEAB /* Preferences.strings in Resources */,
+				CEF47F702A79350B00D1AEAB /* Localizable.strings in Resources */,
+				CEF47F6F2A7934B700D1AEAB /* Search.strings in Resources */,
+				CEF47F692A7934B700D1AEAB /* NewPost.strings in Resources */,
+				CEF47F6B2A7934B700D1AEAB /* Login.strings in Resources */,
+				CEF47F682A7934B700D1AEAB /* Notification.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2764,7 +2765,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8AAC4B2916333600AC7FB4 /* Localizable.strings in Resources */,
+				CE8AAC4B2916333600AC7FB4 /* Core.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3178,7 +3179,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# 👇 Shorthand for the script; adjust to where you checked-out Sparkle into is 👇\nalias dosign=\"${PROJECT_DIR}/thirdparty/SparkleBinaries/bin/codesign_embedded_executable\"\n\n# Code Signing identity\nIDENTITY=\"${CODE_SIGN_IDENTITY}\"\nif [ \"$IDENTITY\" == \"\" ]\nthen\n    # If a code signing identity is not specified, use ad hoc signing\n    IDENTITY=\"-\"\nfi\n\n# Shorthand for the Sparkle.framework\nSPARKLE_PATH=${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework\n\ndosign \"$IDENTITY\" \"${BUILT_PRODUCTS_DIR}/${XPCSERVICES_FOLDER_PATH}\"/*.xpc\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Autoupdate\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}/Versions/A/Resources/Updater.app/\"\ndosign \"$IDENTITY\" \"${SPARKLE_PATH}\"\n";
 		};
-		CE8AAC4C2916336F00AC7FB4 /* ShellScript */ = {
+		CE8AAC4C2916336F00AC7FB4 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -3188,13 +3189,14 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftGen;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/Core/Assets/swiftgen.yml\n";
+			shellScript = "\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/Core/Assets/swiftgen.yml\n\"$PODS_ROOT/SwiftGen/bin/swiftgen\" config run --config ./Sources/iOS/Core/swiftgen.yml\n";
 		};
 		CE8EFAB725C93BC7004FFE4B /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3445,7 +3447,6 @@
 				CE3DB68620FB07FE005CFD77 /* PushService.swift in Sources */,
 				CEB9702A240012420028AD2A /* AboutThisAppViewController.swift in Sources */,
 				CEF6DCBF22EEA0890008B64D /* MastodonPostDetailContentViewController.swift in Sources */,
-				CEC8365F23C2126100E4A957 /* strings.swift in Sources */,
 				CE69A90E1FA5D964006D1523 /* EurekaExtension.swift in Sources */,
 				CEE674D928B0561600667E04 /* NewPostView.swift in Sources */,
 				CE5357632375CEC9006340E7 /* TopMasterViewController.swift in Sources */,
@@ -3572,6 +3573,7 @@
 				CE43BEE623779E2600133C86 /* MastodonInstance.swift in Sources */,
 				CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */,
 				CE43BEF323779EB500133C86 /* MastodonIDAvailable.swift in Sources */,
+				CEF47F672A79338800D1AEAB /* strings_ios.swift in Sources */,
 				CE43BF0C2377A9A000133C86 /* String+nsLength.swift in Sources */,
 				CE8EFB7925C945C6004FFE4B /* UIViewController+alerts.swift in Sources */,
 				CE8EFB9325C945CD004FFE4B /* UIViewController+presentAsync.swift in Sources */,
@@ -3594,6 +3596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */,
+				CEF47F602A792F2400D1AEAB /* UITextFieldWithInsets.swift in Sources */,
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE78CFA71EE812AD008313EA /* ShareViewController.swift in Sources */,
 				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
@@ -3982,7 +3985,7 @@
 			name = Timeline.strings;
 			sourceTree = "<group>";
 		};
-		CE8AAC492916332F00AC7FB4 /* Localizable.strings */ = {
+		CE8AAC492916332F00AC7FB4 /* Core.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CE8AAC482916332F00AC7FB4 /* ja */,
@@ -3991,7 +3994,7 @@
 				CE8AAC532916509D00AC7FB4 /* en */,
 				CE8AAC542916509F00AC7FB4 /* ko */,
 			);
-			name = Localizable.strings;
+			name = Core.strings;
 			sourceTree = "<group>";
 		};
 		CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */ = {

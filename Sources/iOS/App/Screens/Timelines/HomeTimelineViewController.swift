@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class HomeTimelineViewController: TimelineViewController {
     override func viewDidLoad() {

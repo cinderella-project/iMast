@@ -23,6 +23,7 @@
 
 import UIKit
 import SafariServices
+import iMastiOSCore
 
 class HelpAndFeedbackTableViewController: UITableViewController {
     

@@ -23,6 +23,7 @@
 
 import UIKit
 import SnapKit
+import iMastiOSCore
 
 class ReadmoreView: UIView {
     enum State {

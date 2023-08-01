@@ -22,6 +22,7 @@
 //  limitations under the License.
 
 import SwiftUI
+import iMastiOSCore
 
 // TODO: PLEASE STOP THESE STUPID WORKAROUND ASAP
 struct OpenPushSettingsButton: View {

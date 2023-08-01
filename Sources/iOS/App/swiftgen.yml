@@ -1,11 +1,5 @@
 output_dir: ./Generated/
 
-strings:
-  inputs: ./Strings/ja.lproj/
-  filter: .+\.strings$
-  outputs:
-  - templateName: structured-swift5
-    output: strings.swift
 xcassets:
   inputs: ./Assets.xcassets
   outputs:

@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import iMastiOSCore
 
 class FederatedTimelineViewController: TimelineViewController {
     override func viewDidLoad() {

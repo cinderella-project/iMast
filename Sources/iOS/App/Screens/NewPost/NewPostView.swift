@@ -23,6 +23,7 @@
 
 import UIKit
 import Ikemen
+import iMastiOSCore
 
 class NewPostView: UIView {
     let textInput = UITextView() ※ {
