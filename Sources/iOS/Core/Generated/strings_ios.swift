@@ -280,7 +280,7 @@ public enum L10n {
         /// 投稿中
         public static let title = L10n.tr("NewPost", "alerts.sending.title")
         public enum Steps {
-          /// 完了しました!
+          /// 完了しました
           public static let done = L10n.tr("NewPost", "alerts.sending.steps.done")
           /// 画像アップロード中 (%1$d/%2$d)
           public static func mediaUpload(_ p1: Int, _ p2: Int) -> String {
