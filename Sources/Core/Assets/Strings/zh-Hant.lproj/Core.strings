@@ -12,11 +12,6 @@
 "visibility.title.private" = "僅限跟隨者";
 "visibility.title.direct" = "僅限指定對象";
 
-"visibility.description.public" = "出現在本站時間軸和跟隨者的主頁";
-"visibility.description.unlisted" = "不會出現在 LTL 或主題標籤搜尋中";
-"visibility.description.private" = "只有你的跟隨者和你提及的對象可見";
-"visibility.description.direct" = "僅有提及的對象可見";
-
 "errorAlert.title" = "錯誤";
 "errorAlert.message" = "發生錯誤了。\n\n%@";
 "errorAlert.moreInfo" = "顯示更多資訊";
