@@ -45,19 +45,6 @@ public enum MastodonPostVisibility: String, CaseIterable, Codable {
         }
     }
     
-    public var localizedDescription: String {
-        switch self {
-        case .public:
-            return CoreL10n.Visibility.Description.public
-        case .unlisted:
-            return CoreL10n.Visibility.Description.unlisted
-        case .private:
-            return CoreL10n.Visibility.Description.private
-        case .direct:
-            return CoreL10n.Visibility.Description.direct
-        }
-    }
-    
     public var emoji: String? {
         switch self {
         case .public:

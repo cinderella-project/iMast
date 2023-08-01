@@ -68,16 +68,6 @@ public enum CoreL10n {
   public enum Visibility {
     /// 公開範囲
     public static let title = CoreL10n.tr("Core", "visibility.title")
-    public enum Description {
-      /// メンションを飛ばした対象の人にのみ見れます
-      public static let direct = CoreL10n.tr("Core", "visibility.description.direct")
-      /// あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます
-      public static let `private` = CoreL10n.tr("Core", "visibility.description.private")
-      /// LTLやフォロワーのHTL等に流れます
-      public static let `public` = CoreL10n.tr("Core", "visibility.description.public")
-      /// LTLやハッシュタグ検索には出ません
-      public static let unlisted = CoreL10n.tr("Core", "visibility.description.unlisted")
-    }
     public enum Title {
       /// 指定した相手のみ
       public static let direct = CoreL10n.tr("Core", "visibility.title.direct")
