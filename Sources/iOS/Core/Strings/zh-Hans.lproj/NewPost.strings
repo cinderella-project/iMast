@@ -33,6 +33,7 @@
 "alerts.sending.pleaseWait" = "请稍候…";
 "alerts.sending.steps.mediaUpload" = "正在上传图片 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "正在发送数据";
+"alerts.sending.steps.done" = "完了しました";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
 "errors.declineAppleMusicPermission" = "无法读取音乐库，请在设置APP中开启iMast的「媒体与Apple Music」权限";
