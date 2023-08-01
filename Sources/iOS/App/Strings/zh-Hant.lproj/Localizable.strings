@@ -33,6 +33,9 @@
 "localTimeline" = "本站時間軸";
 "localTimeline.short" = "本機時間軸";
 
+"federatedTimeline" = "聯邦時間軸";
+"federatedTimeline.short" = "聯邦宇宙";
+
 "post" = "發嘟";
 "streaming" = "串流";
 "streamingStatus" = "狀態: %@";

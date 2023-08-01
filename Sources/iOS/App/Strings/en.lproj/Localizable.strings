@@ -33,6 +33,9 @@
 "localTimeline" = "Local Timeline";
 "localTimeline.short" = "LTL";
 
+"federatedTimeline" = "Federated Timeline";
+"federatedTimeline.short" = "Federated";
+
 "post" = "Post";
 "streaming" = "Streaming";
 "streamingStatus" = "Status: %@";
