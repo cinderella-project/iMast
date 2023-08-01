@@ -17,7 +17,7 @@
 "visibility.description.private" = "あなたのフォロワーと、メンションを飛ばした対象の人のみ見れます";
 "visibility.description.direct" = "メンションを飛ばした対象の人にのみ見れます";
 
-"errorAlert.title" = "エラー";
+"errorAlert.title" = "오류";
 "errorAlert.message" = "エラーが発生しました。\n\n%@";
 "errorAlert.moreInfo" = "詳しい情報を見る";
 
