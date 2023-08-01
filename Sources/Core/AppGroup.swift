@@ -30,7 +30,9 @@ public let appGroupIdentifier = "4XKKKM86RN.jp.pronama.imast"
 public let appGroupIdentifier = "group.jp.pronama.imast"
 #endif
 
-public let Keychain_ForAccessToken = Keychain(service: "jp.pronama.imast.access-token").accessibility(.afterFirstUnlock)
+// Old version of iMast only reading from non-App Group keychain, so we need to set both keychain(s).
+public let Keychain_ForAccessToken_Legacy = Keychain(service: "jp.pronama.imast.access-token").accessibility(.afterFirstUnlock)
+public let Keychain_ForAccessToken_New = Keychain(service: "jp.pronama.imast.access-token", accessGroup: appGroupIdentifier).accessibility(.afterFirstUnlock)
 
 #if !targetEnvironment(macCatalyst)
 public let Keychain_ForPushBackend = Keychain(service: "net.rinsuki.imast-backend.push").accessibility(.alwaysThisDeviceOnly)

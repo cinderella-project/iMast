@@ -78,12 +78,13 @@ public func initDatabase() {
             table.column("value", .text).notNull()
         }
     }
-    #if !os(macOS)
-    migrator.registerMigration("access_token_to_keychain_for_not_mac") { db in
-        for token in try MastodonUserToken.getAllUserTokens(in: db) {
-            try token.save(in: db)
+    if !Bundle.main.bundlePath.hasSuffix(".appex") {
+        // We shouldn't run this migration in app extension, because only main app's keychain have a access token (this migration rescues it).
+        migrator.registerMigration("access_token_to_keychain_v2") { db in
+            for token in try MastodonUserToken.getAllUserTokens(in: db) {
+                try token.save(in: db)
+            }
         }
     }
-    #endif
     try! migrator.migrate(dbQueue)
 }

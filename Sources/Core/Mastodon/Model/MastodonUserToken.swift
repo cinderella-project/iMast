@@ -74,7 +74,7 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     }
     
     static func initFromRow(row: Row, app: MastodonApp) -> MastodonUserToken {
-        let accessToken: String = row["access_token"] ?? (try? Keychain_ForAccessToken.get(row["id"])) ?? ""
+        let accessToken: String = row["access_token"] ?? (try? Keychain_ForAccessToken_New.get(row["id"])) ?? (try? Keychain_ForAccessToken_Legacy.get(row["id"])) ?? ""
         let usertoken = MastodonUserToken(
             app: app,
             token: accessToken
@@ -147,7 +147,8 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     public func save(in db: Database) throws {
         var token: String? = self.token
         if let id = self.id, self.tokenAvailable {
-            try Keychain_ForAccessToken.set(self.token, key: id)
+            try Keychain_ForAccessToken_Legacy.set(self.token, key: id)
+            try Keychain_ForAccessToken_New.set(self.token, key: id)
             token = nil
         }
         let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
