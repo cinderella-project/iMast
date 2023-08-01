@@ -146,12 +146,10 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     
     public func save(in db: Database) throws {
         var token: String? = self.token
-        #if os(macOS) // TODO: 6.0 あたりで iOS でも Keychain を使うようにする
         if let id = self.id, self.tokenAvailable {
             try Keychain_ForAccessToken.set(self.token, key: id)
             token = nil
         }
-        #endif
         let idFound = try Row.fetchOne(db, sql: "SELECT * from user WHERE id=? ORDER BY last_used DESC LIMIT 1", arguments: [
             self.id,
             ]) != nil
