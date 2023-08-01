@@ -278,16 +278,28 @@ class TopMasterViewController: UITableViewController {
                         }
                         try MastodonUserToken.setPinnedScreenPosition(in: db, id: sourceId, position: destObj.position / 2)
                     } else if
+                        destinationIndexPath.row < sourceIndexPath.row,
                         let previousDest = dataSource.itemIdentifier(for: .init(row: destinationIndexPath.row - 1, section: destinationIndexPath.section)),
                         case let .shortcut(id: previousDestId, accountId: _, descriptor: _) = previousDest,
                         let previousDestObj = pinnedScreens.first(where: { $0.id == previousDestId })
                     {
-                        print("branch: calc")
+                        print("branch: calc (move to up)")
                         let diff = (destObj.position - previousDestObj.position)
                         if abs(diff) < 2 {
                             shouldDefrag = true
                         }
                         try MastodonUserToken.setPinnedScreenPosition(in: db, id: sourceId, position: previousDestObj.position + (diff / 2))
+                    } else if
+                        let nextDest = dataSource.itemIdentifier(for: .init(row: destinationIndexPath.row + 1, section: destinationIndexPath.section)),
+                        case let .shortcut(id: nextDestId, accountId: _, descriptor: _) = nextDest,
+                        let nextDestObj = pinnedScreens.first(where: { $0.id == nextDestId })
+                    {
+                        print("branch: calc (move to down)")
+                        let diff = (nextDestObj.position - destObj.position)
+                        if abs(diff) < 2 {
+                            shouldDefrag = true
+                        }
+                        try MastodonUserToken.setPinnedScreenPosition(in: db, id: sourceId, position: destObj.position + (diff / 2))
                     } else {
                         print("branch: unknown")
                         // TODO: report unknown branch
