@@ -1,9 +1,9 @@
 //
-//  NewPostView.swift
+//  ShareNewPostView.swift
 //
 //  iMast https://github.com/cinderella-project/iMast
 //
-//  Created by user on 2022/08/20.
+//  Created by user on 2023/08/01.
 //
 //  ------------------------------------------------------------------------
 //
@@ -23,9 +23,10 @@
 
 import UIKit
 import Ikemen
+import SnapKit
 import iMastiOSCore
 
-class NewPostView: UIView {
+class ShareNewPostView: UIView {
     let textInput = UITextView() ※ {
         $0.font = .systemFont(ofSize: 14)
         $0.keyboardDismissMode = .interactiveWithAccessory
@@ -67,20 +68,23 @@ class NewPostView: UIView {
     let scopeSelectItem = UIBarButtonItem(image: MastodonPostVisibility.public.uiImage, style: .plain, target: nil, action: nil) ※ {
         $0.width = 44
     }
-    let nowPlayingItem = UIBarButtonItem(image: .init(systemName: "music.note"), style: .plain, target: nil, action: nil) ※ {
-        $0.width = 44
-    }
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = .systemBackground
+        textInput.backgroundColor = .clear
+        
+        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+        effectView.frame = frame
+        addSubview(effectView)
+        effectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         addSubview(toolBar)
         toolBar.items = [
             imageSelectItem,
             nsfwSwitchItem,
             scopeSelectItem,
-            nowPlayingItem,
         ]
         toolBar.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide.snp.bottom)

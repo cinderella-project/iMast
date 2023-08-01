@@ -28,6 +28,8 @@ import MediaPlayer
 import Alamofire
 import iMastiOSCore
 
+// YOU PROBABLY WANT TO ALSO MODIFY ShareNewPostViewController, which is subset of NewPostViewController.
+
 class NewPostViewController: UIViewController, UITextViewDelegate {
     var contentView: NewPostView!
 

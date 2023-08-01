@@ -23,10 +23,10 @@
 
 import UIKit
 
-class SeparatorView: UIView {
+public class SeparatorView: UIView {
     private var exactOnePixelHeightConstraint: NSLayoutConstraint!
     
-    init() {
+    public init() {
         super.init(frame: .zero)
         backgroundColor = .opaqueSeparator
         translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ class SeparatorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         exactOnePixelHeightConstraint.constant = 1 / traitCollection.displayScale
     }

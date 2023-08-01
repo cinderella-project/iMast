@@ -234,7 +234,6 @@ struct SettingsView: View {
         @AppStorage(defaults: .$shareNoTwitterTracking) var shareNoTwitterTracking
         @AppStorage(defaults: .$usingNowplayingFormatInShareSpotifyUrl) var usingNowplayingFormatInShareSpotifyUrl
         @AppStorage(defaults: .$shareNoSpotifySIParameter) var shareNoSpotifySIParameter
-        @AppStorage(defaults: .$useCustomizedSharePreview) var useCustomizedSharePreview
         
         var body: some View {
             Section("共有") {
@@ -245,10 +244,6 @@ struct SettingsView: View {
                     Text("SpotifyのURLを共有しようとする際に https://open.spotify.com との通信が発生します。また、この機能は非公式であり、問題が発生しても開発者は責任を負いません。自己責任でお使いください。" as String)
                 }
                 Toggle("Spotifyのsiパラメータを削除" as String, isOn: $shareNoSpotifySIParameter)
-                Toggle(isOn: $useCustomizedSharePreview) {
-                    Text("共有プレビューで独自実装を使用" as String).workaroundForSubtitleSpacing()
-                    Text("メモリ制限でクラッシュする問題への対策です。何らかの不都合が生じた場合はオフにしてみてください。" as String)
-                }
             }
         }
     }

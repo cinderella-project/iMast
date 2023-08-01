@@ -28,8 +28,6 @@ import iMastiOSCore
 class ShareAccountSelectorTableViewController: UITableViewController {
 
     let userTokens = MastodonUserToken.getAllUserTokens()
-    var nowUserTokenId = ""
-    var parentVC: ShareViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +37,14 @@ class ShareAccountSelectorTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.title = "アカウント選択"
-        self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        self.title = L10n.Localizable.chooseAccount
+        self.view.backgroundColor = .clear
+        self.navigationItem.leftBarButtonItem = .init(systemItem: .cancel, primaryAction: .init() { [weak self] _ in
+            self?.extensionContext?.cancelRequest(withError: NSError(domain: NSCocoaErrorDomain, code: NSUserCancelledError))
+        })
+
+        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+        tableView.backgroundView = effectView
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,9 +71,6 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         cell.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         cell.textLabel!.text = userToken.name
         cell.detailTextLabel!.text = "@" + userToken.acct
-        if userToken.id == self.nowUserTokenId {
-            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
-        }
         
         if let avatarUrl = userToken.avatarUrl {
             cell.imageView?.loadImage(from: URL(string: avatarUrl)) {
@@ -83,9 +84,10 @@ class ShareAccountSelectorTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        parentVC!.userToken = userTokens[indexPath[1]]
-        nowUserTokenId = userTokens[indexPath[1]].id!
-        tableView.reloadData()  
+        let userToken = userTokens[indexPath.row]
+        let vc = ShareNewPostViewController.instantiate(environment: userToken)
+        navigationController?.pushViewController(vc, animated: false)
+        tableView.reloadData()
     }
     
     /*

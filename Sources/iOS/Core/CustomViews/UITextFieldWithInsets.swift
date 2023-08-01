@@ -24,15 +24,15 @@
 import UIKit
 
 @IBDesignable
-class UITextFieldWithInsets: UITextField {
+public class UITextFieldWithInsets: UITextField {
     @IBInspectable
-    var containerInsets: CGSize = .zero
+    public var containerInsets: CGSize = .zero
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: containerInsets.width, dy: containerInsets.height)
     }
     
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: containerInsets.width, dy: containerInsets.height)
     }
 }

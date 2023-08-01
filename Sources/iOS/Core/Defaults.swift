@@ -66,7 +66,7 @@ public class Defaults {
 
     // @available(*, unavailable) @DefaultsKey("using_nowplaying_format_in_share_google_play_music_url") public static var usingNowplayingFormatInShareGooglePlayMusicUrl: Bool = false
     @DefaultsKey("using_nowplaying_format_in_share_spotify_url") public static var usingNowplayingFormatInShareSpotifyUrl: Bool = false
-    @DefaultsKey("use_customized_share_preview") public static var useCustomizedSharePreview: Bool = true
+    // @available(*, unavailable) @DefaultsKey("use_customized_share_preview") public static var useCustomizedSharePreview: Bool = true
 
     @DefaultsKey("show_push_service_error") public static var showPushServiceError: Bool = false
     
