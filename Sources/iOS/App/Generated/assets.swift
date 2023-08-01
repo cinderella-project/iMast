@@ -28,7 +28,6 @@ internal enum Asset {
   internal static let poll = ImageAsset(name: "Poll")
   internal static let reply = ImageAsset(name: "Reply")
   internal static let star = ImageAsset(name: "Star")
-  internal static let visibilityPublic = ImageAsset(name: "visibility-public")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

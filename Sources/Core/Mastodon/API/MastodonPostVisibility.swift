@@ -71,10 +71,10 @@ public enum MastodonPostVisibility: String, CaseIterable, Codable {
         }
     }
     
-    public var sfSymbolsName: String? {
+    public var sfSymbolsName: String {
         switch self {
         case .public:
-            return nil
+            return "globe"
         case .unlisted:
             return "lock.open.fill"
         case .private:
@@ -86,11 +86,7 @@ public enum MastodonPostVisibility: String, CaseIterable, Codable {
     
     #if canImport(UIKit)
     public var uiImage: UIImage? {
-        if let name = sfSymbolsName {
-            return UIImage(systemName: name)
-        } else {
-            return UIImage(named: "visibility-" + rawValue)
-        }
+        return UIImage(systemName: sfSymbolsName)
     }
     #endif
 }
