@@ -12,11 +12,6 @@
 "visibility.title.private" = "仅关注者";
 "visibility.title.direct" = "仅提到的人";
 
-"visibility.description.public" = "所有人可见";
-"visibility.description.unlisted" = "对所有人可见，但不加入搜索功能";
-"visibility.description.private" = "仅对关注者和被提及的用户可见";
-"visibility.description.direct" = "仅对被提及的用户可见";
-
 "errorAlert.title" = "错误";
 "errorAlert.message" = "发生错误。\n\n%@";
 "errorAlert.moreInfo" = "查看详情";
