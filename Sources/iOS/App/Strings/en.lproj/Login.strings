@@ -29,6 +29,6 @@
 "welcome.message" = "Welcome,\n%@";
 "welcome.toTimeline" = "Continue";
 
-"acquireTokenProgress.fetchingToken" = "認証中…";
-"acquireTokenProgress.fetchingProfile" = "プロフィール情報を取得中…";
-"acquireTokenProgress.almostDone" = "あともう少しです…";
+"acquireTokenProgress.fetchingToken" = "Acquiring Token...";
+"acquireTokenProgress.fetchingProfile" = "Retrieving your profile...";
+"acquireTokenProgress.almostDone" = "Almost Done…";

@@ -29,6 +29,6 @@
 "welcome.message" = "%@\n欢迎使用";
 "welcome.toTimeline" = "前往时间轴";
 
-"acquireTokenProgress.fetchingToken" = "認証中…";
-"acquireTokenProgress.fetchingProfile" = "プロフィール情報を取得中…";
-"acquireTokenProgress.almostDone" = "あともう少しです…";
+"acquireTokenProgress.fetchingToken" = "正在验证…";
+"acquireTokenProgress.fetchingProfile" = "正在读取个人主页信息…";
+"acquireTokenProgress.almostDone" = "稍等一会，马上完成…";
