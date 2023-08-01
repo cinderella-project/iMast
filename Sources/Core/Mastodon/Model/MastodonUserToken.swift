@@ -194,6 +194,10 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
                 self.id,
             ])
             try db.commit()
+            if let id = self.id {
+                try Keychain_ForAccessToken_Legacy.remove(id)
+                try Keychain_ForAccessToken_New.remove(id)
+            }
         }
     }
     
