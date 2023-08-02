@@ -371,15 +371,25 @@ extension ShareNewPostViewController {
             self.extensionContext!.cancelRequest(withError: error)
             return
         }
+        let media: UploadableMedia?
         if let imageData = item as? Data {
-            self.media.append(UploadableMedia(format: .png, data: imageData, url: nil, thumbnailImage: UIImage(data: imageData)!))
+            media = UploadableMedia(format: .png, data: imageData, url: nil, thumbnailImage: UIImage(data: imageData)!)
         } else if let imageUrl = item as? NSURL {
             print(imageUrl)
             if imageUrl.isFileURL, let data = try? Data(contentsOf: imageUrl as URL) {
-                self.media.append(UploadableMedia(format: (imageUrl.pathExtension ?? "").lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
+                media = UploadableMedia(format: (imageUrl.pathExtension ?? "").lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!)
+            } else {
+                media = nil
             }
         } else if let image = item as? UIImage {
-            self.media.append(UploadableMedia(format: .png, data: image.pngData()!, url: nil, thumbnailImage: image))
+            media = UploadableMedia(format: .png, data: image.pngData()!, url: nil, thumbnailImage: image)
+        } else {
+            media = nil
+        }
+        if let media {
+            DispatchQueue.main.async {
+                self.media.append(media)
+            }
         }
     }
 }
