@@ -29,6 +29,6 @@
 "cancel" = "취소";
 
 "error.api.title" = "API오류";
-"error.api.text" = "サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)";
-"error.http.title" = "サーバーエラー";
-"error.http.text" = "サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@";
+"error.api.text" = "서버에서 오류가 발생했습니다.\n\n%1$@\n(HTTP %2$d)";
+"error.http.title" = "서버 오류";
+"error.http.text" = "서버에서 예기치 못한 오류가 발생했습니다.\n(HTTP %1$d)\n\n%2$@";
