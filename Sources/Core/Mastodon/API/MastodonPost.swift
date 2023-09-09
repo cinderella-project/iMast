@@ -59,30 +59,11 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     public let repostCount: Int
     public let favouritesCount: Int
 
-    public var reposted: Bool {
-        return self._reposted ?? false
-    }
-    let _reposted: Bool?
-
-    public var favourited: Bool {
-        return self._favourited ?? false
-    }
-    let _favourited: Bool?
-    
-    public var bookmarked: Bool {
-        return self._bookmarked ?? false
-    }
-    public var _bookmarked: Bool?
-
-    public var muted: Bool {
-        return self._muted ?? false
-    }
-    let _muted: Bool?
-
-    public var sensitive: Bool {
-        return self._sensitive ?? false
-    }
-    let _sensitive: Bool?
+    @ReadonlyDefault<False> public var reposted: Bool
+    @ReadonlyDefault<False> public var favourited: Bool
+    @ReadonlyDefault<False> public var bookmarked: Bool
+    @ReadonlyDefault<False> public var muted: Bool
+    @ReadonlyDefault<False> public var sensitive: Bool
     public let spoilerText: String
     public let attachments: [MastodonAttachment]
     public let application: MastodonApplication?
@@ -112,11 +93,11 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case editedAt = "edited_at"
         case repostCount = "reblogs_count"
         case favouritesCount = "favourites_count"
-        case _reposted = "reblogged"
-        case _favourited = "favourited"
-        case _muted = "muted"
-        case _bookmarked = "bookmarked"
-        case _sensitive = "sensitive"
+        case reposted = "reblogged"
+        case favourited = "favourited"
+        case muted = "muted"
+        case bookmarked = "bookmarked"
+        case sensitive = "sensitive"
         case spoilerText = "spoiler_text"
         case pinned
         case application
@@ -161,7 +142,7 @@ public struct MastodonPoll: Codable, MastodonEndpointResponse, Sendable {
     public let expired: Bool
     public let multiple: Bool
     public let votes_count: Int
-    public let voted: Bool
+    @ReadonlyDefault<False> public var voted: Bool
     public let options: [MastodonPollOption]
 }
 

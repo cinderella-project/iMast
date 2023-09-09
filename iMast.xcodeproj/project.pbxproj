@@ -40,6 +40,8 @@
 		CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DD28576A8C00F6A0AF /* Ikemen */; };
 		CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DF28576A9200F6A0AF /* Ikemen */; };
 		CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */; };
+		CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
+		CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -669,6 +671,7 @@
 		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
 		CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPushSettingsButton.swift; sourceTree = "<group>"; };
+		CE142A962AAC67B100B532AB /* DefaultCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCodable.swift; sourceTree = "<group>"; };
 		CE23ABCD23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Search.strings; sourceTree = "<group>"; };
 		CE23ABCE23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE23ABCF23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Notification.strings; sourceTree = "<group>"; };
@@ -1389,6 +1392,7 @@
 				CE7AA3B625DBA84C00439AAD /* AppGroup.swift */,
 				CEAE471A24E8C21500645946 /* WeakRef.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
+				CE142A962AAC67B100B532AB /* DefaultCodable.swift */,
 				CE98789C26B5053F008A0A88 /* CodableVoid.swift */,
 				CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */,
 				CECBD35C22D16575004530BA /* IndirectBox.swift */,
@@ -3553,6 +3557,7 @@
 				CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */,
 				CE43BEE323779E2600133C86 /* DatabaseMisc.swift in Sources */,
 				CE8AAC4F2916343800AC7FB4 /* strings.swift in Sources */,
+				CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */,
 				CE8EFB5425C94523004FFE4B /* GoodUtils.swift in Sources */,
 				CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */,
 				CEE4E2E62377E96B00406371 /* NSRange+optional.swift in Sources */,
@@ -3736,6 +3741,7 @@
 				CEE4E35D2377F83900406371 /* String+trim.swift in Sources */,
 				CE3D751125C5E2DD00734140 /* Notification.Name+customNames.swift in Sources */,
 				CEE4E3672377F83C00406371 /* MastodonSearchResult.swift in Sources */,
+				CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */,
 				CEE4E3652377F83C00406371 /* MastodonAttachment.swift in Sources */,
 				CEE4E3432377F82700406371 /* DataRequest+responseDecodable.swift in Sources */,
 				CEE4E3682377F83C00406371 /* MastodonID.swift in Sources */,
