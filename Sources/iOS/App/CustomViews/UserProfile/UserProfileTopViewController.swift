@@ -295,7 +295,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             if isMe || relationship.following {
                 var shouldDisplayListAdder = false
                 if let version = try? await version {
-                    shouldDisplayListAdder = version > MastodonVersionStringToInt("2.1.0rc1")
+                    shouldDisplayListAdder = version.supportingFeature(.list)
                 } else {
                     shouldDisplayListAdder = true
                 }

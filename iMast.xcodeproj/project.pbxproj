@@ -82,7 +82,7 @@
 		CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
 		CE43BEF323779EB500133C86 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
-		CE43BEF423779EB500133C86 /* MastodonVersionStringToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */; };
+		CE43BEF423779EB500133C86 /* MastodonVersionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */; };
 		CE43BEF823779F1C00133C86 /* genRandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEF523779EE800133C86 /* genRandomString.swift */; };
 		CE43BEFD23779F8200133C86 /* String+sha256.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEAA23777A2400133C86 /* String+sha256.swift */; };
 		CE43BEFE23779FB200133C86 /* IndirectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECBD35C22D16575004530BA /* IndirectBox.swift */; };
@@ -306,7 +306,7 @@
 		CEE4E3682377F83C00406371 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
 		CEE4E3692377F83C00406371 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
 		CEE4E36A2377F83C00406371 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
-		CEE4E36B2377F83C00406371 /* MastodonVersionStringToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */; };
+		CEE4E36B2377F83C00406371 /* MastodonVersionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */; };
 		CEE4E36C2377F84200406371 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
 		CEE4E36E2377F84200406371 /* MastodonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9AEA0B23112DF600EE3B23 /* MastodonApp.swift */; };
 		CEE4E36F2377F84200406371 /* MastodonInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F7CB523112D12005E819E /* MastodonInstance.swift */; };
@@ -707,7 +707,7 @@
 		CE43BEB623777B2A00133C86 /* UIDevice+platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+platform.swift"; sourceTree = "<group>"; };
 		CE43BEB923777B5A00133C86 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		CE43BEBC23777BBD00133C86 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonVersionStringToInt.swift; sourceTree = "<group>"; };
+		CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonVersionInt.swift; sourceTree = "<group>"; };
 		CE43BECE2377825700133C86 /* Array+safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+safe.swift"; sourceTree = "<group>"; };
 		CE43BEF523779EE800133C86 /* genRandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genRandomString.swift; sourceTree = "<group>"; };
 		CE43BF052377A09500133C86 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -1884,7 +1884,7 @@
 				CEDEDC992007C36400CD2784 /* MastodonID.swift */,
 				CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */,
 				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
-				CE43BEC8237781A100133C86 /* MastodonVersionStringToInt.swift */,
+				CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */,
 				CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */,
 				CE8AAC552916592800AC7FB4 /* MastodonErrorResponse.swift */,
 			);
@@ -3544,7 +3544,7 @@
 				CE522BF624159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
 				CE43BEE923779EB500133C86 /* MastodonAccount.swift in Sources */,
 				CE9BB38F241C4F02004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
-				CE43BEF423779EB500133C86 /* MastodonVersionStringToInt.swift in Sources */,
+				CE43BEF423779EB500133C86 /* MastodonVersionInt.swift in Sources */,
 				CE43BEE523779E2600133C86 /* MastodonApp.swift in Sources */,
 				CE522BF324159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
 				CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */,
@@ -3736,7 +3736,7 @@
 				CE8AAC50291635A100AC7FB4 /* strings.swift in Sources */,
 				CE522BF424159D5E0048E334 /* MastodonPagingOption.swift in Sources */,
 				CEE4E33C2377F80900406371 /* APIError.swift in Sources */,
-				CEE4E36B2377F83C00406371 /* MastodonVersionStringToInt.swift in Sources */,
+				CEE4E36B2377F83C00406371 /* MastodonVersionInt.swift in Sources */,
 				CEE4E36C2377F84200406371 /* DatabaseMisc.swift in Sources */,
 				CEE4E35D2377F83900406371 /* String+trim.swift in Sources */,
 				CE3D751125C5E2DD00734140 /* Notification.Name+customNames.swift in Sources */,

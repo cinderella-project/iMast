@@ -58,7 +58,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(
         tableView: self.tableView, cellProvider: self.cellProvider
     )
-    var version: Int = 0
+    var version: MastodonVersionInt?
     var lists = [MastodonList]()
     
     override func viewDidLoad() {
@@ -97,11 +97,11 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
         snapshot.appendItems([.profile, .followRequests])
         snapshot.appendSections([.timelines])
         snapshot.appendItems([.viewDescriptor(.home), .viewDescriptor(.notifications), .viewDescriptor(.local), .viewDescriptor(.federated)])
-        if version >= MastodonVersionStringToInt("3.3.0") {
+        if version?.supportingFeature(.multipleStreamOnWebSocket) ?? false {
             snapshot.appendItems([.viewDescriptor(.homeAndLocal)])
         }
         snapshot.appendSections([.dependedByMastodonVersion])
-        if version >= MastodonVersionStringToInt("3.1.0") {
+        if version?.supportingFeature(.bookmark) ?? false {
             snapshot.appendItems([.bookmarks])
         }
         if lists.count > 0 {

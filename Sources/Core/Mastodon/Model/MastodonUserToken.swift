@@ -58,8 +58,8 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         ]
     }
     
-    public func getIntVersion() async throws -> Int {
-        return MastodonVersionStringToInt(try await self.app.instance.getInfo()["version"].stringValue)
+    public func getIntVersion() async throws -> MastodonVersionInt {
+        return MastodonVersionInt(try await self.app.instance.getInfo()["version"].stringValue)
     }
     
     static public func initFromId(id: String) -> MastodonUserToken? {

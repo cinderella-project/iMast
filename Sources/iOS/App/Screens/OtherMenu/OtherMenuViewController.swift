@@ -90,7 +90,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         guard let self = self else {
                             return
                         }
-                        self.mastodonVersionBarrier(version: "2.1.0rc1") {
+                        self.mastodonVersionBarrier(.list) {
                             MastodonEndpoint.MyLists().request(with: self.environment).then({ lists in
                                 let vc = ListsTableViewController.instantiate(environment: self.environment)
                                 vc.lists = lists
@@ -110,7 +110,7 @@ class OtherMenuViewController: FormViewController, Instantiatable {
                         guard let self = self else {
                             return
                         }
-                        self.mastodonVersionBarrier(version: "3.1.0") {
+                        self.mastodonVersionBarrier(.bookmark) {
                             self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
                         }
                     }
@@ -140,16 +140,15 @@ class OtherMenuViewController: FormViewController, Instantiatable {
         self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
     }
 
-    func mastodonVersionBarrier(version: String, callback: @escaping () -> Void) {
+    func mastodonVersionBarrier(_ feature: MastodonVersionFeature, callback: @escaping () -> Void) {
         Task {
             do {
-                async let currentVersionInt = self.environment.getIntVersion()
-                let neededVersionInt = MastodonVersionStringToInt(version)
-                if try await currentVersionInt < neededVersionInt {
+                async let currentVersion = self.environment.getIntVersion()
+                if !(try await currentVersion.supportingFeature(feature)) {
                     await MainActor.run {
                         self.alert(
                             title: L10n.Localizable.Error.title,
-                            message: L10n.Localizable.Error.requiredNewerMastodon(version)
+                            message: L10n.Localizable.Error.requiredNewerMastodon(feature.readableString)
                         )
                     }
                     return

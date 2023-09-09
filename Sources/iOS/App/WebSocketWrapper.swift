@@ -108,7 +108,7 @@ extension MastodonUserToken {
         streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
         streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
         let protocols: [String]?
-        if MastodonVersionStringToInt(info["version"].stringValue) >= MastodonVersionStringToInt("2.8.4") {
+        if MastodonVersionInt(info["version"].stringValue).supportingFeature(.accessTokenInWebSocketProtocol) {
             protocols = [self.token]
         } else {
             streamingUrlString += "&access_token=" + self.token
