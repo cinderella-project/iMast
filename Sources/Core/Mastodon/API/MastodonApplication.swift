@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonApplication: Codable {
+public struct MastodonApplication: Codable, Sendable {
     public let name: String
     let website: String?
 

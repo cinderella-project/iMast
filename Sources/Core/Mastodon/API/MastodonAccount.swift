@@ -95,13 +95,6 @@ public enum MastodonFollowFetchType: String {
     case followers
 }
 
-struct MastodonFollowList {
-    var accounts: [MastodonAccount]
-    var prev: MastodonID?
-    var next: MastodonID?
-    
-}
-
 public struct MastodonAccountField: Codable, Sendable {
     public let name: String
     public let value: String

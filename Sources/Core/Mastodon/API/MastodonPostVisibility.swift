@@ -26,7 +26,7 @@ import Foundation
 import UIKit
 #endif
 
-public enum MastodonPostVisibility: String, CaseIterable, Codable {
+public enum MastodonPostVisibility: String, CaseIterable, Codable, Sendable {
     case `public`
     case unlisted
     case `private`

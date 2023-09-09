@@ -132,7 +132,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
 
 }
 
-public struct MastodonCustomEmoji: Codable {
+public struct MastodonCustomEmoji: Codable, Sendable {
     public let shortcode: String
     public let url: String
     enum CodingKeys: String, CodingKey {
@@ -147,7 +147,7 @@ public struct MastodonPostContext: Codable, MastodonEndpointResponse, Sendable {
     public let descendants: [MastodonPost]
 }
 
-public struct MastodonPostMention: Codable {
+public struct MastodonPostMention: Codable, Sendable {
     public let url: String
     let username: String
     public let acct: String
@@ -155,7 +155,7 @@ public struct MastodonPostMention: Codable {
 
 }
 
-public struct MastodonPoll: Codable, MastodonEndpointResponse {
+public struct MastodonPoll: Codable, MastodonEndpointResponse, Sendable {
     let id: MastodonID
     public let expires_at: Date?
     public let expired: Bool
