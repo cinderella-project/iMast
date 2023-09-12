@@ -23,7 +23,7 @@
 
 import Foundation
 import UIKit
-import iMastiOSCore
+import Ikemen
 
 public struct UploadableMedia {
     public init(format: UploadableMedia.MeidaFormat, data: Data, url: URL?, thumbnailImage: UIImage) {
@@ -67,14 +67,16 @@ public struct UploadableMedia {
                 height = CGFloat(newSize)
             }
             print(width, height)
-            UIGraphicsBeginImageContext(CGSize(width: floor(width), height: floor(height)))
-            image.draw(in: CGRect(x: 0, y: 0, width: floor(width), height: floor(height)))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            guard let result = newImage else {
-                return self.data
+            let size = CGSize(width: floor(width), height: floor(height))
+            let renderer = UIGraphicsImageRenderer(size: size, format: UIGraphicsImageRendererFormat() ※ {
+                $0.scale = 1.0
+                $0.opaque = format == .png
+                $0.preferredRange = .standard
+            })
+            let result = renderer.image { context in
+                image.draw(in: context.format.bounds)
             }
-            return ((self.format == .png ? result.pngData() : result.jpegData(compressionQuality: 1.0))!)
+            return (self.format == .png ? result.pngData() : result.jpegData(compressionQuality: 1.0))!
         }
         return self.data
     }
