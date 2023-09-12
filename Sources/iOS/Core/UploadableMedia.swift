@@ -46,25 +46,28 @@ public struct UploadableMedia {
     public func toUploadableData() -> Data {
         let newSize = Defaults.autoResizeSize
         if newSize != 0, self.format == .jpeg || self.format == .png {
+            let newSizeFloat = CGFloat(newSize)
             // 画像の縮小と再圧縮
             guard let image = UIImage(data: self.data) else {
                 return self.data
             }
             var width = image.size.width
             var height = image.size.height
-            if image.size.width > image.size.height { // 横長
-                if image.size.width > CGFloat(newSize) { // リサイズする必要がある
-                    height = height / (width / CGFloat(newSize))
+            if width > height { // 横長
+                if image.size.width > newSizeFloat { // リサイズする必要がある
+                    height = height / (width / newSizeFloat)
                     width = CGFloat(newSize)
                 }
-            } else if image.size.width < image.size.height { // 縦長
-                if image.size.width > CGFloat(newSize) { // リサイズする必要がある
-                    width = width / (height / CGFloat(newSize))
+            } else if width < height { // 縦長
+                if image.size.width > newSizeFloat { // リサイズする必要がある
+                    width = width / (height / newSizeFloat)
                     height = CGFloat(newSize)
                 }
             } else { // 正方形
-                width = CGFloat(newSize)
-                height = CGFloat(newSize)
+                if width > newSizeFloat {
+                    width = CGFloat(newSize)
+                    height = CGFloat(newSize)
+                }
             }
             print(width, height)
             let size = CGSize(width: floor(width), height: floor(height))
