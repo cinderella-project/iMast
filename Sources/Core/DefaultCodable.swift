@@ -27,6 +27,10 @@ import Foundation
 public struct ReadonlyDefault<Provider: DefaultProvider>: Codable {
     public let wrappedValue: Provider.Value
     
+    public init() {
+        wrappedValue = Provider.defaultValue
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if container.decodeNil() {
@@ -54,6 +58,10 @@ public enum False: DefaultProvider {
 public struct ReadonlyDefaultEmptyArray<Inner: Codable>: Codable {
     public let wrappedValue: [Inner]
     
+    public init() {
+        wrappedValue = []
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if container.decodeNil() {
@@ -61,5 +69,15 @@ public struct ReadonlyDefaultEmptyArray<Inner: Codable>: Codable {
         } else {
             wrappedValue = try container.decode(Array<Inner>.self)
         }
+    }
+}
+
+public extension KeyedDecodingContainer {
+    func decode<T>(_: ReadonlyDefault<T>.Type, forKey key: Key) throws -> ReadonlyDefault<T> {
+        return (try decodeIfPresent(ReadonlyDefault<T>.self, forKey: key)) ?? ReadonlyDefault<T>()
+    }
+    
+    func decode<T>(_: ReadonlyDefaultEmptyArray<T>.Type, forKey key: Key) throws -> ReadonlyDefaultEmptyArray<T> {
+        return (try decodeIfPresent(ReadonlyDefaultEmptyArray<T>.self, forKey: key)) ?? ReadonlyDefaultEmptyArray<T>()
     }
 }
