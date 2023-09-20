@@ -230,7 +230,9 @@ extension ShareNewPostViewController {
             #if DEBUG
             print("inputItem", inputItem)
             #endif
-            contentView.textInput.text = inputItem.attributedContentText?.string
+            if let text = inputItem.attributedContentText?.string {
+                contentView.textInput.text = text
+            }
             for itemProvider in inputItem.attachments ?? [] {
                 #if DEBUG
                 print("itemProvider", itemProvider)
