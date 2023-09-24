@@ -69,6 +69,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         // --- contentView への魂入れ
         contentView.textInput.delegate = self
         contentView.imageSelectButton.addTarget(self, action: #selector(imageSelectButtonTapped(_:)), for: .touchUpInside)
+        contentView.imageSelectButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(openImagePickerDirectly(_:))))
         contentView.nsfwSwitchItem.target = self
         contentView.nsfwSwitchItem.action = #selector(nsfwButtonTapped(_:))
         contentView.nowPlayingItem.target = self
@@ -345,6 +346,21 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentVC.popoverPresentationController?.permittedArrowDirections = .down
         contentVC.popoverPresentationController?.delegate = self
         self.present(contentVC, animated: true, completion: nil)
+    }
+    
+    @objc func openImagePickerDirectly(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        
+        let contentVC = NewPostMediaListViewController(newPostVC: self)
+        contentVC.modalPresentationStyle = .popover
+        contentVC.preferredContentSize = CGSize(width: 500, height: 100)
+        contentVC.popoverPresentationController?.sourceView = contentView.imageSelectButton
+        contentVC.popoverPresentationController?.sourceRect = contentView.imageSelectButton.frame
+        contentVC.popoverPresentationController?.permittedArrowDirections = .down
+        contentVC.popoverPresentationController?.delegate = self
+        self.present(contentVC, animated: false) {
+            contentVC.addFromPhotoLibrary()
+        }
     }
     
     func clearContent() {
