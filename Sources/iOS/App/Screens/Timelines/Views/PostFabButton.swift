@@ -40,7 +40,7 @@ class PostFabButton: UIButton {
         layer.shadowOffset = CGSize(width: 0, height: 2)
         
         isPointerInteractionEnabled = true
-        pointerStyleProvider = { button, effect, shape in
+        pointerStyleProvider = { [unowned self] button, effect, shape in
             return .init(effect: effect, shape: .roundedRect(self.frame, radius: self.layer.cornerRadius))
         }
     }

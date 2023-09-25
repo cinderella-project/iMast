@@ -43,7 +43,8 @@ class PostListTableViewController<Input: MastodonEndpointWithPagingProtocol>: UI
     
     private var paging = MastodonPaging()
     private var postIds = [MastodonID]()
-    private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { tableView, indexPath, item -> UITableViewCell? in
+    private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] tableView, indexPath, item -> UITableViewCell? in
+        guard let self else { return nil }
         switch item {
         case .post(let id):
             return TableViewCell<MastodonPostWrapperViewController<MastodonPostCellViewController>>.dequeued(

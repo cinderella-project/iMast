@@ -86,7 +86,9 @@ class TopMasterViewController: UITableViewController {
         }
     }
     
-    lazy var dataSource = DataSource(tableView: self.tableView, cellProvider: self.cellProvider)
+    lazy var dataSource = DataSource(tableView: self.tableView) { [weak self] (tableView: UITableView, indexPath: IndexPath, item: Item) in
+        return self?.cellProvider(tableView, indexPath: indexPath, item: item)
+    }
 
     init() {
         super.init(style: .grouped)
