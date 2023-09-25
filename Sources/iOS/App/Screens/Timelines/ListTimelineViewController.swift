@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import Eureka
 import iMastiOSCore
 
 class ListTimelineViewController: TimelineViewController {
