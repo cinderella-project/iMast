@@ -126,8 +126,13 @@ class PushService {
         guard let auth = try? self.getAuthorizationHeader() else {
             return
         }
+        #if DEBUG
+        let isSandbox = true
+        #else
+        let isSandbox = false
+        #endif
         var params: Parameters = [
-            "isSandbox": isDebugBuild,
+            "isSandbox": isSandbox,
             "deviceToken": deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
         ]
         if let versionString = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {

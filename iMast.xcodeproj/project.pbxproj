@@ -50,7 +50,6 @@
 		CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */; };
 		CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */; };
 		CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */; };
-		CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
 		CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */; };
@@ -690,7 +689,6 @@
 		CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreView.swift; sourceTree = "<group>"; };
 		CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+responseDecodable.swift"; sourceTree = "<group>"; };
-		CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDebugBuild.swift; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
 		CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkaroundForSubtitleSpacing.swift; sourceTree = "<group>"; };
@@ -871,7 +869,7 @@
 		CEC617FA24C5279100E2FF97 /* assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonEndpoint.FollowRequests.swift; sourceTree = "<group>"; };
 		CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+toString.swift"; sourceTree = "<group>"; };
-		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginSafari.swift"; sourceTree = "<group>"; };
+		CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSafari.swift; sourceTree = "<group>"; };
 		CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastNotifyService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC6BC0321074EFB003ECE10 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CEC6BC0521074EFB003ECE10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1287,7 +1285,6 @@
 				2AF352261EAB9C5600777C2E /* Info.plist */,
 				CE69A90D1FA5D964006D1523 /* EurekaExtension.swift */,
 				CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */,
-				CE2E857D25CB1F3600C32AD1 /* isDebugBuild.swift */,
 				CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */,
 				CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */,
 				CEAC9C8923951BD000D16388 /* OpenSafariRow.swift */,
@@ -3496,7 +3493,6 @@
 				2A108F931ED55C4F00BE1404 /* LocalTimelineViewController.swift in Sources */,
 				CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */,
 				CE8AAC5D291780A900AC7FB4 /* UIViewController+resolveUserProfile.swift in Sources */,
-				CE2E857E25CB1F3600C32AD1 /* isDebugBuild.swift in Sources */,
 				CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */,
 				CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */,
 				CE43BEBA23777B5A00133C86 /* DateUtils.swift in Sources */,
@@ -4195,7 +4191,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\" \"-D\" \"IS_DEBUG_BUILD\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
