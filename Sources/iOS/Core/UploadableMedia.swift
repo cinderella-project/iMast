@@ -55,12 +55,12 @@ public struct UploadableMedia {
             var height = image.size.height
             if width > height { // 横長
                 if image.size.width > newSizeFloat { // リサイズする必要がある
-                    height = height / (width / newSizeFloat)
+                    height /= (width / newSizeFloat)
                     width = CGFloat(newSize)
                 }
             } else if width < height { // 縦長
                 if image.size.width > newSizeFloat { // リサイズする必要がある
-                    width = width / (height / newSizeFloat)
+                    width /= (height / newSizeFloat)
                     height = CGFloat(newSize)
                 }
             } else { // 正方形

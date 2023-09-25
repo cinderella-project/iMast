@@ -5181,8 +5181,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/banjun/ikemen";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.7.0;
+				kind = exactVersion;
+				version = 0.8.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

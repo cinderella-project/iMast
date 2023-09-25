@@ -128,7 +128,9 @@ public enum L10n {
     public enum Error {
       /// インスタンスを入力してください。
       public static let pleaseInputInstance = L10n.tr("Localizable", "error.pleaseInputInstance")
-      /// この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。\n(iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)\nMastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
+      /// この機能はMastodonインスタンスのバージョンが%@以上でないと利用できません。
+      /// (iMastを起動中にインスタンスがアップデートされた場合は、アプリを再起動すると利用できるようになります)
+      /// Mastodonインスタンスのアップデート予定については、各インスタンスの管理者にお尋ねください。
       public static func requiredNewerMastodon(_ p1: Any) -> String {
         return L10n.tr("Localizable", "error.requiredNewerMastodon", String(describing: p1))
       }
@@ -254,7 +256,9 @@ public enum L10n {
       public static let title = L10n.tr("Login", "progressDialog.title")
     }
     public enum Welcome {
-      /// ようこそ、\n%@\nさん。
+      /// ようこそ、
+      /// %@
+      /// さん。
       public static func message(_ p1: Any) -> String {
         return L10n.tr("Login", "welcome.message", String(describing: p1))
       }
@@ -453,7 +457,8 @@ public enum L10n {
         public static let title = L10n.tr("Preferences", "push.accounts.title")
       }
       public enum AddAccount {
-        /// インスタンスのホスト名を入力してください\n(https://などは含めず入力してください)
+        /// インスタンスのホスト名を入力してください
+        /// (https://などは含めず入力してください)
         public static let alertText = L10n.tr("Preferences", "push.addAccount.alertText")
         /// アカウント追加
         public static let alertTitle = L10n.tr("Preferences", "push.addAccount.alertTitle")
@@ -629,6 +634,12 @@ extension L10n {
 
 // swiftlint:disable convenience_type
 private final class BundleToken {
-  static let bundle = Bundle(for: BundleToken.self)
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
 }
 // swiftlint:enable convenience_type

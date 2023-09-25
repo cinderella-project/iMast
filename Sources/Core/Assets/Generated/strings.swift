@@ -17,7 +17,10 @@ public enum CoreL10n {
     /// (不明)
     public static let failedToDecodeAsUTF8 = CoreL10n.tr("Core", "error.failedToDecodeAsUTF8")
     public enum Api {
-      /// サーバーからエラーが返却されました。\n\n%1$@\n(HTTP %2$d)
+      /// サーバーからエラーが返却されました。
+      /// 
+      /// %1$@
+      /// (HTTP %2$d)
       public static func text(_ p1: Any, _ p2: Int) -> String {
         return CoreL10n.tr("Core", "error.api.text", String(describing: p1), p2)
       }
@@ -25,7 +28,10 @@ public enum CoreL10n {
       public static let title = CoreL10n.tr("Core", "error.api.title")
     }
     public enum Http {
-      /// サーバーから予期せぬ内容が返却されました。\n(HTTP %1$d)\n\n%2$@
+      /// サーバーから予期せぬ内容が返却されました。
+      /// (HTTP %1$d)
+      /// 
+      /// %2$@
       public static func text(_ p1: Int, _ p2: Any) -> String {
         return CoreL10n.tr("Core", "error.http.text", p1, String(describing: p2))
       }
@@ -35,7 +41,9 @@ public enum CoreL10n {
   }
 
   public enum ErrorAlert {
-    /// エラーが発生しました。\n\n%@
+    /// エラーが発生しました。
+    /// 
+    /// %@
     public static func message(_ p1: Any) -> String {
       return CoreL10n.tr("Core", "errorAlert.message", String(describing: p1))
     }
@@ -94,6 +102,12 @@ extension CoreL10n {
 
 // swiftlint:disable convenience_type
 private final class BundleToken {
-  static let bundle = Bundle(for: BundleToken.self)
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
 }
 // swiftlint:enable convenience_type

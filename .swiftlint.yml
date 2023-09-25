@@ -8,11 +8,14 @@ disabled_rules:
 
 excluded:
   - Pods
-  - Sources/*/*/R.generated.swift
   - vendor
 
 force_cast: warning
 force_try: warning
+function_body_length: 
+  error: 150
+type_body_length:
+  error: 400
 
 trailing_comma:
   mandatory_comma: true

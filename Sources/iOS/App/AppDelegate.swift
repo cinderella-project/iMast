@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import Crossroad
 import UserNotifications
 import SVProgressHUD
 import SafariServices
