@@ -196,6 +196,7 @@ class AttachmentView: LayeredImageView {
     init(attachment: MastodonAttachment) {
         self.attachment = attachment
         super.init()
+        clipsToBounds = true
         layer?.contentsGravity = .resizeAspectFill
         loadImage(url: URL(string: attachment.previewUrl ?? ""))
         addGestureRecognizer(clickRecognizer)
