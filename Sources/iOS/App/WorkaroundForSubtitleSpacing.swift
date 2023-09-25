@@ -24,7 +24,12 @@
 import SwiftUI
 
 extension Text {
+    @ViewBuilder
     func workaroundForSubtitleSpacing() -> some View {
-        self.padding(.bottom, 1)
+        if #unavailable(iOS 17.0) {
+            self.padding(.bottom, -5)
+        } else {
+            self
+        }
     }
 }
