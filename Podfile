@@ -17,7 +17,7 @@ abstract_target 'iMastShared' do
   pod 'SwiftGen', '~> 6.3.0'
   
   abstract_target 'iOS' do
-    platform :ios, '14.0'
+    platform :ios, '16.4'
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
     
@@ -71,7 +71,7 @@ post_install do |installer|
   installer.generated_projects.each do |project|
     project.targets.each do |target|
       target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
       end
     end
   end
