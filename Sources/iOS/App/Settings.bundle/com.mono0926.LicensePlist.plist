@@ -20,14 +20,6 @@
 		</dict>
 		<dict>
 			<key>File</key>
-			<string>com.mono0926.LicensePlist/Crossroad</string>
-			<key>Title</key>
-			<string>Crossroad (3.2.0)</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
-			<key>File</key>
 			<string>com.mono0926.LicensePlist/Eureka</string>
 			<key>Title</key>
 			<string>Eureka (5.3.0)</string>
@@ -142,7 +134,7 @@
 			<key>File</key>
 			<string>com.mono0926.LicensePlist/SnapKit</string>
 			<key>Title</key>
-			<string>SnapKit (5.0.1)</string>
+			<string>SnapKit (5.6.0)</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>

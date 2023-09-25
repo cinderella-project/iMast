@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import UIKit
-import Crossroad
 import Hydra
 import iMastiOSCore
 
@@ -102,23 +101,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        let router = DefaultRouter(scheme: "imast")
-        router.register([
-            ("/callback/", { context in
-                guard
-                    let code: String = context[parameter: "code"],
-                    let state: String = context[parameter: "state"]
-                else {
-                    return false
+        for context in URLContexts {
+            print(context.url)
+            guard let url = URLComponents(url: context.url, resolvingAgainstBaseURL: false) else {
+                print("skipped since fail to URLComponents")
+                continue
+            }
+            switch (url.scheme, url.host, url.path) {
+            case ("imast", "callback", "/"):
+                let code = url.queryItems?.first { $0.name == "code" }?.value
+                let state = url.queryItems?.first { $0.name == "state" }?.value
+                guard let code, let state else {
+                    print("missing code or state")
+                    break
                 }
                 let app = MastodonApp.initFromId(appId: state)
                 let vc = UINavigationController(rootViewController: AddAccountAcquireTokenViewController(app: app, code: code))
                 vc.setNavigationBarHidden(true, animated: false)
-                guard let scene = scene as? UIWindowScene else {
-                    return false
-                }
-                guard let window = scene.windows.first else {
-                    return false
+                guard let scene = scene as? UIWindowScene, let window = scene.windows.first else {
+                    print("missing scene or window")
+                    break
                 }
                 if let rootViewController = window.rootViewController {
                     vc.modalPresentationStyle = .fullScreen
@@ -126,16 +128,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 } else {
                     window.rootViewController = vc
                 }
-                return true
-            }),
-            ("/from-backend/push/oauth-finished", { _ in
+            case ("imast", "from-backend", "/push/oauth-finished"):
                 NotificationCenter.default.post(name: .pushSettingsAccountReload, object: nil)
-                return true
-            }),
-        ])
-        for context in URLContexts {
-            if router.openIfPossible(context.url, options: [:]) {
-                return
+            default:
+                print("unknown", url.scheme, url.host, url.path)
+                // ?
+                break
             }
         }
     }

@@ -38,24 +38,6 @@ name: Alamofire, nameSpecified:
 body: Copyright (c) 2014 A…
 version: 4.9.1
 
-name: Crossroad, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 3.2.0
-
-name: Crossroad, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 3.2.0
-
-name: Crossroad, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 3.2.0
-
 name: Eureka, nameSpecified: 
 body: The MIT License (MIT…
 version: 5.3.0
@@ -340,43 +322,43 @@ version: 5.12.6
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
-version: 5.0.1
+version: 5.6.0
 
 name: Starscream, nameSpecified: 
 body:                     …

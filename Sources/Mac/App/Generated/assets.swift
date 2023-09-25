@@ -43,6 +43,17 @@ internal final class ColorAsset {
     return color
   }()
 
+  #if os(iOS) || os(tvOS)
+  @available(iOS 11.0, tvOS 11.0, *)
+  internal func color(compatibleWith traitCollection: UITraitCollection) -> Color {
+    let bundle = BundleToken.bundle
+    guard let color = Color(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load color asset named \(name).")
+    }
+    return color
+  }
+  #endif
+
   fileprivate init(name: String) {
     self.name = name
   }
@@ -65,7 +76,11 @@ internal extension ColorAsset.Color {
 // swiftlint:disable convenience_type
 private final class BundleToken {
   static let bundle: Bundle = {
-    Bundle(for: BundleToken.self)
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
   }()
 }
 // swiftlint:enable convenience_type
