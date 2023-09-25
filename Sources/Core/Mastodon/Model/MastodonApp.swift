@@ -26,7 +26,17 @@ import SwiftyJSON
 import Alamofire
 import GRDB
 
-public class MastodonApp {
+public class MastodonApp: Hashable {
+    public static func == (lhs: MastodonApp, rhs: MastodonApp) -> Bool {
+        return lhs.instance.hostName == rhs.instance.hostName && lhs.clientId == rhs.clientId && lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(instance.hostName)
+        hasher.combine(clientId)
+    }
+    
     var clientId: String
     var clientSecret: String
     public var name: String
@@ -68,6 +78,18 @@ public class MastodonApp {
         app.id = row["id"]
         return app
     }
+    
+    #if DEBUG
+    static public func debugGetOne() throws -> MastodonApp? {
+        let row = try dbQueue.read { db in
+            return try Row.fetchOne(db, sql: "SELECT * FROM app ORDER BY rowid DESC LIMIT 1")
+        }
+        guard let row else {
+            return nil
+        }
+        return self.initFromRow(row: row)
+    }
+    #endif
     
     public func save() throws {
         try dbQueue.inDatabase { db in

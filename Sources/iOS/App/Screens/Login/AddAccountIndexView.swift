@@ -25,44 +25,50 @@ import SwiftUI
 import iMastiOSCore
 
 class AddAccountIndexViewController: UIHostingController<_AddAccountIndexView> {
-    var latestToken: MastodonUserToken?
-    
     init() {
-        super.init(rootView: .init(pushViewController: nil, errorReport: nil))
-        rootView = .init(pushViewController: { [weak self] in
-            self?.navigationController?.pushViewController($0, animated: true)
-        }, errorReport: { [weak self] in
+        super.init(rootView: .init(errorReport: nil))
+        rootView = .init(errorReport: { [weak self] in
             self?.errorReport(error: $0)
         })
-        if latestToken == nil {
-            latestToken = MastodonUserToken.getLatestUsed()
-        }
-        if latestToken != nil {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .cancel,
-                target: self, action: #selector(onCancelTapped)
-            )
-        }
     }
     
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+class AddAccountIndexViewModel: ObservableObject {
+    let latestToken: MastodonUserToken? = MastodonUserToken.getLatestUsed()
+    weak var view: UIView?
     
-    @objc func onCancelTapped() {
-        guard let latestToken = latestToken else {
+    func cancel() {
+        guard let latestToken else {
             return
         }
-        changeRootVC(Defaults.newFirstScreen ? TopViewController() : MainTabBarController.instantiate((), environment: latestToken), reversed: true)
+        view?.window?.changeRootVC(Defaults.newFirstScreen ? TopViewController() : MainTabBarController.instantiate((), environment: latestToken), reversed: true)
+    }
+    
+    struct WindowAcquireView: UIViewRepresentable {
+        typealias UIViewType = UIView
+        let viewModel: AddAccountIndexViewModel
+        
+        func makeUIView(context: Context) -> UIViewType {
+            let view = UIView()
+            viewModel.view = view
+            return view
+        }
+
+        func updateUIView(_ uiView: UIViewType, context: Context) {
+        }
     }
 }
 
 struct _AddAccountIndexView: View {
+    @StateObject var viewModel = AddAccountIndexViewModel()
     @State var instance: String = ""
     @State var loginState: LoginState?
     @State var loginTask: Task<Void, Never>?
-    // TODO: STOP DO THIS
-    let pushViewController: ((UIViewController) -> Void)?
+    @State var path: NavigationPath = .init()
     let errorReport: ((Error) -> Void)?
     
     enum LoginState {
@@ -83,35 +89,61 @@ struct _AddAccountIndexView: View {
     }
     
     var body: some View {
-        Form {
-            Section(L10n.Login.pleaseInputMastodonInstance) {
-                TextField("インスタンス", text: $instance, prompt: Text("mastodon.example"))
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .keyboardType(.URL)
-                    .disabled(loginState != nil)
-            }
-            Section {
-                Button {
-                    loginTask = Task {
-                        await startLogin()
+        NavigationStack(path: $path) {
+            Form {
+                Section(L10n.Login.pleaseInputMastodonInstance) {
+                    TextField("インスタンス", text: $instance, prompt: Text("mastodon.example"))
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
+                        .keyboardType(.URL)
+                        .disabled(loginState != nil)
+                }
+                Section {
+                    Button {
+                        loginTask = Task {
+                            await startLogin()
+                        }
+                    } label: {
+                        Text(L10n.Login.loginButton)
                     }
-                } label: {
-                    Text(L10n.Login.loginButton)
-                }
-                .disabled(instance.count == 0 || loginState != nil)
-                .accessibility(identifier: "loginButton")
-            } footer: {
-                if let loginState = loginState {
-                    Text(loginState.description)
+                    .disabled(instance.count == 0 || loginState != nil)
+                    .accessibility(identifier: "loginButton")
+                    #if DEBUG
+                    Button {
+                        if let app = try? MastodonApp.debugGetOne() {
+                            path.append(app)
+                        }
+                    } label: {
+                        Text("Debug: Use Latest App")
+                    }
+                    #endif
+                } footer: {
+                    if let loginState = loginState {
+                        Text(loginState.description)
+                    }
                 }
             }
-        }
-        .navigationTitle(L10n.Login.title)
-        .onAppear {
-            loginTask?.cancel()
-            loginTask = nil
-            loginState = nil
+            .navigationDestination(for: MastodonApp.self, destination: { app in
+                AddAccountSelectLoginMethodView(app: app)
+            })
+            .navigationTitle(L10n.Login.title)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        viewModel.cancel()
+                    }, label: {
+                        Text(L10n.Localizable.cancel)
+                    })
+                }
+            }
+            .background {
+                AddAccountIndexViewModel.WindowAcquireView(viewModel: viewModel)
+            }
+            .onAppear {
+                loginTask?.cancel()
+                loginTask = nil
+                loginState = nil
+            }
         }
     }
     
@@ -129,9 +161,7 @@ struct _AddAccountIndexView: View {
             try app.save()
             await setLoginState(.pleaseAuthorize)
             await MainActor.run {
-                let vc = AddAccountSelectLoginMethodViewController()
-                vc.app = app
-                pushViewController?(vc)
+                path.append(app)
             }
         } catch {
             if Task.isCancelled {
@@ -147,6 +177,6 @@ struct _AddAccountIndexView: View {
 
 struct _AddAccountIndexView_Previews: PreviewProvider {
     static var previews: some View {
-        _AddAccountIndexView(pushViewController: nil, errorReport: nil)
+        _AddAccountIndexView(errorReport: nil)
     }
 }

@@ -328,8 +328,7 @@ class TopMasterViewController: UITableViewController {
                 animated: true
             )
         case .addAccount:
-            let vc = AddAccountIndexViewController()
-            self.changeRootVC(UINavigationController(rootViewController: vc))
+            self.changeRootVC(AddAccountIndexViewController())
         case .settings:
             showDetailViewController(UINavigationController(rootViewController: NewSettingsViewController()), sender: self)
         case .helpAndFeedback:

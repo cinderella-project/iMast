@@ -63,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 switch error {
                 case APIError.errorReturned(errorMessage: _, errorHttpCode: 401):
                     try myAccount.delete()
-                    window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
+                    window.rootViewController = AddAccountIndexViewController()
                 default:
                     break
                 }
@@ -96,7 +96,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         } else {
-            window.rootViewController = UINavigationController(rootViewController: AddAccountIndexViewController())
+            window.rootViewController = AddAccountIndexViewController()
         }
         self.windows.append(window)
     }

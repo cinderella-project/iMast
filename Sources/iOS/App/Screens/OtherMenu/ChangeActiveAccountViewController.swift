@@ -93,8 +93,7 @@ class ChangeActiveAccountViewController: UITableViewController {
     }
     
     @objc func onTapAddAccountButton() {
-        let vc = AddAccountIndexViewController()
-        self.changeRootVC(UINavigationController(rootViewController: vc))
+        self.changeRootVC(AddAccountIndexViewController())
     }
     
     // MARK: - Table view data source
@@ -171,7 +170,7 @@ class ChangeActiveAccountViewController: UITableViewController {
                         if let token = MastodonUserToken.getLatestUsed() {
                             self.changeRootVC(MainTabBarController.instantiate(environment: token))
                         } else {
-                            self.changeRootVC(UINavigationController(rootViewController: AddAccountIndexViewController()))
+                            self.changeRootVC(AddAccountIndexViewController())
                         }
                     }
                     completionHandler(true)
