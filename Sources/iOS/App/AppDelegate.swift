@@ -266,8 +266,14 @@ extension UIViewController {
         guard let window = self.view.window else {
             fatalError("windowないが")
         }
-        UIView.transition(with: window, duration: 0.5, options: reversed ? .transitionFlipFromLeft : .transitionFlipFromRight, animations: {
-            window.rootViewController = viewController
+        window.changeRootVC(viewController, reversed: reversed)
+    }
+}
+
+extension UIWindow {
+    func changeRootVC(_ viewController: UIViewController, reversed: Bool = false) {
+        UIView.transition(with: self, duration: 0.5, options: reversed ? .transitionFlipFromLeft : .transitionFlipFromRight, animations: {
+            self.rootViewController = viewController
         }, completion: { _ in
             DispatchQueue.main.async {
                 allWebSocketDisconnect()
