@@ -17,7 +17,7 @@
 
 "authorize.title" = "인증";
 "authorize.method.safari" = "Safari 로 로그인 (권장)";
-"authorize.method.safariEphemeral" = "Safariでログイン (プライベートブラウズ)";
+"authorize.method.safariEphemeral" = "Safari에서 로그인 (개인 브라우저)";
 
 "authorize.tos.header" = "로그인 하는 것으로, 아래의 규칙과 개인정보 보호 정책 등에 동의하는 것으로 간주됩니다.";
 "authorize.tos.rules" = "이 서버의 규칙";
@@ -29,6 +29,6 @@
 "welcome.message" = "환영합니다.\n%@\n님";
 "welcome.toTimeline" = "타임라인에";
 
-"acquireTokenProgress.fetchingToken" = "認証中…";
-"acquireTokenProgress.fetchingProfile" = "プロフィール情報を取得中…";
-"acquireTokenProgress.almostDone" = "あともう少しです…";
+"acquireTokenProgress.fetchingToken" = "인증하는중....";
+"acquireTokenProgress.fetchingProfile" = "프로필 정보를 가져오는 중...";
+"acquireTokenProgress.almostDone" = "잠시만 기다려주세요...";

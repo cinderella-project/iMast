@@ -9,9 +9,9 @@
 "placeholders.cwWarningText" = "CW설명문 (생략 가능)";
 "infoText.inReplyTo" = "%@ 님에게";
 "send" = "보내기";
-"title" = "新規投稿";
+"title" = "새 툿";
 "reply" = "답글";
-"edit" = "編集";
+"edit" = "수정";
 
 "selectVisibility.title" = "공개범위";
 "selectVisibility.description" = "공개범위를 설정해주세요";
@@ -30,10 +30,10 @@
 "keyCommand.send.description" = "글 게시";
 
 "alerts.sending.title" = "게시 중";
-"alerts.sending.pleaseWait" = "しばらくお待ちください…";
+"alerts.sending.pleaseWait" = "잠시만 기다려주세요…";
 "alerts.sending.steps.mediaUpload" = "미디어 업로드 중 (%1$d/%2$d)";
 "alerts.sending.steps.send" = "전송중";
-"alerts.sending.steps.done" = "完了しました";
+"alerts.sending.steps.done" = "완료 되었습니다";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
 "errors.declineAppleMusicPermission" = "음악 라이브러리에 접근 권한이 없습니다. 설정 앱에서 iMast 앱에 Apple Music 권한을 허용해주세요.";
