@@ -19,7 +19,12 @@ jobs:
       run: bundle exec pod install
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
     - name: Build (iOS)
-      run: set -o pipefail && xcodebuild clean build -sdk iphoneos -workspace iMast.xcworkspace -scheme "iMast iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+      run: |
+        set -o pipefail
+        xcodebuild archive \
+          -workspace iMast.xcworkspace -scheme "iMast iOS" -configuration Release \
+          archive -archivePath ./archive
+          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: debug ls
       run: find . -type f
     - name: Build (macOS)
