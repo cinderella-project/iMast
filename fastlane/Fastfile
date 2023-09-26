@@ -46,7 +46,7 @@ platform :ios do
 #       get_provisioning_profile(app_identifier: appex.target.build_settings("Release")["PRODUCT_BUNDLE_IDENTIFIER"])
 #    end
 
-    build_app(workspace: "iMast.xcworkspace", scheme: "iMast iOS", xcargs: "-allowProvisioningUpdates")
+    build_app(workspace: "iMast.xcworkspace", scheme: "iMast iOS", xcargs: "")
     upload_to_testflight(changelog: changelog, distribute_external: true, wait_processing_interval: 90, groups: ["外部テスター"], wait_for_uploaded_build: true)
     push_to_git_remote
   end
