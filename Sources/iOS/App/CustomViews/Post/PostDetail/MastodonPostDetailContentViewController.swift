@@ -53,6 +53,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         v.textContainer.lineFragmentPadding = 0
         v.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         v.backgroundColor = .clear
+        v.clipsToBounds = true
     }
     
     let userButton = UIButton()
