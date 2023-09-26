@@ -116,7 +116,6 @@
 		CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7320E033E20034B63E /* StableTableViewController.swift */; };
 		CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */; };
 		CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */; };
-		CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
 		CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
@@ -737,7 +736,6 @@
 		CE54BC7320E033E20034B63E /* StableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableTableViewController.swift; sourceTree = "<group>"; };
 		CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioViewController.swift; sourceTree = "<group>"; };
-		CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
 		CE5D9DF626B3C19500895234 /* deferAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deferAsync.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAsync.swift"; sourceTree = "<group>"; };
@@ -1799,7 +1797,6 @@
 			isa = PBXGroup;
 			children = (
 				CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */,
-				CE571B2E216E01B1003F1062 /* FeedbackViewController.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -3414,7 +3411,6 @@
 			files = (
 				CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */,
 				2AF3521B1EAB9C5500777C2E /* AppDelegate.swift in Sources */,
-				CE571B2F216E01B1003F1062 /* FeedbackViewController.swift in Sources */,
 				CE102BD32313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift in Sources */,
 				CEE35D962375D94F00AFEBA0 /* TopAccountMasterViewController.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimelineViewController.swift in Sources */,

@@ -77,7 +77,7 @@ class HelpAndFeedbackTableViewController: UITableViewController {
             cell.detailTextLabel?.text = url.absoluteString
         case .feedback:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Feedback"
+            cell.textLabel?.text = "GitHub Issues に Feedback を投稿する"
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -92,8 +92,17 @@ class HelpAndFeedbackTableViewController: UITableViewController {
             let vc = SFSafariViewController(url: url)
             self.present(vc, animated: true, completion: nil)
         case .feedback:
-            let vc = FeedbackViewController()
-            self.show(vc, sender: self)
+            let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+" (\((Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)))"
+            var body = "\n\n\n\n\n<!-- ここより上に本文を書いてください -->\n\n### Environment\n<table>"
+            body += "<tr><th>iMast<td>\(versionString)"
+            body += "<tr><th>iOS<td>\(UIDevice.current.systemVersion)"
+            body += "<tr><th>Device<td>\(UIDevice.current.platform)"
+            body += "</table>"
+            var urlComponents = URLComponents(string: "https://github.com/cinderella-project/iMast/issues/new")!
+            urlComponents.queryItems = [
+                .init(name: "body", value: body)
+            ]
+            view.window?.windowScene?.open(urlComponents.url!, options: nil)
         }
     }
 }
