@@ -22,8 +22,8 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild archive \
-          -workspace iMast.xcworkspace -scheme "iMast iOS" -configuration Release \
-          archive -archivePath ./archive
+          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" -configuration Release \
+          build -derivedDataPath ./build
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: debug ls
       run: find . -type f
