@@ -91,8 +91,8 @@ private struct FakeNavigationButtonPreviewView: View {
         }
     }
 }
-#endif
 
 #Preview {
     FakeNavigationButtonPreviewView()
 }
+#endif
