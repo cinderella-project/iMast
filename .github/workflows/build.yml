@@ -27,5 +27,14 @@ jobs:
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Export Stats
       run: python3 .github/export_build_stats.py ./build Release iphoneos | tee stats.json
+    - name: Upload Stats
+      run: |
+        curl -vX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.BINSTATSD_API_KEY }}" \
+          -H "X-IBS-Branch: ${{ github.ref_name }}" \
+          -H "X-IBS-Commit: ${{ github.sha }}" \
+          -H "X-IBS-Repo: ${{ github.repository }}" \
+          -H "X-IBS-RunID: ${{ github.run_id }}" \
+          https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
     - name: Build (macOS)
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
