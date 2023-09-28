@@ -30,7 +30,7 @@ jobs:
     - name: Upload Stats
       run: |
         curl -vX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
-          -H "Authorization: Bearer ${{ secrets.BINSTATSD_API_KEY }}" \
+          -H "X-Space-App-Key: ${{ secrets.BINSTATSD_API_KEY }}" \
           -H "X-IBS-Branch: ${{ github.ref_name }}" \
           -H "X-IBS-Commit: ${{ github.sha }}" \
           -H "X-IBS-Repo: ${{ github.repository }}" \
