@@ -196,7 +196,7 @@
 		CE9BB392241C5057004B6421 /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */; };
 		CE9BD65E2310ADD300763D3A /* TableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BD65D2310ADD300763D3A /* TableViewDiffableDataSource.swift */; };
 		CE9C344E218473DF002C6E80 /* HashtagTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C344D218473DF002C6E80 /* HashtagTimelineViewController.swift */; };
-		CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */; };
+		CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundView.swift */; };
 		CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA528D428527DE70095EB1F /* SettingsView.swift */; };
@@ -841,7 +841,7 @@
 		CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewController.swift; sourceTree = "<group>"; };
 		CE9BD65D2310ADD300763D3A /* TableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDiffableDataSource.swift; sourceTree = "<group>"; };
 		CE9C344D218473DF002C6E80 /* HashtagTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTimelineViewController.swift; sourceTree = "<group>"; };
-		CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsChangeSoundViewController.swift; sourceTree = "<group>"; };
+		CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsChangeSoundView.swift; sourceTree = "<group>"; };
 		CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MastodonUserToken+toIntentAccount.swift"; sourceTree = "<group>"; };
 		CEA252BC1EE8A77D002C60F3 /* iMastShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastShare.entitlements; sourceTree = "<group>"; };
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
@@ -1495,7 +1495,7 @@
 			children = (
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
 				CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */,
-				CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift */,
+				CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundView.swift */,
 				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */,
 				CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */,
@@ -3424,7 +3424,7 @@
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,
 				CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */,
 				CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */,
-				CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundViewController.swift in Sources */,
+				CE9D54A923BBA1D50030BF71 /* PushSettingsChangeSoundView.swift in Sources */,
 				CE9A69A422CBF8CD009F51C6 /* BunmyakuTableViewController.swift in Sources */,
 				CEAC1FBF272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift in Sources */,
 				2A533F7A1ECD08130062630F /* OtherMenuViewController.swift in Sources */,

@@ -22,6 +22,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Alamofire
 import SVProgressHUD
 import Eureka
@@ -78,7 +79,7 @@ class PushSettingsTableViewController: FormViewController {
                 ButtonRow { row in
                     row.title = L10n.Preferences.Push.Shared.CustomSounds.title
                     row.cellStyle = .default
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { PushSettingsChangeSoundViewController() }), onDismiss: nil)
+                    row.presentationMode = .show(controllerProvider: .callback(builder: { UIHostingController(rootView: PushSettingsChangeSoundView()) }), onDismiss: nil)
                 }
                 ButtonRow { row in
                     row.title = L10n.Preferences.Push.Shared.DeleteAccount.title
