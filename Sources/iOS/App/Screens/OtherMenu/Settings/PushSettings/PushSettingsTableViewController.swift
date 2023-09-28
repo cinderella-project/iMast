@@ -74,7 +74,7 @@ class PushSettingsTableViewController: FormViewController {
                     cell.textLabel?.textAlignment = .left
                     cell.accessoryType = .disclosureIndicator
                 }.onCellSelection { (cell, row) in
-                    self.navigationController?.pushViewController(PushSettingsGroupNotifyTableViewController(), animated: true)
+                    self.navigationController?.pushViewController(UIHostingController(rootView: PushSettingsGroupNotifyTableView()), animated: true)
                 }
                 ButtonRow { row in
                     row.title = L10n.Preferences.Push.Shared.CustomSounds.title

@@ -142,7 +142,7 @@
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
 		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
-		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */; };
+		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */; };
 		CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE83C85F2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
@@ -787,7 +787,7 @@
 		CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
-		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableViewController.swift; sourceTree = "<group>"; };
+		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableView.swift; sourceTree = "<group>"; };
 		CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableViewDescriptor.swift; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
@@ -1496,7 +1496,7 @@
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
 				CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */,
 				CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundView.swift */,
-				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift */,
+				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */,
 				CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */,
 				CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */,
 			);
@@ -3510,7 +3510,7 @@
 				5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
-				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableViewController.swift in Sources */,
+				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift in Sources */,
 				CEF9C9E72AC139AF009ACFD9 /* OpenSafariButton.swift in Sources */,
 				CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,
