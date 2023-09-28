@@ -32,7 +32,8 @@ jobs:
         curl -vX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
           -H "X-Space-App-Key: ${{ secrets.BINSTATSD_API_KEY }}" \
           -H "X-IBS-Branch: ${{ github.ref_name }}" \
-          -H "X-IBS-Commit: ${{ github.sha }}" \
+          -H "X-IBS-Commit: $(git rev-parse HEAD)" \
+          -H "X-IBS-Parent: $(git rev-parse HEAD^)" \
           -H "X-IBS-Repo: ${{ github.repository }}" \
           -H "X-IBS-RunID: ${{ github.run_id }}" \
           https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
