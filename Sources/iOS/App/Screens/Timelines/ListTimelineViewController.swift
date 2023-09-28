@@ -37,11 +37,6 @@ class ListTimelineViewController: TimelineViewController {
         self.isNewPostAvailable = true
         super.viewDidLoad()
     }
-
-    @objc func editList() {
-        let vc = EditListInfoViewController.instantiate(list, environment: environment)
-        self.present(ModalNavigationViewController(rootViewController: vc), animated: true, completion: nil)
-    }
     
     override func websocketEndpoint() -> String? {
         return "list&list=\(list.id.string)"

@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonList: Codable, MastodonEndpointResponse {
+public struct MastodonList: Codable, MastodonEndpointResponse, Sendable {
     public init(id: MastodonID, title: String) {
         self.id = id
         self.title = title

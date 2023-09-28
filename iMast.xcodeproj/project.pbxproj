@@ -39,6 +39,7 @@
 		CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DD28576A8C00F6A0AF /* Ikemen */; };
 		CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DF28576A9200F6A0AF /* Ikemen */; };
 		CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */; };
+		CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */; };
 		CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
@@ -671,6 +672,7 @@
 		CE102BD22313FB2A007CB778 /* ModalLoadingIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLoadingIndicatorViewController.swift; sourceTree = "<group>"; };
 		CE109713220631E5000A5101 /* EmojiListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListTableViewController.swift; sourceTree = "<group>"; };
 		CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPushSettingsButton.swift; sourceTree = "<group>"; };
+		CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReportViewModifier.swift; sourceTree = "<group>"; };
 		CE142A962AAC67B100B532AB /* DefaultCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCodable.swift; sourceTree = "<group>"; };
 		CE23ABCD23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Search.strings; sourceTree = "<group>"; };
 		CE23ABCE23CAEA3900E799E7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2159,6 +2161,7 @@
 				CEF9C9E32AC12B08009ACFD9 /* FakeNavigationButton.swift */,
 				CEF9C9E62AC139AF009ACFD9 /* OpenSafariButton.swift */,
 				CEF9C9E82AC13A47009ACFD9 /* OpenLinkInSafariVCModifier.swift */,
+				CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -3445,6 +3448,7 @@
 				CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */,
 				CE8EFBC825C945F8004FFE4B /* UIViewController+openURL.swift in Sources */,
 				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
+				CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */,
 				CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */,
 				CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */,
 				CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */,

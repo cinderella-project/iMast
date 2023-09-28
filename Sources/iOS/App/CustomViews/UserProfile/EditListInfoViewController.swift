@@ -21,103 +21,117 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-import UIKit
+import SwiftUI
 import Mew
-import Eureka
-import EurekaFormBuilder
-import Ikemen
 import iMastiOSCore
 
-class EditListInfoViewController: FormViewController, Instantiatable, Interactable {
+class EditListInfoViewController: UIHostingController<EditListInfoView>, Instantiatable {
     typealias Input = MastodonList
     typealias Environment = MastodonUserToken
-    typealias Output = MastodonList?
     let environment: Environment
     var input: Input
-    var outputHandler: ((Output) -> Void)?
-    
-    var isSaving: Bool = false {
-        didSet {
-            switch isSaving {
-            case true:
-                let indicator = UIActivityIndicatorView(style: .medium) ※ { v in
-                    v.startAnimating()
-                }
-                navigationItem.rightBarButtonItem = .init(customView: indicator)
-            case false:
-                navigationItem.rightBarButtonItem = .init(title: "保存", style: .done, target: self, action: #selector(onSave))
-            }
-        }
-    }
     
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
-        super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
+        super.init(rootView: .init(list: input, userToken: environment))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+struct EditListInfoView: View {
+    let list: MastodonList
+    let userToken: MastodonUserToken
+    @State var title: String
+    @State var saving = false
+    @State var askDelete = false
+    @StateObject var errorReporter: ErrorReporter = .init()
+    @MainActor @Environment(\.dismiss) var dismiss
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+    init(list: MastodonList, userToken: MastodonUserToken) {
+        self.list = list
+        self.userToken = userToken
+        _title = .init(initialValue: list.title)
+    }
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    LabeledContent {
+                        TextField(text: $title, prompt: Text("必須")) {
+                            Text("名前")
+                        }
+                        .multilineTextAlignment(.trailing)
+                    } label: {
+                        Text("名前")
+                    }
 
-        title = "リストを編集"
-        isSaving = false
+                }
+                Section {
+                    Button(role: .destructive) {
+                        askDelete = true
+                    } label: {
+                        Text("リストを削除…")
+                    }
+                    .confirmationDialog(Text("このリストを削除してもよろしいですか?"), isPresented: $askDelete, titleVisibility: .visible) {
+                        Button(role: .destructive) {
+                            Task { await delete() }
+                        } label: {
+                            Text("削除")
+                        }
 
-        form.append {
-            Section {
-                TextRow("title") { row in
-                    row.title = "名前"
-                    row.value = input.title
+                    }
                 }
             }
-            Section {
-                ButtonRow { row in
-                    row.title = "リストを削除"
-                }.cellUpdate { cell, row in
-                    cell.textLabel?.textColor = .red
-                }.onCellSelection { [weak self] cell, row in
-                    self?.onDeleteButtonTapped(cell: cell)
+            .navigationTitle("リストを編集")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(role: .cancel) {
+                        dismiss()
+                    } label: {
+                        Text(L10n.Localizable.cancel)
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button {
+                        Task { await save() }
+                    } label: {
+                        if saving {
+                            ProgressView()
+                        } else {
+                            Text("保存")
+                        }
+                    }
                 }
             }
-        }
-    }
-
-    func output(_ handler: ((Output) -> Void)?) {
-        outputHandler = handler
-    }
-    
-    @objc func onSave() {
-        isSaving = true
-        let values = form.values()
-        MastodonEndpoint.UpdateList(list: input, title: values["title"] as! String).request(with: environment).then { [weak self] newList in
-            self?.outputHandler?(newList)
-            self?.dismiss(animated: true, completion: nil)
-        }.catch { [weak self] error in
-            self?.isSaving = false
-            self?.errorReport(error: error)
+            .disabled(saving)
+            .attach(errorReporter: errorReporter)
         }
     }
     
-    func onDeleteButtonTapped(cell: BaseCell) {
-        let alert = UIAlertController(
-            title: "確認",
-            message: "リスト「\(self.input.title)」を削除してもよろしいですか?",
-            preferredStyle: .actionSheet
-        )
-        alert.popoverPresentationController?.sourceView = cell
-        alert.addAction(.init(title: "削除", style: .destructive) { [weak self] _ in
-            guard let self = self else { return }
-            MastodonEndpoint.DeleteList(list: self.input).request(with: self.environment).then { [weak self] _ in
-                self?.dismiss(animated: true, completion: nil)
-                self?.output(nil)
-            }
-        })
-        alert.addAction(.init(title: "キャンセル", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+    @MainActor func save() async {
+        saving = true
+        do {
+            _ = try await MastodonEndpoint.UpdateList(list: list, title: title).request(with: userToken)
+            dismiss()
+        } catch {
+            errorReporter.report(error)
+            saving = false
+        }
+    }
+    
+    @MainActor func delete() async {
+        saving = true
+        do {
+            _ = try await MastodonEndpoint.DeleteList(list: list).request(with: userToken)
+            dismiss()
+        } catch {
+            errorReporter.report(error)
+            saving = false
+        }
     }
 }

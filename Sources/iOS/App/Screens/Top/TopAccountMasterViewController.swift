@@ -193,7 +193,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
                             let list = try await MastodonEndpoint.GetListFromId(id: .string(id)).request(with: strongSelf.environment)
                             await MainActor.run {
                                 strongSelf.present(
-                                    ModalNavigationViewController(rootViewController: EditListInfoViewController.instantiate(list, environment: strongSelf.environment)),
+                                    EditListInfoViewController.instantiate(list, environment: strongSelf.environment),
                                     animated: true, completion: nil
                                 )
                             }
