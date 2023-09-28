@@ -24,51 +24,6 @@
 import Eureka
 import iMastiOSCore
 
-final class PushStringRow: _PushRow<PushSelectorCell<String>>, RowType {
-    func userDefaultsConnect<T: Equatable>(_ key: DefaultsKey<T>, map: [(key: T, value: String)], userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        self.options = map.map { $0.value }
-        let userDefaultsValue = key.wrappedValue
-        self.value = map.filter { arg -> Bool in
-            let (key, _) = arg
-            return key == userDefaultsValue
-        }.first?.value ?? "\(userDefaultsValue)"
-        self.onChange { row in
-            map.forEach({ (key_, value) in
-                if value == row.value {
-                    key.wrappedValue = key_
-                }
-            })
-        }
-    }
-}
-
-extension PushRow where T: RawRepresentable {
-    func userDefaultsConnect(_ key: DefaultsKeyRawRepresentable<T>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
-        self.value = key.wrappedValue
-        self.onChange { row in
-            guard let value = row.value else {
-                return
-            }
-            key.wrappedValue = value
-        }
-    }
-}
-
-extension TextRow {
-    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
-        self.value = key.wrappedValue
-        var oldValue = self.value
-        self.onChange { row in
-            if oldValue == row.value {
-                return
-            }
-            oldValue = row.value
-            let newValue = row.value ?? ""
-            key.wrappedValue = newValue == "" ? key.defaultValue : newValue
-        }
-    }
-}
-
 extension SwitchRow {
     func userDefaultsConnect(_ key: DefaultsKey<Bool>, userDefaults: UserDefaults = UserDefaultsAppGroup) {
         self.value = key.wrappedValue
@@ -79,21 +34,6 @@ extension SwitchRow {
             }
             oldValue = row.value
             key.wrappedValue = row.value ?? false
-        }
-    }
-}
-
-extension TextAreaRow {
-    func userDefaultsConnect(_ key: DefaultsKey<String>, userDefaults: UserDefaults = UserDefaultsAppGroup, ifEmptyUseDefaultValue: Bool = false) {
-        self.value = key.wrappedValue
-        var oldValue = self.value
-        self.onChange { row in
-            if oldValue == row.value {
-                return
-            }
-            oldValue = row.value
-            let newValue = row.value ?? ""
-            key.wrappedValue = newValue == "" ? key.defaultValue : newValue
         }
     }
 }
