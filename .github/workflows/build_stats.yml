@@ -1,0 +1,40 @@
+name: App Size Stats
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macOS-13
+    strategy:
+      matrix:
+        xcode:
+          - "15.0"
+    steps:
+    - uses: actions/checkout@v1
+    - name: Select Xcode
+      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+    - name: bundle install
+      run: bundle update --bundler && bundle install
+    - name: Install CocoaPods dependencies
+      run: bundle exec pod install
+    - run: git config --global core.quotepath false # for Ikemen on SwiftPM
+    - name: Build (iOS)
+      run: |
+        set -o pipefail
+        xcodebuild \
+          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" -configuration Release \
+          build -derivedDataPath ./build \
+          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+    - name: Export Stats
+      run: python3 .github/export_build_stats.py ./build Release iphoneos | tee stats.json
+    - name: Upload Stats
+      run: |
+        curl -vX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
+          -H "X-Space-App-Key: ${{ secrets.BINSTATSD_API_KEY }}" \
+          -H "X-IBS-Branch: ${{ github.ref_name }}" \
+          -H "X-IBS-Commit: $(git rev-parse HEAD)" \
+          -H "X-IBS-Parent: $(git rev-parse HEAD^)" \
+          -H "X-IBS-Repo: ${{ github.repository }}" \
+          -H "X-IBS-RunID: ${{ github.run_id }}" \
+          -H "X-IBS-Platform: iOS" \
+          https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
