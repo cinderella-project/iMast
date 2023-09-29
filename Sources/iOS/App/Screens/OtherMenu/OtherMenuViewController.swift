@@ -29,111 +29,128 @@ import Mew
 import iMastiOSCore
 import SwiftUI
 
-class OtherMenuViewController: FormViewController, Instantiatable {
+class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDelegate {
     typealias Input = Void
     typealias Environment = MastodonUserToken
 
     internal let environment: Environment
     
+    enum Section {
+        case one
+    }
+    
+    enum Item {
+        case switchActiveAccount
+        case myProfile
+        case lists
+        case bookmarks
+        case settings
+        case helpAndFeeddback
+        case aboutThisApp
+    }
+    
     private lazy var searchResultViewController = SearchViewController.instantiate(environment: self.environment)
     private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
+    private let tableView = UITableView()
+    private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] tableView, indexPath, itemIdentifier in
+        guard let self else {
+            return nil
+        }
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.accessoryType = .disclosureIndicator
+        switch itemIdentifier {
+        case .switchActiveAccount:
+            cell.textLabel?.text = L10n.Localizable.switchActiveAccount
+            cell.detailTextLabel?.text = L10n.Localizable.currentAccount(environment.acct)
+        case .myProfile:
+            cell.textLabel?.text = L10n.Localizable.myProfile
+        case .lists:
+            cell.textLabel?.text = L10n.Localizable.lists
+        case .bookmarks:
+            cell.textLabel?.text = L10n.Localizable.bookmarks
+        case .settings:
+            cell.textLabel?.text = L10n.Localizable.settings
+        case .helpAndFeeddback:
+            cell.textLabel?.text = L10n.Localizable.helpAndFeedback
+        case .aboutThisApp:
+            cell.textLabel?.text = L10n.Localizable.AboutThisApp.title
+        }
+        
+        return cell
+    }
     
     required init(with input: Input, environment: Environment) {
         self.environment = environment
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = tableView
+    }
+    
     override func viewDidLoad() {
         self.title = L10n.Localizable.other
         super.viewDidLoad()
-
-        form.append {
-            Section {
-                ButtonRow { row in
-                    row.title = L10n.Localizable.switchActiveAccount
-                    row.cellStyle = .subtitle
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { ChangeActiveAccountViewController() }), onDismiss: nil)
-                    row.cellUpdate { (cell, row) in
-                        cell.detailTextLabel?.text = L10n.Localizable.currentAccount(self.environment.acct)
-                    }
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.myProfile
-                    row.cellUpdate { cell, row in
-                        cell.textLabel?.textAlignment = .left
-                        cell.accessoryType = .disclosureIndicator
-                        cell.textLabel?.textColor = nil
-                    }
-                    row.onCellSelection { cell, row in
-                        MastodonEndpoint.GetMyProfile()
-                            .request(with: self.environment)
-                            .then { account in
-                                let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
-                                self.navigationController?.pushViewController(newVC, animated: true)
-                            }.catch { error in
-                                print(error)
-                            }
-                    }
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.lists
-                    row.cellUpdate { cell, row in
-                        cell.textLabel?.textAlignment = .left
-                        cell.accessoryType = .disclosureIndicator
-                        cell.textLabel?.textColor = nil
-                    }
-                    row.onCellSelection { [weak self] cell, row in
-                        guard let self = self else {
-                            return
-                        }
-                        self.mastodonVersionBarrier(.list) {
-                            MastodonEndpoint.MyLists().request(with: self.environment).then({ lists in
-                                let vc = ListsTableViewController.instantiate(environment: self.environment)
-                                vc.lists = lists
-                                self.navigationController?.pushViewController(vc, animated: true)
-                            })
-                        }
-                    }
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.bookmarks
-                    row.cellUpdate { cell, row in
-                        cell.textLabel?.textAlignment = .left
-                        cell.accessoryType = .disclosureIndicator
-                        cell.textLabel?.textColor = nil
-                    }
-                    row.onCellSelection { [weak self] cell, row in
-                        guard let self = self else {
-                            return
-                        }
-                        self.mastodonVersionBarrier(.bookmark) {
-                            self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
-                        }
-                    }
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.settings
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { NewSettingsViewController() }), onDismiss: nil)
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.helpAndFeedback
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { HelpAndFeedbackTableViewController() }), onDismiss: nil)
-                }
-                ButtonRow { row in
-                    row.title = L10n.Localizable.AboutThisApp.title
-                    row.presentationMode = .show(controllerProvider: .callback(builder: { AboutThisAppViewController() }), onDismiss: nil)
-                }
-            }
-        }
+        
+        var snapshot = dataSource.plainSnapshot()
+        snapshot.appendSections([.one])
+        snapshot.appendItems([
+            .switchActiveAccount,
+            .myProfile,
+            .lists,
+            .bookmarks,
+            .settings,
+            .helpAndFeeddback,
+            .aboutThisApp,
+        ])
+        dataSource.apply(snapshot, animatingDifferences: false)
+        tableView.delegate = self
         
         navigationItem.searchController = searchController
         searchResultViewController.searchBar = searchController.searchBar
         searchResultViewController.presentor = self
         searchController.delegate = searchResultViewController
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        switch item {
+        case .switchActiveAccount:
+            navigationController?.pushViewController(ChangeActiveAccountViewController(), animated: true)
+        case .myProfile:
+            MastodonEndpoint.GetMyProfile()
+                .request(with: self.environment)
+                .then { account in
+                    let newVC = UserProfileTopViewController.instantiate(account, environment: self.environment)
+                    self.navigationController?.pushViewController(newVC, animated: true)
+                }.catch { error in
+                    print(error)
+                }
+        case .lists:
+            mastodonVersionBarrier(.list) {
+                MastodonEndpoint.MyLists().request(with: self.environment).then({ lists in
+                    let vc = ListsTableViewController.instantiate(environment: self.environment)
+                    vc.lists = lists
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+            }
+        case .bookmarks:
+            mastodonVersionBarrier(.bookmark) {
+                self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
+            }
+        case .settings:
+            navigationController?.pushViewController(NewSettingsViewController(), animated: true)
+        case .helpAndFeeddback:
+            navigationController?.pushViewController(HelpAndFeedbackTableViewController(), animated: true)
+        case .aboutThisApp:
+            navigationController?.pushViewController(AboutThisAppViewController(), animated: true)
+        }
     }
     
     @objc func openSearch() {
