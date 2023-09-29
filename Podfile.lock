@@ -1,8 +1,5 @@
 PODS:
   - Alamofire (4.9.1)
-  - Eureka (5.3.0)
-  - EurekaFormBuilder (0.2.2):
-    - Eureka (~> 5.2)
   - Fuzi (3.1.3)
   - GRDB.swift (4.6.2):
     - GRDB.swift/standard (= 4.6.2)
@@ -23,8 +20,6 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.9.1)
-  - Eureka (~> 5.3.0)
-  - EurekaFormBuilder (~> 0.2.2)
   - Fuzi (~> 3.1.3)
   - GRDB.swift (~> 4.6.2)
   - HydraAsync (~> 2.0.6)
@@ -42,8 +37,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Eureka
-    - EurekaFormBuilder
     - Fuzi
     - GRDB.swift
     - HydraAsync
@@ -69,8 +62,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Eureka: 49239596c9d2eed9ab523990c34de62b6feac9f0
-  EurekaFormBuilder: 9411111c6a9b7562ccefc1f8bf5ad0bf5ff4f900
   Fuzi: 4c10d6449c0b49a85cd75b13844c559c0fc71220
   GRDB.swift: 258520e10b49ff55307cbb0bec701af0742ae621
   HydraAsync: 8d589bd725b0224f899afafc9a396327405f8063
@@ -85,6 +76,6 @@ SPEC CHECKSUMS:
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 05b4fc29f80c7881baead451a315486b2428f3ae
+PODFILE CHECKSUM: 16ea1823fabeb9f045560909120735c124fc0bc9
 
 COCOAPODS: 1.13.0

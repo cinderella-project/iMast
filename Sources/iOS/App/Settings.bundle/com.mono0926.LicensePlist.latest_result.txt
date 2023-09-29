@@ -38,30 +38,6 @@ name: Alamofire, nameSpecified:
 body: Copyright (c) 2014 A…
 version: 4.9.1
 
-name: Eureka, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.3.0
-
-name: Eureka, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.3.0
-
-name: Eureka, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.3.0
-
-name: EurekaFormBuilder, nameSpecified: 
-body: Copyright (c) 2019 r…
-version: 0.2.2
-
-name: EurekaFormBuilder, nameSpecified: 
-body: Copyright (c) 2019 r…
-version: 0.2.2
-
-name: EurekaFormBuilder, nameSpecified: 
-body: Copyright (c) 2019 r…
-version: 0.2.2
-
 name: Fuzi, nameSpecified: 
 body: Copyright (c) 2015 C…
 version: 3.1.3

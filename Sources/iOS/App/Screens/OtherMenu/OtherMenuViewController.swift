@@ -22,8 +22,6 @@
 //
 
 import UIKit
-import Eureka
-import EurekaFormBuilder
 import SafariServices
 import Mew
 import iMastiOSCore
