@@ -372,24 +372,6 @@ name: Starscream, nameSpecified:
 body:                     …
 version: 3.1.1
 
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
-
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
-
-name: SVProgressHUD, nameSpecified: 
-body: MIT License
-
-Copyrig…
-version: 2.2.5
-
 name: SwiftGen, nameSpecified: 
 body: MIT Licence
 

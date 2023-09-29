@@ -27,7 +27,6 @@ abstract_target 'iMastShared' do
       pod 'ReachabilitySwift', '~> 4.3.1'
       pod 'Eureka', '~> 5.3.0'
       pod 'EurekaFormBuilder', '~> 0.2.2'
-      pod 'SVProgressHUD'
       pod 'LicensePlist', '~> 3.22.0'
       
       target 'iMastTests' do

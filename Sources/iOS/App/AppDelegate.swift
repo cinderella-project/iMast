@@ -23,7 +23,6 @@
 
 import UIKit
 import UserNotifications
-import SVProgressHUD
 import SafariServices
 import Hydra
 import iMastiOSCore
@@ -53,9 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         UNUserNotificationCenter.current().delegate = self
-        
-        SVProgressHUD.setDefaultAnimationType(.native)
-        SVProgressHUD.setDefaultMaskType(.black)
         
         // AppGroup/imageCacheを消す
         do {

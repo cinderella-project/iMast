@@ -17,7 +17,6 @@ PODS:
   - SDWebImage/Core (5.12.6)
   - SnapKit (5.6.0)
   - Starscream (3.1.1)
-  - SVProgressHUD (2.2.5)
   - SwiftGen (6.5.1)
   - SwiftLint (0.52.4)
   - SwiftyJSON (5.0.0)
@@ -36,7 +35,6 @@ DEPENDENCIES:
   - SDWebImage (~> 5.12.6)
   - SnapKit (= 5.6.0)
   - Starscream (~> 3.1.1)
-  - SVProgressHUD
   - SwiftGen (= 6.5.1)
   - SwiftLint (= 0.52.4)
   - SwiftyJSON (= 5.0.0)
@@ -55,7 +53,6 @@ SPEC REPOS:
     - SDWebImage
     - SnapKit
     - Starscream
-    - SVProgressHUD
     - SwiftGen
     - SwiftLint
     - SwiftyJSON
@@ -84,11 +81,10 @@ SPEC CHECKSUMS:
   SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: beb4d1df5cb1d49e5aa9cd5411c315ae5f177311
+PODFILE CHECKSUM: 05b4fc29f80c7881baead451a315486b2428f3ae
 
 COCOAPODS: 1.13.0
