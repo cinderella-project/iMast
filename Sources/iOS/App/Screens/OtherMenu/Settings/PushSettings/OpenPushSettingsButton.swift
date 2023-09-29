@@ -75,6 +75,10 @@ struct OpenPushSettingsButton: View {
     
     @MainActor func openPushSettings() async {
         do {
+            if try! PushService.isRegistered() {
+                openPushSettings = true
+                return
+            }
             guard try await UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) else {
                 confirmsEnableNotificationPermission = true
                 return
@@ -91,7 +95,7 @@ struct OpenPushSettingsButton: View {
             registeringNow = false
         }
         do {
-//            try await PushService.register()
+            try await PushService.register()
             UIApplication.shared.registerForRemoteNotifications()
         } catch {
             errorReporter.report(error)
