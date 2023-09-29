@@ -44,7 +44,20 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         case feedback
     }
     
-    lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: self.tableView, cellProvider: self.cellProvider)
+    lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: self.tableView) { [weak self] tableView, indexPath, item in
+        let cell: UITableViewCell
+        switch item {
+        case .web(let title, let url):
+            cell = .init(style: .subtitle, reuseIdentifier: nil)
+            cell.textLabel?.text = title
+            cell.detailTextLabel?.text = url.absoluteString
+        case .feedback:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = "GitHub Issues に Feedback を投稿する"
+        }
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,23 +77,6 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
         
         title = L10n.Localizable.helpAndFeedback
-    }
-
-    // MARK: - Table view data source
-
-    func cellProvider(_ tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? {
-        let cell: UITableViewCell
-        switch item {
-        case .web(let title, let url):
-            cell = .init(style: .subtitle, reuseIdentifier: nil)
-            cell.textLabel?.text = title
-            cell.detailTextLabel?.text = url.absoluteString
-        case .feedback:
-            cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "GitHub Issues に Feedback を投稿する"
-        }
-        cell.accessoryType = .disclosureIndicator
-        return cell
     }
     
     // MARK: - Table view Delegate
