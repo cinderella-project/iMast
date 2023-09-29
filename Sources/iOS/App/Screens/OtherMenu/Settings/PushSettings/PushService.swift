@@ -38,7 +38,7 @@ struct PushServiceWrapper<T: Codable>: Codable {
     var result: T
 }
 
-struct PushServiceToken: Codable, Sendable {
+struct PushServiceToken: Codable, Sendable, Identifiable {
     final class PushServiceTokenNotifyFlags: Codable, Sendable {
         var follow: Bool
         var followRequest: Bool
@@ -56,6 +56,7 @@ struct PushServiceToken: Codable, Sendable {
     var instance: String
     var userName: String
     var _id: String
+    var id: String { _id }
 
     
     func update() async throws -> PushServiceToken {
@@ -150,8 +151,8 @@ class PushService {
         return res.result
     }
     
-    static func getAuthorizeUrl(host: String) async throws -> String {
-        class Wrapper: Codable { var url: String }
+    static func getAuthorizeUrl(host: String) async throws -> URL {
+        class Wrapper: Codable { var url: URL }
         let res: Wrapper = try await Alamofire.request(
             "https://imast-backend.rinsuki.net/push/api/v1/get-url",
             method: .post,

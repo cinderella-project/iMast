@@ -22,6 +22,18 @@
 //  limitations under the License.
 
 import UIKit
+import SwiftUI
+
+struct ModalLoadingIndicatorView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ModalLoadingIndicatorViewController
+    
+    func makeUIViewController(context: Context) -> ModalLoadingIndicatorViewController {
+        return .init()
+    }
+    
+    func updateUIViewController(_ uiViewController: ModalLoadingIndicatorViewController, context: Context) {
+    }
+}
 
 class ModalLoadingIndicatorViewController: UIViewController {
     

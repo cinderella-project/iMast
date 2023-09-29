@@ -47,7 +47,7 @@
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
-		CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */; };
+		CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountView.swift */; };
 		CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */; };
 		CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */; };
 		CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */; };
@@ -142,7 +142,7 @@
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
 		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
-		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */; };
+		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */; };
 		CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE83C85F2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
 		CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */; };
@@ -255,7 +255,7 @@
 		CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6BC0321074EFB003ECE10 /* NotificationService.swift */; };
 		CEC6BC0821074EFB003ECE10 /* iMastNotifyService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
-		CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */; };
+		CECD756820FD92C1000D059A /* PushSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD756620FD92C1000D059A /* PushSettingsView.swift */; };
 		CECD766E2A74164C00A56FD0 /* CodableViewDescriptor+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */; };
 		CED411A9230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */; };
 		CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */; };
@@ -685,7 +685,7 @@
 		CE2A8666237CF752005F4077 /* PostListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
 		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
 		CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+customNames.swift"; sourceTree = "<group>"; };
-		CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsAccountTableViewController.swift; sourceTree = "<group>"; };
+		CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsAccountView.swift; sourceTree = "<group>"; };
 		CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonUserCell.swift; sourceTree = "<group>"; };
 		CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreView.swift; sourceTree = "<group>"; };
@@ -787,7 +787,7 @@
 		CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
-		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyTableView.swift; sourceTree = "<group>"; };
+		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyView.swift; sourceTree = "<group>"; };
 		CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableViewDescriptor.swift; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
 		CE854B8A25D4C0AB00C30BD7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Timeline.strings; sourceTree = "<group>"; };
@@ -880,7 +880,7 @@
 		CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastNotifyService.entitlements; sourceTree = "<group>"; };
 		CEC8365C23C1FA6100E4A957 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		CECBD35C22D16575004530BA /* IndirectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndirectBox.swift; sourceTree = "<group>"; };
-		CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsTableViewController.swift; sourceTree = "<group>"; };
+		CECD756620FD92C1000D059A /* PushSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsView.swift; sourceTree = "<group>"; };
 		CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodableViewDescriptor+localized.swift"; sourceTree = "<group>"; };
 		CED411A8230FF00E00C172E7 /* MastodonPostDetailPollSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollSelectorViewController.swift; sourceTree = "<group>"; };
 		CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollVoteButtonViewController.swift; sourceTree = "<group>"; };
@@ -1494,10 +1494,10 @@
 			isa = PBXGroup;
 			children = (
 				CE3DB68520FB07FE005CFD77 /* PushService.swift */,
-				CECD756620FD92C1000D059A /* PushSettingsTableViewController.swift */,
+				CECD756620FD92C1000D059A /* PushSettingsView.swift */,
 				CE9D54A823BBA1D50030BF71 /* PushSettingsChangeSoundView.swift */,
-				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift */,
-				CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift */,
+				CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */,
+				CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountView.swift */,
 				CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */,
 			);
 			path = PushSettings;
@@ -3476,7 +3476,7 @@
 				CE43BEB723777B2A00133C86 /* UIDevice+platform.swift in Sources */,
 				CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */,
 				CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */,
-				CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountTableViewController.swift in Sources */,
+				CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountView.swift in Sources */,
 				CEF9C9E92AC13A47009ACFD9 /* OpenLinkInSafariVCModifier.swift in Sources */,
 				CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */,
 				CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */,
@@ -3484,7 +3484,7 @@
 				CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */,
 				CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */,
 				CEB0CEB528BDE822007C96C6 /* UIViewController+showFromTimeline.swift in Sources */,
-				CECD756820FD92C1000D059A /* PushSettingsTableViewController.swift in Sources */,
+				CECD756820FD92C1000D059A /* PushSettingsView.swift in Sources */,
 				CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */,
 				CE1002D5200683850041B636 /* ReportError.swift in Sources */,
 				2A108F8F1ED4A40600BE1404 /* HomeTimelineViewController.swift in Sources */,
@@ -3510,7 +3510,7 @@
 				5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */,
 				CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */,
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
-				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyTableView.swift in Sources */,
+				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyView.swift in Sources */,
 				CEF9C9E72AC139AF009ACFD9 /* OpenSafariButton.swift in Sources */,
 				CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,

@@ -24,37 +24,78 @@
 import SwiftUI
 import iMastiOSCore
 
-// TODO: PLEASE STOP THESE STUPID WORKAROUND ASAP
 struct OpenPushSettingsButton: View {
-    private struct VCExposer: UIViewControllerRepresentable {
-        var callback: (UIViewController) -> Void
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            let vc = UIViewController()
-            vc.view = .init(frame: .zero)
-            return vc
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-            callback(uiViewController)
-        }
-    }
-    
-    @State var viewController: UIViewController? = nil
+    @Environment(\.openURL) var open
+    @StateObject var errorReporter = ErrorReporter()
+    @State var confirmsEnableNotificationPermission = false
+    @State var confirmsTermsOfService = false
+    @State var registeringNow = false
+    @State var openPushSettings = false
 
     var body: some View {
-        Button(L10n.Preferences.Push.title) {
-            if let viewController {
-                Task {
-                    await PushSettingsTableViewController.openRequest(vc: viewController.view.superview?.viewController ?? viewController)
+        Button {
+            Task { await openPushSettings() }
+        } label: {
+            HStack {
+                Text(L10n.Preferences.Push.title)
+                Spacer()
+                if registeringNow {
+                    ProgressView()
                 }
             }
         }
-        .overlay {
-            VCExposer {
-                viewController = $0
+        .disabled(registeringNow)
+        .alert("通知が許可されていません", isPresented: $confirmsEnableNotificationPermission) {
+            Button("設定へ") {
+                open(URL(string: UIApplication.openSettingsURLString)!)
             }
-            .opacity(0)
+            Button(L10n.Localizable.cancel, role: .cancel) {
+            }
+        } message: {
+            Text("iOSの設定で、iMastからの通知を許可してください。")
         }
+        .alert("プッシュ通知の利用確認", isPresented: $confirmsTermsOfService) {
+            Button("同意する") {
+                Task { await register() }
+            }
+            Button(L10n.Localizable.cancel, role: .cancel) {
+            }
+        } message: {
+            Text("このプッシュ通知機能は、\n本アプリ(iMast)の開発者である@rinsuki@mstdn.rinsuki.netが、希望したiMastの利用者に対して無償で提供するものです。そのため、予告なく一時もしくは永久的にサービスが利用できなくなることがあります。また、本機能を利用したことによる不利益や不都合などについて、本アプリの開発者や提供者は一切の責任を持たないものとします。\n\n同意して利用を開始しますか?")
+        }
+        .background {
+            NavigationLink(isActive: $openPushSettings) {
+                PushSettingsView()
+            } label: {
+                EmptyView()
+            }
+            .hidden()
+        }
+    }
+    
+    @MainActor func openPushSettings() async {
+        do {
+            guard try await UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound]) else {
+                confirmsEnableNotificationPermission = true
+                return
+            }
+            confirmsTermsOfService = true
+        } catch {
+            errorReporter.report(error)
+        }
+    }
+    
+    @MainActor func register() async {
+        registeringNow = true
+        defer {
+            registeringNow = false
+        }
+        do {
+//            try await PushService.register()
+            UIApplication.shared.registerForRemoteNotifications()
+        } catch {
+            errorReporter.report(error)
+        }
+        openPushSettings = true
     }
 }
