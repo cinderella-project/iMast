@@ -1,5 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://cdn.cocoapods.org/'
+plugin 'cocoapods-pod-linkage'
 
 abstract_target 'iMastShared' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -7,7 +8,9 @@ abstract_target 'iMastShared' do
 
   pod 'SwiftLint', '0.52.4'
   pod 'Alamofire', '~> 4.9.1'
-  pod 'GRDB.swift', '~> 4.6.2'
+  def core_pods
+    pod 'GRDB.swift', '~> 4.6.2', :linkage => :static
+  end
   pod 'SwiftyJSON', '5.0.0'
   pod 'HydraAsync', '~> 2.0.6'
   pod 'SDWebImage', '~> 5.12.6'
@@ -47,6 +50,7 @@ abstract_target 'iMastShared' do
     end
 
     target 'iMastiOSCore' do
+      core_pods
     end
   end
   
@@ -59,6 +63,7 @@ abstract_target 'iMastShared' do
     end
 
     target 'iMastMacCore' do
+      core_pods
     end
   end
 end
