@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import Foundation
-import SwiftyJSON
 import Alamofire
 import GRDB
 
@@ -44,10 +43,10 @@ public class MastodonApp: Hashable {
     public var instance: MastodonInstance
     var id: String
     
-    init(instance: MastodonInstance, info: JSON, name: String, redirectUri: String) {
+    init(instance: MastodonInstance, info: MastodonInstance.CreateAppResponse, name: String, redirectUri: String) {
         self.instance = instance
-        clientId = info["client_id"].stringValue
-        clientSecret = info["client_secret"].stringValue
+        clientId = info.clientId
+        clientSecret = info.clientSecret
         self.name = name
         self.redirectUri = redirectUri
         self.id = genRandomString()

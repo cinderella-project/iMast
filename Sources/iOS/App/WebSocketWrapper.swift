@@ -105,10 +105,10 @@ extension MastodonUserToken {
         let info = try await self.app.instance.getInfo()
         let isMultiEndpoint = endpoint.contains(" ")
         var streamingUrlString = ""
-        streamingUrlString += info["urls"]["streaming_api"].string ?? "wss://"+self.app.instance.hostName
+        streamingUrlString += info.urls.streamingApi ?? "wss://"+self.app.instance.hostName
         streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
         let protocols: [String]?
-        if MastodonVersionInt(info["version"].stringValue).supportingFeature(.accessTokenInWebSocketProtocol) {
+        if MastodonVersionInt(info.version).supportingFeature(.accessTokenInWebSocketProtocol) {
             protocols = [self.token]
         } else {
             streamingUrlString += "&access_token=" + self.token

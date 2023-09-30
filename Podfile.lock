@@ -16,7 +16,6 @@ PODS:
   - Starscream (3.1.1)
   - SwiftGen (6.5.1)
   - SwiftLint (0.52.4)
-  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.9.1)
@@ -32,7 +31,6 @@ DEPENDENCIES:
   - Starscream (~> 3.1.1)
   - SwiftGen (= 6.5.1)
   - SwiftLint (= 0.52.4)
-  - SwiftyJSON (= 5.0.0)
 
 SPEC REPOS:
   trunk:
@@ -48,7 +46,6 @@ SPEC REPOS:
     - Starscream
     - SwiftGen
     - SwiftLint
-    - SwiftyJSON
 
 EXTERNAL SOURCES:
   Mew:
@@ -74,8 +71,7 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: eec6d544bb8107e88e88e4075992f435b33bed36
+PODFILE CHECKSUM: 625b70b19f2dca2402959b351e5fff797553261f
 
 COCOAPODS: 1.13.0

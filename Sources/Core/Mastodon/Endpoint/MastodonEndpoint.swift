@@ -56,4 +56,26 @@ extension MastodonEndpoint {
             case postIds = "status_ids"
         }
     }
+    
+    public struct VerifyCredentials: MastodonEndpointProtocol {
+        public struct Response: MastodonEndpointResponse, Decodable {
+            let displayName: String
+            let screenName: String
+            let avatar: String
+            public let source: Source?
+            
+            public struct Source: Decodable {
+                public let privacy: String
+            }
+            
+            enum CodingKeys: String, CodingKey {
+                case displayName = "display_name"
+                case screenName = "username"
+                case avatar = "avatar_static"
+                case source
+            }
+        }
+        public let endpoint = "/api/v1/accounts/verify_credentials"
+        public let method = "GET"
+    }
 }

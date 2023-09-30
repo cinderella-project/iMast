@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import Foundation
-import SwiftyJSON
 import Alamofire
 import Hydra
 import GRDB
@@ -59,7 +58,7 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     }
     
     public func getIntVersion() async throws -> MastodonVersionInt {
-        return MastodonVersionInt(try await self.app.instance.getInfo()["version"].stringValue)
+        return MastodonVersionInt(try await self.app.instance.getInfo().version)
     }
     
     static public func initFromId(id: String) -> MastodonUserToken? {
@@ -201,25 +200,20 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         }
     }
     
-    static var verifyCredentialsCache: [String: JSON] = [:]
+    static var verifyCredentialsCache: [String: MastodonEndpoint.VerifyCredentials.Response] = [:]
     
-    public func getUserInfo(cache: Bool = false) async throws -> JSON {
+    public func getUserInfo(cache: Bool = false) async throws -> MastodonEndpoint.VerifyCredentials.Response {
         if cache, let cacheObj = MastodonUserToken.verifyCredentialsCache[self.acct] {
             return cacheObj
         }
-        let response = try await getJSON("accounts/verify_credentials")
-        self.name = response["display_name"].string
-        if self.name == nil || self.name?.isEmpty == true {
-            self.name = response["name"].string
-        }
-        self.screenName = response["username"].string
-        self.avatarUrl = response["avatar"].string
+        let response = try await MastodonEndpoint.VerifyCredentials().request(with: self)
+        self.name = response.displayName.isEmpty ? response.screenName : response.displayName
+        self.screenName = response.screenName
+        self.avatarUrl = response.avatar
         if let avatarUrl = self.avatarUrl, !avatarUrl.isEmpty, avatarUrl.first == "/" { // ホスト名がない！！！
             self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
         }
-        if response["error"].isEmpty {
-            MastodonUserToken.verifyCredentialsCache[self.acct] = response
-        }
+        MastodonUserToken.verifyCredentialsCache[self.acct] = response
         return response
     }
     
@@ -255,35 +249,6 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
             data: data,
             httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
         )
-    }
-    
-    @available(*, deprecated)
-    func getJSON(_ endpoint: String, params: [URLQueryItem] = []) async throws -> JSON {
-        print("GET", endpoint)
-        
-        var urlBuilder = URLComponents(url: URL(string: endpoint, relativeTo: URL(string: "https://\(self.app.instance.hostName)/api/v1/")!)!, resolvingAgainstBaseURL: true)!
-        urlBuilder.queryItems = params
-        if urlBuilder.queryItems?.count == 0 {
-            urlBuilder.queryItems = nil
-        }
-        let headers = getHeader()
-        var request = URLRequest(url: try urlBuilder.asURL())
-        print(request.url)
-        request.httpMethod = "GET"
-        for (name, value) in headers {
-            request.setValue(value, forHTTPHeaderField: name)
-        }
-        print(request.httpMethod!, request.url!)
-        let (data, response) = try await URLSession.shared.data(for: request)
-        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
-            do {
-                let error = try JSONDecoder.forMastodonAPI.decode(MastodonErrorResponse.self, from: data)
-                throw APIError.errorReturned(errorMessage: error.error, errorHttpCode: response.statusCode)
-            } catch {
-                throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
-            }
-        }
-        return try JSON(data: data)
     }
     
     public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") async throws -> MastodonAttachment {

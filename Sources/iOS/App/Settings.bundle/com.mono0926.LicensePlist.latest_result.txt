@@ -416,46 +416,6 @@ name: SwiftLint, nameSpecified:
 body: The MIT License (MIT…
 version: 0.52.4
 
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
-name: SwiftyJSON, nameSpecified: 
-body: The MIT License (MIT…
-version: 5.0.0
-
 name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter
 
 name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter

@@ -22,11 +22,8 @@
 //  limitations under the License.
 
 import Foundation
-import SwiftyJSON
-import Hydra
-//import Alamofire
 
-var mastodonInstanceInfoCache: [String: JSON] = [:]
+var mastodonInstanceInfoCache: [String: MastodonInstance.Info] = [:]
 
 #if os(macOS)
 public let defaultAppName = "iMast (macOS)"
@@ -37,10 +34,35 @@ private let website = "https://cinderella-project.github.io/iMast/"
 #endif
 
 public class MastodonInstance {
+    public struct Info: Codable {
+        public let version: String
+        public let urls: Urls
+        
+        public struct Urls: Codable {
+            public let streamingApi: String
+            
+            enum CodingKeys: String, CodingKey {
+                case streamingApi = "streaming_api"
+            }
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case version
+            case urls
+        }
+    }
+    
+    struct CreateAppResponse: Codable {
+        let clientId: String
+        let clientSecret: String
+        
+        enum CodingKeys: String, CodingKey {
+            case clientId = "client_id"
+            case clientSecret = "client_secret"
+        }
+    }
+    
     public var hostName: String
-    public var name: String?
-    var description: String?
-    var email: String?
     public var url: URL {
         return URL(string: "https://\(self.hostName)")!
     }
@@ -49,18 +71,15 @@ public class MastodonInstance {
         self.hostName = hostName.replacing(/.+@/, with: "").lowercased()
     }
     
-    public func getInfo() async throws -> JSON {
+    public func getInfo() async throws -> Info {
         if let cache = mastodonInstanceInfoCache[self.hostName] {
             return cache
         }
         var request = try URLRequest(url: URL(string: "https://\(hostName)/api/v1/instance")!, method: .get)
         request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
-        let json = try JSON(data: data)
+        let json = try JSONDecoder.forMastodonAPI.decode(Info.self, from: data)
         
-        self.name = json["name"].string
-        self.description = json["description"].string
-        self.email = json["email"].string
         mastodonInstanceInfoCache[self.hostName] = json
         return json
     }
@@ -77,7 +96,7 @@ public class MastodonInstance {
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(params)
         let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
-        let json = try JSON(data: data)
+        let json = try JSONDecoder.forMastodonAPI.decode(CreateAppResponse.self, from: data)
         
         return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri)
     }

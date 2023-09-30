@@ -23,7 +23,6 @@
 
 import UIKit
 import Hydra
-import SwiftyJSON
 import MediaPlayer
 import Alamofire
 import iMastiOSCore
@@ -313,20 +312,22 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             var request = URLRequest(url: URL(string: "https://itunes.apple.com/lookup?id=\(storeId)&country=\(region)&media=music")!)
             request.timeoutInterval = 1.5
             request.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-            Alamofire.request(request).responseData { [finished] res in
+            Task { @MainActor in
                 var text = nowPlayingText
                 do {
-                    switch res.result {
-                    case .success(let data):
-                        let json = try JSON(data: data)
-                        if let url = json["results"][0]["trackViewUrl"].string {
-                            text += " " + url + " "
-                        }
-                    case .failure(let error):
-                        throw error
+                    let (data, res) = try await URLSession.shared.data(for: request)
+                    struct SearchResultWrapper: Codable {
+                        let results: [SearchResult]
+                    }
+                    struct SearchResult: Codable {
+                        let trackViewUrl: URL
+                    }
+                    let result = try JSONDecoder().decode(SearchResultWrapper.self, from: data)
+                    if let url = result.results.first?.trackViewUrl {
+                        text += " " + url.absoluteString + " "
                     }
                 } catch {
-                    print(error)
+                    // nothing
                 }
                 finished(text)
             }
@@ -378,7 +379,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     func setVisibilityFromUserInfo() {
         Task { @MainActor in
             let res = try await self.userToken.getUserInfo(cache: true)
-            if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
+            if let myScope = MastodonPostVisibility(rawValue: res.source?.privacy ?? "public") {
                 self.scope = myScope
             }
         }

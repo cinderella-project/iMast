@@ -11,7 +11,6 @@ abstract_target 'iMastShared' do
   def core_pods
     pod 'GRDB.swift', '~> 4.6.2', :linkage => :static
   end
-  pod 'SwiftyJSON', '5.0.0'
   pod 'HydraAsync', '~> 2.0.6'
   pod 'SDWebImage', '~> 5.12.6'
   pod 'Fuzi', '~> 3.1.3'

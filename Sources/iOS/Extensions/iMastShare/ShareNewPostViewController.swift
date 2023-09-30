@@ -208,7 +208,7 @@ class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDe
     func setVisibilityFromUserInfo() {
         Task { @MainActor in
             let res = try await self.environment.getUserInfo(cache: true)
-            if let myScope = MastodonPostVisibility(rawValue: res["source"]["privacy"].string ?? "public") {
+            if let myScope = MastodonPostVisibility(rawValue: res.source?.privacy ?? "public") {
                 self.scope = myScope
             }
         }
