@@ -28,6 +28,32 @@ import Hydra
 import iMastiOSCore
 import SDWebImage
 
+#if DEBUG
+public extension NSObject {
+    @objc func _imast_scaleFactor() -> Double {
+        return 1.0
+    }
+}
+
+var _scaleFactorSwizzling = false
+func _doScaleFactorSwizzlingIfNot() {
+    guard ProcessInfo.processInfo.isiOSAppOnMac else {
+        return
+    }
+    guard !_scaleFactorSwizzling else {
+        return
+    }
+    _scaleFactorSwizzling = true
+    let uinsSceneViewClass = NSClassFromString("UINSSceneView")
+    let uinsSceneContainerViewClass = NSClassFromString("UINSSceneContainerView")
+    let method = class_getClassMethod(NSObject.self, #selector(NSObject._imast_scaleFactor))!
+    method_setImplementation(class_getInstanceMethod(uinsSceneViewClass, "sceneToSceneViewScaleFactor")!, method_getImplementation(method))
+    method_setImplementation(class_getInstanceMethod(uinsSceneViewClass, "fixedSceneToSceneViewScaleFactor")!, method_getImplementation(method))
+    method_setImplementation(class_getInstanceMethod(uinsSceneContainerViewClass, "sceneToSceneViewScaleForLayout")!, method_getImplementation(method))
+}
+
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -37,6 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // とりあえずもろもろ初期化
+        #if DEBUG
+        _doScaleFactorSwizzlingIfNot()
+        #endif
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         self.registerDefaultsFromSettingsBundle()
