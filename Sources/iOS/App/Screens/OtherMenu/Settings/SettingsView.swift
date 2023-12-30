@@ -311,6 +311,9 @@ struct SettingsView: View {
 struct DeveloperSettingsView: View {
     @AppStorage(defaults: .$workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) var workaroundOfiOS16_TextKit2_WontUpdatesLinkColor
     @Environment(\.dismiss) var dismiss
+    @StateObject var errorReporter = ErrorReporter()
+    @State var failedToOpenDeckBecauseZeroPinnedScreens = false
+    @State var failedToOpenDeckBecauseTooManyPinnedScreens = false
     
     var body: some View {
         Form {
@@ -337,9 +340,31 @@ struct DeveloperSettingsView: View {
                 } label: {
                     Text("Force Defrag (padding=1, causes re-defrag in next time)")
                 }
-
+            }
+            Section("In Development Features") {
+                Button("Open Deck") {
+                    let pinnedScreens = (try? dbQueue.inDatabase(MastodonUserToken.getPinnedScreens)) ?? []
+                    if pinnedScreens.count < 1 {
+                        failedToOpenDeckBecauseZeroPinnedScreens = true
+                        return
+                    }
+                    if pinnedScreens.count > 10 {
+                        failedToOpenDeckBecauseTooManyPinnedScreens = true
+                        return
+                    }
+                    errorReporter.view?.window?.changeRootVC(TopDeckViewController())
+                }
+                .alert("Error: There is no pinned screens (Deck will use pinned screens as a column)", isPresented: $failedToOpenDeckBecauseZeroPinnedScreens) {
+                    Button("OK") {
+                    }
+                }
+                .alert("Error: There is too many pinned screens (Deck will use pinned screens as a column), maximum is 10", isPresented: $failedToOpenDeckBecauseTooManyPinnedScreens) {
+                    Button("OK") {
+                    }
+                }
             }
         }
+        .attach(errorReporter: errorReporter)
         .navigationTitle("内部設定")
     }
 }

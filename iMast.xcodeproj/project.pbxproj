@@ -25,7 +25,7 @@
 		5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
-		904584C585DF8DF528E745A9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */; };
@@ -92,6 +92,7 @@
 		CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
+		CE4B21C12ACFED100057B5D4 /* TopDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE4FAD402A793E7400E5C843 /* ShareNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FAD3D2A793E4500E5C843 /* ShareNewPostView.swift */; };
 		CE4FAD412A7940C100E5C843 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE674DA28B08ADF00667E04 /* SeparatorView.swift */; };
@@ -719,6 +720,7 @@
 		CE43BF0A2377A97F00133C86 /* String+nsLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+nsLength.swift"; sourceTree = "<group>"; };
 		CE43BF0E2377AA1A00133C86 /* String+trim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trim.swift"; sourceTree = "<group>"; };
 		CE43BF112377AA8100133C86 /* String+parseInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+parseInt.swift"; sourceTree = "<group>"; };
+		CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDeckViewController.swift; sourceTree = "<group>"; };
 		CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountIndexView.swift; sourceTree = "<group>"; };
 		CE4FAD3D2A793E4500E5C843 /* ShareNewPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareNewPostView.swift; sourceTree = "<group>"; };
 		CE51ABFA1F40C06B00E43607 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -1061,7 +1063,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E3332377F7D800406371 /* iMastMacCore.framework in Frameworks */,
-				904584C585DF8DF528E745A9 /* BuildFile in Frameworks */,
+				904584C585DF8DF528E745A9 /* (null) in Frameworks */,
 				3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1576,6 +1578,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8EC3022374F474002CA268 /* TopViewController.swift */,
+				CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */,
 				CE5357622375CEC9006340E7 /* TopMasterViewController.swift */,
 				CEE35D952375D94F00AFEBA0 /* TopAccountMasterViewController.swift */,
 				CEE35D972375DABC00AFEBA0 /* TopPlaceholderDetailViewController.swift */,
@@ -3402,6 +3405,7 @@
 				CEF6DCBB22EDEA6F0008B64D /* MastodonPostDetailViewController.swift in Sources */,
 				CEF9C9E42AC12B08009ACFD9 /* FakeNavigationButton.swift in Sources */,
 				CEC6998021F1BB7700371FC5 /* FourCharCode+toString.swift in Sources */,
+				CE4B21C12ACFED100057B5D4 /* TopDeckViewController.swift in Sources */,
 				CEEBC3CA23548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift in Sources */,
 				CE9BB392241C5057004B6421 /* FavouritesTableViewController.swift in Sources */,
 				CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */,
