@@ -23,7 +23,6 @@
 
 import UIKit
 import Hydra
-import Reachability
 import Ikemen
 import SnapKit
 import Mew
@@ -331,14 +330,11 @@ class TimelineViewController: UIViewController, Instantiatable {
     }
     
     func websocketConnect(auto: Bool) {
+        var shouldConnectOnlyNotConstrainedNetworkAccess = false
         if auto {
             let conditions = Defaults.streamingAutoConnect
-            if conditions == "no" {
+            if conditions != "always" {
                 return
-            } else if conditions == "wifi" {
-                if !(Reachability.init()?.isReachableViaWiFi ?? false) {
-                    return
-                }
             }
         }
         guard let webSocketEndpoint = self.websocketEndpoint() else {

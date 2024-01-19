@@ -12,9 +12,9 @@ abstract_target 'iMastShared' do
     pod 'GRDB.swift', '~> 4.6.2', :linkage => :static
   end
   pod 'HydraAsync', '~> 2.0.6'
-  pod 'SDWebImage', '~> 5.12.6'
+  pod 'SDWebImage', '~> 5.18.10'
   pod 'Fuzi', '~> 3.1.3'
-  pod 'SnapKit', '5.6.0'
+  pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.7.0'
   pod 'KeychainAccess', '4.2.2'
   pod 'SwiftGen', '6.5.1' # I don't want to include fallback strings in source (ref. https://github.com/SwiftGen/SwiftGen/pull/964 )
   
@@ -26,7 +26,6 @@ abstract_target 'iMastShared' do
     target 'iMast iOS' do
       # Pods for iMast
       pod 'Starscream', '~> 3.1.1'
-      pod 'ReachabilitySwift', '~> 4.3.1'
       pod 'LicensePlist', '~> 3.22.0'
       
       target 'iMastTests' do
@@ -73,6 +72,10 @@ post_install do |installer|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
         config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '13.0'
+        # pp target.name
+        if config.build_settings['SDKROOT'].include? "iphoneos" then
+          config.build_settings['SUPPORTED_PLATFORMS'] = "iphoneos iphonesimulator xros xrsimulator"
+        end
       end
     end
   end

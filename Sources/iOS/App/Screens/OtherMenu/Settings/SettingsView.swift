@@ -95,7 +95,7 @@ struct SettingsView: View {
             Section {
                 Picker(L10n.Preferences.General.StreamingAutoConnect.title, selection: $streamingAutoConnect) {
                     Text(L10n.Preferences.General.StreamingAutoConnect.no).tag("no")
-                    Text(L10n.Preferences.General.StreamingAutoConnect.wifi).tag("wifi")
+//                    Text(L10n.Preferences.General.StreamingAutoConnect.wifi).tag("wifi")
                     Text(L10n.Preferences.General.StreamingAutoConnect.always).tag("always")
                 }
                 NavigationLink {

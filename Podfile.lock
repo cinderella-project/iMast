@@ -8,11 +8,10 @@ PODS:
   - KeychainAccess (4.2.2)
   - LicensePlist (3.22.0)
   - Mew (0.1.0)
-  - ReachabilitySwift (4.3.1)
-  - SDWebImage (5.12.6):
-    - SDWebImage/Core (= 5.12.6)
-  - SDWebImage/Core (5.12.6)
-  - SnapKit (5.6.0)
+  - SDWebImage (5.18.10):
+    - SDWebImage/Core (= 5.18.10)
+  - SDWebImage/Core (5.18.10)
+  - SnapKit (5.7.0)
   - Starscream (3.1.1)
   - SwiftGen (6.5.1)
   - SwiftLint (0.52.4)
@@ -25,9 +24,8 @@ DEPENDENCIES:
   - KeychainAccess (= 4.2.2)
   - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
-  - ReachabilitySwift (~> 4.3.1)
-  - SDWebImage (~> 5.12.6)
-  - SnapKit (= 5.6.0)
+  - SDWebImage (~> 5.18.10)
+  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, tag `5.7.0`)
   - Starscream (~> 3.1.1)
   - SwiftGen (= 6.5.1)
   - SwiftLint (= 0.52.4)
@@ -40,9 +38,7 @@ SPEC REPOS:
     - HydraAsync
     - KeychainAccess
     - LicensePlist
-    - ReachabilitySwift
     - SDWebImage
-    - SnapKit
     - Starscream
     - SwiftGen
     - SwiftLint
@@ -51,11 +47,17 @@ EXTERNAL SOURCES:
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
+  SnapKit:
+    :git: https://github.com/SnapKit/SnapKit.git
+    :tag: 5.7.0
 
 CHECKOUT OPTIONS:
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
+  SnapKit:
+    :git: https://github.com/SnapKit/SnapKit.git
+    :tag: 5.7.0
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -65,13 +67,12 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
+  SnapKit: 0f9238a5d2d4008f6b001d5583130382f7e1ff0c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 625b70b19f2dca2402959b351e5fff797553261f
+PODFILE CHECKSUM: fd43b7fa946119e888483163f70884b7b23ccebc
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.3
