@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import UIKit
-import SafariServices
 import iMastiOSCore
 
 extension UIViewController {
@@ -36,8 +35,7 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "強制的にSafariで開く", style: .default, handler: { [weak self] _ in
             canceled = true
             alert.dismiss(animated: true, completion: nil)
-            let safari = SFSafariViewController(url: url)
-            self?.present(safari, animated: true, completion: nil)
+            self?.open(url: url)
         }))
         Task { [weak self] in
             do {
@@ -50,8 +48,7 @@ extension UIViewController {
                             let newVC = UserProfileTopViewController.instantiate(account, environment: userToken)
                             strongSelf.navigationController?.pushViewController(newVC, animated: true)
                         } else {
-                            let safari = SFSafariViewController(url: url)
-                            strongSelf.present(safari, animated: true, completion: nil)
+                            strongSelf.open(url: url)
                         }
                     }
                 }

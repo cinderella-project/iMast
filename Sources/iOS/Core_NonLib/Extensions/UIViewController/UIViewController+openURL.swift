@@ -22,7 +22,9 @@
 //
 
 import UIKit
+#if os(iOS)
 import SafariServices
+#endif
 import iMastiOSCore
 
 extension UIViewController {
@@ -37,7 +39,11 @@ extension UIViewController {
             }
             return
         }
+        #if os(visionOS)
+        self.view.window?.windowScene?.open(url, options: nil)
+        #else
         let safariVC = SFSafariViewController(url: url)
         self.present(safariVC, animated: true, completion: nil)
+        #endif
     }
 }

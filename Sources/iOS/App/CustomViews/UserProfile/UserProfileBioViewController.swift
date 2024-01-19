@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SafariServices
 import iMastiOSCore
 import Ikemen
 import Mew
@@ -81,8 +80,7 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
                 resolveUserProfile(userToken: environment, url: url)
                 return false
             }
-            let safari = SFSafariViewController(url: url)
-            self.present(safari, animated: true, completion: nil)
+            open(url: url)
             return false
         case .preview:
             return false

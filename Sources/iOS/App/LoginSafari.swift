@@ -23,7 +23,6 @@
 
 import Foundation
 import UIKit
-import SafariServices
 import AuthenticationServices
 
 protocol LoginSafari {

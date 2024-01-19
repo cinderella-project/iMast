@@ -23,7 +23,6 @@
 
 import UIKit
 import UserNotifications
-import SafariServices
 import Hydra
 import iMastiOSCore
 import SDWebImage

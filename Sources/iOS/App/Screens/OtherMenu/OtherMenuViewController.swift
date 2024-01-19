@@ -22,7 +22,6 @@
 //
 
 import UIKit
-import SafariServices
 import Mew
 import iMastiOSCore
 import SwiftUI

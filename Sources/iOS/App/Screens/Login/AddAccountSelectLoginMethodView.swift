@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import SwiftUI
-import SafariServices
 import iMastiOSCore
 import AuthenticationServices
 

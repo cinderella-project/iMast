@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import UIKit
-import SafariServices
 import iMastiOSCore
 import Ikemen
 import Mew
@@ -166,8 +165,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
                 resolveUserProfile(userToken: environment, url: url)
                 return false
             }
-            let safari = SFSafariViewController(url: url)
-            self.present(safari, animated: true, completion: nil)
+            open(url: url)
             return false
         case .presentActions:
             return true

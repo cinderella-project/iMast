@@ -24,7 +24,6 @@
 import UIKit
 import Hydra
 import Reachability
-import SafariServices
 import Ikemen
 import SnapKit
 import Mew

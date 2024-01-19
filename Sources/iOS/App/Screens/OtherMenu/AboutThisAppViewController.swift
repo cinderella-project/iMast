@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import UIKit
-import SafariServices
 import iMastiOSCore
 
 class AboutThisAppViewController: UIViewController {
@@ -134,8 +133,7 @@ extension AboutThisAppViewController: UITableViewDelegate {
             if useExternalBrowser {
                 view.window?.windowScene?.open(url, options: nil, completionHandler: nil)
             } else {
-                let vc = SFSafariViewController(url: url)
-                present(vc, animated: true, completion: nil)
+                open(url: url)
             }
         case .tootWithHashtag:
             let vc = NewPostAccountSelectCushionViewController()

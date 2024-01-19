@@ -24,7 +24,6 @@
 import SwiftUI
 import iMastiOSCore
 import SDWebImage
-import SafariServices
 
 class NewSettingsViewController: UIHostingController<SettingsView> {
     init() {
@@ -38,8 +37,7 @@ class NewSettingsViewController: UIHostingController<SettingsView> {
     }
     
     @objc func openHelp() {
-        let safari = SFSafariViewController(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
-        self.present(safari, animated: true, completion: nil)
+        open(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
     }
 }
 

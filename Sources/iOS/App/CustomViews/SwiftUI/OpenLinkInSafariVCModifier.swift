@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import SwiftUI
-import SafariServices
 
 struct OpenLinkInSafariVCModifier: ViewModifier {
     private class ViewModel: ObservableObject {
@@ -32,8 +31,7 @@ struct OpenLinkInSafariVCModifier: ViewModifier {
             guard let view else {
                 return false
             }
-            let vc = SFSafariViewController(url: url)
-            view.window?.rootViewController?.present(vc, animated: true)
+            view.window?.rootViewController?.open(url: url)
             return true
         }
 

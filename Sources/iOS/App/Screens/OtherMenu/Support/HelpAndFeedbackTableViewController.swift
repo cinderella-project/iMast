@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import UIKit
-import SafariServices
 import iMastiOSCore
 
 class HelpAndFeedbackTableViewController: UITableViewController {
@@ -85,8 +84,7 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         switch item {
         case .web(_, let url):
-            let vc = SFSafariViewController(url: url)
-            self.present(vc, animated: true, completion: nil)
+            open(url: url)
         case .feedback:
             let versionString = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)+" (\((Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String)))"
             var body = "\n\n\n\n\n<!-- ここより上に本文を書いてください -->\n\n### Environment\n<table>"

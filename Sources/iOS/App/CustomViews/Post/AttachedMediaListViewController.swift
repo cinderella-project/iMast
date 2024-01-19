@@ -25,7 +25,6 @@ import UIKit
 import Mew
 import Ikemen
 import AVFoundation
-import SafariServices
 import iMastiOSCore
 
 class AttachedMediaListViewController: UIViewController, Instantiatable, Injectable, Interactable {
