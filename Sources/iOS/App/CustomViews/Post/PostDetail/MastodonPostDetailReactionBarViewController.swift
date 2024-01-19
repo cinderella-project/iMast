@@ -105,8 +105,8 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     func input(_ input: Input) {
         self.input = input
-        boostButton.setTitleColor(input.reposted ? Asset.barBoost.color : .gray, for: .normal)
-        favouriteButton.setTitleColor(input.favourited ? Asset.barFavourite.color : .gray, for: .normal)
+        boostButton.setTitleColor(input.reposted ? UIColor(resource: .barBoost) : .gray, for: .normal)
+        favouriteButton.setTitleColor(input.favourited ? UIColor(resource: .barFavourite) : .gray, for: .normal)
 
         // build
         var othersMenuChildrens = [UICommand]()

@@ -62,7 +62,7 @@ class PostView: NSTableRowView {
     }
     let boostedPostIndicator = NSView() ※ {
         $0.wantsLayer = true
-        $0.layer?.backgroundColor = Asset.barBoost.color.cgColor
+        $0.layer?.backgroundColor = NSColor(resource: .barBoost).cgColor
     }
     let attachedMediaStackView = NSStackView(views: []) ※ {
         $0.orientation = .vertical
