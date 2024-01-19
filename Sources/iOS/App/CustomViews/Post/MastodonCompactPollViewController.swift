@@ -63,7 +63,11 @@ class MastodonCompactPollViewController: UIViewController, Instantiatable, Injec
 
         // Do any additional setup after loading the view.
         view.layer.cornerRadius = 8
+        #if os(visionOS)
+        view.layer.borderWidth = 1
+        #else
         view.layer.borderWidth = 1 / UIScreen.main.scale
+        #endif
         view.layer.borderColor = UIColor.gray.cgColor
         
         let stackView = UIStackView(arrangedSubviews: [

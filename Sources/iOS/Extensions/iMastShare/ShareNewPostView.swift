@@ -29,7 +29,9 @@ import iMastiOSCore
 class ShareNewPostView: UIView {
     let textInput = UITextView() ※ {
         $0.font = .systemFont(ofSize: 14)
+        #if !os(visionOS)
         $0.keyboardDismissMode = .interactiveWithAccessory
+        #endif
     }
     
     let cwInput = UITextFieldWithInsets() ※ {

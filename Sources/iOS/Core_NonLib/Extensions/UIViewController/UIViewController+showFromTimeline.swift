@@ -24,6 +24,7 @@
 import UIKit
 import iMastiOSCore
 
+#if !os(visionOS)
 fileprivate class SheetHeightResolver {
     static let shared = SheetHeightResolver()
     
@@ -53,14 +54,17 @@ fileprivate class SheetHeightResolver {
         return max(200, context.maximumDetentValue - 180 - currentHeight)
     }
 }
+#endif
 
 extension UIViewController {
     func showFromTimeline(_ viewController: UIViewController) {
         if Defaults.openAsHalfModalFromTimeline, traitCollection.verticalSizeClass != .compact {
             let navigationController = UINavigationController()
             if let sheet = navigationController.sheetPresentationController {
+                #if !os(visionOS)
                 sheet.detents = [.custom(resolver: SheetHeightResolver.shared.resolver)]
                 sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                #endif
                 sheet.prefersEdgeAttachedInCompactHeight = false
                 navigationController.presentationController?.overrideTraitCollection = .init(verticalSizeClass: .compact)
                 navigationController.setViewControllers([viewController], animated: false)

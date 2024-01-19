@@ -168,10 +168,13 @@ class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDe
     func configureObserver() {
         let notification = NotificationCenter.default
         // notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        #if !os(visionOS)
         notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        #endif
     }
     
+    #if !os(visionOS)
     @objc func keyboardWillShow(notification: Notification?) {
         self.view.layoutIfNeeded()
         guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -190,6 +193,8 @@ class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDe
     @objc func keyboardWillHide(notification: Notification?) {
         additionalSafeAreaInsets.bottom = 44
     }
+    #endif
+    
     @objc func nsfwButtonTapped(_ sender: Any) {
         isNSFW = !isNSFW
     }
