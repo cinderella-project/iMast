@@ -9,18 +9,33 @@ jobs:
       matrix:
         xcode:
           - "15.2"
+        os:
+          - macOS
+          - iOS
+          - visionOS
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+    - name: Download visionOS Platform
+      if: matrix.os == 'visionOS'
+      run: |
+        # need to building for visionOS on Intel Mac (GitHub Actions still running Intel Mac)
+        # Special Thanks https://github.com/saagarjha (ref. https://twitter.com/_saagarjha/status/1748669778754208015 )
+        defaults write com.apple.dt.Xcode AllowUnsupportedVisionOSHost -bool YES
+        defaults write com.apple.CoreSimulator AllowUnsupportedVisionOSHost -bool YES
+        xcodebuild -downloadPlatform visionOS
     - name: bundle install
       run: bundle update --bundler && bundle install
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
     - name: Build (iOS)
+      if: matrix.os == 'iOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (visionOS)
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=xrOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+      if: matrix.os == 'visionOS'
+      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=visionOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (macOS)
+      if: matrix.os == 'macOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
