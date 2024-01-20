@@ -23,7 +23,6 @@
 
 import UIKit
 import SwiftUI
-import Alamofire
 import AuthenticationServices
 import UserNotifications
 import Ikemen

@@ -141,6 +141,8 @@
 		CE7ABB401FC5B1880087B387 /* ListTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimelineViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
+		CE7BF9692B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */; };
+		CE7BF96A2B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */; };
 		CE7DBED021843141008727D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DBECF21843141008727D4 /* SearchViewController.swift */; };
 		CE8209982150EC390064FC93 /* PushSettingsGroupNotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */; };
 		CE83C85E2A74103900D97E3E /* CodableViewDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */; };
@@ -784,6 +786,7 @@
 		CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
 		CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
+		CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyView.swift; sourceTree = "<group>"; };
@@ -1395,6 +1398,7 @@
 				CE7AA3B625DBA84C00439AAD /* AppGroup.swift */,
 				CEAE471A24E8C21500645946 /* WeakRef.swift */,
 				CEA3C30522BABF6100BF68C0 /* UserAgent.swift */,
+				CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */,
 				CE142A962AAC67B100B532AB /* DefaultCodable.swift */,
 				CE98789C26B5053F008A0A88 /* CodableVoid.swift */,
 				CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */,
@@ -3514,6 +3518,7 @@
 				CE8AAC562916592800AC7FB4 /* MastodonErrorResponse.swift in Sources */,
 				CEF47F722A793BC700D1AEAB /* UITextFieldWithInsets.swift in Sources */,
 				CE7AA3B725DBA84C00439AAD /* AppGroup.swift in Sources */,
+				CE7BF9692B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */,
 				CEEDC51629337514008358DB /* MastodonPostSource.swift in Sources */,
 				CE522BEB24159C560048E334 /* MastodonEndpoint.swift in Sources */,
 				CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */,
@@ -3729,6 +3734,7 @@
 				CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */,
 				CEE4E3622377F83C00406371 /* MastodonPost.swift in Sources */,
 				CE522BF724159DBB0048E334 /* MastodonEndpointResponseWithPaging.swift in Sources */,
+				CE7BF96A2B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */,
 				CEE4E3642377F83C00406371 /* MastodonNotification.swift in Sources */,
 				CE5460A527F593C500A676B3 /* MastodonPostContent.swift in Sources */,
 				CEE4E35E2377F83900406371 /* String+parseInt.swift in Sources */,

@@ -26,18 +26,18 @@ import Foundation
 #if canImport(AppKit)
     import AppKit
     private let macVersion = ProcessInfo.processInfo.operatingSystemVersion
-    let UserAgentPlatformVersionString = "\(macVersion.majorVersion).\(macVersion.minorVersion)\(macVersion.patchVersion > 0 ? ".\(macVersion.patchVersion)" : "")"
+    public let UserAgentPlatformVersionString = "\(macVersion.majorVersion).\(macVersion.minorVersion)\(macVersion.patchVersion > 0 ? ".\(macVersion.patchVersion)" : "")"
 #else
     import UIKit
-    let UserAgentPlatformVersionString = UIDevice.current.systemVersion
+    public let UserAgentPlatformVersionString = UIDevice.current.systemVersion
 #endif
 
 #if os(macOS)
-    let UserAgentPlatformString = "macOS"
+    public let UserAgentPlatformString = "macOS"
 #elseif os(iOS)
-    let UserAgentPlatformString = "iOS"
+    public let UserAgentPlatformString = "iOS"
 #elseif os(visionOS)
-    let UserAgentPlatformString = "visionOS"
+    public let UserAgentPlatformString = "visionOS"
 #endif
 
 public let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (\(UserAgentPlatformString)/\(UserAgentPlatformVersionString))"

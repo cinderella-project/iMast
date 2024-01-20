@@ -21,7 +21,6 @@
 //  limitations under the License.
 //
 
-import Alamofire
 import Foundation
 import KeychainAccess
 import iMastiOSCore
@@ -34,22 +33,25 @@ enum PushServiceError: Error {
     case notRegistered
 }
 
-struct PushServiceWrapper<T: Codable>: Codable {
+struct PushServiceWrapper<T: Decodable>: Decodable, JSONAPIEndpointResponse {
     var result: T
 }
 
+protocol PushServiceEndpointProtocol: JSONAPIEndpointProtocol {
+    var httpMethod: HTTPMethod { get }
+}
+
+extension PushServiceEndpointProtocol {
+    var method: String { httpMethod.rawValue }
+}
+
 struct PushServiceToken: Codable, Sendable, Identifiable {
-    final class PushServiceTokenNotifyFlags: Codable, Sendable {
+    struct PushServiceTokenNotifyFlags: Codable, Sendable {
         var follow: Bool
         var followRequest: Bool
         var mention: Bool
         var boost: Bool
         var favourite: Bool
-
-        @available(*, deprecated, message: "Do not use.")
-        init() {
-            fatalError("Swift 4.1 work around")
-        }
     }
     var notify: PushServiceTokenNotifyFlags
     var acct: String
@@ -60,34 +62,19 @@ struct PushServiceToken: Codable, Sendable, Identifiable {
 
     
     func update() async throws -> PushServiceToken {
-        let result: PushServiceWrapper<PushServiceToken> = try await Alamofire.request(
-            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
-            method: .put,
-            parameters: ["notify": [
-                "follow": self.notify.follow,
-                "boost": self.notify.boost,
-                "mention": self.notify.mention,
-                "favourite": self.notify.favourite,
-                "followRequest": self.notify.followRequest,
-                // swiftlint:disable trailing_comma
-            ]],
-            encoding: JSONEncoding.default,
-            headers: ["Authorization": try PushService.getAuthorizationHeader()]
-        ).responseDecodable()
-        return result.result
+        return try await PushService.send(withAuth: true, PushService.Endpoints.UpdatePushSettingsPerToken(
+            tokenId: _id,
+            notify: notify
+        )).result
     }
     
     func delete() async throws {
-        let result: PushServiceWrapper<String> = try await Alamofire.request(
-            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts/"+self._id,
-            method: .delete,
-            headers: ["Authorization": try PushService.getAuthorizationHeader()]
-        ).responseDecodable()
+        let res = try await PushService.send(withAuth: true, PushService.Endpoints.DeletePushSettingsToken(tokenId: _id))
+        assert(res.result == "success")
     }
 }
 
-class PushService {
-
+enum PushService {
     static func getAuthorizationHeader() throws -> String {
         let time = Int(Date().timeIntervalSince1970)
         guard let userId = try Keychain_ForPushBackend.getString("userId"), let secret = try Keychain_ForPushBackend.getString("secret") else {
@@ -102,23 +89,47 @@ class PushService {
         return true
     }
     
+    static func send<E: PushServiceEndpointProtocol>(withAuth: Bool, _ ep: E) async throws -> E.Response {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = "imast-backend.rinsuki.net"
+        urlBuilder.percentEncodedPath = ep.endpoint
+        urlBuilder.queryItems = ep.query
+        if urlBuilder.queryItems?.count == 0 {
+            urlBuilder.queryItems = nil
+        }
+        var request = URLRequest(url: urlBuilder.url!)
+        request.httpMethod = ep.method
+        if let (body, contentType) = try ep.body() {
+            request.httpBody = body
+            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
+        let bundleIdentifier = (Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String) ?? "(null)"
+        let bundleReadableVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "(null)"
+        let buildNumber = (Bundle.main.infoDictionary?["CFBundleVersion"] as? String) ?? "(null)"
+        request.setValue("iMast/\(bundleReadableVersion) (\(bundleIdentifier); build:\(buildNumber); \(UserAgentPlatformString) \(UserAgentPlatformVersionString)) PushService", forHTTPHeaderField: "User-Agent")
+
+        if withAuth {
+            request.setValue(try getAuthorizationHeader(), forHTTPHeaderField: "Authorization")
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
+            throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
+        }
+        return try E.Response.decode(
+            data: data,
+            httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
+        )
+    }
+    
     static func register() async throws {
         let device = await UIDevice.current
-        let params = [
-            "deviceName": await device.platform,
-            "deviceVersion": await device.systemVersion,
-            "timestamp": Int(Date().timeIntervalSince1970),
-        ] as Parameters
-        class Response: Codable {
-            var id: String
-            var secret: String
+        let request = await MainActor.run {
+            return Endpoints.Register(deviceName: device.platform, deviceVersion: device.systemVersion, timestamp: Int(Date().timeIntervalSince1970))
         }
-        let res: Response = try await Alamofire.request(
-                "https://imast-backend.rinsuki.net/push/api/v1/create",
-                method: .post,
-                parameters: params,
-                encoding: JSONEncoding.default
-        ).responseDecodable()
+        let res = try await send(withAuth: false, request)
         try Keychain_ForPushBackend.set(res.id, key: "userId")
         try Keychain_ForPushBackend.set(res.secret, key: "secret")
     }
@@ -132,48 +143,123 @@ class PushService {
         #else
         let isSandbox = false
         #endif
-        var params: Parameters = [
-            "isSandbox": isSandbox,
-            "deviceToken": deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
-        ]
-        if let versionString = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-            params["buildNumber"] = Float(versionString)
+        let buildNumber = (Bundle.main.infoDictionary?["CFBundleVersion"] as? String).map { Int($0) } ?? nil
+        Task {
+            try await send(withAuth: true, Endpoints.UpdateDeviceToken(
+                isSandbox: isSandbox,
+                deviceToken: deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
+                buildNumber: buildNumber
+            ))
         }
-        Alamofire.request("https://imast-backend.rinsuki.net/push/api/v1/device-token", method: .put, parameters: params, encoding: JSONEncoding.default, headers: ["Authorization": auth])
     }
     
     static func getRegisterAccounts() async throws -> [PushServiceToken] {
-        let res: PushServiceWrapper<[PushServiceToken]> = try await Alamofire.request(
-            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
-            method: .get,
-            headers: ["Authorization": try self.getAuthorizationHeader()]
-        ).responseDecodable()
-        return res.result
+        return try await send(withAuth: true, Endpoints.GetRegisteredAccount()).result
     }
     
     static func getAuthorizeUrl(host: String) async throws -> URL {
-        class Wrapper: Codable { var url: URL }
-        let res: Wrapper = try await Alamofire.request(
-            "https://imast-backend.rinsuki.net/push/api/v1/get-url",
-            method: .post,
-            parameters: ["host": host],
-            encoding: JSONEncoding.default,
-            headers: ["Authorization": try self.getAuthorizationHeader()]
-        ).responseDecodable()
-        return res.url
+        return try await send(withAuth: true, Endpoints.GetAuthorizeURL(host: host)).url
     }
     
     static func unRegister() async throws {
-        let res: PushServiceWrapper<String> = try await Alamofire.request(
-            "https://imast-backend.rinsuki.net/push/api/v1/my-accounts",
-            method: .delete,
-            headers: ["Authorization": try self.getAuthorizationHeader()]
-        ).responseDecodable()
+        let result = try await send(withAuth: true, Endpoints.Unregister())
+        assert(result.result == "success")
         try self.deleteAuthInfo()
     }
     
     static func deleteAuthInfo() throws {
         try Keychain_ForPushBackend.remove("userId")
         try Keychain_ForPushBackend.remove("secret")
+    }
+    
+    enum Endpoints {
+        struct Register: PushServiceEndpointProtocol, Encodable {
+            struct Response: Codable, JSONAPIEndpointResponse {
+                var id: String
+                var secret: String
+            }
+            
+            var endpoint: String { "/push/api/v1/create" }
+            var httpMethod: HTTPMethod { .post }
+            
+            var deviceName: String
+            var deviceVersion: String
+            var timestamp: Int
+            
+            enum CodingKeys: String, CodingKey {
+                case deviceName
+                case deviceVersion
+                case timestamp
+            }
+        }
+        
+        struct UpdateDeviceToken: PushServiceEndpointProtocol, Encodable {
+            typealias Response = DecodableVoid
+            
+            var endpoint: String { "/push/api/v1/device-token" }
+            var httpMethod: HTTPMethod { .put }
+            
+            var isSandbox: Bool
+            var deviceToken: String
+            var buildNumber: Int?
+            
+            enum CodingKeys: String, CodingKey {
+                case isSandbox
+                case deviceToken
+                case buildNumber
+            }
+        }
+        
+        struct GetRegisteredAccount: PushServiceEndpointProtocol {
+            typealias Response = PushServiceWrapper<[PushServiceToken]>
+            
+            var endpoint: String { "/push/api/v1/my-accounts" }
+            var httpMethod: HTTPMethod { .get }
+        }
+        
+        struct GetAuthorizeURL: PushServiceEndpointProtocol, Encodable {
+            struct Response: Decodable, JSONAPIEndpointResponse {
+                let url: URL
+            }
+            
+            var endpoint: String { "/push/api/v1/get-url" }
+            var httpMethod: HTTPMethod { .post }
+            
+            let host: String
+            
+            enum CodingKeys: String, CodingKey {
+                case host
+            }
+        }
+        
+        struct Unregister: PushServiceEndpointProtocol {
+            typealias Response = PushServiceWrapper<String>
+            
+            var endpoint: String { "/push/api/v1/my-accounts" }
+            var httpMethod: HTTPMethod { .delete }
+        }
+        
+        struct UpdatePushSettingsPerToken: PushServiceEndpointProtocol, Encodable {
+            typealias Response = PushServiceWrapper<PushServiceToken>
+            
+            var endpoint: String { "/push/api/v1/my-accounts/" + tokenId }
+            var httpMethod: HTTPMethod { .put }
+            
+            let tokenId: String
+            var notify: PushServiceToken.PushServiceTokenNotifyFlags
+            
+            enum CodingKeys: String, CodingKey {
+                case notify
+            }
+        }
+        
+        struct DeletePushSettingsToken: PushServiceEndpointProtocol {
+            typealias Response = PushServiceWrapper<String>
+            
+            var endpoint: String { "/push/api/v1/my-accounts/" + tokenId }
+            var httpMethod: HTTPMethod { .delete }
+            
+            let tokenId: String
+        }
     }
 }
