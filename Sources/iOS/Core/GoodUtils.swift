@@ -23,7 +23,6 @@
 
 import Foundation
 import UIKit
-import Alamofire
 import Ikemen
 
 public let appGroupFileUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!

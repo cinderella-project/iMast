@@ -204,7 +204,6 @@
 		CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA528D428527DE70095EB1F /* SettingsView.swift */; };
 		CEA787D42696EEB7002C9A5C /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
-		CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
 		CEAC1FBF272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */; };
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
@@ -288,7 +287,6 @@
 		CEE4E33F2377F81100406371 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEE4E3412377F81400406371 /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
 		CEE4E3422377F81700406371 /* DispatchQueue+mainSafeSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */; };
-		CEE4E3432377F82700406371 /* DataRequest+responseDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */; };
 		CEE4E3442377F82D00406371 /* Array+safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BECE2377825700133C86 /* Array+safe.swift */; };
 		CEE4E35A2377F83900406371 /* String+sha256.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEAA23777A2400133C86 /* String+sha256.swift */; };
 		CEE4E35C2377F83900406371 /* String+nsLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0A2377A97F00133C86 /* String+nsLength.swift */; };
@@ -690,7 +688,6 @@
 		CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonUserCell.swift; sourceTree = "<group>"; };
 		CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		CE2D2AF5210C81ED003B92B8 /* ReadmoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmoreView.swift; sourceTree = "<group>"; };
-		CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+responseDecodable.swift"; sourceTree = "<group>"; };
 		CE2E4B442AC284F900E1DDD4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Dummy.strings; sourceTree = "<group>"; };
 		CE2E4B462AC284FA00E1DDD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Dummy.strings"; sourceTree = "<group>"; };
 		CE2E4B472AC284FA00E1DDD4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Dummy.strings"; sourceTree = "<group>"; };
@@ -1428,7 +1425,6 @@
 			children = (
 				CEE4E2E42377E90200406371 /* Foundation */,
 				CEE4E2E22377E8DE00406371 /* Dispatch */,
-				CEABB1C72377BBBE00018C35 /* Alamofire */,
 				CE43BEFB23779F6B00133C86 /* Swift */,
 			);
 			path = Extensions;
@@ -1778,22 +1774,6 @@
 				CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */,
 			);
 			path = JSONDecoder;
-			sourceTree = "<group>";
-		};
-		CEABB1C72377BBBE00018C35 /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				CEABB1CA2377BC2D00018C35 /* DataRequest */,
-			);
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		CEABB1CA2377BC2D00018C35 /* DataRequest */ = {
-			isa = PBXGroup;
-			children = (
-				CE2D2AFC21104D29003B92B8 /* DataRequest+responseDecodable.swift */,
-			);
-			path = DataRequest;
 			sourceTree = "<group>";
 		};
 		CEB97028240012060028AD2A /* Support */ = {
@@ -2848,7 +2828,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi-macOS/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync-macOS/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
@@ -2857,7 +2836,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
@@ -2894,26 +2872,22 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2964,26 +2938,22 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3016,26 +2986,22 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi-iOS/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync-iOS/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3263,7 +3229,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (with Sparkle)/Pods-iMastShared-Mac-iMast Mac (with Sparkle)-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi-macOS/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/HydraAsync-macOS/Hydra.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
@@ -3272,7 +3237,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hydra.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
@@ -3541,7 +3505,6 @@
 				CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */,
 				CEC6180224C5C56800E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */,
 				CE43BEEF23779EB500133C86 /* MastodonList.swift in Sources */,
-				CEABB1CB2377BC4200018C35 /* DataRequest+responseDecodable.swift in Sources */,
 				CE4FAD412A7940C100E5C843 /* SeparatorView.swift in Sources */,
 				CE43BF092377A92100133C86 /* Array+safe.swift in Sources */,
 				CE8AAC5A291777C100AC7FB4 /* MastodonAPI.swift in Sources */,
@@ -3712,7 +3675,6 @@
 				CEE4E3672377F83C00406371 /* MastodonSearchResult.swift in Sources */,
 				CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */,
 				CEE4E3652377F83C00406371 /* MastodonAttachment.swift in Sources */,
-				CEE4E3432377F82700406371 /* DataRequest+responseDecodable.swift in Sources */,
 				CEE4E3682377F83C00406371 /* MastodonID.swift in Sources */,
 				CEE4E3602377F83C00406371 /* MastodonAccount.swift in Sources */,
 				CE522BE824159C380048E334 /* MastodonEndpointProtocol.swift in Sources */,

@@ -7,7 +7,6 @@ abstract_target 'iMastShared' do
   use_frameworks!
 
   pod 'SwiftLint', '0.52.4'
-  pod 'Alamofire', '~> 4.9.1'
   def core_pods
     pod 'GRDB.swift', '~> 4.6.2', :linkage => :static
   end
@@ -72,7 +71,6 @@ post_install do |installer|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
         config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '13.0'
-        # pp target.name
         if config.build_settings['SDKROOT'].include? "iphoneos" then
           config.build_settings['SUPPORTED_PLATFORMS'] = "iphoneos iphonesimulator xros xrsimulator"
         end
