@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -261,7 +261,7 @@
 		CED411AB230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AA230FF3E600C172E7 /* MastodonPostDetailPollVoteButtonViewController.swift */; };
 		CED411AD230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED411AC230FFCAE00C172E7 /* MastodonPostDetailPollStatViewController.swift */; };
 		CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6077921B3658F00F6232E /* IntentHandler.swift */; };
-		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CED6077E21B3658F00F6232E /* iMastIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CED6077721B3658F00F6232E /* iMastIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEE01B012A796C1A00B6BA74 /* SharePrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE01B002A796C1A00B6BA74 /* SharePrincipalViewController.swift */; };
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
@@ -3776,22 +3776,33 @@
 		};
 		CED6077D21B3658F00F6232E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = CED6077621B3658F00F6232E /* iMastIntents */;
 			targetProxy = CED6077C21B3658F00F6232E /* PBXContainerItemProxy */;
 		};
 		CEE4E2DB2377E38300406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				xros,
+			);
 			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
 			targetProxy = CEE4E2DA2377E38300406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E2DD2377E38800406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				xros,
+			);
 			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
 			targetProxy = CEE4E2DC2377E38800406371 /* PBXContainerItemProxy */;
 		};
 		CEE4E2E12377E38F00406371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				xros,
+			);
 			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
 			targetProxy = CEE4E2E02377E38F00406371 /* PBXContainerItemProxy */;
 		};
@@ -4125,9 +4136,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -4152,9 +4164,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = iMast;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -4270,8 +4283,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -4305,8 +4320,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.iMast.iMastiOSCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -4388,9 +4405,10 @@
 				PRODUCT_NAME = iMastShare;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -4420,9 +4438,10 @@
 				PRODUCT_NAME = iMastShare;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -4572,9 +4591,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastNotifyService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -4601,9 +4621,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastNotifyService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
@@ -4632,9 +4653,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -4662,9 +4684,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast.iMastIntents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};

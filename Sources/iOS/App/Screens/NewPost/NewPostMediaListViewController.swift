@@ -65,15 +65,22 @@ class NewPostMediaListViewController: UIViewController {
         addButton.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(1/5.0).inset(4)
         }
+
+        let addFromPhotoLibrary = UIAction(
+            title: L10n.NewPost.Media.Picker.photoLibrary,
+            image: UIImage(systemName: "rectangle.on.rectangle"),
+            handler: { [weak self] _ in
+                self?.addFromPhotoLibrary()
+            }
+        )
         
+        #if os(visionOS)
         let menu = UIMenu(children: [
-            UIAction(
-                title: L10n.NewPost.Media.Picker.photoLibrary,
-                image: UIImage(systemName: "rectangle.on.rectangle"),
-                handler: { [weak self] _ in
-                    self?.addFromPhotoLibrary()
-                }
-            ),
+            addFromPhotoLibrary,
+        ])
+        #else
+        let menu = UIMenu(children: [
+            addFromPhotoLibrary,
             UIAction(
                 title: L10n.NewPost.Media.Picker.takePhoto,
                 image: UIImage(systemName: "camera.fill"),
@@ -92,6 +99,7 @@ class NewPostMediaListViewController: UIViewController {
                 }
             ),
         ])
+        #endif
         addButton.preferredMenuElementOrder = .fixed
         addButton.menu = menu
         addButton.showsMenuAsPrimaryAction = true
@@ -145,11 +153,13 @@ class NewPostMediaListViewController: UIViewController {
         showImagePickerController(imgPickerC)
     }
     
+    #if !os(visionOS)
     func addFromCamera() {
         let imgPickerC = UIImagePickerController()
         imgPickerC.sourceType = .camera
         showImagePickerController(imgPickerC)
     }
+    #endif
     
     func showImagePickerController(_ imgPickerC: UIImagePickerController) {
         imgPickerC.delegate = self
@@ -194,12 +204,14 @@ class NewPostMediaListViewController: UIViewController {
     }
 }
 
+#if !os(visionOS)
 extension NewPostMediaListViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
         self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
     }
 }
+#endif
 
 extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -209,6 +221,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
             let data = try! Data(contentsOf: url, options: NSData.ReadingOptions.mappedIfSafe)
             self.addMedia(media: UploadableMedia(format: url.pathExtension.lowercased() == "png" ? .png : .jpeg, data: data, url: nil, thumbnailImage: UIImage(data: data)!))
         } else if let url = info[.mediaURL] as? URL {
+            #if !os(visionOS)
             Task {
                 let asset = AVURLAsset(url: url)
                 // サムネイルを作る
@@ -272,6 +285,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                     self.addMedia(media: UploadableMedia(format: .mp4, data: data, url: outUrl, thumbnailImage: thumbnailImage))
                 }
             }
+            #endif
             return
         } else if let image = info[.originalImage] as? UIImage {
             // たぶんここに来るやつはカメラなので適当にjpeg圧縮する
