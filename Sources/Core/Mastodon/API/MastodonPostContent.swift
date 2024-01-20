@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonPostContent: Codable, EmojifyProtocol, MastodonPostContentProtocol {
+public struct MastodonPostContent: Codable, EmojifyProtocol, MastodonPostContentProtocol, MastodonEndpointResponse {
     public let status: String
     public let sensitive: Bool
     public let spoilerText: String

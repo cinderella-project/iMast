@@ -47,15 +47,6 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         self.id = genRandomString()
     }
     
-    func getHeader() -> [String: String] {
-        print(UserAgentString)
-        return [
-            "Authorization": "Bearer "+token,
-            "Accept-Language": "en-US,en",
-            "User-Agent": UserAgentString,
-        ]
-    }
-    
     public func getIntVersion() async throws -> MastodonVersionInt {
         return MastodonVersionInt(try await self.app.instance.getInfo().version)
     }
@@ -216,38 +207,10 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         return response
     }
     
-    internal func request<E: MastodonEndpointProtocol>(_ ep: E) async throws -> E.Response {
-        var urlBuilder = URLComponents()
-        urlBuilder.scheme = "https"
-        urlBuilder.host = app.instance.hostName
-        urlBuilder.percentEncodedPath = ep.endpoint
-        urlBuilder.queryItems = ep.query
-        if urlBuilder.queryItems?.count == 0 {
-            urlBuilder.queryItems = nil
+    internal func request<E: MastodonEndpointProtocol>(_ ep: E, session: URLSession = .shared) async throws -> E.Response {
+        return try await app.instance.request(ep, session: session) { request in
+            request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         }
-        let headers = getHeader()
-        var request = URLRequest(url: try urlBuilder.asURL())
-        request.httpMethod = ep.method
-        if let (body, contentType) = try ep.body() {
-            request.httpBody = body
-            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
-        }
-        for (name, value) in headers {
-            request.setValue(value, forHTTPHeaderField: name)
-        }
-        print(request.httpMethod!, request.url!)
-        let (data, response) = try await URLSession.shared.data(for: request)
-        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
-            if let error = try? JSONDecoder.forMastodonAPI.decode(MastodonErrorResponse.self, from: data) {
-                throw APIError.errorReturned(errorMessage: error.error, errorHttpCode: response.statusCode)
-            } else {
-                throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
-            }
-        }
-        return try E.Response.decode(
-            data: data,
-            httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
-        )
     }
     
     public static func == (lhs: MastodonUserToken, rhs: MastodonUserToken) -> Bool {

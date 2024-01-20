@@ -27,14 +27,14 @@ var mastodonInstanceInfoCache: [String: MastodonInstance.Info] = [:]
 
 #if os(macOS)
 public let defaultAppName = "iMast (macOS)"
-private let website = "https://cinderella-project.github.io/iMast/mac/"
+private let website = URL(string: "https://cinderella-project.github.io/iMast/mac/")!
 #else
 public let defaultAppName = "iMast"
-private let website = "https://cinderella-project.github.io/iMast/"
+private let website = URL(string: "https://cinderella-project.github.io/iMast/")!
 #endif
 
 public class MastodonInstance {
-    public struct Info: Codable {
+    public struct Info: Codable, MastodonEndpointResponse {
         public let version: String
         public let urls: Urls
         
@@ -52,16 +52,6 @@ public class MastodonInstance {
         }
     }
     
-    struct CreateAppResponse: Codable {
-        let clientId: String
-        let clientSecret: String
-        
-        enum CodingKeys: String, CodingKey {
-            case clientId = "client_id"
-            case clientSecret = "client_secret"
-        }
-    }
-    
     public var hostName: String
     public var url: URL {
         return URL(string: "https://\(self.hostName)")!
@@ -71,33 +61,105 @@ public class MastodonInstance {
         self.hostName = hostName.replacing(/.+@/, with: "").lowercased()
     }
     
+    private func makeRequest<E: MastodonEndpointProtocol>(_ ep: E) throws -> URLRequest {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = hostName
+        urlBuilder.percentEncodedPath = ep.endpoint
+        urlBuilder.queryItems = ep.query
+        if urlBuilder.queryItems?.count == 0 {
+            urlBuilder.queryItems = nil
+        }
+        var request = URLRequest(url: urlBuilder.url!)
+        request.httpMethod = ep.method
+        if let (body, contentType) = try ep.body() {
+            request.httpBody = body
+            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
+        request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+        
+        return request
+    }
+    
+    private func parseResponse<E: MastodonEndpointProtocol>(_ ep: E, data: Data, response: URLResponse) throws -> E.Response {
+        if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
+            if let error = try? JSONDecoder.forMastodonAPI.decode(MastodonErrorResponse.self, from: data) {
+                throw APIError.errorReturned(errorMessage: error.error, errorHttpCode: response.statusCode)
+            } else {
+                throw APIError.unknownResponse(errorHttpCode: response.statusCode, errorString: .init(data: data, encoding: .utf8))
+            }
+        }
+        return try E.Response.decode(
+            data: data,
+            httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
+        )
+    }
+    
+    internal func request<E: MastodonEndpointProtocol>(_ ep: E, session: URLSession = .shared, requestModifier: (inout URLRequest) -> Void) async throws -> E.Response {
+        var request = try makeRequest(ep)
+        requestModifier(&request)
+        let (data, response) = try await session.data(for: request)
+        return try parseResponse(ep, data: data, response: response)
+    }
+    
+    internal func request<E: MastodonAnonymousEndpointProtocol>(_ ep: E, session: URLSession = .shared) async throws -> E.Response {
+        return try await request(ep, session: session) { _ in }
+    }
+    
     public func getInfo() async throws -> Info {
         if let cache = mastodonInstanceInfoCache[self.hostName] {
             return cache
         }
-        var request = try URLRequest(url: URL(string: "https://\(hostName)/api/v1/instance")!, method: .get)
-        request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-        let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
-        let json = try JSONDecoder.forMastodonAPI.decode(Info.self, from: data)
+        let json = try await MastodonEndpoint.GetInstanceInfo().request(to: self)
         
         mastodonInstanceInfoCache[self.hostName] = json
         return json
     }
     
-    public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") async throws -> MastodonApp {
-        let params = [
-            "client_name": name,
-            "scopes": "read write follow",
-            "redirect_uris": redirect_uri,
-            "website": website,
-        ]
-        var request = try URLRequest(url: URL(string: "https://\(hostName)/api/v1/apps")!, method: .post)
-        request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(params)
-        let data = try await MastodonAPI.handleHTTPError(URLSession.shared.data(for: request))
-        let json = try JSONDecoder.forMastodonAPI.decode(CreateAppResponse.self, from: data)
+    public func createApp(name: String = defaultAppName, redirect_uri: URL = URL(string: "imast://callback/")!) async throws -> MastodonApp {
+        let json = try await MastodonEndpoint.CreateApp(
+            clientName: name,
+            scopes: "read write follow",
+            redirectUri: redirect_uri,
+            website: website
+        ).request(to: self)
         
-        return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri)
+        return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri.absoluteString)
+    }
+}
+
+extension MastodonEndpoint {
+    struct GetInstanceInfo: MastodonAnonymousEndpointProtocol {
+        typealias Response = MastodonInstance.Info
+        
+        var endpoint: String { "/api/v1/instance" }
+        var method: String { "GET" }
+    }
+    
+    struct CreateApp: MastodonAnonymousEndpointProtocol, Encodable {
+        struct Response: Codable, MastodonEndpointResponse {
+            let clientId: String
+            let clientSecret: String
+            
+            enum CodingKeys: String, CodingKey {
+                case clientId = "client_id"
+                case clientSecret = "client_secret"
+            }
+        }
+        
+        var endpoint: String { "/api/v1/apps" }
+        var method: String { "POST" }
+        
+        var clientName: String
+        var scopes: String
+        var redirectUri: URL
+        var website: URL
+        
+        enum CodingKeys: String, CodingKey {
+            case clientName = "client_name"
+            case scopes
+            case redirectUri = "redirect_uris"
+            case website
+        }
     }
 }

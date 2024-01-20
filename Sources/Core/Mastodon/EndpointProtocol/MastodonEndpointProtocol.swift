@@ -24,8 +24,8 @@
 import Foundation
 import Hydra
 
-public protocol MastodonEndpointProtocol {
-    associatedtype Response: MastodonEndpointResponse, Sendable
+public protocol APIEndpointProtocol {
+    associatedtype Response: APIEndpointResponse, Sendable
     
     /// e.g. "/api/v1/account". you need to percent-encoding on some characters.
     var endpoint: String { get }
@@ -35,14 +35,48 @@ public protocol MastodonEndpointProtocol {
     func body() throws -> (Data, contentType: String)?
 }
 
-extension MastodonEndpointProtocol {
+extension APIEndpointProtocol {
     public var query: [URLQueryItem] { return [] }
     public func body() throws -> (Data, contentType: String)? {
         return nil
     }
-    
-    public func request(with token: MastodonUserToken) async throws -> Self.Response {
-        return try await token.request(self)
+}
+
+public protocol JSONAPIEndpointProtocol: APIEndpointProtocol {}
+
+extension JSONAPIEndpointProtocol where Self: Encodable {
+    public func body() throws -> (Data, contentType: String)? {
+        return (try JSONEncoder().encode(self), "application/json")
+    }
+}
+
+public protocol APIEndpointResponse {
+    static func decode(data: Data, httpHeaders: [String: String]) throws -> Self
+}
+
+public protocol JSONAPIEndpointResponse: APIEndpointResponse {}
+
+extension JSONAPIEndpointResponse where Self: Decodable {
+    public static func decode(data: Data, httpHeaders: [String: String]) throws -> Self {
+        let decoder = JSONDecoder.forMastodonAPI
+        return try decoder.decode(Self.self, from: data)
+    }
+}
+
+extension Array: JSONAPIEndpointResponse, APIEndpointResponse where Self: Decodable, Element: JSONAPIEndpointResponse {
+    public static func decode(data: Data, httpHeaders: [String: String]) throws -> Self {
+        let decoder = JSONDecoder.forMastodonAPI
+        return try decoder.decode(Self.self, from: data)
+    }
+}
+
+public typealias MastodonEndpointResponse = JSONAPIEndpointResponse
+
+public protocol MastodonEndpointProtocol: JSONAPIEndpointProtocol {}
+
+extension MastodonEndpointProtocol {
+    public func request(with token: MastodonUserToken, session: URLSession = .shared) async throws -> Self.Response {
+        return try await token.request(self, session: session)
     }
     
     @available(*, deprecated, message: "Use native async/await version instead.")
@@ -59,22 +93,10 @@ extension MastodonEndpointProtocol {
     }
 }
 
-extension MastodonEndpointProtocol where Self: Encodable {
-    public func body() throws -> (Data, contentType: String)? {
-        return (try JSONEncoder().encode(self), "application/json")
+public protocol MastodonAnonymousEndpointProtocol: MastodonEndpointProtocol {}
+
+extension MastodonAnonymousEndpointProtocol {
+    public func request(to instance: MastodonInstance, session: URLSession = .shared) async throws -> Self.Response {
+        return try await instance.request(self, session: session)
     }
-}
-
-public protocol MastodonEndpointResponse {
-    static func decode(data: Data, httpHeaders: [String: String]) throws -> Self
-}
-
-extension MastodonEndpointResponse where Self: Decodable {
-    public static func decode(data: Data, httpHeaders: [String: String]) throws -> Self {
-        let decoder = JSONDecoder.forMastodonAPI
-        return try decoder.decode(Self.self, from: data)
-    }
-}
-
-extension Array: MastodonEndpointResponse where Element: Decodable {
 }

@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import Foundation
-import Alamofire
 import GRDB
 
 public class MastodonApp: Hashable {
@@ -43,7 +42,7 @@ public class MastodonApp: Hashable {
     public var instance: MastodonInstance
     var id: String
     
-    init(instance: MastodonInstance, info: MastodonInstance.CreateAppResponse, name: String, redirectUri: String) {
+    init(instance: MastodonInstance, info: MastodonEndpoint.CreateApp.Response, name: String, redirectUri: String) {
         self.instance = instance
         clientId = info.clientId
         clientSecret = info.clientSecret
@@ -124,15 +123,43 @@ public class MastodonApp: Hashable {
             var access_token: String
         }
         
-        let res: Response = try await Alamofire.request("https://\(self.instance.hostName)/oauth/token", method: .post, parameters: [
-            "grant_type": "authorization_code",
-            "redirect_uri": self.redirectUri,
-            "client_id": self.clientId,
-            "client_secret": self.clientSecret,
-            "code": code,
-            "state": self.id,
-        ]).responseDecodable()
+        let response = try await MastodonEndpoint.AuthorizeWithCodeRequest(
+            redirectUri: redirectUri,
+            clientId: clientId, clientSecret: clientSecret,
+            code: code, state: id
+        ).request(to: instance)
         
-        return MastodonUserToken(app: self, token: res.access_token)
+        return MastodonUserToken(app: self, token: response.accessToken)
+    }
+}
+
+extension MastodonEndpoint {
+    public struct AuthorizeWithCodeRequest: MastodonAnonymousEndpointProtocol, Encodable {
+        public struct Response: MastodonEndpointResponse, Decodable {
+            let accessToken: String
+            
+            enum CodingKeys: String, CodingKey {
+                case accessToken = "access_token"
+            }
+        }
+        
+        public var endpoint: String { "/oauth/token" }
+        public var method: String { "POST" }
+        
+        public let grantType = "authorization_code"
+        public var redirectUri: String
+        public var clientId: String
+        public var clientSecret: String
+        public var code: String
+        public var state: String
+        
+        enum CodingKeys: String, CodingKey {
+            case grantType = "grant_type"
+            case redirectUri = "redirect_uri"
+            case clientId = "client_id"
+            case clientSecret = "client_secret"
+            case code
+            case state
+        }
     }
 }
