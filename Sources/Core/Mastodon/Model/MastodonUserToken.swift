@@ -22,7 +22,6 @@
 //  limitations under the License.
 
 import Foundation
-import Alamofire
 import Hydra
 import GRDB
 import KeychainAccess
@@ -249,50 +248,6 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
             data: data,
             httpHeaders: (response as! HTTPURLResponse).allHeaderFields as! [String: String]
         )
-    }
-    
-    public func upload(file: Data, mimetype: String, filename: String = "imast_upload_file") async throws -> MastodonAttachment {
-        let request = try await withCheckedThrowingContinuation { continuation in
-            Alamofire.upload(
-                multipartFormData: { (multipartFormData) in
-                    multipartFormData.append(file, withName: "file", fileName: filename, mimeType: mimetype)
-                },
-                to: "https://\(self.app.instance.hostName)/api/v1/media",
-                method: .post,
-                headers: self.getHeader()
-            ) { encodingResult in
-                switch encodingResult {
-                case .success(let request, _, _):
-                    continuation.resume(returning: request)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
-        let (data, urlRes): (Data, HTTPURLResponse) = try await withCheckedThrowingContinuation { continuation in
-            request.responseData { res in
-                switch res.result {
-                case .success(let data):
-                    let urlRes = res.response!
-                    continuation.resume(returning: (data, urlRes))
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
-        if urlRes.statusCode < 300 {
-            do {
-                return try JSONDecoder.forMastodonAPI.decode(MastodonAttachment.self, from: data)
-            } catch {
-                throw error
-            }
-        } else {
-            if let error = try? JSONDecoder().decode(MastodonErrorResponse.self, from: data).error {
-                throw APIError.errorReturned(errorMessage: error, errorHttpCode: urlRes.statusCode)
-            } else {
-                throw APIError.unknownResponse(errorHttpCode: urlRes.statusCode, errorString: .init(data: data, encoding: .utf8))
-            }
-        }
     }
     
     public static func == (lhs: MastodonUserToken, rhs: MastodonUserToken) -> Bool {

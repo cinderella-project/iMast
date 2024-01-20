@@ -137,7 +137,10 @@ class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDe
                 await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
-                let response = try await self.environment.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
+                let response = try await MastodonEndpoint.UploadMediaV1(
+                    file: medium.toUploadableData(),
+                    mimeType: medium.getMimeType()
+                ).request(with: self.environment)
                 media.append(response)
             }
             await MainActor.run {

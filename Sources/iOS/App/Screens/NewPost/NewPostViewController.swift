@@ -24,7 +24,6 @@
 import UIKit
 import Hydra
 import MediaPlayer
-import Alamofire
 import iMastiOSCore
 
 // YOU PROBABLY WANT TO ALSO MODIFY ShareNewPostViewController, which is subset of NewPostViewController.
@@ -208,7 +207,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 await MainActor.run {
                     alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
                 }
-                let response = try await self.userToken.upload(file: medium.toUploadableData(), mimetype: medium.getMimeType())
+                let response = try await MastodonEndpoint.UploadMediaV1(file: medium.toUploadableData(), mimeType: medium.getMimeType()).request(with: self.userToken)
                 media.append(response)
             }
             await MainActor.run {
