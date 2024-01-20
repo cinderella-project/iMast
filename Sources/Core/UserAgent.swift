@@ -40,4 +40,4 @@ import Foundation
     let UserAgentPlatformString = "visionOS"
 #endif
 
-public let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (\(UserAgentPlatformString)/\(UserAgentPlatformVersionString)"
+public let UserAgentString = "iMast/\((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)) (\(UserAgentPlatformString)/\(UserAgentPlatformVersionString))"
