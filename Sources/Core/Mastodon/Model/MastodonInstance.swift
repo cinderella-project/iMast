@@ -116,7 +116,7 @@ public class MastodonInstance {
         return json
     }
     
-    public func createApp(name: String = defaultAppName, redirect_uri: URL = URL(string: "imast://callback/")!) async throws -> MastodonApp {
+    public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") async throws -> MastodonApp {
         let json = try await MastodonEndpoint.CreateApp(
             clientName: name,
             scopes: "read write follow",
@@ -124,7 +124,7 @@ public class MastodonInstance {
             website: website
         ).request(to: self)
         
-        return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri.absoluteString)
+        return MastodonApp(instance: self, info: json, name: name, redirectUri: redirect_uri)
     }
 }
 
@@ -152,7 +152,7 @@ extension MastodonEndpoint {
         
         var clientName: String
         var scopes: String
-        var redirectUri: URL
+        var redirectUri: String
         var website: URL
         
         enum CodingKeys: String, CodingKey {
