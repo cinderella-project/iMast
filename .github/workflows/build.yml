@@ -20,5 +20,7 @@ jobs:
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
     - name: Build (iOS)
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+    - name: Build (visionOS)
+      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=visionOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (macOS)
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
