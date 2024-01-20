@@ -98,15 +98,15 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
     static func getIcon(type: String) -> UIImage? {
         switch type {
         case "reblog":
-            return Asset.boost.image
+            return .init(resource: .boost)
         case "favourite":
-            return Asset.star.image
+            return .init(resource: .star)
         case "mention":
-            return Asset.reply.image
+            return .init(resource: .reply)
         case "follow":
-            return Asset.follow.image
+            return .init(resource: .follow)
         case "poll":
-            return Asset.poll.image
+            return .init(resource: .poll)
         case "update":
             return UIImage(systemName: "pencil")
         default:
