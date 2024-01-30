@@ -13,7 +13,6 @@ jobs:
           - iOS
           - visionOS
         machine:
-          - "macOS-13"
           - "macOS-14"
     runs-on: ${{ matrix.machine }}
     steps:
