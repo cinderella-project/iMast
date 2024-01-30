@@ -19,14 +19,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
-    - name: Download visionOS Platform
-      if: matrix.os == 'visionOS'
-      run: |
-        # need to building for visionOS on Intel Mac (GitHub Actions still running Intel Mac)
-        # Special Thanks https://github.com/saagarjha (ref. https://twitter.com/_saagarjha/status/1748669778754208015 )
-        defaults write com.apple.dt.Xcode AllowUnsupportedVisionOSHost -bool YES
-        defaults write com.apple.CoreSimulator AllowUnsupportedVisionOSHost -bool YES
-        xcodebuild -downloadPlatform visionOS
     - name: bundle install
       run: bundle update --bundler && bundle install
     - name: Install CocoaPods dependencies
