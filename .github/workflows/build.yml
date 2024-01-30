@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macOS-13
     strategy:
       matrix:
         xcode:
@@ -13,6 +12,10 @@ jobs:
           - macOS
           - iOS
           - visionOS
+        machine:
+          - "macOS-13"
+          - "macOS-14"
+    runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
