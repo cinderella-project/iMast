@@ -4135,9 +4135,10 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = iMast;
-				SDKROOT = iphoneos;
+				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4163,9 +4164,10 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-Xfrontend\" \"-warn-long-function-bodies=1000\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.pronama.imast;
 				PRODUCT_NAME = iMast;
-				SDKROOT = iphoneos;
+				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VERSIONING_SYSTEM = "apple-generic";
