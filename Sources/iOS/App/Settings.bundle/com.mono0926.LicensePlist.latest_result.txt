@@ -378,6 +378,8 @@ name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
 
+name: swift-syntax, nameSpecified: swift-syntax, owner: apple, version: 509.1.1, source: https://github.com/apple/swift-syntax
+
 name: iMast (LICENSE), nameSpecified: , version: 
 body:                     …
 
