@@ -27,7 +27,7 @@ jobs:
         xcodebuild \
           -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" -configuration Release \
           build -derivedDataPath ./build \
-          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | xcpretty -c
     - name: Export Stats
       run: python3 .github/export_build_stats.py ./build Release iphoneos | tee stats.json
     - name: Upload Stats
