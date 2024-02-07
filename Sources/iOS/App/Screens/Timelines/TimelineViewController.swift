@@ -285,7 +285,7 @@ class TimelineViewController: UIViewController, Instantiatable {
             self.showFromTimeline(vc)
         }
         // TODO: also allow for other idiom like .pad, after consider about corner worse case
-        if traitCollection.userInterfaceIdiom == .vision {
+        if #available(iOS 17.0, *), traitCollection.userInterfaceIdiom == .vision {
             let userActivity = NSUserActivity(newPostWithMastodonUserToken: environment)
             UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: UIWindowScene.ActivationRequestOptions() ※ {
                 $0.requestingScene = self.view.window?.windowScene
