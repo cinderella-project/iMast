@@ -9,6 +9,7 @@ disabled_rules:
 excluded:
   - Pods
   - vendor
+  - build
 
 force_cast: warning
 force_try: warning
