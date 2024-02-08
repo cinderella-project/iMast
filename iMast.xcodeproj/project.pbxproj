@@ -42,6 +42,8 @@
 		CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */; };
 		CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
+		CE1C23B22B7424EB00DA37A3 /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C23B12B7424EB00DA37A3 /* iMastPackage */; };
+		CE1C23B42B7424F200DA37A3 /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C23B32B7424F200DA37A3 /* iMastPackage */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
 		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
@@ -318,7 +320,6 @@
 		CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC51529337514008358DB /* MastodonPostSource.swift */; };
 		CEEE37E72B717B1B00320C49 /* NewPostSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */; };
 		CEEE37EB2B717D2100320C49 /* NSUserActivity+NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */; };
-		CEEE37EC2B717D2300320C49 /* NSUserActivity+NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
@@ -1008,6 +1009,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C23B22B7424EB00DA37A3 /* iMastPackage in Frameworks */,
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
 				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
 			);
@@ -1090,6 +1092,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C23B42B7424F200DA37A3 /* iMastPackage in Frameworks */,
 				617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */,
 				CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */,
 			);
@@ -2282,6 +2285,7 @@
 			name = iMastiOSCore;
 			packageProductDependencies = (
 				CE11D6DD28576A8C00F6A0AF /* Ikemen */,
+				CE1C23B12B7424EB00DA37A3 /* iMastPackage */,
 			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
@@ -2486,6 +2490,7 @@
 			name = iMastMacCore;
 			packageProductDependencies = (
 				CE11D6DF28576A9200F6A0AF /* Ikemen */,
+				CE1C23B32B7424F200DA37A3 /* iMastPackage */,
 			);
 			productName = iMastMacCore;
 			productReference = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */;
@@ -3702,7 +3707,6 @@
 				CEE4E3442377F82D00406371 /* Array+safe.swift in Sources */,
 				CEE4E35A2377F83900406371 /* String+sha256.swift in Sources */,
 				CE7AA3B825DBA84C00439AAD /* AppGroup.swift in Sources */,
-				CEEE37EC2B717D2300320C49 /* NSUserActivity+NewPost.swift in Sources */,
 				CEEB1A3D25CAAD6A0080953E /* MastodonWebSocketMessage.swift in Sources */,
 				CE8AAC5B291777C300AC7FB4 /* MastodonAPI.swift in Sources */,
 				CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */,
@@ -5162,6 +5166,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
 			productName = Ikemen;
+		};
+		CE1C23B12B7424EB00DA37A3 /* iMastPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iMastPackage;
+		};
+		CE1C23B32B7424F200DA37A3 /* iMastPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iMastPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
