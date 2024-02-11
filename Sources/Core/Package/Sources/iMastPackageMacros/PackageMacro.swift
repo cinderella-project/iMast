@@ -32,7 +32,10 @@ public struct UserInfoPropertyMacro: AccessorMacro {
             // TODO: throw error like "type annotation is required"
             return []
         }
-        let optionalInnerType = typeAnot.type.cast(OptionalTypeSyntax.self).wrappedType
+        guard let optionalInnerType = typeAnot.type.as(OptionalTypeSyntax.self)?.wrappedType else {
+            // TODO: throw error like "type should be optional wrapped"
+            return []
+        }
         return [
             """
             get {
