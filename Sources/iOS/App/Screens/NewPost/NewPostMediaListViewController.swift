@@ -37,7 +37,6 @@ class NewPostMediaListViewController: UIViewController {
     let addButton = UIButton(type: .contactAdd)
     let imagesStackView = UIStackView() ※ { v in
         v.distribution = .fillEqually
-        v.alignment = .leading
     }
 
     init(viewModel: NewPostViewModel, inline: Bool) {

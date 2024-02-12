@@ -76,20 +76,6 @@ class NewPostView: UIView {
     let stackView: UIStackView
     
     init() {
-        #if !os(visionOS)
-        addSubview(toolBar)
-        toolBar.items = [
-            imageSelectItem,
-            nsfwSwitchItem,
-            scopeSelectItem,
-            nowPlayingItem,
-        ]
-        toolBar.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-        }
-        #endif
-        
         let separatorView = SeparatorView()
         
         stackView = .init(arrangedSubviews: [
@@ -105,6 +91,9 @@ class NewPostView: UIView {
         backgroundColor = .systemBackground
         
         addSubview(stackView)
+        #if !os(visionOS)
+        addSubview(toolBar)
+        #endif
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
@@ -129,6 +118,17 @@ class NewPostView: UIView {
             make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)
         }
         #if !os(visionOS)
+        addSubview(toolBar)
+        toolBar.items = [
+            imageSelectItem,
+            nsfwSwitchItem,
+            scopeSelectItem,
+            nowPlayingItem,
+        ]
+        toolBar.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
         bringSubviewToFront(toolBar)
         #endif
     }
