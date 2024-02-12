@@ -290,6 +290,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$newFirstScreen) var newFirstScreen
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
         @AppStorage(defaults: .$openAsHalfModalFromTimeline) var openAsHalfModalFromTimeline
+        @AppStorage(defaults: .$openAsAnotherWindow) var openAsAnotherWindow
 
         var body: some View {
             Section("実験的な要素") {
@@ -300,6 +301,7 @@ struct SettingsView: View {
                     Text("メンションのプッシュ通知に送信者のアイコンが付くようになります。")
                 }
                 Toggle("タイムラインから何かを開いた時にハーフモーダルにする", isOn: $openAsHalfModalFromTimeline)
+                Toggle("できるだけ新ウィンドウで開く", isOn: $openAsAnotherWindow)
             }
         }
     }

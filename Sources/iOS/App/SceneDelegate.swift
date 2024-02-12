@@ -145,8 +145,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let vc = windowScene.windows.first?.rootViewController else {
             return completionHandler(false)
         }
-        let newVC = NewPostViewController()
-        newVC.userToken = token
+        let newVC = NewPostViewController(userActivity: .init(newPostWithMastodonUserToken: token))
         vc.present(ModalNavigationViewController(rootViewController: newVC), animated: true, completion: nil)
         print("animated")
     }

@@ -273,29 +273,14 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
     }
     
-    func processNewPostVC(newPostVC: NewPostViewController) {
+    func processNewPostVC(userActivity: NSUserActivity) {
         // オーバーライド用
     }
     
     @objc func openNewPostVC() {
-        let fallback = {
-            let vc = NewPostViewController()
-            vc.userToken = self.environment
-            self.processNewPostVC(newPostVC: vc)
-            self.showFromTimeline(vc)
-        }
-        // TODO: also allow for other idiom like .pad, after consider about corner worse case
-        if #available(iOS 17.0, *), traitCollection.userInterfaceIdiom == .vision {
-            let userActivity = NSUserActivity(newPostWithMastodonUserToken: environment)
-            UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: UIWindowScene.ActivationRequestOptions() ※ {
-                $0.requestingScene = self.view.window?.windowScene
-                $0.preferredPresentationStyle = .prominent
-            }) { error in
-                fallback()
-            }
-        } else {
-            fallback()
-        }
+        let userActivity = NSUserActivity(newPostWithMastodonUserToken: environment)
+        processNewPostVC(userActivity: userActivity)
+        showAsWindow(userActivity: userActivity, fallback: .timeline)
     }
     
     @objc func postFabTapped(sender: UITapGestureRecognizer) {

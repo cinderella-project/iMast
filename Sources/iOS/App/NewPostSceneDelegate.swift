@@ -49,10 +49,7 @@ class NewPostSceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         if let window = window {
-            let newPostVC = NewPostViewController()
-            newPostVC.userToken = userToken
-            newPostVC.userActivity = activity
-            scene.userActivity = activity
+            let newPostVC = NewPostViewController(userActivity: activity)
             window.rootViewController = UINavigationController(rootViewController: newPostVC)
             window.makeKeyAndVisible()
 
@@ -62,6 +59,6 @@ class NewPostSceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         print("state restoration activity", scene.userActivity)
-        return scene.userActivity
+        return ((scene as? UIWindowScene)?.keyWindow?.rootViewController as? UINavigationController)?.viewControllers.first?.userActivity
     }
 }

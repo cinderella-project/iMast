@@ -117,9 +117,7 @@ class TopAccountMasterViewController: UITableViewController, Instantiatable, Inj
     }
     
     @objc func openNewPost() {
-        let vc = NewPostViewController()
-        vc.userToken = environment
-        present(ModalNavigationViewController(rootViewController: vc), animated: true)
+        showAsWindow(userActivity: .init(newPostWithMastodonUserToken: environment), fallback: .modal)
     }
     
     func cellProvider(_ tableView: UITableView, indexPath: IndexPath, itemIdentifier: Item) -> UITableViewCell? {

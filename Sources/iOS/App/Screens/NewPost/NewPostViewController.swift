@@ -50,11 +50,19 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
     }
     var editPost: (post: MastodonPost, source: MastodonPostSource)?
-    var replyToPost: MastodonPost?
+//    var replyToPost: MastodonPost?
     
     var userToken: MastodonUserToken!
     
-    var appendBottomString: String = ""
+    init(userActivity: NSUserActivity) {
+        super.init(nibName: nil, bundle: nil)
+        self.userActivity = userActivity
+        self.userToken = userActivity.mastodonUserToken()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         contentView = .init()
@@ -80,21 +88,17 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         
         contentView.currentAccountLabel.text = userToken.acct
         navigationItem.largeTitleDisplayMode = .never
-        if let replyToPost = replyToPost {
-            contentView.currentAccountLabel.text! += "\n返信先: @\(replyToPost.account.acct): \(replyToPost.status.toPlainText().replacingOccurrences(of: "\n", with: " "))"
-            var replyAccounts = [replyToPost.account.acct]
-            for mention in replyToPost.mentions {
-                replyAccounts.append(mention.acct)
-            }
-            replyAccounts = replyAccounts.filter { $0 != userToken.screenName }.map { "@\($0) " }
-            contentView.textInput.text = replyAccounts.joined()
-            scope = replyToPost.visibility
+        if let userActivity, let replyPostID = userActivity.newPostReplyPostID, let replyPostAcct = userActivity.newPostReplyPostAcct {
+            let replyPostText = userActivity.newPostReplyPostText ?? ""
+            contentView.currentAccountLabel.text! += "\n返信先: @\(replyPostAcct): \(replyPostText.toPlainText().replacingOccurrences(of: "\n", with: " "))"
             title = L10n.NewPost.reply
         } else {
             title = L10n.NewPost.title
         }
 
-        if Defaults.usingDefaultVisibility && replyToPost == nil && editPost == nil {
+        if let scope = MastodonPostVisibility(rawValue: userActivity?.newPostVisibility ?? "") {
+            self.scope = scope
+        } else if Defaults.usingDefaultVisibility && editPost == nil {
             setVisibilityFromUserInfo()
         }
 
@@ -115,12 +119,17 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
 
         contentView.textInput.becomeFirstResponder()
-        // メンションとかの後を選択する
-        let nowCount = contentView.textInput.text.nsLength
-        DispatchQueue.main.async {
-            self.contentView.textInput.selectedRange.location = nowCount
+
+        if let userActivity {
+            contentView.textInput.text = userActivity.newPostCurrentText ?? ""
+            // メンションとかの後を選択する
+            let nowCount = contentView.textInput.text.nsLength
+            DispatchQueue.main.async {
+                self.contentView.textInput.selectedRange.location = nowCount
+            }
+            contentView.textInput.text += userActivity.newPostSuffix ?? ""
         }
-        contentView.textInput.text += appendBottomString
+
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         
         navigationItem.rightBarButtonItems = [
@@ -220,7 +229,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 mediaIds: media.map { $0.id },
                 spoiler: spoilerText,
                 sensitive: isSensitive,
-                inReplyToPost: self.replyToPost
+                inReplyToPostID: self.userActivity.flatMap { $0.newPostReplyPostID }
             ).request(with: self.userToken)
         }.then(in: .main) {
             self.clearContent()
@@ -373,7 +382,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentView.textInput.text = ""
         media = []
         isNSFW = false
-        if Defaults.usingDefaultVisibility && replyToPost == nil {
+        if Defaults.usingDefaultVisibility {
             setVisibilityFromUserInfo()
         } else {
             scope = .public
@@ -386,6 +395,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             if let myScope = MastodonPostVisibility(rawValue: res.source?.privacy ?? "public") {
                 self.scope = myScope
             }
+        }
+    }
+    
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        if activity.activityType == NSUserActivity.activityTypeNewPost {
+            print("TODO: restoration")
         }
     }
 }

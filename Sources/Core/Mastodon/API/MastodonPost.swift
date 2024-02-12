@@ -369,14 +369,14 @@ extension MastodonEndpoint {
             visibility: MastodonPostVisibility? = nil,
             mediaIds: [MastodonID] = [],
             spoiler: String = "", sensitive: Bool = false,
-            inReplyToPost: MastodonPost? = nil
+            inReplyToPostID: MastodonID? = nil
         ) {
             self.status = status
             self.visibility = visibility
             self.mediaIds = mediaIds
             self.spoiler = spoiler
             self.sensitive = sensitive
-            self.inReplyToPostId = inReplyToPost?.id
+            self.inReplyToPostId = inReplyToPostID
         }
         
         public typealias Response = MastodonPost

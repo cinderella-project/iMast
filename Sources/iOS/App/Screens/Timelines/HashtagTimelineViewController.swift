@@ -36,8 +36,8 @@ class HashtagTimelineViewController: TimelineViewController {
         self.isNewPostAvailable = true
     }
     
-    override func processNewPostVC(newPostVC: NewPostViewController) {
-        newPostVC.appendBottomString = " #\(hashtag)"
+    override func processNewPostVC(userActivity: NSUserActivity) {
+        userActivity.newPostSuffix = " #\(hashtag)"
     }
     
     required init?(coder aDecoder: NSCoder) {

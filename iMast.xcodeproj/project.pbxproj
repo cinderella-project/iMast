@@ -333,6 +333,7 @@
 		CEF47F6F2A7934B700D1AEAB /* Search.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554CD23C25DDC0084FE1D /* Search.strings */; };
 		CEF47F702A79350B00D1AEAB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6554C923C25DDC0084FE1D /* Localizable.strings */; };
 		CEF47F722A793BC700D1AEAB /* UITextFieldWithInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */; };
+		CEF4E2DA2B798E82008E93DD /* UIViewController+showAsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4E2D72B798E4F008E93DD /* UIViewController+showAsWindow.swift */; };
 		CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */; };
 		CEF6C7CF23B0B46F00E0ADA1 /* AddMastodonAccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */; };
 		CEF6C7D123B122D200E0ADA1 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */; };
@@ -938,6 +939,7 @@
 		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
 		CEF47F612A79322000D1AEAB /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		CEF47F662A79338800D1AEAB /* strings_ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings_ios.swift; sourceTree = "<group>"; };
+		CEF4E2D72B798E4F008E93DD /* UIViewController+showAsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showAsWindow.swift"; sourceTree = "<group>"; };
 		CEF6C7C923B0B36400E0ADA1 /* AddMastodonAccountSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetViewController.swift; sourceTree = "<group>"; };
 		CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMastodonAccountSheetView.swift; sourceTree = "<group>"; };
 		CEF6C7D023B122D200E0ADA1 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpacerView.swift; path = Sources/Mac/Core/SpacerView.swift; sourceTree = SOURCE_ROOT; };
@@ -1290,6 +1292,7 @@
 				CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */,
 				CEF121631FC828CA008DD494 /* MainTabBarController.swift */,
 				CECD766D2A74164B00A56FD0 /* CodableViewDescriptor+localized.swift */,
+				CEF4E2D92B798E73008E93DD /* Extensions */,
 				CE8FD55B22D06D6F00331F15 /* ExtendedClasses */,
 				CE4D388023BD17E000543E72 /* Screens */,
 				CEE3571E1FF51A3900675DFC /* CustomViews */,
@@ -2103,6 +2106,14 @@
 				CEE674DA28B08ADF00667E04 /* SeparatorView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		CEF4E2D92B798E73008E93DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEF4E2D72B798E4F008E93DD /* UIViewController+showAsWindow.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CEF6C7CB23B0B41B00E0ADA1 /* AddMastodonAccountSheet */ = {
@@ -3411,6 +3422,7 @@
 				CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */,
 				CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountView.swift in Sources */,
 				CEF9C9E92AC13A47009ACFD9 /* OpenLinkInSafariVCModifier.swift in Sources */,
+				CEF4E2DA2B798E82008E93DD /* UIViewController+showAsWindow.swift in Sources */,
 				CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */,
 				CE6DAE002235FA1A006CF38A /* MastodonPostCellViewController.swift in Sources */,
 				CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */,

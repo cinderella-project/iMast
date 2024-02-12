@@ -154,10 +154,9 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     
     @objc func openReplyVC() {
         let post = self.input.originalPost
-        let vc = NewPostViewController()
-        vc.userToken = environment
-        vc.replyToPost = post
-        self.navigationController?.pushViewController(vc, animated: true)
+        showAsWindow(userActivity: .init(newPostWithMastodonUserToken: environment) ※ {
+            $0.setNewPostReplyInfo(post)
+        }, fallback: .push)
     }
     
     @objc func boostButtonTapped() {
@@ -234,8 +233,8 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         Task {
             do {
                 let source = try await MastodonEndpoint.GetPostSource(input.id).request(with: environment)
-                let vc = NewPostViewController()
-                vc.userToken = environment
+                let userActivity = NSUserActivity(newPostWithMastodonUserToken: environment)
+                let vc = NewPostViewController(userActivity: userActivity)
                 vc.editPost = (post: input, source: source)
                 present(ModalNavigationViewController(rootViewController: vc), animated: true)
             } catch {

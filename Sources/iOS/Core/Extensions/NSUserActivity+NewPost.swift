@@ -22,11 +22,18 @@
 //  limitations under the License.
 
 import Foundation
+import iMastPackage
 
 extension NSUserActivity {
     public static let activityTypeNewPost = "jp.pronama.imast.private.newpost"
 
     public static let userInfoKeyUserTokenID = "jp.pronama.imast.private.userTokenID"
+    @UserInfoProperty("jp.pronama.imast.private.newpost.suffix") public var newPostSuffix: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.visibility") public var newPostVisibility: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.currentText") public var newPostCurrentText: String?
+    @UserInfoCodableProperty("jp.pronama.imast.private.newpost.replyPostId") public var newPostReplyPostID: MastodonID?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostAcct") public var newPostReplyPostAcct: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostText") public var newPostReplyPostText: String?
     
     public convenience init(newPostWithMastodonUserToken userToken: MastodonUserToken) {
         self.init(activityType: NSUserActivity.activityTypeNewPost)
@@ -41,5 +48,27 @@ extension NSUserActivity {
         }
         
         return MastodonUserToken.initFromId(id: userTokenID)
+    }
+    
+    public func setNewPostReplyInfo(_ post: MastodonPost) {
+        newPostReplyPostID = post.id
+        newPostReplyPostAcct = post.account.acct
+        newPostReplyPostText = post.status
+        
+        newPostVisibility = post.visibility.rawValue
+        var accounts = [post.account.acct]
+        var accountsSet = Set<String>()
+        accountsSet.insert(post.account.acct)
+        if let userToken = mastodonUserToken(), let screenName = userToken.screenName {
+            accountsSet.insert(screenName)
+        }
+        for mention in post.mentions {
+            let acct = post.account.acct
+            let (inserted, _) = accountsSet.insert(acct)
+            if inserted {
+                accounts.append(post.account.acct)
+            }
+        }
+        newPostCurrentText = accounts.map { "@\($0) " }.joined()
     }
 }
