@@ -186,8 +186,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
                 try await MainActor.run {
                     try userToken.memoryStore.post.change(obj: response)
                     alert.dismiss(animated: false, completion: {
-                        if self.navigationController is ModalNavigationViewController {
-                            self.navigationController?.dismiss(animated: true, completion: nil)
+                        if let modalNVC = self.navigationController as? ModalNavigationViewController {
+                            modalNVC.closeAsCommit()
                         } else {
                             self.navigationController?.popViewController(animated: true)
                         }
@@ -234,8 +234,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }.then(in: .main) {
             self.clearContent()
             alert.dismiss(animated: false, completion: {
-                if self.navigationController is ModalNavigationViewController {
-                    self.navigationController?.dismiss(animated: true, completion: nil)
+                if let modalNVC = self.navigationController as? ModalNavigationViewController {
+                    modalNVC.closeAsCommit()
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }

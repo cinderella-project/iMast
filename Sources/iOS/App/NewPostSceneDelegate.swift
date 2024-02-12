@@ -50,7 +50,7 @@ class NewPostSceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         if let window = window {
             let newPostVC = NewPostViewController(userActivity: activity)
-            window.rootViewController = UINavigationController(rootViewController: newPostVC)
+            window.rootViewController = ModalNavigationViewController(rootViewController: newPostVC, asSceneRoot: true)
             window.makeKeyAndVisible()
 
             success = true

@@ -22,11 +22,48 @@
 //  limitations under the License.
 
 import UIKit
+import Ikemen
 
 class ModalNavigationViewController: UINavigationController {
-    override init(rootViewController: UIViewController) {
+    var asSceneRoot: Bool
+
+    init(rootViewController: UIViewController, asSceneRoot: Bool = false) {
+        self.asSceneRoot = asSceneRoot
         super.init(rootViewController: rootViewController)
-        rootViewController.navigationItem.leftBarButtonItem = .init(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+        #if os(visionOS)
+        #else
+        rootViewController.navigationItem.leftBarButtonItem = .init(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(closeAsDecline)
+        )
+        #endif
+    }
+    
+    @objc func closeAsDecline() {
+        if asSceneRoot {
+            guard let windowScene = view.window?.windowScene else {
+                return
+            }
+            UIApplication.shared.requestSceneSessionDestruction(windowScene.session, options: UIWindowSceneDestructionRequestOptions() ※ {
+                $0.windowDismissalAnimation = .decline
+            })
+        } else {
+            dismiss(animated: true)
+        }
+    }
+    
+    @objc func closeAsCommit() {
+        if asSceneRoot {
+            guard let windowScene = view.window?.windowScene else {
+                return
+            }
+            UIApplication.shared.requestSceneSessionDestruction(windowScene.session, options: UIWindowSceneDestructionRequestOptions() ※ {
+                $0.windowDismissalAnimation = .commit
+            })
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
