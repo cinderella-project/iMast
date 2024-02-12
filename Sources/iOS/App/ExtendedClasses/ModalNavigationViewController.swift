@@ -30,14 +30,14 @@ class ModalNavigationViewController: UINavigationController {
     init(rootViewController: UIViewController, asSceneRoot: Bool = false) {
         self.asSceneRoot = asSceneRoot
         super.init(rootViewController: rootViewController)
-        #if os(visionOS)
-        #else
-        rootViewController.navigationItem.leftBarButtonItem = .init(
-            barButtonSystemItem: .cancel,
-            target: self,
-            action: #selector(closeAsDecline)
-        )
-        #endif
+        if #available(iOS 17.0, *), traitCollection.userInterfaceIdiom == .vision, asSceneRoot {
+        } else {
+            rootViewController.navigationItem.leftBarButtonItem = .init(
+                barButtonSystemItem: .cancel,
+                target: self,
+                action: #selector(closeAsDecline)
+            )
+        }
     }
     
     @objc func closeAsDecline() {
