@@ -1713,8 +1713,7 @@
 				CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */,
 				CE04DD1821A9E0B100808033 /* LoopableAVPlayerViewController.swift */,
 			);
-			name = ExtendedClasses;
-			path = ../Core_NonLib/ExtendedClasses;
+			path = ExtendedClasses;
 			sourceTree = "<group>";
 		};
 		CE90CCEE23780496001C8E80 /* Extensions */ = {
