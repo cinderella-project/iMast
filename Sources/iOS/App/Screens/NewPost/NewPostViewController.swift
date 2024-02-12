@@ -22,40 +22,29 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 import Hydra
 import MediaPlayer
 import iMastiOSCore
 
 // YOU PROBABLY WANT TO ALSO MODIFY ShareNewPostViewController, which is subset of NewPostViewController.
 
-class NewPostViewController: UIViewController, UITextViewDelegate {
+class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObject {
     var contentView: NewPostView!
+    var viewModel: NewPostViewModel
+    var cancellables = Set<AnyCancellable>()
+    var mediaVC: NewPostMediaListViewController?
 
-    @MainActor var media: [UploadableMedia] = [] {
-        didSet {
-            // TODO: なんかこれでもアニメーションしてしまうのを防ぐ
-            UIView.performWithoutAnimation {
-                contentView.imageSelectButton.setTitle(" \(media.count)", for: .normal)
-            }
-        }
-    }
-    var isNSFW: Bool = false {
-        didSet {
-            contentView.nsfwSwitchItem.image = isNSFW ? .init(systemName: "eye.slash") : .init(systemName: "eye")
-        }
-    }
-    var scope = MastodonPostVisibility.public {
-        didSet {
-            contentView.scopeSelectItem.image = scope.uiImage
-        }
-    }
     var editPost: (post: MastodonPost, source: MastodonPostSource)?
 //    var replyToPost: MastodonPost?
     
     var userToken: MastodonUserToken!
     
     init(userActivity: NSUserActivity) {
+        viewModel = .init()
         super.init(nibName: nil, bundle: nil)
+        viewModel.alertPresenter = self
         self.userActivity = userActivity
         self.userToken = userActivity.mastodonUserToken()
     }
@@ -78,13 +67,40 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         contentView.imageSelectButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(openImagePickerDirectly(_:))))
         contentView.nsfwSwitchItem.target = self
         contentView.nsfwSwitchItem.action = #selector(nsfwButtonTapped(_:))
-        contentView.nowPlayingItem.target = self
-        contentView.nowPlayingItem.action = #selector(nowPlayingTapped(_:))
+        contentView.nowPlayingItem.target = viewModel
+        contentView.nowPlayingItem.action = #selector(viewModel.insertNowPlayingInfo)
         contentView.scopeSelectItem.menu = UIMenu(title: "", children: MastodonPostVisibility.allCases.map { visibility in
             return UIAction(title: visibility.localizedName, image: visibility.uiImage, state: .off) { [weak self] _ in
-                self?.scope = visibility
+                self?.viewModel.visibility = visibility
             }
         })
+
+        viewModel.$visibility
+            .prepend(viewModel.visibility)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak contentView] scope in
+                contentView?.scopeSelectItem.image = scope.uiImage
+            }
+            .store(in: &cancellables)
+
+        viewModel.$isNSFW
+            .prepend(viewModel.isNSFW)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak contentView] isNSFW in
+                contentView?.nsfwSwitchItem.image = .init(systemName: isNSFW ? "eye.slash" : "eye")
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$media
+            .prepend(viewModel.media)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak contentView] media in
+                // TODO: なんかこれでもアニメーションしてしまうのを防ぐ
+                UIView.performWithoutAnimation {
+                    contentView?.imageSelectButton.setTitle(" \(media.count)", for: .normal)
+                }
+            }
+            .store(in: &cancellables)
         
         contentView.currentAccountLabel.text = userToken.acct
         navigationItem.largeTitleDisplayMode = .never
@@ -97,7 +113,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         }
 
         if let scope = MastodonPostVisibility(rawValue: userActivity?.newPostVisibility ?? "") {
-            self.scope = scope
+            viewModel.visibility = scope
         } else if Defaults.usingDefaultVisibility && editPost == nil {
             setVisibilityFromUserInfo()
         }
@@ -112,10 +128,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             contentView.imageSelectButton.setTitle(" \(editPost.post.attachments.count)", for: .normal)
             contentView.imageSelectButton.isEnabled = false
             
-            scope = editPost.post.visibility
+            viewModel.visibility = editPost.post.visibility
             contentView.scopeSelectItem.isEnabled = false
 
-            isNSFW = editPost.post.sensitive
+            viewModel.isNSFW = editPost.post.sensitive
         }
 
         contentView.textInput.becomeFirstResponder()
@@ -138,6 +154,80 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         
         additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
         configureObserver()
+        
+        #if os(visionOS)
+        let mediaVC = NewPostMediaListViewController(viewModel: viewModel, inline: true)
+        contentView.stackView.addArrangedSubview(mediaVC.view)
+        addChild(mediaVC)
+        self.mediaVC = mediaVC
+        viewModel.$media
+            .prepend(viewModel.media)
+            .receive(on: DispatchQueue.main)
+            .sink {
+                mediaVC.view.isHidden = $0.count == 0
+            }
+            .store(in: &cancellables)
+        
+        struct OrnamentView: View {
+            @StateObject var viewModel: NewPostViewModel
+            
+            var body: some View {
+                HStack {
+                    Button {
+                        viewModel.alertPresenter?.mediaVC?.addFromPhotoLibrary()
+                    } label: {
+                        Image(systemName: "photo")
+                        Text("\(viewModel.media.count)")
+                    }
+
+                    
+                    Toggle(isOn: $viewModel.isNSFW) {
+                        Image(systemName: viewModel.isNSFW ? "eye.slash" : "eye" )
+                    }
+                    .toggleStyle(.button)
+                    .help("NSFW (Current: \(viewModel.isNSFW ? "ON" : "OFF"))")
+
+                    Menu {
+                        ForEach(MastodonPostVisibility.allCases) { v in
+                            Button {
+                                viewModel.visibility = v
+                            } label: {
+                                Label {
+                                    Text(v.localizedName)
+                                } icon: {
+                                    Image(systemName: v.sfSymbolsName)
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: viewModel.visibility.sfSymbolsName)
+                            .aspectRatio(1, contentMode: .fit)
+                    }
+                    .menuStyle(.borderlessButton)
+                    .help("Visibility (Current: \(viewModel.visibility.localizedName))")
+
+                    Divider()
+
+                    Button {
+                        viewModel.insertNowPlayingInfo()
+                    } label: {
+                        Image(systemName: "music.note")
+                    }
+                    .help("Insert NowPlaying")
+                }
+                .padding()
+                .buttonStyle(.borderless)
+                .glassBackgroundEffect()
+            }
+        }
+        
+        let ornament = UIHostingOrnament(sceneAnchor: .bottom, contentAlignment: .center) {
+            OrnamentView(viewModel: self.viewModel)
+        }
+        
+        ornaments = [ornament]
+        
+        #endif
     }
 
     override func didReceiveMemoryWarning() {
@@ -146,7 +236,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func sendPost(_ sender: Any) {
-        print(isNSFW)
         let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let alert = UIAlertController(
             title: L10n.NewPost.Alerts.Sending.title,
@@ -167,7 +256,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
             preconditionFailure()
         }
         let text = contentView.textInput.text ?? ""
-        let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
+        let isSensitive = viewModel.isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""
 
         Task {
@@ -206,15 +295,15 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     func submitPost(_ alert: UIAlertController) {
         let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
         let text = contentView.textInput.text ?? ""
-        let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
+        let isSensitive = viewModel.isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""
-        let scope = scope
+        let scope = viewModel.visibility
         
         asyncPromise {
             var media: [MastodonAttachment] = []
-            for (index, medium) in self.media.enumerated() {
+            for (index, medium) in self.viewModel.media.enumerated() {
                 await MainActor.run {
-                    alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.media.count)
+                    alert.message = baseMessage + L10n.NewPost.Alerts.Sending.Steps.mediaUpload(index+1, self.viewModel.media.count)
                 }
                 let response = try await MastodonEndpoint.UploadMediaV1(file: medium.toUploadableData(), mimeType: medium.getMimeType()).request(with: self.userToken)
                 media.append(response)
@@ -277,82 +366,11 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     #endif
 
     @objc func nsfwButtonTapped(_ sender: Any) {
-        isNSFW = !isNSFW
-    }
-    @objc func nowPlayingTapped(_ sender: Any) {
-        switch MPMediaLibrary.authorizationStatus() {
-        case .denied:
-            self.alert(
-                title: L10n.Localizable.Error.title,
-                message: L10n.NewPost.Errors.declineAppleMusicPermission
-            )
-            return
-        case .notDetermined:
-            MPMediaLibrary.requestAuthorization { [weak self, sender] status in
-                DispatchQueue.main.async {
-                    self?.nowPlayingTapped(sender)
-                }
-            }
-            return
-        case .restricted:
-            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is restricted")
-            return
-        case .authorized:
-            break
-        @unknown default:
-            self.alert(title: "よくわからん事になりました", message: "もしよければ、このアラートがどのような条件で出たか、以下のコードを添えて @imast_ios@mstdn.rinsuki.net までお知らせください。\ncode: MPMediaLibraryAuthorizationStatus is unknown value")
-            return
-        }
-        guard let nowPlayingMusic = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem else { return }
-        if nowPlayingMusic.title == nil {
-            return
-        }
-        var nowPlayingText = Defaults.nowplayingFormat
-        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{title}", with: nowPlayingMusic.title ?? "")
-        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{artist}", with: nowPlayingMusic.artist ?? "")
-        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{albumArtist}", with: nowPlayingMusic.albumArtist ?? "")
-        nowPlayingText = nowPlayingText.replacingOccurrences(of: "{albumTitle}", with: nowPlayingMusic.albumTitle ?? "")
-        
-        func finished(_ text: String) {
-            contentView.textInput.insertText(text)
-        }
-
-        func checkAppleMusic() -> Bool {
-            guard Defaults.nowplayingAddAppleMusicUrl else { return false }
-            let storeId = nowPlayingMusic.playbackStoreID
-            guard storeId != "0" else { return false }
-            let region = Locale.current.regionCode ?? "jp"
-            var request = URLRequest(url: URL(string: "https://itunes.apple.com/lookup?id=\(storeId)&country=\(region)&media=music")!)
-            request.timeoutInterval = 1.5
-            request.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-            Task { @MainActor in
-                var text = nowPlayingText
-                do {
-                    let (data, res) = try await URLSession.shared.data(for: request)
-                    struct SearchResultWrapper: Codable {
-                        let results: [SearchResult]
-                    }
-                    struct SearchResult: Codable {
-                        let trackViewUrl: URL
-                    }
-                    let result = try JSONDecoder().decode(SearchResultWrapper.self, from: data)
-                    if let url = result.results.first?.trackViewUrl {
-                        text += " " + url.absoluteString + " "
-                    }
-                } catch {
-                    // nothing
-                }
-                finished(text)
-            }
-            return true
-        }
-        if !checkAppleMusic() {
-            finished(nowPlayingText)
-        }
+        viewModel.isNSFW.toggle()
     }
     
     @objc func imageSelectButtonTapped(_ sender: UIButton) {
-        let contentVC = NewPostMediaListViewController(newPostVC: self)
+        let contentVC = NewPostMediaListViewController(viewModel: viewModel, inline: false)
         contentVC.modalPresentationStyle = .popover
         contentVC.preferredContentSize = CGSize(width: 500, height: 100)
         contentVC.popoverPresentationController?.sourceView = contentView.imageSelectButton
@@ -365,7 +383,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @objc func openImagePickerDirectly(_ gesture: UILongPressGestureRecognizer) {
         guard gesture.state == .began else { return }
         
-        let contentVC = NewPostMediaListViewController(newPostVC: self)
+        let contentVC = NewPostMediaListViewController(viewModel: viewModel, inline: false)
         contentVC.modalPresentationStyle = .popover
         contentVC.preferredContentSize = CGSize(width: 500, height: 100)
         contentVC.popoverPresentationController?.sourceView = contentView.imageSelectButton
@@ -380,12 +398,12 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     func clearContent() {
         contentView.cwInput.text = ""
         contentView.textInput.text = ""
-        media = []
-        isNSFW = false
+        viewModel.media = []
+        viewModel.isNSFW = false
         if Defaults.usingDefaultVisibility {
             setVisibilityFromUserInfo()
         } else {
-            scope = .public
+            viewModel.visibility = .public
         }
     }
     
@@ -393,7 +411,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         Task { @MainActor in
             let res = try await self.userToken.getUserInfo(cache: true)
             if let myScope = MastodonPostVisibility(rawValue: res.source?.privacy ?? "public") {
-                self.scope = myScope
+                viewModel.visibility = myScope
             }
         }
     }

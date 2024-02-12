@@ -26,11 +26,15 @@ import Foundation
 import UIKit
 #endif
 
-public enum MastodonPostVisibility: String, CaseIterable, Codable, Sendable {
+public enum MastodonPostVisibility: String, CaseIterable, Codable, Sendable, Identifiable {
     case `public`
     case unlisted
     case `private`
     case direct
+    
+    public var id: String {
+        rawValue
+    }
     
     public var localizedName: String {
         switch self {

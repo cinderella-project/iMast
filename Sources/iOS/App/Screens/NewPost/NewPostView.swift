@@ -73,10 +73,10 @@ class NewPostView: UIView {
         $0.width = 44
     }
     
-    convenience init() {
-        self.init(frame: .zero)
-        backgroundColor = .systemBackground
-        
+    let stackView: UIStackView
+    
+    init() {
+        #if !os(visionOS)
         addSubview(toolBar)
         toolBar.items = [
             imageSelectItem,
@@ -88,22 +88,31 @@ class NewPostView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.leading.trailing.equalToSuperview()
         }
+        #endif
         
         let separatorView = SeparatorView()
         
-        let stackView = UIStackView(arrangedSubviews: [
+        stackView = .init(arrangedSubviews: [
             cwInput,
             separatorView,
             textInput,
         ])
-        stackView.alignment = .center
+        stackView.alignment = .leading
         stackView.spacing = 0
         stackView.axis = .vertical
+        
+        super.init(frame: .zero)
+        backgroundColor = .systemBackground
+        
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            #if !os(visionOS)
             make.bottom.equalTo(toolBar.snp.top)
+            #else
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            #endif
         }
         cwInput.snp.makeConstraints { make in
             make.leading.trailing.equalTo(safeAreaLayoutGuide)
@@ -119,6 +128,12 @@ class NewPostView: UIView {
         currentAccountLabel.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)
         }
+        #if !os(visionOS)
         bringSubviewToFront(toolBar)
+        #endif
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
