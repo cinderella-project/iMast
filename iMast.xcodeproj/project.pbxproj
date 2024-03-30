@@ -142,6 +142,7 @@
 		CE7AA3EB25DBB60E00439AAD /* AboutAppPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */; };
 		CE7ABB401FC5B1880087B387 /* ListTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB3F1FC5B1880087B387 /* ListTimelineViewController.swift */; };
 		CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */; };
+		CE7AE4222BB7F1C8008E6715 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CE7AE4212BB7F1C8008E6715 /* PrivacyInfo.xcprivacy */; };
 		CE7B1646238A8B23006E899E /* HelpAndFeedbackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */; };
 		CE7BF9692B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */; };
 		CE7BF96A2B5BD8EE00A2E9AF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */; };
@@ -788,6 +789,7 @@
 		CE7AA3EA25DBB5F700439AAD /* AboutAppPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppPanel.swift; sourceTree = "<group>"; };
 		CE7ABB3F1FC5B1880087B387 /* ListTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTimelineViewController.swift; sourceTree = "<group>"; };
 		CE7ABB411FC5C1610087B387 /* ListsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewController.swift; sourceTree = "<group>"; };
+		CE7AE4212BB7F1C8008E6715 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CE7B1444212EB8F1004904BA /* DispatchQueue+mainSafeSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSafeSync.swift"; sourceTree = "<group>"; };
 		CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -1307,6 +1309,7 @@
 				CEC6BBFB2105B4AC003ECE10 /* LoginSafari.swift */,
 				CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */,
 				CE66CE131EEA2AF9006D5B18 /* Settings.bundle */,
+				CE7AE4212BB7F1C8008E6715 /* PrivacyInfo.xcprivacy */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2682,6 +2685,7 @@
 				CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */,
 				CE2E4B432AC284F900E1DDD4 /* Dummy.strings in Resources */,
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
+				CE7AE4222BB7F1C8008E6715 /* PrivacyInfo.xcprivacy in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
