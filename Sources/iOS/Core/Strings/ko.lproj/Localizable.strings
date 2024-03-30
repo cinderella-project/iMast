@@ -48,15 +48,15 @@
 "refetch" = "새로고침";
 "cancel" = "취소";
 
-"editedWarning.title" = "この投稿は投稿後に編集されています";
-"editedWarning.description" = "最終編集: %@";
-"editHistory.title" = "編集履歴";
-"editHistory.desc.original" = "オリジナル";
-"editHistory.desc.diff.template" = "変更点: %@";
-"editHistory.desc.diff.content" = "本文";
-"editHistory.desc.diff.cw" = "CW警告文";
-"editHistory.desc.diff.attachments" = "添付メディア";
-"editHistory.desc.diff.sensitive" = "NSFWフラグ";
+"editedWarning.title" = "이 글은 게시된 이후 수정되었습니다.";
+"editedWarning.description" = "최종 수정: %@";
+"editHistory.title" = "수정 내역";
+"editHistory.desc.original" = "원본";
+"editHistory.desc.diff.template" = "수정 사항: %@";
+"editHistory.desc.diff.content" = "원문 텍스트";
+"editHistory.desc.diff.cw" = "CW 경고";
+"editHistory.desc.diff.attachments" = "첨부된 미디어";
+"editHistory.desc.diff.sensitive" = "NSFW플래그";
 
 "other" = "기타";
 "switchTab" = "%@ (으)로 전환";
@@ -81,21 +81,21 @@
 
 "favouritesList" = "마음함";
 "bunmyaku.title" = "문맥";
-"postDetail.title" = "投稿詳細";
+"postDetail.title" = "자세히 보기";
 
-"postDetail.share" = "共有";
-"postDetail.delete" = "削除";
-"postDetail.reportAbuse" = "通報";
-"customEmojis.title" = "カスタム絵文字一覧";
+"postDetail.share" = "공유";
+"postDetail.delete" = "삭제";
+"postDetail.reportAbuse" = "신고";
+"customEmojis.title" = "커스텀 이모지 목록";
 
-"reportPost.title" = "投稿を通報";
-"reportPost.send" = "送信";
-"reportPost.targetPost.title" = "対象の投稿";
-"reportPost.additionalInfo.title" = "追加の情報";
-"reportPost.additionalInfo.placeholderOption" = "オプション";
-"reportPost.forwardToRemote.title" = "リモートサーバーに転送";
-"reportPost.forwardToRemote.description" = "このスイッチをONにすると、この通報内容は%1$@にも転送されます。あなたのアカウントがあるサーバーと%1$@が共にMastodon 2.3以上であるか、通報の連合経由での転送に対応している必要があります。";
-"reportPost.finished.title" = "送信しました";
+"reportPost.title" = "글을 신고하기";
+"reportPost.send" = "제출";
+"reportPost.targetPost.title" = "이 글";
+"reportPost.additionalInfo.title" = "추가 정보";
+"reportPost.additionalInfo.placeholderOption" = "옵션";
+"reportPost.forwardToRemote.title" = "리모트 서버로 전송";
+"reportPost.forwardToRemote.description" = "이 스위치를 On으로 변경하면, 신고한 내용은 %1$@서버에도 전송됩니다. 당신이 계정을 소유하고 있는 서버와 %1$@서버 모두 Mastodon 2.3 이상의 버전을 실행하고 있어야하며, 이 기능이 정상적으로 작동하려면 연합을 통한 전달을 지원해야합니다.";
+"reportPost.finished.title" = "전송되었습니다";
 
 "error.title" = "오류";
 "error.requiredNewerOS" = "이 기능을 이용하기 위해서는 iOS %.1f 이상이 필요합니다.";
