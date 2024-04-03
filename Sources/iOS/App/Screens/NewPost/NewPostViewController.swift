@@ -137,7 +137,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         contentView.textInput.becomeFirstResponder()
 
         if let userActivity {
-            contentView.textInput.text = userActivity.newPostCurrentText ?? ""
+            if let newPostCurrentText = userActivity.newPostCurrentText {
+                contentView.textInput.text = newPostCurrentText
+            }
             // メンションとかの後を選択する
             let nowCount = contentView.textInput.text.nsLength
             DispatchQueue.main.async {
