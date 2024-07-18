@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "ikemen",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/banjun/ikemen",
+      "state" : {
+        "revision" : "feb71c7d86e22a3825f3e58fec37190f5f0c575d",
+        "version" : "0.8.0"
+      }
+    },
+    {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-syntax.git",
