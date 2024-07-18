@@ -113,6 +113,11 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
 
 }
 
+public enum MastodonReactionType {
+    case boost
+    case favorite
+}
+
 public struct MastodonCustomEmoji: Codable, Sendable {
     public let shortcode: String
     public let url: String
@@ -484,6 +489,31 @@ extension MastodonEndpoint {
         
         public init(post: MastodonPost) {
             self.postId = post.id
+        }
+    }
+    
+    public struct GetPostReactedUsers: MastodonEndpointWithPagingProtocol {
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonAccount]>
+        
+        public var endpoint: String { "/api/v1/statuses/\(postId.string)/\(type == .boost ? "reblogged" : "favourited")_by" }
+        public let method = "GET"
+        
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            paging?.addToQuery(&q)
+            return q
+        }
+        
+        public var type: MastodonReactionType
+        public var postId: MastodonID
+        public var limit: Int?
+        public var paging: MastodonPagingOption?
+        
+        public init(post: MastodonPost, type: MastodonReactionType, limit: Int? = nil, paging: MastodonPagingOption? = nil) {
+            self.limit = limit
+            self.paging = paging
+            self.postId = post.id
+            self.type = type
         }
     }
 }

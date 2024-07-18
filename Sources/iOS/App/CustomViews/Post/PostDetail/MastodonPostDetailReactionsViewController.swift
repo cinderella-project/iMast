@@ -57,12 +57,6 @@ class MastodonPostDetailReactionsViewController: UIViewController, Instantiatabl
     
     func input(_ input: Input) {
         var sections: [String] = []
-        if input.repostCount > 0 {
-            sections.append("\(input.repostCount)件のブースト")
-        }
-        if input.favouritesCount > 0 {
-            sections.append("\(input.favouritesCount)件のふぁぼ")
-        }
         if let app = input.application {
             sections.append("via \(app.name)")
         }
