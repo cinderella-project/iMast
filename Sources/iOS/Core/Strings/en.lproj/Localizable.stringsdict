@@ -9,13 +9,13 @@
       <key>count</key>
       <dict>
         <key>one</key>
-        <string>%d件のふぁぼ</string>
+        <string>%d Favorite</string>
         <key>NSStringFormatSpecTypeKey</key>
         <string>NSStringPluralRuleType</string>
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>other</key>
-        <string>%d件のふぁぼ</string>
+        <string>%d Favorites</string>
       </dict>
     </dict>
     <key>count.boost</key>
@@ -25,13 +25,13 @@
       <key>count</key>
       <dict>
         <key>one</key>
-        <string>%d件のブースト</string>
+        <string>%d boost</string>
         <key>NSStringFormatSpecTypeKey</key>
         <string>NSStringPluralRuleType</string>
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>other</key>
-        <string>%d件のブースト</string>
+        <string>%d Boosts</string>
       </dict>
     </dict>
   </dict>
