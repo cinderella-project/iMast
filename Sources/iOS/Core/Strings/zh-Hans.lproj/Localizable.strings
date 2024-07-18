@@ -86,6 +86,8 @@
 "postDetail.share" = "分享";
 "postDetail.delete" = "删除";
 "postDetail.reportAbuse" = "举报";
+"postDetail.boost" = "ブースト";
+"postDetail.favorite" = "ふぁぼ";
 "customEmojis.title" = "自定义表情一览";
 
 "reportPost.title" = "举报帖子";
