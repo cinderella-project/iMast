@@ -86,6 +86,8 @@
 "postDetail.share" = "공유";
 "postDetail.delete" = "삭제";
 "postDetail.reportAbuse" = "신고";
+"postDetail.boost" = "ブースト";
+"postDetail.favorite" = "ふぁぼ";
 "customEmojis.title" = "커스텀 이모지 목록";
 
 "reportPost.title" = "글을 신고하기";
