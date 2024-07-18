@@ -86,8 +86,8 @@
 "postDetail.share" = "Share";
 "postDetail.delete" = "Delete";
 "postDetail.reportAbuse" = "Report";
-"postDetail.boost" = "ブースト";
-"postDetail.favorite" = "ふぁぼ";
+"postDetail.boost" = "Boosts";
+"postDetail.favorite" = "Favorites";
 "customEmojis.title" = "Custom Emoji List";
 
 "reportPost.title" = "Report this post";
