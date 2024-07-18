@@ -38,7 +38,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         case boostedUser
         case content
         case poll
-        case reactions
+        case via
+        case boostsCount
+        case favouritesCount
         case reactionBar
     }
     
@@ -67,10 +69,16 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         if input.originalPost.poll != nil {
             dataSource.append(.poll)
         }
-        if input.originalPost.repostCount > 0 || input.originalPost.favouritesCount > 0 || input.application != nil {
-            dataSource.append(.reactions)
+        if input.application != nil {
+            dataSource.append(.via)
         }
         dataSource.append(.reactionBar)
+        if input.originalPost.repostCount > 0 {
+            dataSource.append(.boostsCount)
+        }
+        if input.originalPost.favouritesCount > 0 {
+            dataSource.append(.favouritesCount)
+        }
         self.dataSource = dataSource
     }
     
@@ -80,6 +88,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         // Do any additional setup after loading the view.
         self.tableView.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 0, height: 0.01)) // remove header space
         self.tableView.cellLayoutMarginsFollowReadableWidth = true
+        self.tableView.separatorInset = .zero
         TableViewCell<MastodonPostDetailBoostedUserViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailContentViewController>.register(to: tableView)
         TableViewCell<MastodonPostDetailPollViewController>.register(to: tableView)
@@ -167,13 +176,25 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
                 input: self.input.originalPost,
                 parentViewController: self
             )
-        case .reactions:
-            cell = TableViewCell<MastodonPostDetailReactionsViewController>.dequeued(
-                from: tableView,
-                for: indexPath,
-                input: self.input.originalPost,
-                parentViewController: self
-            )
+        case .via:
+            cell = .init(style: .subtitle, reuseIdentifier: nil)
+            cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
+                if let app = input.originalPost.application {
+                    $0.text = "via \(app.name)"
+                }
+            }
+        case .boostsCount:
+            cell = .init(style: .subtitle, reuseIdentifier: nil)
+            cell.accessoryType = .disclosureIndicator
+            cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
+                $0.text = L10n.Localizable.Count.boost(input.originalPost.repostCount)
+            }
+        case .favouritesCount:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            cell.accessoryType = .disclosureIndicator
+            cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
+                $0.text = L10n.Localizable.Count.favorites(input.originalPost.favouritesCount)
+            }
         case .reactionBar:
             cell = TableViewCell<MastodonPostDetailReactionBarViewController>.dequeued(
                 from: tableView,
@@ -185,6 +206,16 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let source = self.dataSource[indexPath.row]
+        switch source {
+        case .editedWarning, .boostedUser, .boostsCount, .favouritesCount:
+            return indexPath
+        default:
+            return nil
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let source = self.dataSource[indexPath.row]
         switch source {
@@ -193,6 +224,12 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             self.navigationController?.pushViewController(vc, animated: true)
         case .boostedUser:
             let vc = UserProfileTopViewController.instantiate(input.account, environment: environment)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .boostsCount:
+            let vc = MastodonPostDetailReactedUsersViewController.instantiate((type: .boost, post: input.originalPost), environment: environment)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .favouritesCount:
+            let vc = MastodonPostDetailReactedUsersViewController.instantiate((type: .favorite, post: input.originalPost), environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break

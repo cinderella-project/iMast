@@ -57,6 +57,8 @@
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
 		CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */; };
+		CE392E5C2C489BF50059BC60 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE392E592C489BF10059BC60 /* Localizable.stringsdict */; };
+		CE392E622C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE392E612C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift */; };
 		CE3AFD8525E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3AFD8625E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
@@ -704,6 +706,12 @@
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
 		CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkaroundForSubtitleSpacing.swift; sourceTree = "<group>"; };
+		CE392E5A2C489BF10059BC60 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ja; path = ja.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		CE392E5D2C489C040059BC60 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		CE392E5E2C489C050059BC60 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		CE392E5F2C489C060059BC60 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ko; path = ko.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		CE392E602C489C0A0059BC60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		CE392E612C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailReactedUsersViewController.swift; sourceTree = "<group>"; };
 		CE3AFD6925E0B1BE001B71E0 /* generate-license-info.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "generate-license-info.py"; sourceTree = "<group>"; };
 		CE3AFD8425E0BF2F001B71E0 /* licenses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = licenses.json; sourceTree = "<group>"; };
 		CE3DB68520FB07FE005CFD77 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
@@ -1848,6 +1856,7 @@
 				CE6554E123C26C250084FE1D /* NewPost.strings */,
 				CEDF86FA23CF011100C8A69A /* OtherMenu.strings */,
 				CEF8389024C289AA00C6919A /* Preferences.strings */,
+				CE392E592C489BF10059BC60 /* Localizable.stringsdict */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -2143,6 +2152,7 @@
 				CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */,
 				CEF6DCC222EF54500008B64D /* MastodonPostDetailReactionBarViewController.swift */,
 				CE5460A027F592E400A676B3 /* MastodonEditHistoryViewController.swift */,
+				CE392E612C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift */,
 			);
 			path = PostDetail;
 			sourceTree = "<group>";
@@ -2711,6 +2721,7 @@
 				CEF47F6E2A7934B700D1AEAB /* OtherMenu.strings in Resources */,
 				CE8AAC4A2916333500AC7FB4 /* Core.strings in Resources */,
 				CEF47F6D2A7934B700D1AEAB /* UserProfile.strings in Resources */,
+				CE392E5C2C489BF50059BC60 /* Localizable.stringsdict in Resources */,
 				CEF47F6C2A7934B700D1AEAB /* Preferences.strings in Resources */,
 				CEF47F702A79350B00D1AEAB /* Localizable.strings in Resources */,
 				CEF47F6F2A7934B700D1AEAB /* Search.strings in Resources */,
@@ -3464,6 +3475,7 @@
 				CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */,
 				CE8209982150EC390064FC93 /* PushSettingsGroupNotifyView.swift in Sources */,
 				CEF9C9E72AC139AF009ACFD9 /* OpenSafariButton.swift in Sources */,
+				CE392E622C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift in Sources */,
 				CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */,
 				CEF6DCC122EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift in Sources */,
 				CEC6BBFC2105B4AC003ECE10 /* LoginSafari.swift in Sources */,
@@ -3889,6 +3901,18 @@
 			name = Dummy.strings;
 			sourceTree = "<group>";
 		};
+		CE392E592C489BF10059BC60 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE392E5A2C489BF10059BC60 /* ja */,
+				CE392E5D2C489C040059BC60 /* zh-Hans */,
+				CE392E5E2C489C050059BC60 /* zh-Hant */,
+				CE392E5F2C489C060059BC60 /* ko */,
+				CE392E602C489C0A0059BC60 /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		CE6554C923C25DDC0084FE1D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4159,7 +4183,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sources/iOS/App/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
@@ -4188,7 +4212,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sources/iOS/App/iMast.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Sources/iOS/App/Info.plist;
@@ -4215,7 +4239,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				INFOPLIST_FILE = Sources/iOS/Tests/iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4236,7 +4260,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				INFOPLIST_FILE = Sources/iOS/Tests/iMastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4256,7 +4280,7 @@
 			baseConfigurationReference = B653907D1C9AB5BB71C94DDA /* Pods-iMastShared-iOS-iMast iOS-iMastUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				INFOPLIST_FILE = Sources/iOS/Tests/iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4276,7 +4300,7 @@
 			baseConfigurationReference = 599E62B81E7F4F5E82780FF1 /* Pods-iMastShared-iOS-iMast iOS-iMastUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				INFOPLIST_FILE = Sources/iOS/Tests/iMastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4301,11 +4325,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 289;
+				DYLIB_CURRENT_VERSION = 291;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Core/Info.plist;
@@ -4339,11 +4363,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 289;
+				DYLIB_CURRENT_VERSION = 291;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Core/Info.plist;
@@ -4429,7 +4453,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = Sources/iOS/Extensions/iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastShare/Info.plist;
@@ -4462,7 +4486,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = Sources/iOS/Extensions/iMastShare/iMastShare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/iOS/Extensions/iMastShare/Info.plist;
@@ -4902,11 +4926,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 289;
+				DYLIB_CURRENT_VERSION = 291;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/Mac/Core/Info.plist;
@@ -4937,11 +4961,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 289;
+				CURRENT_PROJECT_VERSION = 291;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 289;
+				DYLIB_CURRENT_VERSION = 291;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Sources/Mac/Core/Info.plist;

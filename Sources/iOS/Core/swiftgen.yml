@@ -2,7 +2,7 @@ output_dir: ./Generated/
 
 strings:
   inputs: ./Strings/ja.lproj/
-  filter: .+\.strings$
+  filter: .+\.strings(dict)?$
   outputs:
   - templateName: structured-swift5
     output: strings_ios.swift

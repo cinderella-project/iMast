@@ -91,6 +91,16 @@ public enum L10n {
       /// 文脈
       public static let title = L10n.tr("Localizable", "bunmyaku.title")
     }
+    public enum Count {
+      /// Plural format key: "%#@count@"
+      public static func boost(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "count.boost", p1)
+      }
+      /// Plural format key: "%#@count@"
+      public static func favorites(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "count.favorites", p1)
+      }
+    }
     public enum CustomEmojis {
       /// カスタム絵文字一覧
       public static let title = L10n.tr("Localizable", "customEmojis.title")
@@ -168,8 +178,12 @@ public enum L10n {
       public static let short = L10n.tr("Localizable", "localTimeline.short")
     }
     public enum PostDetail {
+      /// ブースト
+      public static let boost = L10n.tr("Localizable", "postDetail.boost")
       /// 削除
       public static let delete = L10n.tr("Localizable", "postDetail.delete")
+      /// ふぁぼ
+      public static let favorite = L10n.tr("Localizable", "postDetail.favorite")
       /// 通報
       public static let reportAbuse = L10n.tr("Localizable", "postDetail.reportAbuse")
       /// 共有

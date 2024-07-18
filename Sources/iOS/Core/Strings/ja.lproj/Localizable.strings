@@ -86,6 +86,8 @@
 "postDetail.share" = "共有";
 "postDetail.delete" = "削除";
 "postDetail.reportAbuse" = "通報";
+"postDetail.boost" = "ブースト";
+"postDetail.favorite" = "ふぁぼ";
 "customEmojis.title" = "カスタム絵文字一覧";
 
 "reportPost.title" = "投稿を通報";

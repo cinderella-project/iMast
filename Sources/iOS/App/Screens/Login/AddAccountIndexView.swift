@@ -128,12 +128,14 @@ struct _AddAccountIndexView: View {
             })
             .navigationTitle(L10n.Login.title)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        viewModel.cancel()
-                    }, label: {
-                        Text(L10n.Localizable.cancel)
-                    })
+                if viewModel.latestToken != nil {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {
+                            viewModel.cancel()
+                        }, label: {
+                            Text(L10n.Localizable.cancel)
+                        })
+                    }
                 }
             }
             .background {

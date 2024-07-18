@@ -3,3 +3,5 @@ files:
     translation: /Sources/iOS/Core/Strings/%osx_code%/%original_file_name%
   - source: /Sources/Core/Assets/Strings/ja.lproj/*.strings
     translation: /Sources/Core/Assets/Strings/%osx_code%/%original_file_name%
+  - source: /Sources/iOS/Core/Strings/ja.lproj/*.stringsdict
+    translation: /Sources/iOS/Core/Strings/%osx_code%/%original_file_name%
