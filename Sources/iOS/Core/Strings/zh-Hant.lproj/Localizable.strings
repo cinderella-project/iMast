@@ -86,8 +86,8 @@
 "postDetail.share" = "分享";
 "postDetail.delete" = "刪除";
 "postDetail.reportAbuse" = "檢舉";
-"postDetail.boost" = "ブースト";
-"postDetail.favorite" = "ふぁぼ";
+"postDetail.boost" = "轉嘟";
+"postDetail.favorite" = "收藏";
 "customEmojis.title" = "自定emoji列表";
 
 "reportPost.title" = "檢舉嘟文";
