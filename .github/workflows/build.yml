@@ -7,13 +7,13 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - "16.1"
+          - "16.2"
         os:
           - macOS
           - iOS
           - visionOS
         machine:
-          - "macOS-14"
+          - "macOS-15"
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1

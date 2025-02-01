@@ -7,9 +7,8 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - "16.1"
+          - "16.2"
         machine:
-          - "macOS-14"
           - "macOS-15"
     runs-on: ${{ matrix.machine }}
     steps:
