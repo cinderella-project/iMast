@@ -26,6 +26,7 @@ import Mew
 import iMastiOSCore
 import Fuzi
 import MobileCoreServices
+import SDWebImage
 
 class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDelegate {
     typealias Input = Void
@@ -130,6 +131,7 @@ class ShareNewPostViewController: UIViewController, Instantiatable, UITextViewDe
         let isSensitive = isNSFW || (contentView.cwInput.text != nil && contentView.cwInput.text != "")
         let spoilerText = contentView.cwInput.text ?? ""
         let scope = scope
+        SDImageCache.shared.clearMemory() // 画像アップロードの処理の前にキャッシュをクリアしておく (メモリ不足回避のため)
         
         asyncPromise {
             var media: [MastodonAttachment] = []
