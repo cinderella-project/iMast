@@ -36,7 +36,7 @@ jobs:
       run: python3 .github/export_build_stats.py ./build Release iphoneos | tee stats.json
     - name: Upload Stats
       run: |
-        curl -vX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
+        curl -fvX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
           -H "X-Space-App-Key: ${{ secrets.BINSTATSD_API_KEY }}" \
           -H "X-IBS-Branch: ${{ github.ref_name }}" \
           -H "X-IBS-Commit: $(git rev-parse HEAD)" \
@@ -44,4 +44,5 @@ jobs:
           -H "X-IBS-Repo: ${{ github.repository }}" \
           -H "X-IBS-RunID: ${{ github.run_id }}" \
           -H "X-IBS-Platform: iOS" \
+          -H "User-Agent: iMast_BuildStatsUploader/1.0" \
           https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
