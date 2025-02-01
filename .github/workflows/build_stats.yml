@@ -25,7 +25,7 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild \
-          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "platform=iOS" -configuration Release \
+          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" -configuration Release \
           build -derivedDataPath ./build \
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
     - uses: actions/upload-artifact@v4
