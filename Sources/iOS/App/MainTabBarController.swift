@@ -72,6 +72,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed))
         self.tabBar.addGestureRecognizer(longPressRecognizer)
+        delegate = self
     }
     
     var firstAppear = true
@@ -138,5 +139,16 @@ class MainTabBarController: UITabBarController, Instantiatable {
                 try mastodonStateRestoration.save(db)
             }
         }
+    }
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        // HACK: We want to disable iOS 18's cross fade while switching tabs, since navigation bar's background is weird while fading.
+        if let fromVC = selectedViewController, fromVC != viewController {
+            UIView.transition(from: fromVC.view, to: viewController.view, duration: 0, options: [], completion: nil)
+        }
+
+        return true
     }
 }
