@@ -9,7 +9,6 @@ jobs:
         xcode:
           - "15.2"
         machine:
-          - "macOS-13"
           - "macOS-14"
     runs-on: ${{ matrix.machine }}
     steps:
