@@ -62,6 +62,7 @@ extension CodableViewDescriptor {
     }
     
     var systemImageName: String {
+        // TODO: Switch to filled images in next major release
         switch self {
         case .home:
             return "house"
