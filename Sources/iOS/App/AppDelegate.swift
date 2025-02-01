@@ -65,6 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         _doScaleFactorSwizzlingIfNot()
         #endif
+        UserDefaults.standard.register(defaults: [
+            // disable floating tab bar due to https://developer.apple.com/forums/thread/763446
+            // TODO: check after next patch release, and think it about adopt to iPadOS 18's new floating tab bar
+            "UseFloatingTabBar": false, // why everyone trying to overriding trait for disable floating tab bar
+        ])
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         self.registerDefaultsFromSettingsBundle()

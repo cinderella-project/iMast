@@ -25,6 +25,8 @@ import UIKit
 import Mew
 import iMastiOSCore
 
+// DEAR FUTURE READER (mostly me): We are disabling iOS 18's floating tab bar in AppDelegate (due to a iOS bug)
+// you probably want to read it first
 class MainTabBarController: UITabBarController, Instantiatable {
     typealias Input = Void
     typealias Environment = MastodonUserToken
