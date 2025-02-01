@@ -186,6 +186,7 @@
 		CE90CCF8237804CD001C8E80 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CCF7237804CD001C8E80 /* ShareViewController.swift */; };
 		CE90CD0523780803001C8E80 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */; };
 		CE90CD0923780AA6001C8E80 /* AccountsPreferencesPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */; };
+		CE9345CB2CDD2D53000FC217 /* EmojiToAdaptiveImageGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9345CA2CDD2D48000FC217 /* EmojiToAdaptiveImageGlyph.swift */; };
 		CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */; };
 		CE97D5282340ADDC002DA831 /* EditListInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */; };
 		CE97DB5822D44F4000D2BDC6 /* MastodonMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */; };
@@ -838,6 +839,7 @@
 		CE90CCFA237804CD001C8E80 /* iMastMacShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iMastMacShare.entitlements; sourceTree = "<group>"; };
 		CE90CD03237807A7001C8E80 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		CE90CD0723780AA2001C8E80 /* AccountsPreferencesPaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneViewController.swift; sourceTree = "<group>"; };
+		CE9345CA2CDD2D48000FC217 /* EmojiToAdaptiveImageGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiToAdaptiveImageGlyph.swift; sourceTree = "<group>"; };
 		CE97D5252340ABF2002DA831 /* ModalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationViewController.swift; sourceTree = "<group>"; };
 		CE97D5272340ADDC002DA831 /* EditListInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListInfoViewController.swift; sourceTree = "<group>"; };
 		CE97DB5722D44F4000D2BDC6 /* MastodonMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonMemoryStore.swift; sourceTree = "<group>"; };
@@ -1838,6 +1840,7 @@
 		CEC6BC0221074EFB003ECE10 /* iMastNotifyService */ = {
 			isa = PBXGroup;
 			children = (
+				CE9345CA2CDD2D48000FC217 /* EmojiToAdaptiveImageGlyph.swift */,
 				CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */,
 				CEC6BC0321074EFB003ECE10 /* NotificationService.swift */,
 				CEC6BC0521074EFB003ECE10 /* Info.plist */,
@@ -3638,6 +3641,7 @@
 			files = (
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
+				CE9345CB2CDD2D53000FC217 /* EmojiToAdaptiveImageGlyph.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

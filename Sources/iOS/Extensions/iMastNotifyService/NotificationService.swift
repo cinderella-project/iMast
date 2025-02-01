@@ -175,7 +175,18 @@ class NotificationService: UNNotificationServiceExtension {
                         attachments: nil
                     )
                     let old = self.bestAttemptContent!
-                    let new = try old.updating(from: intent).mutableCopy() as! UNMutableNotificationContent
+                    let new: UNMutableNotificationContent
+                    if #available(iOSApplicationExtension 18.0, *) {
+                        let image = UIImage(data: try Data(contentsOf: URL(string: "https://cdn.rinsuki.net/internal/mstdn-rinsuki-net/custom_emojis/images/000/025/830/original/7cf79b185474b792.png")!))!.cgImage!
+                        let glyph = try! emojiToAdaptiveImageGlyph(image: image)
+                        print(glyph.contentIdentifier, glyph.contentDescription)
+                        var attrString = NSMutableAttributedString(string: "@test ")
+                        attrString.append(.init(adaptiveImageGlyph: glyph))
+                        let context = UNNotificationAttributedMessageContext(sendMessageIntent: intent, attributedContent: attrString)
+                        new = try old.updating(from: context).mutableCopy() as! UNMutableNotificationContent
+                    } else {
+                        new = try old.updating(from: intent).mutableCopy() as! UNMutableNotificationContent
+                    }
                     self.bestAttemptContent = new
                 }
             }
