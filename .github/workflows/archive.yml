@@ -38,3 +38,15 @@ jobs:
         path: ./archive.xcarchive
     - name: Export Stats
       run: python3 .github/export_archive_stats.py ./archive.xcarchive | tee stats.json
+    - name: Upload Stats
+      run: |
+        curl -fvX POST --data-binary "@stats.json" -H "Content-Type: application/json" \
+          -H "X-Space-App-Key: ${{ secrets.BINSTATSD_API_KEY }}" \
+          -H "X-IBS-Branch: ${{ github.ref_name }}" \
+          -H "X-IBS-Commit: $(git rev-parse HEAD)" \
+          -H "X-IBS-Parent: $(git rev-parse HEAD^)" \
+          -H "X-IBS-Repo: ${{ github.repository }}" \
+          -H "X-IBS-RunID: ${{ github.run_id }}" \
+          -H "X-IBS-Platform: iOS" \
+          -H "User-Agent: iMast_BuildStatsUploader/1.0" \
+          https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
