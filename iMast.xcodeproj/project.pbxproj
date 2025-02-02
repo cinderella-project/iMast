@@ -42,7 +42,6 @@
 		CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */; };
 		CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE142A982AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
-		CE1C23B22B7424EB00DA37A3 /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C23B12B7424EB00DA37A3 /* iMastPackage */; };
 		CE1C23B42B7424F200DA37A3 /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C23B32B7424F200DA37A3 /* iMastPackage */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
@@ -59,6 +58,7 @@
 		CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */; };
 		CE392E5C2C489BF50059BC60 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE392E592C489BF10059BC60 /* Localizable.stringsdict */; };
 		CE392E622C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE392E612C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift */; };
+		CE39E5F12D4EF52C00B7105F /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE39E5F02D4EF52C00B7105F /* iMastPackage */; };
 		CE3AFD8525E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3AFD8625E0BF30001B71E0 /* licenses.json in Resources */ = {isa = PBXBuildFile; fileRef = CE3AFD8425E0BF2F001B71E0 /* licenses.json */; };
 		CE3D751025C5E2DC00734140 /* Notification.Name+customNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */; };
@@ -1023,7 +1023,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1C23B22B7424EB00DA37A3 /* iMastPackage in Frameworks */,
+				CE39E5F12D4EF52C00B7105F /* iMastPackage in Frameworks */,
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
 				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
 			);
@@ -1232,7 +1232,6 @@
 		2AF352191EAB9C5500777C2E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CE1C23B02B73FFFF00DA37A3 /* Package */,
 				CE43BED423779E1800133C86 /* Core */,
 				CE3D453423766DBF006F1198 /* iOS */,
 				CEE4E3172377EAFC00406371 /* Mac */,
@@ -1413,6 +1412,7 @@
 		CE43BED423779E1800133C86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C23B02B73FFFF00DA37A3 /* Package */,
 				CE8AAC43291632ED00AC7FB4 /* Assets */,
 				CE43BF042377A08400133C86 /* ENum */,
 				CE43BEBB23777BA300133C86 /* Protocols */,
@@ -2311,7 +2311,7 @@
 			name = iMastiOSCore;
 			packageProductDependencies = (
 				CE11D6DD28576A8C00F6A0AF /* Ikemen */,
-				CE1C23B12B7424EB00DA37A3 /* iMastPackage */,
+				CE39E5F02D4EF52C00B7105F /* iMastPackage */,
 			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
@@ -5210,11 +5210,11 @@
 			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
 			productName = Ikemen;
 		};
-		CE1C23B12B7424EB00DA37A3 /* iMastPackage */ = {
+		CE1C23B32B7424F200DA37A3 /* iMastPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iMastPackage;
 		};
-		CE1C23B32B7424F200DA37A3 /* iMastPackage */ = {
+		CE39E5F02D4EF52C00B7105F /* iMastPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iMastPackage;
 		};
