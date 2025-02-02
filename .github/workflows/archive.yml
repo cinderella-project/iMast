@@ -1,0 +1,36 @@
+name: Archive
+
+on:
+  push:
+
+jobs:
+  archive:
+    strategy:
+      matrix:
+        xcode: ["16.2"]
+    runs-on: macOS-15
+    steps:
+    - uses: actions/checkout@v4
+    - name: Select Xcode
+      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}
+    - name: bundle install
+      run: bundle update --bundler && bundle install
+    - name: Install CocoaPods dependencies
+      run: bundle exec pod install
+    - run: git config --global core.quotepath false # for Ikemen on SwiftPM
+    - name: Build
+      run: |
+        set -o pipefail
+        xcodebuild \
+          -workspace iMast.xcworkspace -scheme "iMast iOS"
+          archive -archivePath "./archive" \
+          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: xcodebuild.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.log
+        path: ./xcodebuild.log
+    - uses: actions/upload-artifact@v4
+      with:
+        name: archive
+        path: ./archive
