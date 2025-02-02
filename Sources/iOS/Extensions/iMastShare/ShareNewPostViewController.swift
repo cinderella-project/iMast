@@ -339,7 +339,7 @@ extension ShareNewPostViewController {
             request.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
             Task { [request] in
                 let result = try await URLSession.shared.data(for: request)
-                guard let doc = try? Fuzi.HTMLDocument(data: result.0) else {
+                guard let doc = try? Fuzi.HTMLDocument.parse(data: result.0) else {
                     print("SpotifyNowPlayingError: Fuzi.HTMLDocumentでパースに失敗")
                     return
                 }
