@@ -26,7 +26,7 @@ jobs:
         xcodebuild \
           -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" \
           archive -archivePath "./archive.xcarchive" \
-          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
+          CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcbeautify
     - uses: actions/upload-artifact@v4
       if: always()
       with:
