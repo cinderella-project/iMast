@@ -20,6 +20,7 @@ jobs:
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
+    - run: xcrun agvtool new-version -all ${{ github.run_id }}
     - name: Build
       run: |
         set -o pipefail
