@@ -12,7 +12,8 @@ abstract_target 'iMastShared' do
   end
   pod 'HydraAsync', '~> 2.0.6'
   pod 'SDWebImage', '~> 5.18.10'
-  pod 'Fuzi', '~> 3.1.3'
+  # https://github.com/cezheng/Fuzi/pull/133 is needed for Xcode 16's release build
+  pod 'Fuzi', :git => 'https://github.com/rinsuki/Fuzi.git', :commit => '4092585ab3eea9de6c2a92024d3ab5ec3bfc4785'
   pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.7.0'
   pod 'KeychainAccess', '4.2.2'
   pod 'SwiftGen', '6.5.1' # I don't want to include fallback strings in source (ref. https://github.com/SwiftGen/SwiftGen/pull/964 )

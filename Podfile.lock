@@ -16,7 +16,7 @@ PODS:
   - SwiftLint (0.52.4)
 
 DEPENDENCIES:
-  - Fuzi (~> 3.1.3)
+  - Fuzi (from `https://github.com/rinsuki/Fuzi.git`, commit `4092585ab3eea9de6c2a92024d3ab5ec3bfc4785`)
   - GRDB.swift (~> 4.6.2)
   - HydraAsync (~> 2.0.6)
   - KeychainAccess (= 4.2.2)
@@ -30,7 +30,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Fuzi
     - GRDB.swift
     - HydraAsync
     - KeychainAccess
@@ -41,6 +40,9 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
+  Fuzi:
+    :commit: 4092585ab3eea9de6c2a92024d3ab5ec3bfc4785
+    :git: https://github.com/rinsuki/Fuzi.git
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
@@ -49,6 +51,9 @@ EXTERNAL SOURCES:
     :tag: 5.7.0
 
 CHECKOUT OPTIONS:
+  Fuzi:
+    :commit: 4092585ab3eea9de6c2a92024d3ab5ec3bfc4785
+    :git: https://github.com/rinsuki/Fuzi.git
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
@@ -69,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 80336bdd92b555f6a5129f6debe5b2a260b33525
+PODFILE CHECKSUM: 4104713b4888192f2486b9928c36203219d84bff
 
 COCOAPODS: 1.14.3

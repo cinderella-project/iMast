@@ -34,7 +34,7 @@ typealias NSUIFont = UIFont
 extension String {
     public func parseText2HTMLNew(attributes: [NSAttributedString.Key: Any]) -> NSAttributedString? {
         do {
-            let document = try Fuzi.HTMLDocument(string: self)
+            let document = try Fuzi.HTMLDocument.parse(string: self)
             guard let root = document.root?.children(staticTag: "body").first else {
                 print("empty root")
                 return NSAttributedString(string: "")
