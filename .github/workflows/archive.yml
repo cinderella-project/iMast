@@ -8,7 +8,9 @@ jobs:
     strategy:
       matrix:
         xcode: ["16.2"]
-    runs-on: macOS-15
+        machine:
+          - "macOS-15"
+    runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v4
     - name: Select Xcode
@@ -32,5 +34,7 @@ jobs:
         path: ./xcodebuild.log
     - uses: actions/upload-artifact@v4
       with:
-        name: archive
+        name: iMast.iOS.GHA.run.${{ github.run_id }}.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.xcarchive
         path: ./archive.xcarchive
+    - name: Export Stats
+      run: python3 .github/export_archive_stats.py ./archive.xcarchive | tee stats.json
