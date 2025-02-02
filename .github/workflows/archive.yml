@@ -23,7 +23,7 @@ jobs:
         set -o pipefail
         xcodebuild \
           -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" \
-          archive -archivePath "./archive" \
+          archive -archivePath "./archive.xcarchive" \
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
     - uses: actions/upload-artifact@v4
       if: always()
@@ -33,4 +33,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: archive
-        path: ./archive
+        path: ./archive.xcarchive
