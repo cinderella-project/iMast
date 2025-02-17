@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "UseFloatingTabBar": false, // why everyone trying to overriding trait for disable floating tab bar
         ])
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
+        ImageCacheUtils.setDirectory(alsoMigrateOldFiles: true)
         SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         self.registerDefaultsFromSettingsBundle()
         self.migrateUserDefaultsToAppGroup()

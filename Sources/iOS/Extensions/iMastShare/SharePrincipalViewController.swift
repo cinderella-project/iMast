@@ -22,9 +22,11 @@
 //  limitations under the License.
 
 import UIKit
+import iMastiOSCore
 
 class SharePrincipalViewController: UINavigationController {
     init() {
+        ImageCacheUtils.setDirectory(alsoMigrateOldFiles: true)
         super.init(rootViewController: ShareAccountSelectorTableViewController())
     }
     

@@ -323,6 +323,7 @@
 		CEEDC51729337514008358DB /* MastodonPostSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDC51529337514008358DB /* MastodonPostSource.swift */; };
 		CEEE37E72B717B1B00320C49 /* NewPostSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */; };
 		CEEE37EB2B717D2100320C49 /* NSUserActivity+NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */; };
+		CEEEB56A2D63C97E004F199E /* ImageCacheUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEB5692D63C97C004F199E /* ImageCacheUtils.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
@@ -945,6 +946,7 @@
 		CEEDC51529337514008358DB /* MastodonPostSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostSource.swift; sourceTree = "<group>"; };
 		CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostSceneDelegate.swift; sourceTree = "<group>"; };
 		CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+NewPost.swift"; sourceTree = "<group>"; };
+		CEEEB5692D63C97C004F199E /* ImageCacheUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheUtils.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
@@ -1350,6 +1352,7 @@
 				2A66E7F91EAEB0DD00735081 /* GoodUtils.swift */,
 				CE3DFEDF1FEE4C51005A480D /* DefaultsKey.swift */,
 				CE43BEBC23777BBD00133C86 /* Defaults.swift */,
+				CEEEB5692D63C97C004F199E /* ImageCacheUtils.swift */,
 				CE099D022194315800A4BCCB /* UploadableMedia.swift */,
 				CE43BE82237775F000133C86 /* iMastiOSCore.h */,
 				CE43BE83237775F000133C86 /* Info.plist */,
@@ -3545,6 +3548,7 @@
 				CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */,
 				CE43BEED23779EB500133C86 /* MastodonNotification.swift in Sources */,
 				CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */,
+				CEEEB56A2D63C97E004F199E /* ImageCacheUtils.swift in Sources */,
 				CE98789D26B5053F008A0A88 /* CodableVoid.swift in Sources */,
 				CE43BEEE23779EB500133C86 /* MastodonAttachment.swift in Sources */,
 				CEFB986825C7F5C300D55B03 /* String+parseText2HTML.swift in Sources */,
