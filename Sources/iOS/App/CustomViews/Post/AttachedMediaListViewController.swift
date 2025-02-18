@@ -26,8 +26,11 @@ import Mew
 import Ikemen
 import AVFoundation
 import iMastiOSCore
+import os
 
 class AttachedMediaListViewController: UIViewController, Instantiatable, Injectable, Interactable {
+    let logger = Logger(subsystem: "jp.pronama.imast", category: "AttachedMediaListViewController")
+    
     typealias Input = MastodonPostContentProtocol
     typealias Environment = Void
     enum Output {
@@ -195,6 +198,11 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         }
         
         if media.type.shouldUseMediaPlayer, Defaults.useAVPlayer, let url = URL(string: media.url) {
+            var url = url
+            if let cachedURL = ImageCacheUtils.findCachedFile(for: url) {
+                logger.debug("using locally cached file")
+                url = cachedURL
+            }
             let item = AVPlayerItem(url: url)
             let player = AVPlayer(playerItem: item)
             let viewController = LoopableAVPlayerViewController()
