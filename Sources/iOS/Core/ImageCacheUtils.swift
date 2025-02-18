@@ -27,14 +27,20 @@ import os
 public final class ImageCacheUtils {
     static var initialized = false
     
-    public static func setDirectory(alsoMigrateOldFiles: Bool) {
+    static func setUserAgent() {
+        SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
+    }
+    
+    public static func sdWebImageInitializer(alsoMigrateOldFiles: Bool) {
         let logger = os.Logger(subsystem: "jp.pronama.imast.core.ImageCacheUtils", category: #function)
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
             logger.error("Failed to get container URL")
+            setUserAgent()
             return
         }
         let containerCacheURL = containerURL.appending(path: "Library/Caches/")
         SDImageCache.defaultDiskCacheDirectory = containerCacheURL.appending(path: "SDWebImage_Shared").path(percentEncoded: false)
+        setUserAgent()
         
         // --- migrate (or delete) old SDWebImage cache dir ---
         
@@ -119,5 +125,19 @@ public final class ImageCacheUtils {
         let endTime = DispatchTime.now()
         let usedTime = Decimal(endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1_000_000_000
         logger.info("Migrated SDWebImage cache dir in \(usedTime)s, \(count) files target, \(failed) failed (= \(count - failed) success)")
+    }
+    
+    public static func findCachedFile(for url: URL) -> URL? {
+        guard let cacheKey = SDWebImageManager.shared.cacheKey(for: url) else {
+            return nil
+        }
+        guard let cachePath = SDImageCache.shared.cachePath(forKey: cacheKey) else {
+            return nil
+        }
+        print(cachePath)
+        guard FileManager.default.fileExists(atPath: cachePath) else {
+            return nil
+        }
+        return URL(fileURLWithPath: cachePath)
     }
 }

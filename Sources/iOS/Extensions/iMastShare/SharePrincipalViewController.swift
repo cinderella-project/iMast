@@ -26,7 +26,7 @@ import iMastiOSCore
 
 class SharePrincipalViewController: UINavigationController {
     init() {
-        ImageCacheUtils.setDirectory(alsoMigrateOldFiles: true)
+        ImageCacheUtils.sdWebImageInitializer(alsoMigrateOldFiles: true)
         super.init(rootViewController: ShareAccountSelectorTableViewController())
     }
     
