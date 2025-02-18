@@ -25,6 +25,8 @@ import UserNotifications
 import Hydra
 import iMastiOSCore
 import Intents
+import SDWebImage
+import os
 
 enum NotificationServiceError: Error {
     case imageDataIsNil
@@ -34,49 +36,58 @@ class NotificationService: UNNotificationServiceExtension {
     
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
-
-    func fetchFromInternet(url: URL) -> Promise<URL> {
-        return Promise<URL>(in: .background) { resolve, reject, _ in
-            let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-            let urlHashed = "image-cache." + url.absoluteString.sha256
-            var pathExt = url.pathExtension
-            if pathExt != "" {
-                pathExt = "." + pathExt
-            }
-            let copyDest = cacheDirectory.appendingPathComponent(urlHashed + pathExt)
-            let tempDest = cacheDirectory.appendingPathComponent(urlHashed + ".temp" + pathExt)
-            
-            if FileManager.default.fileExists(atPath: copyDest.path) { // もしもうキャッシュがあるんだったら
-                if !FileManager.default.fileExists(atPath: tempDest.path) {
-                    try FileManager.default.copyItem(at: copyDest, to: tempDest)
-                }
-                resolve(tempDest) // それを返す
-                return
-            }
-            
-            let sessionConfig = URLSessionConfiguration.default
-            sessionConfig.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 0)
-            let session = URLSession(configuration: sessionConfig)
-            let request = URLRequest(url: url)
-            let task = session.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    return reject(error)
-                }
-                do {
-                    guard let data = data else {
-                        return reject(NotificationServiceError.imageDataIsNil)
-                    }
-                    try data.write(to: copyDest)
-                    if !FileManager.default.fileExists(atPath: tempDest.path) {
-                        try data.write(to: tempDest)
-                    }
-                    resolve(tempDest)
-                } catch {
-                    reject(error)
-                }
-            }
-            task.resume()
+    let logger = Logger(subsystem: "jp.pronama.iMastNotifyService", category: "NotificationService")
+    
+    override init() {
+        ImageCacheUtils.sdWebImageInitializer(alsoMigrateOldFiles: false) // "old files" (from SDWebImage) isn't exist for notification service extension
+        SDImageCache.shared.config.shouldCacheImagesInMemory = false
+        super.init()
+    }
+    
+    func fetchAttachment(from url: URL) async throws -> UNNotificationAttachment {
+        var destFileName = "imast.attachment." + url.absoluteString.sha256
+        if url.pathExtension.count > 0 {
+            destFileName += "." + url.pathExtension
         }
+        let destURL = FileManager.default.temporaryDirectory.appending(component: destFileName)
+
+        if FileManager.default.fileExists(atPath: destURL.path(percentEncoded: false)) {
+            logger.debug("copied file is already exists (for some reason), try to delete")
+            try FileManager.default.removeItem(at: destURL)
+        }
+        
+        if let cachedURL = ImageCacheUtils.findCachedFile(for: url) {
+            logger.debug("already cached, try to copy and return")
+            // since copyItem (should) uses COPYFILE_CLONE (CoW if possible), more sustainable for flash storage
+            try FileManager.default.copyItem(at: cachedURL, to: destURL)
+            return try .init(identifier: destURL.lastPathComponent, url: destURL)
+        }
+        
+        let data = try await withCheckedThrowingContinuation { c in
+            SDWebImageDownloader.shared.downloadImage(with: url, context: [
+                .storeCacheType: SDImageCacheType.disk.rawValue, // we want to have disk cache (for passing to UNNotificationAttachment)
+                .imageForceDecodePolicy: SDImageForceDecodePolicy.never.rawValue, // since we only need the file (for passing to UNNotificationAttachment), we don't need to decode the image
+            ], progress: nil) { _image, data, error, success in
+                if success, let data {
+                    c.resume(returning: data)
+                } else {
+                    c.resume(throwing: error!)
+                }
+            }
+        }
+        
+        SDImageCache.shared.storeImageData(toDisk: data, forKey: SDWebImageManager.shared.cacheKey(for: url))
+        
+        if let cachedURL = ImageCacheUtils.findCachedFile(for: url) {
+            logger.debug("downloaded and cached, try to copy and return")
+            try FileManager.default.copyItem(at: cachedURL, to: destURL)
+            return try .init(identifier: destURL.lastPathComponent, url: destURL)
+        }
+        
+        // my opinion was wrong, so write it to disk
+        logger.warning("downloaded but not cached, we will write it to disk (\(data.count) bytes)")
+        try data.write(to: destURL)
+        return try .init(identifier: destURL.lastPathComponent, url: destURL)
     }
     
     // swiftlint:disable cyclomatic_complexity
@@ -126,72 +137,86 @@ class NotificationService: UNNotificationServiceExtension {
         }
         print(self.bestAttemptContent?.threadIdentifier)
         
-        var promise: [Promise<Void>] = []
-        promise.append(asyncPromise {
-            // get attachment images
-            if let images = request.content.userInfo["images"] as? [String] {
-                let imageUrls = try await all(images.map { self.fetchFromInternet(url: URL(string: $0)!) }).wait()
-                for imageUrl in imageUrls {
-                    self.bestAttemptContent?.attachments.append(try UNNotificationAttachment(identifier: imageUrl.path, url: imageUrl, options: nil))
+        let task = Task {
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                if let images = request.content.userInfo["images"] as? [String] {
+                    group.addTask {
+                        try await withThrowingTaskGroup(of: UNNotificationAttachment?.self) { group in
+                            for image in images {
+                                group.addTask { try await self.fetchAttachment(from: URL(string: image)!) }
+                            }
+                            self.logger.debug("since all tasks are added, wait for all tasks")
+                            for try await attachment in group {
+                                if let attachment = attachment {
+                                    if let bestAttemptContent = self.bestAttemptContent {
+                                        bestAttemptContent.attachments.append(attachment)
+                                        self.logger.debug("attachment added, now \(bestAttemptContent.attachments.count) attachments")
+                                    } else {
+                                        self.logger.warning("bestAttemptContent is nil")
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-        })
-        promise.append(asyncPromise {
-            if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
-                let upstreamId = request.content.userInfo["upstreamId"] as? String {
-                guard let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1]) else {
-                    return
-                }
-
-                let notify = try await MastodonEndpoint.GetNotification(id: .string(upstreamId)).request(with: userToken)
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(notify)
-                let str = String(data: data, encoding: .utf8)
-                self.bestAttemptContent?.userInfo["upstreamObject"] = str
-                
-                if Defaults.communicationNotificationsEnabled,
-                   let account = notify.account, notify.type == "mention",
-                   let avatarURL = URL(string: account.avatarUrl)
+                if  let receiveUser = request.content.userInfo["receiveUser"] as? [String],
+                    let upstreamId = request.content.userInfo["upstreamId"] as? String,
+                    let userToken = try MastodonUserToken.findUserToken(userName: receiveUser[0], instance: receiveUser[1])
                 {
-                    let displayName: String = account.acct.contains("@") ? "@\(account.acct)" : "@\(account.acct)@\(userToken.app.instance.hostName)"
-                    let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
-                    let intent = INSendMessageIntent(
-                        recipients: [],
-                        outgoingMessageType: .outgoingMessageText,
-                        content: nil,
-                        speakableGroupName: nil,
-                        conversationIdentifier: nil,
-                        serviceName: "iMast",
-                        sender: INPerson(
-                            personHandle: INPersonHandle(value: account.url, type: .unknown),
-                            nameComponents: nil,
-                            displayName: displayName,
-                            image: INImage(url: avatarURL),
-                            contactIdentifier: nil,
-                            customIdentifier: account.url,
-                            isMe: false,
-                            suggestionType: .socialProfile
-                        ),
-                        attachments: nil
-                    )
-                    let old = self.bestAttemptContent!
-                    let new = try old.updating(from: intent).mutableCopy() as! UNMutableNotificationContent
-                    self.bestAttemptContent = new
+                    group.addTask {
+                        let notify = try await MastodonEndpoint.GetNotification(id: .string(upstreamId)).request(with: userToken)
+                        let encoder = JSONEncoder()
+                        let data = try encoder.encode(notify)
+                        let str = String(data: data, encoding: .utf8)
+                        self.bestAttemptContent?.userInfo["upstreamObject"] = str
+                        
+                        if Defaults.communicationNotificationsEnabled,
+                           let account = notify.account, notify.type == "mention",
+                           let avatarURL = URL(string: account.avatarUrl)
+                        {
+                            let displayName: String = account.acct.contains("@") ? "@\(account.acct)" : "@\(account.acct)@\(userToken.app.instance.hostName)"
+                            let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
+                            let intent = INSendMessageIntent(
+                                recipients: [],
+                                outgoingMessageType: .outgoingMessageText,
+                                content: nil,
+                                speakableGroupName: nil,
+                                conversationIdentifier: nil,
+                                serviceName: "iMast",
+                                sender: INPerson(
+                                    personHandle: INPersonHandle(value: account.url, type: .unknown),
+                                    nameComponents: nil,
+                                    displayName: displayName,
+                                    image: INImage(url: avatarURL),
+                                    contactIdentifier: nil,
+                                    customIdentifier: account.url,
+                                    isMe: false,
+                                    suggestionType: .socialProfile
+                                ),
+                                attachments: nil
+                            )
+                            let old = self.bestAttemptContent!
+                            let new = try old.updating(from: intent).mutableCopy() as! UNMutableNotificationContent
+                            self.bestAttemptContent = new
+                        }
+                    }
                 }
             }
-        })
+        }
         
-        let promiseAll = all(promise)
-        
-        promiseAll.catch { error in
-            if Defaults.showPushServiceError {
-                self.bestAttemptContent?.title = "Notification Service Error"
-                self.bestAttemptContent?.subtitle = ""
-                self.bestAttemptContent?.body = "\(error)"
-                self.bestAttemptContent?.attachments = []
+        Task {
+            do {
+                _ = try await task.value
+            } catch {
+                logger.error("error: \(error)")
+                if Defaults.showPushServiceError {
+                    self.bestAttemptContent?.title = "Notification Service Error"
+                    self.bestAttemptContent?.subtitle = ""
+                    self.bestAttemptContent?.body = "\(error)"
+                    self.bestAttemptContent?.attachments = []
+                }
+                self.bestAttemptContent?.userInfo["error"] = true
             }
-            self.bestAttemptContent?.userInfo["error"] = true
-        }.always {
             if let bestAttemptContent = self.bestAttemptContent {
                 contentHandler(bestAttemptContent)
             }
@@ -201,8 +226,8 @@ class NotificationService: UNNotificationServiceExtension {
     override func serviceExtensionTimeWillExpire() {
         // Called just before the extension will be terminated by the system.
         // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-        print("timeout")
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+        logger.warning("timeout")
+        if let contentHandler = contentHandler, let bestAttemptContent = bestAttemptContent {
             contentHandler(bestAttemptContent)
         }
     }
