@@ -179,6 +179,8 @@
 		CE8EFB9325C945CD004FFE4B /* UIViewController+presentAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */; };
 		CE8EFBC825C945F8004FFE4B /* UIViewController+openURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEC6D2226BC7FA00B581A9 /* UIViewController+openURL.swift */; };
 		CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */; };
+		CE90BE142D650B83009FDAA6 /* AttachmentCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90BE132D650B7A009FDAA6 /* AttachmentCacheManager.swift */; };
+		CE90BE162D650BAA009FDAA6 /* OnMemoryVideoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90BE152D650BA1009FDAA6 /* OnMemoryVideoLoader.swift */; };
 		CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */; };
 		CE90CCEC2377FC01001C8E80 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
 		CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA3C30522BABF6100BF68C0 /* UserAgent.swift */; };
@@ -832,6 +834,8 @@
 		CE8EFAFB25C93C46004FFE4B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Menu.strings; sourceTree = "<group>"; };
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableWrapperViewController.swift; sourceTree = "<group>"; };
+		CE90BE132D650B7A009FDAA6 /* AttachmentCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCacheManager.swift; sourceTree = "<group>"; };
+		CE90BE152D650BA1009FDAA6 /* OnMemoryVideoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnMemoryVideoLoader.swift; sourceTree = "<group>"; };
 		CE90CCF3237804CD001C8E80 /* iMastMacShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMastMacShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE90CCF5237804CD001C8E80 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		CE90CCF7237804CD001C8E80 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1841,6 +1845,8 @@
 		CEC6BC0221074EFB003ECE10 /* iMastNotifyService */ = {
 			isa = PBXGroup;
 			children = (
+				CE90BE152D650BA1009FDAA6 /* OnMemoryVideoLoader.swift */,
+				CE90BE132D650B7A009FDAA6 /* AttachmentCacheManager.swift */,
 				CEC6BC2221085F7E003ECE10 /* iMastNotifyService.entitlements */,
 				CEC6BC0321074EFB003ECE10 /* NotificationService.swift */,
 				CEC6BC0521074EFB003ECE10 /* Info.plist */,
@@ -3643,6 +3649,8 @@
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
 				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
+				CE90BE162D650BAA009FDAA6 /* OnMemoryVideoLoader.swift in Sources */,
+				CE90BE142D650B83009FDAA6 /* AttachmentCacheManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

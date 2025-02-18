@@ -43,121 +43,10 @@ class NotificationService: UNNotificationServiceExtension {
     
     override init() {
         if !Self.firstInitialize {
-            ImageCacheUtils.sdWebImageInitializer(alsoMigrateOldFiles: false) // "old files" (from SDWebImage) isn't exist for notification service extension
-            SDImageCache.shared.config.shouldCacheImagesInMemory = false
-            URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
+            AttachmentCacheManager.initialize()
             Self.firstInitialize = true
         }
         super.init()
-    }
-    
-    func fetchImageFromInternet(url: URL) async throws -> Data {
-        try await withCheckedThrowingContinuation { c in
-            SDWebImageDownloader.shared.downloadImage(with: url, context: [
-                .storeCacheType: SDImageCacheType.disk.rawValue, // we want to have disk cache (for passing to UNNotificationAttachment)
-                .imageForceDecodePolicy: SDImageForceDecodePolicy.never.rawValue, // since we only need the file (for passing to UNNotificationAttachment), we don't need to decode the image
-            ], progress: nil) { _image, data, error, success in
-                if success, let data {
-                    c.resume(returning: data)
-                } else {
-                    self.logger.error("failed to load image: \(error)")
-                    c.resume(throwing: error!)
-                }
-            }
-        }
-    }
-    
-    class VideoLoader: NSObject, AVAssetResourceLoaderDelegate {
-        let data: Data
-        let logger = Logger(subsystem: "jp.pronama.iMastNotifyService", category: "VideoLoader")
-        
-        init(data: Data) {
-            self.data = data
-        }
-        
-        deinit {
-            logger.debug("goodbye...")
-        }
-        
-        func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
-            if let contentRequest = loadingRequest.contentInformationRequest {
-                contentRequest.contentType = "video/mp4"
-                contentRequest.contentLength = Int64(data.count)
-                contentRequest.isByteRangeAccessSupported = true
-            }
-            
-            if let dataRequest = loadingRequest.dataRequest {
-                let subdata = data.subdata(in: Int(dataRequest.requestedOffset)..<Int(dataRequest.requestedOffset) + Int(dataRequest.requestedLength))
-                logger.debug("requesting offset=\(dataRequest.requestedOffset), length=\(dataRequest.requestedLength), result=\(subdata.count)")
-                dataRequest.respond(with: subdata)
-                loadingRequest.finishLoading()
-            }
-            
-            return true
-        }
-    }
-    
-    func fetchVideoFromInternet(url: URL) async throws -> Data {
-        var req = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 15)
-        req.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")
-        let (data, res) = try await URLSession.shared.data(for: req)
-        if let res = res as? HTTPURLResponse {
-            logger.debug("status=\(res.statusCode), contentType=\(res.value(forHTTPHeaderField: "Content-Type") ?? "(null)")")
-        }
-        
-        logger.debug("got video data, try to get metadata...")
-        
-        let videoLoader = VideoLoader(data: data)
-        let asset = AVURLAsset(url: URL(string: "x-memory://video.mp4")!) // .mp4 is really important
-        asset.resourceLoader.setDelegate(videoLoader, queue: .global())
-        do {
-            _ = try await asset.load(.duration)
-        } catch {
-            logger.error("failed to get duration: \(error)")
-            throw error
-        }
-        _ = videoLoader // retain the loader
-
-        // it seems right as a video file, so return it
-        logger.debug("successfly get duration (= right video data), return video data")
-        return data
-    }
-    
-    func fetchAttachment(from url: URL) async throws -> UNNotificationAttachment {
-        var destFileName = "imast.attachment." + url.absoluteString.sha256
-        if url.pathExtension.count > 0 {
-            destFileName += "." + url.pathExtension
-        }
-        let destURL = FileManager.default.temporaryDirectory.appending(component: destFileName)
-        
-        if FileManager.default.fileExists(atPath: destURL.path(percentEncoded: false)) {
-            logger.debug("copied file is already exists (for some reason), try to delete")
-            try FileManager.default.removeItem(at: destURL)
-        }
-        
-        if let cachedURL = ImageCacheUtils.findCachedFile(for: url) {
-            logger.debug("already cached, try to copy and return")
-            // since copyItem (should) uses COPYFILE_CLONE (CoW if possible), more sustainable for flash storage
-            try FileManager.default.copyItem(at: cachedURL, to: destURL)
-            return try .init(identifier: destURL.lastPathComponent, url: destURL)
-        }
-        
-        let data = url.pathExtension.lowercased() == "mp4"
-            ? try await fetchVideoFromInternet(url: url)
-            : try await fetchImageFromInternet(url: url)
-        
-        SDImageCache.shared.storeImageData(toDisk: data, forKey: SDWebImageManager.shared.cacheKey(for: url))
-        
-        if let cachedURL = ImageCacheUtils.findCachedFile(for: url) {
-            logger.debug("downloaded and cached, try to copy and return")
-            try FileManager.default.copyItem(at: cachedURL, to: destURL)
-            return try .init(identifier: destURL.lastPathComponent, url: destURL)
-        }
-        
-        // my opinion was wrong, so write it to disk
-        logger.warning("downloaded but not cached, we will write it to disk (\(data.count) bytes)")
-        try data.write(to: destURL)
-        return try .init(identifier: destURL.lastPathComponent, url: destURL)
     }
     
     // swiftlint:disable cyclomatic_complexity
@@ -213,7 +102,7 @@ class NotificationService: UNNotificationServiceExtension {
                     group.addTask {
                         try await withThrowingTaskGroup(of: UNNotificationAttachment.self) { group in
                             for image in images {
-                                group.addTask { try await self.fetchAttachment(from: URL(string: image)!) }
+                                group.addTask { try await AttachmentCacheManager.fetchAttachment(from: URL(string: image)!) }
                             }
                             self.logger.debug("since all tasks are added, wait for all tasks")
                             for try await attachment in group {
