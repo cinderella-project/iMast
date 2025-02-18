@@ -303,9 +303,14 @@ struct SettingsView: View {
         }
         
         func refresh() {
-            let size = SDImageCache.shared.totalDiskSize()
-            let formatter = ByteCountFormatter()
-            cacheStorageValue = formatter.string(fromByteCount: Int64(size))
+            DispatchQueue.global(qos: .background).async {
+                let size = SDImageCache.shared.totalDiskSize()
+                let formatter = ByteCountFormatter()
+                let formattedString = formatter.string(fromByteCount: Int64(size))
+                DispatchQueue.main.async {
+                    cacheStorageValue = formattedString
+                }
+            }
         }
     }
     
