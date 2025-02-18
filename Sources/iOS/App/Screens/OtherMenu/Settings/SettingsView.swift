@@ -277,6 +277,7 @@ struct SettingsView: View {
                             }
                         }
                     }
+                #if !os(visionOS) // visionOS doesn't support SFSafariViewController.DataStore (why??)
                 Button(deletingBrowserData ? "App内ブラウザのサイトデータを削除中…" : "App内ブラウザのサイトデータを削除…") {
                     askToDeleteBrowserData = true
                 }
@@ -298,6 +299,7 @@ struct SettingsView: View {
                     } message: {
                         Text("これには、Cookie、キャッシュ、localStorageなどが含まれます。")
                     }
+                #endif
             }
             .onAppear { refresh() }
         }
