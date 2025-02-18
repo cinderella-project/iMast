@@ -24,6 +24,7 @@
 import SwiftUI
 import iMastiOSCore
 import SDWebImage
+import SafariServices
 
 class NewSettingsViewController: UIHostingController<SettingsView> {
     init() {
@@ -249,12 +250,14 @@ struct SettingsView: View {
     struct MediaCacheSection: View {
         @State var cacheStorageValue = "計算中…"
         @State var askToDeleteCache = false
+        @State var askToDeleteBrowserData = false
         @State var deleting = false
+        @State var deletingBrowserData = false
         
         var body: some View {
-            Section("画像キャッシュ") {
-                LabeledContent("キャッシュの容量", value: cacheStorageValue)
-                Button(deleting ? "キャッシュを削除中…" : "ストレージ上のキャッシュを削除…") {
+            Section("キャッシュ") {
+                LabeledContent("画像キャッシュの容量", value: cacheStorageValue)
+                Button(deleting ? "画像キャッシュを削除中…" : "ストレージ上の画像キャッシュを削除…") {
                     askToDeleteCache = true
                 }
                     .disabled(deleting)
@@ -273,6 +276,27 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    }
+                Button(deletingBrowserData ? "App内ブラウザのサイトデータを削除中…" : "App内ブラウザのサイトデータを削除…") {
+                    askToDeleteBrowserData = true
+                }
+                    .disabled(deletingBrowserData)
+                    .alert("App内ブラウザのサイトデータを削除しますか?", isPresented: $askToDeleteBrowserData) {
+                        Button(L10n.Localizable.cancel, role: .cancel) {}
+                        Button("削除", role: .destructive) {
+                            deletingBrowserData = true
+                            Task {
+                                // 実際の処理がめちゃめちゃ早く終わってもなんかしてるように見せる
+                                async let minimum = Task.sleep(nanoseconds: 500_000_000)
+                                await SFSafariViewController.DataStore.default.clearWebsiteData()
+                                try await minimum
+                                DispatchQueue.main.async {
+                                    deletingBrowserData = false
+                                }
+                            }
+                        }
+                    } message: {
+                        Text("これには、Cookie、キャッシュ、localStorageなどが含まれます。")
                     }
             }
             .onAppear { refresh() }
