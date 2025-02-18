@@ -33,6 +33,11 @@ public final class ImageCacheUtils {
     
     public static func sdWebImageInitializer(alsoMigrateOldFiles: Bool) {
         let logger = os.Logger(subsystem: "jp.pronama.imast.core.ImageCacheUtils", category: #function)
+        guard !initialized else {
+            logger.debug("Already initialized")
+            return
+        }
+
         guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
             logger.error("Failed to get container URL")
             setUserAgent()
@@ -41,7 +46,8 @@ public final class ImageCacheUtils {
         let containerCacheURL = containerURL.appending(path: "Library/Caches/")
         SDImageCache.defaultDiskCacheDirectory = containerCacheURL.appending(path: "SDWebImage_Shared").path(percentEncoded: false)
         setUserAgent()
-        
+        initialized = true
+
         // --- migrate (or delete) old SDWebImage cache dir ---
         
         let appCacheURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
