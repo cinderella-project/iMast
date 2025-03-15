@@ -56,7 +56,7 @@ extension MastodonUserToken {
         let version = try await getIntVersion()
         let req = MastodonEndpoint.Search(
             q: q, resolve: resolve,
-            version: version.supportingFeature(.v2Search) ? .v1 : .v2
+            version: version.supportingFeature(.v2Search) ? .v2 : .v1
         )
         return try await req.request(with: self)
     }
