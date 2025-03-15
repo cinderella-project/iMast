@@ -54,7 +54,9 @@ extension UIViewController {
                 }
             } catch {
                 await MainActor.run {
-                    alert.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true) {
+                        self?.open(url: url)
+                    }
                 }
             }
         }
