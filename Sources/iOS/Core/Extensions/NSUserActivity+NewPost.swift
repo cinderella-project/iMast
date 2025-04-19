@@ -34,6 +34,7 @@ extension NSUserActivity {
     @UserInfoCodableProperty("jp.pronama.imast.private.newpost.replyPostId") public var newPostReplyPostID: MastodonID?
     @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostAcct") public var newPostReplyPostAcct: String?
     @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostText") public var newPostReplyPostText: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostSpoilerText") public var newPostReplyPostSpoilerText: String?
     
     public convenience init(newPostWithMastodonUserToken userToken: MastodonUserToken) {
         self.init(activityType: NSUserActivity.activityTypeNewPost)
@@ -54,6 +55,7 @@ extension NSUserActivity {
         newPostReplyPostID = post.id
         newPostReplyPostAcct = post.account.acct
         newPostReplyPostText = post.status
+        newPostReplyPostSpoilerText = post.spoilerText
         
         newPostVisibility = post.visibility.rawValue
         var accounts = [post.account.acct]

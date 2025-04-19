@@ -146,6 +146,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
                 self.contentView.textInput.selectedRange.location = nowCount
             }
             contentView.textInput.text += userActivity.newPostSuffix ?? ""
+            contentView.cwInput.text = userActivity.newPostReplyPostSpoilerText
         }
 
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
