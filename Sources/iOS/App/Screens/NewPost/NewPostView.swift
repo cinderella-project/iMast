@@ -40,6 +40,7 @@ class NewPostView: UIView {
             make.height.equalTo(30)
         }
         $0.font = .systemFont(ofSize: 14)
+        $0.clearButtonMode = .always
     }
     
     let currentAccountLabel = UILabel() ※ {
