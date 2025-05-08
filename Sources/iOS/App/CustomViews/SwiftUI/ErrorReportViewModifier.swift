@@ -27,7 +27,11 @@ class ErrorReporter: ObservableObject {
     weak var view: UIView?
     
     @MainActor func report(_ error: Error) {
-        view?.viewController?.errorReport(error: error)
+        guard let vc = view?.viewController else {
+            print("WARN: tried to report error but no view controller")
+            return
+        }
+        vc.errorReport(error: error)
     }
     
     fileprivate struct InnerView: UIViewRepresentable {

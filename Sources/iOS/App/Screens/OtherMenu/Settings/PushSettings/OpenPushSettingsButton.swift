@@ -71,6 +71,7 @@ struct OpenPushSettingsButton: View {
             }
             .hidden()
         }
+        .attach(errorReporter: errorReporter)
     }
     
     @MainActor func openPushSettings() async {
@@ -99,6 +100,7 @@ struct OpenPushSettingsButton: View {
             UIApplication.shared.registerForRemoteNotifications()
         } catch {
             errorReporter.report(error)
+            return
         }
         openPushSettings = true
     }
