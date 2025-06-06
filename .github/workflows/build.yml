@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - "16.2"
+          - "16.4"
         os:
           - macOS
           - iOS
