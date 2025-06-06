@@ -26,12 +26,12 @@ import SwiftUI
 class ErrorReporter: ObservableObject {
     weak var view: UIView?
     
-    @MainActor func report(_ error: Error) {
+    @MainActor func report(_ error: Error, completionHandler: (() -> Void)? = nil) {
         guard let vc = view?.viewController else {
             print("WARN: tried to report error but no view controller")
             return
         }
-        vc.errorReport(error: error)
+        vc.errorReport(error: error, completionHandler: completionHandler)
     }
     
     fileprivate struct InnerView: UIViewRepresentable {

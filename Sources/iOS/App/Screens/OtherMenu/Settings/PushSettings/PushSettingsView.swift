@@ -133,6 +133,9 @@ struct PushSettingsView: View {
                 .allowsHitTesting(loading)
                 .transition(.opacity)
         }
+        .onAppear {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
         .attach(errorReporter: errorReporter)
     }
     
@@ -153,8 +156,9 @@ struct PushSettingsView: View {
                     accounts = newAccounts
                 }
             } catch {
-                errorReporter.report(error)
-                dismiss()
+                errorReporter.report(error) {
+                    dismiss()
+                }
             }
             print("reload-finish")
         }
