@@ -368,7 +368,7 @@ name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://git
 
 name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
 
-name: GRDB.swift, nameSpecified: grdb.swift, owner: groue, version: 6.29.3, source: https://github.com/groue/GRDB.swift
+name: GRDB.swift, nameSpecified: grdb.swift, owner: groue, version: 7.5.0, source: https://github.com/groue/GRDB.swift
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
 
