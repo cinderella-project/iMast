@@ -8,7 +8,7 @@ abstract_target 'iMastShared' do
 
   pod 'SwiftLint', '0.52.4'
   def core_pods
-    pod 'GRDB.swift', '~> 5.26.1', :linkage => :static
+    pod 'GRDB.swift', '~> 6.24.1'
   end
   pod 'HydraAsync', '~> 2.0.6'
   pod 'SDWebImage', '~> 5.18.10'
@@ -25,6 +25,7 @@ abstract_target 'iMastShared' do
     
     target 'iMast iOS' do
       # Pods for iMast
+      core_pods
       pod 'Starscream', '~> 3.1.1'
       pod 'LicensePlist', '~> 3.22.0'
       

@@ -25,7 +25,7 @@
 		5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
-		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		904584C585DF8DF528E745A9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */; };
@@ -1089,7 +1089,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E3332377F7D800406371 /* iMastMacCore.framework in Frameworks */,
-				904584C585DF8DF528E745A9 /* (null) in Frameworks */,
+				904584C585DF8DF528E745A9 /* BuildFile in Frameworks */,
 				3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2884,6 +2884,7 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-macOS/GRDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2892,6 +2893,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3044,6 +3046,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-iOS/GRDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3054,6 +3057,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3285,6 +3289,7 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GRDB.swift-macOS/GRDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3293,6 +3298,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
