@@ -1,8 +1,5 @@
 PODS:
   - Fuzi (3.1.3)
-  - GRDB.swift (6.24.1):
-    - GRDB.swift/standard (= 6.24.1)
-  - GRDB.swift/standard (6.24.1)
   - HydraAsync (2.0.6)
   - KeychainAccess (4.2.2)
   - LicensePlist (3.22.0)
@@ -17,7 +14,6 @@ PODS:
 
 DEPENDENCIES:
   - Fuzi (from `https://github.com/rinsuki/Fuzi.git`, commit `4092585ab3eea9de6c2a92024d3ab5ec3bfc4785`)
-  - GRDB.swift (~> 6.24.1)
   - HydraAsync (~> 2.0.6)
   - KeychainAccess (= 4.2.2)
   - LicensePlist (~> 3.22.0)
@@ -30,7 +26,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - GRDB.swift
     - HydraAsync
     - KeychainAccess
     - LicensePlist
@@ -63,7 +58,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Fuzi: 4c10d6449c0b49a85cd75b13844c559c0fc71220
-  GRDB.swift: 136dcb5d8dddca50aae3ba7d77475f79e7232cd8
   HydraAsync: 8d589bd725b0224f899afafc9a396327405f8063
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
@@ -74,6 +68,6 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 6c2563ddc9304827c954cc37d157435952175978
+PODFILE CHECKSUM: 1bc7deb439cbb0d86f99105812e71bc8980758a3
 
 COCOAPODS: 1.14.3

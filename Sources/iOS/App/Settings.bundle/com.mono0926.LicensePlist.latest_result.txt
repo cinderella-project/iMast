@@ -38,26 +38,6 @@ name: Fuzi, nameSpecified:
 body: Copyright (c) 2015 C…
 version: 3.1.3
 
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2015-2…
-version: 6.24.1
-
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2015-2…
-version: 6.24.1
-
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2015-2…
-version: 6.24.1
-
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2015-2…
-version: 6.24.1
-
-name: GRDB.swift, nameSpecified: 
-body: Copyright (C) 2015-2…
-version: 6.24.1
-
 name: HydraAsync, nameSpecified: 
 body: Copyright (c) 2015 d…
 version: 2.0.6
@@ -387,6 +367,8 @@ name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https
 name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://github.com/mikutter/mikutter
 
 name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
+
+name: GRDB.swift, nameSpecified: grdb.swift, owner: groue, version: 6.29.1, source: https://github.com/groue/GRDB.swift
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
 
