@@ -26,6 +26,7 @@ import GRDB
 
 let fileURL = getFileURL()
 public let dbQueue = try! DatabaseQueue(path: fileURL.path)
+
 func getFileURL() -> URL {
     let oldFileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!.appendingPathComponent("imast.sqlite")
     let fileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!.appendingPathComponent("Library/imast.sqlite")
@@ -40,6 +41,7 @@ func getFileURL() -> URL {
     print("database: ", fileURL.path)
     return fileURL
 }
+
 public func initDatabase() {
     var migrator = DatabaseMigrator()
     migrator.registerMigration("v1") { db in

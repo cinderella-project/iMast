@@ -29,7 +29,7 @@ import GRDB
 class TopMasterViewController: UITableViewController {
     private var userTokens = MastodonUserToken.getAllUserTokens()
     private var pinnedScreens: [MastodonUserToken.PinnedScreen] = (try? dbQueue.inDatabase(MastodonUserToken.getPinnedScreens)) ?? []
-    private var observer: TransactionObserver?
+    private var observer: DatabaseCancellable?
     private var firstUpdated = true
 
     enum Section {
@@ -138,22 +138,23 @@ class TopMasterViewController: UITableViewController {
             )
         }
         
-        do {
-            observer = try observation.start(in: dbQueue, onChange: { [weak self] (arg0) in
-                let (userTokens, pinnedScreens) = arg0
-                guard let strongSelf = self else { return }
-                strongSelf.userTokens = userTokens
-                strongSelf.pinnedScreens = pinnedScreens
-                DispatchQueue.mainSafeSync {
-                    strongSelf.refresh(animated: !strongSelf.firstUpdated)
-                    strongSelf.firstUpdated = false
-                }
-            })
-        } catch {
+        observer = observation.start(in: dbQueue, onError: { [weak self] error in
+            guard let self else {
+                return
+            }
             errorReport(error: error)
             // rescue
             refresh(animated: false)
-        }
+        }, onChange: { [weak self] (arg0) in
+            let (userTokens, pinnedScreens) = arg0
+            guard let strongSelf = self else { return }
+            strongSelf.userTokens = userTokens
+            strongSelf.pinnedScreens = pinnedScreens
+            DispatchQueue.mainSafeSync {
+                strongSelf.refresh(animated: !strongSelf.firstUpdated)
+                strongSelf.firstUpdated = false
+            }
+        })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
