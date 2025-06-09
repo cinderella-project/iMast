@@ -1,6 +1,14 @@
 {
   "pins" : [
     {
+      "identity" : "fuzi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rinsuki/Fuzi",
+      "state" : {
+        "revision" : "4092585ab3eea9de6c2a92024d3ab5ec3bfc4785"
+      }
+    },
+    {
       "identity" : "grdb.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/groue/GRDB.swift",
