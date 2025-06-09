@@ -98,6 +98,10 @@
 		CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
+		CE4800ED2DF6DB8700B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EC2DF6DB8700B92D6A /* GRDB */; };
+		CE4800EF2DF6DB8D00B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EE2DF6DB8D00B92D6A /* GRDB */; };
+		CE4800F12DF6DB9200B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800F02DF6DB9200B92D6A /* GRDB */; };
+		CE4800F32DF6DB9700B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800F22DF6DB9700B92D6A /* GRDB */; };
 		CE4B21C12ACFED100057B5D4 /* TopDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE4FAD402A793E7400E5C843 /* ShareNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FAD3D2A793E4500E5C843 /* ShareNewPostView.swift */; };
@@ -1006,6 +1010,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4800F32DF6DB9700B92D6A /* GRDB in Frameworks */,
 				CE43BE95237775F100133C86 /* iMastiOSCore.framework in Frameworks */,
 				0DB50C2D6AF7EB43D6C6CA58 /* Pods_iMastShared_iOS_iMast_iOS.framework in Frameworks */,
 			);
@@ -1051,6 +1056,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF8D224AC746E71A8413B5D /* Pods_iMastShared_iOS_iMastShare.framework in Frameworks */,
+				CE4800F12DF6DB9200B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,6 +1082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */,
+				CE4800EF2DF6DB8D00B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,6 +1091,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24ABFCAECCCE27CB04A9B973 /* Pods_iMastShared_iOS_iMastIntents.framework in Frameworks */,
+				CE4800ED2DF6DB8700B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5254,6 +5262,26 @@
 		CE39E5F02D4EF52C00B7105F /* iMastPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iMastPackage;
+		};
+		CE4800EC2DF6DB8700B92D6A /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+		CE4800EE2DF6DB8D00B92D6A /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+		CE4800F02DF6DB9200B92D6A /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
+		};
+		CE4800F22DF6DB9700B92D6A /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
