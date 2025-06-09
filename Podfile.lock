@@ -1,5 +1,4 @@
 PODS:
-  - KeychainAccess (4.2.2)
   - LicensePlist (3.22.0)
   - Mew (0.1.0)
   - SDWebImage (5.18.10):
@@ -11,7 +10,6 @@ PODS:
   - SwiftLint (0.52.4)
 
 DEPENDENCIES:
-  - KeychainAccess (= 4.2.2)
   - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - SDWebImage (~> 5.18.10)
@@ -22,7 +20,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - KeychainAccess
     - LicensePlist
     - SDWebImage
     - Starscream
@@ -46,7 +43,6 @@ CHECKOUT OPTIONS:
     :tag: 5.7.0
 
 SPEC CHECKSUMS:
-  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
@@ -55,6 +51,6 @@ SPEC CHECKSUMS:
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 05fe646533c2c7315a3bc01fa3ba2ae8760cf06a
+PODFILE CHECKSUM: d0a0f865121178be3c35e7963c2acf9e28149d09
 
 COCOAPODS: 1.14.3

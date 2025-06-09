@@ -11,7 +11,6 @@ abstract_target 'iMastShared' do
   end
   pod 'SDWebImage', '~> 5.18.10'
   pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.7.0'
-  pod 'KeychainAccess', '4.2.2'
   pod 'SwiftGen', '6.5.1' # I don't want to include fallback strings in source (ref. https://github.com/SwiftGen/SwiftGen/pull/964 )
   
   abstract_target 'iOS' do

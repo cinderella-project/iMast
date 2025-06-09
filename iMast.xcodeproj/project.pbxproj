@@ -25,7 +25,7 @@
 		5D337B0226C952F600258CD1 /* UserProfileFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D337B0126C952F600258CD1 /* UserProfileFieldViewController.swift */; };
 		617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED81AAD927A30AFB818324 /* Pods_iMastShared_Mac_iMastMacCore.framework */; };
 		78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE46AB9BC10111AED90813E9 /* Pods_iMastShared_iOS_iMastNotifyService.framework */; };
-		904584C585DF8DF528E745A9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		904584C585DF8DF528E745A9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		A7656BE4690605B053B4F2B1 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D659691936E0C9F88AA1BC71 /* Pods_iMastShared_iOS_iMast_iOS_iMastTests.framework */; };
 		C97D891E6594EA490EEDC060 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE03FF8425DCD85E0024BF70 /* Pods_iMastShared_Mac_iMast_Mac__with_Sparkle_.framework */; };
 		CE030A6B2A42354800170E32 /* AddAccountAcquireTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE030A6A2A42354800170E32 /* AddAccountAcquireTokenViewController.swift */; };
@@ -279,6 +279,8 @@
 		CEDCBDC22DF6EB21006CDCD4 /* Hydra in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCBDC12DF6EB21006CDCD4 /* Hydra */; };
 		CEDCBDC52DF6EDAF006CDCD4 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCBDC42DF6EDAF006CDCD4 /* Fuzi */; };
 		CEDCBDC72DF6EDED006CDCD4 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCBDC62DF6EDED006CDCD4 /* Fuzi */; };
+		CEDCBDCA2DF6EFAB006CDCD4 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCBDC92DF6EFAB006CDCD4 /* KeychainAccess */; };
+		CEDCBDCC2DF6EFB9006CDCD4 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = CEDCBDCB2DF6EFB9006CDCD4 /* KeychainAccess */; };
 		CEE01B012A796C1A00B6BA74 /* SharePrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE01B002A796C1A00B6BA74 /* SharePrincipalViewController.swift */; };
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
@@ -1042,6 +1044,7 @@
 			files = (
 				CEDCBDC52DF6EDAF006CDCD4 /* Fuzi in Frameworks */,
 				CEDCBDC02DF6E9C8006CDCD4 /* Hydra in Frameworks */,
+				CEDCBDCA2DF6EFAB006CDCD4 /* KeychainAccess in Frameworks */,
 				CE39E5F12D4EF52C00B7105F /* iMastPackage in Frameworks */,
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
 				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
@@ -1106,7 +1109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE4E3332377F7D800406371 /* iMastMacCore.framework in Frameworks */,
-				904584C585DF8DF528E745A9 /* (null) in Frameworks */,
+				904584C585DF8DF528E745A9 /* BuildFile in Frameworks */,
 				3CB0034D20C8D2DE04A5A969 /* Pods_iMastShared_Mac_iMast_Mac__App_Store_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1131,6 +1134,7 @@
 			files = (
 				CEDCBDC72DF6EDED006CDCD4 /* Fuzi in Frameworks */,
 				CEDCBDC22DF6EB21006CDCD4 /* Hydra in Frameworks */,
+				CEDCBDCC2DF6EFB9006CDCD4 /* KeychainAccess in Frameworks */,
 				CE1C23B42B7424F200DA37A3 /* iMastPackage in Frameworks */,
 				617DCFFE4FE3CD56EDE14AD4 /* Pods_iMastShared_Mac_iMastMacCore.framework in Frameworks */,
 				CE11D6E028576A9200F6A0AF /* Ikemen in Frameworks */,
@@ -2344,6 +2348,7 @@
 				CE12EAC42DF580A20041971B /* GRDB */,
 				CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */,
 				CEDCBDC42DF6EDAF006CDCD4 /* Fuzi */,
+				CEDCBDC92DF6EFAB006CDCD4 /* KeychainAccess */,
 			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
@@ -2552,6 +2557,7 @@
 				CE12EAC62DF582B90041971B /* GRDB */,
 				CEDCBDC12DF6EB21006CDCD4 /* Hydra */,
 				CEDCBDC62DF6EDED006CDCD4 /* Fuzi */,
+				CEDCBDCB2DF6EFB9006CDCD4 /* KeychainAccess */,
 			);
 			productName = iMastMacCore;
 			productReference = CEE4E31E2377F7D800406371 /* iMastMacCore.framework */;
@@ -2698,9 +2704,10 @@
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
 			packageReferences = (
 				CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */,
-				CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */,
+				CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				CEDCBDBE2DF6E9C8006CDCD4 /* XCRemoteSwiftPackageReference "Hydra" */,
 				CEDCBDC32DF6EDAF006CDCD4 /* XCRemoteSwiftPackageReference "Fuzi" */,
+				CEDCBDC82DF6EFAB006CDCD4 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 2AF352181EAB9C5500777C2E /* Products */;
 			projectDirPath = "";
@@ -2908,13 +2915,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (App Store)/Pods-iMastShared-Mac-iMast Mac (App Store)-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -2948,7 +2953,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastUITests/Pods-iMastShared-iOS-iMast iOS-iMastUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
@@ -2956,7 +2960,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -3010,7 +3013,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS-iMastTests/Pods-iMastShared-iOS-iMast iOS-iMastTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
@@ -3018,7 +3020,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -3054,7 +3055,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-iOS-iMast iOS/Pods-iMastShared-iOS-iMast iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess-iOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Mew/Mew.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
@@ -3062,7 +3062,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mew.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -3293,13 +3292,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iMastShared-Mac-iMast Mac (with Sparkle)/Pods-iMastShared-Mac-iMast Mac (with Sparkle)-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess-macOS/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -5218,7 +5215,7 @@
 				version = 0.8.0;
 			};
 		};
-		CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */ = {
+		CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
@@ -5242,6 +5239,14 @@
 				revision = 4092585ab3eea9de6c2a92024d3ab5ec3bfc4785;
 			};
 		};
+		CEDCBDC82DF6EFAB006CDCD4 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -5257,12 +5262,12 @@
 		};
 		CE12EAC42DF580A20041971B /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CE12EAC62DF582B90041971B /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CE1C23B32B7424F200DA37A3 /* iMastPackage */ = {
@@ -5275,22 +5280,22 @@
 		};
 		CE4800EC2DF6DB8700B92D6A /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CE4800EE2DF6DB8D00B92D6A /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CE4800F02DF6DB9200B92D6A /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CE4800F22DF6DB9700B92D6A /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
 			productName = GRDB;
 		};
 		CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */ = {
@@ -5312,6 +5317,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEDCBDC32DF6EDAF006CDCD4 /* XCRemoteSwiftPackageReference "Fuzi" */;
 			productName = Fuzi;
+		};
+		CEDCBDC92DF6EFAB006CDCD4 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEDCBDC82DF6EFAB006CDCD4 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		CEDCBDCB2DF6EFB9006CDCD4 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEDCBDC82DF6EFAB006CDCD4 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
