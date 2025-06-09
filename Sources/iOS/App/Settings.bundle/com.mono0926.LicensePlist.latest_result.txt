@@ -38,46 +38,6 @@ name: Fuzi, nameSpecified:
 body: Copyright (c) 2015 C…
 version: 3.1.3
 
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
-name: HydraAsync, nameSpecified: 
-body: Copyright (c) 2015 d…
-version: 2.0.6
-
 name: KeychainAccess, nameSpecified: 
 body: The MIT License (MIT…
 version: 4.2.2
@@ -369,6 +329,8 @@ name: mikutter, nameSpecified: , owner: mikutter, version: , source: https://git
 name: Sparkle, nameSpecified: , owner: sparkle-project, version: , source: https://github.com/sparkle-project/Sparkle
 
 name: GRDB.swift, nameSpecified: grdb.swift, owner: groue, version: 7.5.0, source: https://github.com/groue/GRDB.swift
+
+name: Hydra, nameSpecified: hydra, owner: malcommac, version: 2.0.6, source: https://github.com/malcommac/Hydra
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
 
