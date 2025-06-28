@@ -13,7 +13,7 @@
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>other</key>
-        <string>%d件のふぁぼ</string>
+        <string>%d건의 좋아요</string>
       </dict>
     </dict>
     <key>count.boost</key>
@@ -27,7 +27,7 @@
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>other</key>
-        <string>%d件のブースト</string>
+        <string>%d건의 부스트</string>
       </dict>
     </dict>
   </dict>
