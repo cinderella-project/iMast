@@ -25,6 +25,7 @@ import SwiftUI
 import iMastiOSCore
 import SDWebImage
 import SafariServices
+import ExtensionKit
 
 class NewSettingsViewController: UIHostingController<SettingsView> {
     init() {
@@ -393,10 +394,29 @@ struct DeveloperSettingsView: View {
                     Button("OK") {
                     }
                 }
+                if #available(iOS 26.0, *) {
+                    NavigationLink {
+                        ExtensionManageView()
+                    } label: {
+                        Text("Manage Extensions")
+                    }
+                }
             }
         }
         .attach(errorReporter: errorReporter)
         .navigationTitle("内部設定")
+    }
+}
+
+@available(iOS 26.0, *)
+struct ExtensionManageView: View, UIViewControllerRepresentable {
+    typealias UIViewControllerType = EXAppExtensionBrowserViewController
+    
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        EXAppExtensionBrowserViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
 }
 

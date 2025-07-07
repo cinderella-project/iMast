@@ -25,6 +25,8 @@ import UIKit
 import Mew
 import Ikemen
 import iMastiOSCore
+import ExtensionFoundation
+import iMastExtensionKit
 
 class MastodonPostDetailReactionBarViewController: UIViewController, Instantiatable, Injectable {
     typealias Input = MastodonPost
@@ -126,30 +128,72 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
     }
     
     func buildOthersMenu() async throws -> [UIMenuElement] {
-        var elements = [UICommand]()
+        var elements = [UIMenuElement]()
         let version = try await environment.getIntVersion()
         if version.supportingFeature(.bookmark) {
             if input.bookmarked {
-                elements.append(.init(title: "ブックマークから削除", image: UIImage(systemName: "bookmark.slash"), action: #selector(removeFromBookmark)))
+                elements.append(UICommand(title: "ブックマークから削除", image: UIImage(systemName: "bookmark.slash"), action: #selector(removeFromBookmark)))
             } else {
-                elements.append(.init(title: "ブックマーク", image: UIImage(systemName: "bookmark"), action: #selector(addToBookmark)))
+                elements.append(UICommand(title: "ブックマーク", image: UIImage(systemName: "bookmark"), action: #selector(addToBookmark)))
             }
         }
         if version.supportingFeature(.editPost) {
             if input.account.acct == environment.screenName {
-                elements.append(.init(title: L10n.NewPost.edit, image: UIImage(systemName: "pencil"), action: #selector(openEditPostVC)))
+                elements.append(UICommand(title: L10n.NewPost.edit, image: UIImage(systemName: "pencil"), action: #selector(openEditPostVC)))
             }
         }
-        elements.append(.init(title: L10n.Localizable.PostDetail.share, image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
-        elements.append(.init(title: L10n.Localizable.Bunmyaku.title, image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
+        elements.append(UICommand(title: L10n.Localizable.PostDetail.share, image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
+        if #available(iOS 26, *) {
+            elements.append(UIMenu(title: "拡張機能", image: UIImage(systemName: "puzzlepiece.extension"), children: [UIDeferredMenuElement({ callback in
+                Task {
+                    let monitor = try? await AppExtensionPoint.Monitor(appExtensionPoint: .postActionExtension)
+                    var items: [UIMenuElement] = []
+                    for identity in monitor?.identities ?? [] {
+                        items.append(UIAction(title: identity.localizedName, handler: { _ in
+                            self.handleExtension(identity: identity)
+                        }))
+                    }
+                    await MainActor.run {
+                        callback(items)
+                    }
+                }
+            })]))
+        }
+        elements.append(UICommand(title: L10n.Localizable.Bunmyaku.title, image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
         if input.hasCustomEmoji {
-            elements.append(.init(title: L10n.Localizable.CustomEmojis.title, action: #selector(openEmojiListVC)))
+            elements.append(UICommand(title: L10n.Localizable.CustomEmojis.title, action: #selector(openEmojiListVC)))
         }
         if environment.screenName == input.account.acct {
-            elements.append(.init(title: L10n.Localizable.PostDetail.delete, image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
+            elements.append(UICommand(title: L10n.Localizable.PostDetail.delete, image: UIImage(systemName: "trash"), action: #selector(confirmDeletePost), attributes: .destructive))
         }
-        elements.append(.init(title: L10n.Localizable.PostDetail.reportAbuse, image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
+        elements.append(UICommand(title: L10n.Localizable.PostDetail.reportAbuse, image: UIImage(systemName: "exclamationmark.bubble"), action: #selector(openAbuseVC)))
         return elements
+    }
+    
+    @available(iOS 26, *)
+    func handleExtension(identity: AppExtensionIdentity) {
+        let input = self.input.originalPost
+        Task {
+            let config = AppExtensionProcess.Configuration(appExtensionIdentity: identity)
+            let proc = try await AppExtensionProcess(configuration: config)
+            let connection = try proc.makeXPCSession()
+            try connection.activate()
+            try connection.send(SocialPost(uri: "", author: .init(uri: "", acct: input.account.acct))) { (result: Result<PostActionResult, any Error>) in
+                switch result {
+                case .success(.composeReply(let text)):
+                    DispatchQueue.main.async {
+                        let post = self.input.originalPost
+                        self.showAsWindow(userActivity: .init(newPostWithMastodonUserToken: self.environment) ※ {
+                            $0.setNewPostReplyInfo(post)
+                            $0.newPostSuffix = text
+                        }, fallback: .push)
+                    }
+                default:
+                    print(result)
+                }
+                connection.cancel(reason: "")
+            }
+        }
     }
     
     @objc func openReplyVC() {
