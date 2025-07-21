@@ -168,6 +168,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
                 } else {
                     res = try await MastodonEndpoint.CreateRepost(post: input).request(with: environment)
                 }
+                try? MastodonMemoryStoreContainer[environment].post.change(obj: res)
                 await MainActor.run {
                     self.input(res)
                 }
@@ -188,6 +189,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
                 } else {
                     res = try await MastodonEndpoint.CreateFavourite(post: input).request(with: environment)
                 }
+                try? MastodonMemoryStoreContainer[environment].post.change(obj: res)
                 await MainActor.run {
                     self.input(res)
                 }
