@@ -64,6 +64,7 @@
 "currentAccount" = "現在のアカウント: @%@";
 "myProfile" = "自分のプロフィール";
 "lists" = "リスト";
+"noCreatedLists" = "作成されたリストがありません";
 "settings" = "設定";
 "help.title" = "ヘルプ";
 "helpAndFeedback" = "ヘルプ / Feedback";

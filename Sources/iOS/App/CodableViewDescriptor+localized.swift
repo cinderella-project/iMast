@@ -145,6 +145,11 @@ private func createTitleMenuFromUserToken(vc: UIViewController, userToken: Masto
                 if let userToken = userToken {
                     items.append(contentsOf: ((try? await MastodonEndpoint.MyLists().request(with: userToken)) ?? []).map { makeAction(.list(id: $0.id.string, title: $0.title)) })
                 }
+                if items.isEmpty {
+                    items.append(
+                        UIAction(title: L10n.Localizable.noCreatedLists, attributes: .disabled) { _ in }
+                    )
+                }
                 await MainActor.run { [items] in
                     callback(items)
                 }

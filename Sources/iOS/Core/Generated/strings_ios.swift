@@ -43,6 +43,8 @@ public enum L10n {
     public static let localTimeline = L10n.tr("Localizable", "localTimeline")
     /// 自分のプロフィール
     public static let myProfile = L10n.tr("Localizable", "myProfile")
+    /// 作成されたリストがありません
+    public static let noCreatedLists = L10n.tr("Localizable", "noCreatedLists")
     /// 接続していません
     public static let notConnected = L10n.tr("Localizable", "notConnected")
     /// ここまで
