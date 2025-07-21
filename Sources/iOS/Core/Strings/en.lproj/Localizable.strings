@@ -91,6 +91,12 @@
 "postDetail.favorite" = "Favorites";
 "customEmojis.title" = "Custom Emoji List";
 
+"quote.state.pending" = "元投稿者によって引用がまだ許可されていません";
+"quote.state.deleted" = "引用されていた投稿は削除されました";
+"quote.state.rejectedOrRevoked" = "元投稿者によって引用が拒否されました";
+"quote.state.unauthorized" = "この投稿は閲覧できません";
+"quote.fetchShallowPost" = "引用されている投稿を見る";
+
 "reportPost.title" = "Report this post";
 "reportPost.send" = "Send";
 "reportPost.targetPost.title" = "対象の投稿";
