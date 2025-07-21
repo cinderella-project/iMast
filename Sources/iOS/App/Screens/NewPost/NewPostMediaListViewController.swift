@@ -278,7 +278,7 @@ extension NewPostMediaListViewController: UIImagePickerControllerDelegate {
                         message: "動画をこのままエンコードすると40MBを越えそうです(予想される出力ファイルサイズ: \(exportSession.estimatedOutputFileLength)bytes)。このままエンコードしますか?",
                         okButtonMessage: "OK",
                         style: .default,
-                        cancelButtonMessage: "キャンセル"
+                        cancelButtonMessage: L10n.Localizable.cancel
                     ) else { return }
                 }
                 let alert = DispatchQueue.mainSafeSync {

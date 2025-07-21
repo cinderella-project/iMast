@@ -28,7 +28,7 @@ extension UIViewController {
     func resolveUserProfile(userToken: MastodonUserToken, url: URL) {
         let alert = UIAlertController(title: "ユーザー検索中", message: "\(url.absoluteString)\n\nしばらくお待ちください", preferredStyle: .alert)
         var canceled = false
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: L10n.Localizable.cancel, style: .cancel, handler: { _ in
             canceled = true
             alert.dismiss(animated: true, completion: nil)
         }))
