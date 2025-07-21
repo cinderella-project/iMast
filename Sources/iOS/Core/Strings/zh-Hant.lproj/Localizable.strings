@@ -64,6 +64,7 @@
 "currentAccount" = "目前帳號：@%@";
 "myProfile" = "個人資料";
 "lists" = "名單";
+"noCreatedLists" = "作成されたリストがありません";
 "settings" = "偏好設定";
 "help.title" = "說明";
 "helpAndFeedback" = "幫助 / 意見反饋";
