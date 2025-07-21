@@ -91,6 +91,12 @@
 "postDetail.favorite" = "좋아요";
 "customEmojis.title" = "커스텀 이모지 목록";
 
+"quote.state.pending" = "元投稿者によって引用がまだ許可されていません";
+"quote.state.deleted" = "引用されていた投稿は削除されました";
+"quote.state.rejectedOrRevoked" = "元投稿者によって引用が拒否されました";
+"quote.state.unauthorized" = "この投稿は閲覧できません";
+"quote.fetchShallowPost" = "引用されている投稿を見る";
+
 "reportPost.title" = "글을 신고하기";
 "reportPost.send" = "제출";
 "reportPost.targetPost.title" = "이 글";
