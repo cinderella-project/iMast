@@ -80,6 +80,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     let tags: [MastodonPostHashtag]?
     public var poll: MastodonPoll?
     public let language: String?
+    public var quote: MastodonPostQuote?
 
     public enum CodingKeys: String, CodingKey {
         case id
@@ -109,8 +110,79 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case tags
         case poll
         case language
+        case quote
     }
+}
 
+public enum MastodonPostOrID {
+    indirect case post(MastodonPost)
+    case id(MastodonID)
+}
+
+public enum MastodonPostQuote: Codable {
+    case notAvailable(NotAvailableReason)
+    case accepted(MastodonPostOrID)
+    
+    public enum NotAvailableReason: String, Codable {
+        case pending
+        case rejected
+        case revoked
+        case deleted
+        case unauthorized
+    }
+    
+    enum AvailableReason: String, Codable {
+        case accepted
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case state
+        case quotedStatusID = "quoted_status_id"
+        case quotedStatus = "quoted_status"
+    }
+    
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.state) else {
+            // Fedibird スタイルへの quote へフォールバック (post.quote に MastodonPost が入っている)
+            self = .accepted(.post(try .init(from: decoder)))
+            return
+        }
+        if let reason = try? container.decode(NotAvailableReason.self, forKey: .state) {
+            self = .notAvailable(reason)
+            return
+        }
+        
+        if (try? container.decode(AvailableReason.self, forKey: .state)) == nil {
+            throw DecodingError.dataCorruptedError(forKey: .state, in: container, debugDescription: "unknown state")
+        }
+        
+        if container.contains(.quotedStatusID) {
+            let id = try container.decode(MastodonID.self, forKey: .quotedStatusID)
+            self = .accepted(.id(id))
+        } else if container.contains(.quotedStatus) {
+            let post = try container.decode(MastodonPost.self, forKey: .quotedStatus)
+            self = .accepted(.post(post))
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .state, in: container, debugDescription: "state is \"accepted\", but no quoted_status_id or quoted_status found")
+        }
+    }
+    
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .notAvailable(let reason):
+            try container.encode(reason, forKey: .state)
+        case .accepted(let postOrID):
+            try container.encode(AvailableReason.accepted, forKey: .state)
+            switch postOrID {
+            case .post(let post):
+                try container.encode(post, forKey: .quotedStatus)
+            case .id(let id):
+                try container.encode(id, forKey: .quotedStatusID)
+            }
+        }
+    }
 }
 
 public enum MastodonReactionType {
@@ -489,6 +561,15 @@ extension MastodonEndpoint {
         
         public init(post: MastodonPost) {
             self.postId = post.id
+        }
+        
+        public init(postOrID: MastodonPostOrID) {
+            switch postOrID {
+            case .post(let post):
+                self.postId = post.id
+            case .id(let id):
+                self.postId = id
+            }
         }
     }
     

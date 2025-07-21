@@ -90,17 +90,37 @@ protocol MastodonMemoryStorable: MastodonIDAvailable {
 extension MastodonPost: MastodonMemoryStorable {
     func changeChain(store: MastodonMemoryStore<MastodonPost>) throws {
         for chain in store.chain[self.id] ?? [] {
-            var boost = store.container[chain]!
-            if boost.repost?.value.id == self.id {
-                boost.repost = .value(self)
+            var post = store.container[chain]!
+            if post.repost?.value.id == self.id {
+                post.repost = .value(self)
             }
-            try store.change(obj: boost)
+            if case .accepted(let postOrId) = post.quote {
+                switch postOrId {
+                case .post(let previousPost):
+                    if previousPost.id == self.id {
+                        post.quote = .accepted(.post(self))
+                    }
+                case .id(let id):
+                    if id == self.id {
+                        post.quote = .accepted(.post(self))
+                    }
+                }
+            }
+            try store.change(obj: post)
         }
     }
     
     func setChain(store: MastodonMemoryStore<MastodonPost>) throws {
         if let orig = self.repost?.value {
             try store.addChain(from: orig.id, to: self.id, key: MastodonPost.CodingKeys.repost.rawValue)
+        }
+        if case .accepted(let postOrId) = self.quote {
+            switch postOrId {
+            case .id(let id):
+                try store.addChain(from: id, to: self.id, key: MastodonPost.CodingKeys.quote.rawValue)
+            case .post(let post):
+                try store.addChain(from: post.id, to: self.id, key: MastodonPost.CodingKeys.quote.rawValue)
+            }
         }
     }
 }

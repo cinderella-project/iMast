@@ -31,6 +31,7 @@ public struct MastodonPostContent: Codable, EmojifyProtocol, MastodonPostContent
     public let attachments: [MastodonAttachment]
     public let emojis: [MastodonCustomEmoji]?
     public let profileEmojis: [MastodonCustomEmoji]?
+    public let quote: MastodonPostQuote?
     
     enum CodingKeys: String, CodingKey {
         case status = "content"
@@ -40,6 +41,7 @@ public struct MastodonPostContent: Codable, EmojifyProtocol, MastodonPostContent
         case attachments = "media_attachments"
         case emojis
         case profileEmojis = "profile_emojis"
+        case quote
     }
 }
 
@@ -48,6 +50,7 @@ public protocol MastodonPostContentProtocol: EmojifyProtocol {
     var sensitive: Bool { get }
     var spoilerText: String { get }
     var attachments: [MastodonAttachment] { get }
+    var quote: MastodonPostQuote? { get }
 }
 
 extension MastodonEndpoint {

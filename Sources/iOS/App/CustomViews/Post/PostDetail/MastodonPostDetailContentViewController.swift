@@ -70,6 +70,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     }
     
     let attachedMediaListViewController: AttachedMediaListViewController
+    let quotedPostViewController: MastodonQuotedPostViewController
     
     var showCWContent = false
     var restrictTextViewHeight: NSLayoutConstraint!
@@ -78,6 +79,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         self.input = input
         self.environment = environment
         attachedMediaListViewController = .instantiate(input, environment: ())
+        quotedPostViewController = .instantiate(input, environment: environment)
         cwWarningStackView = UIStackView(arrangedSubviews: [
             UIView(/* スペース取り用ダミー*/) ※ { $0.heightAnchor.constraint(equalToConstant: 0).isActive = true },
             cwWarningLabel,
@@ -132,7 +134,9 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
             UIView() ※ { $0.setContentHuggingPriority(.required, for: .vertical)}, // CWの開閉時のアニメーションをマシにするため
         ]) ※ { v in
             v.axis = .vertical
+            v.addArrangedViewController(quotedPostViewController, parentViewController: self)
             v.addArrangedViewController(attachedMediaListViewController, parentViewController: self)
+            v.setCustomSpacing(8, after: quotedPostViewController.view)
         }
         
         view.addSubview(stackView)
@@ -176,6 +180,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         }, emojifyProtocol: input)
         
         attachedMediaListViewController.input(input)
+        quotedPostViewController.input(input)
     }
     
     func output(_ handler: ((Output) -> Void)?) {

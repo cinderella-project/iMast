@@ -220,6 +220,8 @@
 		CEAC1FBF272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */; };
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
 		CEAE471C24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
+		CEAEA25F2E2ED1D600387F05 /* MastodonQuotedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEA25E2E2ED1D000387F05 /* MastodonQuotedPostViewController.swift */; };
+		CEAEA2612E2EE18600387F05 /* MastodonPostCellHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAEA2602E2EE18000387F05 /* MastodonPostCellHeaderView.swift */; };
 		CEB0CEB528BDE822007C96C6 /* UIViewController+showFromTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */; };
 		CEB536722A7943C20028E28C /* ShareNewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB536712A7943C20028E28C /* ShareNewPostViewController.swift */; };
 		CEB60B562819EA21001D26B7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB60B552819EA21001D26B7 /* ImageCache.swift */; };
@@ -879,6 +881,8 @@
 		CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+forMastodonAPI.swift"; sourceTree = "<group>"; };
 		CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAndLocalTimelineViewController.swift; sourceTree = "<group>"; };
 		CEAE471A24E8C21500645946 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
+		CEAEA25E2E2ED1D000387F05 /* MastodonQuotedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonQuotedPostViewController.swift; sourceTree = "<group>"; };
+		CEAEA2602E2EE18000387F05 /* MastodonPostCellHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostCellHeaderView.swift; sourceTree = "<group>"; };
 		CEB0CEB428BDE822007C96C6 /* UIViewController+showFromTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showFromTimeline.swift"; sourceTree = "<group>"; };
 		CEB536712A7943C20028E28C /* ShareNewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareNewPostViewController.swift; sourceTree = "<group>"; };
 		CEB60B552819EA21001D26B7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -1803,7 +1807,9 @@
 				CEF6DCBD22EE987D0008B64D /* PostDetail */,
 				CE97DB5F22D4B9D900D2BDC6 /* MastodonPostWrapperViewController.swift */,
 				CE6DADFE2235FA1A006CF38A /* MastodonPostCellViewController.swift */,
+				CEAEA2602E2EE18000387F05 /* MastodonPostCellHeaderView.swift */,
 				CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */,
+				CEAEA25E2E2ED1D000387F05 /* MastodonQuotedPostViewController.swift */,
 				CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */,
 			);
 			path = Post;
@@ -3430,6 +3436,7 @@
 				CE9BB392241C5057004B6421 /* FavouritesTableViewController.swift in Sources */,
 				CE84AB19209526C500A3C4D2 /* NSFWGuardView.swift in Sources */,
 				CE8EFBC825C945F8004FFE4B /* UIViewController+openURL.swift in Sources */,
+				CEAEA2612E2EE18600387F05 /* MastodonPostCellHeaderView.swift in Sources */,
 				CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */,
 				CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */,
 				CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */,
@@ -3459,6 +3466,7 @@
 				CE97D5262340ABF2002DA831 /* ModalNavigationViewController.swift in Sources */,
 				CE90CCEB2377FBBF001C8E80 /* MastodonStateRestoration.swift in Sources */,
 				CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountView.swift in Sources */,
+				CEAEA25F2E2ED1D600387F05 /* MastodonQuotedPostViewController.swift in Sources */,
 				CEF9C9E92AC13A47009ACFD9 /* OpenLinkInSafariVCModifier.swift in Sources */,
 				CEF4E2DA2B798E82008E93DD /* UIViewController+showAsWindow.swift in Sources */,
 				CE2D2AF6210C81ED003B92B8 /* ReadmoreView.swift in Sources */,

@@ -47,27 +47,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.isUserInteractionEnabled = true
     }
     
-    let userNameLabel = UILabel() ※ { v in
-        v.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
-        v.setContentCompressionResistancePriority(UILayoutPriority(248), for: .horizontal)
-    }
-    let acctNameLabel = UILabel() ※ { v in
-        v.setContentHuggingPriority(UILayoutPriority(248), for: .horizontal)
-        v.setContentCompressionResistancePriority(UILayoutPriority(249), for: .horizontal)
-        v.alpha = 0.5
-    }
-    
-    let createdAtLabel = UILabel()
-    let pinnedLabel = UILabel() ※ { v in
-        v.text = "📌"
-    }
-    let isReplyTreeLabel = UILabel() ※ { v in
-        v.text = "💬"
-    }
-    let editedLabel = UILabel() ※ { v in
-        v.text = "✏️"
-    }
-    let visibilityLabel = UILabel()
+    let headerView = MastodonPostCellHeaderView()
     
     let textView = NotSelectableTextView(usingTextLayoutManager: !Defaults.workaroundOfiOS16_TextKit2_WontUpdatesLinkColor) ※ { v in
         v.backgroundColor = nil
@@ -97,11 +77,14 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     
     let pollViewController: MastodonCompactPollViewController
     
+    let quoteViewController: MastodonQuotedPostViewController
+    
     required init(with input: Input, environment: Environment) {
         self.environment = environment
         self.input = input
         self.attachedMediaListViewContrller = AttachedMediaListViewController(with: input.post, environment: Void())
         self.pollViewController = .instantiate(input.post, environment: environment)
+        self.quoteViewController = .instantiate(input.post, environment: environment)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -127,32 +110,17 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
             make.trailing.bottom.equalToSuperview()
             make.width.height.equalToSuperview().multipliedBy(0.5)
         }
-
-        let userStackView = UIStackView(arrangedSubviews: [
-            userNameLabel,
-            acctNameLabel,
-            UIStackView(arrangedSubviews: [
-                isReplyTreeLabel,
-                visibilityLabel,
-                pinnedLabel,
-                editedLabel,
-                createdAtLabel,
-            ]) ※ {
-                $0.axis = .horizontal
-            },
-        ]) ※ {
-            $0.spacing = 6
-            $0.axis = .horizontal
-        }
         
         let topStackView = ContainerView(arrangedSubviews: [
-            userStackView,
+            headerView,
             textView,
         ]) ※ {
+            $0.addArrangedViewController(quoteViewController, parentViewController: self)
             $0.addArrangedViewController(attachedMediaListViewContrller, parentViewController: self)
             $0.addArrangedViewController(pollViewController, parentViewController: self)
             $0.axis = .vertical
-            $0.spacing = 2
+            $0.spacing = 4
+            $0.setCustomSpacing(2, after: headerView)
         }
         self.view.addSubview(topStackView)
         topStackView.snp.makeConstraints { make in
@@ -205,74 +173,13 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         self.iconView.loadImage(from: URL(string: post.account.avatarUrl, relativeTo: environment.app.instance.url))
         self.iconWidthConstraint.constant = CGFloat(Defaults.timelineIconSize)
 
-        // ユーザー名
-        let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineUsernameFontsize))
-        self.userNameLabel.attributedText = NSAttributedString(string: post.account.name.emptyAsNil ?? post.account.screenName, attributes: [
-            .font: userNameFont,
-        ]).emojify(asyncLoadProgressHandler: {
-            self.userNameLabel.setNeedsDisplay()
-        }, emojifyProtocol: post.account)
-        self.userNameLabel.font = userNameFont
-        
-        // acct
-        var acct = post.account.acct
-        if Defaults.acctAbbr {
-            var acctSplitted = acct.split(separator: "@").map { String($0) }
-            if acctSplitted.count == 2 {
-                acctSplitted[1] = acctSplitted[1].replacing(/[a-zA-Z]{4,}/, with: { match in
-                    return "\(match.output.first!)\(match.output.count-2)\(match.output.last!)"
-                })
-            }
-            acct = acctSplitted.joined(separator: "@")
-        }
-        let acctNsString = acct as NSString
-        let acctAttrText = NSMutableAttributedString(string: "@" + (acctNsString as String), attributes: [
-            .font: userNameFont,
-        ])
-        if let splitterPoint = acctNsString.rangeOfCharacter(from: CharacterSet(charactersIn: "@")).optional {
-            acctAttrText.setAttributes(
-                [
-                    .font: userNameFont.withSize(userNameFont.pointSize * 0.75),
-                ],
-                range: NSRange(location: splitterPoint.location + 1, length: acctNsString.length - splitterPoint.location)
-            )
-        }
-        self.acctNameLabel.attributedText = acctAttrText
-
-        // 右上のいろいろ
-        self.isReplyTreeLabel.isHidden = !(Defaults.inReplyToEmoji && post.inReplyToId != nil)
-        self.isReplyTreeLabel.font = userNameFont
-        self.visibilityLabel.isHidden = post.visibility == .public || Defaults.visibilityEmoji == false
-        if Defaults.visibilityEmoji, let emoji = post.visibility.emoji {
-            self.visibilityLabel.isHidden = false
-            self.visibilityLabel.alpha = post.visibility == .unlisted ? 0.5 : 1.0
-            self.visibilityLabel.text = emoji
-            self.visibilityLabel.font = userNameFont
-        } else {
-            self.visibilityLabel.isHidden = true
-        }
-        self.pinnedLabel.isHidden = !input.pinned
-        self.pinnedLabel.font = userNameFont
-        self.editedLabel.isHidden = post.editedAt == nil
-        self.editedLabel.font = userNameFont
+        headerView.load((post: post, pinned: input.pinned))
         
         // ブースト/ふぁぼったかどうか
         
         self.isBoostedView.isHidden = !post.reposted
         self.isFavouritedView.isHidden = !post.favourited
         
-        // 投稿日時の表示
-        let calendar = Calendar(identifier: .gregorian)
-        var timeFormat = "yyyy/MM/dd HH:mm:ss"
-        if calendar.component(.year, from: Date()) == calendar.component(.year, from: post.createdAt) {
-            timeFormat = "MM/dd HH:mm:ss"
-        }
-        if calendar.isDateInToday(post.createdAt) {
-            timeFormat = "HH:mm:ss"
-        }
-        self.createdAtLabel.text = DateUtils.stringFromDate(post.createdAt, format: timeFormat)
-        self.createdAtLabel.font = userNameFont
-
         // 投稿本文の処理
         let html = post.status.replacingOccurrences(of: "</p><p>", with: "<br /><br />").replacingOccurrences(of: "<p>", with: "").replacingOccurrences(of: "</p>", with: "")
         var font = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineTextFontsize))
@@ -306,6 +213,9 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         
         // 投票の処理
         pollViewController.input(post)
+        
+        // 引用投稿の処理
+        quoteViewController.input(post)
     }
     
     @objc func iconTapped() {

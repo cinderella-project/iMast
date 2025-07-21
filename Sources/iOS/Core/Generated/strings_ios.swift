@@ -193,6 +193,20 @@ public enum L10n {
       /// 投稿詳細
       public static let title = L10n.tr("Localizable", "postDetail.title")
     }
+    public enum Quote {
+      /// 引用されている投稿を見る
+      public static let fetchShallowPost = L10n.tr("Localizable", "quote.fetchShallowPost")
+      public enum State {
+        /// 引用されていた投稿は削除されました
+        public static let deleted = L10n.tr("Localizable", "quote.state.deleted")
+        /// 元投稿者によって引用がまだ許可されていません
+        public static let pending = L10n.tr("Localizable", "quote.state.pending")
+        /// 元投稿者によって引用が拒否されました
+        public static let rejectedOrRevoked = L10n.tr("Localizable", "quote.state.rejectedOrRevoked")
+        /// この投稿は閲覧できません
+        public static let unauthorized = L10n.tr("Localizable", "quote.state.unauthorized")
+      }
+    }
     public enum ReportPost {
       /// 送信
       public static let send = L10n.tr("Localizable", "reportPost.send")
