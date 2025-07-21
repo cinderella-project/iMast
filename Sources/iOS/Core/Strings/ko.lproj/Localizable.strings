@@ -64,6 +64,7 @@
 "currentAccount" = "현재 사용자: @%@";
 "myProfile" = "내 프로필";
 "lists" = "리스트";
+"noCreatedLists" = "作成されたリストがありません";
 "settings" = "설정";
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
@@ -86,8 +87,8 @@
 "postDetail.share" = "공유";
 "postDetail.delete" = "삭제";
 "postDetail.reportAbuse" = "신고";
-"postDetail.boost" = "ブースト";
-"postDetail.favorite" = "ふぁぼ";
+"postDetail.boost" = "부스트";
+"postDetail.favorite" = "좋아요";
 "customEmojis.title" = "커스텀 이모지 목록";
 
 "reportPost.title" = "글을 신고하기";

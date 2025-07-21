@@ -64,6 +64,7 @@
 "currentAccount" = "当前账号：@%@";
 "myProfile" = "个人主页";
 "lists" = "列表";
+"noCreatedLists" = "作成されたリストがありません";
 "settings" = "设置";
 "help.title" = "帮助";
 "helpAndFeedback" = "帮助 / 意见反馈";
