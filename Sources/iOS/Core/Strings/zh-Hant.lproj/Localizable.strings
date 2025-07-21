@@ -91,6 +91,12 @@
 "postDetail.favorite" = "收藏";
 "customEmojis.title" = "自定emoji列表";
 
+"quote.state.pending" = "元投稿者によって引用がまだ許可されていません";
+"quote.state.deleted" = "引用されていた投稿は削除されました";
+"quote.state.rejectedOrRevoked" = "元投稿者によって引用が拒否されました";
+"quote.state.unauthorized" = "この投稿は閲覧できません";
+"quote.fetchShallowPost" = "引用されている投稿を見る";
+
 "reportPost.title" = "檢舉嘟文";
 "reportPost.send" = "發送檢舉";
 "reportPost.targetPost.title" = "要檢舉的嘟文";
