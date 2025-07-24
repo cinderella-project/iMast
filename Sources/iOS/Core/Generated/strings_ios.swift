@@ -175,6 +175,10 @@ public enum L10n {
       /// ホーム
       public static let short = L10n.tr("Localizable", "homeTimeline.short")
     }
+    public enum InquiryWithAnotherAccount {
+      /// 他のアカウントで照会
+      public static let action = L10n.tr("Localizable", "inquiryWithAnotherAccount.action")
+    }
     public enum LocalTimeline {
       /// LTL
       public static let short = L10n.tr("Localizable", "localTimeline.short")

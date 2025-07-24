@@ -305,6 +305,9 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
                     items.append(UIAction(title: "リストへ追加/削除", subtitle: "サーバーが古いので利用できません", image: UIImage(systemName: "list.bullet"), attributes: .disabled) { _ in })
                 }
             }
+            if MastodonUserToken.hasTwoOrMoreAccount() {
+                items.append(UICommand(title: L10n.Localizable.InquiryWithAnotherAccount.action, image: UIImage(systemName: "sailboat"), action: #selector(openInquiryWithAnotherAccount)))
+            }
             return items
         } catch {
             print(error)
@@ -335,6 +338,11 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     @objc func openFollowRequestsList() {
         let newVC = FollowRequestsListTableViewController.instantiate(environment: self.environment)
         self.navigationController?.pushViewController(newVC, animated: true)
+    }
+    
+    @objc func openInquiryWithAnotherAccount() {
+        let vc = AccountSelectCushionViewController<SearchViewController>.instantiate(input.url, environment: ())
+        present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

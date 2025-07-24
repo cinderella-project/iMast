@@ -8,13 +8,13 @@
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
-// 
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -142,6 +142,9 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         }
         elements.append(.init(title: L10n.Localizable.PostDetail.share, image: UIImage(systemName: "square.and.arrow.up"), action: #selector(openShareSheet)))
         elements.append(.init(title: L10n.Localizable.Bunmyaku.title, image: UIImage(systemName: "list.bullet.indent"), action: #selector(openBunmyakuVC)))
+        if MastodonUserToken.hasTwoOrMoreAccount() {
+            elements.append(.init(title: L10n.Localizable.InquiryWithAnotherAccount.action, image: UIImage(systemName: "sailboat"), action: #selector(openInquiryWithAnotherAccount)))
+        }
         if input.hasCustomEmoji {
             elements.append(.init(title: L10n.Localizable.CustomEmojis.title, action: #selector(openEmojiListVC)))
         }
@@ -283,5 +286,10 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         vc.popoverPresentationController?.sourceView = othersButton
         vc.popoverPresentationController?.sourceRect = othersButton.bounds
         present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func openInquiryWithAnotherAccount() {
+        let vc = AccountSelectCushionViewController<SearchViewController>.instantiate(input.originalPost.uri, environment: ())
+        present(ModalNavigationViewController(rootViewController: vc), animated: true)
     }
 }

@@ -3,17 +3,17 @@
 //  iMast
 //
 //  Created by rinsuki on 2018/10/27.
-//  
+//
 //  ------------------------------------------------------------------------
 //
 //  Copyright 2017-2019 rinsuki and other contributors.
-// 
+//
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //      http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,11 +27,13 @@ import Ikemen
 import iMastiOSCore
 
 class SearchViewController: UITableViewController, UISearchBarDelegate, Instantiatable {
-    typealias Input = Void
+    typealias Input = String
     typealias Environment = MastodonUserToken
+    let input: Input
     let environment: Environment
 
     required init(with input: Input, environment: Environment) {
+        self.input = input
         self.environment = environment
         super.init(nibName: nil, bundle: nil)
     }
@@ -105,6 +107,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         title = L10n.Search.title
         tableView.delegate = self
         tableView.dataSource = dataSource
+        if searchBar == nil, !input.isEmpty { // InquiryWithAnotherAccount
+            searchBar = .init()
+            if presentor == nil {
+                presentor = self
+            }
+        }
         self.searchBar.delegate = self
         self.refreshControl = .init() ※ { v in
             v.addTarget(self, action: #selector(reloadTrendTags), for: .valueChanged)
@@ -121,7 +129,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !input.isEmpty {
+            searchBar.text = input
+            startSearch()
+        }
+    }
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        startSearch()
+    }
+    
+    func startSearch() {
         guard let text = searchBar.text else {
             return
         }

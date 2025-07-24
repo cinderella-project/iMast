@@ -39,6 +39,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     }
     
     public let id: MastodonID
+    public let uri: String
     let url: String?
     public var parsedUrl: URL? {
         guard let url = url else {
@@ -84,6 +85,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
 
     public enum CodingKeys: String, CodingKey {
         case id
+        case uri
         case url
         case account
         case inReplyToId = "in_reply_to_id"

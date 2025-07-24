@@ -46,7 +46,7 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
         case aboutThisApp
     }
     
-    private lazy var searchResultViewController = SearchViewController.instantiate(environment: self.environment)
+    private lazy var searchResultViewController = SearchViewController.instantiate("", environment: self.environment)
     private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
     private let tableView = UITableView()
     private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] tableView, indexPath, itemIdentifier in
@@ -151,7 +151,7 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
     }
     
     @objc func openSearch() {
-        self.navigationController?.pushViewController(SearchViewController.instantiate(environment: self.environment), animated: true)
+        self.navigationController?.pushViewController(SearchViewController.instantiate("", environment: self.environment), animated: true)
     }
 
     func mastodonVersionBarrier(_ feature: MastodonVersionFeature, callback: @escaping () -> Void) {

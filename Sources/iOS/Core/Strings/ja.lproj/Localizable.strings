@@ -89,6 +89,7 @@
 "postDetail.reportAbuse" = "通報";
 "postDetail.boost" = "ブースト";
 "postDetail.favorite" = "ふぁぼ";
+"inquiryWithAnotherAccount.action" = "他のアカウントで照会";
 "customEmojis.title" = "カスタム絵文字一覧";
 
 "quote.state.pending" = "元投稿者によって引用がまだ許可されていません";
