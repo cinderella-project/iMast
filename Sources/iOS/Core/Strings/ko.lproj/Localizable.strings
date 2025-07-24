@@ -64,7 +64,7 @@
 "currentAccount" = "현재 사용자: @%@";
 "myProfile" = "내 프로필";
 "lists" = "리스트";
-"noCreatedLists" = "作成されたリストがありません";
+"noCreatedLists" = "작성된 목록이 없습니다";
 "settings" = "설정";
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
@@ -89,7 +89,14 @@
 "postDetail.reportAbuse" = "신고";
 "postDetail.boost" = "부스트";
 "postDetail.favorite" = "좋아요";
+"inquiryWithAnotherAccount.action" = "他のアカウントで照会";
 "customEmojis.title" = "커스텀 이모지 목록";
+
+"quote.state.pending" = "원본 게시자에 의해 인용이 아직 허용돼있지 않습니다";
+"quote.state.deleted" = "인용된 게시물이 삭제됐습니다";
+"quote.state.rejectedOrRevoked" = "원본 게시자에 의해 인용이 거부됐습니다";
+"quote.state.unauthorized" = "이 게시물은 열람할 수 없습니다";
+"quote.fetchShallowPost" = "인용된 게시물 보기";
 
 "reportPost.title" = "글을 신고하기";
 "reportPost.send" = "제출";
