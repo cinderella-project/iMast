@@ -89,6 +89,7 @@
 "postDetail.reportAbuse" = "檢舉";
 "postDetail.boost" = "轉嘟";
 "postDetail.favorite" = "收藏";
+"inquiryWithAnotherAccount.action" = "他のアカウントで照会";
 "customEmojis.title" = "自定emoji列表";
 
 "quote.state.pending" = "元投稿者によって引用がまだ許可されていません";
