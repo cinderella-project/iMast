@@ -70,6 +70,21 @@ struct _AddAccountIndexView: View {
     @State var loginTask: Task<Void, Never>?
     @State var path: NavigationPath = .init()
     let errorReport: ((Error) -> Void)?
+    var instanceValidateError: String? {
+        if instance.isEmpty {
+            return ""
+        }
+        if instance.contains("/") {
+            return L10n.Login.ValidationFailed.hostIncludingSlash
+        }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = instance
+        if components.url == nil {
+            return L10n.Login.ValidationFailed.hostIncludingSlash
+        }
+        return nil
+    }
     
     enum LoginState {
         case fetchingServerInfo
@@ -106,7 +121,7 @@ struct _AddAccountIndexView: View {
                     } label: {
                         Text(L10n.Login.loginButton)
                     }
-                    .disabled(instance.count == 0 || loginState != nil)
+                    .disabled(instanceValidateError != nil || loginState != nil)
                     .accessibility(identifier: "loginButton")
                     #if DEBUG
                     Button {
@@ -120,6 +135,8 @@ struct _AddAccountIndexView: View {
                 } footer: {
                     if let loginState = loginState {
                         Text(loginState.description)
+                    } else if let instanceValidateError {
+                        Text(instanceValidateError)
                     }
                 }
             }

@@ -289,6 +289,10 @@ public enum L10n {
       /// ログイン中
       public static let title = L10n.tr("Login", "progressDialog.title")
     }
+    public enum ValidationFailed {
+      /// ホスト名のみを入力してください (https:// や最後の / は含めないでください)
+      public static let hostIncludingSlash = L10n.tr("Login", "validationFailed.hostIncludingSlash")
+    }
     public enum Welcome {
       /// ようこそ、
       /// %@
