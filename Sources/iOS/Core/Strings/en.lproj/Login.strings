@@ -8,6 +8,7 @@
 
 "title" = "Login";
 "pleaseInputMastodonInstance" = "Please input mastodon instance";
+"validationFailed.hostIncludingSlash" = "ホスト名のみを入力してください (https:// や最後の / は含めないでください)";
 "loginButton" = "Login";
 
 "progressDialog.title" = "Logging in...";
