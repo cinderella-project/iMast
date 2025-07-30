@@ -8,6 +8,7 @@
 
 "title" = "登录";
 "pleaseInputMastodonInstance" = "请输入Mastodon服务器链接";
+"validationFailed.hostIncludingSlash" = "ホスト名のみを入力してください (https:// や最後の / は含めないでください)";
 "loginButton" = "登录";
 
 "progressDialog.title" = "正在登录";
