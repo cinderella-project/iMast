@@ -8,6 +8,7 @@
 
 "title" = "Login";
 "pleaseInputMastodonInstance" = "Please input mastodon instance";
+"validationFailed.hostIncludingSlash" = "Please only include host name (without https:// and/or leading slash)";
 "loginButton" = "Login";
 
 "progressDialog.title" = "Logging in...";

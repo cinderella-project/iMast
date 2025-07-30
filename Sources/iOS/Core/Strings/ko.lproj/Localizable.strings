@@ -89,7 +89,7 @@
 "postDetail.reportAbuse" = "신고";
 "postDetail.boost" = "부스트";
 "postDetail.favorite" = "좋아요";
-"inquiryWithAnotherAccount.action" = "他のアカウントで照会";
+"inquiryWithAnotherAccount.action" = "다른 계정으로 조회";
 "customEmojis.title" = "커스텀 이모지 목록";
 
 "quote.state.pending" = "원본 게시자에 의해 인용이 아직 허용돼있지 않습니다";
