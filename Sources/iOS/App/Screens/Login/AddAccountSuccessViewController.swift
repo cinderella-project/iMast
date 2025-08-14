@@ -39,7 +39,13 @@ class AddAccountSuccessViewController: UIViewController {
         v.textAlignment = .center
     }
     let toTimelineButton = UIButton(type: .system) ※ { v in
-        v.configuration = .filled() ※ { c in
+        let baseConfig = if #available(iOS 26.0, *) {
+            UIButton.Configuration.prominentGlass()
+        } else {
+            UIButton.Configuration.filled()
+        }
+        v.isPointerInteractionEnabled = true
+        v.configuration = baseConfig ※ { c in
             c.title = L10n.Login.Welcome.toTimeline
             c.titleTextAttributesTransformer = .init { incoming in
                 var outgoing = incoming
