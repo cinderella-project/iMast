@@ -27,21 +27,27 @@ class PostFabButton: UIButton {
     init() {
         super.init(frame: .zero)
         setImage(UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24)), for: .normal)
-        backgroundColor = tintColor
-        tintColor = .white
-        
         let size = 56
         snp.makeConstraints { make in make.size.equalTo(size) }
-        layer.cornerRadius = CGFloat(size / 2)
 
-        layer.shadowOpacity = 0.25
-        layer.shadowRadius = 2
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        
         isPointerInteractionEnabled = true
-        pointerStyleProvider = { [unowned self] button, effect, shape in
-            return .init(effect: effect, shape: .roundedRect(self.frame, radius: self.layer.cornerRadius))
+
+        if #available(iOS 26.0, *) {
+            configuration = .prominentGlass()
+        } else {
+            backgroundColor = tintColor
+            tintColor = .white
+            
+            layer.cornerRadius = CGFloat(size / 2)
+
+            layer.shadowOpacity = 0.25
+            layer.shadowRadius = 2
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOffset = CGSize(width: 0, height: 2)
+            
+            pointerStyleProvider = { [unowned self] button, effect, shape in
+                return .init(effect: effect, shape: .roundedRect(self.frame, radius: self.layer.cornerRadius))
+            }
         }
     }
     
