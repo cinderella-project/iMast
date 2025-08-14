@@ -25,6 +25,15 @@ import UIKit
 import Mew
 import iMastiOSCore
 
+@inline(__always)
+private func getOthersMenuImage() -> UIImage? {
+    if #available(iOS 26.0, *) {
+        return UIImage(systemName: "ellipsis")
+    } else {
+        return UIImage(systemName: "ellipsis.circle")
+    }
+}
+
 class UserProfileTopViewController: StableTableViewController, Instantiatable, Injectable {
     typealias Input = MastodonAccount
     typealias Environment = MastodonUserToken
@@ -48,7 +57,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     
     let infoCell = UserProfileInfoTableViewCell()
     let othersMenuItem = UIBarButtonItem(
-        image: UIImage(systemName: "ellipsis.circle"), style: .plain,
+        image: getOthersMenuImage(), style: .plain,
         target: nil, action: nil
     )
     
