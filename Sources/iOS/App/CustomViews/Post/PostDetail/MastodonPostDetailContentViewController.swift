@@ -149,13 +149,20 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
     
     func input(_ input: Input) {
         self.input = input
-        cwWarningLabel.text = input.spoilerText
-        updateCWHiddenFlag()
         
         var attrs: [NSAttributedString.Key : Any] = [
             .font: UIFont.preferredFont(forTextStyle: .body),
             .foregroundColor: UIColor.label,
         ]
+        
+        if input.spoilerText.isEmpty {
+            cwWarningLabel.text = input.spoilerText
+        } else {
+            cwWarningLabel.attributedText = NSAttributedString(string: input.spoilerText, attributes: attrs).emojify(asyncLoadProgressHandler: { [weak self] in
+                self?.cwWarningLabel.setNeedsDisplay()
+            }, emojifyProtocol: input)
+        }
+        updateCWHiddenFlag()
         if let post = input as? MastodonPost {
             userIconView.loadImage(from: URL(string: post.account.avatarUrl))
             userNameLabel.text = post.account.name
