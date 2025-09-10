@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         xcode: ["26.0"]
+        os: ["iOS"]
         machine:
           - "macOS-15"
     runs-on: ${{ matrix.machine }}
@@ -23,11 +24,13 @@ jobs:
       run: bundle exec pod install
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
     - run: xcrun agvtool new-version -all ${{ github.run_id }}
+    - run: xcodebuild -downloadPlatform ${{ matrix.os }}
+      if: matrix.os != 'macOS'
     - name: Build
       run: |
         set -o pipefail
         xcodebuild \
-          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" \
+          -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" \
           archive -archivePath "./archive.xcarchive" \
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
     - uses: actions/upload-artifact@v4
@@ -37,7 +40,7 @@ jobs:
         path: ./xcodebuild.log
     - uses: actions/upload-artifact@v4
       with:
-        name: iMast.iOS.GHA.run.${{ github.run_id }}.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.xcarchive
+        name: iMast.${{ matrix.os }}.GHA.run.${{ github.run_id }}.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.xcarchive
         path: ./archive.xcarchive
     - name: Export Stats
       run: python3 .github/export_archive_stats.py ./archive.xcarchive | tee stats.json
@@ -50,6 +53,6 @@ jobs:
           -H "X-IBS-Parent: $(git rev-parse HEAD^)" \
           -H "X-IBS-Repo: ${{ github.repository }}" \
           -H "X-IBS-RunID: ${{ github.run_id }}" \
-          -H "X-IBS-Platform: iOS" \
+          -H "X-IBS-Platform: ${{ matrix.os }}" \
           -H "User-Agent: iMast_BuildStatsUploader/1.0" \
           https://${{ secrets.BINSTATSD_HOST }}/api/v1/register
