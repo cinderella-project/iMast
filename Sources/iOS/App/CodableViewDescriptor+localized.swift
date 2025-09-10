@@ -112,9 +112,11 @@ extension CodableViewDescriptor {
                 return UIMenu(children: createTitleMenuFromUserToken(vc: vc, userToken: userToken, store: store))
             }
         }
+        #if !os(visionOS)
         if #available(iOS 26, *), Defaults.showAccountInSubtitle {
             vc.navigationItem.subtitle = "@" + userToken.acct
         }
+        #endif
         return vc
     }
 }

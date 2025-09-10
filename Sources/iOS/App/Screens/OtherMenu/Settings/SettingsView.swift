@@ -219,16 +219,20 @@ struct SettingsView: View {
         @AppStorage(defaults: .$webmVlcOpen) var webmVlcOpen
         @AppStorage(defaults: .$useAVPlayer) var useAVPlayer
         @AppStorage(defaults: .$useUniversalLink) var useUniversalLinks
+        #if !os(visionOS)
         @AppStorage(defaults: .$showAccountInSubtitle) var showAccountInSubtitle
+        #endif
         
         var body: some View {
             Section(L10n.Preferences.Timeline.title) {
                 Toggle(L10n.Preferences.Timeline.openWebMInVLC, isOn: $webmVlcOpen)
                 Toggle(L10n.Preferences.Timeline.useSystemVideoPlayer, isOn: $useAVPlayer)
                 Toggle(L10n.Preferences.Timeline.useUniversalLinks, isOn: $useUniversalLinks)
+                #if !os(visionOS)
                 if #available(iOS 26, *) {
                     Toggle("現在のアカウントをタイムラインに表示", isOn: $showAccountInSubtitle)
                 }
+                #endif
             }
         }
     }
