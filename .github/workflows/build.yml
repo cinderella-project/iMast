@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         xcode:
-          - "26_beta_5"
+          - "26.0"
         os:
           - macOS
           - iOS

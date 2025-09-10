@@ -7,7 +7,7 @@ jobs:
   archive:
     strategy:
       matrix:
-        xcode: ["26_beta_5"]
+        xcode: ["26.0"]
         machine:
           - "macOS-15"
     runs-on: ${{ matrix.machine }}
