@@ -94,4 +94,5 @@ public class Defaults {
     #endif
 
     @DefaultsKey("workaround_of_ios16_textkit2_wont_updates_link_color") public static var workaroundOfiOS16_TextKit2_WontUpdatesLinkColor = true
+    @available(iOS 26, *) @DefaultsKey("account_in_subtitle") public static var showAccountInSubtitle = true
 }
