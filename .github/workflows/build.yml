@@ -6,14 +6,12 @@ jobs:
   build:
     strategy:
       matrix:
-        xcode:
-          - "26.0"
+        xcode: ["26.0"]
         os:
           - macOS
           - iOS
           - visionOS
-        machine:
-          - "macOS-15"
+        machine: ["macOS-15", "macOS-26"]
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1

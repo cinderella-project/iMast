@@ -9,8 +9,7 @@ jobs:
       matrix:
         xcode: ["26.0"]
         os: ["iOS"]
-        machine:
-          - "macOS-15"
+        machine: ["macOS-15", "macOS-26"]
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v4
