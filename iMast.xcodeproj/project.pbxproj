@@ -283,6 +283,7 @@
 		CEE043AA23780C94007A915E /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043A923780C94007A915E /* PreferencesViewController.swift */; };
 		CEE043AC2378E4B1007A915E /* AccountsPreferencesPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */; };
 		CEE043AE2378E5D2007A915E /* PreferencesPaneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */; };
+		CEE0CF5D2E7C154900F2016C /* MastodonPostDetailQuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0CF5C2E7C154100F2016C /* MastodonPostDetailQuotesViewController.swift */; };
 		CEE2E7A1208B48E60020F86F /* NewPostMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */; };
 		CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE343FA225370A00040EB48 /* NotSelectableTextView.swift */; };
 		CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE3571F1FF5D7D300675DFC /* WebSocketWrapper.swift */; };
@@ -929,6 +930,7 @@
 		CEE043A923780C94007A915E /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		CEE043AB2378E4B1007A915E /* AccountsPreferencesPaneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsPreferencesPaneView.swift; sourceTree = "<group>"; };
 		CEE043AD2378E5D2007A915E /* PreferencesPaneProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPaneProtocol.swift; sourceTree = "<group>"; };
+		CEE0CF5C2E7C154100F2016C /* MastodonPostDetailQuotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailQuotesViewController.swift; sourceTree = "<group>"; };
 		CEE254222004A8B2005FEB6F /* MastodonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonAccount.swift; sourceTree = "<group>"; };
 		CEE254272004B5AA005FEB6F /* MastodonPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPost.swift; sourceTree = "<group>"; };
 		CEE254292004B802005FEB6F /* MastodonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonApplication.swift; sourceTree = "<group>"; };
@@ -2173,6 +2175,7 @@
 		CEF6DCBD22EE987D0008B64D /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
+				CEE0CF5C2E7C154100F2016C /* MastodonPostDetailQuotesViewController.swift */,
 				CEF6DCB922EDEA6F0008B64D /* MastodonPostDetailViewController.swift */,
 				CEF6DCC022EF2C030008B64D /* MastodonPostDetailBoostedUserViewController.swift */,
 				CEF6DCBE22EEA0890008B64D /* MastodonPostDetailContentViewController.swift */,
@@ -3485,6 +3488,7 @@
 				CE8AAC5D291780A900AC7FB4 /* UIViewController+resolveUserProfile.swift in Sources */,
 				CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */,
 				CEF851F6223742D100FEA0F0 /* String+emptyAsNil.swift in Sources */,
+				CEE0CF5D2E7C154900F2016C /* MastodonPostDetailQuotesViewController.swift in Sources */,
 				CE43BEBA23777B5A00133C86 /* DateUtils.swift in Sources */,
 				CEE343FB225370A00040EB48 /* NotSelectableTextView.swift in Sources */,
 				CE04DD1921A9E0B100808033 /* LoopableAVPlayerViewController.swift in Sources */,

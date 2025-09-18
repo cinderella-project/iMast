@@ -102,6 +102,10 @@ public enum L10n {
       public static func favorites(_ p1: Int) -> String {
         return L10n.tr("Localizable", "count.favorites", p1)
       }
+      /// Plural format key: "%#@count@"
+      public static func quotes(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "count.quotes", p1)
+      }
     }
     public enum CustomEmojis {
       /// カスタム絵文字一覧
@@ -190,6 +194,8 @@ public enum L10n {
       public static let delete = L10n.tr("Localizable", "postDetail.delete")
       /// ふぁぼ
       public static let favorite = L10n.tr("Localizable", "postDetail.favorite")
+      /// 引用
+      public static let quote = L10n.tr("Localizable", "postDetail.quote")
       /// 通報
       public static let reportAbuse = L10n.tr("Localizable", "postDetail.reportAbuse")
       /// 共有

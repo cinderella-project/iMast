@@ -59,6 +59,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     public let editedAt: Date?
     public let repostCount: Int
     public let favouritesCount: Int
+    public let quotesCount: Int? // Mastodon 4.5.0 以降
 
     @ReadonlyDefault<False> public var reposted: Bool
     @ReadonlyDefault<False> public var favourited: Bool
@@ -96,6 +97,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case editedAt = "edited_at"
         case repostCount = "reblogs_count"
         case favouritesCount = "favourites_count"
+        case quotesCount = "quotes_count"
         case reposted = "reblogged"
         case favourited = "favourited"
         case muted = "muted"
@@ -597,6 +599,27 @@ extension MastodonEndpoint {
             self.paging = paging
             self.postId = post.id
             self.type = type
+        }
+    }
+    
+    public struct GetPostQuotes: MastodonEndpointWithPagingProtocol {
+        public typealias Response = MastodonEndpointResponseWithPaging<[MastodonPost]>
+        
+        public var endpoint: String { "/api/v1/statuses/\(postId.string)/quotes" }
+        public let method = "GET"
+        
+        public var query: [URLQueryItem] {
+            var q = [URLQueryItem]()
+            paging?.addToQuery(&q)
+            return q
+        }
+        
+        public var postId: MastodonID
+        public var paging: MastodonPagingOption?
+        
+        public init(post: MastodonPost, paging: MastodonPagingOption? = nil) {
+            self.postId = post.id
+            self.paging = paging
         }
     }
 }

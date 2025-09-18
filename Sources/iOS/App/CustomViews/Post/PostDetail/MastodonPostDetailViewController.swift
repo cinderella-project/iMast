@@ -41,6 +41,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         case via
         case boostsCount
         case favouritesCount
+        case quotesCount
         case reactionBar
     }
     
@@ -75,6 +76,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         dataSource.append(.reactionBar)
         if input.originalPost.repostCount > 0 {
             dataSource.append(.boostsCount)
+        }
+        if let quotesCount = input.quotesCount, quotesCount > 0 {
+            dataSource.append(.quotesCount)
         }
         if input.originalPost.favouritesCount > 0 {
             dataSource.append(.favouritesCount)
@@ -195,6 +199,13 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
                 $0.text = L10n.Localizable.Count.favorites(input.originalPost.favouritesCount)
             }
+        case .quotesCount:
+            cell = .init(style: .default, reuseIdentifier: nil)
+            // Mastodon 4.5 では今のところ作者だけが引用一覧を見られる
+            cell.accessoryType = environment.isMe(account: input.originalPost.account) ? .disclosureIndicator : .none
+            cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
+                $0.text = L10n.Localizable.Count.quotes(input.originalPost.quotesCount ?? 0)
+            }
         case .reactionBar:
             cell = TableViewCell<MastodonPostDetailReactionBarViewController>.dequeued(
                 from: tableView,
@@ -210,6 +221,8 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         let source = self.dataSource[indexPath.row]
         switch source {
         case .editedWarning, .boostedUser, .boostsCount, .favouritesCount:
+            return indexPath
+        case .quotesCount where environment.isMe(account: input.originalPost.account):
             return indexPath
         default:
             return nil
@@ -230,6 +243,9 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             self.navigationController?.pushViewController(vc, animated: true)
         case .favouritesCount:
             let vc = MastodonPostDetailReactedUsersViewController.instantiate((type: .favorite, post: input.originalPost), environment: environment)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case .quotesCount:
+            let vc = MastodonPostDetailQuotesViewController.instantiate(input.originalPost, environment: environment)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break

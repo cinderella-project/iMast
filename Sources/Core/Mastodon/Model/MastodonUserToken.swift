@@ -292,4 +292,8 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     static public func defragPinnedScreens(in db: Database, padding: Double = 65535.0) throws {
         try db.execute(sql: "UPDATE user_pinned_screens SET position = new_pos FROM (SELECT id, ROW_NUMBER() OVER (ORDER BY position ASC) * ? as new_pos FROM user_pinned_screens) as new_pos_table WHERE user_pinned_screens.id = new_pos_table.id", arguments: [padding])
     }
+    
+    public func isMe(account: MastodonAccount) -> Bool {
+        return account.acct == screenName?.lowercased()
+    }
 }
