@@ -89,6 +89,7 @@
 "postDetail.reportAbuse" = "신고";
 "postDetail.boost" = "부스트";
 "postDetail.favorite" = "좋아요";
+"postDetail.quote" = "引用";
 "inquiryWithAnotherAccount.action" = "다른 계정으로 조회";
 "customEmojis.title" = "커스텀 이모지 목록";
 
