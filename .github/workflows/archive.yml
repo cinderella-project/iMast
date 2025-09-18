@@ -6,6 +6,7 @@ on:
 jobs:
   archive:
     strategy:
+      fail-fast: false
       matrix:
         xcode: ["26.0"]
         os: ["iOS"]
