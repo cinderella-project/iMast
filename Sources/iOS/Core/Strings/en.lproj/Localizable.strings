@@ -89,6 +89,11 @@
 "postDetail.reportAbuse" = "Report";
 "postDetail.boost" = "Boosts";
 "postDetail.favorite" = "Favorites";
+"postDetail.quote.title" = "引用";
+"postDetail.quote.description.manualApprove" = "引用は可能ですが、引用元の投稿は元投稿者によって手動で承認されるまで表示されません";
+"postDetail.quote.description.denied" = "元投稿者が引用を拒否しています";
+"postDetail.quote.description.unknown" = "引用が可能であるかが判断できません。引用は元投稿者によって拒否される可能性があります";
+"postDetail.quote.description.oldServer" = "このサーバーではサポートされていません";
 "inquiryWithAnotherAccount.action" = "他のアカウントで照会";
 "customEmojis.title" = "Custom Emoji List";
 

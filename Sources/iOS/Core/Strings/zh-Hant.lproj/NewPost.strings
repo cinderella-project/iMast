@@ -12,9 +12,11 @@
 "title" = "發送新嘟文";
 "reply" = "回覆";
 "edit" = "編輯";
+"quote" = "引用";
 
 "selectVisibility.title" = "可見範圍";
 "selectVisibility.description" = "請選擇可見範圍";
+"selectVisibility.disabled.quotingPrivate" = "引用元の投稿の公開範囲より広い範囲には設定できません";
 
 "addImageFromButton" = "← 由此添加大頭貼";
 // Safariのファイル選択時の表記に合わせてほしい

@@ -12,9 +12,11 @@
 "title" = "新帖子";
 "reply" = "回复";
 "edit" = "编辑";
+"quote" = "引用";
 
 "selectVisibility.title" = "可见范围";
 "selectVisibility.description" = "请选择可见范围";
+"selectVisibility.disabled.quotingPrivate" = "引用元の投稿の公開範囲より広い範囲には設定できません";
 
 "addImageFromButton" = "←点击此处添加图片";
 // Safariのファイル選択時の表記に合わせてほしい

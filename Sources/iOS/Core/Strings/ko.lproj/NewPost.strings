@@ -12,9 +12,11 @@
 "title" = "새 툿";
 "reply" = "답글";
 "edit" = "수정";
+"quote" = "引用";
 
 "selectVisibility.title" = "공개범위";
 "selectVisibility.description" = "공개범위를 설정해주세요";
+"selectVisibility.disabled.quotingPrivate" = "引用元の投稿の公開範囲より広い範囲には設定できません";
 
 "addImageFromButton" = "← 에 이미지 추가";
 // Safariのファイル選択時の表記に合わせてほしい
