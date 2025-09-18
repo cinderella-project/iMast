@@ -69,11 +69,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         contentView.nsfwSwitchItem.action = #selector(nsfwButtonTapped(_:))
         contentView.nowPlayingItem.target = viewModel
         contentView.nowPlayingItem.action = #selector(viewModel.insertNowPlayingInfo)
-        contentView.scopeSelectItem.menu = UIMenu(title: "", children: MastodonPostVisibility.allCases.map { visibility in
-            return UIAction(title: visibility.localizedName, image: visibility.uiImage, state: .off) { [weak self] _ in
-                self?.viewModel.visibility = visibility
-            }
-        })
+        makeVisibilityMenu()
 
         viewModel.$visibility
             .prepend(viewModel.visibility)
@@ -108,6 +104,10 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
             let replyPostText = userActivity.newPostReplyPostText ?? ""
             contentView.currentAccountLabel.text! += "\n返信先: @\(replyPostAcct): \(replyPostText.toPlainText().replacingOccurrences(of: "\n", with: " "))"
             title = L10n.NewPost.reply
+        } else if let userActivity, userActivity.newPostQuotePostID != nil, let quotePostAcct = userActivity.newPostQuotePostAcct {
+            let quotePostText = userActivity.newPostQuotePostText ?? ""
+            contentView.currentAccountLabel.text! += "\n引用元: @\(quotePostAcct): \(quotePostText.toPlainText().replacingOccurrences(of: "\n", with: " "))"
+            title = L10n.NewPost.quote
         } else {
             title = L10n.NewPost.title
         }
@@ -116,6 +116,15 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
             viewModel.visibility = scope
         } else if Defaults.usingDefaultVisibility && editPost == nil {
             setVisibilityFromUserInfo()
+        }
+        // private な投稿を引用する場合は private か direct しか使えない
+        if let userActivity, let quoteVisibility = userActivity.newPostQuotePostVisibility, quoteVisibility == .private {
+            switch viewModel.visibility {
+            case .public, .unlisted:
+                viewModel.visibility = .private
+            default:
+                break
+            }
         }
 
         if let editPost = editPost {
@@ -237,6 +246,26 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func makeVisibilityMenu() {
+        let quoteVisibility = userActivity?.newPostQuotePostVisibility
+        contentView.scopeSelectItem.menu = UIMenu(title: "", children: MastodonPostVisibility.allCases.map { visibility in
+            switch quoteVisibility {
+            case nil, .public, .unlisted:
+                break
+            default:
+                switch visibility {
+                case .public, .unlisted:
+                    return UIAction(title: visibility.localizedName, subtitle: L10n.NewPost.SelectVisibility.Disabled.quotingPrivate, image: visibility.uiImage, attributes: [.disabled], state: .off) { _ in }
+                default:
+                    break
+                }
+            } 
+            return UIAction(title: visibility.localizedName, image: visibility.uiImage, state: .off) { [weak self] _ in
+                self?.viewModel.visibility = visibility
+            }
+        })
+    }
     
     @objc func sendPost(_ sender: Any) {
         let baseMessage = L10n.NewPost.Alerts.Sending.pleaseWait+"\n"
@@ -321,7 +350,8 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
                 mediaIds: media.map { $0.id },
                 spoiler: spoilerText,
                 sensitive: isSensitive,
-                inReplyToPostID: self.userActivity.flatMap { $0.newPostReplyPostID }
+                inReplyToPostID: self.userActivity.flatMap { $0.newPostReplyPostID },
+                quotedPostID: self.userActivity.flatMap { $0.newPostQuotePostID }
             ).request(with: self.userToken)
         }.then(in: .main) {
             self.clearContent()

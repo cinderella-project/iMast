@@ -194,14 +194,26 @@ public enum L10n {
       public static let delete = L10n.tr("Localizable", "postDetail.delete")
       /// ふぁぼ
       public static let favorite = L10n.tr("Localizable", "postDetail.favorite")
-      /// 引用
-      public static let quote = L10n.tr("Localizable", "postDetail.quote")
       /// 通報
       public static let reportAbuse = L10n.tr("Localizable", "postDetail.reportAbuse")
       /// 共有
       public static let share = L10n.tr("Localizable", "postDetail.share")
       /// 投稿詳細
       public static let title = L10n.tr("Localizable", "postDetail.title")
+      public enum Quote {
+        /// 引用
+        public static let title = L10n.tr("Localizable", "postDetail.quote.title")
+        public enum Description {
+          /// 元投稿者が引用を拒否しています
+          public static let denied = L10n.tr("Localizable", "postDetail.quote.description.denied")
+          /// 引用は可能ですが、引用元の投稿は元投稿者によって手動で承認されるまで表示されません
+          public static let manualApprove = L10n.tr("Localizable", "postDetail.quote.description.manualApprove")
+          /// このサーバーではサポートされていません
+          public static let oldServer = L10n.tr("Localizable", "postDetail.quote.description.oldServer")
+          /// 引用が可能であるかが判断できません。引用は元投稿者によって拒否される可能性があります
+          public static let unknown = L10n.tr("Localizable", "postDetail.quote.description.unknown")
+        }
+      }
     }
     public enum Quote {
       /// 引用されている投稿を見る
@@ -315,6 +327,8 @@ public enum L10n {
     public static let addImageFromButton = L10n.tr("NewPost", "addImageFromButton")
     /// 編集
     public static let edit = L10n.tr("NewPost", "edit")
+    /// 引用
+    public static let quote = L10n.tr("NewPost", "quote")
     /// 返信
     public static let reply = L10n.tr("NewPost", "reply")
     /// 送信
@@ -384,6 +398,10 @@ public enum L10n {
       public static let description = L10n.tr("NewPost", "selectVisibility.description")
       /// 公開範囲
       public static let title = L10n.tr("NewPost", "selectVisibility.title")
+      public enum Disabled {
+        /// 引用元の投稿の公開範囲より広い範囲には設定できません
+        public static let quotingPrivate = L10n.tr("NewPost", "selectVisibility.disabled.quotingPrivate")
+      }
     }
   }
   public enum Notification {

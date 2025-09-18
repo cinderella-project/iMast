@@ -12,9 +12,11 @@
 "title" = "新規投稿";
 "reply" = "返信";
 "edit" = "編集";
+"quote" = "引用";
 
 "selectVisibility.title" = "公開範囲";
 "selectVisibility.description" = "公開範囲を選択してください";
+"selectVisibility.disabled.quotingPrivate" = "引用元の投稿の公開範囲より広い範囲には設定できません";
 
 "addImageFromButton" = "← から画像を追加";
 // Safariのファイル選択時の表記に合わせてほしい

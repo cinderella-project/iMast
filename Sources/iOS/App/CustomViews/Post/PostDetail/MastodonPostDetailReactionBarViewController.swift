@@ -96,7 +96,8 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         }
         
         replyButton.addTarget(self, action: #selector(self.openReplyVC), for: .touchUpInside)
-        boostButton.addTarget(self, action: #selector(self.boostButtonTapped), for: .touchUpInside)
+        boostButton.showsMenuAsPrimaryAction = true
+        boostButton.preferredMenuElementOrder = .priority
         favouriteButton.addTarget(self, action: #selector(self.favouriteButtonTapped), for: .touchUpInside)
         othersButton.showsMenuAsPrimaryAction = true
         
@@ -109,7 +110,25 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         favouriteButton.setTitleColor(input.favourited ? UIColor(resource: .barFavourite) : .gray, for: .normal)
 
         // build
-        var othersMenuChildrens = [UICommand]()
+        let quoteCommand = UICommand(title: L10n.Localizable.PostDetail.Quote.title, image: .init(systemName: "quote.opening")!, action: #selector(openQuoteVC))
+        switch input.quoteApproval?.currentUser {
+        case nil:
+            quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.oldServer
+            quoteCommand.attributes = .disabled
+        case .automatic:
+            break
+        case .manual:
+            quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.manualApprove
+        case .denied:
+            quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.denied
+            quoteCommand.attributes = .disabled
+        case .unknown:
+            quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.unknown
+        }
+        boostButton.menu = UIMenu(title: "", children: [
+            UICommand(title: input.reposted ? "ブースト解除" : "ブースト", action: #selector(self.boostButtonTapped)),
+            quoteCommand,
+        ])
         othersButton.menu = UIMenu(children: [UIDeferredMenuElement { [weak self] completion in
             guard let strongSelf = self else {
                 completion([])
@@ -159,6 +178,12 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
         let post = self.input.originalPost
         showAsWindow(userActivity: .init(newPostWithMastodonUserToken: environment) ※ {
             $0.setNewPostReplyInfo(post)
+        }, fallback: .push)
+    }
+    
+    @objc func openQuoteVC() {
+        showAsWindow(userActivity: .init(newPostWithMastodonUserToken: environment) ※ {
+            $0.setNewPostQuoteInfo(input.originalPost)
         }, fallback: .push)
     }
     

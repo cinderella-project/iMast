@@ -83,6 +83,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     public var poll: MastodonPoll?
     public let language: String?
     public var quote: MastodonPostQuote?
+    public var quoteApproval: MastodonQuoteApproval? // Mastodon 4.5.0 以降
 
     public enum CodingKeys: String, CodingKey {
         case id
@@ -115,6 +116,7 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
         case poll
         case language
         case quote
+        case quoteApproval = "quote_approval"
     }
 }
 
@@ -230,6 +232,21 @@ public struct MastodonPoll: Codable, MastodonEndpointResponse, Sendable {
 public struct MastodonPollOption: Codable {
     public let title: String
     public let votes_count: Int
+}
+
+public struct MastodonQuoteApproval: Codable {
+    public let currentUser: MastodonQuoteAllowPolicy?
+    
+    public enum CodingKeys: String, CodingKey {
+        case currentUser = "current_user"
+    }
+}
+
+public enum MastodonQuoteAllowPolicy: String, Codable {
+    case automatic
+    case manual
+    case denied
+    case unknown
 }
 
 extension MastodonUserToken {
@@ -450,7 +467,8 @@ extension MastodonEndpoint {
             visibility: MastodonPostVisibility? = nil,
             mediaIds: [MastodonID] = [],
             spoiler: String = "", sensitive: Bool = false,
-            inReplyToPostID: MastodonID? = nil
+            inReplyToPostID: MastodonID? = nil,
+            quotedPostID: MastodonID? = nil
         ) {
             self.status = status
             self.visibility = visibility
@@ -458,6 +476,7 @@ extension MastodonEndpoint {
             self.spoiler = spoiler
             self.sensitive = sensitive
             self.inReplyToPostId = inReplyToPostID
+            self.quotedPostId = quotedPostID
         }
         
         public typealias Response = MastodonPost
@@ -474,6 +493,7 @@ extension MastodonEndpoint {
         public var spoiler: String = ""
         public var sensitive: Bool = false
         public var inReplyToPostId: MastodonID?
+        public var quotedPostId: MastodonID?
         
         enum CodingKeys: String, CodingKey {
             case status
@@ -482,6 +502,7 @@ extension MastodonEndpoint {
             case spoiler = "spoiler_text"
             case sensitive
             case inReplyToPostId = "in_reply_to_id"
+            case quotedPostId = "quoted_status_id"
         }
     }
     

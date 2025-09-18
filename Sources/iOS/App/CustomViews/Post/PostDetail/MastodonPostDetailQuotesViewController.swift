@@ -54,7 +54,7 @@ class MastodonPostDetailQuotesViewController: UITableViewController, Instantiata
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = L10n.Localizable.PostDetail.quote
+        title = L10n.Localizable.PostDetail.Quote.title
         readmoreView.target = self
         readmoreView.action = #selector(readMore)
         readmoreView.setTableView(tableView)

@@ -31,10 +31,17 @@ extension NSUserActivity {
     @UserInfoProperty("jp.pronama.imast.private.newpost.suffix") public var newPostSuffix: String?
     @UserInfoProperty("jp.pronama.imast.private.newpost.visibility") public var newPostVisibility: String?
     @UserInfoProperty("jp.pronama.imast.private.newpost.currentText") public var newPostCurrentText: String?
+
     @UserInfoCodableProperty("jp.pronama.imast.private.newpost.replyPostId") public var newPostReplyPostID: MastodonID?
     @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostAcct") public var newPostReplyPostAcct: String?
     @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostText") public var newPostReplyPostText: String?
     @UserInfoProperty("jp.pronama.imast.private.newpost.replyPostSpoilerText") public var newPostReplyPostSpoilerText: String?
+
+    @UserInfoCodableProperty("jp.pronama.imast.private.newpost.quotePostId") public var newPostQuotePostID: MastodonID?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.quotePostAcct") public var newPostQuotePostAcct: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.quotePostText") public var newPostQuotePostText: String?
+    @UserInfoProperty("jp.pronama.imast.private.newpost.quotePostSpoilerText") public var newPostQuotePostSpoilerText: String?
+    @UserInfoCodableProperty("jp.pronama.imast.private.newpost.quotePostVisibility") public var newPostQuotePostVisibility: MastodonPostVisibility?
     
     public convenience init(newPostWithMastodonUserToken userToken: MastodonUserToken) {
         self.init(activityType: NSUserActivity.activityTypeNewPost)
@@ -72,5 +79,13 @@ extension NSUserActivity {
             }
         }
         newPostCurrentText = accounts.map { "@\($0) " }.joined()
+    }
+
+    public func setNewPostQuoteInfo(_ post: MastodonPost) {
+        newPostQuotePostID = post.id
+        newPostQuotePostAcct = post.account.acct
+        newPostQuotePostText = post.status
+        newPostQuotePostSpoilerText = post.spoilerText
+        newPostQuotePostVisibility = post.visibility
     }
 }
