@@ -477,6 +477,7 @@ extension MastodonEndpoint {
             self.sensitive = sensitive
             self.inReplyToPostId = inReplyToPostID
             self.quotedPostId = quotedPostID
+            self.fedibirdQuoteId = quotedPostID
         }
         
         public typealias Response = MastodonPost
@@ -494,6 +495,7 @@ extension MastodonEndpoint {
         public var sensitive: Bool = false
         public var inReplyToPostId: MastodonID?
         public var quotedPostId: MastodonID?
+        public var fedibirdQuoteId: MastodonID? // Fedibird 互換
         
         enum CodingKeys: String, CodingKey {
             case status
@@ -503,6 +505,7 @@ extension MastodonEndpoint {
             case sensitive
             case inReplyToPostId = "in_reply_to_id"
             case quotedPostId = "quoted_status_id"
+            case fedibirdQuoteId = "quote_id"
         }
     }
     

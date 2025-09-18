@@ -111,10 +111,20 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
 
         // build
         let quoteCommand = UICommand(title: L10n.Localizable.PostDetail.Quote.title, image: .init(systemName: "quote.opening")!, action: #selector(openQuoteVC))
-        switch input.quoteApproval?.currentUser {
+        switch input.originalPost.quoteApproval?.currentUser {
         case nil:
-            quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.oldServer
-            quoteCommand.attributes = .disabled
+            if let info = environment.app.instance.getInfoFromCache(), info.fedibirdFeatureQuote ?? false {
+                switch input.originalPost.visibility {
+                case .public, .unlisted:
+                    break
+                case .private, .direct:
+                    quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.denied
+                    quoteCommand.attributes = .disabled
+                }
+            } else {
+                quoteCommand.subtitle = L10n.Localizable.PostDetail.Quote.Description.oldServer
+                quoteCommand.attributes = .disabled
+            }
         case .automatic:
             break
         case .manual:

@@ -37,6 +37,7 @@ public class MastodonInstance {
     public struct Info: Codable, MastodonEndpointResponse {
         public let version: String
         public let urls: Urls
+        public let fedibirdFeatureQuote: Bool? // Fedibirdの引用投稿に対応しているか?
         
         public struct Urls: Codable {
             public let streamingApi: String
@@ -49,6 +50,7 @@ public class MastodonInstance {
         enum CodingKeys: String, CodingKey {
             case version
             case urls
+            case fedibirdFeatureQuote = "feature_quote"
         }
     }
     
@@ -114,6 +116,10 @@ public class MastodonInstance {
         
         mastodonInstanceInfoCache[self.hostName] = json
         return json
+    }
+
+    public func getInfoFromCache() -> Info? {
+        return mastodonInstanceInfoCache[self.hostName]
     }
     
     public func createApp(name: String = defaultAppName, redirect_uri: String = "imast://callback/") async throws -> MastodonApp {
