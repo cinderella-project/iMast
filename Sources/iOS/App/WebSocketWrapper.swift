@@ -100,12 +100,16 @@ private struct SubscribeRequest: Encodable {
     let list: String?
 }
 
+enum WebSocketConnectError: Error {
+    case failedToBuildURL
+    case failedToBuildURLInvalidScheme
+}
+
 extension MastodonUserToken {
     func getWebSocket(endpoint: String) async throws -> WebSocketWrapper {
         let info = try await self.app.instance.getInfo()
         let isMultiEndpoint = endpoint.contains(" ")
-        var streamingUrlString = ""
-        streamingUrlString += info.urls.streamingApi ?? "wss://"+self.app.instance.hostName
+        var streamingUrlString = info.urls.streamingApi
         streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
         let protocols: [String]?
         if MastodonVersionInt(info.version).supportingFeature(.accessTokenInWebSocketProtocol) {
@@ -114,7 +118,13 @@ extension MastodonUserToken {
             streamingUrlString += "&access_token=" + self.token
             protocols = nil
         }
-        var urlRequest = URLRequest(url: URL(string: streamingUrlString)!)
+        guard let wsUrl = URL(string: streamingUrlString) else {
+            throw WebSocketConnectError.failedToBuildURL
+        }
+        guard wsUrl.scheme != nil else {
+            throw WebSocketConnectError.failedToBuildURLInvalidScheme
+        }
+        var urlRequest = URLRequest(url: wsUrl)
         urlRequest.addValue(UserAgentString, forHTTPHeaderField: "User-Agent")
         let webSocket =  WebSocket(request: urlRequest, protocols: protocols)
         let wrap = WebSocketWrapper(webSocket: webSocket)
