@@ -60,6 +60,9 @@ class NewPostView: UIView {
     }
     private lazy var imageSelectItem = UIBarButtonItem(customView: imageSelectButton)
     let imageSelectButton = UIButton(type: .system) ※ {
+        if #available(iOS 26, *) {
+            $0.tintColor = .label
+        }
         $0.setImage(.init(systemName: "camera.fill"), for: .normal)
         $0.setTitle(" 0", for: .normal)
         $0.snp.makeConstraints { make in
