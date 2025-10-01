@@ -52,8 +52,10 @@ class ShareNewPostView: UIView {
     }
     
     let toolBar = UIToolbar() ※ {
-        $0.snp.makeConstraints { make in
-            make.height.equalTo(44)
+        if #unavailable(iOS 26) {
+            $0.snp.makeConstraints { make in
+                make.height.equalTo(44)
+            }
         }
     }
     private lazy var imageSelectItem = UIBarButtonItem(customView: imageSelectButton)
@@ -89,7 +91,11 @@ class ShareNewPostView: UIView {
             scopeSelectItem,
         ]
         toolBar.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+            if #available(iOS 26, *) {
+                make.bottom.equalTo(keyboardLayoutGuide.snp.top).inset(-16)
+            } else {
+                make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+            }
             make.leading.trailing.equalToSuperview()
         }
         
@@ -107,7 +113,11 @@ class ShareNewPostView: UIView {
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(toolBar.snp.top)
+            if #available(iOS 26, *) {
+                make.bottom.equalTo(toolBar.snp.top).inset(-16)
+            } else {
+                make.bottom.equalTo(toolBar.snp.top)
+            }
         }
         cwInput.snp.makeConstraints { make in
             make.leading.trailing.equalTo(safeAreaLayoutGuide)
@@ -121,7 +131,12 @@ class ShareNewPostView: UIView {
         
         addSubview(currentAccountLabel)
         currentAccountLabel.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(8)
+            if #available(iOS 26, *) {
+                make.bottom.equalTo(toolBar.snp.top).inset(-16)
+            } else {
+                make.bottom.equalTo(safeAreaLayoutGuide).inset(8)
+            }
         }
         bringSubviewToFront(toolBar)
     }

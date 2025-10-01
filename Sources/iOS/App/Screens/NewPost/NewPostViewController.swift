@@ -164,7 +164,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
             .init(title: L10n.NewPost.send, style: .done, target: self, action: #selector(sendPost(_:))),
         ]
         
-        additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
+        if #unavailable(iOS 26) {
+            additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
+        }
         configureObserver()
         
         #if os(visionOS)
@@ -309,6 +311,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
     
     #if !os(visionOS)
     @objc func keyboardWillShow(notification: Notification?) {
+        guard #unavailable(iOS 26) else {
+            return
+        }
         self.view.layoutIfNeeded()
         guard let rect = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
@@ -324,6 +329,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         additionalSafeAreaInsets.bottom = max(rect.size.height - bottom, 0) + 44
     }
     @objc func keyboardWillHide(notification: Notification?) {
+        guard #unavailable(iOS 26) else {
+            return
+        }
         additionalSafeAreaInsets.bottom = 44
     }
     #endif

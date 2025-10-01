@@ -52,8 +52,10 @@ class NewPostView: UIView {
     }
     
     let toolBar = UIToolbar() ※ {
-        $0.snp.makeConstraints { make in
-            make.height.equalTo(44)
+        if #unavailable(iOS 26) {
+            $0.snp.makeConstraints { make in
+                make.height.equalTo(44)
+            }
         }
     }
     private lazy var imageSelectItem = UIBarButtonItem(customView: imageSelectButton)
@@ -116,7 +118,16 @@ class NewPostView: UIView {
         
         addSubview(currentAccountLabel)
         currentAccountLabel.snp.makeConstraints { make in
+            #if !os(visionOS)
+            make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(8)
+            if #available(iOS 26, *) {
+                make.bottom.equalTo(toolBar.snp.top).inset(-16)
+            } else {
+                make.bottom.equalTo(safeAreaLayoutGuide).inset(8)
+            }
+            #else
             make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(8)
+            #endif
         }
         #if !os(visionOS)
         addSubview(toolBar)
@@ -127,7 +138,11 @@ class NewPostView: UIView {
             nowPlayingItem,
         ]
         toolBar.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+            if #available(iOS 26, *) {
+                make.bottom.equalTo(keyboardLayoutGuide.snp.top).inset(-16)
+            } else {
+                make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+            }
             make.leading.trailing.equalToSuperview()
         }
         bringSubviewToFront(toolBar)
