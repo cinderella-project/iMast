@@ -216,6 +216,7 @@
 		CEA1FF0022BD19BC00034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA1FEFE22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift */; };
 		CEA528D528527DE70095EB1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA528D428527DE70095EB1F /* SettingsView.swift */; };
 		CEA787D42696EEB7002C9A5C /* UploadableMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE099D022194315800A4BCCB /* UploadableMedia.swift */; };
+		CEAA86462E8DACDA004DED5B /* NewPostViewController+visionOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA86452E8DACD6004DED5B /* NewPostViewController+visionOS.swift */; };
 		CEABB1C62377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */; };
 		CEAC1FBF272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */; };
 		CEAE471B24E8C21500645946 /* WeakRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE471A24E8C21500645946 /* WeakRef.swift */; };
@@ -879,6 +880,7 @@
 		CEA3C30522BABF6100BF68C0 /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		CEA528D428527DE70095EB1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CEA95255231135B900A8CCA2 /* MastodonStateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonStateRestoration.swift; sourceTree = "<group>"; };
+		CEAA86452E8DACD6004DED5B /* NewPostViewController+visionOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewPostViewController+visionOS.swift"; sourceTree = "<group>"; };
 		CEABB1C52377AD9D00018C35 /* JSONDecoder+forMastodonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+forMastodonAPI.swift"; sourceTree = "<group>"; };
 		CEAC1FBE272AD49C0064FACA /* HomeAndLocalTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAndLocalTimelineViewController.swift; sourceTree = "<group>"; };
 		CEAE471A24E8C21500645946 /* WeakRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRef.swift; sourceTree = "<group>"; };
@@ -1959,6 +1961,7 @@
 			children = (
 				CEE674D828B0561600667E04 /* NewPostView.swift */,
 				2A492A7E1EB3584500F81E73 /* NewPostViewController.swift */,
+				CEAA86452E8DACD6004DED5B /* NewPostViewController+visionOS.swift */,
 				CEE2E79F208B48E60020F86F /* NewPostMediaListViewController.swift */,
 				CEF4E2DE2B79C120008E93DD /* NewPostViewModel.swift */,
 			);
@@ -3454,6 +3457,7 @@
 				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */,
+				CEAA86462E8DACDA004DED5B /* NewPostViewController+visionOS.swift in Sources */,
 				CE8C1C40242B1F3400FC8B46 /* PostFabButton.swift in Sources */,
 				CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */,
 				CE5460A127F592E400A676B3 /* MastodonEditHistoryViewController.swift in Sources */,

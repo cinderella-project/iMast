@@ -168,77 +168,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         configureObserver()
         
         #if os(visionOS)
-        let mediaVC = NewPostMediaListViewController(viewModel: viewModel, inline: true)
-        contentView.stackView.addArrangedSubview(mediaVC.view)
-        addChild(mediaVC)
-        self.mediaVC = mediaVC
-        viewModel.$media
-            .prepend(viewModel.media)
-            .receive(on: DispatchQueue.main)
-            .sink {
-                mediaVC.view.isHidden = $0.count == 0
-            }
-            .store(in: &cancellables)
-        
-        struct OrnamentView: View {
-            @StateObject var viewModel: NewPostViewModel
-            
-            var body: some View {
-                HStack {
-                    Button {
-                        viewModel.alertPresenter?.mediaVC?.addFromPhotoLibrary()
-                    } label: {
-                        Image(systemName: "photo")
-                        Text("\(viewModel.media.count)")
-                    }
-
-                    
-                    Toggle(isOn: $viewModel.isNSFW) {
-                        Image(systemName: viewModel.isNSFW ? "eye.slash" : "eye" )
-                    }
-                    .toggleStyle(.button)
-                    .help("NSFW (Current: \(viewModel.isNSFW ? "ON" : "OFF"))")
-
-                    Menu {
-                        ForEach(MastodonPostVisibility.allCases) { v in
-                            Button {
-                                viewModel.visibility = v
-                            } label: {
-                                Label {
-                                    Text(v.localizedName)
-                                } icon: {
-                                    Image(systemName: v.sfSymbolsName)
-                                }
-                            }
-                        }
-                    } label: {
-                        Image(systemName: viewModel.visibility.sfSymbolsName)
-                            .aspectRatio(1, contentMode: .fit)
-                    }
-                    .menuStyle(.borderlessButton)
-                    .help("Visibility (Current: \(viewModel.visibility.localizedName))")
-
-                    Divider()
-
-                    Button {
-                        viewModel.insertNowPlayingInfo()
-                    } label: {
-                        Image(systemName: "music.note")
-                    }
-                    .help("Insert NowPlaying")
-                }
-                .padding()
-                .buttonStyle(.borderless)
-                .glassBackgroundEffect()
-            }
-        }
-        
-        let ornament = UIHostingOrnament(sceneAnchor: .bottom, contentAlignment: .center) {
-            OrnamentView(viewModel: self.viewModel)
-        }
-        
-        ornaments = [ornament]
-        
+        setupOrnaments()
         #endif
     }
 
