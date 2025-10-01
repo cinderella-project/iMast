@@ -12,7 +12,7 @@ jobs:
           - macOS
           - iOS
           - visionOS
-        machine: ["macOS-15", "macOS-26"]
+        machine: ["macOS-26"]
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1
