@@ -177,7 +177,6 @@
 		CE8EFA6525C8836B004FFE4B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFA6425C88357004FFE4B /* main.swift */; };
 		CE8EFA8C25C91D2C004FFE4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFA8E25C91D2C004FFE4B /* Localizable.strings */; };
 		CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEA25C93C17004FFE4B /* strings.swift */; };
-		CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEB25C93C17004FFE4B /* assets.swift */; };
 		CE8EFAFA25C93C46004FFE4B /* Menu.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE8EFAFC25C93C46004FFE4B /* Menu.strings */; };
 		CE8EFB2E25C9448B004FFE4B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEBC23777BBD00133C86 /* Defaults.swift */; };
 		CE8EFB4725C944B2004FFE4B /* DefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DFEDF1FEE4C51005A480D /* DefaultsKey.swift */; };
@@ -241,7 +240,6 @@
 		CEC4704C25DC725F003E3AEF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB983225C7ECBB00D55B03 /* TimelineViewController.swift */; };
 		CEC4704D25DC725F003E3AEF /* strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEA25C93C17004FFE4B /* strings.swift */; };
 		CEC4704E25DC725F003E3AEF /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB988E25C823E500D55B03 /* MainWindow.swift */; };
-		CEC4704F25DC725F003E3AEF /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFAEB25C93C17004FFE4B /* assets.swift */; };
 		CEC4705025DC725F003E3AEF /* AddMastodonAccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C7CC23B0B43500E0ADA1 /* AddMastodonAccountSheetView.swift */; };
 		CEC4705125DC725F003E3AEF /* AutolayoutTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77944F25D9C10D00AF9F2C /* AutolayoutTextView.swift */; };
 		CEC4705225DC725F003E3AEF /* NewPostWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98A825C827A400D55B03 /* NewPostWindow.swift */; };
@@ -844,7 +842,6 @@
 		CE8EFA8D25C91D2C004FFE4B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE8EFAB825C93BE8004FFE4B /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		CE8EFAEA25C93C17004FFE4B /* strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = strings.swift; sourceTree = "<group>"; };
-		CE8EFAEB25C93C17004FFE4B /* assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		CE8EFAFB25C93C46004FFE4B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Menu.strings; sourceTree = "<group>"; };
 		CE8FD55C22D06D9300331F15 /* UITextFieldWithInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithInsets.swift; sourceTree = "<group>"; };
 		CE909D132410FA8A007CE251 /* NotificationTableWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableWrapperViewController.swift; sourceTree = "<group>"; };
@@ -1736,7 +1733,6 @@
 			isa = PBXGroup;
 			children = (
 				CE3AFD8425E0BF2F001B71E0 /* licenses.json */,
-				CE8EFAEB25C93C17004FFE4B /* assets.swift */,
 				CE8EFAEA25C93C17004FFE4B /* strings.swift */,
 			);
 			path = Generated;
@@ -3654,7 +3650,6 @@
 				CEC4704D25DC725F003E3AEF /* strings.swift in Sources */,
 				CEC4704E25DC725F003E3AEF /* MainWindow.swift in Sources */,
 				CEC01AFD25DFC76B004D18C0 /* HasUserToken.swift in Sources */,
-				CEC4704F25DC725F003E3AEF /* assets.swift in Sources */,
 				CEF763FF25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEC4705025DC725F003E3AEF /* AddMastodonAccountSheetView.swift in Sources */,
 				CEC4705125DC725F003E3AEF /* AutolayoutTextView.swift in Sources */,
@@ -3709,7 +3704,6 @@
 				CE8EFAEC25C93C17004FFE4B /* strings.swift in Sources */,
 				CEFB988F25C823E500D55B03 /* MainWindow.swift in Sources */,
 				CEC01AFC25DFC76B004D18C0 /* HasUserToken.swift in Sources */,
-				CE8EFAED25C93C17004FFE4B /* assets.swift in Sources */,
 				CEF763FE25DF7AB000902415 /* LayeredImageView.swift in Sources */,
 				CEF6C7CE23B0B46D00E0ADA1 /* AddMastodonAccountSheetView.swift in Sources */,
 				CE77945025D9C10E00AF9F2C /* AutolayoutTextView.swift in Sources */,
