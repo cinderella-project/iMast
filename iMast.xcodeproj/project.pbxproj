@@ -128,6 +128,7 @@
 		CE54BC7420E033E20034B63E /* StableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7320E033E20034B63E /* StableTableViewController.swift */; };
 		CE54BC7720E041A50034B63E /* UserProfileInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */; };
 		CE54BC7B20E0546E0034B63E /* UserProfileBioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */; };
+		CE5875B82E9B9EEA0092E4CF /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CE5875B72E9B9EEA0092E4CF /* AppIcon.icon */; };
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
 		CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
@@ -768,6 +769,7 @@
 		CE54BC7320E033E20034B63E /* StableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StableTableViewController.swift; sourceTree = "<group>"; };
 		CE54BC7520E041A50034B63E /* UserProfileInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CE54BC7920E0546E0034B63E /* UserProfileBioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBioViewController.swift; sourceTree = "<group>"; };
+		CE5875B72E9B9EEA0092E4CF /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaListViewController.swift; sourceTree = "<group>"; };
 		CE5D9DF626B3C19500895234 /* deferAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deferAsync.swift; sourceTree = "<group>"; };
 		CE5DE87A21F4FF9D0008D437 /* UIViewController+presentAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAsync.swift"; sourceTree = "<group>"; };
@@ -1326,6 +1328,7 @@
 		CE3D453523766DE5006F1198 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CE5875B72E9B9EEA0092E4CF /* AppIcon.icon */,
 				CEF47F612A79322000D1AEAB /* swiftgen.yml */,
 				CE2E4B452AC284F900E1DDD4 /* Dummy.strings */,
 				2A67AF4F1EB7D7FC003D1206 /* iMast.entitlements */,
@@ -2740,6 +2743,7 @@
 				2AF352251EAB9C5600777C2E /* LaunchScreen.storyboard in Resources */,
 				CE7AE4222BB7F1C8008E6715 /* PrivacyInfo.xcprivacy in Resources */,
 				2AF352221EAB9C5600777C2E /* Assets.xcassets in Resources */,
+				CE5875B82E9B9EEA0092E4CF /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
