@@ -337,6 +337,7 @@
 		CEEE37E72B717B1B00320C49 /* NewPostSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */; };
 		CEEE37EB2B717D2100320C49 /* NSUserActivity+NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */; };
 		CEEEB56A2D63C97E004F199E /* ImageCacheUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEEB5692D63C97C004F199E /* ImageCacheUtils.swift */; };
+		CEF03DAF2F1E5464009033D1 /* LiquidCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF03DAE2F1E5462009033D1 /* LiquidCheck.swift */; };
 		CEF121641FC828CA008DD494 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF121631FC828CA008DD494 /* MainTabBarController.swift */; };
 		CEF15AFF1FF74F9400836A4C /* FollowRequestsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */; };
 		CEF2610625DBBE9200C0F54B /* AcknowledgementsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */; };
@@ -966,6 +967,7 @@
 		CEEE37E62B717B1B00320C49 /* NewPostSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostSceneDelegate.swift; sourceTree = "<group>"; };
 		CEEE37E92B717CF800320C49 /* NSUserActivity+NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+NewPost.swift"; sourceTree = "<group>"; };
 		CEEEB5692D63C97C004F199E /* ImageCacheUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheUtils.swift; sourceTree = "<group>"; };
+		CEF03DAE2F1E5462009033D1 /* LiquidCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidCheck.swift; sourceTree = "<group>"; };
 		CEF121631FC828CA008DD494 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CEF15AFE1FF74F9400836A4C /* FollowRequestsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestsListTableViewController.swift; sourceTree = "<group>"; };
 		CEF2610525DBBE7A00C0F54B /* AcknowledgementsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsWindow.swift; sourceTree = "<group>"; };
@@ -1325,6 +1327,7 @@
 		CE3D453523766DE5006F1198 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CEF03DAE2F1E5462009033D1 /* LiquidCheck.swift */,
 				CE5875B72E9B9EEA0092E4CF /* AppIcon.icon */,
 				CEF47F612A79322000D1AEAB /* swiftgen.yml */,
 				CE2E4B452AC284F900E1DDD4 /* Dummy.strings */,
@@ -3412,6 +3415,7 @@
 				CEE35D962375D94F00AFEBA0 /* TopAccountMasterViewController.swift in Sources */,
 				CE7ABB401FC5B1880087B387 /* ListTimelineViewController.swift in Sources */,
 				CEE357201FF5D7D300675DFC /* WebSocketWrapper.swift in Sources */,
+				CEF03DAF2F1E5464009033D1 /* LiquidCheck.swift in Sources */,
 				CE909D142410FA8A007CE251 /* NotificationTableWrapperViewController.swift in Sources */,
 				CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */,
 				CE7ABB421FC5C1610087B387 /* ListsTableViewController.swift in Sources */,

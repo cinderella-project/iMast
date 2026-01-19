@@ -78,6 +78,9 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
     
     let containerView = ContainerView()
     lazy var notificationVC: NotificationTableViewController = .instantiate([], environment: environment)
+    var interaction: Any?
+    
+    let modernSegmentedControlHeight: CGFloat = 8
     
     override func loadView() {
         view = UIView()
@@ -85,11 +88,28 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        view.addSubview(toolBar)
-        toolBar.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.height.equalTo(44)
+        if #available(iOS 26.0, *), isSolariumEnabled {
+            let wrapView = UIView()
+            view.addSubview(wrapView)
+            wrapView.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
+            }
+            wrapView.addSubview(segmentedControl)
+            segmentedControl.snp.makeConstraints { make in
+                make.leading.trailing.equalTo(wrapView.readableContentGuide)
+                make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
+            }
+            let interaction = UIScrollEdgeElementContainerInteraction()
+            wrapView.addInteraction(interaction)
+            interaction.edge = .top
+            self.interaction = interaction
+        } else {
+            view.addSubview(toolBar)
+            toolBar.snp.makeConstraints { make in
+                make.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
+            }
         }
     }
     
@@ -97,10 +117,14 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         super.viewDidLoad()
 
         title = L10n.Localizable.notifications
-        additionalSafeAreaInsets.top = toolBar.frame.height
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithDefaultBackground()
-        navigationItem.scrollEdgeAppearance = appearance
+        if #available(iOS 26.0, *), isSolariumEnabled {
+            additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
+        } else {
+            additionalSafeAreaInsets.top = toolBar.frame.height
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            navigationItem.scrollEdgeAppearance = appearance
+        }
         navigationItem.largeTitleDisplayMode = .never
         changeContainer()
     }
@@ -120,6 +144,9 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
                 includeTypes = [.follow]
             }
             notificationVC = .instantiate(NotificationTableViewController.NotificationType.reverse(types: includeTypes), environment: environment)
+        }
+        if #available(iOS 26.0, *), isSolariumEnabled, let interaction = interaction as? UIScrollEdgeElementContainerInteraction {
+            interaction.scrollView = notificationVC.tableView
         }
         containerView.addArrangedViewController(notificationVC, parentViewController: self)
     }
