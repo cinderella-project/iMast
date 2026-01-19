@@ -229,7 +229,7 @@ struct SettingsView: View {
                 Toggle(L10n.Preferences.Timeline.useSystemVideoPlayer, isOn: $useAVPlayer)
                 Toggle(L10n.Preferences.Timeline.useUniversalLinks, isOn: $useUniversalLinks)
                 #if !os(visionOS)
-                if #available(iOS 26, *) {
+                if #available(iOS 26, *), isSolariumEnabled {
                     Toggle("現在のアカウントをタイムラインに表示", isOn: $showAccountInSubtitle)
                 }
                 #endif

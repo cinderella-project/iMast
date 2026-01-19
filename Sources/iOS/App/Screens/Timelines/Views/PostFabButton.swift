@@ -36,7 +36,7 @@ class PostFabButton: UIButton {
         #if os(visionOS)
         setupForNonLiquidGlassEnvironment()
         #else
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.0, *), isSolariumEnabled {
             configuration = .prominentGlass()
         } else {
             setupForNonLiquidGlassEnvironment()

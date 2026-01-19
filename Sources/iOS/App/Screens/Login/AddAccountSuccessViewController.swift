@@ -42,7 +42,7 @@ class AddAccountSuccessViewController: UIViewController {
         #if os(visionOS)
         let baseConfig = UIButton.Configuration.filled()
         #else
-        let baseConfig = if #available(iOS 26.0, *) {
+        let baseConfig = if #available(iOS 26.0, *), isSolariumEnabled {
             UIButton.Configuration.prominentGlass()
         } else {
             UIButton.Configuration.filled()

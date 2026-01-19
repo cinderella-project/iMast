@@ -52,7 +52,7 @@ class NewPostView: UIView {
     }
     
     let toolBar = UIToolbar() ※ {
-        if #unavailable(iOS 26) {
+        if !isSolariumEnabled {
             $0.snp.makeConstraints { make in
                 make.height.equalTo(44)
             }
@@ -60,7 +60,7 @@ class NewPostView: UIView {
     }
     private lazy var imageSelectItem = UIBarButtonItem(customView: imageSelectButton)
     let imageSelectButton = UIButton(type: .system) ※ {
-        if #available(iOS 26, *) {
+        if #available(iOS 26, *), isSolariumEnabled {
             $0.tintColor = .label
         }
         $0.setImage(.init(systemName: "camera.fill"), for: .normal)
@@ -123,7 +123,7 @@ class NewPostView: UIView {
         currentAccountLabel.snp.makeConstraints { make in
             #if !os(visionOS)
             make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(8)
-            if #available(iOS 26, *) {
+            if #available(iOS 26, *), isSolariumEnabled {
                 make.bottom.equalTo(toolBar.snp.top).inset(-16)
             } else {
                 make.bottom.equalTo(safeAreaLayoutGuide).inset(8)
@@ -141,7 +141,7 @@ class NewPostView: UIView {
             nowPlayingItem,
         ]
         toolBar.snp.makeConstraints { make in
-            if #available(iOS 26, *) {
+            if #available(iOS 26, *), isSolariumEnabled {
                 make.bottom.equalTo(keyboardLayoutGuide.snp.top).inset(-16)
             } else {
                 make.top.equalTo(safeAreaLayoutGuide.snp.bottom)

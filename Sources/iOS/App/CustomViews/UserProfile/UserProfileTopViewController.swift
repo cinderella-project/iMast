@@ -27,7 +27,7 @@ import iMastiOSCore
 
 @inline(__always)
 private func getOthersMenuImage() -> UIImage? {
-    if #available(iOS 26.0, *) {
+    if #available(iOS 26.0, *), isSolariumEnabled {
         return UIImage(systemName: "ellipsis")
     } else {
         return UIImage(systemName: "ellipsis.circle")

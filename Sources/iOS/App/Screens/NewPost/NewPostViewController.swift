@@ -164,7 +164,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
             .init(title: L10n.NewPost.send, style: .done, target: self, action: #selector(sendPost(_:))),
         ]
         
-        if #unavailable(iOS 26) {
+        if !isSolariumEnabled {
             additionalSafeAreaInsets = .init(top: 0, left: 0, bottom: 44, right: 0)
         }
         configureObserver()
@@ -311,7 +311,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
     
     #if !os(visionOS)
     @objc func keyboardWillShow(notification: Notification?) {
-        guard #unavailable(iOS 26) else {
+        guard !isSolariumEnabled else {
             return
         }
         self.view.layoutIfNeeded()
@@ -329,7 +329,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         additionalSafeAreaInsets.bottom = max(rect.size.height - bottom, 0) + 44
     }
     @objc func keyboardWillHide(notification: Notification?) {
-        guard #unavailable(iOS 26) else {
+        guard !isSolariumEnabled else {
             return
         }
         additionalSafeAreaInsets.bottom = 44
