@@ -127,6 +127,19 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
             }
         }
 
+        if let userActivity {
+            if let newPostCurrentText = userActivity.newPostCurrentText {
+                contentView.textInput.text = newPostCurrentText
+            }
+            // メンションとかの後を選択する
+            let nowCount = contentView.textInput.text.nsLength
+            DispatchQueue.main.async {
+                self.contentView.textInput.selectedRange.location = nowCount
+            }
+            contentView.textInput.text += userActivity.newPostSuffix ?? ""
+            contentView.cwInput.text = userActivity.newPostReplyPostSpoilerText
+        }
+
         if let editPost = editPost {
             title = L10n.NewPost.edit
 
@@ -144,19 +157,6 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         }
 
         contentView.textInput.becomeFirstResponder()
-
-        if let userActivity {
-            if let newPostCurrentText = userActivity.newPostCurrentText {
-                contentView.textInput.text = newPostCurrentText
-            }
-            // メンションとかの後を選択する
-            let nowCount = contentView.textInput.text.nsLength
-            DispatchQueue.main.async {
-                self.contentView.textInput.selectedRange.location = nowCount
-            }
-            contentView.textInput.text += userActivity.newPostSuffix ?? ""
-            contentView.cwInput.text = userActivity.newPostReplyPostSpoilerText
-        }
 
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         
