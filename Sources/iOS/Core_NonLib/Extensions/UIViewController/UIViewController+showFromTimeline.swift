@@ -62,6 +62,9 @@ extension UIViewController {
             let navigationController = UINavigationController()
             if let sheet = navigationController.sheetPresentationController {
                 #if !os(visionOS)
+                if #available(iOS 26.1, *) {
+                    sheet.backgroundEffect = UIColorEffect(color: .clear)
+                }
                 sheet.detents = [.custom(resolver: SheetHeightResolver.shared.resolver)]
                 sheet.prefersScrollingExpandsWhenScrolledToEdge = false
                 #endif
