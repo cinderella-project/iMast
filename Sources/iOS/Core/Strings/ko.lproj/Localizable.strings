@@ -89,11 +89,11 @@
 "postDetail.reportAbuse" = "신고";
 "postDetail.boost" = "부스트";
 "postDetail.favorite" = "좋아요";
-"postDetail.quote.title" = "引用";
-"postDetail.quote.description.manualApprove" = "引用は可能ですが、引用元の投稿は元投稿者によって手動で承認されるまで表示されません";
-"postDetail.quote.description.denied" = "元投稿者が引用を拒否しています";
-"postDetail.quote.description.unknown" = "引用が可能であるかが判断できません。引用は元投稿者によって拒否される可能性があります";
-"postDetail.quote.description.oldServer" = "このサーバーではサポートされていません";
+"postDetail.quote.title" = "인용";
+"postDetail.quote.description.manualApprove" = "인용은 가능합니다만, 인용 원본 게시물은 원본 게시자에 의해 수동으로 승인되기까지 표시되지 않습니다.";
+"postDetail.quote.description.denied" = "원본 게시자가 인용을 거부했습니다.";
+"postDetail.quote.description.unknown" = "인용이 가능한지 아닌지 판단할 수 없습니다. 인용은 원본 게시자에 의해 거부될 수 있습니다.";
+"postDetail.quote.description.oldServer" = "이 서버에서는 지원되지 않습니다.";
 "inquiryWithAnotherAccount.action" = "다른 계정으로 조회";
 "customEmojis.title" = "커스텀 이모지 목록";
 

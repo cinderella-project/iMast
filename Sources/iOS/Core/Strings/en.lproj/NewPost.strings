@@ -12,11 +12,11 @@
 "title" = "New Post";
 "reply" = "Reply";
 "edit" = "Edit";
-"quote" = "引用";
+"quote" = "Quote";
 
 "selectVisibility.title" = "Visibility";
 "selectVisibility.description" = "Please select visibility of post.";
-"selectVisibility.disabled.quotingPrivate" = "引用元の投稿の公開範囲より広い範囲には設定できません";
+"selectVisibility.disabled.quotingPrivate" = "Visibility setting cannot be set higher than the original post";
 
 "addImageFromButton" = "Add images from left side button";
 // Safariのファイル選択時の表記に合わせてほしい
@@ -38,4 +38,4 @@
 "alerts.sending.steps.done" = "Done!";
 
 // 「メディアとApple Music」 の部分は実際のiOSの設定画面の文言に合わせてください
-"errors.declineAppleMusicPermission" = "Failed to access music library. Please allow to access \"Media & Apple Music\" in settings app.";
+"errors.declineAppleMusicPermission" = "Failed to access music library. Please allow access to \"Media & Apple Music\" in settings app.";

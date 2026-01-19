@@ -13,7 +13,7 @@
         <key>NSStringFormatValueTypeKey</key>
         <string>d</string>
         <key>other</key>
-        <string>%d件の引用</string>
+        <string>%d건의 인용</string>
       </dict>
     </dict>
     <key>count.favorites</key>
