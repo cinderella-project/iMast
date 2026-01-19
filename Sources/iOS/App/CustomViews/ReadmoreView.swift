@@ -67,7 +67,7 @@ class ReadmoreView: UIView {
         addSubview(button)
         addSubview(indicator)
         button.snp.makeConstraints { make in
-            make.center.size.equalToSuperview()
+            make.center.size.equalTo(safeAreaLayoutGuide)
             make.height.greaterThanOrEqualTo(44)
             make.height.equalTo(44).priority(.low)
         }
@@ -77,7 +77,7 @@ class ReadmoreView: UIView {
         button.setTitleColor(tintColor, for: .normal)
         button.addTarget(self, action: #selector(readMoreTapped), for: .touchUpInside)
         indicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.center.equalTo(safeAreaLayoutGuide)
         }
         indicator.style = .medium
         indicator.hidesWhenStopped = true
