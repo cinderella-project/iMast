@@ -92,7 +92,11 @@ enum PushService {
     static func send<E: PushServiceEndpointProtocol>(withAuth: Bool, _ ep: E) async throws -> E.Response {
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
+        #if DEBUG
+        urlBuilder.host = "imast-backend-sandbox.rinsuki.net"
+        #else
         urlBuilder.host = "imast-backend.rinsuki.net"
+        #endif
         urlBuilder.percentEncodedPath = ep.endpoint
         urlBuilder.queryItems = ep.query
         if urlBuilder.queryItems?.count == 0 {
