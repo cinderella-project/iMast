@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["26.0"]
+        xcode: ["26.2"]
         os: ["iOS"]
         machine: ["macOS-26"]
     runs-on: ${{ matrix.machine }}
