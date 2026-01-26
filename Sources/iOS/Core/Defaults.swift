@@ -97,4 +97,8 @@ public class Defaults {
     #if !os(visionOS)
     @available(iOS 26, *) @DefaultsKey("account_in_subtitle") public static var showAccountInSubtitle = true
     #endif
+    
+    #if DEBUG
+    @DefaultsKey("debug_only_special_ui") public static var DEBUG_ONLY_enableSpecialUI = true
+    #endif
 }

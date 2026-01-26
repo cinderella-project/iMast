@@ -62,7 +62,7 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         }
     }
     
-    let segmentedControl = UISegmentedControl(items: FilterType.allCases.map { $0.name }) ※ { v in
+    lazy var segmentedControl = UISegmentedControl(items: FilterType.allCases.map { $0.name }) ※ { v in
         v.selectedSegmentIndex = 0
         v.addTarget(self, action: #selector(changeFilter), for: .valueChanged)
     }
@@ -90,6 +90,41 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         }
         if #available(iOS 26.0, *), isSolariumEnabled {
             let wrapView = UIView()
+            #if DEBUG
+            // 課題:
+            // * そもそもSPIである
+            // * iPhoneで横画面にした時に面積が狭くなりすぎる → 横画面にした時は UINavigationBarItemに入れるなどで解決しうる?
+            // * なんかblur切れるところの境目の表示がヘン
+            // * 上にpaddingできすぎな気がする
+            if
+                Defaults.DEBUG_ONLY_enableSpecialUI,
+                let _UINavigationBarPalette = NSClassFromString("_UINavigationBarPalette") as? UIView.Type,
+                let palette = _UINavigationBarPalette
+                    .perform("alloc").takeUnretainedValue()
+                    .perform("initWithContentView:", with: wrapView).takeUnretainedValue() as? UIView
+            { // dear apple: why not releasing this
+                let padding = 16
+                wrapView.snp.makeConstraints { make in
+                    make.height.equalTo(48 + (padding*2))
+                }
+                wrapView.addSubview(segmentedControl)
+                segmentedControl.snp.makeConstraints { make in
+                    make.center.equalTo(wrapView.readableContentGuide)
+                    make.width.lessThanOrEqualTo(wrapView.readableContentGuide)
+                    make.width.greaterThanOrEqualTo(300)
+                    make.height.equalTo(48)
+                }
+                wrapView.layoutSubviews()
+                navigationItem.perform("_setBottomPalette:", with: palette)
+                segmentedControl.perform("_setUseGlass:", with: true)
+                palette.setValue(48 + (padding*2), forKey: "minimumHeight")
+                let interaction = UIScrollEdgeElementContainerInteraction()
+                segmentedControl.addInteraction(interaction)
+                interaction.edge = .top
+                self.interaction = interaction
+                return
+            }
+            #endif
             view.addSubview(wrapView)
             wrapView.snp.makeConstraints { make in
                 make.leading.trailing.equalToSuperview()
@@ -119,6 +154,11 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         title = L10n.Localizable.notifications
         if #available(iOS 26.0, *), isSolariumEnabled {
             additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
+            #if DEBUG
+            if Defaults.DEBUG_ONLY_enableSpecialUI {
+                additionalSafeAreaInsets.top = 0
+            }
+            #endif
         } else {
             additionalSafeAreaInsets.top = toolBar.frame.height
             let appearance = UINavigationBarAppearance()

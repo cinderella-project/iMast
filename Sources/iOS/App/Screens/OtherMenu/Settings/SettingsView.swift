@@ -330,6 +330,9 @@ struct SettingsView: View {
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
         @AppStorage(defaults: .$openAsHalfModalFromTimeline) var openAsHalfModalFromTimeline
         @AppStorage(defaults: .$openAsAnotherWindow) var openAsAnotherWindow
+        #if DEBUG
+        @AppStorage(defaults: .$DEBUG_ONLY_enableSpecialUI) var DEBUG_ONLY_enableSpecialUI
+        #endif
 
         var body: some View {
             Section("実験的な要素") {
@@ -341,6 +344,9 @@ struct SettingsView: View {
                 }
                 Toggle("タイムラインから何かを開いた時にハーフモーダルにする", isOn: $openAsHalfModalFromTimeline)
                 Toggle("できるだけ新ウィンドウで開く", isOn: $openAsAnotherWindow)
+                #if DEBUG
+                Toggle("★ Special UI (Debug Build Only)", isOn: $DEBUG_ONLY_enableSpecialUI)
+                #endif
             }
         }
     }
