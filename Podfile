@@ -9,7 +9,7 @@ abstract_target 'iMastShared' do
   pod 'SwiftLint', '0.52.4'
   def core_pods
   end
-  pod 'SDWebImage', '~> 5.18.10'
+  pod 'SDWebImage', '~> 5.21.6'
   # https://github.com/cezheng/Fuzi/pull/133 is needed for Xcode 16's release build
   pod 'Fuzi', :git => 'https://github.com/rinsuki/Fuzi.git', :commit => '4092585ab3eea9de6c2a92024d3ab5ec3bfc4785'
   pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :tag => '5.7.0'

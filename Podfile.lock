@@ -3,9 +3,9 @@ PODS:
   - KeychainAccess (4.2.2)
   - LicensePlist (3.22.0)
   - Mew (0.1.0)
-  - SDWebImage (5.18.10):
-    - SDWebImage/Core (= 5.18.10)
-  - SDWebImage/Core (5.18.10)
+  - SDWebImage (5.21.6):
+    - SDWebImage/Core (= 5.21.6)
+  - SDWebImage/Core (5.21.6)
   - SnapKit (5.7.0)
   - Starscream (3.1.1)
   - SwiftGen (6.5.1)
@@ -16,7 +16,7 @@ DEPENDENCIES:
   - KeychainAccess (= 4.2.2)
   - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
-  - SDWebImage (~> 5.18.10)
+  - SDWebImage (~> 5.21.6)
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, tag `5.7.0`)
   - Starscream (~> 3.1.1)
   - SwiftGen (= 6.5.1)
@@ -58,12 +58,12 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
-  SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
+  SDWebImage: 1bb6a1b84b6fe87b972a102bdc77dd589df33477
   SnapKit: 0f9238a5d2d4008f6b001d5583130382f7e1ff0c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 0df994c65260e1bb7dce1be2b2a621e7d27368a9
+PODFILE CHECKSUM: 328fde9f74150980f356c101b661af6e3a1239ed
 
 COCOAPODS: 1.14.3
