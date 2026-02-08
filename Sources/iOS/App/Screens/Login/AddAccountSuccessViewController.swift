@@ -28,7 +28,6 @@ import Ikemen
 class AddAccountSuccessViewController: UIViewController {
 
     let myIconImageView = UIImageView() ※ { v in
-        v.ignoreSmartInvert()
         v.snp.makeConstraints { make in
             make.size.equalTo(120)
         }

@@ -43,7 +43,6 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
         v.snp.makeConstraints { make in
             make.width.equalTo(v.snp.height)
         }
-        v.ignoreSmartInvert()
         v.isUserInteractionEnabled = true
     }
     
@@ -58,7 +57,7 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     }
     let tootInfoView = UIView() ※ { v in
         v.backgroundColor = .init(resource: .barBoost)
-        v.ignoreSmartInvert()
+        v.accessibilityIgnoresInvertColors = true
         v.snp.makeConstraints { make in
             make.width.equalTo(3)
         }
@@ -68,11 +67,11 @@ class MastodonPostCellViewController: UIViewController, Instantiatable, Injectab
     
     let isBoostedView = UIView() ※ { v in
         v.backgroundColor = .init(resource: .barBoost)
-        v.ignoreSmartInvert()
+        v.accessibilityIgnoresInvertColors = true
     }
     let isFavouritedView = UIView() ※ { v in
         v.backgroundColor = .init(resource: .barFavourite)
-        v.ignoreSmartInvert()
+        v.accessibilityIgnoresInvertColors = true
     }
     
     let pollViewController: MastodonCompactPollViewController

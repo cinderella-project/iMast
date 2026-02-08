@@ -53,15 +53,19 @@ public extension UIImageView {
             oldOne.cancel()
         }
         image = nil
-        let cancellable = SDWebImageManager.shared.loadImage(with: url as URL, options: [], progress: nil) { [weak self] image, _, _, _, _, _  in
+        accessibilityIgnoresInvertColors = true
+
+        let cancellable = SDWebImageManager.shared.loadImage(with: url as URL, options: [], progress: nil) { [weak self] image, _, _, _, finished, _  in
             guard let self = self else {
                 return
             }
             if uiImageViewLastLoadingURL.object(forKey: self) == url {
-                uiImageViewLastLoadingURL.removeObject(forKey: self)
-                uiImageViewCancelToken.removeObject(forKey: self)
                 self.image = image
-                callback?()
+                if finished {
+                    uiImageViewLastLoadingURL.removeObject(forKey: self)
+                    uiImageViewCancelToken.removeObject(forKey: self)
+                    callback?()
+                }
             } else {
                 NSLog("cancelled...", self, url)
             }

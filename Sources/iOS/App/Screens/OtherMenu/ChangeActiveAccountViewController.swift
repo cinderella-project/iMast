@@ -123,7 +123,6 @@ class ChangeActiveAccountViewController: UITableViewController {
             cell.imageView?.loadImage(from: URL(string: avatarUrl)) {
                 cell.setNeedsLayout()
             }
-            cell.imageView?.ignoreSmartInvert()
         }
         
         // Configure the cell...

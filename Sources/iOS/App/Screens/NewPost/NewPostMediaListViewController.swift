@@ -125,7 +125,6 @@ class NewPostMediaListViewController: UIViewController {
         if viewModel.media.count > 0 {
             for (index, media) in viewModel.media.enumerated() {
                 let imageView = UIImageView(image: media.thumbnailImage)
-                imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFill
                 imageView.clipsToBounds = true
                 imageView.tag = index
@@ -193,7 +192,6 @@ class NewPostMediaListViewController: UIViewController {
                 let imageView = UIImageView()
                 imageView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
                 imageView.image = UIImage(data: media.data)
-                imageView.ignoreSmartInvert()
                 imageView.contentMode = .scaleAspectFit
                 viewController.view = imageView
                 let closeGesture = UITapGestureRecognizer(target: viewController, action: #selector(viewController.close))

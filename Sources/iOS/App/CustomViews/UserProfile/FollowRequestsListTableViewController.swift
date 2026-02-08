@@ -97,7 +97,6 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
         cell.imageView?.loadImage(from: URL(string: request.avatarUrl)) {
             cell.setNeedsLayout()
         }
-        cell.imageView?.ignoreSmartInvert()
 
         return cell
     }

@@ -96,8 +96,7 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.ignoreSmartInvert()
-        
+        view.accessibilityIgnoresInvertColors = true
         let leftButtonWidth = 48
         
         self.view.addSubview(mediaStackView)
@@ -143,7 +142,6 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         // mediaStackView内のimageViewのストックが足りなかったら追加する
         while mediaStackView.arrangedSubviews.count < input.attachments.count {
             let imageView = UIImageView() ※ {
-                $0.ignoreSmartInvert()
                 $0.contentMode = .scaleAspectFill
                 $0.clipsToBounds = true
                 $0.snp.makeConstraints { make in

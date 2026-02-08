@@ -47,9 +47,6 @@
 		CE1C23B42B7424F200DA37A3 /* iMastPackage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C23B32B7424F200DA37A3 /* iMastPackage */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
-		CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
-		CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
-		CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CE2D2AF0210C5CAF003B92B8 /* PushSettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountView.swift */; };
 		CE2D2AF2210C6B8D003B92B8 /* MastodonUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */; };
 		CE2D2AF4210C6D22003B92B8 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D2AF3210C6D22003B92B8 /* FollowTableViewController.swift */; };
@@ -377,7 +374,6 @@
 		CEFB98A925C827A400D55B03 /* NewPostWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98A825C827A400D55B03 /* NewPostWindow.swift */; };
 		CEFB98BA25C828E300D55B03 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB98B925C828E300D55B03 /* NewPostViewController.swift */; };
 		CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002D7200683B00041B636 /* ReportError_AppExtension.swift */; };
-		CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */; };
 		CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE6B0E21B505A600AF5E40 /* TootIntentHandler.swift */; };
 		DDF8D224AC746E71A8413B5D /* Pods_iMastShared_iOS_iMastShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0E2A4C001595BB41222635 /* Pods_iMastShared_iOS_iMastShare.framework */; };
 		E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7041702E67BCC8835441ADEE /* Pods_iMastShared_iOS_iMastiOSCore.framework */; };
@@ -707,7 +703,6 @@
 		CE2582D61FBD9B01004B6BFA /* iMastPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iMastPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MastodonPostAbuseViewController.swift; sourceTree = "<group>"; };
 		CE2A8666237CF752005F4077 /* PostListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
-		CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ignoreSmartInvert.swift"; sourceTree = "<group>"; };
 		CE2D2AED210C5668003B92B8 /* Notification.Name+customNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+customNames.swift"; sourceTree = "<group>"; };
 		CE2D2AEF210C5CAF003B92B8 /* PushSettingsAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsAccountView.swift; sourceTree = "<group>"; };
 		CE2D2AF1210C6B8D003B92B8 /* MastodonUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonUserCell.swift; sourceTree = "<group>"; };
@@ -1862,7 +1857,6 @@
 				CE43BE9F2377776300133C86 /* NSAttributedString */,
 				CE43BE9E2377773900133C86 /* String */,
 				CEC6997F21F1BB7700371FC5 /* FourCharCode+toString.swift */,
-				CE2C9803210A54F200A4FECF /* UIView+ignoreSmartInvert.swift */,
 				CE9A699F22CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift */,
 				CEEBC3C923548D9500AA01BF /* UITableViewDiffableDataSource+plainSnapshot.swift */,
 				CE43BEB623777B2A00133C86 /* UIDevice+platform.swift */,
@@ -3458,7 +3452,6 @@
 				CE9A69A022CBEBED009F51C6 /* NSDiffableDataSourceSnapshot+prependItems.swift in Sources */,
 				CE6977891F0F086E00C1B234 /* UserTimelineViewController.swift in Sources */,
 				CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */,
-				CE2C9804210A54F200A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				2A492A7F1EB3584500F81E73 /* NewPostViewController.swift in Sources */,
 				CE8EC3032374F474002CA268 /* TopViewController.swift in Sources */,
 				CEAA86462E8DACDA004DED5B /* NewPostViewController+visionOS.swift in Sources */,
@@ -3632,7 +3625,6 @@
 				CE1002DA2006840C0041B636 /* ReportError_AppExtension.swift in Sources */,
 				CE4FAD402A793E7400E5C843 /* ShareNewPostView.swift in Sources */,
 				CEE01B012A796C1A00B6BA74 /* SharePrincipalViewController.swift in Sources */,
-				CE2C9805210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3679,7 +3671,6 @@
 			files = (
 				CEC6BC1021076DF4003ECE10 /* ReportError_AppExtension.swift in Sources */,
 				CEC6BC0421074EFB003ECE10 /* NotificationService.swift in Sources */,
-				CE2C9807210A579C00A4FECF /* UIView+ignoreSmartInvert.swift in Sources */,
 				CE90BE162D650BAA009FDAA6 /* OnMemoryVideoLoader.swift in Sources */,
 				CE90BE142D650B83009FDAA6 /* AttachmentCacheManager.swift in Sources */,
 			);
@@ -3692,7 +3683,6 @@
 				CE75AE1921C0EF2100BA3C9F /* Intents.intentdefinition in Sources */,
 				CEFE6AF921B5011700AF5E40 /* ReportError_AppExtension.swift in Sources */,
 				CEFE6B0F21B505A600AF5E40 /* TootIntentHandler.swift in Sources */,
-				CEFE6B0921B5013200AF5E40 /* UIView+ignoreSmartInvert.swift in Sources */,
 				CED6077A21B3658F00F6232E /* IntentHandler.swift in Sources */,
 				CEA1FEFF22BD19B800034A78 /* MastodonUserToken+toIntentAccount.swift in Sources */,
 			);
