@@ -90,16 +90,16 @@
 "postDetail.boost" = "Boosts";
 "postDetail.favorite" = "Favorites";
 "postDetail.quote.title" = "Quote";
-"postDetail.quote.description.manualApprove" = "This post can be quoted, but the quote will not be displayed until it is manually approved by the original poster";
-"postDetail.quote.description.denied" = "The original poster has declined quotes";
-"postDetail.quote.description.unknown" = "Uncertain if this post can be quoted. Quote may be declined by the original poster";
+"postDetail.quote.description.manualApprove" = "This post can be quoted, but the quote will not be displayed until it is manually approved by the original author";
+"postDetail.quote.description.denied" = "The original author has declined quotes";
+"postDetail.quote.description.unknown" = "Uncertain if this post can be quoted. Quote may be declined by the original author";
 "postDetail.quote.description.oldServer" = "Not supported on this server";
 "inquiryWithAnotherAccount.action" = "Inquire with another account";
 "customEmojis.title" = "Custom Emoji List";
 
-"quote.state.pending" = "The original poster has not yet approved the quote";
+"quote.state.pending" = "The original author has not yet approved the quote";
 "quote.state.deleted" = "The quoted post has been deleted";
-"quote.state.rejectedOrRevoked" = "The quote has been declined by the original poster";
+"quote.state.rejectedOrRevoked" = "The quote has been declined by the original author";
 "quote.state.unauthorized" = "This post cannot be viewed";
 "quote.fetchShallowPost" = "View quoted post";
 
@@ -109,7 +109,7 @@
 "reportPost.additionalInfo.title" = "Additional Info";
 "reportPost.additionalInfo.placeholderOption" = "Optional";
 "reportPost.forwardToRemote.title" = "Forward to remote server";
-"reportPost.forwardToRemote.description" = "If switched on, this report will be sent to %1$@. This feature requires your account's server and %1$@'s version to be greater than Mastodon 2.3, or support of forwarding reports via federation.";
+"reportPost.forwardToRemote.description" = "If switched on, this report will also be sent to %1$@. This feature requires your account's server and %1$@'s version to be greater than Mastodon 2.3, or support of forwarding reports via federation.";
 "reportPost.finished.title" = "Reported";
 
 "error.title" = "Error";
