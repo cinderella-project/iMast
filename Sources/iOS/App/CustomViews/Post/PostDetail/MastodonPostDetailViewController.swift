@@ -201,8 +201,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
             }
         case .quotesCount:
             cell = .init(style: .default, reuseIdentifier: nil)
-            // Mastodon 4.5 では今のところ作者だけが引用一覧を見られる
-            cell.accessoryType = environment.isMe(account: input.originalPost.account) ? .disclosureIndicator : .none
+            cell.accessoryType = .disclosureIndicator
             cell.contentConfiguration = UIListContentConfiguration.cell() ※ {
                 $0.text = L10n.Localizable.Count.quotes(input.originalPost.quotesCount ?? 0)
             }
@@ -222,7 +221,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
         switch source {
         case .editedWarning, .boostedUser, .boostsCount, .favouritesCount:
             return indexPath
-        case .quotesCount where environment.isMe(account: input.originalPost.account):
+        case .quotesCount:
             return indexPath
         default:
             return nil
