@@ -38,6 +38,8 @@
 "timeline.openWebMInVLC" = "以VLC開啟WebM";
 "timeline.useSystemVideoPlayer" = "使用系統影片播放器";
 "timeline.useUniversalLinks" = "Universal Links優先";
+"timeline.useSystemBrowserForLinks" = "リンクをデフォルトのブラウザアプリで開く";
+"timeline.useSystemBrowserForMedia" = "メディアをデフォルトのブラウザアプリで開く";
 
 "push.link" = "推播通知";
 "push.title" = "推播通知設定";
