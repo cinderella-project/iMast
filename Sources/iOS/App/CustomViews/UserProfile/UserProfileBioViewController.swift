@@ -80,7 +80,7 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
                 resolveUserProfile(userToken: environment, url: url)
                 return false
             }
-            open(url: url)
+            open(url: url, role: .links)
             return false
         case .preview:
             return false

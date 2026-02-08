@@ -24,14 +24,15 @@
 import SwiftUI
 
 struct OpenLinkInSafariVCModifier: ViewModifier {
+    let role: OpenURLRole
     private class ViewModel: ObservableObject {
         fileprivate weak var view: UIView?
         
-        @MainActor func openInSafariVC(url: URL) -> Bool {
+        @MainActor func openInSafariVC(url: URL, role: OpenURLRole) -> Bool {
             guard let view else {
                 return false
             }
-            view.window?.rootViewController?.open(url: url)
+            view.window?.rootViewController?.open(url: url, role: role)
             return true
         }
 
@@ -55,7 +56,7 @@ struct OpenLinkInSafariVCModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .environment(\.openURL, OpenURLAction(handler: { url in
-                if viewModel.openInSafariVC(url: url) {
+                if viewModel.openInSafariVC(url: url, role: role) {
                     return .handled
                 }
                 return .systemAction

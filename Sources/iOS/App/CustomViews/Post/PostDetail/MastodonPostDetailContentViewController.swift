@@ -248,7 +248,7 @@ extension MastodonPostDetailContentViewController: UITextViewDelegate {
                 self.navigationController?.pushViewController(newVC, animated: true)
                 return false
             }
-            self.open(url: URL(string: urlString)!)
+            self.open(url: URL(string: urlString)!, role: .links)
             return false
         case .presentActions:
             return true // TODO: メニュー項目に追加できないか検討

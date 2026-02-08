@@ -64,6 +64,6 @@ class EmojiListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let emoji = self.emojis[indexPath.row]
-        open(url: URL(string: emoji.url)!)
+        open(url: URL(string: emoji.url)!, role: .media)
     }
 }

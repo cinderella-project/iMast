@@ -573,6 +573,10 @@ public enum L10n {
       public static let openWebMInVLC = L10n.tr("Preferences", "timeline.openWebMInVLC")
       /// タイムライン
       public static let title = L10n.tr("Preferences", "timeline.title")
+      /// リンクをデフォルトのブラウザアプリで開く
+      public static let useSystemBrowserForLinks = L10n.tr("Preferences", "timeline.useSystemBrowserForLinks")
+      /// メディアをデフォルトのブラウザアプリで開く
+      public static let useSystemBrowserForMedia = L10n.tr("Preferences", "timeline.useSystemBrowserForMedia")
       /// OSの動画プレーヤーを使う
       public static let useSystemVideoPlayer = L10n.tr("Preferences", "timeline.useSystemVideoPlayer")
       /// Universal Links を優先

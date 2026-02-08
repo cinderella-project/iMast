@@ -133,7 +133,7 @@ extension AboutThisAppViewController: UITableViewDelegate {
             if useExternalBrowser {
                 view.window?.windowScene?.open(url, options: nil, completionHandler: nil)
             } else {
-                open(url: url)
+                open(url: url, role: .links)
             }
         case .tootWithHashtag:
             let vc = NewPostAccountSelectCushionViewController()

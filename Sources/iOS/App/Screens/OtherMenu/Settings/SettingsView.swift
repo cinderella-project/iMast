@@ -38,7 +38,7 @@ class NewSettingsViewController: UIHostingController<SettingsView> {
     }
     
     @objc func openHelp() {
-        open(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!)
+        open(url: URL(string: "https://cinderella-project.github.io/iMast/help/settings.html")!, role: .links)
     }
 }
 
@@ -220,6 +220,8 @@ struct SettingsView: View {
         @AppStorage(defaults: .$useAVPlayer) var useAVPlayer
         @AppStorage(defaults: .$useUniversalLink) var useUniversalLinks
         #if !os(visionOS)
+        @AppStorage(defaults: .$useSystemBrowserForLinks) var useSystemBrowserForLinks
+        @AppStorage(defaults: .$useSystemBrowserForMedia) var useSystemBrowserForMedia
         @AppStorage(defaults: .$showAccountInSubtitle) var showAccountInSubtitle
         #endif
         
@@ -229,6 +231,8 @@ struct SettingsView: View {
                 Toggle(L10n.Preferences.Timeline.useSystemVideoPlayer, isOn: $useAVPlayer)
                 Toggle(L10n.Preferences.Timeline.useUniversalLinks, isOn: $useUniversalLinks)
                 #if !os(visionOS)
+                Toggle(L10n.Preferences.Timeline.useSystemBrowserForLinks, isOn: $useSystemBrowserForLinks)
+                Toggle(L10n.Preferences.Timeline.useSystemBrowserForMedia, isOn: $useSystemBrowserForMedia)
                 if #available(iOS 26, *), isSolariumEnabled {
                     Toggle("現在のアカウントをタイムラインに表示", isOn: $showAccountInSubtitle)
                 }

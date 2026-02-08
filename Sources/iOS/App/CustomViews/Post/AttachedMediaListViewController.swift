@@ -211,6 +211,6 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
             return
         }
 
-        self.open(url: URL(string: media.url)!)
+        self.open(url: URL(string: media.url)!, role: .media)
     }
 }

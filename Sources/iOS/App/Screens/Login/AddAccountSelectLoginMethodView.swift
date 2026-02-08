@@ -44,7 +44,7 @@ struct AddAccountSelectLoginMethodView: View {
                 OpenSafariButton(title: Text(L10n.Login.Authorize.Tos.rules), url: URL(string: "https://\(app.instance.hostName)/about/more")!, flag: true)
                 OpenSafariButton(title: Text(L10n.Login.Authorize.Tos.termsOfService), url: URL(string: "https://\(app.instance.hostName)/terms")!, flag: false)
             }
-            .modifier(OpenLinkInSafariVCModifier())
+            .modifier(OpenLinkInSafariVCModifier(role: .links))
         }
         .navigationTitle(L10n.Login.Authorize.title)
     }

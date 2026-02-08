@@ -165,7 +165,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
                 resolveUserProfile(userToken: environment, url: url)
                 return false
             }
-            open(url: url)
+            open(url: url, role: .links)
             return false
         case .presentActions:
             return true

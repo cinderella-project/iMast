@@ -35,7 +35,7 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "強制的にSafariで開く", style: .default, handler: { [weak self] _ in
             canceled = true
             alert.dismiss(animated: true, completion: nil)
-            self?.open(url: url)
+            self?.open(url: url, role: .links)
         }))
         Task { [weak self] in
             do {
@@ -48,14 +48,14 @@ extension UIViewController {
                             let newVC = UserProfileTopViewController.instantiate(account, environment: userToken)
                             strongSelf.navigationController?.pushViewController(newVC, animated: true)
                         } else {
-                            strongSelf.open(url: url)
+                            strongSelf.open(url: url, role: .links)
                         }
                     }
                 }
             } catch {
                 await MainActor.run {
                     alert.dismiss(animated: true) {
-                        self?.open(url: url)
+                        self?.open(url: url, role: .links)
                     }
                 }
             }

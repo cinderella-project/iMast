@@ -383,7 +383,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
         if indexPath.section == 0 {
             let cell = cells[0][indexPath.row]
             if cell.accessibilityIdentifier == "checkLatestProfileCell", let url = URL(string: input.url) {
-                open(url: url)
+                open(url: url, role: .links)
             }
         }
         
@@ -408,7 +408,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
             let urls = self.externalServiceLinks[indexPath.row].urls.filter { UIApplication.shared.canOpenURL($0.url) }
             func openUrl(url: URL) {
                 if url.scheme?.starts(with: "http") ?? false {
-                    self.open(url: url)
+                    self.open(url: url, role: .links)
                 } else {
                     UIApplication.shared.open(url)
                 }

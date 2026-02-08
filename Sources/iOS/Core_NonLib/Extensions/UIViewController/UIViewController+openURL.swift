@@ -27,14 +27,19 @@ import SafariServices
 #endif
 import iMastiOSCore
 
+enum OpenURLRole {
+    case links
+    case media
+}
+
 extension UIViewController {
-    func open(url: URL, forceDisableUniversalLink: Bool = false) {
+    func open(url: URL, role: OpenURLRole, forceDisableUniversalLink: Bool = false) {
         if Defaults.useUniversalLink, forceDisableUniversalLink == false {
             UIApplication.shared.open(url, options: [
                 .universalLinksOnly: true,
             ]) { result in
                 if result == false {
-                    self.open(url: url, forceDisableUniversalLink: true)
+                    self.open(url: url, role: role, forceDisableUniversalLink: true)
                 }
             }
             return
@@ -42,8 +47,19 @@ extension UIViewController {
         #if os(visionOS)
         self.view.window?.windowScene?.open(url, options: nil)
         #else
-        let safariVC = SFSafariViewController(url: url)
-        self.present(safariVC, animated: true, completion: nil)
+        var shouldUseSystemBrowser = false
+        switch role {
+        case .links:
+            shouldUseSystemBrowser = Defaults.useSystemBrowserForLinks
+        case .media:
+            shouldUseSystemBrowser = Defaults.useSystemBrowserForMedia
+        }
+        if shouldUseSystemBrowser, let scene = view.window?.windowScene {
+            scene.open(url, options: nil)
+        } else {
+            let safariVC = SFSafariViewController(url: url)
+            self.present(safariVC, animated: true, completion: nil)
+        }
         #endif
     }
 }
