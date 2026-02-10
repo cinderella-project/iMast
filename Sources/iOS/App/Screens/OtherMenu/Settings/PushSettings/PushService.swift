@@ -149,11 +149,15 @@ enum PushService {
         #endif
         let buildNumber = (Bundle.main.infoDictionary?["CFBundleVersion"] as? String).map { Int($0) } ?? nil
         Task {
-            try await send(withAuth: true, Endpoints.UpdateDeviceToken(
-                isSandbox: isSandbox,
-                deviceToken: deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
-                buildNumber: buildNumber
-            ))
+            do {
+                try await send(withAuth: true, Endpoints.UpdateDeviceToken(
+                    isSandbox: isSandbox,
+                    deviceToken: deviceToken.reduce("") { $0 + String(format: "%.2hhx", $1)},
+                    buildNumber: buildNumber
+                ))
+            } catch {
+                print(error)
+            }
         }
     }
     

@@ -154,4 +154,16 @@ enum AttachmentCacheManager {
         try data.write(to: destURL)
         return try .init(identifier: destURL.lastPathComponent, url: destURL)
     }
+    
+    static func acquireImageLocalURL(from url: URL) async throws -> URL? {
+        if let url = ImageCacheUtils.findCachedFile(for: url) {
+            return url
+        }
+        
+        let data = try await fetchImageFromInternet(url: url)
+        
+        SDImageCache.shared.storeImageData(toDisk: data, forKey: SDWebImageManager.shared.cacheKey(for: url))
+
+        return ImageCacheUtils.findCachedFile(for: url)
+    }
 }

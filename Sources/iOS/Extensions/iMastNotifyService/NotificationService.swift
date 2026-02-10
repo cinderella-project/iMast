@@ -129,10 +129,17 @@ class NotificationService: UNNotificationServiceExtension {
                         
                         if Defaults.communicationNotificationsEnabled,
                            let account = notify.account, notify.type == "mention",
-                           let avatarURL = URL(string: account.avatarUrl)
+                           let avatarURL = URL(string: account.avatarUrl),
+                           let avatarLocalURL = try await AttachmentCacheManager.acquireImageLocalURL(from: avatarURL)
                         {
                             let displayName: String = account.acct.contains("@") ? "@\(account.acct)" : "@\(account.acct)@\(userToken.app.instance.hostName)"
                             let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
+                            #if targetEnvironment(simulator)
+                            // シミュレータでローカルURLを渡すと「ファイル名“file%3A%2F%2F%2FUsers%2F(…中略…)%2F2c343dd82dee1199a70d76ab05a7fe0b%2Epng.png”が無効であるため、項目を保存できませんでした。」となる
+                            let image = INImage(url: avatarURL)
+                            #else
+                            let image = INImage(url: avatarLocalURL) ?? INImage(url: avatarURL)
+                            #endif
                             let intent = INSendMessageIntent(
                                 recipients: [],
                                 outgoingMessageType: .outgoingMessageText,
@@ -144,7 +151,7 @@ class NotificationService: UNNotificationServiceExtension {
                                     personHandle: INPersonHandle(value: account.url, type: .unknown),
                                     nameComponents: nil,
                                     displayName: displayName,
-                                    image: INImage(url: avatarURL),
+                                    image: image,
                                     contactIdentifier: nil,
                                     customIdentifier: account.url,
                                     isMe: false,
