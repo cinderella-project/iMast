@@ -30,6 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "以表情文字顯示可見範圍";
 "timelineAppearance.inReplyToAsEmoji" = "在回覆的嘟文上顯示emoji";
 "timelineAppearance.thumbnailHeight" = "縮略圖高度";
+"timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail" = "省データモード時にはサムネイルを読み込まない";
 "timelineAppearance.nurunuru" = "滑溜溜模式(重新啟動生效)";
 "timelineAppearance.bigNewPostButton.show" = "顯示發嘟文大按鈕";
 "timelineAppearance.bigNewPostButton.location.title" = "發嘟文大按鈕的位置";
