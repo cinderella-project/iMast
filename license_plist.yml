@@ -8,4 +8,5 @@ manual:
     file: NOTICE
   - name: iMast (LICENSE)
     file: LICENSE
-
+  - name: BlurHash
+    file: Sources/Package/Sources/BlurHash/LICENSE.txt

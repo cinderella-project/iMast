@@ -13,6 +13,7 @@ let package = Package(
             name: "iMastPackage",
             targets: ["iMastPackage"]
         ),
+        .library(name: "BlurHash", targets: ["BlurHash"]),
     ],
     dependencies: [
         // Depend on the Swift 5.9 release of SwiftSyntax
@@ -41,5 +42,7 @@ let package = Package(
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),
+        
+        .target(name: "BlurHash"),
     ]
 )

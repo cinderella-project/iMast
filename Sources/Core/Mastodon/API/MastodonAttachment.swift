@@ -30,6 +30,7 @@ public struct MastodonAttachment: Codable, Sendable, MastodonEndpointResponse {
     public let previewUrl: String?
     let remoteUrl: String?
     public let textUrl: String?
+    public let blurhash: String?
     
     public enum MediaType: String, Codable {
         case video
@@ -55,6 +56,7 @@ public struct MastodonAttachment: Codable, Sendable, MastodonEndpointResponse {
         case previewUrl = "preview_url"
         case remoteUrl = "remote_url"
         case textUrl = "text_url"
+        case blurhash
     }
 
 }

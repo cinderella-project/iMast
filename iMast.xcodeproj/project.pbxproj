@@ -129,6 +129,7 @@
 		CE5895622240D2A50024FDBF /* AttachedMediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5895612240D2A50024FDBF /* AttachedMediaListViewController.swift */; };
 		CE5D9DF926B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
 		CE5D9DFA26B3C1E700895234 /* deferAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D9DF626B3C19500895234 /* deferAsync.swift */; };
+		CE616F1F2F42AEC800210533 /* BlurHash in Frameworks */ = {isa = PBXBuildFile; productRef = CE616F1E2F42AEC800210533 /* BlurHash */; };
 		CE65772C21560BE300670F0A /* String+toPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65772B21560BE300670F0A /* String+toPlainText.swift */; };
 		CE66CE101EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE66CE0F1EE976A7006D5B18 /* ShareAccountSelectorTableViewController.swift */; };
 		CE66CE141EEA2AF9006D5B18 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE66CE131EEA2AF9006D5B18 /* Settings.bundle */; };
@@ -1045,6 +1046,7 @@
 				CEDCBDC02DF6E9C8006CDCD4 /* Hydra in Frameworks */,
 				CE39E5F12D4EF52C00B7105F /* iMastPackage in Frameworks */,
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
+				CE616F1F2F42AEC800210533 /* BlurHash in Frameworks */,
 				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
 				CE12EAC52DF580A20041971B /* GRDB in Frameworks */,
 			);
@@ -2347,6 +2349,7 @@
 				CE39E5F02D4EF52C00B7105F /* iMastPackage */,
 				CE12EAC42DF580A20041971B /* GRDB */,
 				CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */,
+				CE616F1E2F42AEC800210533 /* BlurHash */,
 			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
@@ -5295,6 +5298,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
+		};
+		CE616F1E2F42AEC800210533 /* BlurHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BlurHash;
 		};
 		CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */ = {
 			isa = XCSwiftPackageProductDependency;

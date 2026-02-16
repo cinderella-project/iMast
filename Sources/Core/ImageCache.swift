@@ -26,6 +26,7 @@ import SDWebImage
 
 #if canImport(UIKit)
 import UIKit
+import BlurHash
 
 @MainActor
 var uiImageViewLastLoadingURL = NSMapTable<UIImageView, NSURL>(keyOptions: [.weakMemory], valueOptions: [])
@@ -33,7 +34,7 @@ var uiImageViewCancelToken = NSMapTable<UIImageView, SDWebImageOperation>(keyOpt
 
 public extension UIImageView {
     @MainActor
-    func loadImage(from url: URL?, skipIfConstrainedNetwork: Bool = false, callback: (() -> Void)? = nil) {
+    func loadImage(from url: URL?, skipIfConstrainedNetwork: Bool = false, blurhash: String? = nil, callback: (() -> Void)? = nil) {
         guard let url = url as? NSURL else {
             NSLog("overwrite image with URL nil")
             image = nil
@@ -52,7 +53,11 @@ public extension UIImageView {
         if let oldOne = uiImageViewCancelToken.object(forKey: self) {
             oldOne.cancel()
         }
-        image = nil
+        if let blurhash {
+            image = .init(blurHash: blurhash, size: .init(width: 32, height: 32))
+        } else {
+            image = nil
+        }
         accessibilityIgnoresInvertColors = true
 
         let cancellable = SDWebImageManager.shared.loadImage(
@@ -65,7 +70,9 @@ public extension UIImageView {
                 return
             }
             if uiImageViewLastLoadingURL.object(forKey: self) == url {
-                self.image = image
+                if let image {
+                    self.image = image
+                }
                 if finished {
                     uiImageViewLastLoadingURL.removeObject(forKey: self)
                     uiImageViewCancelToken.removeObject(forKey: self)

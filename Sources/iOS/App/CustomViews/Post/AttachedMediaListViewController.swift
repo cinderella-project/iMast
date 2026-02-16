@@ -157,11 +157,10 @@ class AttachedMediaListViewController: UIViewController, Instantiatable, Injecta
         for (i, media) in input.attachments.enumerated() {
             // swiftlint:disable:next force_cast
             let imageView = mediaStackView.arrangedSubviews[i] as! UIImageView
-            imageView.image = nil
-            if let previewURL = media.previewUrl {
-                imageView.loadImage(from: URL(string: previewURL), skipIfConstrainedNetwork: Defaults.shouldNotUseConstrainedNetworkForLoadThumbnail)
-            }
             imageView.isHidden = false
+            if let previewURL = media.previewUrl {
+                imageView.loadImage(from: URL(string: previewURL), skipIfConstrainedNetwork: Defaults.shouldNotUseConstrainedNetworkForLoadThumbnail, blurhash: media.blurhash)
+            }
         }
         
         // 越えてるストックは非表示にしておく

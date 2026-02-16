@@ -336,6 +336,9 @@ name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: http
 
 name: swift-syntax, nameSpecified: swift-syntax, owner: swiftlang, version: 601.0.1, source: https://github.com/swiftlang/swift-syntax
 
+name: BlurHash, nameSpecified: , version: 
+body: Copyright (c) 2018 W…
+
 name: iMast (LICENSE), nameSpecified: , version: 
 body:                     …
 
