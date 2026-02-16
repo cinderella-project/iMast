@@ -41,6 +41,8 @@ extension CodableViewDescriptor {
             return "Home + Local"
         case .list(id: _, title: let title):
             return title
+        case .hashtag(tag: let tag):
+            return "#" + tag
         }
     }
     
@@ -58,6 +60,8 @@ extension CodableViewDescriptor {
             return "Home + Local"
         case .list(id: _, title: let title):
             return title
+        case .hashtag(tag: let tag):
+            return "#" + tag
         }
     }
     
@@ -76,6 +80,8 @@ extension CodableViewDescriptor {
             return "display.2"
         case .list(id: _, title: _):
             return "list.bullet"
+        case .hashtag(tag: _):
+            return "number"
         }
     }
     
@@ -99,6 +105,8 @@ extension CodableViewDescriptor {
             let vc = ListTimelineViewController.instantiate(.plain, environment: userToken)
             vc.list = .init(id: .string(id), title: title)
             return vc
+        case .hashtag(tag: let tag):
+            return HashtagTimelineViewController(hashtag: tag, environment: userToken)
         }
     }
     
@@ -123,22 +131,25 @@ extension CodableViewDescriptor {
 
 private func createTitleMenuFromUserToken(vc: UIViewController, userToken: MastodonUserToken, store: Int) -> [UIMenuElement] {
     let descriptors: [CodableViewDescriptor] = [.home, .notifications, .local, .federated, .homeAndLocal]
-    let makeAction = { [weak vc, weak userToken] (descriptor: CodableViewDescriptor) in
-        return UIAction(title: descriptor.localizedShortTitle, image: descriptor.systemImage) { [weak vc, weak userToken] (_: UIAction) in
-            guard let vc = vc, let userToken = userToken else {
-                return
+    let callback = { [weak vc, weak userToken] (descriptor: CodableViewDescriptor) in
+        guard let vc = vc, let userToken = userToken else {
+            return
+        }
+        let newVC = descriptor.createViewController(with: userToken, store: store)
+        vc.navigationController?.setViewControllers([newVC], animated: true)
+        vc.navigationController?.tabBarItem.title = descriptor.localizedShortTitle
+        vc.navigationController?.tabBarItem.image = descriptor.systemImage
+        do {
+            try userToken.setSelectedTab(index: store, descriptor: descriptor)
+        } catch {
+            DispatchQueue.main.async {
+                newVC.errorReport(error: error)
             }
-            let newVC = descriptor.createViewController(with: userToken, store: store)
-            vc.navigationController?.setViewControllers([newVC], animated: true)
-            vc.navigationController?.tabBarItem.title = descriptor.localizedShortTitle
-            vc.navigationController?.tabBarItem.image = descriptor.systemImage
-            do {
-                try userToken.setSelectedTab(index: store, descriptor: descriptor)
-            } catch {
-                DispatchQueue.main.async {
-                    newVC.errorReport(error: error)
-                }
-            }
+        }
+    }
+    let makeAction = { (descriptor: CodableViewDescriptor) in
+        return UIAction(title: descriptor.localizedShortTitle, image: descriptor.systemImage) { (_: UIAction) in
+            callback(descriptor)
         }
     }
     
@@ -161,6 +172,20 @@ private func createTitleMenuFromUserToken(vc: UIViewController, userToken: Masto
             }
         })
     ]))
+    elements.append(UIAction(title: L10n.Search.Sections.Hashtags.title + "…", image: UIImage(systemName: "number")) { [weak vc] _ in
+        let alert = UIAlertController(title: L10n.Search.Sections.Hashtags.title, message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "imast_ios"
+        }
+        alert.addAction(.init(title: L10n.Localizable.cancel, style: .cancel) { _ in })
+        alert.addAction(.init(title: "OK", style: .default) { _ in
+            guard let tag = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespacesAndNewlines.union(["#"])), !tag.isEmpty else {
+                return
+            }
+            callback(.hashtag(tag: tag))
+        })
+        vc?.present(alert, animated: true)
+    })
     
     return elements
 }

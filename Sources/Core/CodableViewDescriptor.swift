@@ -30,11 +30,13 @@ public enum CodableViewDescriptor: Hashable {
     case federated
     case homeAndLocal
     case list(id: String, title: String)
+    case hashtag(tag: String)
     
     enum CodingKeys: String, CodingKey {
         case type
         case id
         case title
+        case tag
     }
     
     enum Types: String, Codable {
@@ -44,6 +46,7 @@ public enum CodableViewDescriptor: Hashable {
         case federated
         case homeAndLocal
         case list
+        case hashtag
     }
 }
 
@@ -67,6 +70,9 @@ extension CodableViewDescriptor: Encodable {
             try container.encode(Types.list, forKey: .type)
             try container.encode(id, forKey: .id)
             try container.encode(title, forKey: .title)
+        case .hashtag(tag: let tag):
+            try container.encode(Types.hashtag, forKey: .type)
+            try container.encode(tag, forKey: .tag)
         }
     }
 }
@@ -87,6 +93,8 @@ extension CodableViewDescriptor: Decodable {
             self = .homeAndLocal
         case .list:
             self = .list(id: try container.decode(String.self, forKey: .id), title: try container.decode(String.self, forKey: .title))
+        case .hashtag:
+            self = .hashtag(tag: try container.decode(String.self, forKey: .tag))
         }
     }
 }
