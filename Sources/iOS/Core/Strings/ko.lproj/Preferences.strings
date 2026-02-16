@@ -30,6 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "공개범위를 아이콘으로 표시";
 "timelineAppearance.inReplyToAsEmoji" = "답글의 여부를 아이콘으로 표시";
 "timelineAppearance.thumbnailHeight" = "썸네일 높이";
+"timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail" = "데이터 절약 모드 시에는 섬네일을 불러오지 않기";
 "timelineAppearance.nurunuru" = "미끈미끈한 모드(재시작 후 반영)";
 "timelineAppearance.bigNewPostButton.show" = "큰 툿 작성 버튼을 표시하기";
 "timelineAppearance.bigNewPostButton.location.title" = "큰 툿 작성 버튼 위치";
