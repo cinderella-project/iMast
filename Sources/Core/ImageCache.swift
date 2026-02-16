@@ -33,7 +33,7 @@ var uiImageViewCancelToken = NSMapTable<UIImageView, SDWebImageOperation>(keyOpt
 
 public extension UIImageView {
     @MainActor
-    func loadImage(from url: URL?, callback: (() -> Void)? = nil) {
+    func loadImage(from url: URL?, skipIfConstrainedNetwork: Bool = false, callback: (() -> Void)? = nil) {
         guard let url = url as? NSURL else {
             NSLog("overwrite image with URL nil")
             image = nil
@@ -55,7 +55,12 @@ public extension UIImageView {
         image = nil
         accessibilityIgnoresInvertColors = true
 
-        let cancellable = SDWebImageManager.shared.loadImage(with: url as URL, options: [], progress: nil) { [weak self] image, _, _, _, finished, _  in
+        let cancellable = SDWebImageManager.shared.loadImage(
+            with: url as URL,
+            options: [],
+            context: skipIfConstrainedNetwork ? [.downloadRequestModifier: ImageCacheUtils.notOnConstrainedNetworkModifier] : [:],
+            progress: nil
+        ) { [weak self] image, _, _, _, finished, _  in
             guard let self = self else {
                 return
             }

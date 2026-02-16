@@ -174,6 +174,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$postFabLocation) var postFabLocation
         @AppStorage(defaults: .$acctAbbr) var acctAbbr
         @AppStorage(defaults: .$usePostLanguageInfo) var usePostLanguageInfo
+        @AppStorage(defaults: .$shouldNotUseConstrainedNetworkForLoadThumbnail) var shouldNotUseConstrainedNetworkForLoadThumbnail
         
         var body: some View {
             Section(L10n.Preferences.TimelineAppearance.title) {
@@ -197,6 +198,7 @@ struct SettingsView: View {
                         LabeledContent(L10n.Preferences.TimelineAppearance.thumbnailHeight, value: String(format: "%.1f", thumbnailHeight))
                         Slider(value: $thumbnailHeight, in: 0...100, step: 5)
                     }
+                    Toggle(L10n.Preferences.TimelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail, isOn: $shouldNotUseConstrainedNetworkForLoadThumbnail)
                 }
                 Group {
                     Toggle(L10n.Preferences.TimelineAppearance.BigNewPostButton.show, isOn: $postFabEnabled)

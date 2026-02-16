@@ -593,6 +593,8 @@ public enum L10n {
       public static let inReplyToAsEmoji = L10n.tr("Preferences", "timelineAppearance.inReplyToAsEmoji")
       /// ぬるぬるモード(再起動後反映)
       public static let nurunuru = L10n.tr("Preferences", "timelineAppearance.nurunuru")
+      /// 省データモード時にはサムネイルを読み込まない
+      public static let shouldNotUseConstrainedNetworkForLoadThumbnail = L10n.tr("Preferences", "timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail")
       /// サムネイルの高さ
       public static let thumbnailHeight = L10n.tr("Preferences", "timelineAppearance.thumbnailHeight")
       /// タイムラインの外観

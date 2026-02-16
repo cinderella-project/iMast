@@ -23,9 +23,16 @@
 
 import SDWebImage
 import os
+import Ikemen
 
 public final class ImageCacheUtils {
     static var initialized = false
+    
+    public static let notOnConstrainedNetworkModifier = SDWebImageDownloaderRequestModifier { request in
+        var request = request
+        request.allowsConstrainedNetworkAccess = false
+        return request
+    }
     
     static func setUserAgent() {
         SDWebImageDownloader.shared.setValue(UserAgentString, forHTTPHeaderField: "User-Agent")

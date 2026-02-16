@@ -43,6 +43,7 @@ public class Defaults {
     @DefaultsKey("timeline_icon_size") public static var timelineIconSize: Double = 48
     @DefaultsKey("visibility_emoji") public static var visibilityEmoji: Bool = true
     @DefaultsKey("thumbnail_height") public static var thumbnailHeight: Double = 50
+    @DefaultsKey("should_not_use_constained_network_for_load_thumbnail") public static var shouldNotUseConstrainedNetworkForLoadThumbnail: Bool = false
     @DefaultsKey("timeline_text_bold") public static var timelineTextBold: Bool = false
     // @available(*, unavailable) @DefaultsKey("pinned_toot_lines_limit") public static var pinnedTootLinesLimit: Double = 0
     @DefaultsKey("in_reply_to_emoji") public static var inReplyToEmoji: Bool = true

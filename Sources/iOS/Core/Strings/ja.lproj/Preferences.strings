@@ -30,6 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "公開範囲を絵文字で表示";
 "timelineAppearance.inReplyToAsEmoji" = "inReplyToの有無を絵文字で表示";
 "timelineAppearance.thumbnailHeight" = "サムネイルの高さ";
+"timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail" = "省データモード時にはサムネイルを読み込まない";
 "timelineAppearance.nurunuru" = "ぬるぬるモード(再起動後反映)";
 "timelineAppearance.bigNewPostButton.show" = "でかい投稿ボタンを表示";
 "timelineAppearance.bigNewPostButton.location.title" = "でかい投稿ボタンの場所";
