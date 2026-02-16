@@ -30,6 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "Show Visibility as Emoji";
 "timelineAppearance.inReplyToAsEmoji" = "Show emoji if post is reply";
 "timelineAppearance.thumbnailHeight" = "Thumbnail height";
+"timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail" = "省データモード時にはサムネイルを読み込まない";
 "timelineAppearance.nurunuru" = "Slippery Mode (Will take effect after restarting app)";
 "timelineAppearance.bigNewPostButton.show" = "Show large post button";
 "timelineAppearance.bigNewPostButton.location.title" = "Position of the large post button";
