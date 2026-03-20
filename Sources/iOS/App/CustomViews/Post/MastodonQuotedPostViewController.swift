@@ -141,8 +141,13 @@ class MastodonQuotedPostViewController: UIViewController, Instantiatable, Inject
                 headerView.isHidden = false
                 headerView.load((post, false))
                 textLabel.numberOfLines = 1
-                textLabel.textColor = .label
-                textLabel.text = post.status.toPlainText().replacingOccurrences(of: "\n", with: " ")
+                if let spoiler = post.spoilerText.emptyAsNil {
+                    textLabel.textColor = .secondaryLabel
+                    textLabel.text = spoiler + "…"
+                } else {
+                    textLabel.textColor = .label
+                    textLabel.text = post.status.toPlainText().replacingOccurrences(of: "\n", with: " ")
+                }
             case .id(let id):
                 headerView.isHidden = true
                 textLabel.numberOfLines = 0
