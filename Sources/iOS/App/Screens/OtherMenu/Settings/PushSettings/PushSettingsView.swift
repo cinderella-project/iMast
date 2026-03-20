@@ -52,11 +52,6 @@ struct PushSettingsView: View {
                         selectedAccount = account
                     }
                 }
-                .sheet(item: $selectedAccount) { account in
-                    NavigationView {
-                        PushSettingsAccountView(account: account)
-                    }
-                }
                 Button(L10n.Preferences.Push.AddAccount.title) {
                     newServerHostName = ""
                     showNewServerHostConfirm = true
@@ -137,6 +132,11 @@ struct PushSettingsView: View {
             UIApplication.shared.registerForRemoteNotifications()
         }
         .attach(errorReporter: errorReporter)
+        .sheet(item: $selectedAccount) { account in
+            NavigationView {
+                PushSettingsAccountView(account: account)
+            }
+        }
     }
     
     @MainActor func load(block: Bool) async {
