@@ -30,6 +30,7 @@
 "timelineAppearance.visibilityAsEmoji" = "用emoji显示帖子可见范围";
 "timelineAppearance.inReplyToAsEmoji" = "用emoji显示是否为回复帖子";
 "timelineAppearance.thumbnailHeight" = "缩略图大小";
+"timelineAppearance.shouldNotUseConstrainedNetworkForLoadThumbnail" = "省データモード時にはサムネイルを読み込まない";
 "timelineAppearance.nurunuru" = "高刷模式（需重启）";
 "timelineAppearance.bigNewPostButton.show" = "显示大发布按钮";
 "timelineAppearance.bigNewPostButton.location.title" = "大发布按钮的位置";
