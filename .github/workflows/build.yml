@@ -23,14 +23,15 @@ jobs:
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
-    - run: xcodebuild -downloadPlatform ${{ matrix.os }}
+    - name: Download Platform
+      run: |
+        for i in $(seq 1 3); do
+          xcodebuild -downloadPlatform ${{ matrix.os }} && break
+        done
       if: matrix.os != 'macOS'
-    - name: Build (iOS)
-      if: matrix.os == 'iOS'
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=iOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
-    - name: Build (visionOS)
-      if: matrix.os == 'visionOS'
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=visionOS" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+    - name: Build (iOS/visionOS)
+      if: matrix.os != 'macOS'
+      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (macOS)
       if: matrix.os == 'macOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
