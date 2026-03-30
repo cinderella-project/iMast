@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["26.2"]
+        xcode: ["26.4"]
         os:
           - macOS
           - iOS
