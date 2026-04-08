@@ -207,7 +207,7 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         self.screenName = response.screenName
         self.avatarUrl = response.avatar
         if let avatarUrl = self.avatarUrl, !avatarUrl.isEmpty, avatarUrl.first == "/" { // ホスト名がない！！！
-            self.avatarUrl = "https://"+self.app.instance.hostName+self.avatarUrl!
+            self.avatarUrl = self.app.instance.url.absoluteString+self.avatarUrl!
         }
         MastodonUserToken.verifyCredentialsCache[self.acct] = response
         return response

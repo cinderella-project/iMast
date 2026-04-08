@@ -103,18 +103,15 @@ public class MastodonApp: Hashable {
     }
     
     public func getAuthorizeUrl() -> URL {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = instance.hostName
+        var components = URLComponents(url: instance.url, resolvingAgainstBaseURL: false)!
         components.path = "/oauth/authorize"
-        var queryItems: [URLQueryItem] = [
+        components.queryItems = [
             .init(name: "client_id", value: clientId),
             .init(name: "redirect_uri", value: redirectUri),
             .init(name: "scope", value: "read write follow"),
             .init(name: "response_type", value: "code"),
             .init(name: "state", value: id),
         ]
-        components.queryItems = queryItems
         return components.url!
     }
     

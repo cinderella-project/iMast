@@ -54,13 +54,12 @@ public class MastodonInstance {
         }
     }
     
-    public var hostName: String
-    public var url: URL {
-        return URL(string: "https://\(self.hostName)")!
-    }
+    public let hostName: String
+    public let url: URL
         
     public init(hostName: String = "mastodon.social") {
         self.hostName = hostName.replacing(/.+@/, with: "").lowercased()
+        self.url = URL(string: "https://\(self.hostName)")!
     }
     
     private func makeRequest<E: MastodonEndpointProtocol>(_ ep: E) throws -> URLRequest {
