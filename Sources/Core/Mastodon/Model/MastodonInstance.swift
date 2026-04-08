@@ -63,9 +63,7 @@ public class MastodonInstance {
     }
     
     private func makeRequest<E: MastodonEndpointProtocol>(_ ep: E) throws -> URLRequest {
-        var urlBuilder = URLComponents()
-        urlBuilder.scheme = "https"
-        urlBuilder.host = hostName
+        var urlBuilder = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         urlBuilder.percentEncodedPath = ep.endpoint
         urlBuilder.queryItems = ep.query
         if urlBuilder.queryItems?.count == 0 {

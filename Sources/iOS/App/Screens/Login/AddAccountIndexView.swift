@@ -77,10 +77,8 @@ struct _AddAccountIndexView: View {
         if instance.contains("/") {
             return L10n.Login.ValidationFailed.hostIncludingSlash
         }
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = instance
-        if components.url == nil {
+        var components = URLComponents(string: "https://\(instance)")
+        if components?.url == nil || components?.host?.contains(".") != true {
             return L10n.Login.ValidationFailed.hostIncludingSlash
         }
         return nil
