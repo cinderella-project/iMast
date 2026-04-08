@@ -56,10 +56,38 @@ public class MastodonInstance {
     
     public let hostName: String
     public let url: URL
+    
+    #if DEBUG
+    static let HTTP_SUFFIX_ENABLE_ENV = "IMAST_ALLOW_HTTP_SUFFIX_HOST"
+    static let HTTP_SUFFIX_DEVONLY = ".http.devonly.invalid"
+    static let HTTP_SUFFIX_ALLOWED_TLDS = [
+        "localhost"
+    ]
+    #endif
         
     public init(hostName: String = "mastodon.social") {
         self.hostName = hostName.replacing(/.+@/, with: "").lowercased()
-        self.url = URL(string: "https://\(self.hostName)")!
+        var components = URLComponents(string: "https://\(self.hostName)")!
+        #if DEBUG
+        // localhost.http.devonly.invalid:3000 を localhost:3000 にしたい
+        if let host = components.host, host.hasSuffix(".http.devonly.invalid") {
+            if ProcessInfo.processInfo.environment[MastodonInstance.HTTP_SUFFIX_ENABLE_ENV] == "yes" {
+                let suffixRemovedHostName = host[
+                    host.startIndex
+                    ..<
+                    host.index(host.endIndex, offsetBy: -MastodonInstance.HTTP_SUFFIX_DEVONLY.count)
+                ]
+                for tld in MastodonInstance.HTTP_SUFFIX_ALLOWED_TLDS {
+                    if suffixRemovedHostName.hasSuffix(tld) {
+                        components.scheme = "http"
+                        components.host = .init(suffixRemovedHostName)
+                        break
+                    }
+                }
+            }
+        }
+        #endif
+        self.url = components.url!
     }
     
     private func makeRequest<E: MastodonEndpointProtocol>(_ ep: E) throws -> URLRequest {
