@@ -36,9 +36,11 @@ struct AddAccountSelectLoginMethodView: View {
                 Button(action: { startAuthenticate(isEphemeralSession: false) }, label: {
                     Text(L10n.Login.Authorize.Method.safari)
                 })
+                    .accessibilityIdentifier("loginWithSafari")
                 Button(action: { startAuthenticate(isEphemeralSession: true) }, label: {
                     Text(L10n.Login.Authorize.Method.safariEphemeral)
                 })
+                    .accessibilityIdentifier("loginWithSafari_Ephemeral")
             }
             Section(L10n.Login.Authorize.Tos.header) {
                 OpenSafariButton(title: Text(L10n.Login.Authorize.Tos.rules), url: URL(string: "https://\(app.instance.hostName)/about/more")!, flag: true)

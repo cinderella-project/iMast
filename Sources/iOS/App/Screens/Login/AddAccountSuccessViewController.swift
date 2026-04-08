@@ -58,6 +58,7 @@ class AddAccountSuccessViewController: UIViewController {
             c.cornerStyle = .large
             c.buttonSize = .large
         }
+        v.accessibilityIdentifier = "toTimeline"
     }
     
     var userToken: MastodonUserToken!

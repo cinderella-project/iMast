@@ -21,6 +21,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import XCTest
 
 class iMastUITests: XCTestCase {
@@ -31,10 +32,16 @@ class iMastUITests: XCTestCase {
         super.setUp()
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        var req = URLRequest(url: URL(string: "http://localhost:3000/api/internal/set_status_bar")!)
+        req.httpMethod = "POST"
+        try? NSURLConnection.sendSynchronousRequest(req, returning: nil)
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
+        
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        app.launchEnvironment["IMAST_ALLOW_HTTP_SUFFIX_HOST"] = "yes"
+        app.launchEnvironment["IMAST_USE_IN_MEMORY_SQLITE"] = "yes"
         app.launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
@@ -48,27 +55,43 @@ class iMastUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        addUIInterruptionMonitor(withDescription: "hoge") { element -> Bool in
-            print("おぴょ！！！！！！！")
-            return true
+        // ログインパート
+        if true {
+            let instance = app.textFields["mastodon.example"]
+            instance.tap()
+            instance.typeText("localhost.http.devonly.invalid:3000")
+            shot()
+            let loginButton = app.buttons["loginButton"]
+            loginButton.tap()
+            shot()
+            // ASWebのアラートを真面目に突破するのはできなさそうだったので
+            let loginWithSafari = app.buttons["loginWithSafari_Ephemeral"]
+            loginWithSafari.waitForExistence(timeout: 10)
+            loginWithSafari.tap()
+            let openTimeline = app.buttons["toTimeline"]
+            openTimeline.waitForExistence(timeout: 10)
+            shot()
+            openTimeline.tap()
         }
-        let instance = app.textFields["mastodon.example"]
-        instance.tap()
-        instance.typeText("mstdn.otyakai.xyz")
-        shot()
-        let loginButton = app.cells["loginButton"]
-        loginButton.tap()
-        shot()
-        let loginWithSafari = app.cells["loginWithSafari"]
-        loginWithSafari.waitForExistence(timeout: 10)
-        loginWithSafari.tap()
-        shot()
-        let asWebAuthAlert = springboard.alerts.element(matching: .init(format: "label CONTAINS %@", "otyakai.xyz"))
-        asWebAuthAlert.buttons["Continue"].tap()
+        // ログイン後パート
+        if true {
+            let tabBar = app.tabBars.element // TODO: use identifier?
+            tabBar.buttons.firstMatch.tap()
+            app.navigationBars.buttons.containing(.image, identifier: "bolt.fill").firstMatch.waitForExistence(timeout: 10)
+            shot(name: "AppStore_Home")
+            tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
+            let othersMenu = app.tables["otherMenuTableView"]
+            othersMenu.waitForExistence(timeout: 10)
+            shot()
+            othersMenu.cells["openMyProfile"].tap()
+            app.staticTexts["relationshipLabel_loaded"].waitForExistence(timeout: 10)
+            shot(name: "AppStore_Others")
+        }
     }
     
-    func shot() {
+    func shot(name: String? = nil) {
         let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screenshot.name = name
         screenshot.lifetime = .keepAlways
         add(screenshot)
     }

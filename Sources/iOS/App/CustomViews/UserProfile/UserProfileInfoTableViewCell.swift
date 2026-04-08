@@ -78,6 +78,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
         self.iconView.loadImage(from: URL(string: user.avatarUrl))
         self.nameLabel.text = user.name == "" ? user.screenName : user.name
         self.screenNameLabel.text = "@" + user.acct
+        self.relationshipLabel.accessibilityIdentifier = "relationshipLabel_loading"
         MastodonEndpoint.Relationship.Get(accounts: [user])
             .request(with: userToken)
             .then { (relationships) in
@@ -111,6 +112,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
                     relationshipText += " (インスタンスミュート中)"
                 }
                 self.relationshipLabel.text = relationshipText
+                self.relationshipLabel.accessibilityIdentifier = "relationshipLabel_loaded"
             }
     }
 }

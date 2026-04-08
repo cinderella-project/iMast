@@ -67,7 +67,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
         let otherVC = UINavigationController(rootViewController: OtherMenuViewController.instantiate(environment: self.environment))
         otherVC.tabBarItem.image = UIImage(systemName: "ellipsis")
         otherVC.tabBarItem.title = L10n.Localizable.other
-        otherVC.tabBarItem.accessibilityIdentifier = "others"
+        otherVC.tabBarItem.accessibilityIdentifier = "othersTab"
         lazyLoadVCs.append(otherVC)
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed))

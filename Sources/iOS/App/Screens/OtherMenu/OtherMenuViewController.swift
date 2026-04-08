@@ -25,6 +25,7 @@ import UIKit
 import Mew
 import iMastiOSCore
 import SwiftUI
+import Ikemen
 
 class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDelegate {
     typealias Input = Void
@@ -48,7 +49,9 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
     
     private lazy var searchResultViewController = SearchViewController.instantiate("", environment: self.environment)
     private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
-    private let tableView = UITableView()
+    private let tableView = UITableView() ※ {
+        $0.accessibilityIdentifier = "otherMenuTableView"
+    }
     private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] tableView, indexPath, itemIdentifier in
         guard let self else {
             return nil
@@ -61,6 +64,7 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
             cell.detailTextLabel?.text = L10n.Localizable.currentAccount(environment.acct)
         case .myProfile:
             cell.textLabel?.text = L10n.Localizable.myProfile
+            cell.accessibilityIdentifier = "openMyProfile"
         case .lists:
             cell.textLabel?.text = L10n.Localizable.lists
         case .bookmarks:

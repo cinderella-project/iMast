@@ -25,7 +25,16 @@ import Foundation
 import GRDB
 
 let fileURL = getFileURL()
-public let dbQueue = try! DatabaseQueue(path: fileURL.path)
+public let dbQueue = getDatabase()
+
+private func getDatabase() -> DatabaseQueue {
+    #if DEBUG
+    if ProcessInfo.processInfo.environment["IMAST_USE_IN_MEMORY_SQLITE"] == "yes" {
+        return try! .init()
+    }
+    #endif
+    return try! DatabaseQueue(path: fileURL.path)
+}
 
 func getFileURL() -> URL {
     let oldFileURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)!.appendingPathComponent("imast.sqlite")
