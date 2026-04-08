@@ -13,10 +13,17 @@ const PROXY_USER = "4553" // @imast_ios
 
 app.post("/api/internal/set_status_bar", async c => {
     await new Promise((resolve, reject) => {
+        const tz = -new Date("2007-01-09T09:41:00.000+01:00").getTimezoneOffset()
         execFile("xcrun", [
             "simctl", "--set", "testing",
             "status_bar", "booted", "override",
-            "--time", "9:41",
+            "--time", [
+                "2007-01-09T09:41:00.000",
+                tz > 0 ? "+" : "-",
+                Math.floor(Math.abs(tz) / 60).toString().padStart(2, "0"),
+                ":",
+                String(Math.abs(tz) % 60).padStart(2, "0")
+            ].join(""),
             "--dataNetwork", "wifi",
             "--wifiMode", "active",
             "--wifiBars", "3",
