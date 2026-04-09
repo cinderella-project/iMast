@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import subprocess
+import json
 
 IOS_LATEST = "26.4"
 IOS_17 = "17.5"
@@ -23,6 +24,12 @@ DEVICES = [
 subprocess.run(["xcrun", "simctl", "delete", "all"], check=True)
 
 done_ioses = set[str]()
+
+current_runtimes: dict[str, dict[str, str]] = json.loads(subprocess.run(["xcrun", "simctl", "runtime", "list", "-j"], check=True, capture_output=True).stdout.decode())
+for runtime in current_runtimes.values():
+    if not runtime["runtimeIdentifier"].startswith("com.apple.CoreSimulator.SimRuntime.iOS-"):
+        continue
+    done_ioses.add(runtime["version"])
 
 p = subprocess.Popen(["node", "mock_server/index.ts"])
 
