@@ -80,7 +80,6 @@ jobs:
           "iPhone_6_5",
           "iPhone_6_3",
           "iPhone_6_1",
-          "iPhone_4_7",
           "iPad_13_0",
           "iPad_11_0",
           "iPad_12_9",
@@ -112,5 +111,5 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v7
       with:
-        name: test-results_${{ matrix.os }}_Xcode.${{ env._main_xcode }}.tar
+        name: test-results_${{ matrix.os }}_${{ matrix.device_key }}_Xcode.${{ env._main_xcode }}.tar
         path: test_results.tar
