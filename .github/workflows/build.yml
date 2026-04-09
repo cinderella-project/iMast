@@ -42,9 +42,10 @@ jobs:
       if: matrix.os == 'iOS'
       run: |
         echo "::group::Setup mock server"
-        cd mock_server
+        pushd mock_server
         corepack enable
         pnpm install --frozen-lockfile
+        popd
         echo "::endgroup::"
         python3 .github/test_on_multiple_devices.py
     - name: Upload Test Results
