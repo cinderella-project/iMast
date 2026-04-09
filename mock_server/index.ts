@@ -58,7 +58,7 @@ app.get("/oauth/authorize", async c => {
     const url = new URL(c.req.query("redirect_uri")!)
     url.searchParams.set("code", "123456789abcdef")
     url.searchParams.set("state", c.req.query("state")!)
-    return c.redirect(url.toString())
+    return c.html(`<script async>setTimeout(() => window.location.href = ${JSON.stringify(url.toString())}, 1000)</script>`)
 })
 
 app.post("/oauth/token", async c => {
