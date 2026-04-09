@@ -39,13 +39,13 @@ jobs:
         done
       if: matrix.os != 'macOS'
     - name: Build (iOS/visionOS)
-      if: matrix.os != 'macOS' && !matrix.test_only
+      if: matrix.os != 'macOS' && matrix.test_only == 'no'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (macOS)
       if: matrix.os == 'macOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Test (iOS)
-      if: matrix.os == 'iOS' && matrix.test_only
+      if: matrix.os == 'iOS' && matrix.test_only == 'yes'
       run: |
         echo "::group::Setup mock server"
         pushd mock_server
@@ -55,7 +55,7 @@ jobs:
         echo "::endgroup::"
         python3 .github/test_on_multiple_devices.py
     - name: Upload Test Results
-      if: matrix.os == 'iOS' && matrix.test_only && always()
+      if: matrix.os == 'iOS' && matrix.test_only == 'yes' && always()
       uses: actions/upload-artifact@v7
       with:
         name: test-results_${{ matrix.os }}_Xcode.${{ matrix.xcode }}
