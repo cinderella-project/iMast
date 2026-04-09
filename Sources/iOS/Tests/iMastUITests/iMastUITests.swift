@@ -32,7 +32,7 @@ class iMastUITests: XCTestCase {
         try await super.setUp()
         var req = URLRequest(url: URL(string: "http://localhost:3000/api/internal/set_status_bar")!)
         req.httpMethod = "POST"
-        let res = try await URLSession.shared.data(for: req)
+        let res = try? await URLSession.shared.data(for: req)
         print(res)
     }
         
