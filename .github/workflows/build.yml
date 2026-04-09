@@ -53,6 +53,7 @@ jobs:
         pnpm install --frozen-lockfile
         popd
         echo "::endgroup::"
+        defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts -bool true
         python3 .github/test_on_multiple_devices.py
     - name: Upload Test Results
       if: matrix.os == 'iOS' && matrix.test_only == 'yes' && always()
