@@ -40,7 +40,12 @@ jobs:
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Test (iOS)
       if: matrix.os == 'iOS'
-      run: python3 .github/test_on_multiple_devices.py
+      run: |
+        echo "::group::Setup mock server"
+        cd mock_server
+        pnpm install --frozen-lockfile
+        echo "::endgroup::"
+        python3 .github/test_on_multiple_devices.py
     - name: Upload Test Results
       if: matrix.os == 'iOS' && always()
       uses: actions/upload-artifact@v7
