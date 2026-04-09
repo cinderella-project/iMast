@@ -55,17 +55,13 @@ try:
         subprocess.run(["xcrun", "simctl", "shutdown", device_key], check=True)
         print("::endgroup::")
         print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
-        p = subprocess.Popen(["xcpretty", "-c"], stdin=subprocess.PIPE)
-        assert p.stdin is not None
         subprocess.run([
             "xcrun", "xcodebuild", "test-without-building",
             "-testProductsPath", "./iMast_iOS.xctestproducts",
             "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
             "-parallel-testing-worker-count", "1",
             "-resultBundlePath", "test_results/" + device_key,
-        ], stdout=p.stdin, check=True)
-        p.stdin.close()
-        p.wait()
+        ], check=True)
         print("::endgroup::")
 finally:
     mock_server.terminate()
