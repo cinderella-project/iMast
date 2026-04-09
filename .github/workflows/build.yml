@@ -20,7 +20,7 @@ jobs:
           - xcode: "26.4"
             os: iOS
             machine: macOS-26
-            test_only: true
+            test_only: "yes"
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1
