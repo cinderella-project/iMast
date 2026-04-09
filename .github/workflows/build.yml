@@ -75,9 +75,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
-    - uses: ./.github/actions/prepare
-      with:
-        target-os: ${{ matrix.os }}
     - name: Download Build Artifacts
       uses: actions/download-artifact@v7
       with:
