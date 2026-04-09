@@ -50,9 +50,10 @@ try:
                 finally:
                     print("::endgroup::")
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
+        print(f"::group::Booting {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
         subprocess.run(["xcrun", "simctl", "shutdown", device_key], check=True)
-    for device_key, device_type, ios_version in DEVICES:
+        print("::endgroup::")
         print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
         p = subprocess.Popen(["xcpretty", "-c"], stdin=subprocess.PIPE)
         assert p.stdin is not None
