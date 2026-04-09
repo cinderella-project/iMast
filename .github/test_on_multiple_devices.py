@@ -62,6 +62,7 @@ try:
             "-workspace", "iMast.xcworkspace",
             "-scheme", "iMast iOS",
             "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
+            "-parallel-testing-enabled", "NO",
             "-resultBundlePath", "test_results/" + device_key,
         ], stdout=p.stdin, check=True)
         p.stdin.close()
