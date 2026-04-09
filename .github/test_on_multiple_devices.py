@@ -31,7 +31,7 @@ for runtime in current_runtimes.values():
         continue
     done_ioses.add(runtime["version"])
 
-p = subprocess.Popen(["node", "mock_server/index.ts"])
+mock_server = subprocess.Popen(["node", "mock_server/index.ts"])
 
 try:
     for device_key, device_type, ios_version in DEVICES:
@@ -68,4 +68,4 @@ try:
         p.wait()
         print("::endgroup::")
 finally:
-    p.terminate()
+    mock_server.terminate()
