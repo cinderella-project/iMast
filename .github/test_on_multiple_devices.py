@@ -51,13 +51,17 @@ try:
                     print("::endgroup::")
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
         print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
+        p = subprocess.Popen(["xcpretty", "-c"], stdin=subprocess.PIPE)
+        assert p.stdin is not None
         subprocess.run([
             "xcrun", "xcodebuild", "test",
             "-workspace", "iMast.xcworkspace",
             "-scheme", "iMast iOS",
             "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
             "-resultBundlePath", "test_results/" + device_key,
-        ], check=True)
+        ], stdout=p.stdin, check=True)
+        p.stdin.close()
+        p.wait()
         print("::endgroup::")
 finally:
     p.terminate()
