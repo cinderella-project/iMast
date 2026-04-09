@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
 import json
+import sys
 
 IOS_LATEST = "26.4"
 IOS_17 = "17.5"
@@ -35,6 +36,8 @@ mock_server = subprocess.Popen(["node", "mock_server/index.ts"])
 
 try:
     for device_key, device_type, ios_version in DEVICES:
+        if device_key not in sys.argv:
+            continue
         if ios_version not in done_ioses:
             retry = 0
             while True:

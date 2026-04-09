@@ -70,6 +70,22 @@ jobs:
       matrix:
         os:
           - iOS
+        device_key: [
+          # preferred
+          "iPhone_4_7", # smallest screen
+          "iPad_9_7", # not latest os
+          "iPhone_5_5", # not latest os
+          # others
+          "iPhone_6_9",
+          "iPhone_6_5",
+          "iPhone_6_3",
+          "iPhone_6_1",
+          "iPhone_4_7",
+          "iPad_13_0",
+          "iPad_11_0",
+          "iPad_12_9",
+          "iPad_10_5",
+        ]
     runs-on: *main_machine
     steps:
     - uses: actions/checkout@v1
@@ -88,7 +104,7 @@ jobs:
         pnpm install --frozen-lockfile
         popd
         echo "::endgroup::"
-        python3 .github/test_on_multiple_devices.py
+        python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
     - name: Archive Test Results
       if: always()
       run: tar cf test_results.tar test_results
