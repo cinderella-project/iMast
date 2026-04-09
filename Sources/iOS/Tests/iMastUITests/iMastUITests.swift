@@ -63,7 +63,7 @@ class iMastUITests: XCTestCase {
             shot()
             // ASWebのアラートを真面目に突破するのはできなさそうだったので
             let loginWithSafari = app.buttons["loginWithSafari_Ephemeral"]
-            loginWithSafari.waitForExistence(timeout: 10)
+            loginWithSafari.waitForExistence(timeout: 60) // Safari はときどき信じられないくらい遅い
             loginWithSafari.tap()
             let openTimeline = app.buttons["toTimeline"]
             openTimeline.waitForExistence(timeout: 10)
