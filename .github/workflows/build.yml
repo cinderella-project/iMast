@@ -61,6 +61,7 @@ jobs:
       with:
         name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
         path: iMast_iOS.xctestproducts.tar.gz
+        compression-level: 0
   test:
     needs: build_for_test
     strategy:
