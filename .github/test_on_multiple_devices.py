@@ -49,7 +49,7 @@ try:
                         raise
                 finally:
                     print("::endgroup::")
-        subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "iOS " + ios_version], check=True)
+        subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
         print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})")
         subprocess.run([
             "xcrun", "xcodebuild", "test",
