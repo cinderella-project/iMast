@@ -55,7 +55,7 @@ try:
             "xcrun", "xcodebuild", "test",
             "-workspace", "iMast.xcworkspace",
             "-scheme", "iMast iOS",
-            "-destination", "platform=iOS Simulator,name=" + device_key,
+            "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
             "-resultBundlePath", "test_results/" + device_key,
         ], check=True)
         print("::endgroup::")
