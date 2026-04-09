@@ -16,6 +16,7 @@ jobs:
           - iOS
           - visionOS
         machine: ["macOS-26"]
+        test_only: ["no"]
         include:
           - xcode: "26.4"
             os: iOS
