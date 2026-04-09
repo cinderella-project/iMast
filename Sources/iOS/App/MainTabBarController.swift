@@ -25,6 +25,36 @@ import UIKit
 import Mew
 import iMastiOSCore
 
+extension NSObject {
+    @objc func _imast_canShowFloatingUI() -> Bool {
+        return false
+    }
+}
+
+private class TabBarGravityManipulator {
+    static var done = false
+    
+    @objc static func swizzle(targetObj: NSObject) {
+        let target = type(of: targetObj)
+        guard !done else {
+            return
+        }
+        done = true
+        guard !UserDefaults.standard.bool(forKey: "_imast_DisableTabBarGravityManipulator") else {
+            return
+        }
+        let newSelector = #selector(NSObject._imast_canShowFloatingUI)
+        let oldSelector = Selector(newSelector.description.replacingOccurrences(of: "_imast_", with: ""))
+        guard let dstMethod = class_getInstanceMethod(NSObject.self, newSelector) else {
+            return
+        }
+        guard targetObj.responds(to: oldSelector) else {
+            return
+        }
+        class_replaceMethod(target, oldSelector, method_getImplementation(dstMethod), method_getTypeEncoding(dstMethod))
+    }
+}
+
 // DEAR FUTURE READER (mostly me): We are disabling iOS 18's floating tab bar in AppDelegate (due to a iOS bug)
 // you probably want to read it first
 class MainTabBarController: UITabBarController, Instantiatable {
@@ -46,6 +76,11 @@ class MainTabBarController: UITabBarController, Instantiatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 26.0, *) {
+            if let containerView = view.subviews.last, String(describing: type(of: containerView)).contains("TabContainerView") {
+                TabBarGravityManipulator.swizzle(targetObj: containerView)
+            }
+        }
         var currentSelectedTabs: [Int: CodableViewDescriptor] = [:]
         do {
             currentSelectedTabs = try environment.getSelectedTabs()
