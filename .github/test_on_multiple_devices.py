@@ -63,7 +63,7 @@ try:
             "-testProductsPath", "./iMast_iOS.xctestproducts",
             "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
             "-parallel-testing-worker-count", "1",
-            "-resultBundlePath", "test_results/" + device_key,
+            "-resultBundlePath", "test_results/" + device_key + ".xcresult",
         ], check=True)
         print("::endgroup::")
 finally:
