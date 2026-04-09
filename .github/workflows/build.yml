@@ -43,6 +43,7 @@ jobs:
       run: |
         echo "::group::Setup mock server"
         cd mock_server
+        corepack enable
         pnpm install --frozen-lockfile
         echo "::endgroup::"
         python3 .github/test_on_multiple_devices.py
