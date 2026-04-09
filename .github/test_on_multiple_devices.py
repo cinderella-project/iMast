@@ -39,7 +39,7 @@ try:
             retry = 0
             while True:
                 try:
-                    print(f"::group::Downloading iOS {ios_version} runtime... (retry {retry})")
+                    print(f"::group::Downloading iOS {ios_version} runtime... (retry {retry})", flush=True)
                     subprocess.run(["xcrun", "xcodebuild", "-downloadPlatform", "iOS", "-buildVersion", ios_version], check=True)
                     done_ioses.add(ios_version)
                     break
@@ -50,7 +50,7 @@ try:
                 finally:
                     print("::endgroup::")
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
-        print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})")
+        print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run([
             "xcrun", "xcodebuild", "test",
             "-workspace", "iMast.xcworkspace",
