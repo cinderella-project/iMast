@@ -76,7 +76,11 @@ class iMastUITests: XCTestCase {
             tabBar.buttons.firstMatch.tap()
             app.navigationBars.buttons.containing(.image, identifier: "bolt.fill").firstMatch.waitForExistence(timeout: 10)
             shot(name: "AppStore_Home")
-            tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
+            if tabBar.buttons["others"].exists {
+                tabBar.buttons["others"].tap()
+            } else {
+                tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
+            }
             let othersMenu = app.tables["otherMenuTableView"]
             othersMenu.waitForExistence(timeout: 10)
             shot()
