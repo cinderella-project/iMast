@@ -5,23 +5,21 @@ on:
     branches: [master]
   pull_request:
 
+env:
+  _main_xcode: &main_xcode "26.4"
+  _main_machine: &main_machine "macOS-26"
+
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["26.4"]
+        xcode: [*main_xcode]
         os:
           - macOS
           - iOS
           - visionOS
-        machine: ["macOS-26"]
-        test_only: ["no"]
-        include:
-          - xcode: "26.4"
-            os: iOS
-            machine: macOS-26
-            test_only: "yes"
+        machine: [*main_machine]
     runs-on: ${{ matrix.machine }}
     steps:
     - uses: actions/checkout@v1
@@ -31,13 +29,60 @@ jobs:
       with:
         target-os: ${{ matrix.os }}
     - name: Build (iOS/visionOS)
-      if: matrix.os != 'macOS' && matrix.test_only == 'no'
+      if: matrix.os != 'macOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
     - name: Build (macOS)
       if: matrix.os == 'macOS'
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+  build_for_test:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [iOS]
+    runs-on: *main_machine
+    steps:
+    - uses: actions/checkout@v1
+    - name: Select Xcode
+      run: sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
+    - uses: ./.github/actions/prepare
+      with:
+        target-os: ${{ matrix.os }}
+    - name: Build for Test
+      run: |
+        set -o pipefail
+        xcodebuild build-for-testing \
+          -workspace iMast.xcworkspace \
+          -scheme "iMast iOS" \
+          -destination "generic/platform=${{ matrix.os }} Simulator" \
+          -testProductsPath ./iMast_iOS.xctestproducts \
+        | xcpretty -c
+    - run: tar czf iMast_iOS.xctestproducts.tar.gz iMast_iOS.xctestproducts
+    - uses: actions/upload-artifact@v7
+      with:
+        name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
+        path: iMast_iOS.xctestproducts.tar.gz
+  test:
+    needs: build_for_test
+    strategy:
+      fail-fast: true
+      max-parallel: 2
+      matrix:
+        os:
+          - iOS
+    runs-on: *main_machine
+    steps:
+    - uses: actions/checkout@v1
+    - name: Select Xcode
+      run: sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
+    - uses: ./.github/actions/prepare
+      with:
+        target-os: ${{ matrix.os }}
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
+    - run: tar xzf iMast_iOS.xctestproducts.tar.gz && rm iMast_iOS.xctestproducts.tar.gz
     - name: Test (iOS)
-      if: matrix.os == 'iOS' && matrix.test_only == 'yes'
       run: |
         echo "::group::Setup mock server"
         pushd mock_server
@@ -47,9 +92,12 @@ jobs:
         echo "::endgroup::"
         defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts -bool true
         python3 .github/test_on_multiple_devices.py
+    - name: Archive Test Results
+      if: always()
+      run: tar cf test_results.tar test_results
     - name: Upload Test Results
-      if: matrix.os == 'iOS' && matrix.test_only == 'yes' && always()
+      if: always()
       uses: actions/upload-artifact@v7
       with:
-        name: test-results_${{ matrix.os }}_Xcode.${{ matrix.xcode }}
-        path: test_results
+        name: test-results_${{ matrix.os }}_Xcode.${{ env._main_xcode }}.tar
+        path: test_results.tar

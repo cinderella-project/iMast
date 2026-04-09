@@ -58,9 +58,8 @@ try:
         p = subprocess.Popen(["xcpretty", "-c"], stdin=subprocess.PIPE)
         assert p.stdin is not None
         subprocess.run([
-            "xcrun", "xcodebuild", "test",
-            "-workspace", "iMast.xcworkspace",
-            "-scheme", "iMast iOS",
+            "xcrun", "xcodebuild", "test-without-building",
+            "-testProductsPath", "./iMast_iOS.xctestproducts",
             "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
             "-parallel-testing-worker-count", "1",
             "-resultBundlePath", "test_results/" + device_key,
