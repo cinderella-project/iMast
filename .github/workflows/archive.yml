@@ -20,14 +20,10 @@ jobs:
         fetch-depth: "2"
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
-    - name: bundle install
-      run: bundle update --bundler && bundle install
-    - name: Install CocoaPods dependencies
-      run: bundle exec pod install
-    - run: git config --global core.quotepath false # for Ikemen on SwiftPM
+    - uses: ./.github/actions/prepare
+      with:
+        target-os: ${{ matrix.os }}
     - run: xcrun agvtool new-version -all ${{ github.run_id }}
-    - run: xcodebuild -downloadPlatform ${{ matrix.os }}
-      if: matrix.os != 'macOS'
     - name: Build
       run: |
         set -o pipefail
