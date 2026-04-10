@@ -117,13 +117,6 @@ jobs:
       group: "${{ github.workflow }}_test_${{ github.ref }}_${{ matrix.device_key }}"
       cancel-in-progress: true
     steps:
-    - run: |
-        while true; do
-          echo -e "\n\n--- CUT HERE ---\n\n"
-          date -Iseconds
-          ps aux | sort -nrk 3 | head -n 10
-          sleep 5
-        done > /tmp/monitor.log &
         
     - uses: actions/checkout@v1
     - name: Select Xcode
@@ -137,14 +130,14 @@ jobs:
       run: python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
       env:
         DOWNLOAD_ONLY: "yes"
-    - name: Test (iOS)
+    - name: Prepare Mock Server
       run: |
-        echo "::group::Setup mock server"
-        pushd mock_server
+        cd mock_server
         corepack enable
         pnpm install --frozen-lockfile
-        popd
-        echo "::endgroup::"
+    - run: ./.github/cpu_usage_monitor.sh &
+    - name: Test (iOS)
+      run: |
         python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
     - name: Archive Test Results
       if: always()
