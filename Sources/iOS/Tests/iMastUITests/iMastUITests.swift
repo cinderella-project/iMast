@@ -86,7 +86,9 @@ class iMastUITests: XCTestCase {
             othersMenu.waitForExistence(timeout: 10)
             shot()
             othersMenu.cells["openMyProfile"].tap()
-            app.staticTexts["relationshipLabel_loaded"].wait(for: \.isHittable, toEqual: true, timeout: 60)
+            let loadedLabel = app.staticTexts["relationshipLabel_loaded"]
+            loadedLabel.waitForExistence(timeout: 60)
+            loadedLabel.wait(for: \.isHittable, toEqual: true, timeout: 60)
             sleep(5)
             shot(name: "AppStore_Others")
         }
