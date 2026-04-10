@@ -143,3 +143,24 @@ jobs:
       with:
         name: test-results_${{ matrix.os }}_${{ matrix.device_key }}_Xcode.${{ env._main_xcode }}.tar
         path: test_results.tar
+  extract_screenshots:
+    needs: test
+    runs-on: ubuntu-slim
+    steps:
+    - uses: actions/checkout@v1
+    - name: Download Test Results
+      uses: actions/download-artifact@v7
+      with:
+        pattern: test-results_*.tar
+    - run: |
+        for f in test-results_*/*.tar; do
+          tar xvf "$f"
+        done
+    - run: |
+        for f in *.xcresult; do
+          python3 ./.github/extract_screenshots_from_xcresult.py "$f" "screenshots/$(basename "$f" .xcresult)"
+        done
+    - uses: actions/upload-artifact@v7
+      with:
+        name: screenshots
+        path: screenshots
