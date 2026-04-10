@@ -175,6 +175,7 @@ jobs:
           tar xvf "$f"
         done
     - run: |
+        set -xe
         for f in *.xcresult; do
           python3 ./.github/extract_screenshots_from_xcresult.py "$f" "screenshots/$(basename "$f" .xcresult)"
         done
