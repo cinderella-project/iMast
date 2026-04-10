@@ -125,6 +125,10 @@ jobs:
       with:
         name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
     - run: tar xzf iMast_iOS.xctestproducts.tar.gz && rm iMast_iOS.xctestproducts.tar.gz
+    - name: Download Runtime
+      run: python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
+      env:
+        DOWNLOAD_ONLY: "yes"
     - name: Test (iOS)
       run: |
         echo "::group::Setup mock server"

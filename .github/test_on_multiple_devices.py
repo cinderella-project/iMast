@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import subprocess
 import json
 import sys
@@ -53,6 +54,8 @@ try:
                         raise
                 finally:
                     print("::endgroup::")
+        if os.environ.get("DOWNLOAD_ONLY") == "yes":
+            continue
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
         print(f"::group::Booting {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
