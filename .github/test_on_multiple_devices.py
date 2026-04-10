@@ -58,13 +58,13 @@ try:
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
         subprocess.run(["xcrun", "simctl", "shutdown", device_key], check=True)
         print("::endgroup::")
-        print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
         retry = 0
         while True:
             try:
                 os.removedirs("test_results")
             except:
                 pass
+            print(f"::group::Testing on {device_key}, {retry} Try (iOS {ios_version}, {device_type})", flush=True)
             try:
                 subprocess.run([
                     "xcrun", "xcodebuild", "test-without-building",
@@ -78,6 +78,7 @@ try:
                 retry += 1
                 if retry >= 3:
                     raise
-        print("::endgroup::")
+            finally:
+                print("::endgroup::")
 finally:
     mock_server.terminate()
