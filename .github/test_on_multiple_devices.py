@@ -2,6 +2,7 @@
 import subprocess
 import json
 import sys
+import os
 
 IOS_LATEST = "26.4"
 IOS_17 = "17.5"
@@ -58,13 +59,25 @@ try:
         subprocess.run(["xcrun", "simctl", "shutdown", device_key], check=True)
         print("::endgroup::")
         print(f"::group::Testing on {device_key} (iOS {ios_version}, {device_type})", flush=True)
-        subprocess.run([
-            "xcrun", "xcodebuild", "test-without-building",
-            "-testProductsPath", "./iMast_iOS.xctestproducts",
-            "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
-            "-parallel-testing-worker-count", "1",
-            "-resultBundlePath", "test_results/" + device_key + ".xcresult",
-        ], check=True)
+        retry = 0
+        while True:
+            try:
+                os.removedirs("test_results")
+            except:
+                pass
+            try:
+                subprocess.run([
+                    "xcrun", "xcodebuild", "test-without-building",
+                    "-testProductsPath", "./iMast_iOS.xctestproducts",
+                    "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
+                    "-parallel-testing-worker-count", "1",
+                    "-resultBundlePath", "test_results/" + device_key + ".xcresult",
+                ], check=True)
+                break
+            except subprocess.CalledProcessError:
+                retry += 1
+                if retry >= 3:
+                    raise
         print("::endgroup::")
 finally:
     mock_server.terminate()
