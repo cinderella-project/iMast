@@ -64,9 +64,6 @@ jobs:
         compression-level: 0
   test:
     needs: build_for_test
-    concurrency:
-      group: "${{ github.workflow }}_test_${{ github.ref }}"
-      cancel-in-progress: true
     strategy:
       fail-fast: true
       max-parallel: 3
@@ -89,6 +86,9 @@ jobs:
           "iPad_10_5",
         ]
     runs-on: *main_machine
+    concurrency:
+      group: "${{ github.workflow }}_test_${{ github.ref }}_${{ matrix.device_key }}"
+      cancel-in-progress: true
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
