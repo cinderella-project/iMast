@@ -169,6 +169,7 @@ jobs:
         done
     - run: |
         set -xe
+        mv test_results/*.xcresult ./
         for f in *.xcresult; do
           python3 ./.github/extract_screenshots_from_xcresult.py "$f" "screenshots/$(basename "$f" .xcresult)"
         done
