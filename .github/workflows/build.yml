@@ -107,7 +107,7 @@ jobs:
     - calc_test_device_keys
     strategy:
       fail-fast: true
-      max-parallel: 3
+      max-parallel: 4
       matrix:
         os:
           - iOS
