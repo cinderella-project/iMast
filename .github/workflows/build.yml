@@ -4,6 +4,13 @@ on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      test_all_devices:
+        description: "Test on all devices (for taking screenshots)"
+        required: false
+        default: false
+        type: boolean
 
 env:
   _main_xcode: &main_xcode "26.4"
@@ -62,29 +69,49 @@ jobs:
         name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
         path: iMast_iOS.xctestproducts.tar.gz
         compression-level: 0
+  calc_test_device_keys:
+    runs-on: ubuntu-slim
+    outputs:
+      result: ${{ steps.calc.outputs.result }}
+    steps:
+    - uses: actions/github-script@v9
+      id: calc
+      env:
+        TEST_ALL_DEVICES: ${{ inputs.test_all_devices }}
+      with:
+        script: |
+          const preferredKeys = [
+            "iPhone_4_7",  // smallest screen
+            "iPad_13_0",   // modern iPad
+            "iPad_9_7",    // iOS 17
+            "iPhone_5_5",  // iOS 16
+          ]
+          const allKeys = [
+            ...preferredKeys,
+            "iPhone_6_9",
+            "iPhone_6_5",
+            "iPhone_6_3",
+            "iPhone_6_1",
+            "iPad_11_0",
+            "iPad_12_9",
+            "iPad_10_5",
+          ]
+          if (process.env.TEST_ALL_DEVICES === "true") {
+            return allKeys
+          } else {
+            return preferredKeys
+          }
   test:
-    needs: build_for_test
+    needs:
+    - build_for_test
+    - calc_test_device_keys
     strategy:
       fail-fast: true
       max-parallel: 3
       matrix:
         os:
           - iOS
-        device_key: [
-          # preferred
-          "iPhone_4_7", # smallest screen
-          "iPad_9_7", # not latest os
-          "iPhone_5_5", # not latest os
-          # others
-          "iPhone_6_9",
-          "iPhone_6_5",
-          "iPhone_6_3",
-          "iPhone_6_1",
-          "iPad_13_0",
-          "iPad_11_0",
-          "iPad_12_9",
-          "iPad_10_5",
-        ]
+        device_key: ${{ fromJson(needs.calc_test_device_keys.outputs.result) }}
     runs-on: *main_machine
     concurrency:
       group: "${{ github.workflow }}_test_${{ github.ref }}_${{ matrix.device_key }}"
