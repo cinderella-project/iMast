@@ -2,7 +2,7 @@
 import subprocess
 import json
 import sys
-import os
+import shutil
 
 IOS_LATEST = "26.4"
 IOS_17 = "17.5"
@@ -61,7 +61,7 @@ try:
         retry = 0
         while True:
             try:
-                os.removedirs("test_results")
+                shutil.rmtree("test_results")
             except:
                 pass
             print(f"::group::Testing on {device_key}, {retry} Try (iOS {ios_version}, {device_type})", flush=True)
