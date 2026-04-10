@@ -64,6 +64,9 @@ jobs:
         compression-level: 0
   test:
     needs: build_for_test
+    concurrency:
+      group: "${{ github.workflow }}_test_${{ github.ref }}"
+      cancel-in-progress: true
     strategy:
       fail-fast: true
       max-parallel: 3
