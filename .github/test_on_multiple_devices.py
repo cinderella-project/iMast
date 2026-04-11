@@ -75,12 +75,9 @@ try:
                     "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
                     "-parallel-testing-worker-count", "1",
                     "-resultBundlePath", "test_results/" + device_key + ".xcresult",
+                    "-retry-tests-on-failure",
                 ], check=True)
                 break
-            except subprocess.CalledProcessError:
-                retry += 1
-                if retry >= 3:
-                    raise
             finally:
                 print("::endgroup::")
         subprocess.run(["xcrun", "xcresulttool", "get", "test-results", "summary", "--path", f"test_results/{device_key}.xcresult"], check=True)
