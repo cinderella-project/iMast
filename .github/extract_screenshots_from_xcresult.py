@@ -33,7 +33,7 @@ def main(xcresult_path: str, output_dir: str):
     for attachment in attachments:
         print(attachment)
         filename = f"{attachment['test_plan_name']}/{attachment['config_name']}/{attachment['attachment_name']}"
-        filename += "." + os.path.splitext(attachment['attachment_filename_override'])[1]
+        filename += os.path.splitext(attachment['attachment_filename_override'])[1]
         os.makedirs(os.path.dirname(os.path.join(output_dir, filename)), exist_ok=True)
         shutil.copyfile(
             os.path.join(xcresult_path, "Data", "data." + attachment['attachment_payload_id']),
