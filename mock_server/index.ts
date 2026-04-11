@@ -15,7 +15,7 @@ async function setStatusBar(old: boolean) {
     await new Promise((resolve, reject) => {
         const tz = -new Date("2007-01-09T09:41:00.000+01:00").getTimezoneOffset()
         execFile("xcrun", [
-            "simctl", "--set", "testing",
+            "simctl",
             "status_bar", "booted", "override",
             "--time", [
                 "2007-01-09T09:41:00",

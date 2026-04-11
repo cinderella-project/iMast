@@ -59,7 +59,6 @@ try:
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
         print(f"::group::Booting {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
-        subprocess.run(["xcrun", "simctl", "shutdown", device_key], check=True)
         print("::endgroup::")
         retry = 0
         while True:
@@ -73,7 +72,7 @@ try:
                     "xcrun", "xcodebuild", "test-without-building",
                     "-testProductsPath", "./iMast_iOS.xctestproducts",
                     "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
-                    "-parallel-testing-worker-count", "1",
+                    "-parallel-testing-enabled", "NO",
                     "-resultBundlePath", "test_results/" + device_key + ".xcresult",
                     "-retry-tests-on-failure",
                 ], check=True)
