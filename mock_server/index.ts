@@ -11,14 +11,15 @@ const ws = createNodeWebSocket({ app })
 const PROXY_DEST = "mstdn.rinsuki.net"
 const PROXY_USER = "4553" // @imast_ios
 
-app.post("/api/internal/set_status_bar", async c => {
+async function setStatusBar(old: boolean) {
     await new Promise((resolve, reject) => {
         const tz = -new Date("2007-01-09T09:41:00.000+01:00").getTimezoneOffset()
         execFile("xcrun", [
             "simctl", "--set", "testing",
             "status_bar", "booted", "override",
             "--time", [
-                "2007-01-09T09:41:00.000",
+                "2007-01-09T09:41:00",
+                old ? "" : ".000",
                 tz > 0 ? "+" : "-",
                 Math.floor(Math.abs(tz) / 60).toString().padStart(2, "0"),
                 ":",
@@ -29,6 +30,7 @@ app.post("/api/internal/set_status_bar", async c => {
             "--wifiBars", "3",
             "--cellularMode", "active",
             "--cellularBars", "4",
+            "--operatorName", "",
             "--batteryState", "discharging",
             "--batteryLevel", "100",
         ], (err) => {
@@ -39,6 +41,11 @@ app.post("/api/internal/set_status_bar", async c => {
             }
         })
     })
+}
+
+app.post("/api/internal/set_status_bar", async c => {
+    await setStatusBar(true).catch(e => console.error(e))
+    await setStatusBar(false).catch(e => console.error(e))
     return c.json({ success: true })
 })
 
