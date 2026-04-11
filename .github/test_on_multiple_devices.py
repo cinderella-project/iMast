@@ -83,5 +83,6 @@ try:
                     raise
             finally:
                 print("::endgroup::")
+        subprocess.run(["xcrun", "xcresulttool", "get", "test-results", "summary", "--path", f"test_results/{device_key}.xcresult"], check=True)
 finally:
     mock_server.terminate()
