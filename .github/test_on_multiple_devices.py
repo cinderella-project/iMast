@@ -12,7 +12,7 @@ DEVICES = [
     ("iPhone_6_9", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max", IOS_LATEST),
     ("iPhone_6_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max", IOS_LATEST),
     ("iPhone_6_3", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro", IOS_LATEST),
-    ("iPhone_6_1", "com.apple.CoreSimulator.SimDeviceType.iPhone-14-Pro", IOS_LATEST),
+    ("iPhone_6_1", "com.apple.CoreSimulator.SimDeviceType.iPhone-14", IOS_LATEST),
     ("iPhone_5_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-8-Plus", IOS_16),
     ("iPhone_4_7", "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", IOS_LATEST),
     # iPhone 4_0 → SE 1st gen, iOS 15.x
