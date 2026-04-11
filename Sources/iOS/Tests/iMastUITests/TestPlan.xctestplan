@@ -43,6 +43,7 @@
   ],
   "defaultOptions" : {
     "areLocalizationScreenshotsEnabled" : true,
+    "preferredScreenCaptureFormat" : "screenshot",
     "uiTestingScreenshotsLifetime" : "keepAlways"
   },
   "testTargets" : [

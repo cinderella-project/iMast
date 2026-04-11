@@ -27,24 +27,21 @@ import XCTest
 class iMastUITests: XCTestCase {
     let app = XCUIApplication()
     let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+    
+    override func setUp() async throws {
+        try await super.setUp()
+        var req = URLRequest(url: URL(string: "http://localhost:3000/api/internal/set_status_bar")!)
+        req.httpMethod = "POST"
+        let res = try? await URLSession.shared.data(for: req)
+        print(res)
+    }
         
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        var req = URLRequest(url: URL(string: "http://localhost:3000/api/internal/set_status_bar")!)
-        req.httpMethod = "POST"
-        try? NSURLConnection.sendSynchronousRequest(req, returning: nil)
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchEnvironment["IMAST_ALLOW_HTTP_SUFFIX_HOST"] = "yes"
         app.launchEnvironment["IMAST_USE_IN_MEMORY_SQLITE"] = "yes"
         app.launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -66,10 +63,11 @@ class iMastUITests: XCTestCase {
             shot()
             // ASWebのアラートを真面目に突破するのはできなさそうだったので
             let loginWithSafari = app.buttons["loginWithSafari_Ephemeral"]
-            loginWithSafari.waitForExistence(timeout: 10)
+            loginWithSafari.wait(for: \.isHittable, toEqual: true, timeout: 10)
             loginWithSafari.tap()
             let openTimeline = app.buttons["toTimeline"]
-            openTimeline.waitForExistence(timeout: 10)
+            openTimeline.waitForExistence(timeout: 60) // Safari はときどき信じられないくらい遅い
+            openTimeline.wait(for: \.isHittable, toEqual: true, timeout: 10)
             shot()
             openTimeline.tap()
         }
@@ -79,12 +77,19 @@ class iMastUITests: XCTestCase {
             tabBar.buttons.firstMatch.tap()
             app.navigationBars.buttons.containing(.image, identifier: "bolt.fill").firstMatch.waitForExistence(timeout: 10)
             shot(name: "AppStore_Home")
-            tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
+            if tabBar.buttons["others"].exists {
+                tabBar.buttons["others"].tap()
+            } else {
+                tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
+            }
             let othersMenu = app.tables["otherMenuTableView"]
             othersMenu.waitForExistence(timeout: 10)
             shot()
             othersMenu.cells["openMyProfile"].tap()
-            app.staticTexts["relationshipLabel_loaded"].waitForExistence(timeout: 10)
+            let loadedLabel = app.staticTexts["relationshipLabel_loaded"]
+            loadedLabel.waitForExistence(timeout: 60)
+            loadedLabel.wait(for: \.isHittable, toEqual: true, timeout: 60)
+            sleep(5)
             shot(name: "AppStore_Others")
         }
     }

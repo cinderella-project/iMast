@@ -65,11 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         _doScaleFactorSwizzlingIfNot()
         #endif
-        UserDefaults.standard.register(defaults: [
-            // disable floating tab bar due to https://developer.apple.com/forums/thread/763446
-            // TODO: check after next patch release, and think it about adopt to iPadOS 18's new floating tab bar
-            "UseFloatingTabBar": false, // why everyone trying to overriding trait for disable floating tab bar
-        ])
+        if #unavailable(iOS 26) {
+            UserDefaults.standard.register(defaults: [
+                // disable floating tab bar due to https://developer.apple.com/forums/thread/763446
+                // TODO: check after next patch release, and think it about adopt to iPadOS 18's new floating tab bar
+                // NOTE: in iOS 26.0 or later, we are method swizzling instead, because iOS 26.4 isn't checking defaults
+                "UseFloatingTabBar": false, // why everyone trying to overriding trait for disable floating tab bar
+            ])
+        }
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0)
         ImageCacheUtils.sdWebImageInitializer(alsoMigrateOldFiles: true)
         self.registerDefaultsFromSettingsBundle()
