@@ -171,6 +171,7 @@ jobs:
         set -xe
         mv test_results/*.xcresult ./
         for f in *.xcresult; do
+          xcrun xcresulttool get test-results summary --path "$f" # xcresulttool will generate database.sqlite3
           python3 ./.github/extract_screenshots_from_xcresult.py "$f" "screenshots/$(basename "$f" .xcresult)"
         done
     - uses: actions/upload-artifact@v7
