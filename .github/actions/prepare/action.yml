@@ -8,7 +8,7 @@ runs:
   using: composite
   steps:
     - name: bundle install
-      run: bundle update --bundler && bundle install
+      run: bundle update --bundler && bundle install --frozen
       shell: bash
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
