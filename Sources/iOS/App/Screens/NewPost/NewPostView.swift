@@ -143,10 +143,11 @@ class NewPostView: UIView {
         toolBar.snp.makeConstraints { make in
             if #available(iOS 26, *), isSolariumEnabled {
                 make.bottom.equalTo(keyboardLayoutGuide.snp.top).inset(-16)
+                make.horizontalEdges.equalTo(layoutMarginsGuide)
             } else {
                 make.top.equalTo(safeAreaLayoutGuide.snp.bottom)
+                make.leading.trailing.equalToSuperview()
             }
-            make.leading.trailing.equalToSuperview()
         }
         bringSubviewToFront(toolBar)
         #endif
