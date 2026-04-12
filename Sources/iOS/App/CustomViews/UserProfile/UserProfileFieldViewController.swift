@@ -107,6 +107,7 @@ class UserProfileFieldViewController: UIViewController, Instantiatable, Injectab
             $0.spacing = 2
         }
         view.addSubview(mainStackView)
+        view.preservesSuperviewLayoutMargins = true
         mainStackView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view.layoutMarginsGuide)
             make.top.bottom.equalToSuperview().inset(8)

@@ -56,10 +56,10 @@ class UserProfileInfoTableViewCell: UITableViewCell {
         stackView.alignment = .center
         stackView.axis = .vertical
         stackView.spacing = 8
-        addSubview(stackView)
+        contentView.addSubview(stackView)
+        preservesSuperviewLayoutMargins = true
         stackView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.size.equalToSuperview().inset(12)
+            make.edges.equalTo(contentView.layoutMarginsGuide)
         }
     }
     

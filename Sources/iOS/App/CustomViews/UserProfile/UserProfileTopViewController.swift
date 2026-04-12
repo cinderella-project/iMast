@@ -44,7 +44,7 @@ class UserProfileTopViewController: StableTableViewController, Instantiatable, I
     required init(with input: Input, environment: Environment) {
         self.input = input
         self.environment = environment
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
     
     required init?(coder: NSCoder) {

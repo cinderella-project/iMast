@@ -52,8 +52,11 @@ class UserProfileBioViewController: UIViewController, Instantiatable, Injectable
     
     override func viewDidLoad() {
         view.addSubview(profileTextView)
+        view.preservesSuperviewLayoutMargins = true
         profileTextView.snp.makeConstraints { make in
-            make.center.size.equalTo(view.readableContentGuide)
+            make.center.equalTo(view.layoutMarginsGuide)
+            make.width.lessThanOrEqualTo(view.layoutMarginsGuide)
+            make.verticalEdges.equalToSuperview()
         }
         profileTextView.delegate = self
         self.input(input)
