@@ -15,7 +15,8 @@ runs:
       shell: bash
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
       shell: bash
-    - run: xcodebuild -resolvePackageDependencies -onlyUsePackageVersionsFromResolvedFile -workspace ./iMast.xcworkspace -scheme "iMast iOS"
+    - name: Download SwiftPM dependencies
+      run: xcodebuild -resolvePackageDependencies -onlyUsePackageVersionsFromResolvedFile -workspace ./iMast.xcworkspace -scheme "iMast iOS"
       shell: bash
     - name: Download Platform
       run: |
@@ -23,4 +24,7 @@ runs:
           xcodebuild -downloadPlatform ${{ inputs.target-os }} && break
         done
       if: inputs.target-os != 'macOS'
+      shell: bash
+    - name: Ensure there are no diff
+      run: git add -A && git diff --exit-code HEAD
       shell: bash
