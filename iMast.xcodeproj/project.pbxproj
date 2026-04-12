@@ -3260,7 +3260,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path Sources/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers --xcworkspace-path iMast.xcworkspace\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION = \"Debug\" ]; then\n    \"${PODS_ROOT}/LicensePlist/license-plist\" --output-path Sources/iOS/App/Settings.bundle --suppress-opening-directory --add-version-numbers --xcworkspace-path iMast.xcworkspace --package-path Sources/Package/Package.swift\nfi\n";
 		};
 		CEC4704825DC725F003E3AEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
