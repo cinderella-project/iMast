@@ -54,6 +54,7 @@
 		CE2E4B432AC284F900E1DDD4 /* Dummy.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE2E4B452AC284F900E1DDD4 /* Dummy.strings */; };
 		CE321EC622F411AE00BFC86F /* MastodonPostDetailPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */; };
 		CE37782A2400F5C400250FE2 /* AccoutSelectCushionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */; };
+		CE38146A2F8B282200886BB5 /* TypedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3814692F8B281C00886BB5 /* TypedContentView.swift */; };
 		CE3901E22855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */; };
 		CE392E5C2C489BF50059BC60 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CE392E592C489BF10059BC60 /* Localizable.stringsdict */; };
 		CE392E622C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE392E612C489F480059BC60 /* MastodonPostDetailReactedUsersViewController.swift */; };
@@ -716,6 +717,7 @@
 		CE2E4B492AC284FB00E1DDD4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Dummy.strings; sourceTree = "<group>"; };
 		CE321EC522F411AE00BFC86F /* MastodonPostDetailPollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastodonPostDetailPollViewController.swift; sourceTree = "<group>"; };
 		CE3778292400F5C400250FE2 /* AccoutSelectCushionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutSelectCushionViewController.swift; sourceTree = "<group>"; };
+		CE3814692F8B281C00886BB5 /* TypedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedContentView.swift; sourceTree = "<group>"; };
 		CE3901E12855C36E00D4E5D8 /* WorkaroundForSubtitleSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkaroundForSubtitleSpacing.swift; sourceTree = "<group>"; };
 		CE392E5A2C489BF10059BC60 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ja; path = ja.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		CE392E5D2C489C040059BC60 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -1373,6 +1375,7 @@
 		CE43BE81237775F000133C86 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CE3814692F8B281C00886BB5 /* TypedContentView.swift */,
 				CEC8365C23C1FA6100E4A957 /* swiftgen.yml */,
 				CEF47F652A79338800D1AEAB /* Generated */,
 				CEC8366723C22AAC00E4A957 /* Strings */,
@@ -3551,6 +3554,7 @@
 				CE43BEEC23779EB500133C86 /* MastodonApplication.swift in Sources */,
 				CE43BF072377A0A500133C86 /* APIError.swift in Sources */,
 				CE43BEEA23779EB500133C86 /* MastodonAccountRelationship.swift in Sources */,
+				CE38146A2F8B282200886BB5 /* TypedContentView.swift in Sources */,
 				CE98789A26B4909C008A0A88 /* Hydra+promiseAsync.swift in Sources */,
 				CE43BEF023779EB500133C86 /* MastodonSearchResult.swift in Sources */,
 				CE8EFB2E25C9448B004FFE4B /* Defaults.swift in Sources */,
