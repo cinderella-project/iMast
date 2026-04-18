@@ -62,6 +62,7 @@ class TimelineViewController: UIViewController, Instantiatable {
     var isRefreshEnabled = true
     var isReadmoreEnabled = true
     var isNewPostAvailable = false
+    var lastWebSocketError: Error?
     
     required init(with input: Input = .plain, environment: Environment) {
         tableView = UITableView(frame: .zero, style: input)
@@ -340,10 +341,14 @@ class TimelineViewController: UIViewController, Instantiatable {
             return
         }
         Task {
-            let socket = try await environment.getWebSocket(endpoint: webSocketEndpoint)
-            socket.delegate = self
-            socket.connect()
-            self.socket = socket
+            do {
+                let socket = try await environment.getWebSocket(endpoint: webSocketEndpoint)
+                socket.delegate = self
+                socket.connect()
+                self.socket = socket
+            } catch {
+                self.setWebSocketFailed(error: error)
+            }
         }
     }
     
@@ -385,6 +390,12 @@ class TimelineViewController: UIViewController, Instantiatable {
         items.append(UIAction(title: L10n.Localizable.refetch, image: UIImage(systemName: "arrow.clockwise")) { [weak self] _ in
             self?.refetchTimeline()
         })
+        if let lastWebSocketError {
+            items = [UIMenu(options: .displayInline, children: items)]
+            items.append(UIAction(title: L10n.Localizable.showLastStreamingDisconnectedError, image: UIImage(systemName: "exclamationmark.circle")) { [weak self] _ in
+                self?.errorReport(error: lastWebSocketError)
+            })
+        }
         streamingNavigationItem?.menu = UIMenu(title: L10n.Localizable.streaming + "\n" + L10n.Localizable.streamingStatus(connected ? L10n.Localizable.connected : L10n.Localizable.notConnected), children: items)
     }
     
@@ -468,6 +479,15 @@ extension TimelineViewController: UITableViewDelegate {
 }
 
 extension TimelineViewController: WebSocketWrapperDelegate {
+    func setWebSocketFailed(error: Error?) {
+        DispatchQueue.mainSafeSync {
+            lastWebSocketError = error
+            streamingNavigationItem?.image = UIImage(systemName: "bolt.slash.fill")
+            streamingNavigationItem?.tintColor = .systemRed
+            setStreamingMenu(connected: false)
+        }
+    }
+    
     func webSocketDidConnect(_ wrapper: WebSocketWrapper) {
         DispatchQueue.mainSafeSync {
             streamingNavigationItem?.image = UIImage(systemName: "bolt.fill")
@@ -477,11 +497,7 @@ extension TimelineViewController: WebSocketWrapperDelegate {
     }
     
     func webSocketDidDisconnect(_ wrapper: WebSocketWrapper, error: Error?) {
-        DispatchQueue.mainSafeSync {
-            streamingNavigationItem?.image = UIImage(systemName: "bolt.slash.fill")
-            streamingNavigationItem?.tintColor = .systemRed
-            setStreamingMenu(connected: false)
-        }
+        setWebSocketFailed(error: error)
     }
     
     enum WebSocketEvent: Decodable {

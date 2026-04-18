@@ -61,6 +61,8 @@ public enum L10n {
     public static let refetch = L10n.tr("Localizable", "refetch")
     /// 設定
     public static let settings = L10n.tr("Localizable", "settings")
+    /// 最後にStreamingが切断された際のエラーを表示
+    public static let showLastStreamingDisconnectedError = L10n.tr("Localizable", "showLastStreamingDisconnectedError")
     /// Streaming
     public static let streaming = L10n.tr("Localizable", "streaming")
     /// 状態: %@

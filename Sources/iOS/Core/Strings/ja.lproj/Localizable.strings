@@ -47,6 +47,7 @@
 "disconnect" = "切断";
 "refetch" = "再取得";
 "cancel" = "キャンセル";
+"showLastStreamingDisconnectedError" = "最後にStreamingが切断された際のエラーを表示";
 
 "editedWarning.title" = "この投稿は投稿後に編集されています";
 "editedWarning.description" = "最終編集: %@";
