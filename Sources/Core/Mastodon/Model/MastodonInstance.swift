@@ -34,7 +34,7 @@ private let website = URL(string: "https://cinderella-project.github.io/iMast/")
 #endif
 
 public class MastodonInstance {
-    public struct Info: Codable, MastodonEndpointResponse {
+    public struct InfoV1: Codable, MastodonEndpointResponse {
         public let version: String
         public let urls: Urls
         public let fedibirdFeatureQuote: Bool? // Fedibirdの引用投稿に対応しているか?
@@ -51,6 +51,58 @@ public class MastodonInstance {
             case version
             case urls
             case fedibirdFeatureQuote = "feature_quote"
+        }
+    }
+    
+    public struct InfoV2: Codable, MastodonEndpointResponse {
+        public let version: String
+        public let configuration: Configuration
+        public let fedibirdFeatureQuote: Bool? // Fedibirdの引用投稿に対応しているか?
+        
+        public struct Configuration: Codable {
+            public let urls: Urls
+            
+            public struct Urls: Codable {
+                public let streaming: String
+            }
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case version
+            case configuration
+            case fedibirdFeatureQuote = "feature_quote"
+        }
+    }
+    
+    public enum Info {
+        case v1(InfoV1)
+        case v2(InfoV2)
+        
+        public var version: String {
+            switch self {
+            case .v1(let info):
+                return info.version
+            case .v2(let info):
+                return info.version
+            }
+        }
+        
+        public var streamingApiBaseUrl: String {
+            switch self {
+            case .v1(let info):
+                return info.urls.streamingApi
+            case .v2(let info):
+                return info.configuration.urls.streaming
+            }
+        }
+        
+        public var fedibirdFeatureQuote: Bool? {
+            switch self {
+            case .v1(let info):
+                return info.fedibirdFeatureQuote
+            case .v2(let info):
+                return info.fedibirdFeatureQuote
+            }
         }
     }
     
@@ -137,7 +189,12 @@ public class MastodonInstance {
         if let cache = mastodonInstanceInfoCache[self.hostName] {
             return cache
         }
-        let json = try await MastodonEndpoint.GetInstanceInfo().request(to: self)
+        let json: Info
+        do {
+            json = Info.v2(try await MastodonEndpoint.GetInstanceInfoV2().request(to: self))
+        } catch APIError.unknownResponse(errorHttpCode: let code, errorString: let string) where code == 404 {
+            json = Info.v1(try await MastodonEndpoint.GetInstanceInfoV1().request(to: self))
+        }
         
         mastodonInstanceInfoCache[self.hostName] = json
         return json
@@ -160,10 +217,17 @@ public class MastodonInstance {
 }
 
 extension MastodonEndpoint {
-    struct GetInstanceInfo: MastodonAnonymousEndpointProtocol {
-        typealias Response = MastodonInstance.Info
+    struct GetInstanceInfoV1: MastodonAnonymousEndpointProtocol {
+        typealias Response = MastodonInstance.InfoV1
         
         var endpoint: String { "/api/v1/instance" }
+        var method: String { "GET" }
+    }
+    
+    struct GetInstanceInfoV2: MastodonAnonymousEndpointProtocol {
+        typealias Response = MastodonInstance.InfoV2
+        
+        var endpoint: String { "/api/v2/instance" }
         var method: String { "GET" }
     }
     

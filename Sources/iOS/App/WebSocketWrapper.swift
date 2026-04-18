@@ -109,7 +109,7 @@ extension MastodonUserToken {
     func getWebSocket(endpoint: String) async throws -> WebSocketWrapper {
         let info = try await self.app.instance.getInfo()
         let isMultiEndpoint = endpoint.contains(" ")
-        var streamingUrlString = info.urls.streamingApi
+        var streamingUrlString = info.streamingApiBaseUrl
         streamingUrlString += isMultiEndpoint ? "/api/v1/streaming/" : ("/api/v1/streaming/?stream=" + endpoint)
         let protocols: [String]?
         if MastodonVersionInt(info.version).supportingFeature(.accessTokenInWebSocketProtocol) {
