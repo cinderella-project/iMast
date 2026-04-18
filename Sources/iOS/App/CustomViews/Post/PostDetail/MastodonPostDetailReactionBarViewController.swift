@@ -149,6 +149,7 @@ class MastodonPostDetailReactionBarViewController: UIViewController, Instantiata
                     completion(try await strongSelf.buildOthersMenu())
                 } catch {
                     completion([])
+                    strongSelf.errorReport(error: error)
                 }
             }
         }])
