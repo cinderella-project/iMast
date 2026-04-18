@@ -47,6 +47,7 @@
 "disconnect" = "切断";
 "refetch" = "重新连接";
 "cancel" = "取消";
+"showLastStreamingDisconnectedError" = "最後にStreamingが切断された際のエラーを表示";
 
 "editedWarning.title" = "已编辑的帖子";
 "editedWarning.description" = "最后一次编辑：%@";
