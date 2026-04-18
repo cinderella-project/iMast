@@ -47,6 +47,7 @@
 "disconnect" = "切斷";
 "refetch" = "重新連接";
 "cancel" = "取消";
+"showLastStreamingDisconnectedError" = "最後にStreamingが切断された際のエラーを表示";
 
 "editedWarning.title" = "已編輯的嘟文";
 "editedWarning.description" = "最後編輯: %@";
