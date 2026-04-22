@@ -47,7 +47,7 @@
 "disconnect" = "끊어짐";
 "refetch" = "새로고침";
 "cancel" = "취소";
-"showLastStreamingDisconnectedError" = "最後にStreamingが切断された際のエラーを表示";
+"showLastStreamingDisconnectedError" = "마지막으로 스트리밍이 끊어졌을 때의 에러를 표시";
 
 "editedWarning.title" = "이 글은 게시된 이후 수정되었습니다.";
 "editedWarning.description" = "최종 수정: %@";
