@@ -223,9 +223,33 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
         
         self.readmoreView.state = .loading
+        if #available(iOS 17.0, *) {
+            setNeedsUpdateContentUnavailableConfiguration()
+        }
         let posts = try await MastodonEndpoint.GetTimeline(timelineType).request(with: environment)
         self.addNewPosts(posts: posts)
         self.readmoreView.state = .moreLoadable
+        if #available(iOS 17.0, *) {
+            setNeedsUpdateContentUnavailableConfiguration()
+        }
+    }
+    
+    @available(iOS 17.0, *)
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        defer {
+            readmoreView.isHidden = contentUnavailableConfiguration != nil
+        }
+        let snapshot = diffableDataSource.snapshot()
+        guard snapshot.itemIdentifiers.isEmpty else {
+            contentUnavailableConfiguration = nil
+            return
+        }
+        switch readmoreView.state {
+        case .loading:
+            contentUnavailableConfiguration = UIContentUnavailableConfiguration.loading()
+        default:
+            contentUnavailableConfiguration = nil
+        }
     }
     
     @objc func refreshTimeline() {
@@ -236,6 +260,9 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
         let snapshot = self.diffableDataSource.snapshot()
         var timelineRequest = MastodonEndpoint.GetTimeline(timelineType, limit: 40)
+        if #available(iOS 17.0, *) {
+            setNeedsUpdateContentUnavailableConfiguration()
+        }
         if let v = snapshot.itemIdentifiers(inSection: .posts).first, case .post(let id, _) = v {
             timelineRequest.paging = .prev(id.string, isSinceId: true)
         }
@@ -244,6 +271,9 @@ class TimelineViewController: UIViewController, Instantiatable {
         }.catch { error in
             self.errorReport(error: error)
         }.always(in: .main) {
+            if #available(iOS 17.0, *) {
+                self.setNeedsUpdateContentUnavailableConfiguration()
+            }
             self.refreshControl.endRefreshing()
         }
     }
@@ -321,7 +351,13 @@ class TimelineViewController: UIViewController, Instantiatable {
             snapshot.deleteItems(Array(items.dropFirst(maxPostCount)))
         }
         self.updateDataSourceQueue.sync {
-            self.diffableDataSource.apply(snapshot, animatingDifferences: true)
+            self.diffableDataSource.apply(snapshot, animatingDifferences: true) {
+                DispatchQueue.main.async {
+                    if #available(iOS 17.0, *) {
+                        self.setNeedsUpdateContentUnavailableConfiguration()
+                    }
+                }
+            }
         }
     }
     

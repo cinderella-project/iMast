@@ -8,12 +8,15 @@ runs:
   using: composite
   steps:
     - name: bundle install
-      run: bundle update --bundler && bundle install
+      run: bundle config set frozen true && bundle install
       shell: bash
     - name: Install CocoaPods dependencies
       run: bundle exec pod install
       shell: bash
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
+      shell: bash
+    - name: Download SwiftPM dependencies
+      run: xcodebuild -resolvePackageDependencies -onlyUsePackageVersionsFromResolvedFile -workspace ./iMast.xcworkspace -scheme "iMast iOS"
       shell: bash
     - name: Download Platform
       run: |
@@ -21,4 +24,7 @@ runs:
           xcodebuild -downloadPlatform ${{ inputs.target-os }} && break
         done
       if: inputs.target-os != 'macOS'
+      shell: bash
+    - name: Ensure there are no diff
+      run: git add -A && git diff --exit-code HEAD
       shell: bash
