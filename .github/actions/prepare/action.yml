@@ -7,6 +7,15 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Download Platform
+      run: |
+        for i in $(seq 1 3); do
+          xcodebuild -downloadPlatform ${{ inputs.target-os }} && break
+        done
+      if: inputs.target-os != 'macOS'
+      shell: bash
+      id: download-platform
+      background: true
     - name: bundle install
       run: bundle update --bundler && bundle install
       shell: bash
@@ -15,10 +24,4 @@ runs:
       shell: bash
     - run: git config --global core.quotepath false # for Ikemen on SwiftPM
       shell: bash
-    - name: Download Platform
-      run: |
-        for i in $(seq 1 3); do
-          xcodebuild -downloadPlatform ${{ inputs.target-os }} && break
-        done
-      if: inputs.target-os != 'macOS'
-      shell: bash
+    - wait: download-platform
