@@ -24,7 +24,7 @@ jobs:
         xcode: [*main_xcode]
         os:
           - macOS
-          - iOS
+          # - iOS # i think build_for_test and archive is enough
           - visionOS
         machine: [*main_machine]
     runs-on: ${{ matrix.machine }}
