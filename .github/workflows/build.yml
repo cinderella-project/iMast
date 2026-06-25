@@ -121,20 +121,23 @@ jobs:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v7
-      with:
-        name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
-    - run: tar xzf iMast_iOS.xctestproducts.tar.gz && rm iMast_iOS.xctestproducts.tar.gz
-    - name: Download Runtime
-      run: python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
-      env:
-        DOWNLOAD_ONLY: "yes"
-    - name: Prepare Mock Server
-      run: |
-        cd mock_server
-        corepack enable
-        pnpm install --frozen-lockfile
+    - parallel:
+      - name: Download Build Artifacts
+        id: download-build-artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: iMast_iOS.${{ matrix.os }}.xctestproducts.tar.gz
+      - run: tar xzf iMast_iOS.xctestproducts.tar.gz && rm iMast_iOS.xctestproducts.tar.gz
+        wait: download-build-artifacts
+      - name: Download Runtime
+        run: python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
+        env:
+          DOWNLOAD_ONLY: "yes"
+      - name: Prepare Mock Server
+        run: |
+          cd mock_server
+          corepack enable
+          pnpm install --frozen-lockfile
     - run: ./.github/cpu_usage_monitor.sh &
     - name: Test (iOS)
       run: |
