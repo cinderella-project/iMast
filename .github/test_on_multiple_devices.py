@@ -5,7 +5,7 @@ import json
 import sys
 import shutil
 
-IOS_LATEST = "26.4"
+IOS_LATEST = "26.5"
 IOS_17 = "17.5"
 IOS_16 = "16.4" # our minimum requirements
 DEVICES = [
