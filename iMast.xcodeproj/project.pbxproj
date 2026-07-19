@@ -99,7 +99,6 @@
 		CE4800ED2DF6DB8700B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EC2DF6DB8700B92D6A /* GRDB */; };
 		CE4800EF2DF6DB8D00B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EE2DF6DB8D00B92D6A /* GRDB */; };
 		CE4800F12DF6DB9200B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800F02DF6DB9200B92D6A /* GRDB */; };
-		CE4800F32DF6DB9700B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800F22DF6DB9700B92D6A /* GRDB */; };
 		CE4B21C12ACFED100057B5D4 /* TopDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE4FAD402A793E7400E5C843 /* ShareNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FAD3D2A793E4500E5C843 /* ShareNewPostView.swift */; };
@@ -1019,7 +1018,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE4800F32DF6DB9700B92D6A /* GRDB in Frameworks */,
 				CE43BE95237775F100133C86 /* iMastiOSCore.framework in Frameworks */,
 				0DB50C2D6AF7EB43D6C6CA58 /* Pods_iMastShared_iOS_iMast_iOS.framework in Frameworks */,
 			);
@@ -5298,11 +5296,6 @@
 			productName = GRDB;
 		};
 		CE4800F02DF6DB9200B92D6A /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
-			productName = GRDB;
-		};
-		CE4800F22DF6DB9700B92D6A /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
