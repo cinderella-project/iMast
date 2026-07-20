@@ -226,12 +226,14 @@ class TimelineViewController: UIViewController, Instantiatable {
         if #available(iOS 17.0, *) {
             setNeedsUpdateContentUnavailableConfiguration()
         }
+        defer {
+            if #available(iOS 17.0, *) {
+                setNeedsUpdateContentUnavailableConfiguration()
+            }
+        }
         let posts = try await MastodonEndpoint.GetTimeline(timelineType).request(with: environment)
         self.addNewPosts(posts: posts)
         self.readmoreView.state = .moreLoadable
-        if #available(iOS 17.0, *) {
-            setNeedsUpdateContentUnavailableConfiguration()
-        }
     }
     
     @available(iOS 17.0, *)
