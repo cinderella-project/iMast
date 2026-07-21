@@ -1,6 +1,5 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://cdn.cocoapods.org/'
-plugin 'cocoapods-pod-linkage'
 
 abstract_target 'iMastShared' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
