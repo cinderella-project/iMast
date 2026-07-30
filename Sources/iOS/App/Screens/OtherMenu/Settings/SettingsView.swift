@@ -414,6 +414,16 @@ struct DeveloperSettingsView: View {
                     }
                 }
             }
+            Section("Links") {
+                if
+                    let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
+                    let url = URL(string: "https://github.com/cinderella-project/iMast/actions/runs/\(build)")
+                {
+                    Link(destination: url) {
+                        Text("Open GitHub Actions from Build Number (\(build))")
+                    }
+                }
+            }
         }
         .attach(errorReporter: errorReporter)
         .navigationTitle("内部設定")
