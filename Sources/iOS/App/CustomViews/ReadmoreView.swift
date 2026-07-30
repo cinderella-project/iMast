@@ -120,9 +120,11 @@ class ReadmoreView: UIView {
                 config.secondaryText = error.localizedRecoverySuggestion
                 
                 var button = UIButton.Configuration.borderedProminent()
+                #if !os(visionOS)
                 if #available(iOS 26.0, *) {
                     button = .prominentGlass()
                 }
+                #endif
                 button.image = UIImage(systemName: "arrow.clockwise")
                 button.imagePlacement = .leading
                 button.imagePadding = 8
