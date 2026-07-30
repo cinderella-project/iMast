@@ -24,6 +24,7 @@
 import UIKit
 import SnapKit
 import iMastiOSCore
+import Ikemen
 
 class ReadmoreView: UIView {
     enum State {
@@ -103,6 +104,50 @@ class ReadmoreView: UIView {
             if let action = action {
                 _ = target?.perform(action)
             }
+        }
+    }
+    
+    @available(iOS 17.0, *)
+    func makeUIContentUnavailableConfiguration() -> UIContentUnavailableConfiguration? {
+        switch state {
+        case .loading:
+            return UIContentUnavailableConfiguration.loading()
+        case .withError:
+            if let error = lastError as? NSError {
+                var config = UIContentUnavailableConfiguration.empty()
+                config.image = .init(systemName: "bolt.horizontal.fill")
+                config.text = error.localizedFailureReason ?? error.localizedDescription
+                config.secondaryText = error.localizedRecoverySuggestion
+                
+                var button = UIButton.Configuration.borderedProminent()
+                if #available(iOS 26.0, *) {
+                    button = .prominentGlass()
+                }
+                button.image = UIImage(systemName: "arrow.clockwise")
+                button.imagePlacement = .leading
+                button.imagePadding = 8
+                button.title = L10n.Localizable.refetch
+                config.button = button
+                
+                config.buttonProperties.role = .primary
+                config.buttonProperties.primaryAction = UIAction { [weak self] _ in
+                    if let action = self?.action {
+                        _ = self?.target?.perform(action)
+                    }
+                }
+                
+                config.secondaryButton = .plain() ※ {
+                    $0.title = "詳細を見る"
+                }
+                config.secondaryButtonProperties.primaryAction = UIAction { [weak self] _ in
+                    self?.viewController?.presentErrorDetailReport(error: error)
+                }
+                return config
+            } else {
+                return nil
+            }
+        default:
+            return nil
         }
     }
 }

@@ -241,18 +241,14 @@ class TimelineViewController: UIViewController, Instantiatable {
     override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
         defer {
             readmoreView.isHidden = contentUnavailableConfiguration != nil
+            postFabButton.isHidden = contentUnavailableConfiguration != nil
         }
         let snapshot = diffableDataSource.snapshot()
         guard snapshot.itemIdentifiers.isEmpty else {
             contentUnavailableConfiguration = nil
             return
         }
-        switch readmoreView.state {
-        case .loading:
-            contentUnavailableConfiguration = UIContentUnavailableConfiguration.loading()
-        default:
-            contentUnavailableConfiguration = nil
-        }
+        contentUnavailableConfiguration = readmoreView.makeUIContentUnavailableConfiguration()
     }
     
     @objc func refreshTimeline() {
