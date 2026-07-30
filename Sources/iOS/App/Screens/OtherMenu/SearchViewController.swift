@@ -43,7 +43,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     }
     
     var searchBar: UISearchBar!
-    var trendTagsSnapshot = NSDiffableDataSourceSnapshot<Section, Body>()
 
     weak var presentor: UIViewController?
 
@@ -51,14 +50,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         case accounts
         case toots
         case hashtags
-        case trendTags
     }
     
     enum Body: Hashable {
         case account(MastodonAccount)
         case toot(MastodonPost)
         case hashtag(MastodonSearchResultHashtag)
-        case trendTag(tag: String, score: Float)
     }
     
     var dataSource: TableViewDiffableDataSource<Section, Body>!
@@ -90,11 +87,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
                     input: .init(post: post, pinned: false),
                     parentViewController: self
                 )
-            case .trendTag(let tag, let score):
-                let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-                cell.textLabel?.text = "#" + tag
-                cell.detailTextLabel?.text = score.description
-                return cell
             }
         })
         dataSource.sectionTitle = [
@@ -114,12 +106,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             }
         }
         self.searchBar.delegate = self
-        self.refreshControl = .init() ※ { v in
-            v.addTarget(self, action: #selector(reloadTrendTags), for: .valueChanged)
-        }
         self.tableView.estimatedRowHeight = 44
         self.tableView.rowHeight = UITableView.automaticDimension
-        self.reloadTrendTags()
         TableViewCell<MastodonPostCellViewController>.register(to: self.tableView)
     }
     
@@ -171,29 +159,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         }
     }
     
-    @objc func reloadTrendTags() {
-        // TODO: トレンドタグのwhitelistを外部指定できるようにする
-        guard ["imastodon.net", "imastodon.blue"].contains(environment.app.instance.hostName) else {
-            return
-        }
-        MastodonEndpoint.GetTrendTagsThirdparty().request(with: environment).then { res in
-            self.tableView.refreshControl?.endRefreshing()
-            guard res.score.count > 0 else {
-                return
-            }
-            let f = DateFormatter()
-            f.dateStyle = .short
-            f.timeStyle = .short
-            self.dataSource.sectionTitle[.trendTags] = L10n.Search.Sections.TrendTags.title(f.string(from: res.updatedAt))
-
-            self.trendTagsSnapshot = .init()
-            let sortedArray = res.score.sorted { $0.1 != $1.1 ? $0.1 > $1.1 : $0.0 < $1.0}
-            self.trendTagsSnapshot.appendSections([.trendTags])
-            self.trendTagsSnapshot.appendItems(sortedArray.map { .trendTag(tag: $0.0, score: $0.1) }, toSection: .trendTags)
-            self.dataSource.apply(self.trendTagsSnapshot)
-        }
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(false)
     }
@@ -212,9 +177,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
         case .toot(let post):
             let vc = MastodonPostDetailViewController.instantiate(post, environment: self.environment)
             presentor?.navigationController?.pushViewController(vc, animated: true)
-        case .trendTag(let tag, _):
-            let vc = HashtagTimelineViewController(hashtag: tag, environment: self.environment)
-            presentor?.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -222,9 +184,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
 extension SearchViewController: UISearchControllerDelegate {
     func presentSearchController(_ searchController: UISearchController) {
         searchController.showsSearchResultsController = true
-        reloadTrendTags()
     }
     func didDismissSearchController(_ searchController: UISearchController) {
-        dataSource.apply(trendTagsSnapshot, animatingDifferences: false, completion: nil)
+        dataSource.apply(.init(), animatingDifferences: false, completion: nil)
     }
 }

@@ -84,7 +84,6 @@
 		CE43BEEF23779EB500133C86 /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
 		CE43BEF023779EB500133C86 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
 		CE43BEF123779EB500133C86 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
-		CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
 		CE43BEF323779EB500133C86 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
 		CE43BEF423779EB500133C86 /* MastodonVersionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */; };
 		CE43BEF823779F1C00133C86 /* genRandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEF523779EE800133C86 /* genRandomString.swift */; };
@@ -317,7 +316,6 @@
 		CEE4E3662377F83C00406371 /* MastodonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */; };
 		CEE4E3672377F83C00406371 /* MastodonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1002C720065DA30041B636 /* MastodonSearchResult.swift */; };
 		CEE4E3682377F83C00406371 /* MastodonID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEDC992007C36400CD2784 /* MastodonID.swift */; };
-		CEE4E3692377F83C00406371 /* ThirdpartyTrendTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */; };
 		CEE4E36A2377F83C00406371 /* MastodonIDAvailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */; };
 		CEE4E36B2377F83C00406371 /* MastodonVersionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */; };
 		CEE4E36C2377F84200406371 /* DatabaseMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C301EAD8AFC001BB00A /* DatabaseMisc.swift */; };
@@ -815,7 +813,6 @@
 		CE7B1645238A8B23006E899E /* HelpAndFeedbackTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableViewController.swift; sourceTree = "<group>"; };
 		CE7BF9682B5BD8EE00A2E9AF /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		CE7DBECF21843141008727D4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartyTrendTags.swift; sourceTree = "<group>"; };
 		CE8209972150EC390064FC93 /* PushSettingsGroupNotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingsGroupNotifyView.swift; sourceTree = "<group>"; };
 		CE83C85D2A74103900D97E3E /* CodableViewDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableViewDescriptor.swift; sourceTree = "<group>"; };
 		CE84AB18209526C500A3C4D2 /* NSFWGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFWGuardView.swift; sourceTree = "<group>"; };
@@ -1923,7 +1920,6 @@
 				CEDEDC9F2007F2BA00CD2784 /* MastodonList.swift */,
 				CE1002C720065DA30041B636 /* MastodonSearchResult.swift */,
 				CEDEDC992007C36400CD2784 /* MastodonID.swift */,
-				CE818B90218570B800948309 /* ThirdpartyTrendTags.swift */,
 				CE97DB5922D4591700D2BDC6 /* MastodonIDAvailable.swift */,
 				CE43BEC8237781A100133C86 /* MastodonVersionInt.swift */,
 				CEEB1A3B25CAAD6A0080953E /* MastodonWebSocketMessage.swift */,
@@ -3583,7 +3579,6 @@
 				CE522BE724159C370048E334 /* MastodonEndpointProtocol.swift in Sources */,
 				CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */,
 				CE43BEED23779EB500133C86 /* MastodonNotification.swift in Sources */,
-				CE43BEF223779EB500133C86 /* ThirdpartyTrendTags.swift in Sources */,
 				CEEEB56A2D63C97E004F199E /* ImageCacheUtils.swift in Sources */,
 				CE98789D26B5053F008A0A88 /* CodableVoid.swift in Sources */,
 				CE43BEEE23779EB500133C86 /* MastodonAttachment.swift in Sources */,
@@ -3768,7 +3763,6 @@
 				CE9BB390241C4F03004B6421 /* MastodonEndpointWithPagingProtocol.swift in Sources */,
 				CEE4E36E2377F84200406371 /* MastodonApp.swift in Sources */,
 				CE90CCED2377FC01001C8E80 /* UserAgent.swift in Sources */,
-				CEE4E3692377F83C00406371 /* ThirdpartyTrendTags.swift in Sources */,
 				CEE4E3412377F81400406371 /* DispatchQueue+mainSafeSync.swift in Sources */,
 				CE98789E26B5053F008A0A88 /* CodableVoid.swift in Sources */,
 				CE98789B26B4909C008A0A88 /* Hydra+promiseAsync.swift in Sources */,
