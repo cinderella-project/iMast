@@ -24,6 +24,7 @@
 import UIKit
 import Mew
 import iMastiOSCore
+import Combine
 
 class NotificationTableViewController: UITableViewController, Instantiatable {
     typealias ExcludeTypes = [NotificationType]
@@ -42,6 +43,8 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     typealias Environment = MastodonUserToken
     
     internal let environment: Environment
+    
+    var cancellables = Set<AnyCancellable>()
     
     var notifications: [MastodonNotification] = []
     let readmoreView = ReadmoreView()
@@ -73,6 +76,13 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         self.refreshControl?.addTarget(self, action: #selector(self.refreshNotification), for: UIControl.Event.valueChanged)
         tableView.separatorInset = .zero
         
+        if #available(iOS 17.0, *) {
+            readmoreView.$state
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in self?.setNeedsUpdateContentUnavailableConfiguration() }
+                .store(in: &cancellables)
+        }
+        
         readmoreView.state = .loading
         readmoreView.target = self
         readmoreView.action = #selector(readMore)
@@ -88,10 +98,17 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         TableViewCell<NotificationCellViewController>.register(to: tableView)
         TableViewCell<MastodonPostCellViewController>.register(to: tableView)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @available(iOS 17.0, *)
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        defer {
+            readmoreView.isHidden = contentUnavailableConfiguration != nil
+        }
+        guard notifications.isEmpty else {
+            contentUnavailableConfiguration = nil
+            return
+        }
+        contentUnavailableConfiguration = readmoreView.makeUIContentUnavailableConfiguration()
     }
 
     // MARK: - Table view data source
@@ -188,7 +205,7 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
     }
     
     @objc func readMore() {
-        guard self.readmoreView.state == .moreLoadable else {
+        guard self.readmoreView.state == .moreLoadable || self.readmoreView.state == .withError else {
             return
         }
         
