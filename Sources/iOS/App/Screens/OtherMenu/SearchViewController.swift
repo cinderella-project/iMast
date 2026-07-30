@@ -59,6 +59,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
     }
     
     var dataSource: TableViewDiffableDataSource<Section, Body>!
+    var lastSearchWasEmpty = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,22 +135,35 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             return
         }
         self.refreshControl?.beginRefreshing()
+        self.dataSource.apply(.init())
         searchResultLoadTask = Task {
+            defer {
+                DispatchQueue.main.async { [weak self] in
+                    self?.searchResultLoadTask = nil
+                    if #available(iOS 17.0, *) {
+                        self?.setNeedsUpdateContentUnavailableConfiguration()
+                    }
+                }
+            }
             let result = try await environment.search(q: text)
             await MainActor.run { [weak self] in
                 guard let self = self, !Task.isCancelled else {
                     return
                 }
+                self.lastSearchWasEmpty = true
                 var snapshot = self.dataSource.plainSnapshot()
                 if result.accounts.count > 0 {
+                    self.lastSearchWasEmpty = false
                     snapshot.appendSections([.accounts])
                     snapshot.appendItems(result.accounts.map { .account($0) }, toSection: .accounts)
                 }
                 if result.hashtags.count > 0 {
+                    self.lastSearchWasEmpty = false
                     snapshot.appendSections([.hashtags])
                     snapshot.appendItems(result.hashtags.map { .hashtag($0) }, toSection: .hashtags)
                 }
                 if result.posts.count > 0 {
+                    self.lastSearchWasEmpty = false
                     snapshot.appendSections([.toots])
                     snapshot.appendItems(result.posts.map { .toot($0) }, toSection: .toots)
                 }
@@ -157,6 +171,22 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
                 self.refreshControl?.endRefreshing()
             }
         }
+        if #available(iOS 17.0, *) {
+            self.setNeedsUpdateContentUnavailableConfiguration()
+        }
+    }
+
+    @available(iOS 17.0, *)
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        guard dataSource.snapshot().itemIdentifiers.isEmpty else {
+            contentUnavailableConfiguration = nil
+            return
+        }
+        guard searchResultLoadTask == nil else {
+            contentUnavailableConfiguration = UIContentUnavailableConfiguration.loading()
+            return
+        }
+        contentUnavailableConfiguration = lastSearchWasEmpty ? UIContentUnavailableConfiguration.search() : nil
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -186,6 +216,10 @@ extension SearchViewController: UISearchControllerDelegate {
         searchController.showsSearchResultsController = true
     }
     func didDismissSearchController(_ searchController: UISearchController) {
+        lastSearchWasEmpty = false
         dataSource.apply(.init(), animatingDifferences: false, completion: nil)
+        if #available(iOS 17.0, *) {
+            setNeedsUpdateContentUnavailableConfiguration()
+        }
     }
 }
