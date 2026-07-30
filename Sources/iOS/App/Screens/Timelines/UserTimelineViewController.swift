@@ -45,6 +45,9 @@ class UserTimelineViewController: TimelineViewController {
             return .post(id: $0.id, pinned: true)
         }, toSection: .pinned)
         diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
+        if #available(iOS 17.0, *) {
+            setNeedsUpdateContentUnavailableConfiguration()
+        }
         self.addNewPosts(posts: try await posts)
         self.readmoreView.state = .moreLoadable
     }

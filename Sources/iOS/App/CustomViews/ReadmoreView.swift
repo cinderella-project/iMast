@@ -40,7 +40,7 @@ class ReadmoreView: UIView {
     weak var target: AnyObject?
     var action: Selector?
     
-    var state: State = .moreLoadable {
+    @Published var state: State = .moreLoadable {
         didSet {
             DispatchQueue.mainSafeSync {
                 button.isHidden = state == .loading

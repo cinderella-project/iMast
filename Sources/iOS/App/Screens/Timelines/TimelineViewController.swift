@@ -27,6 +27,7 @@ import Ikemen
 import SnapKit
 import Mew
 import iMastiOSCore
+import Combine
 
 class TimelineViewController: UIViewController, Instantiatable {
     enum TableSection: String, Hashable {
@@ -37,6 +38,8 @@ class TimelineViewController: UIViewController, Instantiatable {
     enum TableBody: Hashable {
         case post(id: MastodonID, pinned: Bool)
     }
+    
+    var cancellables = Set<AnyCancellable>()
     
     let environment: Environment
     
@@ -124,6 +127,12 @@ class TimelineViewController: UIViewController, Instantiatable {
             readmoreView.target = self
             readmoreView.action = #selector(readmoreTapped)
             readmoreView.setTableView(tableView)
+        }
+        if #available(iOS 17.0, *) {
+            readmoreView.$state.receive(on: DispatchQueue.main).sink { [weak self] _ in
+                self?.setNeedsUpdateContentUnavailableConfiguration()
+            }.store(in: &cancellables)
+            setNeedsUpdateContentUnavailableConfiguration()
         }
         
         _ = diffableDataSource.snapshot() ※ { snapshot in
@@ -223,14 +232,6 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
         
         self.readmoreView.state = .loading
-        if #available(iOS 17.0, *) {
-            setNeedsUpdateContentUnavailableConfiguration()
-        }
-        defer {
-            if #available(iOS 17.0, *) {
-                setNeedsUpdateContentUnavailableConfiguration()
-            }
-        }
         let posts = try await MastodonEndpoint.GetTimeline(timelineType).request(with: environment)
         self.addNewPosts(posts: posts)
         self.readmoreView.state = .moreLoadable
@@ -262,9 +263,6 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
         let snapshot = self.diffableDataSource.snapshot()
         var timelineRequest = MastodonEndpoint.GetTimeline(timelineType, limit: 40)
-        if #available(iOS 17.0, *) {
-            setNeedsUpdateContentUnavailableConfiguration()
-        }
         if let v = snapshot.itemIdentifiers(inSection: .posts).first, case .post(let id, _) = v {
             timelineRequest.paging = .prev(id.string, isSinceId: true)
         }
@@ -273,9 +271,6 @@ class TimelineViewController: UIViewController, Instantiatable {
         }.catch { error in
             self.errorReport(error: error)
         }.always(in: .main) {
-            if #available(iOS 17.0, *) {
-                self.setNeedsUpdateContentUnavailableConfiguration()
-            }
             self.refreshControl.endRefreshing()
         }
     }
