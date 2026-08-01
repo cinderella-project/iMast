@@ -31,3 +31,16 @@ public enum APIError: Error {
     case decodeFailed // 画像のデコードに失敗したときのエラー
     case dateParseFailed(dateString: String)
 }
+
+extension APIError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .errorReturned(errorMessage: let message, errorHttpCode: let code):
+            CoreL10n.Error.Api.text(message, code)
+        case .unknownResponse(errorHttpCode: let code, errorString: _):
+            "\(CoreL10n.Error.Http.title) (HTTP \(code))"
+        default:
+            nil
+        }
+    }
+}
