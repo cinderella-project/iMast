@@ -126,7 +126,7 @@ extension UIViewController {
         }
         let vc = ErrorReportViewController()
         let navVC = UINavigationController(rootViewController: vc)
-        vc.textView.text = "\(error)"
+        vc.textView.text = String(reflecting: error)
         vc.completionHandler = completionHandler
         self.present(navVC, animated: true, completion: nil)
     }
