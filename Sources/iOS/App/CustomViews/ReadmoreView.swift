@@ -106,6 +106,33 @@ class ReadmoreView: UIView {
             }
         }
     }
+
+    @available(iOS 17.0, *)
+    static func makeUIContentUnavailableConfiguration(from error: Error) -> UIContentUnavailableConfiguration {
+        let error = error as NSError
+        var config = UIContentUnavailableConfiguration.empty()
+        config.image = .init(systemName: "bolt.horizontal.fill")
+        config.text = error.localizedFailureReason ?? error.localizedDescription
+        config.secondaryText = error.localizedRecoverySuggestion
+        
+        var button = UIButton.Configuration.borderedProminent()
+        #if !os(visionOS)
+        if #available(iOS 26.0, *) {
+            button = .prominentGlass()
+        }
+        #endif
+        button.image = UIImage(systemName: "arrow.clockwise")
+        button.imagePlacement = .leading
+        button.imagePadding = 8
+        button.title = L10n.Localizable.refetch
+        config.button = button
+        config.buttonProperties.role = .primary
+
+        config.secondaryButton = .plain() ※ {
+            $0.title = CoreL10n.ErrorAlert.moreInfo
+        }
+        return config
+    }
     
     @available(iOS 17.0, *)
     func makeUIContentUnavailableConfiguration() -> UIContentUnavailableConfiguration? {
@@ -113,33 +140,12 @@ class ReadmoreView: UIView {
         case .loading:
             return UIContentUnavailableConfiguration.loading()
         case .withError:
-            if let error = lastError as? NSError {
-                var config = UIContentUnavailableConfiguration.empty()
-                config.image = .init(systemName: "bolt.horizontal.fill")
-                config.text = error.localizedFailureReason ?? error.localizedDescription
-                config.secondaryText = error.localizedRecoverySuggestion
-                
-                var button = UIButton.Configuration.borderedProminent()
-                #if !os(visionOS)
-                if #available(iOS 26.0, *) {
-                    button = .prominentGlass()
-                }
-                #endif
-                button.image = UIImage(systemName: "arrow.clockwise")
-                button.imagePlacement = .leading
-                button.imagePadding = 8
-                button.title = L10n.Localizable.refetch
-                config.button = button
-                
-                config.buttonProperties.role = .primary
+            if let error = lastError {
+                var config = Self.makeUIContentUnavailableConfiguration(from: error)
                 config.buttonProperties.primaryAction = UIAction { [weak self] _ in
                     if let action = self?.action {
                         _ = self?.target?.perform(action)
                     }
-                }
-                
-                config.secondaryButton = .plain() ※ {
-                    $0.title = "詳細を見る"
                 }
                 config.secondaryButtonProperties.primaryAction = UIAction { [weak self] _ in
                     self?.viewController?.presentErrorDetailReport(error: error)
