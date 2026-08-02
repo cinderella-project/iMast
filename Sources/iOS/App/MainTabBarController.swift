@@ -24,6 +24,7 @@
 import UIKit
 import Mew
 import iMastiOSCore
+import Combine
 
 extension NSObject {
     @objc func _imast_canShowFloatingUI() -> Bool {
@@ -63,6 +64,7 @@ class MainTabBarController: UITabBarController, Instantiatable {
 
     let environment: Environment
     
+    var cancellables = Set<AnyCancellable>()
     var lazyLoadVCs: [UIViewController] = []
 
     required init(with input: Input, environment: Environment) {
@@ -108,6 +110,14 @@ class MainTabBarController: UITabBarController, Instantiatable {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed))
         self.tabBar.addGestureRecognizer(longPressRecognizer)
         delegate = self
+        
+        environment.unreadAnnouncementsCount
+            .receive(on: DispatchQueue.main)
+            .sink { [weak otherVC] count in
+                otherVC?.tabBarItem.badgeValue = count > 0 ? "\(count)" : nil
+            }
+            .store(in: &cancellables)
+        environment.reloadAnnouncements()
     }
     
     var firstAppear = true

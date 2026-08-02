@@ -533,6 +533,7 @@ extension TimelineViewController: WebSocketWrapperDelegate {
         case update(MastodonPost)
         case statusUpdate(MastodonPost)
         case delete(String)
+        case announcement
         case unknown(String)
         
         init(from decoder: Decoder) throws {
@@ -548,6 +549,8 @@ extension TimelineViewController: WebSocketWrapperDelegate {
             case "status.update":
                 let payload = try container.decode(String.self, forKey: .payload)
                 self = .statusUpdate(try JSONDecoder.forMastodonAPI.decode(MastodonPost.self, from: payload.data(using: .utf8)!))
+            case "announcement":
+                self = .announcement
             default:
                 self = .unknown(event)
             }
@@ -588,6 +591,8 @@ extension TimelineViewController: WebSocketWrapperDelegate {
                 }
             case .statusUpdate(let post):
                 try environment.memoryStore.post.change(obj: post)
+            case .announcement:
+                environment.reloadAnnouncements()
             case .unknown(let type):
                 print("WebSocket: Receiving Unknown Event Type: \(type)")
             }

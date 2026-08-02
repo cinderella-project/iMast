@@ -26,6 +26,7 @@ import Mew
 import iMastiOSCore
 import SwiftUI
 import Ikemen
+import Combine
 
 class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDelegate {
     typealias Input = Void
@@ -43,20 +44,24 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
         case lists
         case bookmarks
         case settings
+        case announcements
         case helpAndFeeddback
         case aboutThisApp
     }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var searchResultViewController = SearchViewController.instantiate("", environment: self.environment)
     private lazy var searchController = UISearchController(searchResultsController: self.searchResultViewController)
     private let tableView = UITableView() ※ {
         $0.accessibilityIdentifier = "otherMenuTableView"
     }
+    private var unreadAnnouncementsCount = 0
     private lazy var dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] tableView, indexPath, itemIdentifier in
         guard let self else {
             return nil
         }
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: itemIdentifier == .switchActiveAccount ? .subtitle : .value1, reuseIdentifier: nil)
         cell.accessoryType = .disclosureIndicator
         switch itemIdentifier {
         case .switchActiveAccount:
@@ -71,6 +76,9 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
             cell.textLabel?.text = L10n.Localizable.bookmarks
         case .settings:
             cell.textLabel?.text = L10n.Localizable.settings
+        case .announcements:
+            cell.textLabel?.text = L10n.Localizable.Announcements.title
+            cell.detailTextLabel?.text = unreadAnnouncementsCount > 0 ? "\(unreadAnnouncementsCount)" : nil
         case .helpAndFeeddback:
             cell.textLabel?.text = L10n.Localizable.helpAndFeedback
         case .aboutThisApp:
@@ -105,6 +113,7 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
             .lists,
             .bookmarks,
             .settings,
+            .announcements,
             .helpAndFeeddback,
             .aboutThisApp,
         ])
@@ -115,6 +124,17 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
         searchResultViewController.searchBar = searchController.searchBar
         searchResultViewController.presentor = self
         searchController.delegate = searchResultViewController
+        
+        environment.unreadAnnouncementsCount
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] count in
+                guard let self else { return }
+                unreadAnnouncementsCount = count
+                var snapshot = self.dataSource.snapshot()
+                snapshot.reloadItems([.announcements])
+                self.dataSource.apply(snapshot)
+            }
+            .store(in: &cancellables)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -145,6 +165,8 @@ class OtherMenuViewController: UIViewController, Instantiatable, UITableViewDele
             mastodonVersionBarrier(.bookmark) {
                 self.navigationController?.pushViewController(BookmarksTableViewController.instantiate(.init(), environment: self.environment), animated: true)
             }
+        case .announcements:
+            navigationController?.pushViewController(AnnouncementsViewController.instantiate(environment: environment), animated: true)
         case .settings:
             navigationController?.pushViewController(NewSettingsViewController(), animated: true)
         case .helpAndFeeddback:

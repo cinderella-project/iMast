@@ -23,9 +23,9 @@
 
 import Foundation
 
-struct MastodonPostHashtag: Codable {
-    let name: String
-    let url: String
+public struct MastodonPostHashtag: Codable {
+    public let name: String
+    public let url: URL
 }
 
 public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvailable, MastodonEndpointResponse, MastodonPostContentProtocol, Sendable {

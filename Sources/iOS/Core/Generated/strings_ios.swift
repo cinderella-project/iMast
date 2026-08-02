@@ -96,6 +96,14 @@ public enum L10n {
       public static let markAsReadButton = L10n.tr("Localizable", "announcements.markAsReadButton")
       /// お知らせ
       public static let title = L10n.tr("Localizable", "announcements.title")
+      public enum Empty {
+        /// %@ の管理者からのお知らせがここに表示されます
+        public static func subtitle(_ p1: Any) -> String {
+          return L10n.tr("Localizable", "announcements.empty.subtitle", String(describing: p1))
+        }
+        /// 現在お知らせはありません
+        public static let title = L10n.tr("Localizable", "announcements.empty.title")
+      }
     }
     public enum Bunmyaku {
       /// 文脈

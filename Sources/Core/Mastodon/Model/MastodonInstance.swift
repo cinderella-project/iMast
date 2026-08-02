@@ -36,6 +36,7 @@ private let website = URL(string: "https://cinderella-project.github.io/iMast/")
 public class MastodonInstance {
     public struct InfoV1: Codable, MastodonEndpointResponse {
         public let version: String
+        public let title: String
         public let urls: Urls
         public let fedibirdFeatureQuote: Bool? // Fedibirdの引用投稿に対応しているか?
         
@@ -49,6 +50,7 @@ public class MastodonInstance {
         
         enum CodingKeys: String, CodingKey {
             case version
+            case title
             case urls
             case fedibirdFeatureQuote = "feature_quote"
         }
@@ -56,6 +58,7 @@ public class MastodonInstance {
     
     public struct InfoV2: Codable, MastodonEndpointResponse {
         public let version: String
+        public let title: String
         public let configuration: Configuration
         public let fedibirdFeatureQuote: Bool? // Fedibirdの引用投稿に対応しているか?
         
@@ -69,6 +72,7 @@ public class MastodonInstance {
         
         enum CodingKeys: String, CodingKey {
             case version
+            case title
             case configuration
             case fedibirdFeatureQuote = "feature_quote"
         }
@@ -84,6 +88,15 @@ public class MastodonInstance {
                 return info.version
             case .v2(let info):
                 return info.version
+            }
+        }
+        
+        public var title: String {
+            switch self {
+            case .v1(let info):
+                return info.title
+            case .v2(let info):
+                return info.title
             }
         }
         

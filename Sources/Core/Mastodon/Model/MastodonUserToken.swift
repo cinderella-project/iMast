@@ -25,6 +25,7 @@ import Foundation
 import Hydra
 import GRDB
 import KeychainAccess
+import Combine
 
 public class MastodonUserToken: Equatable, @unchecked Sendable {
     public private(set) var id: String?
@@ -295,5 +296,53 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
     
     public func isMe(account: MastodonAccount) -> Bool {
         return account.acct == screenName?.lowercased()
+    }
+    
+    // MARK: Announcements
+    @Published public private(set) var announcements: Result<[MastodonAnnouncement], Error>?
+    @MainActor private var announcementsReloadTask: Task<(), Never>?
+    public var unreadAnnouncementsCount: some Publisher<Int, Never> {
+        $announcements
+            .map { announcements in
+                switch announcements {
+                case .success(let announcements):
+                    return announcements.lazy.filter { !$0.read }.count
+                case .failure:
+                    return 0
+                case .none:
+                    return 0
+                }
+            }
+    }
+    
+    @MainActor public func reloadAnnouncements() {
+        guard announcementsReloadTask == nil else {
+            return
+        }
+        announcementsReloadTask = Task {
+            do {
+                async let info = app.instance.getInfo() // 一覧表示がinfoを使うので
+                let res = try await MastodonEndpoint.ListAnnouncements().request(with: self)
+                _ = try? await info
+                announcements = .success(res)
+            } catch {
+                NSLog("Failed to reload announcements: \(error)")
+                announcements = .failure(error)
+            }
+            await MainActor.run {
+                announcementsReloadTask = nil
+            }
+        }
+    }
+    
+    public func markAsRead(id: String) {
+        announcements = announcements?.map { $0.map { announcement in
+            guard announcement.id == id else {
+                return announcement
+            }
+            var a = announcement
+            a.read = true
+            return a
+        } }
     }
 }
