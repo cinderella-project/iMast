@@ -321,9 +321,7 @@ public class MastodonUserToken: Equatable, @unchecked Sendable {
         }
         announcementsReloadTask = Task {
             do {
-                async let info = app.instance.getInfo() // 一覧表示がinfoを使うので
                 let res = try await MastodonEndpoint.ListAnnouncements().request(with: self)
-                _ = try? await info
                 announcements = .success(res)
             } catch {
                 NSLog("Failed to reload announcements: \(error)")

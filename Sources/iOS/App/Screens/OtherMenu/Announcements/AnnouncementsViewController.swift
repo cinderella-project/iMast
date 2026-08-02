@@ -108,8 +108,7 @@ class AnnouncementsViewController: UIViewController, Instantiatable, UITableView
                             var config = UIContentUnavailableConfiguration.empty()
                             config.image = UIImage(systemName: "megaphone.fill")
                             config.text = L10n.Localizable.Announcements.Empty.title
-                            let instance = environment.app.instance
-                            config.secondaryText = L10n.Localizable.Announcements.Empty.subtitle(instance.getInfoFromCache()?.title ?? instance.hostName)
+                            config.secondaryText = L10n.Localizable.Announcements.Empty.subtitle(environment.app.instance.hostName)
                             self.contentUnavailableConfiguration = config
                         } else {
                             self.contentUnavailableConfiguration = nil

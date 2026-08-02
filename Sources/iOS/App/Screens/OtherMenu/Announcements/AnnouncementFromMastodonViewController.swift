@@ -79,7 +79,7 @@ class AnnouncementFromMastodonViewController: UIViewController, Instantiatable, 
         
         contentView.readed = input.read
         
-        let host = environment.app.instance.getInfoFromCache()?.title ?? environment.app.instance.hostName
+        let host = environment.app.instance.hostName
         contentView.titleLabel.text = host
         
         let formatter = DateFormatter()
