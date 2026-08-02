@@ -71,6 +71,11 @@
 "helpAndFeedback" = "幫助 / 意見反饋";
 "bookmarks" = "書籤";
 
+"announcements.title" = "お知らせ";
+"announcements.markAsReadButton" = "読んだ";
+"announcements.empty.title" = "現在お知らせはありません";
+"announcements.empty.subtitle" = "%@ の管理者からのお知らせがここに表示されます";
+
 "aboutThisApp.title" = "關於iMast";
 "aboutThisApp.author" = "開發者";
 "aboutThisApp.translators" = "翻譯者";

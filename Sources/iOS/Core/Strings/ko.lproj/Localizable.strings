@@ -47,7 +47,7 @@
 "disconnect" = "끊어짐";
 "refetch" = "새로고침";
 "cancel" = "취소";
-"showLastStreamingDisconnectedError" = "最後にStreamingが切断された際のエラーを表示";
+"showLastStreamingDisconnectedError" = "마지막으로 스트리밍이 끊어졌을 때의 에러를 표시";
 
 "editedWarning.title" = "이 글은 게시된 이후 수정되었습니다.";
 "editedWarning.description" = "최종 수정: %@";
@@ -70,6 +70,11 @@
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
 "bookmarks" = "북마크";
+
+"announcements.title" = "お知らせ";
+"announcements.markAsReadButton" = "読んだ";
+"announcements.empty.title" = "現在お知らせはありません";
+"announcements.empty.subtitle" = "%@ の管理者からのお知らせがここに表示されます";
 
 "aboutThisApp.title" = "이 앱에 대해서";
 "aboutThisApp.author" = "만든이";

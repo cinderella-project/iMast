@@ -71,6 +71,11 @@
 "helpAndFeedback" = "Help / Feedback";
 "bookmarks" = "Bookmarks";
 
+"announcements.title" = "Announcements";
+"announcements.markAsReadButton" = "Mark as Read";
+"announcements.empty.title" = "No Announcements";
+"announcements.empty.subtitle" = "Announcements from administrators of %@ will appear here";
+
 "aboutThisApp.title" = "About this App";
 "aboutThisApp.author" = "Author";
 "aboutThisApp.translators" = "Translators";
