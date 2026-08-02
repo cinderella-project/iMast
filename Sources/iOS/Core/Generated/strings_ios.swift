@@ -91,6 +91,12 @@ public enum L10n {
       /// 翻訳してくれた人たち
       public static let translators = L10n.tr("Localizable", "aboutThisApp.translators")
     }
+    public enum Announcements {
+      /// 読んだ
+      public static let markAsReadButton = L10n.tr("Localizable", "announcements.markAsReadButton")
+      /// お知らせ
+      public static let title = L10n.tr("Localizable", "announcements.title")
+    }
     public enum Bunmyaku {
       /// 文脈
       public static let title = L10n.tr("Localizable", "bunmyaku.title")

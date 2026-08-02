@@ -71,6 +71,9 @@
 "helpAndFeedback" = "ヘルプ / Feedback";
 "bookmarks" = "ブックマーク";
 
+"announcements.title" = "お知らせ";
+"announcements.markAsReadButton" = "読んだ";
+
 "aboutThisApp.title" = "このAppについて";
 "aboutThisApp.author" = "作者";
 "aboutThisApp.translators" = "翻訳してくれた人たち";
