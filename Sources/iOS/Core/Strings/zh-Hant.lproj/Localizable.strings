@@ -71,6 +71,9 @@
 "helpAndFeedback" = "幫助 / 意見反饋";
 "bookmarks" = "書籤";
 
+"announcements.title" = "お知らせ";
+"announcements.markAsReadButton" = "読んだ";
+
 "aboutThisApp.title" = "關於iMast";
 "aboutThisApp.author" = "開發者";
 "aboutThisApp.translators" = "翻譯者";
