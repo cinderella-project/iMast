@@ -71,6 +71,9 @@
 "helpAndFeedback" = "도움말 / 피드백";
 "bookmarks" = "북마크";
 
+"announcements.title" = "お知らせ";
+"announcements.markAsReadButton" = "読んだ";
+
 "aboutThisApp.title" = "이 앱에 대해서";
 "aboutThisApp.author" = "만든이";
 "aboutThisApp.translators" = "번역에 참여해주신 분들";
