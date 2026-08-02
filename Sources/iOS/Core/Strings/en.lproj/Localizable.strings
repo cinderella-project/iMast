@@ -73,8 +73,8 @@
 
 "announcements.title" = "Announcements";
 "announcements.markAsReadButton" = "Mark as Read";
-"announcements.empty.title" = "現在お知らせはありません";
-"announcements.empty.subtitle" = "%@ の管理者からのお知らせがここに表示されます";
+"announcements.empty.title" = "No Announcements";
+"announcements.empty.subtitle" = "Announcements from administrators of %@ will appear here";
 
 "aboutThisApp.title" = "About this App";
 "aboutThisApp.author" = "Author";
