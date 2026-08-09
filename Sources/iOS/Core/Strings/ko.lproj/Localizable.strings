@@ -69,6 +69,7 @@
 "settings" = "설정";
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
+"submitFeedbackToGitHubIssues" = "GitHub Issues に Feedback を投稿する";
 "bookmarks" = "북마크";
 
 "announcements.title" = "お知らせ";
