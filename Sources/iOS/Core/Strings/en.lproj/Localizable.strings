@@ -69,6 +69,7 @@
 "settings" = "Settings";
 "help.title" = "Help";
 "helpAndFeedback" = "Help / Feedback";
+"submitFeedbackToGitHubIssues" = "Submit Feedback to GitHub Issues";
 "bookmarks" = "Bookmarks";
 
 "announcements.title" = "Announcements";
