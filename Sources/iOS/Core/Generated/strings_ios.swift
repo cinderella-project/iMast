@@ -69,6 +69,8 @@ public enum L10n {
     public static func streamingStatus(_ p1: Any) -> String {
       return L10n.tr("Localizable", "streamingStatus", String(describing: p1))
     }
+    /// GitHub Issues に Feedback を投稿する
+    public static let submitFeedbackToGitHubIssues = L10n.tr("Localizable", "submitFeedbackToGitHubIssues")
     /// アカウントを変更
     public static let switchActiveAccount = L10n.tr("Localizable", "switchActiveAccount")
     /// %@ に切り替え

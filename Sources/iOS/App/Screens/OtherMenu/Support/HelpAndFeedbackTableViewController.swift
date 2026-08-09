@@ -27,7 +27,7 @@ import iMastiOSCore
 class HelpAndFeedbackTableViewController: UITableViewController {
     
     init() {
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +35,8 @@ class HelpAndFeedbackTableViewController: UITableViewController {
     }
     
     enum Section {
-        case one
+        case help
+        case feedback
     }
     
     enum Item: Hashable {
@@ -52,7 +53,7 @@ class HelpAndFeedbackTableViewController: UITableViewController {
             cell.detailTextLabel?.text = url.absoluteString
         case .feedback:
             cell = .init(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "GitHub Issues に Feedback を投稿する"
+            cell.textLabel?.text = L10n.Localizable.submitFeedbackToGitHubIssues
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -67,12 +68,14 @@ class HelpAndFeedbackTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         var snapshot = dataSource.plainSnapshot()
-        snapshot.appendSections([.one])
+        snapshot.appendSections([.help, .feedback])
         snapshot.appendItems([
             .web(title: L10n.Localizable.Help.title, url: URL(string: "https://cinderella-project.github.io/iMast/help/")!),
-            .feedback,
+        ], toSection: .help)
+        snapshot.appendItems([
             .web(title: "GitHub Issues", url: URL(string: "https://github.com/cinderella-project/iMast/issues")!),
-        ], toSection: .one)
+            .feedback,
+        ], toSection: .feedback)
         dataSource.apply(snapshot, animatingDifferences: false)
         
         title = L10n.Localizable.helpAndFeedback
