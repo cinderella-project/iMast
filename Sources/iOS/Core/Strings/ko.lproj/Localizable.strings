@@ -69,13 +69,13 @@
 "settings" = "설정";
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
-"submitFeedbackToGitHubIssues" = "GitHub Issues に Feedback を投稿する";
+"submitFeedbackToGitHubIssues" = "GitHub Issues에 Feedback을 보내기";
 "bookmarks" = "북마크";
 
-"announcements.title" = "お知らせ";
-"announcements.markAsReadButton" = "読んだ";
-"announcements.empty.title" = "現在お知らせはありません";
-"announcements.empty.subtitle" = "%@ の管理者からのお知らせがここに表示されます";
+"announcements.title" = "알림";
+"announcements.markAsReadButton" = "읽음";
+"announcements.empty.title" = "현재 알림이 없습니다";
+"announcements.empty.subtitle" = "%@의 관리자로부터의 알림이 이곳에 표시됩니다";
 
 "aboutThisApp.title" = "이 앱에 대해서";
 "aboutThisApp.author" = "만든이";
