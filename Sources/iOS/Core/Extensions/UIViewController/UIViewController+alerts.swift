@@ -102,7 +102,7 @@ extension UIViewController {
     
     public func presentErrorDetailReport(error: Error, completionHandler: (() -> Void)? = nil) {
         class ErrorReportViewController: UIViewController {
-            var completionHandler: (() -> Void)? = nil
+            var completionHandler: (() -> Void)?
             
             let textView = UITextView() ※ { view in
                 view.font = UIFont.init(name: "Menlo", size: 15)

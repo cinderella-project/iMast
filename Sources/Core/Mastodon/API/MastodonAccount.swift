@@ -84,7 +84,7 @@ extension MastodonAccount: Hashable {
     }
 }
 
-public struct MastodonAccountOAuthAuthenticate: Codable {
+public struct MastodonAccountOAuthAuthenticate: Codable, Sendable {
     public let provider: String
     public let uid: String
 

@@ -205,7 +205,7 @@ public class MastodonInstance {
         let json: Info
         do {
             json = Info.v2(try await MastodonEndpoint.GetInstanceInfoV2().request(to: self))
-        } catch APIError.unknownResponse(errorHttpCode: let code, errorString: let string) where code == 404 {
+        } catch APIError.unknownResponse(errorHttpCode: let code, errorString: _) where code == 404 {
             json = Info.v1(try await MastodonEndpoint.GetInstanceInfoV1().request(to: self))
         }
         

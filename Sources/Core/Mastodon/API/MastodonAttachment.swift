@@ -32,7 +32,7 @@ public struct MastodonAttachment: Codable, Sendable, MastodonEndpointResponse {
     public let textUrl: String?
     public let blurhash: String?
     
-    public enum MediaType: String, Codable {
+    public enum MediaType: String, Codable, Sendable {
         case video
         case gifv
         case image
@@ -61,8 +61,14 @@ public struct MastodonAttachment: Codable, Sendable, MastodonEndpointResponse {
 
 }
 
+public struct MultipartPart {
+    public var name: String
+    public var file: (name: String, contentType: String)?
+    public var data: Data
+}
+
 public protocol MultipartEndpointProtocol {
-    func multipartBody() throws -> [(name: String, file: (name: String, contentType: String)?, data: Data)]
+    func multipartBody() throws -> [MultipartPart]
 }
 
 extension MastodonEndpointProtocol where Self: MultipartEndpointProtocol {
@@ -136,9 +142,9 @@ extension MastodonEndpoint {
             self.mimeType = mimeType
         }
         
-        public func multipartBody() throws -> [(name: String, file: (name: String, contentType: String)?, data: Data)] {
+        public func multipartBody() throws -> [MultipartPart] {
             return [
-                (name: "file", file: (name: fileName, contentType: mimeType), data: file),
+                .init(name: "file", file: (name: fileName, contentType: mimeType), data: file),
             ]
         }
     }

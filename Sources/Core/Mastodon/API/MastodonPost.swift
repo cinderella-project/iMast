@@ -23,7 +23,7 @@
 
 import Foundation
 
-public struct MastodonPostHashtag: Codable {
+public struct MastodonPostHashtag: Codable, Sendable {
     public let name: String
     public let url: URL
 }
@@ -120,16 +120,16 @@ public struct MastodonPost: Codable, EmojifyProtocol, Hashable, MastodonIDAvaila
     }
 }
 
-public enum MastodonPostOrID {
+public enum MastodonPostOrID : Sendable{
     indirect case post(MastodonPost)
     case id(MastodonID)
 }
 
-public enum MastodonPostQuote: Codable {
+public enum MastodonPostQuote: Codable, Sendable {
     case notAvailable(NotAvailableReason)
     case accepted(MastodonPostOrID)
     
-    public enum NotAvailableReason: String, Codable {
+    public enum NotAvailableReason: String, Codable, Sendable {
         case pending
         case rejected
         case revoked
@@ -229,12 +229,12 @@ public struct MastodonPoll: Codable, MastodonEndpointResponse, Sendable {
     public let options: [MastodonPollOption]
 }
 
-public struct MastodonPollOption: Codable {
+public struct MastodonPollOption: Codable, Sendable {
     public let title: String
     public let votes_count: Int
 }
 
-public struct MastodonQuoteApproval: Codable {
+public struct MastodonQuoteApproval: Codable, Sendable {
     public let currentUser: MastodonQuoteAllowPolicy?
     
     public enum CodingKeys: String, CodingKey {
@@ -242,7 +242,7 @@ public struct MastodonQuoteApproval: Codable {
     }
 }
 
-public enum MastodonQuoteAllowPolicy: String, Codable {
+public enum MastodonQuoteAllowPolicy: String, Codable, Sendable {
     case automatic
     case manual
     case denied
@@ -289,7 +289,7 @@ public class MastodonTimelineType: Equatable {
     }
     
     static public func hashtag(_ tag: String) -> MastodonTimelineType {
-        var charset = CharacterSet.urlPathAllowed
+        let charset = CharacterSet.urlPathAllowed
         return MastodonTimelineType(endpoint: "timelines/tag/\(tag.addingPercentEncoding(withAllowedCharacters: charset)!)", wsParams: ["stream": "hashtag", "tag": tag])
     }
     
