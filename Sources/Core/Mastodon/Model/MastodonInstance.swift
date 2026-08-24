@@ -25,13 +25,8 @@ import Foundation
 
 var mastodonInstanceInfoCache: [String: MastodonInstance.Info] = [:]
 
-#if os(macOS)
-public let defaultAppName = "iMast (macOS)"
-private let website = URL(string: "https://cinderella-project.github.io/iMast/mac/")!
-#else
 public let defaultAppName = "iMast"
 private let website = URL(string: "https://cinderella-project.github.io/iMast/")!
-#endif
 
 public class MastodonInstance {
     public struct InfoV1: Codable, MastodonEndpointResponse {

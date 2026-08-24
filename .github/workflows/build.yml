@@ -23,7 +23,6 @@ jobs:
       matrix:
         xcode: [*main_xcode]
         os:
-          - macOS
           # - iOS # i think build_for_test and archive is enough
           - visionOS
         machine: [*main_machine]
@@ -35,12 +34,8 @@ jobs:
     - uses: ./.github/actions/prepare
       with:
         target-os: ${{ matrix.os }}
-    - name: Build (iOS/visionOS)
-      if: matrix.os != 'macOS'
+    - name: Build
       run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
-    - name: Build (macOS)
-      if: matrix.os == 'macOS'
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast Mac (App Store)" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
   build_for_test:
     strategy:
       fail-fast: true

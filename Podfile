@@ -49,19 +49,6 @@ abstract_target 'iMastShared' do
       core_pods
     end
   end
-  
-  abstract_target 'Mac' do
-    platform :osx, '10.15'
-    target 'iMast Mac (App Store)' do
-    end
-    
-    target 'iMast Mac (with Sparkle)' do
-    end
-
-    target 'iMastMacCore' do
-      core_pods
-    end
-  end
 end
 
 post_install do |installer|
@@ -69,7 +56,6 @@ post_install do |installer|
     project.targets.each do |target|
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
-        config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '13.0'
         if config.build_settings['SDKROOT'].include? "iphoneos" then
           config.build_settings['SUPPORTED_PLATFORMS'] = "iphoneos iphonesimulator xros xrsimulator"
         end
