@@ -33,7 +33,9 @@ extension UIViewController {
     }
     
     func showAsWindow(userActivity: NSUserActivity, fallback: ShowAsWindowFallbackOption) {
-        if Defaults.openAsAnotherWindow {
+        // TODO: iOS 27.1 正式リリース時に requestSceneSessionDestruction ができるようになってるか確認し、できていたら外す
+        // (iOS 27.1 Simulator 24A94403 だと requestSceneSessionActivation はできても requestSceneSessionDestruction ができず、NewPost scene が閉じれなくなって詰む)
+        if Defaults.openAsAnotherWindow, self.traitCollection.userInterfaceIdiom != .phone {
             UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: UIWindowScene.ActivationRequestOptions() ※ {
                 $0.requestingScene = view.window?.windowScene
                 $0.preferredPresentationStyle = .prominent
