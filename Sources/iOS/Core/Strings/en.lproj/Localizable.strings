@@ -108,6 +108,11 @@
 "quote.state.deleted" = "The quoted post has been deleted";
 "quote.state.rejectedOrRevoked" = "The quote has been declined by the original author";
 "quote.state.unauthorized" = "This post cannot be viewed";
+"quote.cusionNeeded.reason.blockedAccount" = "ブロックしているアカウント";
+"quote.cusionNeeded.reason.mutedAccount" = "ミュートしているアカウント";
+"quote.cusionNeeded.reason.blockedDomain" = "ブロックしているドメイン";
+"quote.cusionNeeded.description.authorUnknown" = "%1$@の投稿のため、タップするまで表示されません";
+"quote.cusionNeeded.description.authorAvailable" = "%1$@ (@%2$@) の投稿のため、タップするまで表示されません";
 "quote.fetchShallowPost" = "View quoted post";
 
 "reportPost.title" = "Report this post";
