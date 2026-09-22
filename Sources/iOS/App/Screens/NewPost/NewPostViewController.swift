@@ -26,6 +26,7 @@ import SwiftUI
 import Combine
 import Hydra
 import MediaPlayer
+import Ikemen
 import iMastiOSCore
 
 // YOU PROBABLY WANT TO ALSO MODIFY ShareNewPostViewController, which is subset of NewPostViewController.
@@ -161,7 +162,9 @@ class NewPostViewController: UIViewController, UITextViewDelegate, ObservableObj
         addKeyCommand(.init(title: "投稿", action: #selector(sendPost(_:)), input: "\r", modifierFlags: .command, discoverabilityTitle: "投稿を送信"))
         
         navigationItem.rightBarButtonItems = [
-            .init(title: L10n.NewPost.send, style: .done, target: self, action: #selector(sendPost(_:))),
+            .init(title: L10n.NewPost.send, image: isSolariumEnabled ? .init(systemName: "paperplane.fill") : nil, target: self, action: #selector(sendPost(_:))) ※ {
+                $0.style = .done
+            },
         ]
         
         if !isSolariumEnabled {

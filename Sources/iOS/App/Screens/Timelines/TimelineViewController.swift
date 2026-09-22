@@ -160,10 +160,14 @@ class TimelineViewController: UIViewController, Instantiatable {
         }
         
         if isNewPostAvailable {
-            navigationItem.rightBarButtonItem = .init(
+            let newPostButtonItem = UIBarButtonItem(
                 title: L10n.Localizable.post, style: .plain,
                 target: self, action: #selector(openNewPostVC)
             )
+            if isSolariumEnabled {
+                newPostButtonItem.image = UIImage(systemName: "square.and.pencil")
+            }
+            navigationItem.rightBarButtonItem = newPostButtonItem
             
             addKeyCommand(.init(
                 title: L10n.NewPost.KeyCommand.Open.title,

@@ -105,7 +105,7 @@ class MastodonPostDetailViewController: UITableViewController, Instantiatable, I
 
         self.title = L10n.Localizable.PostDetail.title
         navigationItem.largeTitleDisplayMode = .always
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Localizable.Bunmyaku.title, style: .plain, target: self, action: #selector(openBunmyakuVC))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.Localizable.Bunmyaku.title, image: isSolariumEnabled ? UIImage(systemName: "bubble.left.and.text.bubble.right") : nil, target: self, action: #selector(openBunmyakuVC))
         self.input(input)
     }
     
