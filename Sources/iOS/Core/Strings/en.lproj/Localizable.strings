@@ -108,6 +108,11 @@
 "quote.state.deleted" = "The quoted post has been deleted";
 "quote.state.rejectedOrRevoked" = "The quote has been declined by the original author";
 "quote.state.unauthorized" = "This post cannot be viewed";
+"quote.cusionNeeded.reason.blockedAccount" = "blocked account";
+"quote.cusionNeeded.reason.mutedAccount" = "muted account";
+"quote.cusionNeeded.reason.blockedDomain" = "blocked domain";
+"quote.cusionNeeded.description.authorUnknown" = "This post was made by %1$@, it will not show until tap";
+"quote.cusionNeeded.description.authorAvailable" = "This post was made by %1$@ (@%2$@), it will not show until tap";
 "quote.fetchShallowPost" = "View quoted post";
 
 "reportPost.title" = "Report this post";

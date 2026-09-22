@@ -69,13 +69,13 @@
 "settings" = "설정";
 "help.title" = "도움말";
 "helpAndFeedback" = "도움말 / 피드백";
-"submitFeedbackToGitHubIssues" = "GitHub Issues に Feedback を投稿する";
+"submitFeedbackToGitHubIssues" = "GitHub Issues에 Feedback을 보내기";
 "bookmarks" = "북마크";
 
-"announcements.title" = "お知らせ";
-"announcements.markAsReadButton" = "読んだ";
-"announcements.empty.title" = "現在お知らせはありません";
-"announcements.empty.subtitle" = "%@ の管理者からのお知らせがここに表示されます";
+"announcements.title" = "알림";
+"announcements.markAsReadButton" = "읽음";
+"announcements.empty.title" = "현재 알림이 없습니다";
+"announcements.empty.subtitle" = "%@의 관리자로부터의 알림이 이곳에 표시됩니다";
 
 "aboutThisApp.title" = "이 앱에 대해서";
 "aboutThisApp.author" = "만든이";
@@ -108,6 +108,11 @@
 "quote.state.deleted" = "인용된 게시물이 삭제됐습니다";
 "quote.state.rejectedOrRevoked" = "원본 게시자에 의해 인용이 거부됐습니다";
 "quote.state.unauthorized" = "이 게시물은 열람할 수 없습니다";
+"quote.cusionNeeded.reason.blockedAccount" = "ブロックしているアカウント";
+"quote.cusionNeeded.reason.mutedAccount" = "ミュートしているアカウント";
+"quote.cusionNeeded.reason.blockedDomain" = "ブロックしているドメイン";
+"quote.cusionNeeded.description.authorUnknown" = "%1$@の投稿のため、タップするまで表示されません";
+"quote.cusionNeeded.description.authorAvailable" = "%1$@ (@%2$@) の投稿のため、タップするまで表示されません";
 "quote.fetchShallowPost" = "인용된 게시물 보기";
 
 "reportPost.title" = "글을 신고하기";
