@@ -5,7 +5,8 @@ import json
 import sys
 import shutil
 
-IOS_LATEST = "26.5"
+IOS_LATEST = "27.0"
+IOS_26 = "26.5"
 IOS_17 = "17.5"
 IOS_16 = "16.4" # our minimum requirements
 DEVICES = [
@@ -20,7 +21,7 @@ DEVICES = [
     ("iPad_13_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB", IOS_LATEST),
     ("iPad_11_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB", IOS_LATEST),
     ("iPad_12_9", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-8GB", IOS_LATEST),
-    ("iPad_10_5", "com.apple.CoreSimulator.SimDeviceType.iPad-Air--3rd-generation-", IOS_LATEST),
+    ("iPad_10_5", "com.apple.CoreSimulator.SimDeviceType.iPad-Air--3rd-generation-", IOS_26),
     ("iPad_9_7", "com.apple.CoreSimulator.SimDeviceType.iPad--6th-generation-", IOS_17),
 ]
 
