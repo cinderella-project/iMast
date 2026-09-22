@@ -108,6 +108,11 @@
 "quote.state.deleted" = "인용된 게시물이 삭제됐습니다";
 "quote.state.rejectedOrRevoked" = "원본 게시자에 의해 인용이 거부됐습니다";
 "quote.state.unauthorized" = "이 게시물은 열람할 수 없습니다";
+"quote.cusionNeeded.reason.blockedAccount" = "ブロックしているアカウント";
+"quote.cusionNeeded.reason.mutedAccount" = "ミュートしているアカウント";
+"quote.cusionNeeded.reason.blockedDomain" = "ブロックしているドメイン";
+"quote.cusionNeeded.description.authorUnknown" = "%1$@の投稿のため、タップするまで表示されません";
+"quote.cusionNeeded.description.authorAvailable" = "%1$@ (@%2$@) の投稿のため、タップするまで表示されません";
 "quote.fetchShallowPost" = "인용된 게시물 보기";
 
 "reportPost.title" = "글을 신고하기";
