@@ -94,15 +94,15 @@ extension MastodonPost: MastodonMemoryStorable {
             if post.repost?.value.id == self.id {
                 post.repost = .value(self)
             }
-            if case .accepted(let postOrId) = post.quote {
+            if case .accepted(let reason, let postOrId) = post.quote {
                 switch postOrId {
                 case .post(let previousPost):
                     if previousPost.id == self.id {
-                        post.quote = .accepted(.post(self))
+                        post.quote = .accepted(reason, .post(self))
                     }
                 case .id(let id):
                     if id == self.id {
-                        post.quote = .accepted(.post(self))
+                        post.quote = .accepted(reason, .post(self))
                     }
                 }
             }
@@ -114,7 +114,7 @@ extension MastodonPost: MastodonMemoryStorable {
         if let orig = self.repost?.value {
             try store.addChain(from: orig.id, to: self.id, key: MastodonPost.CodingKeys.repost.rawValue)
         }
-        if case .accepted(let postOrId) = self.quote {
+        if case .accepted(let reason, let postOrId) = self.quote {
             switch postOrId {
             case .id(let id):
                 try store.addChain(from: id, to: self.id, key: MastodonPost.CodingKeys.quote.rawValue)

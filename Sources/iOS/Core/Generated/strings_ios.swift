@@ -236,6 +236,26 @@ public enum L10n {
     public enum Quote {
       /// 引用されている投稿を見る
       public static let fetchShallowPost = L10n.tr("Localizable", "quote.fetchShallowPost")
+      public enum CusionNeeded {
+        public enum Description {
+          /// %1$@ (@%2$@) の投稿のため、タップするまで表示されません
+          public static func authorAvailable(_ p1: Any, _ p2: Any) -> String {
+            return L10n.tr("Localizable", "quote.cusionNeeded.description.authorAvailable", String(describing: p1), String(describing: p2))
+          }
+          /// %1$@の投稿のため、タップするまで表示されません
+          public static func authorUnknown(_ p1: Any) -> String {
+            return L10n.tr("Localizable", "quote.cusionNeeded.description.authorUnknown", String(describing: p1))
+          }
+        }
+        public enum Reason {
+          /// ブロックしているアカウント
+          public static let blockedAccount = L10n.tr("Localizable", "quote.cusionNeeded.reason.blockedAccount")
+          /// ブロックしているドメイン
+          public static let blockedDomain = L10n.tr("Localizable", "quote.cusionNeeded.reason.blockedDomain")
+          /// ミュートしているアカウント
+          public static let mutedAccount = L10n.tr("Localizable", "quote.cusionNeeded.reason.mutedAccount")
+        }
+      }
       public enum State {
         /// 引用されていた投稿は削除されました
         public static let deleted = L10n.tr("Localizable", "quote.state.deleted")

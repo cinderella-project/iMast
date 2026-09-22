@@ -127,7 +127,7 @@ public enum MastodonPostOrID : Sendable{
 
 public enum MastodonPostQuote: Codable, Sendable {
     case notAvailable(NotAvailableReason)
-    case accepted(MastodonPostOrID)
+    case accepted(AvailableReason, MastodonPostOrID)
     
     public enum NotAvailableReason: String, Codable, Sendable {
         case pending
@@ -137,8 +137,12 @@ public enum MastodonPostQuote: Codable, Sendable {
         case unauthorized
     }
     
-    enum AvailableReason: String, Codable {
+    public enum AvailableReason: String, Codable, Sendable {
+        case oldQuote = "__old_quote"
         case accepted
+        case blockedAccount = "blocked_account"
+        case blockedDomain = "blocked_domain"
+        case mutedAccount = "muted_account"
     }
     
     enum CodingKeys: String, CodingKey {
@@ -151,26 +155,24 @@ public enum MastodonPostQuote: Codable, Sendable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.state) else {
             // Fedibird スタイルへの quote へフォールバック (post.quote に MastodonPost が入っている)
-            self = .accepted(.post(try .init(from: decoder)))
+            self = .accepted(.oldQuote, .post(try .init(from: decoder)))
             return
         }
         if let reason = try? container.decode(NotAvailableReason.self, forKey: .state) {
             self = .notAvailable(reason)
             return
         }
-        
-        if (try? container.decode(AvailableReason.self, forKey: .state)) == nil {
-            throw DecodingError.dataCorruptedError(forKey: .state, in: container, debugDescription: "unknown state")
-        }
-        
+
+        let availableReason = try container.decode(AvailableReason.self, forKey: .state)
+
         if container.contains(.quotedStatusID) {
             let id = try container.decode(MastodonID.self, forKey: .quotedStatusID)
-            self = .accepted(.id(id))
+            self = .accepted(availableReason, .id(id))
         } else if container.contains(.quotedStatus) {
             let post = try container.decode(MastodonPost.self, forKey: .quotedStatus)
-            self = .accepted(.post(post))
+            self = .accepted(availableReason, .post(post))
         } else {
-            throw DecodingError.dataCorruptedError(forKey: .state, in: container, debugDescription: "state is \"accepted\", but no quoted_status_id or quoted_status found")
+            throw DecodingError.dataCorruptedError(forKey: .state, in: container, debugDescription: "state is \(availableReason), but no quoted_status_id or quoted_status found")
         }
     }
     
@@ -179,8 +181,8 @@ public enum MastodonPostQuote: Codable, Sendable {
         switch self {
         case .notAvailable(let reason):
             try container.encode(reason, forKey: .state)
-        case .accepted(let postOrID):
-            try container.encode(AvailableReason.accepted, forKey: .state)
+        case .accepted(let reason, let postOrID):
+            try container.encode(reason, forKey: .state)
             switch postOrID {
             case .post(let post):
                 try container.encode(post, forKey: .quotedStatus)

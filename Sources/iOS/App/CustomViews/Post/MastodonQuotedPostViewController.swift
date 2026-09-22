@@ -133,32 +133,63 @@ class MastodonQuotedPostViewController: UIViewController, Instantiatable, Inject
             case .rejected, .revoked:
                 textLabel.text = L10n.Localizable.Quote.State.rejectedOrRevoked
             }
-        case .accepted(let postOrID):
+        case .accepted(let reason, let postOrID):
             quoteButton.isEnabled = true
             
-            switch postOrID {
-            case .post(let post):
-                headerView.isHidden = false
-                headerView.load((post, false))
-                textLabel.numberOfLines = 1
-                if let spoiler = post.spoilerText.emptyAsNil {
-                    textLabel.textColor = .secondaryLabel
-                    textLabel.text = spoiler + "…"
-                } else {
-                    textLabel.textColor = .label
-                    textLabel.text = post.status.toPlainText().replacingOccurrences(of: "\n", with: " ")
-                }
-            case .id(let id):
+            var cusionReason: String?
+            switch reason {
+            case .accepted, .oldQuote:
+                break
+            case .blockedAccount:
+                cusionReason = L10n.Localizable.Quote.CusionNeeded.Reason.blockedAccount
+            case .blockedDomain:
+                cusionReason = L10n.Localizable.Quote.CusionNeeded.Reason.blockedDomain
+            case .mutedAccount:
+                cusionReason = L10n.Localizable.Quote.CusionNeeded.Reason.mutedAccount
+            }
+            
+            if let cusionReason {
                 headerView.isHidden = true
                 textLabel.numberOfLines = 0
                 textLabel.textColor = .secondaryLabel
-                textLabel.text = L10n.Localizable.Quote.fetchShallowPost
+                
+                var acct: String?
+                switch postOrID {
+                case .post(let post):
+                    acct = post.account.acct
+                case .id(let id):
+                    acct = environment.memoryStore.post.container[id]?.account.acct
+                }
+                if let acct {
+                    textLabel.text = L10n.Localizable.Quote.CusionNeeded.Description.authorAvailable(cusionReason, acct)
+                } else {
+                    textLabel.text = L10n.Localizable.Quote.CusionNeeded.Description.authorUnknown(cusionReason)
+                }
+            } else {
+                switch postOrID {
+                case .post(let post):
+                    headerView.isHidden = false
+                    headerView.load((post, false))
+                    textLabel.numberOfLines = 1
+                    if let spoiler = post.spoilerText.emptyAsNil {
+                        textLabel.textColor = .secondaryLabel
+                        textLabel.text = spoiler + "…"
+                    } else {
+                        textLabel.textColor = .label
+                        textLabel.text = post.status.toPlainText().replacingOccurrences(of: "\n", with: " ")
+                    }
+                case .id(let id):
+                    headerView.isHidden = true
+                    textLabel.numberOfLines = 0
+                    textLabel.textColor = .secondaryLabel
+                    textLabel.text = L10n.Localizable.Quote.fetchShallowPost
+                }
             }
         }
     }
     
     @objc func buttonPressed() {
-        guard case .accepted(let postOrID) = input.quote else { return }
+        guard case .accepted(_, let postOrID) = input.quote else { return }
         switch postOrID {
         case .post(let post):
             let vc = MastodonPostDetailViewController(with: post, environment: environment)
