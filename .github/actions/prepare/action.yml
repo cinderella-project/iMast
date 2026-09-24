@@ -7,6 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Disable Spotlight
+      run: sudo mdutil -a -s
+      shell: bash
     - name: Install CocoaPods
       run: brew install cocoapods
       shell: bash
