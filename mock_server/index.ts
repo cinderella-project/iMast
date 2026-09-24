@@ -102,16 +102,21 @@ const REDIR_MAP = {
     "/api/v1/timelines/home": `/api/v1/accounts/${PROXY_USER}/statuses`,
 } as Record<string, string | undefined>
 
+const cachedResponses = new Map<string, Response>()
+
 app.get("/*", async (c) => {
     const path = REDIR_MAP[c.req.path] ?? c.req.path
-    const res = await fetch(`https://${PROXY_DEST}${path}${new URL(c.req.url).search}`, {
+    const upstreamUrl = `https://${PROXY_DEST}${path}${new URL(c.req.url).search}`
+    const cachedRes = cachedResponses.get(upstreamUrl)
+    if (cachedRes != null) return cachedRes.clone()
+    const res = await fetch(upstreamUrl, {
         method: c.req.method,
         headers: {
             "From": "imast-mock-server@rinsuki.net",
             "User-Agent": "imast_mock_server/0.1 (" + c.req.header("User-Agent") + ")",
         }
     })
-    return new Response((await res.text()).replaceAll(`s://${PROXY_DEST}`, `://localhost:3000`), {
+    const returningRes = new Response((await res.text()).replaceAll(`s://${PROXY_DEST}`, `://localhost:3000`), {
         status: res.status,
         headers: Array.from(res.headers.entries(), m => {
             return [
@@ -120,6 +125,10 @@ app.get("/*", async (c) => {
             ] as [string, string]
         }).filter(m => m[0].toLowerCase() !== "content-length")
     })
+    if (returningRes.ok) {
+        cachedResponses.set(upstreamUrl, returningRes.clone())
+    }
+    return returningRes
 })
 
 const server = serve({
