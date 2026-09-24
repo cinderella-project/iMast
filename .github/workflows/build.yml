@@ -57,6 +57,7 @@ jobs:
           -scheme "iMast iOS" \
           -destination "generic/platform=${{ matrix.os }} Simulator" \
           -testProductsPath ./iMast_iOS.xctestproducts \
+          ARCHS=arm64 ONLY_ACTIVE_ARCH=YES \
         | xcpretty -c
     - run: tar czf iMast_iOS.xctestproducts.tar.gz iMast_iOS.xctestproducts
     - uses: actions/upload-artifact@v7
