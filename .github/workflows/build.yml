@@ -77,11 +77,11 @@ jobs:
       with:
         script: |
           const preferredKeys = [
+            "iPhone_5_5",  // iOS 16
             "iPhone_4_7",  // smallest screen
             "iPad_13_0",   // modern iPad
             "iPad_10_5",   // iOS 26
             "iPad_9_7",    // iOS 17
-            "iPhone_5_5",  // iOS 16
           ]
           const allKeys = [
             ...preferredKeys,
