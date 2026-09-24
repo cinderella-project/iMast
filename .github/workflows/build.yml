@@ -119,7 +119,7 @@ jobs:
       run: sudo mdutil -a -i off
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ case(contains('iPad_9_7', matrix.device_key), '26.5', env._main_xcode) }}.app
+      run: sudo xcode-select --switch /Applications/Xcode_${{ case(contains('macos-26', runner.name), '26.5', env._main_xcode) }}.app
     - parallel:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v7
