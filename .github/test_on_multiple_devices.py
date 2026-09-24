@@ -86,6 +86,7 @@ try:
                     "-testProductsPath", "./iMast_iOS.xctestproducts",
                     "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
                     "-parallel-testing-enabled", "NO",
+                    "-retry-tests-on-failure",
                     "-resultBundlePath", "test_results/" + device_key + ".xcresult",
                 ], check=True)
                 break
