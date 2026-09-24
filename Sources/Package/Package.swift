@@ -16,8 +16,7 @@ let package = Package(
         .library(name: "BlurHash", targets: ["BlurHash"]),
     ],
     dependencies: [
-        // Depend on the Swift 5.9 release of SwiftSyntax
-        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "601.0.1"),
+        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "603.0.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
