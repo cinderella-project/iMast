@@ -108,7 +108,8 @@ jobs:
         os:
           - iOS
         device_key: ${{ fromJson(needs.calc_test_device_keys.outputs.result) }}
-    runs-on: *main_machine
+    runs-on: |-
+      ${{ case(matrix.device_key == 'iPad_9_7', 'macos-26', 'xcode-27') }}
     concurrency:
       group: "${{ github.workflow }}_test_${{ github.ref }}_${{ matrix.device_key }}"
       cancel-in-progress: true
