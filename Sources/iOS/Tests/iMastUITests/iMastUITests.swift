@@ -63,11 +63,11 @@ class iMastUITests: XCTestCase {
             shot()
             // ASWebのアラートを真面目に突破するのはできなさそうだったので
             let loginWithSafari = app.buttons["loginWithSafari_Ephemeral"]
-            loginWithSafari.wait(for: \.isHittable, toEqual: true, timeout: 10)
+            XCTAssertTrue(loginWithSafari.wait(for: \.isHittable, toEqual: true, timeout: 10))
             loginWithSafari.tap()
             let openTimeline = app.buttons["toTimeline"]
-            openTimeline.waitForExistence(timeout: 60) // Safari はときどき信じられないくらい遅い
-            openTimeline.wait(for: \.isHittable, toEqual: true, timeout: 10)
+            XCTAssertTrue(openTimeline.waitForExistence(timeout: 60  /* Safari はときどき信じられないくらい遅い */ ))
+            XCTAssertTrue(openTimeline.wait(for: \.isHittable, toEqual: true, timeout: 10))
             shot()
             openTimeline.tap()
         }
@@ -83,12 +83,12 @@ class iMastUITests: XCTestCase {
                 tabBar.buttons.containing(.image, identifier: "ellipsis").element.tap()
             }
             let othersMenu = app.tables["otherMenuTableView"]
-            othersMenu.waitForExistence(timeout: 10)
+            XCTAssertTrue(othersMenu.waitForExistence(timeout: 10))
             shot()
             othersMenu.cells["openMyProfile"].tap()
             let loadedLabel = app.staticTexts["relationshipLabel_loaded"]
-            loadedLabel.waitForExistence(timeout: 60)
-            loadedLabel.wait(for: \.isHittable, toEqual: true, timeout: 60)
+            XCTAssertTrue(loadedLabel.waitForExistence(timeout: 60))
+            XCTAssertTrue(loadedLabel.wait(for: \.isHittable, toEqual: true, timeout: 60))
             sleep(5)
             shot(name: "AppStore_Others")
         }
