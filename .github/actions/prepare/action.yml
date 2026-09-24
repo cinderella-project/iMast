@@ -24,7 +24,7 @@ runs:
         SWIFT_SYNTAX_VERSION=$(jq -r '.pins[] | select(.identity == "swift-syntax").state.version' ./Sources/Package/Package.resolved)
         SWIFT_COMPILER_VERSION=$(xcrun swiftc -print-target-info | jq -r .swiftCompilerTag)
         SDK_VERSION=$(plutil -extract CanonicalName raw -o - "$(xcrun --sdk macosx --show-sdk-path)/SDKSettings.plist")
-        curl -v --fail-with-body "https://download.swift.org/prebuilts/swift-syntax/$SWIFT_SYNTAX_VERSION/$SWIFT_COMPILER_VERSION-$SDK_VERSION.json"
+        curl -Lv --fail-with-body "https://download.swift.org/prebuilts/swift-syntax/$SWIFT_SYNTAX_VERSION/$SWIFT_COMPILER_VERSION-$SDK_VERSION.json"
     - name: Download SwiftPM dependencies
       run: xcodebuild -resolvePackageDependencies -onlyUsePackageVersionsFromResolvedFile -workspace ./iMast.xcworkspace -scheme "iMast iOS"
       shell: bash
