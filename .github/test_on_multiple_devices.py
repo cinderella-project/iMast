@@ -54,8 +54,9 @@ def swap_runner_if_needed(current_ios: str):
     if current_ios not in [IOS_16]:
         return
     print(f"::group::Swap XCTRunner", flush=True)
-    sdk_path = subprocess.run(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], check=True).stdout.strip().decode("ascii")
+    sdk_path = subprocess.run(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], check=True, capture_output=True).stdout.strip().decode("ascii")
     xctrunner_path = sdk_path + "/../../Library/Xcode/Agents/XCTRunner.app"
+    print("XCTRunner", xctrunner_path)
     with open(xctrunner_path + "/Info.plist", "rb") as f:
         runner_info_plist = plistlib.load(f)
     for runner_app in iglob(TEST_PRODUCT_PATH + "/Binaries/*/Debug-iphonesimulator/*-Runner.app"):
@@ -108,11 +109,11 @@ try:
                     print("::endgroup::")
         if os.environ.get("DOWNLOAD_ONLY") == "yes":
             continue
+        swap_runner_if_needed(ios_version)
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
         print(f"::group::Booting {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
         print("::endgroup::")
-        swap_runner_if_needed(ios_version)
         retry = 0
         while True:
             try:
