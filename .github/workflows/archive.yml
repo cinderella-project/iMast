@@ -29,7 +29,7 @@ jobs:
         set -o pipefail
         xcodebuild \
           -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" \
-          archive -archivePath "./archive.xcarchive" \
+          archive -archivePath "./archive.xcarchive" -resultBundlePath "./archive.xcresult" \
           DYLIB_CURRENT_VERSION=$((1000 + ${{ github.run_number }})) \
           CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES | tee ./xcodebuild.log | xcpretty -c
     - uses: actions/upload-artifact@v4
@@ -37,6 +37,11 @@ jobs:
       with:
         name: xcodebuild.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.log
         path: ./xcodebuild.log
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: xcodebuild.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.xcresult
+        path: ./archive.xcresult
     - uses: actions/upload-artifact@v4
       with:
         name: iMast.${{ matrix.os }}.GHA.run.${{ github.run_id }}.Xcode.${{ matrix.xcode }}.${{ matrix.machine }}.xcarchive
