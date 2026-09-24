@@ -120,6 +120,9 @@ class TimelineViewController: UIViewController, Instantiatable {
         diffableDataSource.canEditRowAt = true
         tableView.dataSource = diffableDataSource
         tableView.separatorInset = .zero
+        if #available(iOS 26.0, *), Defaults.liquidGlassSoftEdge {
+            tableView.topEdgeEffect.style = .soft
+        }
         // in iOS 15, UITableViewCell didn't apply separatorInset to first separator
         // TODO: we should find right way to apply separatorInset to first separator and remove this workaround
         tableView.tableHeaderView = UIView(frame: .zero)

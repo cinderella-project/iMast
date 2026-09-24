@@ -100,7 +100,8 @@ public class Defaults {
     @DefaultsKey("use_system_browser_for_links") public static var useSystemBrowserForLinks = false
     @DefaultsKey("use_system_browser_for_media") public static var useSystemBrowserForMedia = false
     #endif
-    
+    @DefaultsKey("liquid_glass_soft_edge") public static var liquidGlassSoftEdge = true
+
     #if DEBUG
     @DefaultsKey("debug_only_special_ui") public static var DEBUG_ONLY_enableSpecialUI = true
     #endif

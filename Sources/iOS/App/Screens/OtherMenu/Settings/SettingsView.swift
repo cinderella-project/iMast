@@ -175,6 +175,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$acctAbbr) var acctAbbr
         @AppStorage(defaults: .$usePostLanguageInfo) var usePostLanguageInfo
         @AppStorage(defaults: .$shouldNotUseConstrainedNetworkForLoadThumbnail) var shouldNotUseConstrainedNetworkForLoadThumbnail
+        @AppStorage(defaults: .$liquidGlassSoftEdge) var liquidGlassSoftEdge
         
         var body: some View {
             Section(L10n.Preferences.TimelineAppearance.title) {
@@ -213,6 +214,9 @@ struct SettingsView: View {
                     Text("例: m6n.s4l")
                 }
                 Toggle("投稿の言語情報を表示時に考慮", isOn: $usePostLanguageInfo)
+                if isSolariumEnabled {
+                    Toggle("上部のバーをソフトに", isOn: $liquidGlassSoftEdge)
+                }
             }
         }
     }
