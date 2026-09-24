@@ -135,6 +135,7 @@ jobs:
     - run: tar xzf iMast_iOS.xctestproducts.tar.gz && rm iMast_iOS.xctestproducts.tar.gz
     - run: ./.github/cpu_usage_monitor.sh &
     - name: Test (iOS)
+      timeout-minutes: 60
       run: |
         python3 .github/test_on_multiple_devices.py ${{ matrix.device_key }}
     - name: Archive Test Results
