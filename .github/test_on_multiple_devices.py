@@ -10,19 +10,28 @@ IOS_26 = "26.5"
 IOS_17 = "17.5"
 IOS_16 = "16.4" # our minimum requirements
 DEVICES = [
-    ("iPhone_6_9", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max", IOS_LATEST),
-    ("iPhone_6_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max", IOS_LATEST),
-    ("iPhone_6_3", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro", IOS_LATEST),
-    ("iPhone_6_1", "com.apple.CoreSimulator.SimDeviceType.iPhone-14", IOS_LATEST),
-    ("iPhone_5_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-8-Plus", IOS_16),
-    ("iPhone_4_7", "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", IOS_LATEST),
+    # our_device_key, apple device key, iOS version, should test all locales
+    ("iPhone_6_9", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max", IOS_LATEST, False),
+    ("iPhone_6_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-11-Pro-Max", IOS_LATEST, False),
+    ("iPhone_6_3", "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro", IOS_LATEST, False),
+    ("iPhone_6_1", "com.apple.CoreSimulator.SimDeviceType.iPhone-14", IOS_LATEST, False),
+    ("iPhone_5_5", "com.apple.CoreSimulator.SimDeviceType.iPhone-8-Plus", IOS_16, True), # test all because oldest iOS
+    ("iPhone_4_7", "com.apple.CoreSimulator.SimDeviceType.iPhone-SE-3rd-generation", IOS_LATEST, True), # test all because smallest iPhone
     # iPhone 4_0 → SE 1st gen, iOS 15.x
     # iPhone 3_5 → 4s, iOS 9.x
-    ("iPad_13_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB", IOS_LATEST),
-    ("iPad_11_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB", IOS_LATEST),
-    ("iPad_12_9", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-8GB", IOS_LATEST),
-    ("iPad_10_5", "com.apple.CoreSimulator.SimDeviceType.iPad-Air--3rd-generation-", IOS_26),
-    ("iPad_9_7", "com.apple.CoreSimulator.SimDeviceType.iPad--6th-generation-", IOS_17),
+    ("iPad_13_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M5-12GB", IOS_LATEST, True), # test all because latest iPadOS
+    ("iPad_11_0", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-11-inch-M5-12GB", IOS_LATEST, False),
+    ("iPad_12_9", "com.apple.CoreSimulator.SimDeviceType.iPad-Pro-12-9-inch-6th-generation-8GB", IOS_LATEST, False),
+    ("iPad_10_5", "com.apple.CoreSimulator.SimDeviceType.iPad-Air--3rd-generation-", IOS_26, False),
+    ("iPad_9_7", "com.apple.CoreSimulator.SimDeviceType.iPad--6th-generation-", IOS_17, False),
+]
+
+# sorry for excluded locale peoples, but these will (still) tested for "should test all locales" devices,
+# so we probably not miss something
+NOT_PRIMARY_CONFIGURATIONS = [
+    "Chinese, Simplified (China mainland)",
+    "Chinese, Traditional (Taiwan)",
+    "Korean (South Korea)",
 ]
 
 subprocess.run(["xcrun", "simctl", "delete", "all"], check=True)
@@ -38,7 +47,7 @@ for runtime in current_runtimes.values():
 mock_server = subprocess.Popen(["node", "mock_server/index.ts"])
 
 try:
-    for device_key, device_type, ios_version in DEVICES:
+    for device_key, device_type, ios_version, should_test_all_locales in DEVICES:
         if device_key not in sys.argv:
             continue
         if ios_version not in done_ioses:
@@ -88,6 +97,11 @@ try:
                     "-parallel-testing-enabled", "NO",
                     "-retry-tests-on-failure",
                     "-resultBundlePath", "test_results/" + device_key + ".xcresult",
+                    *[
+                        a
+                        for c in (NOT_PRIMARY_CONFIGURATIONS if not should_test_all_locales else [])
+                        for a in ("-skip-test-configuration", c)
+                    ],
                 ], check=True)
                 break
             except subprocess.CalledProcessError:
