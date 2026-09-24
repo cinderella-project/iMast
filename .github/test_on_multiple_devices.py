@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+from glob import iglob
 import os
+import plistlib
 import subprocess
 import json
 import sys
 import shutil
+
+TEST_PRODUCT_PATH="./iMast_iOS.xctestproducts"
 
 IOS_LATEST = "27.0"
 IOS_26 = "26.5"
@@ -46,6 +50,32 @@ for runtime in current_runtimes.values():
 
 mock_server = subprocess.Popen(["node", "mock_server/index.ts"])
 
+def swap_runner_if_needed(current_ios: str):
+    if current_ios not in [IOS_16]:
+        return
+    print(f"::group::Swap XCTRunner", flush=True)
+    sdk_path = subprocess.run(["xcrun", "--sdk", "iphonesimulator", "--show-sdk-path"], check=True).stdout.strip().decode("ascii")
+    xctrunner_path = sdk_path + "/../../Library/Xcode/Agents/XCTRunner.app"
+    with open(xctrunner_path + "/Info.plist", "rb") as f:
+        runner_info_plist = plistlib.load(f)
+    for runner_app in iglob(TEST_PRODUCT_PATH + "/Binaries/*/Debug-iphonesimulator/*-Runner.app"):
+        print("Modifying", runner_app)
+        with open(runner_app + "/Info.plist", "rb") as f:
+            orig_info_plist = plistlib.load(f)
+        runner_bin = runner_app + "/" + orig_info_plist["CFBundleExecutable"]
+        os.unlink(runner_bin)
+        shutil.copy2(xctrunner_path + "/XCTRunner", runner_bin)
+        new_info_plist = {}
+        for k in runner_info_plist:
+            v = runner_info_plist[k]
+            if isinstance(v,  str) and v.startswith("$("):
+                v = orig_info_plist[k]
+            new_info_plist[k] = v
+        with open(runner_app + "/Info.plist", "wb") as f:
+            plistlib.dump(new_info_plist, f, fmt=plistlib.FMT_BINARY)
+        subprocess.run(["codesign", "-s", "-", "-f", runner_app], check=True)
+    print("::endgroup::")
+
 try:
     for device_key, device_type, ios_version, should_test_all_locales in DEVICES:
         if device_key not in sys.argv:
@@ -82,6 +112,7 @@ try:
         print(f"::group::Booting {device_key} (iOS {ios_version}, {device_type})", flush=True)
         subprocess.run(["xcrun", "simctl", "bootstatus", device_key, "-b"], check=True)
         print("::endgroup::")
+        swap_runner_if_needed(ios_version)
         retry = 0
         while True:
             try:
@@ -92,7 +123,7 @@ try:
             try:
                 subprocess.run([
                     "xcrun", "xcodebuild", "test-without-building",
-                    "-testProductsPath", "./iMast_iOS.xctestproducts",
+                    "-testProductsPath", TEST_PRODUCT_PATH,
                     "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
                     "-parallel-testing-enabled", "NO",
                     "-retry-tests-on-failure",
