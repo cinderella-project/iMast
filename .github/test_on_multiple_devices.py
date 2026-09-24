@@ -55,6 +55,18 @@ try:
                         raise
                 finally:
                     print("::endgroup::")
+            retry = 0
+            while True:
+                try:
+                    print(f"::group::Building iOS {ios_version} dyld_shared_cache... (retry {retry})", flush=True)
+                    subprocess.run(["xcrun", "simctl", "runtime", "dyld_shared_cache", "update", "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
+                    break
+                except subprocess.CalledProcessError:
+                    retry += 1
+                    if retry >= 3:
+                        raise
+                finally:
+                    print("::endgroup::")
         if os.environ.get("DOWNLOAD_ONLY") == "yes":
             continue
         subprocess.run(["xcrun", "simctl", "create", device_key, device_type, "com.apple.CoreSimulator.SimRuntime.iOS-" + ios_version.replace(".", "-")], check=True)
