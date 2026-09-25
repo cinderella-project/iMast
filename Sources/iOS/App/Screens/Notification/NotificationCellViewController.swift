@@ -98,17 +98,19 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
     static func getIcon(type: String) -> UIImage? {
         switch type {
         case "reblog":
-            return .init(resource: .boost)
+            return .init(systemName: "repeat")
         case "favourite":
-            return .init(resource: .star)
+            return .init(systemName: "star.fill")
         case "mention":
-            return .init(resource: .reply)
+            return nil // mentionは投稿がそのまま出るようになったのでこのセルでは処理されない
         case "follow":
-            return .init(resource: .follow)
+            return .init(systemName: "person.fill.badge.plus")
         case "poll":
-            return .init(resource: .poll)
+            return .init(systemName: "chart.bar.yaxis")
         case "update":
-            return UIImage(systemName: "pencil")
+            return .init(systemName: "pencil")
+        case "follow_request":
+            return .init(systemName: "person.fill.questionmark")
         default:
             return nil
         }
