@@ -133,7 +133,7 @@ class NotificationService: UNNotificationServiceExtension {
                            let avatarLocalURL = try await AttachmentCacheManager.acquireImageLocalURL(from: avatarURL)
                         {
                             let displayName: String = account.acct.contains("@") ? "@\(account.acct)" : "@\(account.acct)@\(userToken.app.instance.hostName)"
-                            let nameOrScreenName = account.name.isEmpty ? account.screenName : account.name
+                            let nameOrScreenName = account.actualName
                             #if targetEnvironment(simulator)
                             // シミュレータでローカルURLを渡すと「ファイル名“file%3A%2F%2F%2FUsers%2F(…中略…)%2F2c343dd82dee1199a70d76ab05a7fe0b%2Epng.png”が無効であるため、項目を保存できませんでした。」となる
                             let image = INImage(url: avatarURL)

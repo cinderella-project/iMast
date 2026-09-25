@@ -158,7 +158,7 @@ class MastodonPostDetailContentViewController: UIViewController, Instantiatable,
         ]
         if let post = input as? MastodonPost {
             userIconView.loadImage(from: URL(string: post.account.avatarUrl))
-            userNameLabel.text = post.account.name
+            userNameLabel.text = post.account.actualName
             let userAcctString = NSMutableAttributedString(string: "@\(post.account.acct)", attributes: [
                 .foregroundColor: UIColor.systemGray,
             ])

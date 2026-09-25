@@ -89,10 +89,7 @@ class FollowRequestsListTableViewController: UITableViewController, Instantiatab
         
         let request = self.followRequests[indexPath.row]
         
-        cell.textLabel?.text = request.name
-        if (cell.textLabel?.text ?? "") == "" {
-            cell.textLabel?.text = request.acct
-        }
+        cell.textLabel?.text = request.actualName
         cell.detailTextLabel?.text = "@\(request.acct)"
         cell.imageView?.loadImage(from: URL(string: request.avatarUrl)) {
             cell.setNeedsLayout()

@@ -69,7 +69,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, Instanti
             switch body {
             case .account(let account):
                 let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-                cell.textLabel?.text = account.name == "" ? account.screenName : account.name
+                cell.textLabel?.text = account.actualName
                 cell.detailTextLabel?.text = "@" + account.acct
                 let iconUrl = URL(string: account.avatarUrl, relativeTo: environment.app.instance.url)!
                 cell.imageView?.loadImage(from: iconUrl) {

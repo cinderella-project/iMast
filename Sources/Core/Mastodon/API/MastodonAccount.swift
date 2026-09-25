@@ -72,6 +72,10 @@ public struct MastodonAccount: Codable, EmojifyProtocol, MastodonEndpointRespons
         case emojis
         case profileEmojis = "profile_emojis"
     }
+    
+    public var actualName: String {
+        name.isEmpty ? screenName : name
+    }
 }
 
 extension MastodonAccount: Hashable {

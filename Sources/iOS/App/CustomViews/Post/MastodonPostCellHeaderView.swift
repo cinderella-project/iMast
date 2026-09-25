@@ -75,7 +75,7 @@ class MastodonPostCellHeaderView: UIStackView {
 
         // ユーザー名
         let userNameFont = UIFont.systemFont(ofSize: CGFloat(Defaults.timelineUsernameFontsize))
-        self.userNameLabel.attributedText = NSAttributedString(string: post.account.name.emptyAsNil ?? post.account.screenName, attributes: [
+        self.userNameLabel.attributedText = NSAttributedString(string: post.account.actualName, attributes: [
             .font: userNameFont,
         ]).emojify(asyncLoadProgressHandler: {
             self.userNameLabel.setNeedsDisplay()

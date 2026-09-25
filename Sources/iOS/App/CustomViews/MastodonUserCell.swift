@@ -38,7 +38,7 @@ class MastodonUserCell: UITableViewCell {
     }
     
     func load(user: MastodonAccount) {
-        self.textLabel?.text = user.name == "" ? user.screenName : user.name
+        self.textLabel?.text = user.actualName
         self.detailTextLabel?.text = "@" + user.acct
         self.imageView?.loadImage(from: URL(string: user.avatarUrl)) {
             self.setNeedsLayout()

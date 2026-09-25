@@ -91,7 +91,7 @@ class NotificationCellViewController: UIViewController, Instantiatable, Injectab
         self.input = input
         notifyTypeImageView.image = Self.getIcon(type: input.type)
         titleLabel.text = getTitle(notification: input)
-        descriptionLabel.text = (input.status?.status.toPlainText() ?? input.account?.name ?? " ")
+        descriptionLabel.text = (input.status?.status.toPlainText() ?? input.account?.actualName ?? " ")
             .replacingOccurrences(of: "\n", with: " ")
     }
     

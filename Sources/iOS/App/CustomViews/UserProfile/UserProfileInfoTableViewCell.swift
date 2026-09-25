@@ -76,7 +76,7 @@ class UserProfileInfoTableViewCell: UITableViewCell {
     func load(user: MastodonAccount) {
         self.user = user
         self.iconView.loadImage(from: URL(string: user.avatarUrl))
-        self.nameLabel.text = user.name == "" ? user.screenName : user.name
+        self.nameLabel.text = user.actualName
         self.screenNameLabel.text = "@" + user.acct
         self.relationshipLabel.accessibilityIdentifier = "relationshipLabel_loading"
         MastodonEndpoint.Relationship.Get(accounts: [user])
