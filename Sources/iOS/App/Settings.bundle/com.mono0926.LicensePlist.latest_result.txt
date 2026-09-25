@@ -128,34 +128,6 @@ name: SDWebImage, nameSpecified:
 body: Copyright (c) 2009-2…
 version: 5.21.6
 
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
-name: SnapKit, nameSpecified: 
-body: Copyright (c) 2011-P…
-version: 5.7.0
-
 name: Starscream, nameSpecified: 
 body:                     …
 version: 3.1.1
@@ -255,6 +227,8 @@ name: GRDB.swift, nameSpecified: grdb.swift, owner: groue, version: 7.5.0, sourc
 name: Hydra, nameSpecified: hydra, owner: malcommac, version: 2.0.6, source: https://github.com/malcommac/Hydra
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
+
+name: SnapKit, nameSpecified: snapkit, owner: SnapKit, version: 6.0.0, source: https://github.com/SnapKit/SnapKit
 
 name: swift-syntax, nameSpecified: swift-syntax, owner: swiftlang, version: 603.0.2, source: https://github.com/swiftlang/swift-syntax
 

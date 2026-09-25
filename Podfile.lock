@@ -6,7 +6,6 @@ PODS:
   - SDWebImage (5.21.6):
     - SDWebImage/Core (= 5.21.6)
   - SDWebImage/Core (5.21.6)
-  - SnapKit (5.7.0)
   - Starscream (3.1.1)
   - SwiftGen (6.5.1)
   - SwiftLint (0.52.4)
@@ -17,7 +16,6 @@ DEPENDENCIES:
   - LicensePlist (~> 3.22.0)
   - Mew (from `https://github.com/rinsuki/Mew.git`, branch `fix/podspec`)
   - SDWebImage (~> 5.21.6)
-  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, tag `5.7.0`)
   - Starscream (~> 3.1.1)
   - SwiftGen (= 6.5.1)
   - SwiftLint (= 0.52.4)
@@ -38,9 +36,6 @@ EXTERNAL SOURCES:
   Mew:
     :branch: fix/podspec
     :git: https://github.com/rinsuki/Mew.git
-  SnapKit:
-    :git: https://github.com/SnapKit/SnapKit.git
-    :tag: 5.7.0
 
 CHECKOUT OPTIONS:
   Fuzi:
@@ -49,9 +44,6 @@ CHECKOUT OPTIONS:
   Mew:
     :commit: 6b751020575ab88cbcec43726018d35a68dd94ab
     :git: https://github.com/rinsuki/Mew.git
-  SnapKit:
-    :git: https://github.com/SnapKit/SnapKit.git
-    :tag: 5.7.0
 
 SPEC CHECKSUMS:
   Fuzi: 4c10d6449c0b49a85cd75b13844c559c0fc71220
@@ -59,11 +51,10 @@ SPEC CHECKSUMS:
   LicensePlist: be4f67fadceeba970ed2f13e198592a4f420d2be
   Mew: 64d6aa86b5730bb76ff2dd9b30454c574cbf7303
   SDWebImage: 1bb6a1b84b6fe87b972a102bdc77dd589df33477
-  SnapKit: 0f9238a5d2d4008f6b001d5583130382f7e1ff0c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftLint: 1cc5cd61ba9bacb2194e340aeb47a2a37fda00b3
 
-PODFILE CHECKSUM: 5c016d4ac6ea57d7eabf6128edffa0a229a2efb6
+PODFILE CHECKSUM: 68e0652d735b29add9e2ef31e9bef423faf4c760
 
 COCOAPODS: 1.17.0
