@@ -256,7 +256,7 @@ name: Hydra, nameSpecified: hydra, owner: malcommac, version: 2.0.6, source: htt
 
 name: ikemen, nameSpecified: ikemen, owner: banjun, version: 0.8.0, source: https://github.com/banjun/ikemen
 
-name: swift-syntax, nameSpecified: swift-syntax, owner: swiftlang, version: 601.0.1, source: https://github.com/swiftlang/swift-syntax
+name: swift-syntax, nameSpecified: swift-syntax, owner: swiftlang, version: 603.0.2, source: https://github.com/swiftlang/swift-syntax
 
 name: BlurHash, nameSpecified: , version: 
 body: Copyright (c) 2018 W…

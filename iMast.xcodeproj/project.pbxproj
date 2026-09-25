@@ -34,7 +34,6 @@
 		CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */ = {isa = PBXBuildFile; productRef = CE11D6DD28576A8C00F6A0AF /* Ikemen */; };
 		CE11D6E22859190800F6A0AF /* OpenPushSettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11D6E12859190800F6A0AF /* OpenPushSettingsButton.swift */; };
 		CE1277292AC564B000A9344E /* ErrorReportViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1277282AC564B000A9344E /* ErrorReportViewModifier.swift */; };
-		CE12EAC52DF580A20041971B /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE12EAC42DF580A20041971B /* GRDB */; };
 		CE142A972AAC67B100B532AB /* DefaultCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE142A962AAC67B100B532AB /* DefaultCodable.swift */; };
 		CE272D651F340A7900265C07 /* MastodonPostAbuseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE272D641F340A7900265C07 /* MastodonPostAbuseViewController.swift */; };
 		CE2A8667237CF752005F4077 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8666237CF752005F4077 /* PostListTableViewController.swift */; };
@@ -83,9 +82,6 @@
 		CE43BF0D2377A9C900133C86 /* EmojifyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE71AF4F2242309E0054A008 /* EmojifyProtocol.swift */; };
 		CE43BF102377AA2B00133C86 /* String+trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF0E2377AA1A00133C86 /* String+trim.swift */; };
 		CE43BF132377AA9100133C86 /* String+parseInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43BF112377AA8100133C86 /* String+parseInt.swift */; };
-		CE4800ED2DF6DB8700B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EC2DF6DB8700B92D6A /* GRDB */; };
-		CE4800EF2DF6DB8D00B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800EE2DF6DB8D00B92D6A /* GRDB */; };
-		CE4800F12DF6DB9200B92D6A /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CE4800F02DF6DB9200B92D6A /* GRDB */; };
 		CE4B21C12ACFED100057B5D4 /* TopDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4B21C02ACFED100057B5D4 /* TopDeckViewController.swift */; };
 		CE4DA32C285C74D90041AC16 /* AddAccountIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4DA32B285C74D90041AC16 /* AddAccountIndexView.swift */; };
 		CE4FAD402A793E7400E5C843 /* ShareNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4FAD3D2A793E4500E5C843 /* ShareNewPostView.swift */; };
@@ -183,6 +179,10 @@
 		CEBB33E01F2E119D00E4D3AB /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB33DF1F2E119D00E4D3AB /* NotificationTableViewController.swift */; };
 		CEBE93102256F38400943AB9 /* ListAdderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE930F2256F38400943AB9 /* ListAdderTableViewController.swift */; };
 		CEC19B961F49540D00CEDCE2 /* PostAndUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC19B951F49540D00CEDCE2 /* PostAndUserViewController.swift */; };
+		CEC41F913066CC1900B32711 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
+		CEC41F953066CC2000B32711 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
+		CEC41F993066CC2600B32711 /* iMastiOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE43BE80237775F000133C86 /* iMastiOSCore.framework */; };
+		CEC41F9E3066CC3000B32711 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = CEC41F9D3066CC3000B32711 /* GRDB */; };
 		CEC4BA6C22F170840066A916 /* MastodonPostDetailReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4BA6B22F170840066A916 /* MastodonPostDetailReactionsViewController.swift */; };
 		CEC51D5922EA6524002AE764 /* MastodonCompactPollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC51D5822EA6524002AE764 /* MastodonCompactPollViewController.swift */; };
 		CEC6180224C5C56800E2FF97 /* MastodonEndpoint.FollowRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6180024C5C55100E2FF97 /* MastodonEndpoint.FollowRequests.swift */; };
@@ -290,6 +290,27 @@
 			remoteGlobalIDString = CE78CFA31EE812AD008313EA;
 			remoteInfo = iMastShare;
 		};
+		CEC41F933066CC1900B32711 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CEC41F973066CC2000B32711 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
+		CEC41F9B3066CC2600B32711 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE43BE7F237775F000133C86;
+			remoteInfo = iMastiOSCore;
+		};
 		CEC6BC0621074EFB003ECE10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AF3520F1EAB9C5500777C2E /* Project object */;
@@ -350,6 +371,16 @@
 				CE78CFAE1EE812AD008313EA /* iMastShare.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC41F843066CBF600B32711 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -702,9 +733,9 @@
 				CEDCBDC02DF6E9C8006CDCD4 /* Hydra in Frameworks */,
 				CE39E5F12D4EF52C00B7105F /* iMastPackage in Frameworks */,
 				E9E65F5013333547A7C114B4 /* Pods_iMastShared_iOS_iMastiOSCore.framework in Frameworks */,
+				CEC41F9E3066CC3000B32711 /* GRDB in Frameworks */,
 				CE616F1F2F42AEC800210533 /* BlurHash in Frameworks */,
 				CE11D6DE28576A8C00F6A0AF /* Ikemen in Frameworks */,
-				CE12EAC52DF580A20041971B /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,8 +751,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC41F913066CC1900B32711 /* iMastiOSCore.framework in Frameworks */,
 				DDF8D224AC746E71A8413B5D /* Pods_iMastShared_iOS_iMastShare.framework in Frameworks */,
-				CE4800F12DF6DB9200B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,8 +760,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC41F953066CC2000B32711 /* iMastiOSCore.framework in Frameworks */,
 				78E0877ECED7B80513CC23A5 /* Pods_iMastShared_iOS_iMastNotifyService.framework in Frameworks */,
-				CE4800EF2DF6DB8D00B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,8 +769,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC41F993066CC2600B32711 /* iMastiOSCore.framework in Frameworks */,
 				24ABFCAECCCE27CB04A9B973 /* Pods_iMastShared_iOS_iMastIntents.framework in Frameworks */,
-				CE4800ED2DF6DB8700B92D6A /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1662,6 +1693,7 @@
 				CE43BE7C237775F000133C86 /* Sources */,
 				CE43BE7D237775F000133C86 /* Frameworks */,
 				CE43BE7E237775F000133C86 /* Resources */,
+				CEC41F843066CBF600B32711 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1671,9 +1703,9 @@
 			packageProductDependencies = (
 				CE11D6DD28576A8C00F6A0AF /* Ikemen */,
 				CE39E5F02D4EF52C00B7105F /* iMastPackage */,
-				CE12EAC42DF580A20041971B /* GRDB */,
 				CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */,
 				CE616F1E2F42AEC800210533 /* BlurHash */,
+				CEC41F9D3066CC3000B32711 /* GRDB */,
 			);
 			productName = iMastiOSCore;
 			productReference = CE43BE80237775F000133C86 /* iMastiOSCore.framework */;
@@ -1711,8 +1743,11 @@
 			);
 			dependencies = (
 				CEE4E2E12377E38F00406371 /* PBXTargetDependency */,
+				CEC41F943066CC1900B32711 /* PBXTargetDependency */,
 			);
 			name = iMastShare;
+			packageProductDependencies = (
+			);
 			productName = iMastShare;
 			productReference = CE78CFA41EE812AD008313EA /* iMastShare.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1730,8 +1765,11 @@
 			);
 			dependencies = (
 				CEE4E2DD2377E38800406371 /* PBXTargetDependency */,
+				CEC41F983066CC2000B32711 /* PBXTargetDependency */,
 			);
 			name = iMastNotifyService;
+			packageProductDependencies = (
+			);
 			productName = iMastNotifyService;
 			productReference = CEC6BC0121074EFB003ECE10 /* iMastNotifyService.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1749,8 +1787,11 @@
 			);
 			dependencies = (
 				CEE4E2DB2377E38300406371 /* PBXTargetDependency */,
+				CEC41F9C3066CC2600B32711 /* PBXTargetDependency */,
 			);
 			name = iMastIntents;
+			packageProductDependencies = (
+			);
 			productName = iMastIntents;
 			productReference = CED6077721B3658F00F6232E /* iMastIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -2533,6 +2574,21 @@
 			isa = PBXTargetDependency;
 			target = CE78CFA31EE812AD008313EA /* iMastShare */;
 			targetProxy = CE78CFAC1EE812AD008313EA /* PBXContainerItemProxy */;
+		};
+		CEC41F943066CC1900B32711 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEC41F933066CC1900B32711 /* PBXContainerItemProxy */;
+		};
+		CEC41F983066CC2000B32711 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEC41F973066CC2000B32711 /* PBXContainerItemProxy */;
+		};
+		CEC41F9C3066CC2600B32711 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE43BE7F237775F000133C86 /* iMastiOSCore */;
+			targetProxy = CEC41F9B3066CC2600B32711 /* PBXContainerItemProxy */;
 		};
 		CEC6BC0721074EFB003ECE10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3420,33 +3476,18 @@
 			package = CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */;
 			productName = Ikemen;
 		};
-		CE12EAC42DF580A20041971B /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
-			productName = GRDB;
-		};
 		CE39E5F02D4EF52C00B7105F /* iMastPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = iMastPackage;
 		};
-		CE4800EC2DF6DB8700B92D6A /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
-			productName = GRDB;
-		};
-		CE4800EE2DF6DB8D00B92D6A /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
-			productName = GRDB;
-		};
-		CE4800F02DF6DB9200B92D6A /* GRDB */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
-			productName = GRDB;
-		};
 		CE616F1E2F42AEC800210533 /* BlurHash */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BlurHash;
+		};
+		CEC41F9D3066CC3000B32711 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
 		};
 		CEDCBDBF2DF6E9C8006CDCD4 /* Hydra */ = {
 			isa = XCSwiftPackageProductDependency;
