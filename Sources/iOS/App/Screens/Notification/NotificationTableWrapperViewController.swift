@@ -78,9 +78,19 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
     
     let containerView = ContainerView()
     lazy var notificationVC: NotificationTableViewController = .instantiate([], environment: environment)
-    var interaction: Any?
     
     let modernSegmentedControlHeight: CGFloat = 8
+    
+    let segmentedControlBarItemView = UIView()
+    lazy var segmentedControlBarItem = UIBarButtonItem(customView: segmentedControlBarItemView) ※ {
+        if #available(iOS 26.0, *) {
+            $0.hidesSharedBackground = true
+        }
+    }
+    
+    let segmentedControlHeaderWrapperView = UIView()
+    var interaction: Any?
+
     
     override func loadView() {
         view = UIView()
@@ -89,27 +99,72 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
             make.edges.equalToSuperview()
         }
         if #available(iOS 26.0, *), isSolariumEnabled {
-            let wrapView = UIView()
-            view.addSubview(wrapView)
-            wrapView.snp.makeConstraints { make in
+            view.addSubview(segmentedControlHeaderWrapperView)
+            segmentedControlHeaderWrapperView.snp.makeConstraints { make in
                 make.leading.trailing.equalToSuperview()
                 make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
-            }
-            wrapView.addSubview(segmentedControl)
-            segmentedControl.snp.makeConstraints { make in
-                make.leading.trailing.equalTo(wrapView.readableContentGuide)
-                make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
             }
             let interaction = UIScrollEdgeElementContainerInteraction()
-            wrapView.addInteraction(interaction)
+            segmentedControlHeaderWrapperView.addInteraction(interaction)
             interaction.edge = .top
             self.interaction = interaction
-        } else {
+            
+            registerForTraitChanges([
+                UITraitVerticalSizeClass.self,
+                UITraitHorizontalSizeClass.self,
+            ], action: #selector(relayoutViews))
+            if #available(iOS 27.1, *) {
+                registerForTraitChanges(UITraitCollection.systemTraitsAffectingVerticalBarEdge, action: #selector(relayoutViews))
+            }
+        }
+        relayoutViews()
+    }
+    
+    @objc func relayoutViews() {
+        guard #available(iOS 26.0, *), isSolariumEnabled else {
             view.addSubview(toolBar)
-            toolBar.snp.makeConstraints { make in
+            toolBar.snp.remakeConstraints { make in
                 make.leading.trailing.equalToSuperview()
                 make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
             }
+            return
+        }
+        
+        if traitCollection.verticalSizeClass == .compact {
+            // 右上
+            segmentedControlBarItemView.addSubview(segmentedControl)
+            navigationItem.rightBarButtonItem = nil
+            segmentedControl.transform = .identity
+            segmentedControl.snp.remakeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            if #available(iOS 27.1, *) {
+                segmentedControlBarItem.axisBehavior = .horizontalOnly
+            }
+            navigationItem.rightBarButtonItem = segmentedControlBarItem
+            additionalSafeAreaInsets.top = 0
+        } else if #available(iOS 27.1, *), traitCollection.verticalBarEdge != .unspecified {
+            // 縦
+            segmentedControlBarItemView.addSubview(segmentedControl)
+            navigationItem.rightBarButtonItem = nil
+            segmentedControl.transform = CGAffineTransform(rotationAngle: .pi / 2)
+            segmentedControl.snp.remakeConstraints { make in
+                make.width.equalTo(segmentedControlBarItemView.snp.height)
+                make.height.equalTo(segmentedControlBarItemView.snp.width)
+                make.center.equalToSuperview()
+            }
+            segmentedControlBarItem.axisBehavior = .verticalPreferred
+            navigationItem.rightBarButtonItem = segmentedControlBarItem
+            additionalSafeAreaInsets.top = 0
+        } else {
+            // 上
+            segmentedControlHeaderWrapperView.addSubview(segmentedControl)
+            segmentedControl.transform = .identity
+            segmentedControl.snp.remakeConstraints { make in
+                make.leading.trailing.equalTo(segmentedControlHeaderWrapperView.readableContentGuide)
+                make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
+            }
+            additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
         }
     }
     
@@ -118,12 +173,6 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
 
         title = L10n.Localizable.notifications
         if #available(iOS 26.0, *), isSolariumEnabled {
-            additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
-            #if DEBUG
-            if Defaults.DEBUG_ONLY_enableSpecialUI {
-                additionalSafeAreaInsets.top = 0
-            }
-            #endif
         } else {
             additionalSafeAreaInsets.top = toolBar.frame.height
             let appearance = UINavigationBarAppearance()
