@@ -1894,7 +1894,7 @@
 			mainGroup = 2AF3520E1EAB9C5500777C2E;
 			packageReferences = (
 				CE11D6DA28576A7800F6A0AF /* XCRemoteSwiftPackageReference "ikemen" */,
-				CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */,
 				CEDCBDBE2DF6E9C8006CDCD4 /* XCRemoteSwiftPackageReference "Hydra" */,
 				CEC41F9F3066CDF400B32711 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
@@ -2829,6 +2829,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2883,6 +2884,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3444,7 +3446,7 @@
 				version = 0.8.0;
 			};
 		};
-		CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+		CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
@@ -3486,7 +3488,7 @@
 		};
 		CEC41F9D3066CC3000B32711 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			package = CE12EAC32DF580A20041971B /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
 		};
 		CEC41FA03066CDF400B32711 /* SnapKit */ = {
