@@ -41,6 +41,11 @@ struct AddAccountSelectLoginMethodView: View {
                     Text(L10n.Login.Authorize.Method.safariEphemeral)
                 })
                     .accessibilityIdentifier("loginWithSafari_Ephemeral")
+                #if targetEnvironment(simulator)
+                Button(action: { copyAuthorizeURL() }, label: {
+                    Text("Simulator: copyAuthorizeURL")
+                })
+                #endif
             }
             Section(L10n.Login.Authorize.Tos.header) {
                 OpenSafariButton(title: Text(L10n.Login.Authorize.Tos.rules), url: URL(string: "https://\(app.instance.hostName)/about/more")!, flag: true)
@@ -59,5 +64,13 @@ struct AddAccountSelectLoginMethodView: View {
             open(url)
         }
     }
+    
+    #if targetEnvironment(simulator)
+    func copyAuthorizeURL() {
+        let url = app.getAuthorizeUrl()
+        UIPasteboard.general.url = url
+        print(url)
+    }
+    #endif
 }
 
