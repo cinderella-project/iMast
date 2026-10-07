@@ -340,6 +340,7 @@ struct SettingsView: View {
         @AppStorage(defaults: .$communicationNotificationsEnabled) var communicationNotificationsEnabled
         @AppStorage(defaults: .$openAsHalfModalFromTimeline) var openAsHalfModalFromTimeline
         @AppStorage(defaults: .$openAsAnotherWindow) var openAsAnotherWindow
+        @AppStorage(defaults: .$halfModalUndimmed) var halfModalUndimmed
         #if DEBUG
         @AppStorage(defaults: .$DEBUG_ONLY_enableSpecialUI) var DEBUG_ONLY_enableSpecialUI
         #endif
@@ -353,6 +354,7 @@ struct SettingsView: View {
                     Text("メンションのプッシュ通知に送信者のアイコンが付くようになります。")
                 }
                 Toggle("タイムラインから何かを開いた時にハーフモーダルにする", isOn: $openAsHalfModalFromTimeline)
+                Toggle("ハーフモーダルの背景を触れるようにする", isOn: $halfModalUndimmed)
                 Toggle("できるだけ新ウィンドウで開く", isOn: $openAsAnotherWindow)
                 #if DEBUG
                 Toggle("★ Special UI (Debug Build Only)", isOn: $DEBUG_ONLY_enableSpecialUI)

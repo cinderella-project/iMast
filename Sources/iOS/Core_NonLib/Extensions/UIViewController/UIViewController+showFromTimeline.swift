@@ -66,6 +66,9 @@ extension UIViewController {
                     sheet.backgroundEffect = UIColorEffect(color: .clear)
                 }
                 sheet.detents = [.custom(resolver: SheetHeightResolver.shared.resolver)]
+                if Defaults.halfModalUndimmed {
+                    sheet.largestUndimmedDetentIdentifier = sheet.detents.first?.identifier
+                }
                 sheet.prefersScrollingExpandsWhenScrolledToEdge = false
                 #endif
                 sheet.prefersEdgeAttachedInCompactHeight = false

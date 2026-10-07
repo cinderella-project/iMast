@@ -87,6 +87,7 @@ public class Defaults {
     @DefaultsKey("use_custom_favourite_sound") public static var useCustomFavouriteSound: Bool = false
     @DefaultsKey("communication_notifications_enabled") public static var communicationNotificationsEnabled: Bool = false
     @DefaultsKey("open_as_half_modal_from_timeline") public static var openAsHalfModalFromTimeline: Bool = false
+    @DefaultsKey("half_modal_undimmed") public static var halfModalUndimmed: Bool = true
     
     #if os(visionOS)
     @DefaultsKey("open_as_another_window") public static var openAsAnotherWindow: Bool = true
