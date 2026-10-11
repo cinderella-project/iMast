@@ -30,7 +30,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+        xcodebuild -version
     - uses: ./.github/actions/prepare
       with:
         target-os: ${{ matrix.os }}
@@ -45,7 +47,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_${{ env._main_xcode }}.app
+        xcodebuild -version
     - uses: ./.github/actions/prepare
       with:
         target-os: ${{ matrix.os }}
@@ -121,7 +125,9 @@ jobs:
       run: sudo mdutil -a -i off
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ case(contains('iPad_9_7|iPhone_5_5|iPad_10_5', matrix.device_key), '26.5', env._main_xcode) }}.app
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_${{ case(contains('iPad_9_7|iPhone_5_5|iPad_10_5', matrix.device_key), '26.5', env._main_xcode) }}.app
+        xcodebuild -version
     - parallel:
       - name: Download Build Artifacts
         uses: actions/download-artifact@v7

@@ -19,7 +19,9 @@ jobs:
       with:
         fetch-depth: "2"
     - name: Select Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_${{ matrix.xcode }}.app
+        xcodebuild -version
     - uses: ./.github/actions/prepare
       with:
         target-os: ${{ matrix.os }}
