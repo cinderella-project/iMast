@@ -13,7 +13,7 @@ on:
         type: boolean
 
 env:
-  _main_xcode: &main_xcode "27.0"
+  _main_xcode: &main_xcode "27.1"
   _main_machine: &main_machine "xcode-27"
 
 jobs:
@@ -82,6 +82,7 @@ jobs:
             "iPad_13_0",   // modern iPad
             "iPad_10_5",   // iOS 26
             "iPad_9_7",    // iOS 17
+            "iPhone_Duo",  // iPhone Duo
           ]
           const allKeys = [
             ...preferredKeys,
