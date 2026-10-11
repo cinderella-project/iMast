@@ -37,7 +37,13 @@ jobs:
       with:
         target-os: ${{ matrix.os }}
     - name: Build
-      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -c
+      run: set -o pipefail && xcodebuild clean build -workspace iMast.xcworkspace -scheme "iMast iOS" -destination "generic/platform=${{ matrix.os }}" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | tee build.${{ github.run_id }}.${{ matrix.os }}.log | xcpretty -c
+    - name: Upload Build Log
+      uses: actions/upload-artifact@v7
+      if: failure()
+      with:
+        name: build.${{ github.run_id }}.${{ matrix.os }}.log
+        path: build.${{ github.run_id }}.${{ matrix.os }}.log
   build_for_test:
     strategy:
       fail-fast: true
