@@ -61,10 +61,10 @@ extension UIViewController {
         if Defaults.openAsHalfModalFromTimeline, traitCollection.verticalSizeClass != .compact {
             let navigationController = UINavigationController()
             if let sheet = navigationController.sheetPresentationController {
+                #if !os(visionOS)
                 if #available(iOS 27.0, *) {
                     sheet.preferredPlacement = .trailing
                 }
-                #if !os(visionOS)
                 if #available(iOS 26.1, *) {
                     sheet.backgroundEffect = UIColorEffect(color: .clear)
                 }

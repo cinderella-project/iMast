@@ -83,9 +83,11 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
     
     let segmentedControlBarItemView = UIView()
     lazy var segmentedControlBarItem = UIBarButtonItem(customView: segmentedControlBarItemView) ※ {
+        #if !os(visionOS)
         if #available(iOS 26.0, *) {
             $0.hidesSharedBackground = true
         }
+        #endif
     }
     
     let segmentedControlHeaderWrapperView = UIView()
@@ -113,9 +115,11 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
                 UITraitVerticalSizeClass.self,
                 UITraitHorizontalSizeClass.self,
             ], action: #selector(relayoutViews))
+            #if !os(visionOS) // TODO: remove after Xcode 27.2
             if #available(iOS 27.1, *) {
                 registerForTraitChanges(UITraitCollection.systemTraitsAffectingVerticalBarEdge, action: #selector(relayoutViews))
             }
+            #endif
         }
         relayoutViews()
     }
@@ -138,12 +142,17 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
             segmentedControl.snp.remakeConstraints { make in
                 make.edges.equalToSuperview()
             }
+            #if !os(visionOS) // TODO: remove after Xcode 27.2
             if #available(iOS 27.1, *) {
                 segmentedControlBarItem.axisBehavior = .horizontalOnly
             }
+            #endif
             navigationItem.rightBarButtonItem = segmentedControlBarItem
             additionalSafeAreaInsets.top = 0
-        } else if #available(iOS 27.1, *), traitCollection.verticalBarEdge != .unspecified {
+            return
+        }
+        #if !os(visionOS) // TODO: remove after Xcode 27.2
+        if #available(iOS 27.1, *), traitCollection.verticalBarEdge != .unspecified {
             // 縦
             segmentedControlBarItemView.addSubview(segmentedControl)
             navigationItem.rightBarButtonItem = nil
@@ -156,16 +165,17 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
             segmentedControlBarItem.axisBehavior = .verticalPreferred
             navigationItem.rightBarButtonItem = segmentedControlBarItem
             additionalSafeAreaInsets.top = 0
-        } else {
-            // 上
-            segmentedControlHeaderWrapperView.addSubview(segmentedControl)
-            segmentedControl.transform = .identity
-            segmentedControl.snp.remakeConstraints { make in
-                make.leading.trailing.equalTo(segmentedControlHeaderWrapperView.readableContentGuide)
-                make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
-            }
-            additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
+            return
         }
+        #endif
+        // 上
+        segmentedControlHeaderWrapperView.addSubview(segmentedControl)
+        segmentedControl.transform = .identity
+        segmentedControl.snp.remakeConstraints { make in
+            make.leading.trailing.equalTo(segmentedControlHeaderWrapperView.readableContentGuide)
+            make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
+        }
+        additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
     }
     
     override func viewDidLoad() {
