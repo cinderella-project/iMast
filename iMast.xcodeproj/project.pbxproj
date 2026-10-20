@@ -803,7 +803,6 @@
 		2AF3520E1EAB9C5500777C2E = {
 			isa = PBXGroup;
 			children = (
-				CE51BDE625DCE26A007D3A8E /* thirdparty */,
 				CE9B1AA01F9C5B4D0044341A /* README.md */,
 				CE8DF1841FED41C4005278FE /* Podfile */,
 				36EBC83E8164ACB27CEDC2DA /* license_plist.yml */,
@@ -1139,13 +1138,6 @@
 				CE9BB391241C5057004B6421 /* FavouritesTableViewController.swift */,
 			);
 			path = PostList;
-			sourceTree = "<group>";
-		};
-		CE51BDE625DCE26A007D3A8E /* thirdparty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = thirdparty;
 			sourceTree = "<group>";
 		};
 		CE522BE4241595BC0048E334 /* Endpoint */ = {
