@@ -201,11 +201,11 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
             case .all:
                 includeTypes = NotificationTableViewController.NotificationType.allCases
             case .mention:
-                includeTypes = [.mention]
+                includeTypes = [.mention, .quote, .update, .status]
             case .reaction:
                 includeTypes = [.reblog, .favourite]
             case .follow:
-                includeTypes = [.follow]
+                includeTypes = [.follow, .follow_request]
             }
             notificationVC = .instantiate(NotificationTableViewController.NotificationType.reverse(types: includeTypes), environment: environment)
         }

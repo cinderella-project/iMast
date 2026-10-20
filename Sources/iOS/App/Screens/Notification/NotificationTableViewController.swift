@@ -35,6 +35,10 @@ class NotificationTableViewController: UITableViewController, Instantiatable {
         case reblog
         case mention
         case poll
+        case follow_request
+        case quote
+        case status
+        case update
         
         static func reverse(types: [Self]) -> [Self] {
             return Self.allCases.filter { !types.contains($0) }
