@@ -87,12 +87,14 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
         if #available(iOS 26.0, *) {
             $0.hidesSharedBackground = true
         }
+        if #available(iOS 27.1, *) {
+            $0.axisBehavior = .horizontalOnly
+        }
         #endif
     }
     
     let segmentedControlHeaderWrapperView = UIView()
     var interaction: Any?
-
     
     override func loadView() {
         view = UIView()
@@ -134,48 +136,36 @@ class NotificationTableWrapperViewController: UIViewController, Instantiatable {
             return
         }
         
+        var filterInNavigationBar = false
+        
         if traitCollection.verticalSizeClass == .compact {
+            filterInNavigationBar = true
+        }
+        #if !os(visionOS) // TODO: remove after Xcode 27.2
+        if #available(iOS 27.1, *), traitCollection.verticalBarEdge != .unspecified, traitCollection.horizontalSizeClass != .compact {
+            filterInNavigationBar = true
+        }
+        #endif
+        
+        if filterInNavigationBar {
             // 右上
             segmentedControlBarItemView.addSubview(segmentedControl)
-            navigationItem.rightBarButtonItem = nil
-            segmentedControl.transform = .identity
             segmentedControl.snp.remakeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            #if !os(visionOS) // TODO: remove after Xcode 27.2
-            if #available(iOS 27.1, *) {
-                segmentedControlBarItem.axisBehavior = .horizontalOnly
-            }
-            #endif
-            navigationItem.rightBarButtonItem = segmentedControlBarItem
+            navigationItem.setRightBarButton(segmentedControlBarItem, animated: false)
             additionalSafeAreaInsets.top = 0
-            return
-        }
-        #if !os(visionOS) // TODO: remove after Xcode 27.2
-        if #available(iOS 27.1, *), traitCollection.verticalBarEdge != .unspecified {
-            // 縦
-            segmentedControlBarItemView.addSubview(segmentedControl)
-            navigationItem.rightBarButtonItem = nil
-            segmentedControl.transform = CGAffineTransform(rotationAngle: .pi / 2)
+        } else {
+            // 上
+            segmentedControlHeaderWrapperView.addSubview(segmentedControl)
             segmentedControl.snp.remakeConstraints { make in
-                make.width.equalTo(segmentedControlBarItemView.snp.height)
-                make.height.equalTo(segmentedControlBarItemView.snp.width)
-                make.center.equalToSuperview()
+                make.leading.trailing.equalTo(segmentedControlHeaderWrapperView.safeAreaLayoutGuide).inset(8)
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
             }
-            segmentedControlBarItem.axisBehavior = .verticalPreferred
-            navigationItem.rightBarButtonItem = segmentedControlBarItem
-            additionalSafeAreaInsets.top = 0
-            return
+            navigationItem.setRightBarButton(nil, animated: false)
+            additionalSafeAreaInsets.top = segmentedControl.frame.height + modernSegmentedControlHeight
         }
-        #endif
-        // 上
-        segmentedControlHeaderWrapperView.addSubview(segmentedControl)
-        segmentedControl.transform = .identity
-        segmentedControl.snp.remakeConstraints { make in
-            make.leading.trailing.equalTo(segmentedControlHeaderWrapperView.readableContentGuide)
-            make.bottom.equalToSuperview().inset(modernSegmentedControlHeight)
-        }
-        additionalSafeAreaInsets.top = segmentedControl.frame.height + (modernSegmentedControlHeight)
     }
     
     override func viewDidLoad() {
