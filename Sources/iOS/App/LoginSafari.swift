@@ -21,39 +21,11 @@
 //  limitations under the License.
 //
 
-import Foundation
 import UIKit
 import AuthenticationServices
 
-protocol LoginSafari {
-    func open(url: URL, viewController: UIViewController, prefersEphemeralWebBrowserSession: Bool)
-}
-
-extension UIViewController: ASWebAuthenticationPresentationContextProviding {
+extension UIWindowScene: ASWebAuthenticationPresentationContextProviding {
     public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return .init(windowScene: view.window!.windowScene!)
+        return .init(windowScene: self)
     }
-}
-
-class LoginSafari12: LoginSafari {
-    var authSession: ASWebAuthenticationSession?
-
-    func open(url: URL, viewController: UIViewController, prefersEphemeralWebBrowserSession: Bool) {
-        authSession = .init(url: url, callbackURLScheme: nil, completionHandler: { url, error in
-            guard let url = url else {
-                return
-            }
-            DispatchQueue.main.async {
-                viewController.view.window?.windowScene?.open(url, options: nil, completionHandler: nil)
-            }
-        })
-        authSession?.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
-        authSession?.presentationContextProvider = viewController
-        authSession?.start()
-    }
-}
-
-@MainActor
-func getLoginSafari() -> LoginSafari {
-    return LoginSafari12()
 }

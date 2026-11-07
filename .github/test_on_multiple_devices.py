@@ -13,7 +13,7 @@ IOS_DUO = "27.1"
 IOS_LATEST = "27.0"
 IOS_26 = "26.5"
 IOS_17 = "17.5"
-IOS_16 = "16.4" # our minimum requirements
+IOS_16 = "16.0" # our minimum requirements
 DEVICES = [
     # our_device_key, apple device key, iOS version, should test all locales
     ("iPhone_Duo", "com.apple.CoreSimulator.SimDeviceType.iPhone-Duo", IOS_DUO, False),

@@ -15,7 +15,7 @@ abstract_target 'iMastShared' do
   pod 'SwiftGen', '6.5.1' # I don't want to include fallback strings in source (ref. https://github.com/SwiftGen/SwiftGen/pull/964 )
   
   abstract_target 'iOS' do
-    platform :ios, '16.4'
+    platform :ios, '16.0'
     
     pod 'Mew', :git => 'https://github.com/rinsuki/Mew.git', :branch => "fix/podspec"
     
@@ -54,7 +54,7 @@ post_install do |installer|
   installer.generated_projects.each do |project|
     project.targets.each do |target|
       target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.4'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
         if config.build_settings['SDKROOT'].include? "iphoneos" then
           config.build_settings['SUPPORTED_PLATFORMS'] = "iphoneos iphonesimulator xros xrsimulator"
         end

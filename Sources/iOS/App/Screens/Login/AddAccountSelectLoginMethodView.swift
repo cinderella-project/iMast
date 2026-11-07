@@ -26,8 +26,8 @@ import iMastiOSCore
 import AuthenticationServices
 
 struct AddAccountSelectLoginMethodView: View {
-    @Environment(\.webAuthenticationSession) private var webAuthenticationSession
     @Environment(\.openURL) private var open
+    @StateObject private var errorReporter = ErrorReporter()
     let app: MastodonApp
     
     var body: some View {
@@ -53,16 +53,24 @@ struct AddAccountSelectLoginMethodView: View {
             }
             .modifier(OpenLinkInSafariVCModifier(role: .links))
         }
+        .attach(errorReporter: errorReporter)
         .navigationTitle(L10n.Login.Authorize.title)
     }
     
     func startAuthenticate(isEphemeralSession: Bool) {
-        Task {
-            let url = try await webAuthenticationSession.authenticate(
-                using: app.getAuthorizeUrl(), callbackURLScheme: "imast", preferredBrowserSession: isEphemeralSession ? .ephemeral : .shared
-            )
-            open(url)
+        let session = ASWebAuthenticationSession(url: app.getAuthorizeUrl(), callbackURLScheme: "imast") { url, error in
+            if let url {
+                open(url)
+            } else if let error {
+                if case ASWebAuthenticationSessionError.canceledLogin = error {
+                    return
+                }
+                errorReporter.report(error)
+            }
         }
+        session.presentationContextProvider = errorReporter.view?.window?.windowScene
+        session.prefersEphemeralWebBrowserSession = isEphemeralSession
+        session.start()
     }
     
     #if targetEnvironment(simulator)

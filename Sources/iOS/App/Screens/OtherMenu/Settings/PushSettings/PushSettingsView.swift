@@ -30,8 +30,7 @@ import iMastiOSCore
 
 struct PushSettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(\.webAuthenticationSession) var webAuth
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL) var open
     @AppStorage(defaults: .$showPushServiceError) var showPushServiceError
     @StateObject var errorReporter: ErrorReporter = .init()
     @State var accounts: [PushServiceToken] = []
@@ -176,8 +175,19 @@ struct PushSettingsView: View {
         }
         do {
             let url = try await PushService.getAuthorizeUrl(host: newServerHostName)
-            let resultUrl = try await webAuth.authenticate(using: url, callbackURLScheme: "", preferredBrowserSession: .shared)
-            openURL(resultUrl)
+            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: "imast") { url, error in
+                if let url {
+                    open(url)
+                } else if let error {
+                    if case ASWebAuthenticationSessionError.canceledLogin = error {
+                        return
+                    }
+                    errorReporter.report(error)
+                }
+            }
+            session.presentationContextProvider = errorReporter.view?.window?.windowScene
+            session.prefersEphemeralWebBrowserSession = false
+            session.start()
         } catch {
             if case ASWebAuthenticationSessionError.canceledLogin = error  {
                 return
