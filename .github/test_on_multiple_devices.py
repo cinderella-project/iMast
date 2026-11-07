@@ -127,7 +127,7 @@ try:
                 subprocess.run([
                     "xcrun", "xcodebuild", "test-without-building",
                     "-testProductsPath", TEST_PRODUCT_PATH,
-                    "-destination", "platform=iOS Simulator,arch=arm64,name=" + device_key,
+                    "-destination", "platform=iOS Simulator,arch=arm64,OS=" + ios_version + ",name=" + device_key,
                     "-parallel-testing-enabled", "NO",
                     "-retry-tests-on-failure",
                     "-resultBundlePath", "test_results/" + device_key + ".xcresult",
